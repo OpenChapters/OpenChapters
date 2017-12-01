@@ -1,6 +1,6 @@
 % !TEX root = ../../Build/main.tex
 % ###################################################################
-% Copyright (c) 2018, AuthorName 
+% Copyright (c) 2018, Marc De Graef 
 %  Editors: A.D. Rollett & M. De Graef
 % All rights reserved.
 %
@@ -23,7 +23,7 @@
 %     uncomment this line only if this chapter is a core/foundational chapter;
 %     for a core chapter a "Core" label will appear on the top left above the chapter title.
 
-\chapterauthor{Firstname M. Lastname, Affiliation}
+\chapterauthor{Marc De Graef, Carnegie Mellon University}
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/MaterialProperty/eps folder and must be of the *.eps type. 
@@ -35,4 +35,118 @@
 % ###################################################################
 
 \chapter{What is a Material Property?\label{chap:MaterialProperty}}
+
+\section{Introductory Remarks}
+It is not uncommon for the material scientist to describe his/her discipline in terms of a \textit{tetrahedron}.  Each corner of the materials tetrahedron (Fig.~\ref{fig:tetrahedron}) represents one of the four cornerstones of the field: \textit{Microstructure, Properties, Processing}, and \textit{Performance}. Many materials scientists/engineers believe that optimization of material properties through control of microstructure is the central paradigm in the discipline.  Blacksmiths represent the original (empirical) practitioners of this approach; they vary the microstructure of steels by varying their heat treatment in order to affect their mechanical properties.  In the present day, we control the doping of semiconductors to make quantum dots, resulting in highly efficient light emitting diodes; this is phase separation\index{phase separation} to make a two-phase structure in which the size of the approximately spherical particles of one phase is small enough that quantum effects become important.
+
+On the one hand, we have material properties, such as: strength, toughness, formability, conductivity, corrosion resistance, piezoelectric coefficients, dielectric constant, magnetic permeability, $\ldots$ On the other hand we have microstructural features, such as: grain size, grain shape, phase structure, composite structure, chemical composition (alloying), crystal structure, defect structure (e.g. porosity), and many others.  In a typical materials science curriculum, students learn how to connect quantities in these two groups quantitatively.  
+
+\subsection{Microstructure\label{ssec:microstructure}}
+\textit{Microstructure}\index{microstructure} refers to the internal structure of a material, at various length scales.  Biology was revolutionized when Leeuwenhoek and others started to use optical microscopes to look at the internal structure of plants.  They were able to relate many characteristics of plants to their cell structure, for example.  Similarly, in what is now the materials field, Sorby was one of the first to make cross-sections of materials such as iron and examine them in the microscope, so that he could relate properties to structure.  Microstructure originally meant the structure inside a material that could be observed with the aid of an optical microscope; in the metric system, with its prefixes for units, the micrometer ($1$ $\mu$m $= 10^{-6}$ m) happens to correspond roughly to the wavelength of light.  Light obviously is used to form images in a light/optical microscope.  Thus, microstructure has come to be accepted to cover those elements of structure with a length scale on the order of $1$ $\mu$m.  Given microstructure at the $\mu$m scale, naturally some refer to \textit{nanostructure}\index{nanostructure} at the nm ($=10^{-9}$ m) scale.  Many important material properties are determined at the atomistic length scale. The continuum scale means, in the context of engineering, length scales large enough that materials can be treated as having homogeneous properties.
+
+Most observable elements of microstructure are discontinuities, or \textit{defects}, in the material.  Some of the most important defects include:
+\begin{itemize}
+	\item \textit{Grain boundaries}\index{grain boundaries} are discontinuities in the crystal lattice and correspond to abrupt changes in the orientation of the crystal lattice;
+	\item \textit{Phase boundaries}\index{phase boundaries} are discontinuities in composition and, commonly, in crystal structure;
+	\item \textit{Dislocations}\index{dislocations} are local discontinuities in the lattice translational periodicity; they require observations in the nanoscale regime but their combined effect becomes noticeable at the microstructure level;
+	\item \textit{Point defects}\index{point defects} (very difficult to observe!) are missing atoms (vacancies)\index{vacancy} or extra (interstitial)\index{interstitial} atoms; they require high resolution transmission electron microscopes to detect their presence.\, but their effect can also be felt at the microstructure level.
+\end{itemize}
+
+Direct observation of microstructures requires us to make \textit{images}. In order of increasing effort, the standard methods are (1) \textit{optical microscopy}\index{optical microscopy} (OM), (2) \textit{scanning electron microscopy}\index{scanning electron microscopy} (SEM),  (3) \textit{scanning probe microscopy}\index{scanning probe microscopy} (SPM), and (4) \textit{transmission electron microscopy}\index{transmission electron microscopy} (TEM).  Microscopies that rely on topographic contrast require specimen preparation in order to reveal the microstructure.  Metallography/ceramography\index{metallography}\index{ceramography} is the art of specimen preparation for microscopy.  The aim in specimen preparation is always to maximize contrast for the microstructural elements of interest while minimizing image artifacts.\footnote{Reminder: not all imaging methods require topographic relief.  Channeling contrast in the SEM uses variations in crystallographic orientation to affect image brightness giving a gray-scale image of grain structure, for example.}
+
+It is essential to quantify microstructure in order to be able to predict properties quantitatively.  What you quantify depends on the property, i.e., what question you ask of the material. Examples of quantitative microstructural parameters are: grain size, void fraction, second phase particle size, $\ldots$.  Before discussing specific techniques, we must point out that the discipline of \textit{stereology}\index{stereology} is essential.  Most real materials are three dimensional, whereas most characterization methods provide information from either a planar section or from a surface. Even TEM requires thin foils (about $0.1$ $\mu$m thick). Therefore, some analysis is required to extract the true 3D quantities of interest. Modern materials characterization techniques include approaches to reconstruct the full 3D microstructure of a material. This can be done at various length scales:
+
+\begin{itemize}
+\item \textit{Atomic scale}:  the  3-D  atom probe\index{3D atom probe} \cite{seidman2000a,miller2004a,hono2005a} can generate maps of the locations of large numbers ($10^6$--$10^8$) of individual atoms in a relatively short time. The technique relies on field evaporation of individual atoms from a sharp tip placed in a strong electric field, and subsequent position and mass sensitive detection of these atoms.  This technique is limited to volumes of a few hundred cubic nanometers, and is very demanding in terms of sample preparation, but results in the ultimate resolution, since each atom is identified with respect to both chemistry and position.
+
+\item \textit{``several cubic microns''}:  Focused ion beam (FIB) serial sectioning techniques \cite{dunn1999a,uchic2006a} are used to analyze the  3-D  structure of complex phase mixtures.  When combined with electron backscatter diffraction and energy dispersive x-ray spectroscopy, orientational and chemical information can be acquired at the same time.  This technique is typically limited  to a few hundred cubic microns.  More recently, femto-second laser ablation \cite{Echlin2015} has been used to remove larger volumes of material at a much faster rate.
+
+\item \textit{``several cubic millimeters''}: Automated serial sectioning methods based on milling \cite{alkemper2001a} or standard metallography \cite{spowart2003a} can generate  3-D  data from macroscopic samples. Combining these approaches  with Laue diffraction and x-ray fluorescence allows for the near-simultaneous acquisition of chemical and orientational information.
+\end{itemize}
+
+\subsection{Properties\label{ssec:properties}}
+
+
+\subsection{Processing\label{ssec:processing}}
+
+
+\subsection{Performance\label{ssec:performance}}
+
+
+\section{Definition of a Material Property\label{sec:matprop}}
+
+Although it is difficult to provide a general abstract description of a material property, valid for all possible properties, it is instructive to think of a material property as \textit{the link between an external influence and the material response to that influence}.  If we denote the external influence by $\mathcal{F}$ ($\mathcal{F}$ stands for \underline{F}ield) and the material \underline{R}esponse by $\mathcal{R}$, then in the most general sense the relation between the two is given by
+\begin{equation}
+	\mathcal{R}=\mathcal{R}(\mathcal{F}),\label{eq:rf}
+\end{equation}
+or, put in words, the material response is a function of the externally applied field.  It is one of the tasks of a materials scientist to figure out and understand what that response function looks like.
+
+We know from calculus that, for ``well-behaved'' functions, we can always expand the function into powers of its argument, i.e., construct a Taylor expansion.\index{Taylor expansion}  For equation~(\ref{eq:rf}) above, the Taylor expansion around $\mathcal{F}=0$ is given by:
+\begin{align}
+	\mathcal{R}&=\mathcal{R}_0 + 
+	\frac{1}{1!}\left.\frac{\partial\mathcal{R}}{\partial\mathcal{F}}\right 
+	\vert_{\mathcal{F}=0}\!\!\!\!\mathcal{F} + 
+	\frac{1}{2!}\left.\frac{\partial^2\mathcal{R}}{\partial\mathcal{F}^2}\right 
+	\vert_{\mathcal{F}=0}\!\!\!\!\mathcal{F}^2 + 
+	\frac{1}{3!}\left.\frac{\partial^3\mathcal{R}}{\partial\mathcal{F}^3}\right 
+	\vert_{\mathcal{F}=0}\!\!\!\!\mathcal{F}^3 + \ldots \nonumber\\
+	&= \mathcal{R}_0 +
+	\sum_{n=1}^{\infty}\frac{1}{n!}\left.\frac{\partial^n\mathcal{R}}{\partial\mathcal{F}^n}\right 
+	\vert_{\mathcal{F}=0}\!\!\!\!\mathcal{F}^n,
+	\label{eq:expansion}
+\end{align}
+where $\mathcal{R}_0 = \mathcal{R}(0)=\mathcal{R}\vert_{\mathcal{F}=0}$ describes the ``state'' of the material at zero field.  There are two possibilities for $\mathcal{R}_0$:
+\begin{enumerate}
+	\item $\mathcal{R}_0=0$: in the absence of an external field ($\mathcal{F}=0$), there is no permanent (or remanent) material response.  For example, if the external field is an applied stress, and the material response is a strain, then at zero stress there is no strain (assuming linear elasticity).  Or, if the applied field is an electric field, and the response is an electrical current, then at zero field, no current flows.
+	
+	\item $\mathcal{R}_0\neq 0$: in the absence of an external field ($\mathcal{F}=0$), there is a permanent material response.  For example, in a ferromagnetic material the magnetization is in general different from zero, even at zero applied field (i.e., a permanent magnet).  
+\end{enumerate}
+
+If we truncate the series after the second term (i.e., we ignore all derivatives of $\mathcal{R}$ except for the first one), then the expression for $\mathcal{R}$ becomes rather simple:
+\begin{equation}
+	\mathcal{R}=\mathcal{R}_0 + 
+	\left.\frac{\partial\mathcal{R}}{\partial\mathcal{F}}\right 
+	\vert_{\mathcal{F}=0}\!\!\!\!\mathcal{F} =\mathcal{R}_0 + 
+	\mathbf{P}\mathcal{F}\quad\mbox{ with }\quad \mathbf{P}=\left.  
+	\frac{\partial\mathcal{R}}{\partial\mathcal{F}}\right\vert_{\mathcal{F}=0.
+	}
+\end{equation}
+This is a \textit{linear} relation between the applied field and the response.  The quantity $\mathbf{P}$ is a \textit{material property}.\index{material property}  Ignoring the higher order derivatives of $\mathcal{R}$ is generally known as the \textit{linear approximation}.\index{linear approximation}  This approximation considerably simplifies the math and for many purposes it is a useful and accurate approximation.
+
+Since the external field $\mathcal{F}$ is often a vector quantity (e.g., the electric field $\mathcal{F}=\mathbf{E}$) and the response can also be a vector (e.g., the current density $\mathcal{R}=\mathbf{j}$) it is clear that the material property $\mathbf{P}$ is not always going to be described by a single number.  Instead, the material property can become a vector itself, or even a higher order mathematical quantity known as a \textit{tensor};\index{tensor} nearly all of the interesting and useful material properties are represented by tensors.  For now, think of a tensor as an array of numbers with a set of special properties; in section~\ref{sec:tensors} we will describe tensors in more detail.  Without going into the details at this time, we can state that, in general, a material property is represented by a \textit{matrix} of numbers; the crystallographic symmetry of the material determines which of those numbers can be different from zero, and which \textit{must} be zero.  
+
+If the series expansion in equation~(\ref{eq:expansion}) is truncated after the third term, then it is said that the material behaves in a non-linear way.  The relation can then be rewritten as:
+\begin{equation}
+	\mathcal{R}=\mathcal{R}_0 + \mathbf{P}\mathcal{F} + 
+	\mathbf{P}_2\mathcal{F}^2.
+\end{equation}
+$\mathbf{P}_2$ is a \textit{non-linear} material property.  Crystallography and symmetry theory are again used to examine the relations between the components of $\mathbf{P}_2$.  
+	
+There are several material properties for which it is impossible to truncate the Taylor expansion of equation~(\ref{eq:expansion}) after just a few terms, and many or all terms must be used. For those properties, it is customary to use equation~(\ref{eq:rf}), with some appropriate mathematical function $\mathcal{R}$. In that case, equation~(\ref{eq:rf}) represents a so-called \textit{constitutive law}\index{constitutive law} or \textit{constitutive relation}.\index{constitutive relation}  Sometimes, physical arguments can be used to find the precise form of the function, in other situations empirical or phenomenological relations may be needed.
+
+One can also express the \textit{energy content} of a material in terms of the externally applied field(s); \textit{thermodynamics}\index{thermodynamics} then provides the means and rules to determine how the energy of a solid/liquid/gas changes when the external conditions change.  Thermodynamics often assumes that a material system is \textit{homogeneous} and \textit{isotropic} (see below) and then makes quite general statements about its behavior in various external fields.  Symmetry becomes important whenever a thermodynamic function depends on the gradient of a property; in such cases, symmetry theory can determine the possible mathematical expressions that will correctly describe this property.  There is thus an intimate relation between the symmetry of a material and its thermodynamic properties.  Whereas symmetry theory determines which elements of the property matrix are zero, thermodynamics can be used to derive additional restrictions on the non-zero elements (e.g., some elements can only be positive, or certain elements must always be smaller than others, etc.)  
+
+Every material property has a number of characteristics\footnote{We could call them \textit{properties} but it is a bit confusing to talk about the properties of a property.} which are of fundamental importance: \textit{homogeneity, anisotropy} and \textit{symmetry}; let us take a closer look at each of these concepts.
+
+\subsection{Homogeneity\label{ssec:homogeneity}}
+There are several length scales at which we can make observations on a material.  Macroscopic measurements are considered to be those measurements which occur over distances many times larger than the interatomic distance, e.g.\
+\begin{eqnarray}
+	\mbox{length : }&&L \gg a; \nonumber\\
+	\mbox{surface : }&&S \gg a^{2};\\
+	\mbox{volume : }&&V \gg a^{3},\nonumber
+\end{eqnarray}
+where $a$ is of the order of the interatomic distance.  The majority of objects with which we deal in everyday life are composed of several different \textit{materials}: metals, plastics, wood, brick, and many others.  At the macroscopic level, most of those materials may appear to consist of only one piece.  However, when we use a microscope to zoom in on the details, we can often observe that the material is made up of small \textit{grains}.  Each of those grains is an individual crystal, usually with a rather irregular shape.  When we zoom in even further, we can observe the \textit{crystal lattice}, which shows a regular arrangement of atoms.  If a material consists of many grains in more or less random orientations, then we refer to that material as \textit{poly-crystalline}.  If the complete object is formed by only one grain, then that object is a \textit{single crystal}; most gems are single crystals.  It is customary to concentrate first on the properties of single crystals, and subsequently to determine how a deviation from the single crystal state affects those properties.  To obtain a deeper understanding about the way materials work it is necessary to start at the microscopic or \textit{crystallographic} level and work our way up to real materials.
+
+A crystalline substance is \textit{homogeneous}\index{homogeneous} when all physical (e.g.\ optical, mechanical, etc.)  and physicochemical (e.g.\ solubility of surface, adsorption, etc.)  properties are the same for volume (or surface) elements at different locations in the substance.  If a material point is denoted by the coordinate vector $\mathbf{r}$ with components $(x,y,z)$, then the mathematical statement of homogeneity of a property $\mathbf{P}$ becomes :
+\begin{equation}
+	\mathbf{P}(\mathbf{r}\,)=\mathbf{P}(\mathbf{r}+\mathbf{r}^{\,\prime})
+\end{equation}
+where the points $\mathbf{r}$ and $\mathbf{r}^{\,\prime}$ are separated by a macroscopic distance.  The property $\mathbf{P}$ can be a scalar (heat capacity, density, etc.), a vector (polarization, magnetization, etc.)  or a higher order quantity known as a tensor (elastic moduli, magnetic susceptibility, etc.). \textit{Homogeneity} thus requires that a material property be independent of the location in the material where it is measured.  If a property \textit{does} depend upon location, then it is said that the property is \textit{heterogeneous}.\index{heterogeneous}  For instance, a natural sapphire (Al$_2$O$_3$) crystal may contain Cr atoms; if the distribution of Cr atoms is homogeneous throughout the sample, then the color of the crystal will be independent of location.  However, if one side of the crystal contains more Cr than the other side, then there is a \textit{compositional gradient} across the sample, and the color may vary with location.  For many materials applications homogeneity is a strict requirement, for many other applications gradients or fluctuations are required.  For instance, if a semiconductor device were chemically homogeneous, it would fail to function.
+
+\subsection{Anisotropy\label{ssec:anisotropy}}
+A homogeneous property can be either isotropic or anisotropic in a single crystal.  If a property is the same in every direction, then that property is said to be \textit{isotropic},\index{isotropic} otherwise it is \textit{anisotropic}.\index{anisotropic}  Every isotropic homogeneous quantity must necessarily be described by a \textit{scalar}.  The most interesting properties are usually those which are direction dependent.  We will see later on that the mathematical quantity known as a tensor is perfectly suited for the description of anisotropic behavior.  Examples of properties which may depend upon direction include thermal conductivity, dielectric and magnetic susceptibilities, elastic moduli, and so on.  It is important to note that an anisotropic property in a single crystal can become isotropic in a poly-crystalline material, since all crystal orientations may be simultaneously present in the poly-crystal.
+
+\subsection{Symmetry\label{ssec:symmetry}}
+Symmetry is one of the more fundamental properties of crystalline matter.  Apart from color, it is also in many cases the most ``eye-catching'' aspect of a natural crystal.  One can introduce the concept as follows: take an arbitrary object and determine if there is a way to ``move'' the object into another orientation in such a way that the initial and final configurations are indistinguishable.  The specific ways of ``moving'' an object into \textit{self-coincidence} represent the symmetries of that object.  Enumeration of the different symmetry properties of a crystal forms the subject of the ``group theory'' of crystallography.
+
 

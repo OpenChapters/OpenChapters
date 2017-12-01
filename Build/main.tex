@@ -1,4 +1,9 @@
-% !TEX TS-program = pdflatexmk
+% !TEX TS-program = arara
+% arara: pdflatex
+% arara: makeindex: { style: StyleInd }
+% arara: biber
+% arara: pdflatex
+% arara: pdflatex
 
 % ###################################################################
 % Copyright (c) 2017-2018, Editors: A.D. Rollett & M. De Graef
@@ -20,6 +25,9 @@
 
 % load the OpenChapters.sty package file that loads everything else...
 \usepackage{OpenChapters}
+
+\addbibresource{OpenChapters.bib} % BibTeX bibliography file
+
 
 % uncomment the chapter you wish to typeset from the list below; to typeset the
 % entire text, leave all lines commented

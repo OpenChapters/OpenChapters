@@ -1,4 +1,4 @@
-% !TEX root = main.tex
+% !TEX root = ../Build/main.tex
 
 % ###################################################################
 % Copyright (c) 2017, A.D. Rollett & M. De Graef
@@ -16,27 +16,28 @@
 % language governing permissions and limitations under the License.
 % ###################################################################
 
-\renewcommand{\chaptergraphicspath}{../matter/eps/}
+\renewcommand{\chaptergraphicspath}{matter/eps/}
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
 
-%\chapter*{Bibliography}
-%\addcontentsline{toc}{chapter}{\textcolor{ocre}{Bibliography}}
-%\section*{Books}
-%\addcontentsline{toc}{section}{Books}
-%\printbibliography[heading=bibempty,type=book]
-%\section*{Articles}
-%\addcontentsline{toc}{section}{Articles}
-%\printbibliography[heading=bibempty,type=article]
+\chapterimage{\noheaderimage}
+\chapter*{Bibliography}
+\addcontentsline{toc}{chapter}{\textcolor{ocre}{Bibliography}}
+\section*{Books}
+\addcontentsline{toc}{section}{Books}
+\printbibliography[heading=bibempty,type=book]
+\section*{Articles}
+\addcontentsline{toc}{section}{Articles}
+\printbibliography[heading=bibempty,type=article]
 
 %----------------------------------------------------------------------------------------
 %	INDEX
 %----------------------------------------------------------------------------------------
 
-%\cleardoublepage
-%\phantomsection
-%\setlength{\columnsep}{0.75cm}
-%\addcontentsline{toc}{chapter}{\textcolor{ocre}{Index}}
-%\printindex
+\cleardoublepage
+\phantomsection
+\setlength{\columnsep}{0.75cm}
+\addcontentsline{toc}{chapter}{\textcolor{ocre}{Index}}
+\printindex
