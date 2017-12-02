@@ -1,10 +1,14 @@
 % !TEX TS-program = arara
 % arara: pdflatex
 % arara: makeindex: { style: StyleInd }
+% arara: mergemainbibfiles
 % arara: biber
 % arara: pdflatex
 % arara: pdflatex
-
+% arara: clean: { files: [main.aux, main.bbl, main.bcf, main.blg, main.fls, main.idx] }
+% arara: clean: { files: [main.ilg, main.ind, main.log, main.ptc, main.toc] }
+%
+%
 % ###################################################################
 % Copyright (c) 2017-2018, Editors: A.D. Rollett & M. De Graef
 % All rights reserved.
@@ -27,7 +31,6 @@
 \usepackage{OpenChapters}
 
 \addbibresource{OpenChapters.bib} % BibTeX bibliography file
-
 
 % uncomment the chapter you wish to typeset from the list below; to typeset the
 % entire text, leave all lines commented
