@@ -29,6 +29,7 @@
 
 % load the OpenChapters.sty package file that loads everything else...
 \usepackage{OpenChapters}
+\usepackage{showlabels}
 
 \addbibresource{OpenChapters.bib} % BibTeX bibliography file
 
@@ -48,7 +49,7 @@
 
 \begin{document}
 
-\input{../matter/Frontmatter}
+\input{matter/Frontmatter}
 
 % Here are all the parts and chapters
 
@@ -70,6 +71,6 @@
 \include{src/PropertySymmetry/PropertySymmetry} % Properties and Symmetry
 \include{src/ExampleProperties/ExampleProperties} % Example Anisotropic Material Properties
 
-\input{../matter/Postmatter}
+\input{matter/Postmatter}
 
 \end{document}

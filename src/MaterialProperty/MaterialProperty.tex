@@ -150,3 +150,650 @@ A homogeneous property can be either isotropic or anisotropic in a single crysta
 Symmetry is one of the more fundamental properties of crystalline matter.  Apart from color, it is also in many cases the most ``eye-catching'' aspect of a natural crystal.  One can introduce the concept as follows: take an arbitrary object and determine if there is a way to ``move'' the object into another orientation in such a way that the initial and final configurations are indistinguishable.  The specific ways of ``moving'' an object into \textit{self-coincidence} represent the symmetries of that object.  Enumeration of the different symmetry properties of a crystal forms the subject of the ``group theory'' of crystallography.
 
 
+\section{About Coordinate Transformations and Tensors}
+\label{sec:transformations1}
+
+\subsection[Cartesian Coordinate Transformations]{Cartesian Coordinate Transformations}
+
+The properties of a material must be independent of the reference 
+frame we select to describe them.  Therefore, the mathematical 
+representation of such properties must reflect this independence of 
+the reference frame.  Frame-independence allows us to write quite 
+general expressions, such as the relation between an applied electric 
+field $\mathbf{E}$ and the resulting electrical current density 
+$\mathbf{j}$~:
+\begin{equation}
+	\mathbf{j}=\bm{\sigma}\mathbf{E},\label{eq:conductivity}
+\end{equation}
+where $\bm{\sigma}$ is the electrical conductivity.  The reason for 
+representing the conductivity with a bold symbol will become clear shortly.
+This equation does not depend on a specific reference frame. It is a relation between two vectors
+and those vectors exist, regardless of the presence or absence of a reference frame.
+It is a general characteristic of all laws of physics that they must be 
+independent of the reference frame, or \textit{invariant} under a 
+\textit{coordinate transformation}.
+
+If a single crystal is isotropic, then the electrical conductivity 
+$\sigma$ does not depend on the direction of the applied electric 
+field $\mathbf{E}$.  We thus find that
+\[
+	\mathbf{j}=\sigma\mathbf{E}\qquad\mbox{isotropic material}.
+\]
+Therefore, the two vectors are parallel.
+For some crystals, however, the current density does depend upon the 
+direction of the electric field vector and the two vectors 
+\textit{need not be parallel.} This means that the electrical 
+conductivity can no longer be represented by a simple number $\sigma$.  
+The most general linear relation between the two vectors can be 
+written as~:
+\begin{eqnarray}
+j_x &=& \sigma_{xx} E_x + \sigma_{xy} E_y + \sigma_{xz} E_z\nonumber\\
+j_y &=& \sigma_{yx} E_x + \sigma_{yy} E_y + \sigma_{yz} E_z\\
+j_z &=& \sigma_{zx} E_x + \sigma_{zy} E_y + \sigma_{zz} E_z\nonumber
+\end{eqnarray}
+For the anisotropic material we thus need 9 numbers to describe the 
+electrical conductivity instead of a single number for the isotropic 
+material.  We can introduce a $3\times 3$ matrix with elements 
+$\sigma_{ij}$ to describe these nine numbers.  If we denote that 
+matrix by $\bm{\sigma}$, then the relation between current 
+density and applied electric field for an anisotropic material becomes
+\[
+\mathbf{j}=\bm{\sigma}\mathbf{E}
+\]
+We will see in this section that this property $\bm{\sigma}$ 
+is not just a matrix, but has important additional properties which 
+turn it into a \textit{tensor}.\index{tensor}
+
+The 9 components of the electrical conductivity matrix (actually, only 
+six of them are independent of each other; we will determine why this 
+is the case in section~\ref{sec:XXX}) fully describe the relation 
+between an applied electric field and the resulting electrical current 
+density for a particular material.  If we rewrite 
+equation~\ref{eq:conductivity} in a second (primed) reference frame, 
+then we must have an expression of the same mathematical form~:
+\begin{equation}
+	\mathbf{j}^{\,\prime}=\bm{\sigma}^{\,\prime}\mathbf{E}^{\,\prime}
+\end{equation}
+Since this equation describes the same material, but with a different 
+reference frame, there must be a relation between the components of 
+$\bm{\sigma}$ and those of $\bm{\sigma}^{\,\prime}$.  
+In this section we will derive the relation between those components 
+first by means of an explicit example, and then by using a more 
+precise mathematical formalism.  We shall see that the behavior of the 
+conductivity ``matrix'' under coordinate transformations can actually 
+be used to \textit{define} the concept of a \textit{tensor}.
+
+We have already seen in section~\ref{ssec:vectortransformation} how the components of a vector change when transforming from one Cartesian reference frame to another. In the following section we will show how one can compute the components of a tensor in one reference frame when its components in another reference frame are known.  We will use the electrical conductivity equation~\ref{eq:conductivity} as an example.
+
+\subsection{Transformation of the electrical conductivity tensor $\bm{\sigma}$.}
+In this section we will answer the question~: how does the set of nine numbers (the components of $\bm{\sigma}$) change when the reference frame is changed?  To illustrate the various equations which we will derive, it is useful to select a particular set of numbers for the components of $\bm{\sigma}$.  Let us assume that the components of the electrical conductivity for a hypothetical material are given by~:
+\[
+\sigma_{ij}=\left[\begin{tabular}{ccc}\centering $0$ & $1$ & $1$ \\
+$1$ & $0$ & $1$ \\
+$1$ & $1$ & $0$ \\
+\end{tabular}\right]
+\]
+If we also select a particular electric field vector $\mathbf{E}$, say~:
+\[
+E_i=\columnthree{\sqrt{2}}{\sqrt{2}}{2},
+\]
+then we can compute the resulting electrical current density 
+$\mathbf{j}$ as~:
+\[
+\left[\begin{tabular}{ccc}\centering $0$ & $1$ & $1$ \\
+$1$ & $0$ & $1$ \\
+$1$ & $1$ & $0$ \\
+\end{tabular}\right] \columnthree{\sqrt{2}}{\sqrt{2}}{2}= 
+\columnthree{2+\sqrt{2}}{2+\sqrt{2}}{2\sqrt{2}}=\mathbf{j}
+\]
+
+We know that both $\mathbf{j}$ and $\mathbf{E}$ are vectors, and therefore we know how their components change from one reference frame to another (see section~\ref{ssec:vectortransformation}).  To compute the components of $\bm{\sigma}$ in the primed reference frame we proceed as follows~:
+\begin{enumerate}
+\item Write the component form of the equation $\mathbf{j}= 
+\bm{\sigma}\mathbf{E}$~:
+\[
+j_i=\sigma_{ij}E_j
+\]
+\item Replace the components of $\mathbf{j}$ and $\mathbf{E}$, using 
+equation~\ref{eq:stuff5}~:
+\[
+\tilde{\alpha}_{ij}j_j^{\prime}=\sigma_{ij}\tilde{\alpha}_{jk} 
+E_k^{\prime}
+\]
+\item Multiply both sides of the equation by the inverse of 
+$\tilde{\alpha}$~:
+\[
+\left(\tilde{\alpha}^{-1}\right)_{pi}\tilde{\alpha}_{ij} 
+j_j^{\prime}=\left(\tilde{\alpha}^{-1}\right)_{pi} 
+\sigma_{ij}\tilde{\alpha}_{jk} E_k^{\prime}
+\]
+\item The product $\left(\tilde{\alpha}^{-1}\right)_{pi} 
+\tilde{\alpha}_{ij}$ is equal to the identity matrix $\delta_{pj}$, 
+and the resulting equation is~:
+\[
+j_p^{\prime}=\left(\tilde{\alpha}^{-1}\right)_{pi} 
+\sigma_{ij}\tilde{\alpha}_{jk} E_k^{\prime}
+\]
+\item Finally, for a rotation matrix, the transpose of the inverse is simply the matrix itself, so that we obtain:
+\[
+j_p^{\prime}=\alpha_{pi}\sigma_{ij}\tilde{\alpha}_{jk} E_k^{\prime}
+\]
+\end{enumerate}
+This last equation relates the components of $\mathbf{j}^{\,\prime}$ to 
+those of $\mathbf{E}^{\,\prime}$, and since $\mathbf{j}^{\,\prime}= 
+\bm{\sigma}^{\prime}\mathbf{E}^{\,\prime}$ we must have~:
+\begin{equation}
+\sigma^{\prime}_{pk}= 
+\alpha_{pi}\sigma_{ij}\widetilde{\alpha}_{jk}
+\label{eq:stuff6}
+\end{equation}
+The inverse of this relation is readily shown to be~:
+\begin{equation}
+\sigma_{pk}= 
+\widetilde{\alpha}_{pi}\sigma^{\prime}_{ij}\alpha_{jk}
+\label{eq:stuff7}
+\end{equation}
+We thus find that the components of $\bm{\sigma}$ in the two 
+reference frames are related to each other by an equation which 
+involves \textit{two} products with the transformation matrix 
+$\alpha$.
+
+It is common practice to slightly rewrite these transformation relations,
+so that all the matrices $\alpha$ appear \textit{before} the tensor symbol.
+This can be achieved by using the transpose as follows for equation~\ref{eq:stuff6}:
+\begin{equation}
+	\sigma'_{pk} = \alpha_{pi}\alpha_{kj}\sigma_{ij},
+\end{equation}
+and for equation~\ref{eq:stuff7} we find
+\begin{equation}
+	\sigma_{pk} = \tilde{\alpha}_{pi}\tilde{\alpha}_{kj}\sigma'_{ij}.
+\end{equation}
+
+
+\begin{example}
+Let us illustrate the meaning of equations~\ref{eq:stuff6} and 
+\ref{eq:stuff7} by means of an example.  If the two reference frames 
+are related to each other by a 45$^{\circ}$ clockwise rotation 
+around the common $\mathbf{e}_z$ axis, then the transformation matrix 
+$\alpha$ is given by~:
+\[
+\alpha_{ij}=\left(\begin{tabular}{ccc}\centering $\frac{1}{\sqrt{2}}$ 
+& $\frac{1}{\sqrt{2}}$ & $0$ \\
+$\frac{-1}{\sqrt{2}}$ & $\frac{1}{\sqrt{2}}$ & $0$ \\
+$0$ & $0$ & $1$ \\
+\end{tabular}\right).
+\] 
+Applying equation~\ref{eq:stuff4} to the components of $\mathbf{E}$ introduced 
+earlier in this section, we find~:
+\[
+\left(\begin{tabular}{ccc}\centering $\frac{1}{\sqrt{2}}$ & 
+$\frac{1}{\sqrt{2}}$ & $0$ \\
+$\frac{-1}{\sqrt{2}}$ & $\frac{1}{\sqrt{2}}$ & $0$ \\
+$0$ & $0$ & $1$ \\
+\end{tabular}\right) \columnthree{\sqrt{2}}{\sqrt{2}}{2}= 
+\columnthree{2}{0}{2}=\mathbf{E}^{\,\prime}
+\]
+and similarly for the electrical current density~:
+\[
+\left(\begin{tabular}{ccc}\centering $\frac{1}{\sqrt{2}}$ & 
+$\frac{1}{\sqrt{2}}$ & $0$ \\
+$\frac{-1}{\sqrt{2}}$ & $\frac{1}{\sqrt{2}}$ & $0$ \\
+$0$ & $0$ & $1$ \\
+\end{tabular}\right) \columnthree{2+\sqrt{2}}{2+\sqrt{2}}{2\sqrt{2}}= 
+\columnthree{2+2\sqrt{2}}{0}{2\sqrt{2}}=\mathbf{j}^{\,\prime}
+\]
+It is straightforward to show that 
+$\mathbf{j}^{\,\prime}\neq\bm{\sigma}\mathbf{E}^{\,\prime}$.  The 
+primed components of $\bm{\sigma}$ can be computed from 
+equation~\ref{eq:stuff6}~:
+\begin{eqnarray}
+\sigma^{\prime}_{pk}&=& 
+\alpha_{pi}\sigma_{ij} 
+\widetilde{\alpha}_{jk}\nonumber\\
+&=&\left(\begin{tabular}{ccc}\centering $\frac{1}{\sqrt{2}}$ & 
+$\frac{1}{\sqrt{2}}$ & $0$ \\
+$\frac{-1}{\sqrt{2}}$ & $\frac{1}{\sqrt{2}}$ & $0$ \\
+$0$ & $0$ & $1$ \\
+\end{tabular}\right) \left[\begin{tabular}{ccc}\centering $0$ & $1$ & 
+$1$ \\
+$1$ & $0$ & $1$ \\
+$1$ & $1$ & $0$ \\
+\end{tabular}\right] \left(\begin{tabular}{ccc}\centering 
+$\frac{1}{\sqrt{2}}$ & $\frac{-1}{\sqrt{2}}$ & $0$ \\
+$\frac{1}{\sqrt{2}}$ & $\frac{1}{\sqrt{2}}$ & $0$ \\
+$0$ & $0$ & $1$ \\
+\end{tabular}\right)\nonumber\\
+&=&\left(\begin{tabular}{ccc}\centering $\frac{1}{\sqrt{2}}$ & 
+$\frac{1}{\sqrt{2}}$ & $0$ \\
+$\frac{-1}{\sqrt{2}}$ & $\frac{1}{\sqrt{2}}$ & $0$ \\
+$0$ & $0$ & $1$ \\
+\end{tabular}\right) \left(\begin{tabular}{ccc}\centering 
+$\frac{1}{\sqrt{2}}$ & $\frac{1}{\sqrt{2}}$ & $1$ \\
+$\frac{1}{\sqrt{2}}$ & $\frac{-1}{\sqrt{2}}$ & $1$ \\
+$\sqrt{2}$ & $0$ & $0$ \\
+\end{tabular}\right)\nonumber\\
+&=& \left[\begin{tabular}{ccc}\centering $1$ & $0$ & $\sqrt{2}$ \\
+$0$ & $-1$ & $0$ \\
+$\sqrt{2}$ & $0$ & $0$ \\
+\end{tabular}\right]\nonumber
+\end{eqnarray}
+It is then easy to show that
+\[
+\bm{\sigma}^{\prime}\mathbf{E}^{\,\prime}= 
+\left[\begin{tabular}{ccc}\centering $1$ & $0$ & $\sqrt{2}$ \\
+$0$ & $-1$ & $0$ \\
+$\sqrt{2}$ & $0$ & $0$ \\
+\end{tabular}\right] \columnthree{2}{0}{2}= 
+\columnthree{2+2\sqrt{2}}{0}{2\sqrt{2}}= \mathbf{j}^{\,\prime}
+\]
+\end{example}
+
+By means of this example, we have shown that the relations~\ref{eq:stuff6} and \ref{eq:stuff7} \textit{guarantee} that the equation $\mathbf{j}=\bm{\sigma}\mathbf{E}$ remains valid in the new reference frame.  One can state in general terms that if a quantity $\sigma_{ij}$ satisfies relations~\ref{eq:stuff6} and \ref{eq:stuff7} for all reference frames, then that quantity is independent of the selected reference frame.  Such a quantity is called a second rank \textit{tensor}.\index{tensor!second rank}
+
+The general transformation rule for a second rank tensor can be written as:
+\[
+	\sigma'_{qr} = \alpha_{qi}\alpha_{rj}\sigma_{ij}.
+\]
+For higher rank tensors, this can easily be extended:
+\[
+	\tau'_{qrst\ldots} = \alpha_{qi}\alpha_{rj}\alpha_{sk}\alpha_{tl}\ldots \tau_{ijkl\ldots}.
+\]
+Note that there is an implied summation over every pair of indices on the right hand side of the equation.  There are as many matrices $\alpha$ as the rank of the tensor (the number of subscripts on the tensor symbol).  The first index on each $\alpha$ is taken from the left hand side tensor, the second index is taken from the right hand side tensor.
+
+As a more complex example, consider Hooke's Law:
+\[
+\sigma_{ij}=c_{ijkl}\epsilon_{kl},
+\]
+where $\sigma$ is the stress tensor, $\epsilon$ the strain tensor, and $c$ the elastic moduli tensor (a 
+material property).  This law must be independent of the reference frame, so in the primed reference
+frame we must have:
+\[
+\sigma'_{pq}=c'_{pqrs}\epsilon'_{rs}.
+\]
+For each quantity we have to apply the standard tensor transformation relation to move between reference
+frames:
+\[
+	\sigma'_{pq} = \alpha_{pi}\alpha_{qj}\sigma_{ij};
+\] 
+\[
+	\epsilon'_{rs} = \alpha_{rk}\alpha_{sl}\epsilon_{kl};
+\] 
+and
+\[
+	c'_{pqrs} = \alpha_{pi}\alpha_{qj}\alpha_{rk}\alpha_{sl} c_{ijkl}
+\]
+Note that, in this last expression, a summation is implied over the indices $i$, $j$, $k$ and $l$, so that this 
+expression is equivalent to
+\[
+c'_{pqrs}=\sum_{i=1}^{3}\sum_{j=1}^{3}\sum_{k=1}^{3}\sum_{l=1}^{3}\alpha_{pi}\alpha_{qj}\alpha_{rk}\alpha_{sl} c_{ijkl}
+\]
+Although the indices $p$, $q$, $r$ and $s$ also appear twice, they do so on 
+opposite sides of the equality sign, hence no summation is implied.
+
+In section~\ref{sec:matprop}, we introduced a general material property as the proportionality factor between an externally applied field and the material's response to that field (in the linear approximation).  This proportionality factor is in general a tensor, meaning that it is a set of numbers which transforms by the relations given in this section, thus guaranteeing that the material property does not depend on any particular choice of reference frame.
+
+Note that in this section we have also introduced a difference in the notation for a matrix and a tensor; for a regular transformation matrix $\alpha_{ij}$, we will use parenthesis when we refer to its components, i.e., we will write:
+\[
+	\alpha_{ij} = \left(\begin{array}{ccc}
+	\alpha_{xx} & 	\alpha_{xy} & 	\alpha_{xz} \\
+	\alpha_{yx} & 	\alpha_{yy} & 	\alpha_{yz} \\
+	\alpha_{zx} & 	\alpha_{zy} & 	\alpha_{zz} \end{array}\right)\ .
+\]
+For a tensor we will use square brackets when we write it in matrix form:\index{tensor!matrix notation}
+\[
+	\sigma_{ij} = \left[\begin{array}{ccc}
+	\sigma_{xx} & 	\sigma_{xy} & 	\sigma_{xz} \\
+	\sigma_{yx} & 	\sigma_{yy} & 	\sigma_{yz} \\
+	\sigma_{zx} & 	\sigma_{zy} & 	\sigma_{zz} \end{array}\right]\ .
+\]
+
+\subsection{Examples of Material Tensors}
+ 
+Table~\ref{tensors} shows a series of tensors that are of importance for material science and physics. The tensors are grouped by rank, and are also labeled (in the last column) by $E$ (equilibrium property) or $T$ (transport property).  The number following this letter indicates the maximum number of independent, non-zero elements in the tensor, taking into account symmetries imposed by thermodynamics.  The Field and Response columns contain the following symbols: $\Delta T$ = temperature difference, $\Delta S$ = entropy change, $E_i$ = electric field components, $H_i$ = magnetic field components, $\epsilon_{ij}$ = mechanical strain, $D_i$ = electric displacement, $B_i$ = magnetic induction, $\sigma_{ij}$ = mechanical stress, $\Delta\beta_{ij}$ = change of the impermeability tensor, $j_i$ = electrical current density, $\nabla_j T$ = temperature gradient,  $h_i$ = heat flux,  $\nabla_j c$ = concentration gradient, $m_i$ = mass flux, $\rho^a_i$ = anti-symmetric part of resistivity tensor, $\rho^s_i$ = symmetric part of resistivity tensor, $\Delta \rho_{ij}$ = change in the component $ij$ of the resistivity tensor, $l_i$ = direction cosines of wave direction in crystal, $G$ = gyration constant.
+
+\begin{table}
+\centering\leavevmode
+\begin{tabular}{|l|c|c|c|l|}
+\hline
+Property   &  Symbol   &  Field & Response & Type\#  \\
+\hline
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 0 (Scalars)}\\
+\hline
+Specific Heat   &   $C$   & $\Delta T$ & $T\Delta S$ &   E1\\
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 1 (Vectors)}\\
+\hline
+Electrocaloric  &  $p_i$  & $E_i$ & $\Delta S$ & E3\\
+Magnetocaloric & $q_i$  &  $H_i$ & $\Delta S$ & E3\\
+Pyroelectric  &  $p'_i$  & $\Delta T$ & $D_i$ & E3\\
+Pyromagnetic & $q'_i$  &  $\Delta T$ & $B_i$ & E3\\
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 2}\\
+\hline
+Thermal expansion  & $\alpha_{ij}$  & $\Delta T$ & $\epsilon_{ij}$ & E6\\
+Piezocaloric effect  & $\alpha'_{ij}$  & $\sigma_{ij}$ & $\Delta S$ & E6\\
+Dielectric permittivity & $\kappa_{ij}$  & $E_j$ & $D_i$ &  E6\\
+Magnetic permeability & $\mu_{ij}$ & $H_j$ & $B_i$ & E6\\
+Optical activity  &  $g_{ij}$  & $l_il_j$ & $G$ &  E6\\
+Magnetoelectric polarization & $\lambda_{ij}$ & $H_j$ & $D_i$  & E9\\
+Converse magnetoelectric polarization & $\lambda'_{ij}$ & $E_j$ & $B_i$  & E9\\
+Electrical conductivity (resistivity) & $\sigma_{ij}$ ($\rho_{ij}$)  & $E_j$ ($j_j$) & $j_i$ ($E_i$) & T6\\
+Thermal conductivity & $K_{ij}$  & $\nabla_j T$ & $h_i$ & T6\\
+Diffusivity  &  $D_{ij}$  &$\nabla_j c$ & $m_i$ & T6\\
+Thermoelectric power  &  $\Sigma_{ij}$ & $\nabla_j T$ & $E_i$ & T9\\
+Hall effect  & $R_{ij}$  & $B_j$ & $\rho^a_{i}$ & T9\\
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 3}\\
+\hline
+Piezoelectricity  &  $d_{ijk}$  & $\sigma_{jk}$ & $D_i$ &  E18\\
+Converse piezoelectricity  &  $d'_{ijk}$  & $E_k$ & $\epsilon_{ij}$ &  E18\\
+Piezomagnetism &  $Q_{ijk}$  & $\sigma_{jk}$ & $B_i$ & E18\\
+Converse piezomagnetism &  $Q'_{ijk}$  & $H_{k}$ & $\epsilon_{ij}$ & E18\\
+Electro-optic effect & $r_{ijk}$  & $E_k$ & $\Delta\beta_{ij}$&  E18\\
+Nernst tensor & $\Sigma_{ijk}$ & $\nabla_j T B_k$ & $E_i$ & T27\\
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 4}\\
+\hline
+Elasticity  &  $s_{ijkl}$ ($c_{ijkl}$) & $\sigma_{kl}$ ($\epsilon_{kl}$) & $\epsilon_{ij}$ ($\sigma_{ij}$) & E21\\
+Electrostriction & $\gamma_{ijkl}$  & $E_kE_l$ & $\epsilon_{ij}$ & E36\\
+Photoelasticity & $q_{ijkl}$  & $\sigma_{kl}$ & $\Delta\beta_{ij}$ & E36\\
+Kerr effect & $p_{ijkl}$ & $E_kE_l$ & $\Delta\beta_{ij}$& E36\\
+Magnetoresistance & $\xi_{ijkl}$ & $B_kB_l$ & $\rho^s_{ij}$ & T36\\
+Piezoresistance & $\Pi_{ijkl}$ & $\sigma_{kl}$ & $\Delta \rho_{ij}$ & T36\\
+Magnetothermoelectric power & $\Sigma_{ijkl}$ & $\nabla_j T B_k B_l$ & $E_i$ & T54\\
+Second order Hall effect & $\rho_{ijkl}$ & $B_jB_kB_l$ & $\rho^2_i$ & T30\\
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 6}\\
+\hline
+Third order elasticity & $c_{ijklmn}$  & $\epsilon_{kl}\epsilon_{mn}$ & $\sigma_{ij}$ & E56\\
+\hline
+\end{tabular}
+\caption{Materials property and transport tensors (adapted from Nowick (1995) \textit{Crystal Properties 
+via Group Theory}, Cambridge University Press.}
+\label{tensors}
+\end{table}
+
+
+% the following section should move to the 3D rotations chapter
+\subsection{Determining the rotation matrix\label{ssec:rotationmatrixdetermination}}
+
+%\begin{figure}[h]
+%\centering\leavevmode
+%\epsffile{frames.pdf}
+%\end{figure}
+
+Consider two cartesian reference frames, as shown in (a) above.  The ``old'' reference frame has the basis vectors $\mathbf{e}_{i}$,
+the ``new'' reference frame has basis vectors $\mathbf{e}'_{j}$.  Consider also 
+\begin{itemize}
+\item a vector $\mathbf{p}$, with components $p_{i}$
+in the old reference frame and $p'_{j}$ in the new reference frame (see (b) in figure);
+
+\item and a second rank tensor $\bm{\rho}$, with components $\rho_{ij}$ in the old frame and $\rho'_{ij}$ in the new frame.
+\end{itemize}
+The vector $\mathbf{p}$ has also been drawn onto the drawing above.   Note that a second rank tensor does not usually have a simple graphical representation.
+
+First of all, we express the new basis vectors as linear combinations of the old basis vectors:
+\begin{equation}
+	\mathbf{e}'_{i} = \alpha_{ij}\mathbf{e}_{j},
+\end{equation}
+where $\alpha_{ij}$ is the transformation matrix.  For most rotations to be used in this course, the rotation axis will always be parallel to one of the basis vectors, in this case $\mathbf{e}_{z}\parallel\mathbf{e}'_{z}$ (normal to the plane of the drawing).
+
+
+The first step is to determine the components of the transformation matrix $\alpha_{ij}$.  If we label the angle between $\mathbf{e}_{x}$
+and $\mathbf{e}'_{x}$ as $\varphi$, then it is easy to see from the figure that the following relations hold:
+\begin{align*}
+	\mathbf{e}'_{x} &= \cos\varphi\,\mathbf{e}_{x} + \sin\varphi\,\mathbf{e}_{y} + 0\mathbf{e}_{z};\\
+	\mathbf{e}'_{y} &= -\sin\varphi\,\mathbf{e}_{x} + \cos\varphi\,\mathbf{e}_{y} + 0\mathbf{e}_{z};\\
+	\mathbf{e}'_{z} &= 0\mathbf{e}_{x} + 0\mathbf{e}_{y} + 1\mathbf{e}_{z}.
+\end{align*}
+If we write this in matrix form, we obtain:
+\begin{equation}
+	\left(\begin{array}{c}\mathbf{e}'_{x}\\ \mathbf{e}'_{y}\\ \mathbf{e}'_{z}\end{array}\right) = 
+	\left(\begin{array}{ccc}\cos\varphi & \sin\varphi & 0\\
+	-\sin\varphi&\cos\varphi&0\\
+	0&0&1\end{array}\right)\left(\begin{array}{c}\mathbf{e}_{x}\\ \mathbf{e}_{y}\\ \mathbf{e}_{z}\end{array}\right).
+\end{equation}
+Therefore, we have 
+\begin{equation}
+	\alpha_{ij} = \left(\begin{array}{ccc}\cos\varphi & \sin\varphi & 0\\
+	-\sin\varphi&\cos\varphi&0\\
+	0&0&1\end{array}\right)
+\end{equation}
+We should point out a few things:
+\begin{itemize}
+\item If we look at the columns of this matrix, we see that they are the projections of the unprimed (old) basis vectors onto
+the primed (new) basis vectors (shown in Fig. (c)).  The rows of this matrix are the projections of the primed (new) basis vectors 
+onto the unprimed (old) basis vectors (shown in Fig. (d)).  
+\item  The rotation from $\mathbf{e}_{i}$ to $\mathbf{e}'_{j}$ is a counterclockwise rotation.  We could also rotate the $\mathbf{e}_{i}$ clockwise by
+an angle $2\pi-\varphi$.  This would lead to the same $\mathbf{e}'_{j}$.  Since $\cos(2\pi-\varphi)=\cos\varphi$, and $\sin(2\pi-\varphi)=-\sin\varphi$,
+the difference between a clockwise and counterclockwise rotation matrix is just in the sign of $\varphi$.  
+\item A rotation matrix has the property that the transpose of the matrix is equal to the inverse.  So, in other words, if we rotate by $-\varphi$ (which is 
+the inverse rotation), we can simply take the transpose of the matrix instead of computing the inverse explicitly.
+\item The inverse coordinate transformation (to go from new to old) of the basis vectors is given by the matrix $\beta_{ij}=(\alpha^{-1})_{ij}$:
+\begin{equation}
+	\mathbf{e}_{i} = \beta_{ij}\mathbf{e}'_{j}.
+\end{equation}
+To keep the notation clear, we will continue to use $\beta$ instead of $\alpha^{-1}$.
+\end{itemize}
+
+Now that we have determined the rotation matrix $\alpha_{ij}$, we can apply it to the transformation of the vector $\mathbf{p}$.  Since a vector does not depend
+on the reference frame, we must have:
+\begin{equation}
+	\mathbf{p}=p'_{i}\mathbf{e}'_{i} = p_{j}\mathbf{e}_{j}.
+\end{equation}
+If we want to determine the new components $p'_{i}$, the must first replace the old basis vectors $\mathbf{e}_{i}$ by the new ones:
+\begin{equation}
+	p'_{i}\mathbf{e}'_{i} = p_{j}\mathbf{e}_{j}=p_{j}\beta_{ji}\mathbf{e}'_{i}.
+\end{equation}
+Using this relation, we have
+\begin{equation}
+	p'_{i} = p_{j}\beta_{ji}.
+\end{equation}
+Explicitly, this equation reads (making use of the fact that $\beta$ is the transpose of $\alpha$):
+\begin{equation}
+	\left(\begin{array}{ccc}p'_{x}&p'_{y}&p'_{z}\end{array}\right) = 
+	\left(\begin{array}{ccc}p_{x}&p_{y}&p_{z}\end{array}\right)  \left(\begin{array}{ccc}\cos\varphi & -\sin\varphi & 0\\
+	\sin\varphi&\cos\varphi&0\\
+	0&0&1\end{array}\right)
+\end{equation}
+We can convert this into a notation with column vectors instead of row vectors, by transposing the entire equation.  The basic rule for transposition
+is that the transpose of a product is the product of the transposes in reverse order.  So, we find:
+\begin{equation}
+	\left(\begin{array}{c}p'_{x}\\ p'_{y}\\ p'_{z}\end{array}\right) = 
+	\left(\begin{array}{ccc}\cos\varphi & \sin\varphi & 0\\
+	-\sin\varphi&\cos\varphi&0\\
+	0&0&1\end{array}\right)
+	\left(\begin{array}{c}p_{x}\\ p_{y}\\ p_{z}\end{array}\right),
+\end{equation}
+or, in index notation:
+\begin{equation}
+	p'_{i} = \alpha_{ij}p_{j}.
+\end{equation}
+This is the transformation equation for the components of a vector, from old to new.
+
+In exactly the same way, we can prove that the transformation for a second rank tensor is given by:
+\begin{equation}
+	\rho'_{ij}	= \alpha_{ik}\alpha_{jl}\rho_{kl}.
+\end{equation}
+When this is written in matrix notation, we have:
+\begin{equation}
+	\left(\begin{array}{ccc}\rho'_{xx} & \rho'_{xy} & \rho'_{xz}\\
+	\rho'_{yx}&\rho'_{yy}&\rho'_{yz}\\
+	\rho'_{zx}&\rho'_{zy}&\rho'_{zz}\end{array}\right) =
+	\left(\begin{array}{ccc}\cos\varphi & \sin\varphi & 0\\
+	-\sin\varphi&\cos\varphi&0\\
+	0&0&1\end{array}\right)
+	\left(\begin{array}{ccc}\rho_{xx} & \rho_{xy} & \rho_{xz}\\
+	\rho_{yx}&\rho_{yy}&\rho_{yz}\\
+	\rho_{zx}&\rho_{zy}&\rho_{zz}\end{array}\right)
+	\left(\begin{array}{ccc}\cos\varphi & -\sin\varphi & 0\\
+	\sin\varphi&\cos\varphi&0\\
+	0&0&1\end{array}\right)
+\end{equation}
+Note that the order of these matrices is important!  
+
+
+\subsection{Tensor Transformation Examples}
+
+\begin{example}
+Consider a long cylindrical single crystal with a uniform circular cross section, cut in such a way that 
+the $[101]$ direction lies along its length.  The crystal has a tetragonal structure with $c=2a$, and has
+the following resistivity tensor (referred to a Cartesian basis parallel to the crystal basis):
+\[
+	\rho_{ij} = \left[\begin{matrix}
+	16&0&0\\
+	0&16&0\\
+	0&0&4\end{matrix}\right]\,\text{$\Omega$ m}.
+\]
+The relevant material property relation is $\mathbf{E} = \bm{\rho}\mathbf{j}$.
+\begin{itemize}
+	\item What is the resistivity along the axis of the cylinder?
+	\item What is the angle between the electric field needed to produce an electrical current density
+	along the cylinder axis, and the cylinder axis?
+\end{itemize}
+
+To answer these questions, we need to select a number of reference frames.  The first reference frame
+is the Bravais lattice of the crystal.  Since the cylinder axis is along $[101]$, we will draw the $\mathbf{a}$
+and $\mathbf{c}$ Bravais basis vectors in the appropriate orientation (see Fig.~\ref{fig:q1}).  The $\mathbf{b}$ vector
+points into the plane of the drawing, so that the drawing is essentially two-dimensional.  Then we define
+a Cartesian reference frame with the same orientation as the Bravais frame, and with unit length basis vectors
+$\mathbf{e}_x$, $\mathbf{e}_y$ and $\mathbf{e}_z$.  Finally, we define another Cartesian frame, with 
+$\mathbf{e}'_x$ along the cylinder axis, $\mathbf{e}'_y$ parallel to $\mathbf{e}_y$, and $\mathbf{e}'_z$ normal to the 
+cylinder axis.
+
+%\begin{figure}[h]
+%\centering\leavevmode
+%\epsffile{q1}
+%\caption{Illustration of the three reference frames needed to solve the first example question.}
+%\label{fig:q1}
+%\end{figure}
+
+We know that the tensor components of the resistivity are defined in the Cartesian reference frame that is parallel
+to the Bravais basis vectors, i.e., in the $\mathbf{e}_i$ reference frame.
+
+The angle between $\mathbf{e}_x$ and $\mathbf{e}'_x$ is equal to $\varphi$.  It is easy to see that 
+$\sin\varphi=\frac{2}{\sqrt{5}}$ and $\cos\varphi=\frac{1}{\sqrt{5}}$.
+
+The transformation matrix $\alpha_{ij}$ which expresses the vectors $\mathbf{e}'_i$ in terms of the vectors 
+$\mathbf{e}_j$ represents a counterclockwise rotation by $\varphi$ around the $y$ direction.  The matrix can 
+be written as:
+\[
+	\alpha_{ij} = \left(\begin{matrix}
+	\cos\varphi & 0 & \sin\varphi\\
+	0 & 1 & 0 \\
+	-\sin\varphi & 0 & \cos\varphi\end{matrix}\right)
+\]
+
+First we will transform the resistivity tensor.  The standard transformation formula states:
+\[
+	\rho'_{ij} = \alpha_{ik}\alpha_{jl}\rho_{kl}.
+\]
+We need only the component of the resistivity along the $x'$ direction, which is $\rho'_{xx}$:
+\begin{align*}
+	\rho'_{xx} &= \alpha_{xk}\alpha_{xl}\rho_{kl};\\
+	&= \alpha^2_{xk}\rho_{kk}\qquad\text{(sum over k)};\\
+	&= \cos^2\varphi \rho_{xx}+\sin^2\varphi \rho_{zz};\\
+	&= \frac{16}{5}+4\times \frac{4}{5} = 6.4\,\,\Omega\text{m}.
+\end{align*}
+
+For the second question, we need to determine the components of the electric field vector $\mathbf{E}$.  We know
+that 
+\[
+	E'_k = \alpha_{kl}E_{l}.
+\]
+We also know that 
+\[
+	E_l = \rho_{lk}j_k.
+\]
+So, if we can find $j_k$, then the problem is basically solved.  Since the current direction is $[101]$ in the 
+Bravais frame, and the $\mathbf{c}$ basis vector is twice as long as $\mathbf{a}$, the components of $\mathbf{j}$
+are 
+\[
+	\mathbf{j} = j[102]
+\]
+with $j$ the magnitude of the current density.  The product $\rho_{lk}j_k$ is then equal to $j[16\,0\,8]$, and these
+are the components $E_k$.   We can transform them into the other reference frame:
+\begin{align*}
+	E'_x &={\alpha}_{xx}E_x+{\alpha}_{xz}E_z = 16j\cos\varphi + 8j\sin\varphi = \frac{32j}{\sqrt{5}};\\
+	E'_y  &= 0;\\
+	E'_z &={\alpha}_{zx}E_x+{\alpha}_{zz}E_z = -16j\sin\varphi+8j\cos\varphi = -\frac{24j}{\sqrt{5}}
+\end{align*}
+The angle $\theta$ between this vector $\mathbf{E}$ and the cylinder axis can be computed using standard trigonometry
+$(\tan^{-1}(\theta)=E_z/E_x = -3/4)$ 
+and is given by $36.87^{\circ}$.  The vector $\mathbf{E}$ has been indicated on Fig.~\ref{fig:q1}.
+\end{example}
+
+% second example
+\begin{example}
+Two crystals are cut from a tetragonal single crystal with $c=a\sqrt{2}$.  The top and bottom plane of each crystal
+is parallel to the $(101)$ plane.  The thermal conductivity tensor expressed in a Cartesian reference frame aligned 
+with the Bravais reference frame is given by:
+\[
+	K_{ij} = \left[\begin{matrix}
+	15&0&0\\
+	0&15&0\\
+	0&0&10\end{matrix}\right]\,\text{Wm$^{-1}$K$^{-1}$}.
+\]
+The relevant material property relation is $\mathbf{h} = -\bm{K}\bm{\nabla}T$.
+\begin{itemize}
+	\item the first crystal is $0.4$ cm thick, with circular faces of surface area $10$ cm$^2$.  If the temperature
+	gradient along the normal to the faces is $50^{\circ}$ C per meter, what is the heat flow between source
+	and sink?
+	\item the second crystal is $10$ cm long, and has a cross sectional area of $1$ cm$^2$.  The heat flow is $1$ Watt 
+	per meter squared.  What is the temperature difference $\Delta T$ between source and sink?
+\end{itemize}
+
+Again we start by defining the relevant reference frames.  The contact plane between the crystals and the heat source
+and sink is parallel to the $(101)$ plane, as shown in Fig.~\ref{fig:q2}.
+
+%\begin{figure}[h]
+%\centering\leavevmode
+%\epsffile{q2}
+%\caption{Illustration of the three reference frames needed to solve the second example question.}
+%\label{fig:q2}
+%\end{figure}
+
+The angle $\varphi$ between $\mathbf{e}'_x$ and $\mathbf{e}_x$ is this time determined from $\sin\varphi=
+\sqrt{3/8}$ and $\cos\varphi=\sqrt{5/8}$.
+
+The transformation matrix ${\alpha}_{ij}$ is the same as the one in the first example.  This means that the thermal 
+conductivity along the direction normal to the $(101)$ planes is equal to:
+\[
+	K'_{xx} ={\alpha}_{xk}{\alpha}_{xl}K_{kl} ={\alpha}^2_{xk}K_{kk}\qquad\text{sum over k},
+\]
+and therefore
+\[
+	K'_{xx} = \cos^2\varphi K_{xx} + \sin^2\varphi K_{zz}= \frac{5}{8}\times 15 + \frac{3}{8}\times 10 =  
+	\frac{105}{8} = 13.125\,\,\text{W/m/K}.
+\]
+The thermal flux in the direction normal to $(101)$ is then given by:
+\[
+	h'_x = -K'_{xx} \frac{\partial T}{\partial x'} = -13.125 \times 50 = -656.25\,\,\text{W/m$^2$}.
+\]
+The minus sign can be dropped, since only the magnitude is important.
+This can be converted into a heat flow by multiplying with the cross sectional area of the crystal:
+\[
+	\text{heat flow} = h'_x \times 10\times 10^{-4} = 656.25\,\,\text{mW}.
+\]
+
+For the second crystal, we know that the heat flow is $1$ Watt, so we must invert the material relation to
+\[
+	\frac{\partial T}{\partial x'} = -\frac{1}{K'_{xx}} h'_x 
+\]
+The thermal flux is equal to 
+\[
+	h'_x = \frac{1\,\text{Watt}}{10^{-4}\,\text{m$^2$}} = 10^4\,\,\text{W/m$^2$}.
+\]
+Therefore, the temperature difference $\Delta T$ is given by (again, only the magnitude is important):
+\[
+	\Delta T = \frac{\Delta x'}{K'_{xx}} h'_x =  \frac{0.1}{13.125}10^4 = 76.2^{\circ}\text{C}.
+\]
+\end{example}
+
+
+
+
+
+
+

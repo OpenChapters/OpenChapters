@@ -1,4 +1,7 @@
+% Local Customization
 % !TEX root = ../../Build/main.tex
+% 
+% Copyright Statement
 % ###################################################################
 % Copyright (c) 2018, Marc De Graef 
 %  Editors: A.D. Rollett & M. De Graef
@@ -15,50 +18,52 @@
 % either express or implied. See the License for the specific 
 % language governing permissions and limitations under the License.
 % ###################################################################
-
+%
+% Author(s) Complete Address(es)
+%
+%
+% Chapter Parameters
 % ###################################################################
-% The following lines are to be uncommented or edited as needed 
-
-\corechapter{Yes}
-%     uncomment this line only if this chapter is a core/foundational chapter;
-%     for a core chapter a "Core" label will appear on the top left above the chapter title.
-
-\chapterauthor{Marc De Graef, Carnegie Mellon University}
-%     this will appear in a secondary header below the chapter title.
-
-% All figures are stored in the src/Crystallography/eps folder and must be of the *.eps type. 
+\corechapter{Yes}   % uncomment this line only if this chapter is a core/foundational chapter;
+\chapterauthor{Marc De Graef, Carnegie Mellon University} %this will appear in a secondary header below the chapter title.
+% graphics path for all figure *.eps files 
 \renewcommand{\chaptergraphicspath}{src/Crystallography/eps/}
-
-\chapterimage{\noheaderimage}
 %     replace \noheaderimage by the chapter header image file name (without .eps extension).
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
+\chapterimage{\noheaderimage}
+%	redefine the \chabbr command to be a six-character string that uniquely identifies this 
+%	chapter; easiest way to do this is to take the first couple of letters from the title words
+%	Make sure to use the \OClabel{} command everywhere instead of \label{} !
+\renewcommand{\chabbr}{BASCRY}
+% ###################################################################
 % ###################################################################
 
-\chapter{Basic Crystallography\label{chap:Crystallography}}
+\chapter{Basic Crystallography\OClabel{chap:Crystallography}}
 
+\section{Notational Conventions in Cartesian Reference Frames\OClabel{sec:notations}}
 
-
-\section{Notational Conventions in Cartesian Reference Frames\label{ssec:notations}}
+\subsection{Basic vector operations\OClabel{ssec:vectoroperations}}
 We will represent vectors by bold symbols, e.g.,  $\mathbf{a}$, $\mathbf{b}$, $\ldots$.  Unless stated otherwise, we will work with Cartesian (i.e., orthonormal) reference frames\index{Cartesian reference frame}; Cartesian basis vectors\index{Cartesian basis vector} will always be represented by vectors of the type $\mathbf{e}_i$, where the subscript $i$ can take on the values $1, 2, \ldots, D$ and $D$ is the dimension of the space in which the vectors live.  Occasionally, the subscript $i$ will be interpreted to mean $x, y$ in 2D and $x,y,z$ in 3D; this will be clear from the context, and usually this notation is only used to clarify things.  Note that vectors represented by the letter ``\textbf{e}'' will always be assumed to be unit vectors.\index{unit vector}
 
 \begin{wrapfigure}{r}{0.3\textwidth}
   \centering\leavevmode
 \Ovalbox{\includegraphics[width=0.28\textwidth]{dotproduct}}
-\caption{\small Illustration of the vector dot product as the projection of $\mathbf{p}$ onto $\mathbf{q}$, multiplied by the length $\vert\mathbf{q}\vert$.\label{fig:dp}}
+\caption{\small Illustration of the vector dot product as the projection of $\mathbf{p}$ onto $\mathbf{q}$, multiplied by the length $\vert\mathbf{q}\vert$.}
+\OClabel{fig:dp}
 \end{wrapfigure}
 
-The dot product\index{dot product} between two vectors (see Fig.~\ref{fig:dp}) is denoted by the symbol $\cdot$, as in:
+The dot product\index{dot product} between two vectors (see Fig.~\OCref{fig:dp}) is denoted by the symbol $\cdot$, as in:
 \begin{equation}
-	\mathbf{p}\cdot\mathbf{q} = \vert\mathbf{p}\vert\vert\mathbf{q}\vert\cos\theta \ ,\label{eq:dotproduct}
+	\mathbf{p}\cdot\mathbf{q} = \vert\mathbf{p}\vert\vert\mathbf{q}\vert\cos\theta \ ,\OClabel{eq:dotproduct}
 \end{equation}
 where $\vert\mathbf{p}\vert$ stands for the norm (length) of the vector $\mathbf{p}$, and $\theta$ is the angle between the two vectors. When two vectors are perpendicular to each other, then their dot product vanishes.  The dot product of a vector with itself results in the square of the length of the vector, or
 \begin{equation}
-	\vert\mathbf{p}\vert = \sqrt{\mathbf{p}\cdot\mathbf{p}} \ .\label{eq:vectorlength}
+	\vert\mathbf{p}\vert = \sqrt{\mathbf{p}\cdot\mathbf{p}} \ .\OClabel{eq:vectorlength}
 \end{equation}
 
 The vector cross product\index{vector cross product}\index{cross product} is represented by the symbol $\times$, as in
 \begin{equation}
-	\mathbf{p}\times\mathbf{q} = \vert\mathbf{p}\vert\vert\mathbf{q}\vert \sin\theta\ \mathbf{e}^{\perp} \ ,\label{eq:crossproduct}
+	\mathbf{p}\times\mathbf{q} = \vert\mathbf{p}\vert\vert\mathbf{q}\vert \sin\theta\ \mathbf{e}^{\perp} \ ,\OClabel{eq:crossproduct}
 \end{equation}
 Here, the unit vector $\mathbf{e}^{\perp}$ is perpendicular to both $\mathbf{p}$ and $\mathbf{q}$, such that $\mathbf{p}$, $\mathbf{q}$ and $\mathbf{e}^{\perp}$ form a right-handed reference frame.\footnote{In crystallography and texture analysis we always use right-handed reference frames. Left-handed frames are common in computer vision and animation.}   The cross product of a vector with itself always vanishes. The mixed vector product,\index{mixed vector product} $\mathbf{p}\cdot(\mathbf{q}\times\mathbf{r})$, is equal to the volume, $V$, of the parallellepiped generated by the three vectors.  For a right-handed reference frame, the mixed vector product is always positive; for  a left-handed reference frame it is negative.
 
@@ -98,33 +103,162 @@ Thus, we have:
 	\] 
 \end{itemize}
 
-\section{Real Space and Reciprocal Space\label{ssec:spaces}}
+\subsection{Transformation of a vector\OClabel{ssec:vectortransformation}}
+Let us consider two Cartesian reference frames, one given by the 
+orthonormal triplet $\{\mathbf{e}_x,\mathbf{e}_y,\mathbf{e}_z\}$, the second by 
+the triplet 
+$\{\mathbf{e}_x^{\,\prime},\mathbf{e}_y^{\,\prime},\mathbf{e}_z^{\,\prime}\}$.  
+We also consider a vector, $\mathbf{q}$; this vector has components $q_j$ with respect 
+to the reference frame $\mathbf{e}_j$, so that $\mathbf{q}=q_j\mathbf{e}_j$.  
+The vector $\mathbf{q}$ also has components $q'_i$ with respect to the vectors $\mathbf{e}'_i$.  
+We begin by writing the vector $\mathbf{q}$ as:
+\[
+	\mathbf{q} = q_j\mathbf{e}_j\qquad (= q_x\mathbf{e}_x + q_y\mathbf{e}_y+q_z\mathbf{e}_z).
+\]
+When we take the dot product with $\mathbf{e}_x$, we obtain:
+\[
+	\mathbf{q}\cdot\mathbf{e}_x = q_j \mathbf{e}_j\cdot\mathbf{e}_x;
+\]
+since the basis vectors are orthonormal, we have
+\[
+	\mathbf{q}\cdot\mathbf{e}_x = q_j \delta_{jx} = q_x.
+\]
+Hence, the component $q_x$ is determined by projecting the vector $\mathbf{q}$ onto the 
+basis vector $\mathbf{e}_x$.  The same is true for the other components:
+\[
+		q_y = \mathbf{q}\cdot\mathbf{e}_y;\qquad
+		q_z = \mathbf{q}\cdot\mathbf{e}_z.
+\]
+Therefore, we can write the vector $\mathbf{q}$ as:
+\[
+	\mathbf{q} = (\mathbf{q}\cdot\mathbf{e}_j) \mathbf{e}_j.
+\]
+This must be valid for every vector $\mathbf{q}$, so in particular it must be valid for $\mathbf{q}=\mathbf{e}'_x$:
+\[
+	\mathbf{e}'_x = (\mathbf{e}'_x\cdot\mathbf{e}_j) \mathbf{e}_j.
+\]
+A similar relation results for $\mathbf{e}'_y$ and $\mathbf{e}'_z$:
+\[
+	\mathbf{e}'_y = (\mathbf{e}'_y\cdot\mathbf{e}_j) \mathbf{e}_j\qquad \mathbf{e}'_z = (\mathbf{e}'_z\cdot\mathbf{e}_j) \mathbf{e}_j.
+\]
+In general, we write
+\[
+	\mathbf{e}'_i = (\mathbf{e}'_i\cdot\mathbf{e}_j) \mathbf{e}_j;
+\]
+Then we introduce the transformation matrix $\alpha_{ij}$, defined as:
+\[	
+	\alpha_{ij} \equiv \mathbf{e}'_i\cdot\mathbf{e}_j.
+\]
+Explicitly, the transformation matrix is given by:
+\[
+	\alpha_{ij} = \left(\begin{array}{ccc}
+	\mathbf{e}'_x\cdot\mathbf{e}_x & \mathbf{e}'_x\cdot\mathbf{e}_y & \mathbf{e}'_x\cdot\mathbf{e}_z\\
+	\mathbf{e}'_y\cdot\mathbf{e}_x & \mathbf{e}'_y\cdot\mathbf{e}_y & \mathbf{e}'_y\cdot\mathbf{e}_z\\
+	\mathbf{e}'_z\cdot\mathbf{e}_x & \mathbf{e}'_z\cdot\mathbf{e}_y & \mathbf{e}'_z\cdot\mathbf{e}_z\end{array}\right)=
+	\left(\begin{tabular}{ccc}\centering $\alpha_{xx}$ & 
+$\alpha_{xy}$ & $\alpha_{xz}$ \\
+$\alpha_{yx}$ & $\alpha_{yy}$ & $\alpha_{yz}$ \\
+$\alpha_{zx}$ & $\alpha_{zy}$ & $\alpha_{zz}$ \\
+\end{tabular}\right)
+\]
+In general, the relation between the two sets of basis vectors can be 
+written as~:
+\begin{eqnarray}
+\mathbf{e}_x^{\,\prime}&=&\alpha_{xx}\mathbf{e}_x+\alpha_{xy}\mathbf{e}_y+\alpha_{xz}\mathbf{e}_z\nonumber\\
+\mathbf{e}_y^{\,\prime}&=&\alpha_{yx}\mathbf{e}_x+\alpha_{yy}\mathbf{e}_y+\alpha_{yz}\mathbf{e}_z\\
+\mathbf{e}_z^{\,\prime}&=&\alpha_{zx}\mathbf{e}_x+\alpha_{zy}\mathbf{e}_y+\alpha_{zz}\mathbf{e}_z\nonumber
+\end{eqnarray}
+or, in index notation:
+\begin{equation}
+	\mathbf{e}'_i = \alpha_{ij}\mathbf{e}_j.\OClabel{eq:alphadef}
+\end{equation}
+This is a \textit{linear} relation, known as a \textit{coordinate 
+transformation}.\index{coordinate transformation}  We will assume throughout this text that the 
+origin itself does not change during the coordinate transformation.  
+If there were a change in the position of the origin as well, then we 
+would have to add a translation vector to the equations above.  
+In addition, we are changing the reference frame from $\{\mathbf{e}_i\}$ to $\{\mathbf{e}'_j\}$; this 
+transformation is also known as a \textit{3D rotation}\index{rotation}.
+ 
+The \textit{inverse} transformation must also exist and is described 
+by the inverse of the matrix $\alpha_{ij}$~:
+\begin{equation}
+\mathbf{e}_i=\alpha^{-1}_{ij}\mathbf{e}_{j}^{\,\prime}
+\end{equation}
+It is an important property of this type of transformation matrix that the inverse of the matrix is
+equal to the transpose; matrices with this property are known as \textit{orthogonal matrices}.\index{orthogonal matrix}
+
+Next, we consider the effect of the transformation matrix on the components of the vector $\mathbf{q}$.  This vector is independent of the reference frame, and has components in both the unprimed and primed reference frames.  We must have the following relations~:
+\begin{equation}
+\mathbf{q}=q_j\mathbf{e}_j=q_i^{\prime}\mathbf{e}_i^{\,\prime}
+\OClabel{eq:stuff1}
+\end{equation}
+We can then carry out the following series of steps:
+\begin{align*}
+	\mathbf{q} &= q'_i\mathbf{e}'_i;\\
+	&= q'_i (\alpha_{ij}\mathbf{e}_j);\quad\text{(apply transformation rule for basis vectors)};\\
+	&= (q'_i \alpha_{ij})\mathbf{e}_j;\\
+	&= q_j\mathbf{e}_j.
+\end{align*}
+Then we have:
+\begin{align*}
+	q'_i\alpha_{ij} &= q_j;\\
+	q'_i\alpha_{ij}(\alpha^{-1})_{jk} &= q_j(\alpha^{-1})_{jk}\quad\text{(multiply both side with inverse matrix)};\\
+	q'_i\delta_{ik} &= q_j(\alpha^{-1})_{jk}\quad\text{(matrix times inverse matrix = identity matrix)};\\
+	q'_k &= q_j\tilde{\alpha}_{jk}\quad\text{(inverse of rotation matrix equals transpose)};\\
+	q'_k &= q_j\alpha_{kj},	
+\end{align*}
+which finally becomes:
+\begin{equation}
+	q'_i = \alpha_{ij}q_j\OClabel{eq:stuff4}
+\end{equation}
+where we have replaced the subscript $k$ by $i$ (we can always do this, as long as we replace the index everywhere).
+This equation is the transformation rule for vector components.
+Similarly, one can readily show that
+\begin{equation}
+q_i=\tilde{\alpha}_{ij}q_j^{\prime}
+\OClabel{eq:stuff5}
+\end{equation}
+We can interpret equations~\OCref{eq:stuff4} and \OCref{eq:stuff5} as 
+follows~: the vector $\mathbf{q}$ is independent of the chosen reference 
+frame if its components with respect to two different reference frames 
+are related to each other by equations~\OCref{eq:stuff4} and 
+\OCref{eq:stuff5}.  In other words, the transformation relations can be 
+used to \textit{define} when a triplet of numbers represents a vector.  
+If the triplets $(q_x,q_y,q_z)$ and 
+$(q_x^{\prime},q_y^{\prime},q_z^{\prime})$ satisfy 
+equations~\OCref{eq:stuff4} and \OCref{eq:stuff5} for all reference 
+frames, then $\mathbf{q}$ is a vector.  Similar transformation rules 
+can also be used to define \textit{higher order vectors} or \textit{tensors}.
+
+
+\section{Real Space and Reciprocal Space\OClabel{ssec:spaces}}
 After teaching crystallography for several decades as well as writing an extensive textbook on the topic, it has become clear to the author that many students and researchers tend to have an incomplete and sometimes incorrect understanding of the reasons for using both real and reciprocal space.  So, before we introduce these important crystallographic concepts, it is important to ensure that the reader understand why these two spaces are necessary and, more importantly, that they represent two natural ways to look at and describe crystal structures.  There is nothing difficult or mysterious about reciprocal space, in particular.
 
-Let us begin with a familiar example.  A street is lined with a series of trees, planted at a regular distance from each other;  Fig.~\ref{fig:trees} shows a schematic of a portion of this street.  We take a measuring stick of a given length $S$, and measure the distance $d$ between two consecutive trees in units of $S$.  For the illustration in Fig.~\ref{fig:trees}(a) we find that $d=1$ S.  Next, we double the length of the measuring stick to $S'=2S$ and once again we measure the distance $d$; this time we find $d = 1/2$ S'.  Now we make the following, almost trivial, observation: \textit{when the length of the measuring stick increases, the numerical value of the distance decreases.} In other words, the length of the measuring stick and the measured quantity vary in opposite ways; when one becomes larger, the other becomes smaller and vice versa.  Hence, we say that the distance between the trees is a \textit{contravariant}\index{contravariant} quantity (``contra'' means ``opposite'' in this context); it varies in the opposite way from the units in which it is measured.
+Let us begin with a familiar example.  A street is lined with a series of trees, planted at a regular distance from each other;  Fig.~\OCref{fig:trees} shows a schematic of a portion of this street.  We take a measuring stick of a given length $S$, and measure the distance $d$ between two consecutive trees in units of $S$.  For the illustration in Fig.~\OCref{fig:trees}(a) we find that $d=1$ S.  Next, we double the length of the measuring stick to $S'=2S$ and once again we measure the distance $d$; this time we find $d = 1/2$ S'.  Now we make the following, almost trivial, observation: \textit{when the length of the measuring stick increases, the numerical value of the distance decreases.} In other words, the length of the measuring stick and the measured quantity vary in opposite ways; when one becomes larger, the other becomes smaller and vice versa.  Hence, we say that the distance between the trees is a \textit{contravariant}\index{contravariant} quantity (``contra'' means ``opposite'' in this context); it varies in the opposite way from the units in which it is measured.
 
 \begin{wrapfigure}{r}{0.3\textwidth}
   \centering\leavevmode
 %\Ovalbox{\includegraphics[width=0.28\textwidth]{trees}}
-\caption{\small Illustration of the measurement of (a) the distance between trees (a contravariant quantity) and (b) the number of trees per unit distance (a covariant quantity).\label{fig:trees}}
+\caption{\small Illustration of the measurement of (a) the distance between trees (a contravariant quantity) and (b) the number of trees per unit distance (a covariant quantity).\OClabel{fig:trees}}
 \end{wrapfigure}
 
-Next, we rephrase the question about the distance between trees as follows: \textit{how many trees are there per unit distance $T$?}  From Fig.~\ref{fig:trees}(b) we find that there are $r=2$ trees per unit distance $T$, or $r=2$ T$^{-1}$.  Doubling the measuring stick to $T'=2T$, we find that $r=4$ T'$^{-1}$.  Interestingly, in this case both the measuring unit and the quantity measured vary in the same way; when one becomes larger, so does the other.  Therefore, the number of trees per unit length is a \textit{covariant}\index{covariant} quantity (``co'' meaning ``with'' or ``in the same way''); it varies in the same way as the units in which it is measured.
+Next, we rephrase the question about the distance between trees as follows: \textit{how many trees are there per unit distance $T$?}  From Fig.~\OCref{fig:trees}(b) we find that there are $r=2$ trees per unit distance $T$, or $r=2$ T$^{-1}$.  Doubling the measuring stick to $T'=2T$, we find that $r=4$ T'$^{-1}$.  Interestingly, in this case both the measuring unit and the quantity measured vary in the same way; when one becomes larger, so does the other.  Therefore, the number of trees per unit length is a \textit{covariant}\index{covariant} quantity (``co'' meaning ``with'' or ``in the same way''); it varies in the same way as the units in which it is measured.
 
 Clearly, the row of trees is the same in both cases, but we simply consider the separation between the trees in two different ways: ``distance between trees'' and ``number of trees per unit distance.''  Replacing trees by planes of atoms, the first approach yields direct or real space, the second yields reciprocal space.\footnote{It is possible to generalize the subscript notation introduced above to one that uses both subscripts and superscripts; this is standard in some branches of physics and leads to an explicit distinction between contravariant and covariant vector components. While it is possible to rewrite this entire book using covariant and contravariant notations, we opt not to do so and we will use only subscripts to indicate vector (and tensor) components.}  It is that simple!   In the direct space description of crystal structures we think about the distances between atoms or crystal planes in terms of contravariant quantities (the actual distances in units of length); in the reciprocal space description we think instead about the number of lattice planes per unit distance, i.e., in terms of covariant quantities (number of planes per unit length, or lineal density).  Since both quantities $d$ and $r$ in the tree example describe \textit{the same row of trees}, direct and reciprocal space describe \textit{the same crystal structure}; we simply use different units for each description.  
 
 So, if the distinction between direct and reciprocal space is this simple, why is it that so many students and researchers struggle with the concept of reciprocal space? One reason might be the strongly visual way in which our brain works; if you take a model crystal structure in your hands, you can easily visualize the atom locations and distances between the atoms. Hence, direct space is a natural way to describe the crystal structure.  It is a bit more difficult to ``visualize'' the number of atoms per unit length.  Another reason may lie in the choice of words: direct \textit{space} and reciprocal \textit{space}.  This choice seems to imply that somehow there are two different spaces, and that, perhaps, these spaces are in different locations.  This incorrect interpretation is likely due to a misunderstanding of the word \textit{space} in this context; the word should be interpreted as an abbreviation for \textit{vector space}, i.e., a mathematical space created by linear combinations of a set of basis vectors.  Direct and reciprocal space then simply refer to the fact that there are two different sets of basis vectors, i.e., two different sets of measuring sticks, used to generate the vector spaces. So, when we say \textit{direct space}, we really mean \textit{the vector space spanned by the direct basis vectors}, and by \textit{reciprocal space} we mean \textit{the vector space spanned by the reciprocal basis vectors}. Both vector spaces are mapped onto the actual crystal structure, so both vector spaces ``occupy'' the same physical space. Next, we will cast these concepts into more precise mathematical statements.
 
 
-\section{Crystallographic Conventions and Computations\label{ssec:crystalconventions}}
+\section{Crystallographic Conventions and Computations\OClabel{ssec:crystalconventions}}
 
 \subsection{Direct space}
-All crystallographic conventions in this book follow the International Tables for Crystallography, Volume A.  In particular, we represent the unit cell\index{unit cell} of a crystal structure\index{crystal structure} by means of the basis vector\index{basis vectors!crystallographic} triplet $\{\mathbf{a}_i\}$ with $i=1,\ldots,3$ or $\{\mathbf{a}, \mathbf{b},\mathbf{c}\}$ (see Fig.~\ref{fig:unitcell}). The subscripted notation for the basis vectors is much more convenient for analytical calculations, so we will use it whenever possible. The lattice parameters\index{lattice parameters} of the unit cell are the six numbers $\{a,b,c,\alpha,\beta,\gamma\}$, where $a, b, c$ are the lengths of the vectors $\mathbf{a}_1$, $\mathbf{a}_2$, and $\mathbf{a}_3$, respectively, and $\alpha=\text{ang}(\mathbf{a}_2,\mathbf{a}_3)$,  $\beta=\text{ang}(\mathbf{a}_1,\mathbf{a}_3)$,  and $\gamma=\text{ang}(\mathbf{a}_1,\mathbf{a}_2)$, where $\text{ang}(\mathbf{p},\mathbf{q})$ stands for the angle between the vectors $\mathbf{p}$ and $\mathbf{q}$.
+All crystallographic conventions in this book follow the International Tables for Crystallography, Volume A.  In particular, we represent the unit cell\index{unit cell} of a crystal structure\index{crystal structure} by means of the basis vector\index{basis vectors!crystallographic} triplet $\{\mathbf{a}_i\}$ with $i=1,\ldots,3$ or $\{\mathbf{a}, \mathbf{b},\mathbf{c}\}$ (see Fig.~\OCref{fig:unitcell}). The subscripted notation for the basis vectors is much more convenient for analytical calculations, so we will use it whenever possible. The lattice parameters\index{lattice parameters} of the unit cell are the six numbers $\{a,b,c,\alpha,\beta,\gamma\}$, where $a, b, c$ are the lengths of the vectors $\mathbf{a}_1$, $\mathbf{a}_2$, and $\mathbf{a}_3$, respectively, and $\alpha=\text{ang}(\mathbf{a}_2,\mathbf{a}_3)$,  $\beta=\text{ang}(\mathbf{a}_1,\mathbf{a}_3)$,  and $\gamma=\text{ang}(\mathbf{a}_1,\mathbf{a}_2)$, where $\text{ang}(\mathbf{p},\mathbf{q})$ stands for the angle between the vectors $\mathbf{p}$ and $\mathbf{q}$.
 
 \begin{wrapfigure}{r}{0.3\textwidth}
   \centering\leavevmode
 %\Ovalbox{\includegraphics[width=0.28\textwidth]{unitcell}}
-\caption{\small Illustration of the basis vectors of a crystallographic unit cell.\label{fig:unitcell}}
+\caption{\small Illustration of the basis vectors of a crystallographic unit cell.\OClabel{fig:unitcell}}
 \end{wrapfigure}
 
 The crystallographic basis vectors can be used to generate a vector space\index{vector space} by considering all linear combinations of the three vectors. Among these linear combinations, integer linear combinations are of special importance since they correspond to the translation vectors that allow one to jump from the corner of any one unit cell to that of any other unit cell.  For an integer triplet $(u,v,w)$, or $u_i\in\mathbb{Z}$ in component form, we define the lattice translation vector\index{lattice translation vector} $\mathbf{t}_{uvw}$ as
@@ -134,7 +268,7 @@ The crystallographic basis vectors can be used to generate a vector space\index{
 The integer triplet is often written as $[uvw]$ and represents a direction in the crystal lattice; this notation is valid for all crystal systems. So, the direction triplet $[120]$ represents the lattice translation vector $\mathbf{t}=\mathbf{a}_1+2\mathbf{a}_2$ in \textit{any} crystal system. Negative components are denoted by putting the minus sign above the corresponding digit, as in $[1\bar{1}2]$. Atom positions inside the unit cell are represented by fractional position vectors $\mathbf{r}_j$ with components $r_{j,i}=(x_j,y_j,z_j)\in [0,1]$; the subscript $j$ indicates the atom label in case there is more than one atom in the cell.  The subscript $i$ labels the components of the position vector. The numbers $r_{j,i}$ are known as the fractional coordinates\index{fractional coordinates} of atom $j$.
 
 \subsection{Direct Space Computations} 
-We can use the dot product defined in a previous section to derive expressions for the distance between points, and the angle between direction vectors. Consider an atom at position $\mathbf{r}$ in an arbitrary unit cell; the length of the vector $\mathbf{r}$ is given by equation~\ref{eq:vectorlength}:
+We can use the dot product defined in a previous section to derive expressions for the distance between points, and the angle between direction vectors. Consider an atom at position $\mathbf{r}$ in an arbitrary unit cell; the length of the vector $\mathbf{r}$ is given by equation~\OCref{eq:vectorlength}:
 \[
 	\vert\mathbf{r}\vert = \sqrt{\mathbf{r}\cdot\mathbf{r}} \ .
 \]
@@ -142,11 +276,11 @@ Substituting the component representation we find:
 \begin{align}
 	\vert\mathbf{r}\vert^2 &= (r_i\mathbf{a}_i)\cdot(r_j\mathbf{a}_j)\ ;\nonumber\\
 	&= r_i (\mathbf{a}_i\cdot\mathbf{a}_j) r_j\ ;\nonumber\\
-	&= r_i g_{ij} r_j\ .\label{eq:vectorlength}
+	&= r_i g_{ij} r_j\ .\OClabel{eq:vectorlength}
 \end{align}
 We have introduced the symbol $g_{ij}$, defined as:
 \begin{equation}
-	g_{ij} \equiv \mathbf{a}_i\cdot\mathbf{a}_j \ ;\label{eq:gdirectdef}
+	g_{ij} \equiv \mathbf{a}_i\cdot\mathbf{a}_j \ ;\OClabel{eq:gdirectdef}
 \end{equation}
 the $3\times 3$ matrix $g_{ij}$ contains the dot products between pairs of basis vectors and is known as the \textit{direct metric tensor}\index{metric tensor!direct} because it defines how distances (and angles) are computed in a non-Cartesian reference frame, i.e., it defines the \textit{metric properties} of the reference frame.
 
@@ -161,7 +295,7 @@ The metric tensor is written explicitly as:
 	 a b cos\gamma & b^2 & b c \cos\alpha\\
 	 a c \cos\beta & b c \cos\alpha & c^2 \end{array}\right)\ .
 \]
-In order for the expression in Eq.~\ref{eq:vectorlength} to make mathematical sense in terms of the standard matrix multiplication rules, the components $r_i$ must be written as a $1\times 3$ row vector, whereas the components $r_j$ correspond to the $3\times 1$ column vector.  Thus, the expression reads:
+In order for the expression in Eq.~\OCref{eq:vectorlength} to make mathematical sense in terms of the standard matrix multiplication rules, the components $r_i$ must be written as a $1\times 3$ row vector, whereas the components $r_j$ correspond to the $3\times 1$ column vector.  Thus, the expression reads:
 \[
 	\vert\mathbf{r}\vert^2 = \left(\begin{array}{ccc}r_1 & r_2 & r_3\end{array}\right)
 	 \left(\begin{array}{ccc}
@@ -196,13 +330,13 @@ Thus, we have $\vert\mathbf{r}\vert = \sqrt{19/2} = 3.0822$.
 \end{example}
 
 \begin{exercise}
-For a monoclinic lattice with lattice parameters $(a,b,c) = (1, 4, 2)$ and $\beta=60^{\circ}$, what is the distance between atoms at fractional positions $(1/2,0,1/2)$ and $(0,1/2,1/2)$?\label{ex:mono}
+For a monoclinic lattice with lattice parameters $(a,b,c) = (1, 4, 2)$ and $\beta=60^{\circ}$, what is the distance between atoms at fractional positions $(1/2,0,1/2)$ and $(0,1/2,1/2)$?\OClabel{ex:mono}
 \end{exercise}
 
 Next, we consider the angle between two directions $\mathbf{s}$ and $\mathbf{t}$.  From the dot product definition we find that
 \begin{equation}
 	\theta = \text{ang}(\mathbf{s},\mathbf{t}) = \arccos\left( \frac{\mathbf{s}\cdot\mathbf{t}}{\vert\mathbf{s}\vert\vert\mathbf{t}\vert}\right) = 
-	\arccos\left( \frac{\mathbf{s}\cdot\mathbf{t}}{\sqrt{\mathbf{s}\cdot\mathbf{s}}\sqrt{\mathbf{t}\cdot\mathbf{t}}}\right) \ .\label{eq:defangle}
+	\arccos\left( \frac{\mathbf{s}\cdot\mathbf{t}}{\sqrt{\mathbf{s}\cdot\mathbf{s}}\sqrt{\mathbf{t}\cdot\mathbf{t}}}\right) \ .\OClabel{eq:defangle}
 \end{equation}
 Formally, we can write the two vectors in matrix form and work out the dot product:
 \[
@@ -232,13 +366,13 @@ Therefore we have:
 \end{example}
 
 \begin{exercise}
-For the unit cell of Exercise~\ref{ex:mono}, compute the angle between the $[111]$ and $[120]$ directions.
+For the unit cell of Exercise~\OCref{ex:mono}, compute the angle between the $[111]$ and $[120]$ directions.
 \end{exercise}
 
 \subsection{Reciprocal Space}
 In this section, we change our viewpoint of a crystal structure from the direct view (involving distances between atoms) to the reciprocal view (involving the number of atoms per unit length).  This means that we change the measuring sticks used to determine crystallographic quantities; a new set of measuring sticks is equivalent to a new set of basis vectors which we denote by $\mathbf{a}^{\ast}_i$.\footnote{In the covariant-contravariant notation, the reciprocal basis vectors would be written as $\mathbf{a}^i$, i.e., with a superscript instead of a subscript.}  The corresponding reciprocal lattice parameters\index{reciprocal lattice parameters} are written as $\{a^{\ast},b^{\ast},c^{\ast},\alpha^{\ast},\beta^{\ast},\gamma^{\ast}\}$.
 
-Since we will discuss the density of atomic planes, we need to have a simple way to label individual sets of lattice planes.  It was realized a long time ago that the facets of natural crystals could be labeled by integer numbers; this is known as the \textit{Law of Rational Indices}.  The intercepts of a facet plane with the three coordinate axes, measured in appropriate units along those axes, are always rational numbers; hence, we can write them as fractions which we can reduce to integers.  Since some planes are parallel to the coordinate axes, they intersect those axes at infinity, so it is more convenient to invert the intercept ratios before converting them to integers.  The resulting integers are typically written as $(hkl)$ and are known as \textit{Miller indices}\index{Miller indices}.  A simple illustration of the process of determining Miller indices is shown in Fig.~\ref{fig:millerindices}.
+Since we will discuss the density of atomic planes, we need to have a simple way to label individual sets of lattice planes.  It was realized a long time ago that the facets of natural crystals could be labeled by integer numbers; this is known as the \textit{Law of Rational Indices}.  The intercepts of a facet plane with the three coordinate axes, measured in appropriate units along those axes, are always rational numbers; hence, we can write them as fractions which we can reduce to integers.  Since some planes are parallel to the coordinate axes, they intersect those axes at infinity, so it is more convenient to invert the intercept ratios before converting them to integers.  The resulting integers are typically written as $(hkl)$ and are known as \textit{Miller indices}\index{Miller indices}.  A simple illustration of the process of determining Miller indices is shown in Fig.~\OCref{fig:millerindices}.
 
 Measuring the lineal density of atomic planes requires that we specify the direction along which we measure the density; the only logical direction is the one normal to a given set of planes.\footnote{Note that the units of inverse length are also the units of the spatial gradient operator, $\nabla$, which has components $\partial/\partial x_i$.  The gradient operator evokes the notion of \textit{normal}, which is another reason for measuring the lineal density along the normal to the lattice planes, since this is the direction of the maximum density.} The units of lineal density are \textit{per unit length}, usually expressed in nm$^{-1}$.  Traditionally, we use the symbol $\mathbf{g}_{hkl}$ for the lineal density of planes, and we use the Miller indices of the plane as the subscripts to identify a particular set of planes, e.g., $\mathbf{g}_{200}$.
 
@@ -256,7 +390,7 @@ To determine the constant $C$, we require that the dot product of $\mathbf{a}_i^
 \end{align}
 or, equivalently, by the relation:
 \begin{equation}
-	\mathbf{a}_i\cdot\mathbf{a}^{\ast}_j = \delta_{ij} \ .\label{eq:rldef}
+	\mathbf{a}_i\cdot\mathbf{a}^{\ast}_j = \delta_{ij} \ .\OClabel{eq:rldef}
 \end{equation}
 This definition guarantees that the reciprocal lattice vector $\mathbf{g}_{hkl}=h\mathbf{a}_1^{\ast}+k\mathbf{a}_2^{\ast}+l\mathbf{a}_3^{\ast}$ is normal to the plane with Miller indices $(hkl)$.  In addition, the lineal density of the $(hkl)$ planes is given by the length of the reciprocal lattice vector $\mathbf{g}_{hkl}$, which we can compute using the same metric tensor approach as before:
 \[
@@ -269,12 +403,12 @@ introducing the \textit{reciprocal metric tensor}\index{reciprocal metric tensor
 \end{equation}
 we obtain for the length of a reciprocal lattice vector:
 \begin{equation}
-	\vert\mathbf{g}_{hkl}\vert = \sqrt{g_i g^{\ast}_{ij}g_j} = \frac{1}{d_{hkl}} \ .\label{eq:recipddef}
+	\vert\mathbf{g}_{hkl}\vert = \sqrt{g_i g^{\ast}_{ij}g_j} = \frac{1}{d_{hkl}} \ .\OClabel{eq:recipddef}
 \end{equation}
 And the angle between two reciprocal lattice  vectors $\mathbf{h}$ and $\mathbf{g}$ is given by
 \begin{equation}
 	\text{ang}(\mathbf{h},\mathbf{g}) = \arccos\frac{\mathbf{h}\cdot\mathbf{g}}{\vert\mathbf{h}\vert\vert\mathbf{g}\vert} =
-	\arccos\frac{h_i g^{\ast}_{ij}g_j}{\sqrt{h_i g^{\ast}_{ij}h_j}\sqrt{g_i g^{\ast}_{ij}g_j}}\ .\label{eq:recipangledef}
+	\arccos\frac{h_i g^{\ast}_{ij}g_j}{\sqrt{h_i g^{\ast}_{ij}h_j}\sqrt{g_i g^{\ast}_{ij}g_j}}\ .\OClabel{eq:recipangledef}
 \end{equation}
 Note that these relations are identical to those for the direct crystal lattice.  It is easy to show that the reciprocal metric tensor is the inverse of the direct metric tensor, i.e., $g^{\ast}_{ij} = (g^{-1})_{ij}$.
 
@@ -308,7 +442,7 @@ Thus, we have $\vert\mathbf{g}_{111}\vert = \sqrt{9/16} = 0.75$ and $d_{111} = 1
 \end{example}
 
 \begin{exercise}
-For the unit cell of Exercise~\ref{ex:mono}, compute the $d$-spacing for the $(113)$ planes.
+For the unit cell of Exercise~\OCref{ex:mono}, compute the $d$-spacing for the $(113)$ planes.
 \end{exercise}
 
 \begin{example}
@@ -331,7 +465,7 @@ Therefore we have:
 \end{example}
 
 \begin{exercise}
-For the unit cell of Exercise~\ref{ex:mono}, compute the angle between the $\mathbf{g}_{111}$ and $\mathbf{g}_{120}$ plane normals.
+For the unit cell of Exercise~\OCref{ex:mono}, compute the angle between the $\mathbf{g}_{111}$ and $\mathbf{g}_{120}$ plane normals.
 \end{exercise}
 
 

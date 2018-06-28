@@ -1,6 +1,6 @@
 % !TEX root = ../../Build/main.tex
 % ###################################################################
-% Copyright (c) 2018, AuthorName 
+% Copyright (c) 2018, Marc De Graef 
 %  Editors: A.D. Rollett & M. De Graef
 % All rights reserved.
 %
@@ -23,7 +23,7 @@
 %     uncomment this line only if this chapter is a core/foundational chapter;
 %     for a core chapter a "Core" label will appear on the top left above the chapter title.
 
-\chapterauthor{Firstname M. Lastname, Affiliation}
+\chapterauthor{Marc De Graef, Carnegie Mellon University}
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/PropertySymmetry/eps folder and must be of the *.eps type. 
@@ -34,5 +34,287 @@
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 % ###################################################################
 
-\chapter{Properties and Symmetry\label{chap:PropertySymmetry}}
+\chapter{Material Properties and Symmetry\label{chap:PropertySymmetry}}
+
+\section{Intrinsic Thermodynamic Symmetry}
+In this section, we take a look at material properties from the point of view of thermodynamics.  In thermodynamics, one defines the \textit{internal energy per unit volume},\index{internal energy} $\mathcal{U}$, as:
+\begin{equation}
+	\mathrm{d}\mathcal{U} = -P\mathrm{d}V+T\mathrm{d}S\ ,
+\end{equation}
+with $P$ = pressure,\index{pressure} $V$ = volume,\index{volume} $T$ = absolute temperature, and $S$ = entropy.\index{entropy}  The pairs $(P,V)$ and  $(T,S)$ are so-called \textit{conjugate pairs},\index{conjkugate pairs} and their product has the dimensions of an energy density. We can regard $(P,T)$ as ``forces'' and $(V,S)$ as ``responses.''  When the pressure increases, the system responds with a volume change, and when the temperature changes, the system adjusts its entropy.  In more general terms, the internal energy consists of two contributions, the heat absorbed by the system, $\mathrm{d}Q$,  and the work done by the system, $\mathrm{d}W$, so that
+\begin{equation}
+	\mathrm{d}\mathcal{U} = \mathrm{d}Q-\mathrm{d}W\ .
+\end{equation}
+Work done \textit{by} the system has a \textit{positive} sign, whereas work done \textit{on} the system is \textit{negative}.
+
+Pressure and temperature are not the only ``forces'' that we can define for a material system.  We can apply an external electric or magnetic field, we can exert a stress onto the system, and so on.  For each of those external fields, we can define an additional work term.  As described in detail in the example below, the magnetic field $H$ and the magnetic induction $B$ form a conjugate pair, with $H$ the ``force'' and $B$ the response.
+
+\begin{example}
+Let us consider a simple example: the work done by a magnetic solenoid.  A solenoid is essentially a wire which is wound in $N$ circular turns, so that the total length of the solenoid equals $L$.   The number of turns per unit length is defined as $n=N/L$.  If the solenoid is placed in a magnetic field which varies in time, then, according to electrodynamics, there will be a voltage induced across the two ends of the wire.  If we denote this electric voltage by $V_e$, to distinguish it from the volume $V$, then Faraday's \textit{Law of Induction}\index{Farady Induction Law} states that the voltage is equal to:
+\begin{equation}
+	V_e = N\frac{\mathrm{d}\Phi}{\mathrm{d}t}\ ,
+\end{equation}
+where $\Phi$ is the magnetic flux,\index{magnetic flux} i.e, the number of magnetic field lines through the cross sectional area of the solenoid: $\Phi = BA$, with $A$ the area and $B$ the magnetic induction.\index{magnetic induction}  The voltage can then be rewritten as:
+\begin{equation}
+	V_e = n V \frac{\mathrm{d}B}{\mathrm{d}t}\ .
+\end{equation}
+The energy associated with this system can be written as $\mathrm{d}E=V_e\mathrm{d}q$, where $q$ is the electrical charge. It is easy to see that this expression has the dimensions of energy, since $V_e$ is measured in Volts, and $q$ in  Coulomb: $[VC = VAs = Ws = J]$.  Note that $q$ and $V_e$ are not conjugate variables, since their product does not have the dimensions of an energy density.  Introducing the electrical current $I=\mathrm{d}q/\mathrm{d}t$, we find
+\begin{equation}
+	\mathrm{d}E = V_e\mathrm{d}q = nV\frac{\mathrm{d}B}{\mathrm{d}t} I\mathrm{d}t = nVI\mathrm{d}B\ .
+\end{equation}
+Since the magnetic field, $H$, produced by a solenoid is equal to $4\pi nI$, we have
+\begin{equation}
+	\mathrm{d}E = \frac{V}{4\pi} H\mathrm{d}B\ .
+\end{equation}
+This can be converted to an energy density by dividing by the volume $V$:
+\begin{equation}
+	\mathrm{d}W = \frac{H\mathrm{d}B}{4\pi}\ ;
+\end{equation}
+we conclude that $(H,B)$ is a pair of conjugate variables, with $H$ the ``force'' and $B$ the ``response.''
+\end{example}
+
+In a similar way, it can be shown that the pair $(E,P)$, with $E$ the electric field,\index{electric field} and $P$ the polarization,\index{polarization} form a  conjugate pair with associated work term:
+\begin{equation}
+	\mathrm{d}W = \frac{E\mathrm{d}P}{4\pi}\ .
+\end{equation}
+Mechanical stress,\index{stress} $\sigma$, and strain,\index{strain} $\epsilon$, also form a conjugate pair with work term:
+\begin{equation}
+	\mathrm{d}W = \frac{1}{2}\sigma\mathrm{d}\epsilon\ ;
+\end{equation}
+the dimensions of stress are Pa(scal), and strain is dimensionless.  It is easy to see that Pa is an energy density: Pa = N/m$^2$ = Nm/m$^3$ = J/m$^3$.  The stress is a ``force'', and strain is the system's ``response.''  We will define all quantities used in this section in a more rigorous way in other chapters.
+
+Let us now consider a general force $\mathcal{F}_j$ and a general response $\mathcal{R}_i$.  According to the Taylor expansion derivation in section~\ref{sec:matprop}, there must be linear relations between forces and responses, so that we can define a general property, $K_{ij}$, for which
+\begin{equation}
+	\mathcal{R}_i = K_{ij}\mathcal{F}_j\ .
+\end{equation}
+First of all, we can say something about the symmetry of $K_{ij}$.  We know that $\mathcal{U}$ is a \textit{state function}\index{state function} of the forces $\mathcal{F}_i$.  That means that the following function (known as the Helmholtz free energy), \index{Helmholtz free energy}
+\begin{equation}
+	\Phi = \mathcal{U} - \mathcal{R}_i\mathcal{F}_i\ ,
+\end{equation}
+(summation over $i$) is also a state function.  We can then write, using the chain rule:
+\begin{equation}
+	\mathrm{d}\Phi = \mathrm{d}\mathcal{U}-\mathcal{F}_i\mathrm{d}\mathcal{R}_i-\mathcal{R}_i\mathrm{d}\mathcal{F}_i\ .
+\end{equation}
+Using $\mathrm{d}\mathcal{U} = -P\mathrm{d}V+T\mathrm{d}S+\mathcal{F}_i\mathrm{d}\mathcal{R}_i$, we find
+\begin{equation}
+	\mathrm{d}\Phi = -P\mathrm{d}V+T\mathrm{d}S-\mathcal{R}_i\mathrm{d}\mathcal{F}_i\ .
+\end{equation}
+Since $\Phi$ is a state function, $\mathrm{d}\Phi$ is a total (or exact) differential,\index{total differential} and hence:
+\begin{equation}
+	\frac{\partial \mathcal{R}_i}{\partial\mathcal{F}_j} = \frac{\partial \mathcal{R}_j}{\partial\mathcal{F}_i}\ .
+\end{equation}
+We also have $\mathcal{R}_i = K_{ij}\mathcal{F}_j$, so that we find $K_{ij} = K_{ji}$, i.e., the material property matrix $K_{ij}$ is a symmetric matrix.  This symmetry follows from thermodynamical considerations only and is hence an \textit{intrinsic symmetry}.  It must be valid for all materials.
+
+\subsection{Consequences of intrinsic symmetry}
+Let us now consider the following forces $(\Delta T,\mathbf{E},\mathbf{H},\sigma_{ij})$. We can combine them into a single force vector with $13$ components:
+\begin{equation}
+	\mathcal{F}_j = (\Delta T, E_x, E_y, E_z, H_x, H_y, H_z, \sigma_{xx},\sigma_{yy},\sigma_{zz},\sigma_{xy},\sigma_{xz},
+	\sigma_{yz})\ .
+\end{equation}
+Similarly, we can write for the components of the responses $(\Delta S,\mathbf{D},\mathbf{B},\epsilon_{ij})$:
+\begin{equation}
+	\mathcal{R}_i = (\Delta S,D_x,D_y,D_z,B_x,B_y,B_z,\epsilon_{xx},\epsilon_{yy},\epsilon_{zz},\epsilon_{xy},\epsilon_{xz},
+	\epsilon_{yz})\ .
+\end{equation}
+Since each of these ``vectors'' has $13$ components, the property matrix $K_{ij}$ connecting them must therefore be a $13\times 13$ matrix.  Note that $K_{ij}$ will become even larger if we add additional forces and responses.
+
+As an example of the use of intrinsic symmetry, consider those entries from Table~\ref{tensors} that are related to the $13$ forces and responses listed above.  The portion of this table that is relevant to our discussion is reproduced here as Table~\ref{tb:small}.  We have augmented this table to reflect all possible relations between fields and responses.
+
+\begin{table}[h]
+\centering\leavevmode
+\begin{tabular}{|l|c|c|c|l|}
+\hline
+Property   &  Symbol   &  Field & Response & Type\#  \\
+\hline
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 0 (Scalars)}\\
+\hline
+Specific Heat   &   $C$   & $\Delta T$ & $T\Delta S$ &   E1\\
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 1 (Vectors)}\\
+\hline
+Electrocaloric  &  $p_i$  & $E_i$ & $\Delta S$ & E3\\
+Pyroelectric  &  $p'_i$  & $\Delta T$ & $D_i$ & E3\\
+Magnetocaloric & $q_i$  &  $H_i$ & $\Delta S$ & E3\\
+Pyromagnetic & $q'_i$  &  $\Delta T$ & $B_i$ & E3\\
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 2}\\
+\hline
+Thermal expansion  & $\alpha_{ij}$  & $\Delta T$ & $\epsilon_{ij}$ & E6\\
+Piezocaloric effect  & $\alpha'_{ij}$  & $\sigma_{ij}$ & $\Delta S$ & E6\\
+Dielectric permittivity & $\kappa_{ij}$  & $E_j$ & $D_i$ &  E6\\
+Magnetic permeability & $\mu_{ij}$ & $H_j$ & $B_i$ & E6\\
+Magnetoelectric polarization & $\lambda_{ij}$ & $H_j$ & $D_i$  & E9\\
+Converse magnetoelectric polarization & $\lambda'_{ij}$ & $E_j$ & $B_i$  & E9\\
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 3}\\
+\hline
+Piezoelectricity  &  $d_{ijk}$  & $\sigma_{jk}$ & $D_i$ &  E18\\
+Converse piezoelectricity  &  $d'_{ijk}$  & $E_k$ & $\epsilon_{ij}$ &  E18\\
+Piezomagnetism &  $Q_{ijk}$  & $\sigma_{jk}$ & $B_i$ & E18\\
+Converse piezomagnetism &  $Q'_{ijk}$  & $H_{k}$ & $\epsilon_{ij}$ & E18\\
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 4}\\
+\hline
+Elasticity  &  $s_{ijkl}$  & $\sigma_{kl}$ & $\epsilon_{ij}$  & E21\\
+\hline
+\end{tabular}
+\caption{Selected entries from Table~\ref{tensors}.}
+\label{tb:small}
+\end{table}
+
+The material property matrix $K_{ij}$ can now be written explicitly as follows:
+\begin{equation}
+	\hspace*{-0.5in}\left(\begin{matrix}
+	\Delta S\\\hline D_x\\ D_y\\ D_z\\\hline B_x\\ B_y\\ B_z\\\hline \epsilon_{xx}\\ \epsilon_{yy}\\ \epsilon_{zz}\\ \epsilon_{yz}\\ \epsilon_{xz}\\ \epsilon_{xy}\end{matrix}\right) = 
+	\left(\begin{array}{c|ccc|ccc|cccccc}
+	\frac{C}{T} & p_x & p_y & p_z & q_x & q_y & q_z & \alpha'_{xx} & \alpha'_{yy} & \alpha'_{zz} & \alpha'_{yz} & \alpha'_{xz} & \alpha'_{xy}\\
+	\hline
+	p'_x & \kappa_{xx} & \kappa_{xy} & \kappa_{xz} & \lambda_{xx} & \lambda_{xy} & \lambda_{xz} & d_{xxx} & d_{xyy} & d_{xzz} & d_{xyz} & d_{xxz} & d_{xxy}\\
+	p'_y & \kappa_{yx} & \kappa_{yy} & \kappa_{yz} & \lambda_{yx} & \lambda_{yy} & \lambda_{yz} & d_{yxx} & d_{yyy} & d_{yzz} & d_{yyz} & d_{yxz} & d_{yxy}\\
+	p'_z & \kappa_{zx} & \kappa_{zy} & \kappa_{zz} & \lambda_{zx} & \lambda_{zy} & \lambda_{zz} & d_{zxx} & d_{zyy} & d_{zzz} & d_{zyz} & d_{zxz} & d_{zxy}\\
+	\hline
+	q'_x & \lambda'_{xx} & \lambda'_{xy} & \lambda'_{xz} & \mu_{xx} & \mu_{xy} & \mu_{xz} &Q_{xxx} & Q_{xyy} & Q_{xzz} & Q_{xyz} & Q_{xxz} & Q_{xxy}\\
+	q'_y & \lambda'_{yx} & \lambda'_{yy} & \lambda'_{yz} & \mu_{yx} & \mu_{yy} & \mu_{yz} &Q_{yxx} & Q_{yyy} & Q_{yzz} & Q_{yyz} & Q_{yxz} & Q_{yxy}\\
+	q'_z & \lambda'_{zx} & \lambda'_{zy} & \lambda'_{zz} & \mu_{zx} & \mu_{zy} & \mu_{zz} &Q_{zxx} & Q_{zyy} & Q_{zzz} & Q_{zyz} & Q_{zxz} & Q_{zxy}\\
+	\hline
+	\alpha_{xx} & d'_{xxx} & d'_{xxy} & d'_{xxz} & Q'_{xxx} & Q'_{xxy} & Q'_{xxz} & s_{xxxx} & s_{xxyy} & s_{xxzz} & s_{xxyz} & s_{xxxz} & s_{xxxy}\\
+	\alpha_{yy} & d'_{yyx} & d'_{yyy} & d'_{yyz} & Q'_{yyx} & Q'_{yyy} & Q'_{yyz} & s_{yyxx} & s_{yyyy} & s_{yyzz} & s_{yyyz} & s_{yyxz} & s_{yyxy}\\
+	\alpha_{zz} & d'_{zzx} & d'_{zzy} & d'_{zzz} & Q'_{zzx} & Q'_{zzy} & Q'_{zzz} & s_{zzxx} & s_{zzyy} & s_{zzzz} & s_{zzyz} & s_{zzxz} & s_{zzxy}\\
+	\alpha_{yz} & d'_{yzx} & d'_{yzy} & d'_{yzz} & Q'_{yzx} & Q'_{yzy} & Q'_{yzz} & s_{yzxx} & s_{yzyy} & s_{yzzz} & s_{yzyz} & s_{yzxz} & s_{yzxy}\\
+	\alpha_{xz} & d'_{xzx} & d'_{xzy} & d'_{xzz} & Q'_{xzx} & Q'_{xzy} & Q'_{xzz} & s_{xzxx} & s_{xzyy} & s_{xzzz} & s_{xzyz} & s_{xzxz} & s_{xzxy}\\
+	\alpha_{xy} & d'_{xyx} & d'_{xyy} & d'_{xyz} & Q'_{xyx} & Q'_{xyy} & Q'_{xyz} & s_{xyxx} & s_{xyyy} & s_{xyzz} & s_{xyyz} & s_{xyxz} & s_{xyxy}
+	\end{array}\right)
+	\left(\begin{matrix}
+	\Delta T\\\hline E_x\\ E_y\\ E_z\\\hline H_x\\ H_y\\ H_z\\\hline \sigma_{xx}\\ \sigma_{yy}\\ \sigma_{zz}\\ \sigma_{yz}\\ \sigma_{xz}\\ \sigma_{xy}\end{matrix}\right)\ .
+\end{equation}
+When we take a closer look at this large property matrix, we see that individual material properties show up as blocks within the larger matrix.  For instance, the dielectric permittivity tensor, $\kappa_{ij}$, occupies a $3\times 3$ block inside $K_{ij}$.  Since the large $K_{ij}$ matrix must be symmetric, this imposes restrictions on the component matrices. Along the diagonal of $K_{ij}$ we have the \textit{principal effects},\index{principal effect} which relate a force to its conjugate response.  All those material tensors must be symmetric.  Away from the diagonal we relate a force to the other (non-conjugate) responses (\textit{cross-effects}),\index{cross effects} and there are pair-wise relations between the material tensors of seemingly unrelated force-response pairs.  The entire matrix relation can be expressed more compactly in the form:
+\begin{align}
+	\Delta S &= \frac{C}{T}\Delta T +p_iE_i + q_iH_i + \alpha'_{ij}\sigma_{ij}\ ;\\
+	D_i &= p'_i\Delta T + \kappa_{ij}E_j + \lambda_{ij} H_j + d_{ijk}\sigma_{jk}\ ;\\
+	B_i &= q'_i\Delta T + \lambda'_{ij}E_j + \mu_{ij} H_j + Q_{ijk}\sigma_{jk}\ ;\\
+	\epsilon_{ij} &= \alpha_{ij}\Delta T +d'_{ijk}E_k + Q'_{ijk} H_k + s_{ijkl}\sigma_{kl}\ .
+\end{align}
+
+We make in particular the following observations:
+\begin{itemize}
+	\item The material tensors along the diagonal, $\kappa_{ij}$, $\mu_{ij}$, and $s_{ijkl}$ are symmetric tensors because $K_{ij}$ is symmetric.  This means that $\kappa_{ij}=\kappa_{ji}$, $\mu_{ij}=\mu_{ji}$, and also $s_{ijkl} = s_{klij}$.  These are intrinsic (thermodynamic) symmetries for the principal property tensors.
+	
+	\item The material tensors away from the diagonal are related to each other in the following way:  we have $D_i = \ldots + d_{ijk}\sigma_{jk}$ and $\epsilon_{jk} = \ldots +d'_{jki}E_i+\ldots$.  Since the matrix $K_{ij}$ is symmetric, we must also have $d_{ijk} = d'_{jki}$, or, in words, the components of the piezoelectric tensor $d_{ijk}$ are identical to the components of the converse piezoelectric tensor $d'_{jki}$.  Note the different order of the indices!  Similar relations can be found for $Q'_{pqr} = Q_{rpq}$ (piezomagnetic and converse piezomagnetic tensors), and $\lambda'_{ij} = \lambda_{ji}$ (direct and converse magnetoelectric polarizabilities).  
+	
+	\item For the entries on the first row or column, we have $\alpha'_{ij} = \alpha_{ij}$, and since there are only $6$ components for this $3\times 3$ matrix, it must be symmetric, i.e., $\alpha_{ij}=\alpha_{ji}$.  This means that the thermal expansion coefficients and the piezocaloric coefficients are identical and symmetric.  The same can be said for the electrocaloric and pyroelectric coefficients, $p'_i = p_i$, and the magnetocaloric and pyromagnetic coefficients, $q'_i=q_i$.  
+\end{itemize}
+The nature of the thermodynamic energy functions, in particular the fact that they are state functions, has far-reaching consequences for the intrinsic symmetry of material properties. Thermodynamic path independence requires that the electrical conductivity tensor $\kappa_{ij}$ (often also denoted as $\epsilon_{ij}$) be a symmetric tensor.  The same is true for the magnetic permeability and the elastic compliances.  This symmetry requirement is a nice illustration of the importance of symmetry in the context of material properties.  In the following section, we will consider the effect of crystallographic symmetry on the material property tensors that make up the larger $K_{ij}$ matrix.
+
+\section{Crystallographic Symmetry}
+In this section, we will analyze how crystal symmetry affects the properties of a material.  From amongst the many material properties listed in Table~\ref{tensors} we will consider a simple second rank tensor, say, the magnetic permeability $\bm{\mu}$.  The procedure outlined below is also valid for all the other tensors, but becomes a bit tedious for higher rank tensors. Group theory has very powerful theorems and techniques to make this task considerably easier, but the mathematics is beyond the level of the present chapter.
+
+Let us assume that we have a tetragonal single crystal with a symmetry corresponding to point group $\textbf{4}$, which has $4$ elements: $\textbf{4} = \{E,4,4^2,4^3\}$, i.e., it is a cyclic rotation group with the identity $E$, and powers of the fourfold rotation operator $4$. We know from Chapter~\ref{chap:Symmetry} that each point symmetry operator can be represented by a $3\times 3$ matrix.  In this particular case, we have the following four matrices:
+\begin{align}
+E &= \matrixtbt{1}{0}{0}{0}{1}{0}{0}{0}{1}; \qquad R_1 = 4 = \matrixtbt{0}{-1}{0}{1}{0}{0}{0}{0}{1};\nonumber\\
+R_2 &= 4^2= \matrixtbt{-1}{0}{0}{0}{-1}{0}{0}{0}{1}; \qquad R_3 = 4^3 = \matrixtbt{0}{1}{0}{-1}{0}{0}{0}{0}{1}\ .
+\end{align}
+They can be derived quite easily by considering how each basis vector transforms under a rotation of $90^{\circ}$ around the $z$ axis, as described in section~\ref{ssec:vectortransformation}.
+
+If we apply the operator $4$ to the tetragonal crystal, then we basically carry out a rotation of $90^{\circ}$, and the resulting crystal is indistinguishable from the original after the rotation.  This must also be true for all the properties of this crystal.  There is a famous theorem, attributed to Neumann, that says the following:  \textit{The symmetry elements of any physical property of a crystal \textbf{must} include the symmetry elements of the point group of the crystal.}  This is known as \textit{Neumann's principle}. \index{Neumann's principle}  This principle states that every material property tensor must inherit the crystallographic symmetry of the underlying crystal lattice.  Note the use of the words \textit{must include}; this means that a material property may have a higher symmetry than the crystallographic symmetry, but never a lower symmetry.
+
+We have seen in Chapter~\ref{chap:MaterialProperty} how the components of a tensor change under a coordinate transformation. Since a symmetry operation is a special case of a coordinate transformation, we can work out how each of the operators of the point group $\textbf{4}$ changes the components of the permeability tensor $\bm{\mu}$.  We take into account the fact that the permeability tensor itself is already a symmetric tensor, i.e., $\mu_{ij}=\mu_{ji}$ (intrinsic symmetry), so that there are only $6$ independent elements to start with.
+{\small\begin{align*}
+	R_1\bm{\mu}\tilde{R}_1 &= \matrixtbt{0}{-1}{0}{1}{0}{0}{0}{0}{1}
+	\matrixtbts{xx}{xy}{xz}{xy}{yy}{yz}{xz}{yz}{zz}\matrixtbt{0}{1}{0}{-1}{0}{0}{0}{0}{1} = 
+	\left[\begin{array}{ccc} 
+	 \mu_{yy} & -\mu_{xy} & -\mu_{yz} \\ 
+	-\mu_{xy} &  \mu_{xx} & \mu_{xz} \\ 
+	-\mu_{yz} &  \mu_{xz} & \mu_{zz}\end{array}\right]\ ;\\
+	R_2\bm{\mu}\tilde{R}_2 &= \matrixtbt{-1}{0}{0}{0}{-1}{0}{0}{0}{1}
+	\matrixtbts{xx}{xy}{xz}{xy}{yy}{yz}{xz}{yz}{zz}\matrixtbt{-1}{0}{0}{0}{-1}{0}{0}{0}{1} = 
+	\left[\begin{array}{ccc} 
+	 \mu_{xx} & \mu_{xy} & -\mu_{xz} \\ 
+	\mu_{xy} &  \mu_{yy} & -\mu_{yz} \\ 
+	-\mu_{xz} &  -\mu_{yz} & \mu_{zz}\end{array}\right]\ ;\\
+	R_3\bm{\mu}\tilde{R}_3 &= \matrixtbt{0}{1}{0}{-1}{0}{0}{0}{0}{1}
+	\matrixtbts{xx}{xy}{xz}{xy}{yy}{yz}{xz}{yz}{zz}\matrixtbt{0}{-1}{0}{1}{0}{0}{0}{0}{1} = 
+	\left[\begin{array}{ccc} 
+	 \mu_{yy} & -\mu_{xy} & \mu_{yz} \\ 
+	-\mu_{xy} &  \mu_{xx} & -\mu_{xz} \\ 
+	\mu_{yz} &  -\mu_{xz} & \mu_{zz}\end{array}\right]\ .
+\end{align*}}
+Each of the tensors on the right of these equations must now be equal to the original tensor $\bm{\mu}$.  If we
+compare components we find that $\mu_{xx}=\mu_{yy}$, and $\mu_{xy}=-\mu_{xy}$ which means that 
+$\mu_{xy}=0$.  Repeating this analysis for all components, we find that the permeability tensor in a crystal with point
+group $\textbf{4}$ \textbf{must} look like this:
+\begin{equation}
+	\mu_{ij} =  \left[\begin{array}{ccc} 
+	\mu_{xx} & 0 & 0 \\ 
+	0 &  \mu_{xx} & 0 \\ 
+	0 & 0 & \mu_{zz}\end{array}\right] = \left[\begin{array}{ccc} 
+	\mu_{1} & 0 & 0 \\ 
+	0 &  \mu_{1} & 0 \\ 
+	0 & 0 & \mu_{2}\end{array}\right]\ .
+\end{equation}
+In other words, there are only two independent elements in the permeability tensor.  The second notation is often used instead of the tensor subscript notation.
+
+Note that it is possible for the material property to have a \textit{higher} symmetry than the crystal point group.  While the crystal point group $\textbf{4}$ does not have inversion symmetry, $C_i$, the permeability tensor does:
+{\small\begin{equation}
+C_i\bm{\mu}\tilde{C}_i = \matrixtbt{-1}{0}{0}{0}{-1}{0}{0}{0}{-1}
+	\matrixtbts{xx}{xy}{xz}{xy}{yy}{yz}{xz}{yz}{zz}\matrixtbt{-1}{0}{0}{0}{-1}{0}{0}{0}{-1} = 
+	\matrixtbts{xx}{xy}{xz}{xy}{yy}{yz}{xz}{yz}{zz}.
+\end{equation}}
+This is true for every second rank material tensor.
+
+Note also, that the derivation above is only valid if the material tensor is a symmetric tensor, i.e., if it represents a principal effect.   For the off-diagonal or cross-effect material tensors, such as the magnetoelectric polarizability tensor $\lambda_{ij}$, which is \textit{not} symmetric, we find (exercise) using the same procedure (for point group $\textbf{4}$):
+\begin{equation}
+	\lambda_{ij} =  \left[\begin{array}{ccc} 
+	\lambda_{xx} & \lambda_{xy} & 0 \\ 
+	-\lambda_{xy} &  \lambda_{xx} & 0 \\ 
+	0 & 0 & \lambda_{zz}\end{array}\right].
+\end{equation}
+
+This procedure can be repeated for all material tensors of all ranks.  For ranks higher than 2, the procedure becomes somewhat tedious, because the number of matrix products to work out increases rapidly with increasing tensor rank, but it is not very difficult. Group theory offers several very powerful tools to simplify this task, in particular group representation theory and group character tables, but this approach is a bit beyond the level of the present chapter. If we repeat the procedure above for all material tensors that make up the matrix $K_{ij}$ of the previous section, then we obtain the effective property matrix for a crystal with point group $\textbf{4}$:
+{\small\begin{equation}
+	\hspace*{-0.7in}\left(\begin{matrix}
+	\Delta S\\\hline D_x\\ D_y\\ D_z\\\hline B_x\\ B_y\\ B_z\\\hline \epsilon_{xx}\\ \epsilon_{yy}\\ \epsilon_{zz}\\ \epsilon_{yz}\\ \epsilon_{xz}\\ \epsilon_{xy}\end{matrix}\right) = 
+	\left(\begin{array}{c|ccc|ccc|cccccc}
+	\frac{C}{T} & p_x & p_x & p_z & q_x & q_x & q_z & \alpha_{xx} & \alpha_{xx} & \alpha_{zz} & 0 & 0 &0\\\hline
+	p_x & \kappa_{xx} & 0 & 0 & \lambda_{xx} & \lambda_{xy} & 0  & 0 & 0 & 0 & d_{xyz} & d_{xxz} & 0\\
+	p_x & 0 & \kappa_{xx} & 0 & -\lambda_{xy} & \lambda_{xx} & 0 & 0 & 0 & 0 & -d_{xxz} & d_{xyz} & 0\\
+	p_z & 0 & 0 & \kappa_{zz} & 0 & 0 & \lambda_{zz}                   & d_{zxx} & d_{zxx} & d_{zzz} & 0 & 0 & 0\\\hline
+	q_x & \lambda_{xx} & -\lambda_{xy}   & 0 & \mu_{xx} & 0 & 0  &0 & 0 & 0 & Q_{xyz} & Q_{xxz} & 0\\
+	q_x & \lambda_{xy} & \lambda_{xx}    & 0 & 0 & \mu_{xx} & 0  &0 &0 & 0 & -Q_{xxz} & Q_{xyz} & 0\\
+	q_z & 0 & 0 & \lambda_{zz}                      & 0 & 0 & \mu_{zz} &Q_{zxx} & Q_{zxx} & Q_{zzz} & 0 & 0 & 0\\\hline
+	\alpha_{xx} & 0 & 0 & d_{zxx}     & 0 & 0 & Q_{zxx}                        & s_{xxxx} & s_{xxyy} & s_{xxzz} &  0 & 0 & s_{xxxy}\\
+	\alpha_{xx} & 0 & 0 & d_{zxx}    & 0 & 0 & Q_{zyy}                        & s_{xxyy} & s_{xxxx} & s_{xxzz} &  0 & 0 & -s_{xxxy}\\
+	\alpha_{zz} & 0 & 0 & d_{zzz}    & 0 & 0 & Q_{zzz}                       & s_{xxzz} & s_{xxzz} & s_{zzzz} & 0 & 0 & 0\\
+	0 & d_{xyz} & -d_{xxz} & 0 & Q_{xyz} & -Q_{xxz} & 0      & 0 & 0 & 0                       & s_{xzxz} & -s_{xzyz} & 0\\
+	0 & d_{xxz} & d_{xyz} & 0 & Q_{xxz} & Q_{xyz} & 0         & 0 & 0 & 0                       & s_{xzyz} & s_{xzxz} & 0\\
+	0 & 0 & 0 & 0               & 0 & 0 & 0                                & s_{xxxy} & -s_{xxxy} & 0 & 0 & 0 & s_{xyxy}
+	\end{array}\right)
+	\left(\begin{matrix}
+	\Delta T\\\hline E_x\\ E_y\\ E_z\\\hline H_x\\ H_y\\ H_z\\\hline \sigma_{xx}\\ \sigma_{yy}\\ \sigma_{zz}\\ \sigma_{yz}\\ \sigma_{xz}\\ \sigma_{xy}\end{matrix}\right)  
+\end{equation}}
+
+Note that there are many zeroes in this matrix; since $K_{ij}$ has $13\times 13=169$ components, and $K_{ij}=K_{ji}$, we have, due to intrinsic symmetry, only $91$ independent components for the most general (triclinic) case.  For point group $\textbf{4}$, the number of independent components is further reduced to $91-62=29$.  In other words, to fully describe the response of a material with point symmetry $\hm{4}$ to an external set of forces consisting of $(\Delta T, \mathbf{E}, \mathbf{H}, \sigma_{ij})$, we need to know $29$ independent constants, which are grouped in various material tensors.  The higher the symmetry, the smaller the number of independent constants.  For the cubic case (highest symmetry, point group $\mathbf{m\bar{3}m}$), the corresponding matrix has only $8$ independent constants:
+{\small\begin{equation}
+	\left(\begin{matrix}
+	\Delta S\\\hline D_x\\ D_y\\ D_z\\\hline B_x\\ B_y\\ B_z\\\hline \epsilon_{xx}\\ \epsilon_{yy}\\ \epsilon_{zz}\\ \epsilon_{yz}\\ \epsilon_{xz}\\ \epsilon_{xy}\end{matrix}\right) = 
+	\left(\begin{array}{c|ccc|ccc|cccccc}
+	\frac{C}{T} & 0 & 0 & 0 & 0 & 0 & 0 & \alpha & \alpha & \alpha & 0 & 0 &0\\\hline
+	0 & \kappa & 0 & 0 & \lambda & 0 & 0  & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & \kappa & 0 & 0 & \lambda & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & \kappa & 0 & 0 & \lambda                   & 0 & 0 & 0 & 0 & 0 & 0\\\hline
+	0 & \lambda & 0   & 0 & \mu & 0 & 0  &0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & \lambda    & 0 & 0 & \mu & 0  &0 &0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & \lambda                      & 0 & 0 & \mu &0 & 0 & 0 & 0 & 0 & 0\\\hline
+	\alpha & 0 & 0 & 0     & 0 & 0 & 0                      & s_{xxxx} & s_{xxyy} & s_{xxyy} & 0 & 0 & 0\\
+	\alpha & 0 & 0 & 0    & 0 & 0 & 0                       & s_{xxyy} & s_{xxxx} & s_{xxyy} & 0 & 0 & 0\\
+	\alpha & 0 & 0 & 0    & 0 & 0 & 0                       & s_{xxyy} & s_{xxyy} & s_{xxxx} & 0 & 0 & 0\\
+	0 & 0 & 0 & 0               & 0 & 0 & 0                                & 0 & 0 & 0 & s_{yzyz} & 0 & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0      & 0 & 0 & 0                                         & 0 & s_{yzyz} & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0      & 0 & 0 & 0                                         & 0 & 0 & s_{yzyz}
+	\end{array}\right)
+	\left(\begin{matrix}
+	\Delta T\\\hline E_x\\ E_y\\ E_z\\\hline H_x\\ H_y\\ H_z\\\hline \sigma_{xx}\\ \sigma_{yy}\\ \sigma_{zz}\\ \sigma_{yz}\\ \sigma_{xz}\\ \sigma_{xy}\end{matrix}\right)  
+\end{equation}}
+Note that for the cubic symmetry, all material tensors of rank less than $4$ either vanish completely or are equal to a scalar.  Only the elastic compliance tensor $s_{ijkl}$, of rank $4$, does not reduce to a scalar.
+
 

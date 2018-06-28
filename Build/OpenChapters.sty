@@ -63,6 +63,7 @@
 \graphicspath{{\chaptergraphicspath}} % Specifies the directory where pictures are stored
 
 \usepackage{tikz} % Required for drawing custom shapes
+\usepackage{bm}
 
 \usepackage[english]{babel} % English language/hyphenation
 
@@ -544,7 +545,7 @@ addtohook={%
 
 % since this is an open source book, clearly state the version information at the bottom of each page...
 \usepackage[mark]{gitinfo2}
-\renewcommand{\gitMarkPref}{[https://github.com/OpenChapters/OpenChapters]}
+\renewcommand{\gitMarkPref}{[github.com/OpenChapters]}
 \renewcommand{\gitMarkFormat}{\color{gray}\footnotesize\sffamily}
 
 %% we allow for hyperlinking
@@ -603,4 +604,12 @@ addtohook={%
 
 % the formatting command for the git version string at the bottom of each page.
 \renewcommand{\gitMark}{Branch: \gitBranch\,@\,\gitAbbrevHash{} \textbullet{} Release:\gitReln{} (\gitAuthorDate)}
+
+% each chapter needs to have a 6-character identification string so that we can automate 
+% the chapter dependencies, in particular for the Foundational chapters.  This string needs to be inserted 
+% into every \label command as well; not sure how to achieve that automatically...
+\newcommand{\chabbr}{AAAAAA}
+\newcommand{\OClabel}[1]{\label{\chabbr:#1}}
+\newcommand{\OCref}[1]{\ref{\chabbr:#1}}
+
 
