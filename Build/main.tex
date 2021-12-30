@@ -1,19 +1,18 @@
 % !TEX TS-program = arara
 % arara: pdflatex
-% arara: makeindex: { style: StyleInd }
+% arara: makeindex: { style: StyleInd.ist,  output: ind, log: ilg, input: idx }
 % arara: mergemainbibfiles
 % arara: biber
 % arara: pdflatex
 % arara: pdflatex
-% arara: clean: { files: [main.aux, main.bbl, main.bcf, main.blg, main.fls, main.idx] }
-% arara: clean: { files: [main.ilg, main.ind, main.log, main.ptc, main.toc] }
+% arara: clean: { extensions: [aux, bbl, bcf, blg, idx, ilg, ind, log, ptc, toc] }
 %
 %
 % ###################################################################
 % Copyright (c) 2017-2018, Editors: A.D. Rollett & M. De Graef
 % All rights reserved.
 %
-% Licensed under the Creative Commons CC BY-NC-SA 4.0 License, 
+% Licensed under the Creative Commons CC BY-NC-SA 4.0 License,
 % hereafter referred to as the "License"; you may not use this 
 % document except in compliance with the License. You may obtain 
 % a copy of the License at 
