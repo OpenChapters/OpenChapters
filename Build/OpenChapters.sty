@@ -544,9 +544,13 @@ addtohook={%
 \usepackage{booktabs}
 
 % since this is an open source book, clearly state the version information at the bottom of each page...
-\usepackage[mark]{gitinfo2}
+\usepackage[local,mark]{gitinfo2}
 \renewcommand{\gitMarkPref}{[github.com/OpenChapters]}
 \renewcommand{\gitMarkFormat}{\color{gray}\footnotesize\sffamily}
+
+% the formatting command for the git version string at the bottom of each page.
+\renewcommand{\gitMark}{Branch: \gitBranch\,@\,\gitAbbrevHash{} \textbullet{} Release:\gitReln{} (\gitAuthorDate)}
+
 
 %% we allow for hyperlinking
 \usepackage{hyperref}
@@ -601,9 +605,6 @@ addtohook={%
 \newcommand{\matrixtbt}[9]{\left(\begin{array}{ccc} #1 & #2 & #3 \\ #4 & #5 & #6 \\ #7 & #8 & #9\end{array}\right)}
 \newcommand{\matrixtbts}[9]{\left[\begin{array}{ccc} \mu_{#1} & \mu_{#2} & \mu_{#3} \\ \mu_{#4} & \mu_{#5} & \mu_{#6} \\ \mu_{#7} & \mu_{#8} & \mu_{#9}\end{array}\right]}
 \newcommand{\mtrix}[9]{\left[\begin{array}{ccc} {#1} & {#2} &{#3} \\ {#4} & {#5} & {#6} \\ {#7} & {#8} & {#9}\end{array}\right]}
-
-% the formatting command for the git version string at the bottom of each page.
-\renewcommand{\gitMark}{Branch: \gitBranch\,@\,\gitAbbrevHash{} \textbullet{} Release:\gitReln{} (\gitAuthorDate)}
 
 % each chapter needs to have a 6-character identification string so that we can automate 
 % the chapter dependencies, in particular for the Foundational chapters.  This string needs to be inserted 
