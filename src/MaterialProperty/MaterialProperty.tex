@@ -80,17 +80,54 @@ It is essential to quantify microstructure in order to be able to predict proper
 \item \textit{``several cubic millimeters''}: Automated serial sectioning methods based on milling \cite{alkemper2001a} or standard metallography \cite{spowart2003a} can generate  3-D  data from macroscopic samples. Combining these approaches  with \indexit{Laue diffraction} and \indexit{x-ray fluorescence} allows for the near-simultaneous acquisition of chemical and orientational information.
 \end{itemize}
 
-\subsection{Properties\OClabel{properties}}
+\subsection{Properties}
+\OClabel{properties}
+
+A material's \indexit{properties} are those measurable characteristics that determine how the material responds to a variety of external stimuli; we will formalize this statement in section~\OCref{matprop}. Broad property categories and specific examples in each category include:
+\begin{itemize}
+\item \indexit{mechanical properties}: strength, hardness, ductility, toughness, fatigue resistance;
+\item \indexit{thermal properties}: conductivity, heat capacity, thermal expansion;
+\item \indexit{electrical and magnetic properties}: conductivity, resistivity, ferromagnetism, superconductivity, band gap;
+\item \indexit{optical properties}: transparency, reflectivity, photoluminescence;
+\item \indexit{chemical properties}: corrosion resistance, oxidation behavior, reactivity.
+\end{itemize}
+
+We distinguish between properties that are \indexit{intrinsic} and \indexit{extrinsic}. Intrinsic properties are generally determined by the crystal structure (i.e., the 3D arrangement and types of atoms) and in many cases they can be computed/predicted directly from the atomic arrangements using physics-based arguments, in particular quantum-mechanical models.  The electronic \indexit{band gap} of a material is  a typical example of an intrinsic property; it is fundamental to the particular crystal structure and represents the minimum energy needed to promote an electron from the valence band to the conduction band, thereby determining whether the material is an insulator, a conductor, or a semiconductor.  \textit{Ductility}\index{ductility} is an example of an extrinsic property since it depends in a very sensitive way on microstructural parameters, such as the grain size, or the rate at which the material is deformed (i.e., the \indexit{strain rate}).  In general, such extrinsic properties are much more difficult to predict since they depend on many factors that themselves may be difficult to quantify, and improving one extrinsic property, say strength, may have a negative effect on another property, in this case ductility.  The often complex and counter-acting dependencies between microstructure and (extrinsic) properties make it necessary to systematically approach material properties by starting from the single crystal state, and then gradually incorporating the actual microstructural aspects by means of appropriate averaging procedures, which represents a very active area of research.
+
+\subsection{Processing}
+\OClabel{processing}
+
+Processing describes not only how we make a material (e.g., by solidification from a melt pool) but also how we subsequently modify the material's microstructure, for instance via thermal annealing or plastic deformation, both belonging to the category of \indexit{thermomechanical processing} techniques.    Each material class (metals, ceramics, polymers, $\ldots$) comes with its own set of specialized processing techniques, but the common goal of all material processing techniques is to achieve a microstructure that will satisfy all performance criteria or metrics (see next section).  
+
+\begin{itemize}
+	\item \textit{Metals}: 
+
+	\item \textit{Ceramics}: 
+
+	\item \textit{Polymers}: 
+\end{itemize}
+
+% and it is the primary way we control microstructure. Every processing step, whether heating, cooling, deforming, or applying energyâ affects the arrangement of atoms and the evolution of microstructure. In metals, solidification from the melt establishes the initial grain structure; plastic deformation by rolling or forging introduces dislocations; subsequent heat treatments can reorganize those dislocations and change phases.
+
+%Processing is not limited to traditional metallurgy. In ceramics, careful control of sintering temperature and atmosphere determines porosity and grain growth. In polymers, extrusion and drawing can align chains and improve strength. In electronic materials, epitaxial growth techniques deposit atomically precise thin films. More recently, additive manufacturing methods, such as laser powder bed fusion, are offering unprecedented control by  printing parts layer by layer. A key teaching point is that processing is a lever: by changing it, we can intentionally engineer microstructures, and therefore tune material properties.
 
 
-\subsection{Processing\OClabel{processing}}
+\subsection{Performance}
+\OClabel{performance}
 
+Performance takes the discussion out of the lab and into the real world. It asks the question: How does the material actually behave in service, under realistic conditions and over long time scales? A material may exhibit excellent tensile strength in a simple test, but if it corrodes rapidly in a marine environment, its performance as a structural material for ships will be poor. Similarly, a ceramic may have outstanding hardness, but if it is too brittle, it cannot perform well in an application involving repeated impact.
 
-\subsection{Performance\OClabel{performance}}
+Performance thus integrates not just the intrinsic properties of the material but also the environment, loading conditions, time, and cost. Engineers must consider fatigue (failure after many cycles of stress), creep (slow deformation at high temperature), wear, corrosion, and radiation damage. Performance also includes economic and societal factors, whether the material is sustainable, affordable, and available at scale.
+
+In teaching, performance is often presented as the closing loop of the MSE framework. Microstructure is tailored by processing, which defines properties, which then dictate performance. This cycle emphasizes that materials are not just studied for their own sake but for their essential role in enabling technologies jet engines, medical implants, solar cells, bridges, and countless others.
 
 
 \section{Definition of a Material Property}
 \OClabel{matprop}
+
+\begin{messagebox}{Important Section}{ocre}{\icattention}{black}
+In this section you will learn a formal definition of what a material property is.  Later on in this chapter we will introduce many examples.
+\end{messagebox}
 
 Although it is difficult to provide a general abstract description of a material property, valid for all possible properties, it is instructive to think of a material property as \textit{the link between an external influence and the material's response to that influence}.  If we denote the external influence by $\mathcal{F}$ ($\mathcal{F}$ stands for \underline{F}ield or \underline{F}orce) and the material \underline{R}esponse or \underline{R}eaction by $\mathcal{R}$, then in the most general sense the relation between the two is given by
 \begin{equation}
@@ -128,9 +165,9 @@ If we truncate the series after the second term (i.e., we ignore all derivatives
 	\frac{\partial\mathcal{R}}{\partial\mathcal{F}}\right\vert_{\mathcal{F}=0.
 	}
 \end{equation}
-This is a \textit{linear} relation between the applied field and the response.  The quantity $\mathbf{P}$ is a \textit{material property}.\index{material property}  Ignoring the higher order derivatives of $\mathcal{R}$ is generally known as the \textit{linear approximation}.\index{linear approximation}  This approximation considerably simplifies the math and for many purposes it is a useful and accurate approximation.
+This is a \textit{linear} relation between the applied field and the response, and this relation becomes a proportionality between applied field and response when $\mathcal{R}_0=0$.  The quantity $\mathbf{P}$ is a \textit{material property}.\index{material property}  Ignoring the higher order derivatives of $\mathcal{R}$ is generally known as the \textit{linear approximation}.\index{linear approximation}  This approximation considerably simplifies the math and for many purposes it is a useful and accurate approximation.
 
-Since the external field $\mathcal{F}$ is often a vector quantity (e.g., the electric field $\mathcal{F}=\mathbf{E}$) and the response can also be a vector (e.g., the current density $\mathcal{R}=\mathbf{j}$) it is clear that the material property $\mathbf{P}$ is not always going to be described by a single number.  Instead, the material property can become a vector itself, or even a higher order mathematical quantity known as a \indexit{tensor}; nearly all of the interesting and useful material properties are represented by tensors, in particular for single crystals but also in polycrystalline materials.  For now, think of a tensor as an array of numbers with a set of special properties; in section~\OCref{tensors} we will describe tensors in more detail.  Without going into the details at this time, we can state that, in general, a material property is represented by a \textit{matrix} of numbers; a combination of thermodynamic (or intrinsic) symmetry and the crystallographic symmetry of the material determines which of those numbers can be different from zero, and which \textit{must} be zero.  
+Since the external field $\mathcal{F}$ is often a vector quantity (e.g., the electric field $\mathcal{F}=\mathbf{E}$) and the response can also be a vector (e.g., the current density $\mathcal{R}=\mathbf{j}$) it is clear that the material property $\mathbf{P}$ is not always going to be described by a single number.  Instead, the material property can become a vector itself, or even a higher order mathematical quantity known as a \indexit{tensor}; nearly all of the interesting and useful material properties are represented by tensors, in particular for single crystals but also in polycrystalline materials.  For now, think of a tensor as an array of numbers with a set of special properties; in Chapter~\OCref{tensors} the concept of a tensor is described in substantial detail.  Without going into the details at this time, we can state that, in general, a material property is represented by a \textit{matrix} of numbers; this can be a column vector, a $3\times 3$ matrix or even a higher dimensional array.  A combination of thermodynamic (or intrinsic) symmetry and the crystallographic symmetry of the material determines which of those numbers can be different from zero, and which \textit{must} be zero.  
 
 If the series expansion in equation~(\ref{eq:expansion}) is truncated after the third term, then it is said that the material behaves in a non-linear way.  The relation can then be written as:
 \begin{equation}
@@ -139,28 +176,30 @@ If the series expansion in equation~(\ref{eq:expansion}) is truncated after the 
 \end{equation}
 $\mathbf{P}_2$ is a \textit{non-linear} material property.  Crystallography and symmetry theory can again be used to examine the relations between the components of $\mathbf{P}_2$.  
 	
-There are several material properties for which it is impossible to truncate the Taylor expansion of equation~(\ref{eq:expansion}) after just a few terms, and many or all terms must be used. For those properties, it is customary to use equation~(\ref{eq:rf}), with some appropriate mathematical function $\mathcal{R}$. In that case, equation~(\ref{eq:rf}) represents a so-called \textit{constitutive law}\index{constitutive law} or \textit{constitutive relation}.\index{constitutive relation}  Sometimes, physical arguments can be used to find the precise form of the function, in other situations empirical or phenomenological relations may be needed.
+There are several material properties for which it is impossible to truncate the Taylor expansion of equation~(\ref{eq:expansion}) after just a few terms, and many or all terms must be used. For those properties, it is customary to use equation~(\ref{eq:rf}), with some appropriate mathematical function $\mathcal{R}$. In that case, equation~(\ref{eq:rf}) represents a so-called \indexit{constitutive law} or \indexit{constitutive relation}.  Sometimes, physical arguments can be used to find the precise form of the function, in other situations empirical or phenomenological relations may be needed.
 
 One can also express the \textit{energy content} of a material in terms of the externally applied field(s); \textit{thermodynamics}\index{thermodynamics} then provides the means and rules to determine how the energy of a solid/liquid/gas changes when the external conditions change.  Thermodynamics often assumes that a material system is \textit{homogeneous} and \textit{isotropic} (see below) and then makes quite general statements about its behavior in various external fields.  Symmetry becomes important whenever a thermodynamic function depends on the gradient of a property; in such cases, symmetry theory can determine the possible mathematical expressions that will correctly describe this property.  There is thus an intimate relation between the symmetry of a material and its thermodynamic properties.  Whereas symmetry theory determines which elements of a property matrix must be zero, thermodynamics can be used to derive additional restrictions on the non-zero elements (e.g., some elements can only be positive, or certain elements must always be smaller than others, etc.)  
 
-Every material property has a number of characteristics\footnote{We could call them \textit{properties} but it is a bit confusing to talk about the properties of a property.} which are of fundamental importance: \textit{homogeneity, anisotropy} and \textit{symmetry}; let us take a closer look at each of these concepts.
+Every material property has a number of characteristics\footnote{We could call them \textit{properties} but it is a bit confusing to talk about the properties of a property.} which are of fundamental importance: \textit{homogeneity, anisotropy} and \textit{symmetry}; let us take a brief closer look at each of these concepts.
 
 \subsection{Homogeneity}
 \OClabel{homogeneity}
 
-There are several length scales at which we can make observations on a material.  Macroscopic measurements are considered to be those measurements which occur over distances many times larger than the interatomic distance, e.g.\
+There are several length scales at which we can make observations on a material.  Macroscopic measurements are considered to be those measurements that are performed over distances many times larger than the interatomic distance, e.g.\
 \begin{eqnarray}
 	\mbox{length : }&&L \gg a; \nonumber\\
 	\mbox{surface : }&&S \gg a^{2};\\
 	\mbox{volume : }&&V \gg a^{3},\nonumber
 \end{eqnarray}
-where $a$ is of the order of the interatomic distance.  The majority of objects with which we deal in everyday life are composed of several different \textit{materials}: metals, plastics, wood, brick, and many others.  At the macroscopic level, most of those materials may appear to consist of only one piece.  However, when we use a microscope to zoom in on the details, we can often observe that the material is made up of small \textit{grains}.  Each of those grains is an individual crystal, usually with a rather irregular shape.  When we zoom in even further, we can observe the \textit{crystal lattice}, which shows a regular arrangement of atoms.  If a material consists of many grains in more or less random orientations, then we refer to that material as \textit{poly-crystalline}.  If the complete object is formed by only one grain, then that object is a \textit{single crystal}; most gems are single crystals.  It is customary to concentrate first on the properties of single crystals, and subsequently to determine how a deviation from the single crystal state affects those properties.  To obtain a deeper understanding about the way materials work it is necessary to start at the microscopic or \textit{crystallographic} level and work our way up to real materials.
+where $a$ is of the order of the interatomic distance.  The majority of objects with which we deal in everyday life are composed of several different \textit{materials}: metals, plastics, wood, brick, and many others.  At the macroscopic level, most of those materials may appear to consist of only one piece.  However, when we use a microscope to zoom in on the details, we can often observe that the material is made up of small \textit{grains}.  Each of those grains is an individual crystal, usually with a rather irregular shape.  When we zoom in even further, we can observe the \textit{crystal lattice}, which shows a regular arrangement of atoms.  If a material consists of many grains in more or less random orientations, then we refer to that material as \textit{poly-crystalline}.  If the complete object is formed by only one grain, then that object is a \textit{single crystal}; many gems are single crystals.  It is customary to concentrate first on the properties of single crystals, and subsequently determine how a deviation from the single crystal state affects those properties.  To obtain a deeper understanding about the way materials work it is necessary to start at the microscopic or \textit{crystallographic} level and work our way up to real materials.
 
 A crystalline substance is \textit{homogeneous}\index{homogeneous} when all physical (e.g.\ optical, mechanical, etc.)  and physicochemical (e.g.\ solubility of surface, adsorption, etc.)  properties are the same for volume (or surface) elements at different locations in the substance.  If a material point is denoted by the coordinate vector $\mathbf{r}$, then the mathematical statement of homogeneity of a property $\mathbf{P}$ becomes :
 \begin{equation}
 	\mathbf{P}(\mathbf{r}\,)=\mathbf{P}(\mathbf{r}+\mathbf{r}^{\,\prime})
 \end{equation}
-where the points $\mathbf{r}$ and $\mathbf{r}^{\,\prime}$ are separated by a (random) macroscopic distance.  The property $\mathbf{P}$ can be a scalar (heat capacity, density, etc.), a vector (polarization, magnetization, etc.)  or a higher order quantity known as a tensor (elastic moduli, magnetic susceptibility, etc.). \textit{Homogeneity} thus requires that a material property be independent of the location in the material where it is measured.  If a property \textit{does} depend upon location, then it is said that the property is \indexit{heterogeneous}.  For instance, a natural sapphire (Al$_2$O$_3$) crystal may contain Cr atoms; if the distribution of Cr atoms is homogeneous throughout the sample, then the color of the crystal will be independent of location.  However, if one side of the crystal contains more Cr than the other side, then there is a \textit{compositional gradient} across the sample, and the color may vary with location.  For many materials applications homogeneity is a strict requirement, for many other applications gradients or fluctuations are required.  For instance, if a semiconductor device were chemically homogeneous, it would completely fail to function.
+where the points $\mathbf{r}$ and $\mathbf{r}^{\,\prime}$ are separated by a (random) macroscopic distance.  The property $\mathbf{P}$ can be a scalar (heat capacity, density, etc.), a vector (polarization, magnetization, etc.)  or a higher order quantity known as a tensor (elastic moduli, magnetic susceptibility, etc.). \textit{Homogeneity} thus requires that a material property be independent of the location in the material where it is measured.  If a property \textit{does} depend upon location, then it is said that the property is \indexit{heterogeneous}.  For instance, a natural sapphire (Al$_2$O$_3$) crystal may contain Cr atoms; if the distribution of Cr atoms is homogeneous throughout the sample, then the color of the crystal will be independent of location.  However, if one side of the crystal contains more Cr than the other side, then there is a \textit{compositional gradient} across the sample, and the color may vary with location.  For many materials applications homogeneity is a strict requirement; for instance, for the cables used in suspension bridges, we want the mechanical properties to be the same along the length of the cables. For many other applications gradients or fluctuations are required;  for instance, if a semiconductor device were chemically homogeneous, it would completely fail to function.
+
+% idea: add figure showing color gradations in tourmaline
 
 \subsection{Anisotropy}
 \OClabel{anisotropy}

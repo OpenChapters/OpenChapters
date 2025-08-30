@@ -77,6 +77,9 @@
 \usepackage{xcolor} % Required for specifying colors by name
 \definecolor{ocre}{RGB}{243,102,25} % Define the orange color used for highlighting throughout the book
 
+
+
+
 \usepackage{url} 
 \usepackage{multirow,array}
 \usepackage{arydshln}
@@ -86,8 +89,34 @@
 %	FONTS
 %----------------------------------------------------------------------------------------
 
+
 \usepackage{avant} % Use the Avantgarde font for headings
 \usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Symbol, Chancery and Computer Modern fonts
+\usepackage{amsmath}
+% =============================================
+%Import symbols from font cm without importing the whole package
+% =============================================
+\newcommand\imCMsym[4][\mathord]{%
+  \DeclareFontFamily{U} {#2}{}
+  \DeclareFontShape{U}{#2}{m}{n}{
+    <-6> #25
+    <6-7> #26
+    <7-8> #27
+    <8-9> #28
+    <9-10> #29
+    <10-12> #210
+    <12-> #212}{}
+  \DeclareSymbolFont{CM#2} {U} {#2}{m}{n}
+  \DeclareMathSymbol{#4}{#1}{CM#2}{#3}
+}
+\newcommand\alsoimCMsym[4][\mathord]{\DeclareMathSymbol{#4}{#1}{CM#2}{#3}}
+
+\imCMsym{cmmi}{123}{\CMimath}
+\imCMsym{cmmi}{124}{\CMjmath}
+\imCMsym[\mathop]{cmsy}{113}{\CMamalg}
+\imCMsym[\mathop]{cmex}{96}{\CMcoprod}
+\alsoimCMsym[\mathop]{cmex}{97}{\CMbigcoprod}
+
 
 \usepackage{microtype} % Slightly tweak font spacing for aesthetics
 \usepackage[utf8]{inputenc} % Required for including letters with accents
@@ -113,51 +142,49 @@
 \usepackage{titletoc} % Required for manipulating the table of contents
 \contentsmargin{0cm} % Removes the default margin
 
-% Part text styling
-\titlecontents{part}[0cm]
-{\addvspace{20pt}\centering\large\bfseries}
-{}
-{}
-{}
 
-% Chapter text styling
+
+% Change color of chapter entries in ToC
+\definecolor{mypurple}{RGB}{173,73,104}
+\definecolor{myblue}{RGB}{20,107,176}
+\definecolor{mygrey}{RGB}{77,77,77}
+\definecolor{myblack}{RGB}{32,32,32}
+
+\usepackage{tocloft} % Load the tocloft package
+\renewcommand{\contentsname}{Table of Contents}
+
+\renewcommand{\@pnumwidth}{1em}
+
+\setlength\cftpartindent{0pt}
+\setlength\cftsecindent{0pt}
+\setlength\cftsubsecindent{0.95em}
+
+\renewcommand{\cftpartfont}{\color{myblue}}
+
+%\renewcommand{\cftchapfont}{\color{myblack}\sffamily\bfseries}
+%\renewcommand{\cftchapdotsep}{\nocftdots}
+
+% Change color of section entries in ToC
+\renewcommand{\cftsecfont}{\color{mypurple}\sffamily}
+
+% Change color of subsection entries in ToC
+\renewcommand{\cftsubsecfont}{\color{mygrey}\sffamily\small}
+
+
+%%% Part text styling
+%\titlecontents{part}[0cm]
+%{\addvspace{20pt}\centering\large\bfseries}
+%{}
+%{}
+%{}
+%
+%% Chapter text styling
 \titlecontents{chapter}[1.25cm] % Indentation
 {\addvspace{12pt}\large\sffamily\bfseries} % Spacing and font options for chapters
-{\color{ocre!60}\contentslabel[\Large\thecontentslabel]{1.25cm}\color{ocre}} % Chapter number
-{\color{ocre}}  
-{\color{ocre!60}\normalsize\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
-
-% Section text styling
-\titlecontents{section}[1.25cm] % Indentation
-{\addvspace{3pt}\sffamily\bfseries} % Spacing and font options for sections
-{\contentslabel[\thecontentslabel]{1.25cm}} % Section number
-{}
-{\hfill\color{black}\thecontentspage} % Page number
-[]
-
-% Subsection text styling
-\titlecontents{subsection}[1.25cm] % Indentation
-{\addvspace{1pt}\sffamily\small} % Spacing and font options for subsections
-{\contentslabel[\thecontentslabel]{1.25cm}} % Subsection number
-{}
-{\ \titlerule*[.5pc]{.}\;\thecontentspage} % Page number
-[]
-
-% List of figures
-\titlecontents{figure}[0em]
-{\addvspace{-5pt}\sffamily}
-{\thecontentslabel\hspace*{1em}}
-{}
-{\ \titlerule*[.5pc]{.}\;\thecontentspage}
-[]
-
-% List of tables
-\titlecontents{table}[0em]
-{\addvspace{-5pt}\sffamily}
-{\thecontentslabel\hspace*{1em}}
-{}
-{\ \titlerule*[.5pc]{.}\;\thecontentspage}
-[]
+{\color{myblue}\contentslabel[\Large\thecontentslabel]{1.25cm}\hspace*{-0.35cm}\color{myblack}} % Chapter number
+{\color{myblack}}  
+{\color{myblack}\normalsize\sffamily\hspace*{0.35cm}\hfill\thecontentspage\newline\vspace*{-0.1in}\hspace*{-0.5in}\rule[0.12in]{\textwidth}{0.5pt}\vspace*{0.025in}} % Page number
+%{\color{myblack}\normalsize\;\titlerule*[.5pc]{.}\;\thecontentspage\newline\vspace*{-0.1in}\hspace*{-0.5in}\rule[0.15in]{\textwidth}{0.5pt}\vspace*{0.05in}} % Page number
 
 %----------------------------------------------------------------------------------------
 %	MINI TABLE OF CONTENTS IN PART HEADS
@@ -404,7 +431,7 @@ innerbottommargin=5pt]{cBox}
 % numbered part in the table of contents
 \newcommand{\@mypartnumtocformat}[2]{%
 \setlength\fboxsep{0pt}%
-\noindent\colorbox{white}{\strut\parbox[c][.7cm]{\ecart}{\color{ocre!70}\Large\sffamily\bfseries\centering#1}}\hskip\esp\colorbox{white}{\strut\parbox[c][.7cm]{\linewidth-\ecart-\esp}{\Large\sffamily\centering#2}}}%
+\noindent\colorbox{white}{\strut\parbox[c][.7cm]{\ecart}{}}\hskip\esp\colorbox{white}{\strut\parbox[c][.7cm]{\linewidth-\ecart-\esp}{\hspace*{-0.25in}\Large\sffamily\centering{Part #1 -- #2}}}}%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % unnumbered part in the table of contents
 \newcommand{\@myparttocformat}[1]{%
@@ -420,7 +447,8 @@ innerbottommargin=5pt]{cBox}
 \def\@part[#1]#2{%
 \ifnum \c@secnumdepth >-2\relax%
 \refstepcounter{part}%
-\addcontentsline{toc}{part}{\texorpdfstring{\protect\@mypartnumtocformat{\thepart}{#1}}{\partname~\thepart\ ---\ #1}}
+%\addcontentsline{toc}{part}{\texorpdfstring{\protect\@mypartnumtocformat{\thepart}{#1}}{\partname~\thepart\ ---\ #1}}
+\addcontentsline{toc}{part}{\texorpdfstring{\protect\@mypartnumtocformat{\thepart}{#1}}{\partname}}
 \else%
 \addcontentsline{toc}{part}{\texorpdfstring{\protect\@myparttocformat{#1}}{#1}}%
 \fi%
@@ -531,7 +559,9 @@ innerbottommargin=5pt]{cBox}
 %----------------------------------------------------------------------------------------
 
 \usepackage{hyperref}
-\hypersetup{hidelinks,backref=true,pagebackref=true,hyperindex=true,colorlinks=true,breaklinks=true,citecolor=blue,urlcolor=blue,bookmarks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+%\hypersetup{hidelinks,backref=true,pagebackref=true,hyperindex=true,colorlinks=true,breaklinks=true,citecolor=blue,urlcolor=blue,bookmarks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+\hypersetup{hidelinks,backref=true,pagebackref=true,hyperindex=true,colorlinks=false,breaklinks=true,citecolor=blue,urlcolor=blue,bookmarks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+
 \usepackage{bookmark}
 \bookmarksetup{
 open,
@@ -607,6 +637,15 @@ addtohook={%
   July\or August\or September\or October\or November\or
   December\fi\space\number\year
 }
+
+\newcommand{\qi}{\mathrm{i}}
+\newcommand{\qj}{\mathrm{j}}
+\newcommand{\qk}{\mathrm{k}}
+
+%simple command to insert a figure: #1 filename+path; #2 label; #3 caption
+\newcommand{\insertfigure}[3]{\begin{figure}
+ \centering\leavevmode\includegraphics{#1}\caption{#3}
+ \OClabel{#2}\end{figure}}
 
 % a few shortcuts for vectors and matrices
 \newcommand{\columnthree}[3]{\left[\begin{array}{c} #1 \\ #2 \\ #3 \end{array}\right]} 
@@ -704,3 +743,4 @@ addtohook={%
 \newcommand{\eulerintegral}{\frac{1}{8\pi^2}\int_0^{2\pi}\!\!\!\!\mathrm{d}\varphi_2\int_0^{\pi}\!\!\!\!\mathrm{d}\Phi\int_0^{2\pi}\!\!\!\!\mathrm{d}\varphi_1\,\sin\Phi\,\,}
 \newcommand{\eulerintegraln}{\int_0^{2\pi}\!\!\!\!\mathrm{d}\varphi_2\int_0^{\pi}\!\!\!\!\mathrm{d}\Phi\int_0^{2\pi}\!\!\!\!\mathrm{d}\varphi_1\,\sin\Phi\,\,}
 \newcommand{\indexit}[1]{\textit{#1}\index{#1}}
+

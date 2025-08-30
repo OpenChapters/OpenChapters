@@ -1,0 +1,324 @@
+% !TEX root = ../../Build/main.tex
+% ###################################################################
+% Copyright (c) 2025, Marc De Graef 
+%  Editors: A.D. Rollett & M. De Graef
+% All rights reserved.
+%
+% Licensed under the Creative Commons CC BY-NC-SA 4.0 License, 
+% hereafter referred to as the "License"; you may not use this 
+% document except in compliance with the License. You may obtain 
+% a copy of the License at 
+%     https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode 
+% Unless required by applicable law or agreed to in writing, all 
+% material distributed under the License is distributed on an 
+% "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+% either express or implied. See the License for the specific 
+% language governing permissions and limitations under the License.
+% ###################################################################
+
+% ###################################################################
+% The following lines are to be uncommented or edited as needed 
+
+%\corechapter{Yes}
+%     uncomment this line only if this chapter is a core/foundational chapter;
+%     for a core chapter a "Core" label will appear on the top left above the chapter title.
+
+\chapterauthor{Marc De Graef, Carnegie Mellon University}
+%     this will appear in a secondary header below the chapter title.
+
+% All figures are stored in the src/RotationSymmetry/eps folder and must be of the *.eps type. 
+\renewcommand{\chaptergraphicspath}{../src/NumberSystems/eps/}
+
+\chapterimage{\noheaderimage}
+%     replace \noheaderimage by the chapter header image file name (without .eps extension).
+%     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
+\renewcommand{\chabbr}{NUMSYS}
+% ###################################################################
+
+\chapter{Number Systems\label{chap:NumberSystems}}
+
+\begin{messagebox}{What you will learn in this chapter}{ocre}{\icinfo}{white}
+\begin{itemize}
+	\item A formal description of complex numbers (\OCref{complex})
+	\item A formal description of quaternions (\OCref{quaternions})
+	\item Division algebras (\OCref{algebras})
+	\item Other interesting number systems (\OCref{othernumbers})
+\end{itemize}
+\end{messagebox}
+
+\section{Introductory Comments}
+\OClabel{intro}
+
+This chapter contains several sections about number systems other than the well-known natural numbers ($\mathbb{N}$), the integers ($\mathbb{Z}$),
+the rational numbers ($\mathbb{Q}$), and the real numbers ($\mathbb{R}$).  Most high-school graduates will have learned about the complex numbers ($\mathbb{C}$) as well, but we review them here because this will make generalization to the quaternions ($\mathbb{H}$) a bit easier.  In what follows, it will be useful to have a precise definition of a number of concepts related to a number \indexit{field} which we introduce in this section.
+
+A \textit{field} is a set $\mathcal{F}$ of numbers on which two operations are defined, namely \indexit{addition} and \indexit{multiplication}; in other words, for each pair $(a,b)$ of elements of the field the operations $a+b$ (sum) and $a\cdot b$ (product) are defined.  In order for this set to be a field, the following properties or axioms must hold:
+\begin{enumerate}
+\item Addition and multiplication are \indexit{commutative}: $a+b=b+a$ and $a\cdot b=b\cdot a$;
+\item Addition and multiplication are \indexit{associative}: $a+(b+c)=(a+b)+c$ and $(a\cdot b)\cdot c=a\cdot (b\cdot c)$;
+\item There exist both an \indexit{additive identity} $(0)$ and a \indexit{multiplicative identity} $(1)$: $a+0=a$ and $a\cdot 1=a$;
+\item For each element of the set, there exists an \indexit{additive inverse}: $a+(-a)=0$;
+\item For each element of the set, with the exception of $0$, there exists a \indexit{multiplicative inverse}: $a\cdot a^{-1} = 1$;
+\item Multiplication is \indexit{distributive} over addition: $a\cdot(b+c)=a\cdot b+a\cdot c$.
+\end{enumerate}
+A field is also known as a \indexit{commutative ring}.  Among the number systems listed above, $\mathbb{Q}$, $\mathbb{R}$, and $\mathbb{C}$ are fields; in section~\OCref{quaternions} we will introduce the \indexit{quaternions}, which form a generalization of the complex numbers that satisfy all but one of the axioms above: they are not commutative under multiplication.  They form what is called a \indexit{skew field} or a \indexit{division ring}; we will discuss such sets in more detail in section~\OCref{algebras} on division algebras.
+
+
+\section{Complex Numbers}
+\OClabel{complex}
+
+\subsection{General Concepts}
+
+A \indexit{complex number} is generally written as $a+ib$, where $a, b\in\mathbb{R}$ and $\mathrm{i}$, called the \indexit{imaginary unit},
+has the property that $\mathrm{i}^2=-1$.  The numbers $a$ and $b$ are called the \textit{real} and \textit{imaginary} part of $a+\mathrm{i}b$ respectively.
+A general complex number is denoted by $z$.  The \textit{complex conjugate} of $z$ is denoted by $z^{\ast}$ and is equal to $a-\mathrm{i}b$.
+
+\noindent Since $\mathbb{C}$ is a field, all axioms are satisfied .  The following lists some important properties of complex numbers~:
+\begin{enumerate}
+\item Two complex numbers are equal if and only if their real and imaginary parts are equal, i.e.,
+\begin{equation}
+a+\mathrm{i}b=c+\mathrm{i}d \leftrightarrow a=c\text{ and }b=d
+\end{equation}
+
+\item Addition of complex numbers~:
+\begin{equation}
+(a+\mathrm{i}b)+(c+\mathrm{i}d)=(a+c)+\mathrm{i}(b+d)
+\end{equation}
+
+\item Multiplication of complex numbers~:
+\begin{equation}
+(a+\mathrm{i}b)(c+\mathrm{i}d)=(ac-bd)+\mathrm{i}(ad+bc)
+\end{equation}
+
+\item Modulus squared of a complex number~:
+\begin{equation}
+\vert z\vert^2=z\,z^{\ast}=(a+\mathrm{i}b)(a-\mathrm{i}b)=a^2+b^2
+\end{equation}
+
+\item Division of complex numbers~:
+\begin{equation}
+\frac{a+\mathrm{i}b}{c+\mathrm{i}d}=\frac{a+\mathrm{i}b}{c+\mathrm{i}d}\,\frac{c-\mathrm{i}d}{c-\mathrm{i}d}=
+\frac{ac+bd}{c^2+d^2}+\mathrm{i}\frac{bc-ad}{c^2+d^2}
+\end{equation}
+\end{enumerate}
+
+\insertfigure{figcomplex.pdf}{figcomplex}{(a) Graphical representation of two complex numbers; (b) 2D rotation by means of multiplication by a unit complex number.}
+
+\subsection{Graphical Representation}
+
+Since a complex number consists of two parts, the real and imaginary components, one can display the number on a 2D drawing.
+The plane of such a drawing is known as the \textit{Gaussian Plane}, and the drawing is an \textit{Argand Diagram}.
+In Fig.~\OCref{figcomplex}(a) we show two complex numbers, $P_1=3+2\mathrm{i}$ and $P_2=-4-2\mathrm{i}$.  The real part is drawn along the 
+horizontal or $x$-axis, the imaginary part along the vertical or $y$-axis.  Each point in the Gaussian plane is therefore a representation of a complex number of the form $x+\mathrm{i}y$.
+
+We can also use polar coordinates to express the location of the complex number.  In polar coordinates
+we use the distance $r$ from the origin and the angle $\theta$ between the position vector and the $x$-axis.
+The relation between the Cartesian and the polar expression for the complex number is then
+\begin{equation}
+x+\mathrm{i}y=r\cos\theta+\mathrm{i}r\sin\theta=r(\cos\theta+\mathrm{i}\sin\theta).
+\end{equation}
+This can be rewritten in a different form, using the \indexit{Euler formula}~:
+\begin{equation}
+	\mathrm{e}^{\mathrm{i}\theta}=\cos\theta+\mathrm{i}\sin\theta
+\end{equation}
+This equation can easily be shown to be correct~:  if we write the Taylor expansion of both the left and right hand sides
+we find that they are identical.  The odd terms of the left hand side correspond to the expansion of the $\sin$ function, the
+even terms to the $\cos$ function.  We thus find an important representation for complex numbers~:
+\begin{equation}
+	x+\mathrm{i}y=re^{\mathrm{i}\theta}
+\end{equation}
+with $r=\sqrt{x^2+y^2}$ and $\theta=\arctan\frac{y}{x}$.  The number $r$ is called the \indexit{modulus}, and $\theta$ this called the \textit{angular} part or the \indexit{phase}.
+
+Using the properties of exponentials, complex numbers can also be multiplied in polar notation~:
+\begin{equation}
+	r_1\mathrm{e}^{\mathrm{i}\theta_1}\cdot r_2\mathrm{e}^{\mathrm{i}\theta_2}=r_1r_2\mathrm{e}^{\mathrm{i}(\theta_1+\theta_2)}
+\end{equation}
+Similarly, division is also straightforward:
+\begin{equation}
+	\frac{r_1\mathrm{e}^{\mathrm{i}\theta_1}}{r_2\mathrm{e}^{\mathrm{i}\theta_2}}=\frac{r_1}{r_2}\mathrm{e}^{\mathrm{i}(\theta_1-\theta_2)}
+\end{equation}
+For powers of complex numbers we can use \indexit{de Moivre's theorem} which states that
+\begin{equation}
+	\left(r\,\mathrm{e}^{\mathrm{i}\theta}\right)^p= r^p\mathrm{e}^{\mathrm{i}p\theta} \rightarrow [r(\cos\theta+\mathrm{i}\sin\theta)]^p=r^p(\cos p\theta+\mathrm{i}\sin p\theta)
+\end{equation}
+Complex numbers also have roots;  there are 2 square roots, 3 cubic roots, etc.  The general expression for the $\frac{1}{n}$ root is given by~:
+\begin{equation}
+[r(\cos\theta+\mathrm{i}\sin\theta)]^{\frac{1}{n}}=r^{\frac{1}{n}}\left[\cos\frac{\theta+2k\pi}{n}+\mathrm{i}\sin\frac{\theta+2k\pi}{n}\right]
+\end{equation}
+One can then enumerate all the roots by letting $k$ assume the values $k=0,1,\ldots,n-1$.
+
+To conclude this section, it is useful to note some special values for the polar expressions of complex numbers; they are useful when working with  \textit{structure factors}:
+\begin{equation}
+	\mathrm{e}^{\mathrm{i}0} = 1;\quad \mathrm{e}^{\mathrm{i}\frac{\pi}{2}} = \mathrm{i}; \mathrm{e}^{\mathrm{i}\pi} = -1.
+\end{equation}
+
+\subsection{2D Rotations and Unit Complex Numbers}
+
+Unit complex numbers can be used as 2D rotation operators, as illustrated in Fig.~\OCref{figcomplex}(b). The complex number $P=1+\mathrm{i}$ can be rotated counterclockwise by an angle $\omega=\pi/3$ by means of multiplication by the unit complex number (represented by a blue dot on the unit circle):
+\begin{equation}
+	\rho=\mathrm{e}^{\mathrm{i}\frac{\pi}{3}}
+\end{equation}
+This results in the following:
+\begin{equation}
+	\rho\,P = \mathrm{e}^{\mathrm{i}\frac{\pi}{3}} (1+\mathrm{i}) = \mathrm{e}^{\mathrm{i}\frac{\pi}{3}}\,\sqrt{2}\mathrm{e}^{\mathrm{i}\frac{\pi}{4}}=
+	\sqrt{2}\mathrm{e}^{\mathrm{i}\frac{7\pi}{12}} = -0.25882 + \mathrm{i} 0.96592.
+\end{equation}
+In the next section we will see that the generalization of unit complex numbers, the unit quaternions, can be used to perform rotations in 3D space.
+
+
+\section{Quaternions}
+\OClabel{quaternions}
+
+\subsection{Definition}
+In 1844, William R. Hamilton \cite{hamilton1844a} discovered a generalization of complex numbers, the quaternions, by adding two additional imaginary units, $\qj$ and $\qk$.  The quaternion\index{quaternion!definition} $q$ is defined as follows ($q_i\in\mathbb{R}$):
+\begin{equation}
+	q = q_0 + q_1\qi+q_2\qj+q_3\qk,
+\end{equation}
+where
+\begin{equation}
+	\qi^2=\qj^2=\qk^2=\qi\qj\qk=-1\OClabel{eq:quatunits}
+\end{equation}
+and
+\begin{equation}
+	\qi\qj=-\qj\qi=\qk;\quad \qj\qk=-\qk\qj=\qi;\quad \qk\qi=-\qi\qk=\qj.
+\end{equation}
+There are several alternative notations in use for quaternions. One can regard the components $q_i$ as the component of a 4D vector:
+\begin{equation}
+	q = \left[ q_0, q_1, q_2, q_3\right] \equiv \left[q_0,\mathbf{q}\right];
+\end{equation}
+$q_0$ is known as the scalar part \index{quaternion!scalar part} of the quaternion; the vector part $\mathbf{q}=q_1\qi+q_2\qj+q_3\qk$ is interesting because one can interpret the imaginary units as unit vectors $\hat{\CMimath}$, $\hat{\mkern-3mu\CMjmath}$, and $\hat{k}$:
+\begin{equation}
+	\mathbf{q} = q_1\hat{\CMimath}+q_2\hat{\mkern-3mu\CMjmath}+q_3\hat{k},
+\end{equation}
+which will be familiar to many readers who took a vector calculus course.  When the scalar part of the quaternion is zero, i.e., $q=[0,\mathbf{q}]$, the resulting quaternion is known as a \indexit{pure quaternion} or a \indexit{versor}.
+
+\begin{messagebox}{About the quaternion unit vectors}{olive}{\icinfo}{white}
+It is historically interesting to note that the  $(\hat{\CMimath}, \hat{\mkern-3mu\CMjmath}, \hat{k})$ notation for the cartesian basis vectors has its origins in the development of quaternions.  In fact, the original formulation of Maxwell's Equations of electrodynamics used quaternions, not vectors and vector operators (e.g., gradient, divergence, etc.).  It is not until the end of the 19th century that vector calculus replaced quaternions, and this introduced the more standard notations of $(\mathbf{e}_1,\mathbf{e}_2,\mathbf{e}_3)$ and  $(\mathbf{e}_x,\mathbf{e}_y,\mathbf{e}_z)$ for the cartesian reference frame, although the $(\hat{\CMimath}, \hat{\mkern-3mu\CMjmath}, \hat{k})$ notation continues to be used to this day.  In the past half century, however, there has been renewed interest in quaternions because of their numerical stability  in describing 3D rotations (all computer game engines use quaternions) \cite{xxx}, and for their natural emergence in \indexit{Geometric Algebra} \cite{xxx}.
+\end{messagebox}
+
+
+\subsection{Quaternion operations}
+In the introductory section we stated that quaternions do not form a field over the real numbers because their multiplication is not commutative.  This can be seen clearly from the fact $\mathrm{i}\mathrm{j}=-\mathrm{j}\mathrm{i}$ for the imaginary unit pairs.  On the other hand, all other operations do follow the field axioms, so let's take a closer look at the operations between quaternions; we will see that many, but not all, operations follow from those of the complex numbers.
+
+\subsubsection{Addition}
+The addition of two quaternions $p$ and $q$ is performed component-wise:
+\begin{equation}
+\begin{split}
+	p+q &= [p_0,p_1,p_2,p_3]+[q_0,q_1,q_2,q_3]=[p_0+q_0,p_1+q_1,p_2+q_2,p_3+q_3]\\
+	 &= [p_0,\mathbf{p}]+[q_0,\mathbf{q}]= [p_0+q_0,\mathbf{p}+\mathbf{q}].
+\end{split}
+\end{equation}
+The expression for subtraction follows immediately by replacing all plus-signs by minus-signs.  The \indexit{additive identity} for quaternions is the null-quaternion or $[0,0,0,0]=[0,\mathbf{0}]$.
+
+\subsubsection{Multiplication}
+For the multiplication of two quaternions $p$ and $q$ we can explicitly write all the terms, including the imaginary units, and simplify the resulting expression using the definitions in eq.~(\OCref{eq:quatunits}); this results in:
+\begin{equation}
+\begin{split}
+	(p_0 + p_1\qi+p_2\qj+p_3\qk)(q_0 + q_1\qi+q_2\qj+q_3\qk) &= \left(\,\,\,  (p_0q_0 - {\color{blue}(p_1q_1+ p_2q_2 + p_3q_3)}) \right.\\
+&\quad+(p_0q_1 + p_1q_0 + {\color{blue}p_2q_3 - p_3q_2})\qi\\ 
+&\quad+(p_0q_2 + p_2q_0 + {\color{blue}p_3q_1 - p_1q_3})\qj\\ 
+&\quad\left.+(p_0q_3 + p_3q_0 + {\color{blue}p_1q_2 - p_2q_1})\qk \right).
+\end{split}
+\end{equation}
+While this is a somewhat complicated expression, we can see some familiar combinations of terms; for the scalar component on the top row, the terms in blue make up the dot product of the vector parts of the two quaternions, i.e., $\mathbf{p}\cdot\mathbf{q}$. Furthermore, the terms in blue on the second, third, and fourth rows are the components of the familiar cross product $\mathbf{p}\times\mathbf{q}$.  Finally, the first terms in rows 2-4 represents the scalar $p_0$ multiplied by the vector $\mathbf{q}$, and the next set of terms represents $q_0\mathbf{p}$.  Combining everything into vector notation we find the much more manageable expression:
+\begin{equation}
+	[p_0,\mathbf{p}]\,[q_0,\mathbf{q}] = [ p_0q_0-\mathbf{p}\cdot\mathbf{q}, q_0\mathbf{p}+p_0\mathbf{q}+\mathbf{p}\times\mathbf{q} ].\OClabel{eq:qmult}
+\end{equation}
+Since the vector cross product depends on the order of the vectors, i.e., $\mathbf{p}\times\mathbf{q}=-\mathbf{q}\times\mathbf{p}$ we see immediately the origin of the non-commutative nature of quaternion multiplication: changing the order changes the sign of the vector cross product in the vector part of the resulting product quaternion.
+
+If we make use of the non-commutativity and add or subtract $pq$ and $qp$, we find the relations:
+\begin{equation}
+\begin{split}
+	pq+qp &= 2[ p_0q_0-\mathbf{p}\cdot\mathbf{q}, q_0\mathbf{p}+p_0\mathbf{q}];\\
+	pq-qp &= 2[0,\mathbf{p}\times\mathbf{q}].
+\end{split}
+\end{equation}
+Note that the first result \textit{does} commute with itself, and the second result represents a pure quaternion.
+
+Finally, we note that the \indexit{multiplicative identity} for quaternions is the unit quaternion $[1,\mathbf{0}]$; this is readily verified using the vector expression for the product in eq.~(\OCref{eq:qmult}).
+
+\subsubsection{Norm and conjugate}
+As for the complex numbers, we can define the conjugate of a quaternion simply by changing the sign of all three imaginary components:
+\begin{equation}
+	q^{\ast} = q_0 -q_1\qi-q_2\qj-q_3\qk= [q_0,-q_1,-q_2,-q_3] = [q_0,-\mathbf{q}].
+\end{equation}
+The quaternion norm is defined analogously by taking the square root of the product of the quaternion with its complex conjugate; using the vector expression for the product we can readily show that:
+\begin{equation}
+	\vert q\vert^2 = q\,\,q^{\ast} = [q_0,\mathbf{q}]\,[q_0,-\mathbf{q}] = [ q_0q_0+\mathbf{q}\cdot\mathbf{q}, q_0\mathbf{q}-q_0\mathbf{q}+\mathbf{q}\times\mathbf{q} ].
+\end{equation}
+The vector part completely vanishes and we end up with:
+\begin{equation}
+	\vert q\vert^2 = q_0^2+q_1^2+q_2^2+q_3^2\rightarrow \vert q\vert = \sqrt{q_0^2+q_1^2+q_2^2+q_3^2}.
+\end{equation}
+Note that this expression is similar to that for the complex numbers.
+
+\subsubsection{Inverse quaternion}
+Knowing the norm and the conjugate of the quaternion, we can readily define the inverse of a quaternion by analogy with the complex numbers:
+\begin{equation}
+	q^{-1} = \frac{q^{\ast}}{\vert q\vert^2} = [q_0,-\mathbf{q}] / (q_0^2+q_1^2+q_2^2+q_3^2).
+\end{equation}
+Quaternion division then becomes multiplication by the inverse quaternion.  Note, as always, that division by the null-quaternion is undefined.
+
+\subsection{Euler's Formula, unit quaternions and their relation to 3D rotations}
+A unit quaternion $q$ is a quaternion with unit norm, i.e, $\vert q\vert=1$.  Just as unit complex numbers lie on a unit radius circle (known as $\mathbb{S}^1$) in the complex plane, the unit quaternions lie on a hyperspherical surface in $\mathbb{H}$, a space that is isomorphous with $\mathbb{R}^4$ if we consider quaternions as 4-vectors. This unit radius sphere is known as the three-sphere $\mathbb{S}^3$.  Hyperspheres in $n$-dimensions have been studied extensively by the math community, so a lot is known about $\mathbb{S}^3$.  For our purposes it is sufficient to state that the surface area of the unit hypersphere $\mathbb{S}^3$ is equal to $2\pi^2$.
+
+In section~\ref{2DROTS:complexrotations}, 2D rotations in the complex plane are described in terms of multiplication by a unit complex number.  For 3D rotations, a similar process can be carried out by means of multiplication by unit quaternions.  However, the details are a little more complicated in that the quaternions are part of a 4D space. If we consider a 3D rotation by a counter-clockwise positive angle $\omega$ around a unit rotation axis $\hat{\mathbf{n}}$, then we can represent that rotation axis in terms of the imaginary units $(\qi, \qj, \qk)$ as $\hat{\mathbf{n}}=n_x\qi+n_y \qj+n_z \qk$.  For regular complex numbers we can use the exponential notation for the 2D rotation, and we have a rotation by an angle $\theta$ around the normal to the complex plane; Euler's formula expresses this rotation as:
+\[
+	\rho = \mathrm{e}^{\theta\qi} = \cos\theta+\qi\,\sin\theta.
+\]
+Hamilton's search for a similar representation for 3D rotations, which led him to develop quaternions, started from the assumption that, by analogy with the complex numbers, the following might work as a 3D rotation operator:
+\[
+	R = \mathrm{e}^{\omega \hat{\mathbf{n}}}.
+\]
+This might seem surprising, but it makes sense if we interpret the argument of the complex exponential for $\rho$ to read $\theta 1 \qi$, i.e., a basis vector $\qi$ multiplied by a length (which will always be $1$ in this 1D space), and then multiplied by the rotation angle.  Applying this to the relation for $R$ we find a potential equivalent for Euler's formula:
+\[
+	\mathrm{e}^{\omega \hat{\mathbf{n}}} = \cos\omega+ (n_x\qi+n_y \qj+n_z \qk)\sin\omega.
+\]
+Note that this is a unit quaternion since $\hat{\mathbf{n}}$ is a unit vector which reduces the quaternion norm to $\cos^2\omega+\sin^2\omega=1$.
+
+% insert a concrete example here of why this does not work
+Let's try an arbitrary rotation angle $\omega$ and the rotation axis $\hat{\CMimath}$ and we operate on that same rotation axis, knowing that a rotation axis should be invariant under any rotation.  We apply the vector expression for the quaternion product:
+\begin{equation}
+\begin{split}
+	\mathrm{e}^{\omega \hat{\CMimath}} \hat{\CMimath} &= \left[\cos\omega,[\sin\omega,0,0]\right]\,\left[0,[1,0,0]\right];\\
+	& = \left[-\sin\omega, [\cos\omega,0,0]\right] \ne \hat{\CMimath},
+\end{split}
+\end{equation}
+where we used the fact that the vector cross vanishes for parallel vectors.  So, we find that this operator does not leave the rotation axis invariant, so it cannot be the correct operator for 3D rotations.  It is one of Hamilton's major contributions to the field of quaternions to recognize that the correct operation requires use of half the rotation angle, and that the resulting operator should be used twice as follows:
+\begin{equation}
+\begin{split}
+	\mathrm{e}^{\frac{\omega}{2} \hat{\CMimath}}\, \hat{\CMimath}\,\mathrm{e}^{-\frac{\omega}{2} \hat{\CMimath}} &=
+	\mathrm{e}^{\frac{\omega}{2} \hat{\CMimath}} \left[0,[1,0,0]\right]\,\left[\cos\frac{\omega}{2},[-\sin\frac{\omega}{2},0,0]\right];\\
+	&=\mathrm{e}^{\frac{\omega}{2} \hat{\CMimath}} \left[\sin\frac{\omega}{2},[\cos\frac{\omega}{2},0,0]\right];\\
+	&= \left[\cos\frac{\omega}{2},[\sin\frac{\omega}{2},0,0]\right] \left[\sin\frac{\omega}{2},[\cos\frac{\omega}{2},0,0]\right];\\
+	&=\left[ \cos\frac{\omega}{2}\sin\frac{\omega}{2}-\cos\frac{\omega}{2}\sin\frac{\omega}{2}, [ \cos^2\frac{\omega}{2}+ \sin^2\frac{\omega}{2},0,0]\right];\\
+	&= \left[0,[1,0,0]\right] = \hat{\CMimath}.
+\end{split}
+\end{equation}
+Note that the equivalent to the standard Euler's formula becomes:
+\begin{equation}
+	q = \mathrm{e}^{\frac{\omega}{2} \hat{\mathbf{n}}} = \left[\cos\frac{\omega}{2},(n_x\qi+n_y \qj+n_z \qk)\sin\frac{\omega}{2}\right].\OClabel{eq:quatrot}
+\end{equation}
+
+The double product with operators that rotate over half the angle is commonly know as a ``sandwich product''; for an arbitrary 3D vector $\mathbf{v}$, to be rotated by unit quaternion $q$ from eq.~(\OCref{eq:quatrot}), the proper formula is given by:
+\begin{equation}
+	\tilde{\mathbf{v}}' = q\,\tilde{\mathbf{v}}\,q^{\ast}.\OClabel{eq:quatvecrot}
+\end{equation}
+The tilde above the vector $\mathbf{v}$ indicates that it must be considered as a versor, i.e., as a quaternion with zero scalar part. The rotated vector $\mathbf{v}'$ is then the vector part of the final versor.  Note that this procedure works for any 3D rotation about an arbitrary axis.
+
+
+\section{Division Algebras}
+\OClabel{algebras}
+
+
+
+\section{Other Number Systems}
+\OClabel{othernumbers}
+
+
+
+
+
+
+
+

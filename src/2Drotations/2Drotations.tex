@@ -27,26 +27,35 @@
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/2Drotations/eps folder and must be of the *.eps type. 
-\renewcommand{\chaptergraphicspath}{src/2Drotations/eps/}
+\renewcommand{\chaptergraphicspath}{../src/2Drotations/eps/}
 
-\chapterimage{\noheaderimage}
+\chapterimage{2DROTSheader.pdf}
 %     replace \noheaderimage by the chapter header image file name (without .eps extension).
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
+\renewcommand{\chabbr}{2DROTS}
 % ###################################################################
 
 \chapter{2D Rotations\label{chap:2Drotations}}
-In this chapter, we describe 2D coordinate rotations in a Cartesian reference frame, using both the passive and active forms. We provide examples of single rotations and the concatenation/composition of rotations. Then we will review the representation of rotations using complex number arithmetic.
+
+\begin{messagebox}{What you will learn in this chapter}{ocre}{\icinfo}{white}
+\begin{itemize}
+	\item 2D rotation matrices (\OCref{rotationmatrices})
+	\item Composition of 2D rotations (\OCref{passiveactive})
+	\item 2D rotations with an arbitrary rotation axis (\OCref{2Dgeneral})
+	\item Complex number arithmetic (\OCref{complex})
+	\item The complex representation of 2D rotations (\OCref{complexrotations})
+\end{itemize}
+\end{messagebox}
 
 
-\section{Passive and Active Rotations\label{ssec:passiveactive}}
-It is important to distinguish between \textit{active}\index{rotation!active} and \textit{passive}\index{rotation!passive} rotations. In an active rotation, the reference frame is kept constant, and the object is rotated; this object can be anything, for instance a point, a line, an ellipse, a grain, and so on.  The result of the active rotation is that the coordinates of the object with respect to the reference frame will have changed.  For a passive rotation, the object is kept constant, and the reference frame is rotated with respect to the object.\footnote{While the distinction between active and passive rotations is easy to comprehend, it is important to always explicitly state which form is used.  Not doing so can lead to all sorts of sign errors in numerical work.}  Thus, for a passive rotation, there are two reference frames, the \textit{old frame}, $\mathbf{e}_i$, and the \textit{new frame}, $\mathbf{e}'_i$; for an active rotation, there is only one reference frame, $\mathbf{e}_i$.
+\section{2D Rotation Matrices}
+\OClabel{rotationmatrices}
 
-Here, and everywhere else in this text, we use the convention that a positive rotation angle $\omega$ corresponds to a counter-clockwise rotation\index{rotation angle!sign convention}\index{sign conventions!rotation angle} when looking from the end point of the rotation axis towards the origin.  We will also assume that all rotations are carried out around a single rotation axis that passes through the origin, normal to the 2D basis vectors $\mathbf{e}_1$ and $\mathbf{e}_2$.
+To define what a 2D rotation is we begin with a standard cartesian reference frame with orthonormal basis vectors $\mathbf{e}_1$ and $\mathbf{e}_2$. We will assume for now that the rotation axis goes through the origin and is perpendicular to the plane of the drawing pointing towards the reader.  We define the rotation angle $\omega$ to be \textit{positive} for a counter-clockwise rotation\index{rotation angle!sign convention} when looking from the end point of the rotation axis towards the origin.  It is important to distinguish between \textit{active}\index{rotation!active} and \textit{passive}\index{rotation!passive} rotations. In an active rotation, the reference frame is kept constant, and the object is rotated; this object can be anything, for instance a point, a line, an ellipse, a grain, and so on.  The result of the active rotation is that the coordinates of the object with respect to the reference frame will have changed.  For a passive rotation, the object is kept constant, and the reference frame is rotated with respect to the object.\footnote{While the distinction between active and passive rotations is easy to comprehend, it is important to always explicitly state which form is used.  Not doing so can lead to all sorts of sign errors in numerical work.}  Thus, for a passive rotation, there are two reference frames, the \textit{old frame}, $\mathbf{e}_i$, and the \textit{new frame}, $\mathbf{e}'_i$; for an active rotation, there is only one reference frame, $\mathbf{e}_i$.  Let us explore both forms in more detail.
 
 
-\section{2D Rotation Matrices\label{ssec:2DRM}}
-\subsection{Active 2D rotations} 
-Consider the position vector $\mathbf{r}$ with components $(x,y)$ with respect to the Cartesian basis vectors $\mathbf{e}_1$ and $\mathbf{e}_2$.  The vector makes an angle $\theta$ with respect to the $\mathbf{e}_1$ axis and has length $r$, so that the coordinates can be expressed in term of the polar components as $(x,y) = r(\cos\theta,\sin\theta)$.  We rotate the vector clockwise by an angle $\omega$ to $\mathbf{r}'$, so that the new components are given by $(x',y') = r\left(\cos(\theta+\omega),\sin(\theta+\omega)\right)$.  Using the sum formulas for trigonometric functions we can write:
+\subsection{Active 2D rotations}\OClabel{2Dactive}
+Consider the position vector $\mathbf{r}$ with components $(x,y)$ with respect to the Cartesian basis vectors $\mathbf{e}_1$ and $\mathbf{e}_2$, as shown in Fig.~\OCref{fig2Drot}(a).  The vector makes an angle $\theta$ with respect to the $\mathbf{e}_1$ axis and has length $r$, so that the coordinates can be expressed in term of the polar components as $(x,y) = r(\cos\theta,\sin\theta)$.  We rotate the vector counter-clockwise by an angle $\omega$ to $\mathbf{r}'$, so that the new components are given by $(x',y') = r\left(\cos(\theta+\omega),\sin(\theta+\omega)\right)$.  Using the sum formulas for trigonometric functions we can write:
 \begin{align*}
 	x' &= r\cos\theta\cos\omega - r\sin\theta\sin\omega = x\cos\omega - y\sin\omega\ ;\\
 	y' &= r\cos\theta\sin\omega + r\sin\theta\cos\omega = x\sin\omega + y\cos\omega\ .	
@@ -57,26 +66,29 @@ This is typically rewritten in matrix form as:
 	\left(\begin{array}{cc} \cos\omega & -\sin\omega\\ \sin\omega & \cos\omega\end{array}\right)
 	\left(\begin{array}{c} x \\ y\end{array}\right) \ .	
 \]
-Representing the $2\times 2$ active rotation matrix by $R^a(\omega)$, we have in component notation:
+Representing the $2\times 2$ active rotation matrix by $R^a(\omega)$ and the vector components as $r'_i$ and $r_j$, we have in component notation:
 \begin{equation}
 	r'_i = R^a_{ij}(\omega) r_j.
 \end{equation}
 
-\subsection{Passive 2D rotations} For a passive rotation, we keep the vector $\mathbf{r}$ at a constant orientation in space, and we rotate the reference frame $\mathbf{e}_i$ by a positive angle $\omega$ to the frame $\mathbf{e}'_i$.  To perform this rotation, we note that the components of the new basis vectors in terms of the old ones can be written as:
+\insertfigure{fig2Drot.pdf}{fig2Drot}{Schematic illustration of (a) an active rotation by an angle $\omega$, and (b) a passive rotation by the same counter-clockwise angle $\omega$.}
+
+\subsection{Passive 2D rotations}\OClabel{2Dpassive}
+For a passive rotation, shown in Fig.~\OCref{fig2Drot}(b), we keep the vector $\mathbf{r}$ at a constant orientation in space, and we rotate the reference frame $\mathbf{e}_i$ by a positive angle $\omega$ (i.e., counter-clockwise) to the frame $\mathbf{e}'_i$.  To perform this rotation, we note that the components of the new basis vectors in terms of the old ones can be written in terms of the projections of the new vectors onto the old ones; since these are unit vectors, the projections are simply equivalent to the dot products between the new and old basis vectors, and we have:
 \[
 	\mathbf{e}'_i = (\mathbf{e}'_i\cdot\mathbf{e}_j)\mathbf{e}_j \ .
 \]
-Thus, the coordinate transformation is carried out by means of the passive rotation matrix $R^p_{ij}\equiv \mathbf{e}'_i\cdot\mathbf{e}_j$:
+Thus, this rotation is carried out by means of the passive rotation matrix $R^p_{ij}\equiv \mathbf{e}'_i\cdot\mathbf{e}_j$:
 \[
 	\mathbf{e}'_i = R^p_{ij}\mathbf{e}_j \ .
 \]
-From the sketch in Fig.~\ref{fig:2Dpassive} we find that the matrix components are given by:
+From the sketch in Fig.~\OCref{fig2Drot}(b) we find that the matrix components are given by:
 \[
 	R^p = \left(\begin{array}{cc}
 	\cos\omega & \sin\omega\\
-	-\sin\omega & \cos\omega\end{array}\right) = (R^a)^T
+	-\sin\omega & \cos\omega\end{array}\right) \ .
 \]
-where $T$ indicates  the matrix transpose.  The vector $\mathbf{r}$ has the following components in each of the reference frames:
+Note that this matrix is the transpose of the active rotation matrix, i.e., $R^p = (R^a)^T$, where $T$ indicates the matrix transpose.  The vector $\mathbf{r}$ has components $r'_i$ and $r_j$ respectively in the new and old reference frames; the transformation rule between the two frames is then readily determined as follows:
 \begin{align*}
 	\mathbf{r} &= r'_i\mathbf{e}'_i\ ; \\
 	&= r'_i R^p_{ij}\mathbf{e}_j\ ; \\
@@ -88,7 +100,12 @@ so that
 \]
 Hence, going from old to new vector components requires left multiplication by the rotation matrix, and going from new to old is done by right multiplication.
 
-Summarizing, for 2D rotations by a positive angle $\omega$, there is a single equation for the active case ($\mathbf{r}'=R^a(\omega)\mathbf{r}$), and two relations for the passive case, one for the basis vectors ($\mathbf{e}'_i=R^p_{ij}(\omega)\mathbf{e}_j$) and one for a regular vector ($\mathbf{r}' = R^p(\omega)\mathbf{r}$).  Note that the rotation matrices $R^p(\omega)$ and $R^a(\omega)$ are each other's transpose.\footnote{It is not too difficult to see that the roles of the active and passive matrices are reversed when we define a positive rotation to be clockwise instead of counterclockwise.}
+Summarizing, for a counter-clockwise 2D rotation by a positive angle $\omega$, there is a single equation for the active case ($\mathbf{r}'=R^a(\omega)\mathbf{r}$); there are two relations for the passive case, one for the basis vectors ($\mathbf{e}'_i=R^p_{ij}(\omega)\mathbf{e}_j$) and one for the vector components ($\mathbf{r}' = R^p(\omega)\mathbf{r}$).  Note that the rotation matrices $R^p(\omega)$ and $R^a(\omega)$ are each other's transpose.\footnote{It is not too difficult to see that the roles of the active and passive matrices are reversed when we define a positive rotation to be clockwise instead of counterclockwise.}
+
+
+
+
+
 
 \section{Complex number representation\label{ref:complex2D}}
 Before we continue with the consecutive operation of 2D rotations, we will take a moment to discuss the use of complex numbers to represent 2D rotations; we begin with the active rotation discussed above.  We will consider the vector $\mathbf{r}$ to lie in the complex plane so that it can be represented by a complex number $z$; in other words, we consider the $y$ axis to be the imaginary axis.  In that case we have 
