@@ -23,31 +23,60 @@
 %     uncomment this line only if this chapter is a core/foundational chapter;
 %     for a core chapter a "Core" label will appear on the top left above the chapter title.
 
-\chapterauthor{Marc De Graef, Carnegie Mellon University}
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University}
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/3Drotations/eps folder and must be of the *.eps type. 
 \renewcommand{\chaptergraphicspath}{src/3Drotations/eps/}
 
-\chapterimage{\noheaderimage}
+\renewcommand{\chabbr}{3DROTS}
+
 %     replace \noheaderimage by the chapter header image file name (without .eps extension).
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
+\chapterimage{\noheaderimage}
+
+\chapter{3D Rotation Representations}\OClabel{3Drotations}
+
+% add the author information so that it will appear in the Author List at the start of the document
+\writeauthor{3DROTS:3Drotations}{3D Rotation Representations}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+
+% Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
+% each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
+% second column if LaTeX breaks the line at an awkward location.
+\lightgraybox{\begin{center}
+    {\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]
+\end{center}
+
+{\color{OCalmostblack}\sffamily
+\begin{multicols}{2}
+\begin{itemize}
+    \item[{\color{OCBurntOrange}\OCref{passive3D}:}] Learn how to represent 3D passive rotations by matrices
+    \item[{\color{OCBurntOrange}\OCref{eulerangles}:}] Define the Euler angle representation
+    \item[{\color{OCBurntOrange}\OCref{neoEulerian}:}] Going beyond the Eulerian description 
+    \item[{\color{OCBurntOrange}\OCref{othernumbers}:}] 
+\end{itemize}
+\end{multicols}}}
+% ###################################################################
+% ###################################################################
 % ###################################################################
 
-\chapter{3D Rotation Representations\label{chap:3Drotations}}
-In this chapter we cover 3D rotations in their most basic representation, namely by means of $3\times 3$ rotation matrices. Since it is straightforward to switch between active to passive rotations, we will concentrate on the treatment of passive rotations, since texture analysis relies mostly on passive rotations, and mention results for active rotations in margin notes.
 
-\section{Passive 3D Rotation Matrices\label{sec:passive3D}}
-\subsection{Single rotations}
+
+\section{Passive 3D Rotation Matrices}\OClabel{passive3D}
+
+In the first part of this chapter, we cover 3D rotations in their most basic representation, namely by means of $3\times 3$ rotation matrices. Since it is straightforward to switch between active and passive rotations, we will concentrate on the treatment of passive rotations, since material texture analysis relies mostly on passive rotations, and we will mention expressions for active rotations as footnotes.
+
+\subsection{Single rotations}\OClabel{single3Drotationmatrices}
+
 For a passive 3D rotation, we go from the old to the new reference frame using the same relation as for the 2D case, but now the subscripts run from $1$ to $3$:
 \[
 	\mathbf{e}'_i = (\mathbf{e}'_i\cdot\mathbf{e}_j)\mathbf{e}_j = R^p_{ij}\mathbf{e}_j\ .
 \]
-The components of the rotated vector $\mathbf{r}'$ are again given by the expression $r'_i = R^p_{ij}r_j$ as for the 2D case.  Note that the components of the new basis vector $\mathbf{e}'_i$ with respect to the old basis vectors are written on \textit{row} $i$ of the rotation matrix $R^p$. For the inverse of the rotation $R^p_{ij}$, we write:
+The components of the rotated vector $\mathbf{r}'$ are again given by the expression $r'_i = R^p_{ij}r_j$ as for the 2D case.  Note that the components of the new basis vector $\mathbf{e}'_i$ with respect to the old basis vectors are written on \textit{row}\footnote{Note that for active rotations, the components of the new basis vector would be entered as columns, not as rows.} $i$ of the rotation matrix $R^p$. For the inverse of the rotation $R^p_{ij}$, we write:
 \[
 	\mathbf{e}_i = (\mathbf{e}_i\cdot\mathbf{e}'_j)\mathbf{e}'_j = (R^p)^{-1}_{ij}\mathbf{e}'_j\ .
 \]
-The dot product is commutative, so the $9$ dot products in this relation are the same as in the previous case, but they are written in the transposed order.  In other words, the components of the new vectors $\mathbf{e}'_j$ with respect to the old vectors $\mathbf{e}_i$ are written as the \textit{columns} of the inverse rotation matrix.  Since we have only flipped the subscripts $i$ and $j$ in going from the first relation to the second, we find that the inverse of a rotation matrix is given by the transpose of that matrix, or
+The dot product is commutative, so the nine dot products in this relation are the same as in the previous case, but they are written in the transposed order.  In other words, the components of the new vectors $\mathbf{e}'_j$ with respect to the old vectors $\mathbf{e}_i$ are written as the \textit{columns} of the inverse rotation matrix.  Since we have only flipped the subscripts $i$ and $j$ in going from the first relation to the second, we find that the inverse of a rotation matrix is given by the transpose of that matrix, or
 \[
 	(R^p)^{-1} = (R^p)^T\ .
 \]
@@ -57,21 +86,23 @@ This is an important property of rotation matrices and is valid for any arbitrar
 \end{equation}
 we must also have (converting the inverse to the transpose):
 \begin{equation}
-	R^p_{ij} R^p_{kj} = \delta_{ik}\ .
+	R^p_{ij} \left((R^p)^T\right)_{jk} = \delta_{ik}\ .
 \end{equation}
 If we interpret each row of the matrix as a $3$-component vector, then this relation states that the dot product of each row with itself is equal to $1$, whereas the dot products between different rows are equal to $0$.  Interchanging the order of the matrices in eq.~\ref{eq:RRinv} we can show that we must have the same property for the column vectors:
 \begin{equation}
-	(R^p)^{-1}_{ij}R^p_{jk} = \delta_{ik} \rightarrow R^p_{ji} R^p_{jk} = \delta_{ik}\ .
+	(R^p)^{-1}_{ij}R^p_{jk} = \delta_{ik} \rightarrow \left((R^p)^T\right)_{ij} R^p_{jk} = \delta_{ik}\ .
 \end{equation}
-The relations in this section are valid for both active and passive matrices; we can view an active rotation matrix as a passive matrix with the opposite rotation angle, as we illustrated in the 2D case.  All $3\times 3$ matrices that satisfy these relations (i.e., $R^{-1}=R^T$) are known as \textit{orthogonal matrices}\index{orthogonal matrices}.  In addition, one can show that the determinant of a rotation matrix must always be equal to $+1$; orthogonal matrices with determinant equal to $+1$ are known as \textit{special orthogonal matrices}\index{special orthogonal matrix}\index{orthogonal matrix!special}.  They belong to the set $SO(3)$, which is commonly known as the \textit{rotation group};\index{rotation group}\index{$SO(3)$}  $SO(3)$ is a group with respect to the operation of rotation composition, which we will discuss next.
+The relations in this section are valid for both active and passive matrices; we can view an active rotation matrix as a passive matrix with the opposite rotation angle, as we illustrated in the 2D case.  All $3\times 3$ matrices that satisfy these relations (i.e., $R^{-1}=R^T$) are known as \textit{orthogonal matrices}\index{orthogonal matrices}.  In addition, one can show that the determinant of a rotation matrix must always be equal to $+1$; orthogonal matrices with determinant equal to $+1$ are known as \textit{special orthogonal matrices}\index{special orthogonal matrix}\index{orthogonal matrix!special}.  They belong to the set $SO(3)$, the set of all special orthogonal $3\times 3$ matrices, which is commonly known as the \textit{3D rotation group};\index{rotation group}\index{$SO(3)$}  $SO(3)$ is a group with respect to the operation of rotation composition, which we will discuss next.
 
-\subsection{3D rotation composition}
+\subsection{3D rotation composition}\OClabel{3Drotationcomposition}
+
 It is easy to convince yourself, using a non-symmetric object, that, in general, the order in which 3D active rotations are executed, matters; reversing the order of two active rotations produces a different outcome for an object in the same starting orientation, and the same is true for passive rotations.\footnote{For the passive case, instead of using a single non-symmetric object, one could hold three pencils with different colors perpendicular to each other, and perform two different rotations to the triad in opposite order.  While this involves some amount of dexterity, it is not too difficult to see that passive rotations do not commute either.} For the composition of two passive rotations, $R^p_1$ first, followed by $R^p_2$, we know from the 2D analysis that we must write the matrices from left to right:
 \begin{equation}
 	\mathbf{r}'' = R^p_1 R^p_2\mathbf{r}\ .
 \end{equation}
 
-\begin{example}
+\lightgraybox{
+{\small\sffamily\begin{example}
 Consider the following rotations:
 \begin{align*}
 	R^p_1 &= 90^{\circ}@[100]\ ;\\
@@ -96,24 +127,24 @@ Hence, the composition of the matrices results in the rotation $R^p_3$, given by
 	1 & 0 & 0\end{array}\right)\ .
 \]
 Application to the column vector $\mathbf{r}=(0,1,0)^T$, we find $R^p_2(0,1,0)^T = (1,0,0)^T$ and $R^p_1(1,0,0)^T = (1,0,0)^T$; clearly we also have $R^p_3(0,1,0)^T=(1,0,0)^T$. In the reverse order, we have $R^p_1(0,1,0)^T = (1,0,0)^T$ and $R^p_2(1,0,0)^T=(-1,0,0)^T$, which is a different vector.  Hence, 3D rotations do not commute in general; the only time they do commute is when both rotations have the same rotation axis.
-\end{example}
+\end{example}}}
 
 In later sections we will introduce additional ways to compose multiple rotations using rotation representations  that are more suitable for such operations.  In particular, we will see how to compose rotations using generalized complex numbers or quaternions.
 
 
-\section{Euler Angles and their Properties\label{sec:eulerangles}}
+\section{Euler Angles and their Properties}\OClabel{eulerangles}
 
 \subsection{Definitions}
 Euler has shown that every 3D rotation can be decomposed into three separate rotations around the coordinate axes $x$, $y$ and $z$. This decomposition, however, is not unique since there are several ways in which the axes and their ordering can be chosen.  One distinguishes decompositions in which the three axes are different from those where two of the rotations are around a similarly named axis.  In the former case, one refers to the three rotation angles at \textit{Tait-Bryan angles}\index{Tait-Bryan angles}; in the latter case they are generically known as \textit{Euler angles}\index{Euler angles}.  
 
 Tait-Bryan angles are used to describe the independent motions of ships and aircraft.  If we attach a Cartesian reference frame to the center-of-mass of an airplane, such that the $x$ axis points towards the nose, the $y$ axis along the left wing, and the $z$ axis normal to the plane of the wings, then one can distinguish between three independent movements: the tail rudder is used to rotate the plane around the $z$ axis (yaw), the elevators in the tail raise of lower the nose by rotating the plane around the $y$ axis (pitch), and the ailerons in the wings allow for rotation around the $x$ axis (roll).  Obviously we can change the orientation of the reference frame from this $x-y-z$ case to $x-z-y$, $z-x-y$, and so on, for a total of six possible definitions; while the names yaw, pitch, and roll do not change, the corresponding axis symbol depends on the choice of the reference frame.  Mathematically, one must therefore fix the order of the three rotations, and it becomes important to state explicitly which reference frame convention is made before carrying out any numerical computations.
 
-For Euler angles, the same is true, but the choice of reference frame is limited to two symbols instead of three; in texture analysis, the most commonly used convention is the Bunge convention\index{Bunge convention}, in which the rotation order is $z-x-z$, with angle symbols $(\varphi_1,\Phi,\varphi_2)$.  The fist rotation is by an angle $\varphi_1$ around the $z$ axis (see Fig.~\ref{fig:eulers}(a-b)); the allowed range of this angle is $[0,2\pi]$. The second rotation takes place around the new $x'$ axis by an angle $\Phi$ in the range $[0,\pi]$ (see Fig.~\ref{fig:eulers}(b-c)); and the final rotation is by an angle $\varphi_2$ around the new $z''$ axis, with the angle in the range $[0,2\pi]$ (see Fig.~\ref{fig:eulers}(c-d)).  Since we are rotating the reference frames, the Euler rotations are passive rotations.
+For Euler angles, the same is true, but the choice of reference frame is limited to two symbols instead of three; in texture analysis, the most commonly used convention is the \indexit{Bunge convention}, in which the rotation order is $z-x-z$, with angle symbols $(\varphi_1,\Phi,\varphi_2)$.  The fist rotation is by an angle $\varphi_1$ around the $z$ axis (see Fig.~\ref{fig:eulers}(a-b)); the allowed range of this angle is $[0,2\pi]$. The second rotation takes place around the new $x'$ axis by an angle $\Phi$ in the range $[0,\pi]$ (see Fig.~\ref{fig:eulers}(b-c)); and the final rotation is by an angle $\varphi_2$ around the new $z''$ axis, with the angle in the range $[0,2\pi]$ (see Fig.~\ref{fig:eulers}(c-d)).  Since we are rotating the reference frames, the Euler rotations are passive rotations.
 
 For each rotation, we can write down a passive rotation matrix.  The first rotation, $R^p(\varphi_1)$, relates the reference
 frame $\mathbf{e}'_i$ (red) to the green frame $\mathbf{e}_i$, and is given by:
 \begin{equation}
-	\columnthreeb{\mathbf{e}'_x}{\mathbf{e}'_y}{\mathbf{e}'_z} = 
+	\mathbf{e}'_i = R_z(\varphi_1)_{ij} \mathbf{e}_j \rightarrow \columnthreeb{\mathbf{e}'_x}{\mathbf{e}'_y}{\mathbf{e}'_z} = 
 	\matrixtbt{\cos\varphi_1}{\sin\varphi_1}{0}{-\sin\varphi_1}{\cos\varphi_1}{0}{0}{0}{1}
 	\columnthreeb{\mathbf{e}_x}{\mathbf{e}_y}{\mathbf{e}_z}\ . 
 \end{equation}
@@ -121,7 +152,7 @@ The second rotation brings the red reference frame $\mathbf{e}'_i$ to $\mathbf{e
 by a counterclockwise rotation of 
 $\Phi$ around the $\mathbf{e}'_x$ axis.  It is represented by:
 \begin{equation}
-	\columnthreeb{\mathbf{e}''_x}{\mathbf{e}''_y}{\mathbf{e}''_z} = 
+	\mathbf{e}''_i = R_x(\Phi)_{ij} \mathbf{e}'_j \rightarrow \columnthreeb{\mathbf{e}''_x}{\mathbf{e}''_y}{\mathbf{e}''_z} = 
 	\matrixtbt{1}{0}{0}{0}{\cos\Phi}{\sin\Phi}{0}{-\sin\Phi}{\cos\Phi}
 	\columnthreeb{\mathbf{e}'_x}{\mathbf{e}'_y}{\mathbf{e}'_z}\ . 
 \end{equation}
@@ -135,7 +166,7 @@ $\Phi$ around the $\mathbf{e}'_x$ axis.  It is represented by:
 
 The final rotation of $\varphi_2$ around the new $\mathbf{e}''_{z}$ axis is described by:
 \begin{equation}
-	\columnthreeb{\mathbf{e}'''_x}{\mathbf{e}'''_y}{\mathbf{e}'''_z} = 
+	\mathbf{e}'''_i = R_z(\varphi_2)_{ij} \mathbf{e}''_j \rightarrow \columnthreeb{\mathbf{e}'''_x}{\mathbf{e}'''_y}{\mathbf{e}'''_z} = 
 	\matrixtbt{\cos\varphi_2}{\sin\varphi_2}{0}{-\sin\varphi_2}{\cos\varphi_2}{0}{0}{0}{1}
 	\columnthreeb{\mathbf{e}''_x}{\mathbf{e}''_y}{\mathbf{e}''_z}\ . 
 \end{equation}
@@ -197,8 +228,9 @@ In other words, when $\Phi=0$, the Euler angle triplet $(\varphi_1,0,\varphi_2)$
 Despite this mathematical inconvenience, the Euler angle orientation/rotation representation has become the standard in the texture literature, and we will use it frequently throughout this text.  There are several other orientation representations that do not suffer from this kind of degeneracies, and we will take a closer look at the class of \textit{neo-Eulerian} representations in the next section.
 
 
-\section{Neo-Eulerian Rotation Representations\label{sec:neoEulerian}}
+\section{Neo-Eulerian Rotation Representations}\OClabel{neoEulerian}
 
+{\color{red}to be written...}
 
 
 

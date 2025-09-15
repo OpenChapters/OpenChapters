@@ -24,7 +24,7 @@
 
 \chapterimage{\noheaderimage}
 \chapter*{Bibliography}
-\addcontentsline{toc}{chapter}{\textcolor{myblack}{\hspace*{-0.35cm}Bibliography}}
+\addcontentsline{toc}{chapter}{\textcolor{OCBlack}{\hspace*{-0.35cm}Bibliography}}
 \section*{Books}
 \addcontentsline{toc}{section}{Books}
 \printbibliography[heading=bibempty,type=book]
@@ -39,5 +39,9 @@
 \cleardoublepage
 \phantomsection
 \setlength{\columnsep}{0.75cm}
-\addcontentsline{toc}{chapter}{\textcolor{myblack}{\hspace*{-0.35cm}Index}}
+\addcontentsline{toc}{chapter}{\textcolor{OCBlack}{\hspace*{-0.35cm}Index}}
 \printindex
+
+% This is a safety measure to ensure the file is properly closed
+% at the very end of the compilation, in case \processauthors was not called.
+\immediate\closeout\authorfile

@@ -1,0 +1,143 @@
+% !TEX root = ../../Build/main.tex
+% ###################################################################
+% Copyright (c) 2025, Marc De Graef 
+%  Editors: A.D. Rollett & M. De Graef
+% All rights reserved.
+%
+% Licensed under the Creative Commons CC BY-NC-SA 4.0 License, 
+% hereafter referred to as the "License"; you may not use this 
+% document except in compliance with the License. You may obtain 
+% a copy of the License at 
+%     https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode 
+% Unless required by applicable law or agreed to in writing, all 
+% material distributed under the License is distributed on an 
+% "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+% either express or implied. See the License for the specific 
+% language governing permissions and limitations under the License.
+% ###################################################################
+
+% ###################################################################
+% The following lines are to be uncommented or edited as needed 
+
+\corechapter{Yes}
+%     uncomment this line only if this chapter is a core/foundational chapter;
+%     for a core chapter a "Foundational" label will appear on the top left above the chapter title.
+
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University}
+%     this will appear in a secondary header below the chapter title.
+
+% All figures are stored in the src/RotationSymmetry/eps folder and must be of the *.eps type. 
+\renewcommand{\chaptergraphicspath}{../src/Projections/eps/}
+
+\renewcommand{\chabbr}{PROJTS}
+
+\chapterimage{\noheaderimage}
+%     replace \noheaderimage by the chapter header image file name (without .eps extension).
+%     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
+
+\chapter{Useful Projections}\OClabel{Projections}
+
+% add the author information so that it will appear in the Author List at the start of the document
+\writeauthor{PROJTS:Projections}{Useful Projections}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+
+% Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
+% each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
+% second column if LaTeX breaks the line at an awkward location.
+\lightgraybox{\begin{center}
+    {\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]
+\end{center}
+
+{\color{OCalmostblack}\sffamily
+\begin{multicols}{2}
+\begin{itemize}
+    \item[{\color{OCBurntOrange}\OCref{intro}:}] Read about hyperspheres and hyperballs
+    \item[{\color{OCBurntOrange}\OCref{stereoproj}:}] Learn about the stereographic projection
+    \item[{\color{OCBurntOrange}\OCref{lambertproj}:}] Explain the Lambert projection
+    \item[{\color{OCBurntOrange}\OCref{gnomonicproj}:}] Define the gnomonic projection
+    \item[{\color{OCBurntOrange}\OCref{otherprojections}:}] Learn about other useful projections
+\end{itemize}
+\end{multicols}}}
+% ###################################################################
+% ###################################################################
+% ###################################################################
+
+
+
+\section{Hyperspheres and Hyperballs}\OClabel{intro}
+
+This chapter contains several sections about important projections frequently used in various aspects of materials science and engineering.  A \indexit{projection} in the context of this chapter is a mathematical tool that takes an object in an $n$-D space and reduces it to an $(n-1)$-D representation; in this process, some characteristics of the original $n$-D object are conserved, others are removed or, at the very least, distorted.  Many of the best known projection (or mapping) techniques were developed in the area of cartography, i.e., to project 3-D data residing on a sphere onto a planar representation; those projection techniques include, but are not limited to, the \textit{Aitoff, Albers, Azimuthal, Conic, Cylindrical, {\color{OCHighlandsSkyBlue}Gnomonic}, Hammer, {\color{OCHighlandsSkyBlue}Lambert}, Mercator, Miller-cylindrical, Mollweide, Orthographic, Robinson, Satellite, Sinusoidal, {\color{OCHighlandsSkyBlue}Stereographic},} and \textit{Transverse-Mercator} projections.  In this chapter, we will define and provide examples of the projections highlighted in blue, since those projection methods have considerable use in the fields of crystallography and materials characterization.  For a more complete and in-depth descriptions of cartographic projections we refer the interested reader to \cite{xxx}.
+
+Before we define these projections in detail, it will be useful to define a few concepts and objects.  We begin with the $n$-sphere\index{n-sphere} in an $(n+1)$-D space as the set of points $\mathbf{x}$ at a distance $r$ from the origin:
+\begin{equation}
+	\mathbb{S}^n_r = \left\{ \mathbf{x}\in\mathbb{R}^{n+1} \text{ for which } \vert\vert\mathbf{x}\vert\vert = r\right\};
+\end{equation}
+in other words, the $n$-sphere $\mathbb{S}^n_r$ consists of all the $n+1$ dimensional points $\mathbf{x}$ that lie at a distance $r$ from the origin.  Note that such a sphere has an infinitesimal thickness.  The $n$-ball, $\mathbb{B}^n_r$ is defined as the collection of points in an $n$-D space that lie at the most a distance $r$ from the origin, or:
+\begin{equation}
+	\mathbb{B}^n_r = \left\{ \mathbf{x}\in\mathbb{R}^{n} \text{ for which } \vert\vert\mathbf{x}\vert\vert \le r\right\}.
+\end{equation}
+It is easy to see that the $2$-sphere, $\mathbb{S}^2_r$, represents the surface of the $3$-ball $\mathbb{B}^3_r$.  In most cases we will consider unit radius spheres and unit radius balls, in which case the subscript $r$ will be omitted.  If the inequality in the definition of the ball is a strict inequality $(\vert\vert\mathbf{x}\vert\vert$ < $r)$, then the ball is said to be \textit{open}; if the ball includes the sphere $\mathbb{S}^{n-1}_r$, then the ball is \textit{closed}.
+
+\begin{table}[t]
+\leavevmode\centering
+\begin{tabular}{|l|c|c|}
+\hline
+$n$ & $A(\mathbb{S}^n)$ & $V(\mathbb{B}^n)$ \\
+\hline\hline
+$0$ & $2$ & $1$ \\ 
+$1$ & $2\pi$ & $2$ \\
+$2$ & $4\pi$ & $\pi$ \\
+$3$ & $2\pi^2$ & $4\pi/3$ \\
+$4$ & $8\pi^2/3$ & $\pi^2/2$ \\
+$5$ & $\pi^3$ & $8\pi^2/15$ \\
+$\vdots$ & $\vdots$ & $\vdots$\\
+\hline
+\end{tabular}
+\caption{\OClabel{tb:hyper}Surface areas and volumes for the first six hyperspheres and hyperballs of unit radius.}
+\end{table}
+
+For $n\ge 2$, the $n$-sphere is generally known as a \indexit{hypersphere} and the $n$-ball as a \indexit{hyperball}.  Both have been the subject of extensive mathematical studies and much is known about higher-dimensional hyperspheres and hyperballs (short of being able to visualize them).  Among the most important results are the expressions for the surface area of the unit hypersphere and the volume of the unit hyperball.  The general expressions are:
+\begin{equation}
+	\textit{area: }A(\mathbb{S}^n) = \frac{2\pi^{\frac{n+1}{2}}}{\Gamma[\frac{n+1}{2}]},
+\end{equation}
+where $\Gamma[x]$ is the \indexit{Gamma function}, an extension of the factorials to complex numbers.  For integer arguments we have $\Gamma[n]=(n-1)!$ or $n!=n\Gamma[n]$.  For the volume of the unit hyperball we have a similar expression:
+\begin{equation}
+	\textit{volume: }V(\mathbb{B}^n) = \frac{\pi^{\frac{n}{2}}}{\Gamma[\frac{n}{2}+1]}.
+\end{equation}
+Values for $n=0\ldots 5$ are listed in Table~\OCref{tb:hyper}.  The surface area of the hypersphere reaches a maximum of $16\pi^3/15$ for $n=7$, and the volume reaches a maximum of $8\pi^2/15$ for $n=5$; both volume and surface area tend to zero when $n$ goes to infinity.
+
+\insertfigure{hyperspheres.eps}{fig:hyperspheres}{Illustration of the the three balls, $\mathbb{B}^1$,  $\mathbb{B}^2$,  and $\mathbb{B}^3$ along with the bounding spheres $\mathbb{S}^1$, $\mathbb{S}^2$, and $\mathbb{S}^3$,} 
+
+The (hyper)spheres and (hyper)balls that can be visualized are shown schematically in Fig.~\OCref{fig:hyperspheres}.  Note that the surface mesh actually represents the complete hypersphere $\mathbb{S}^2$; the mesh is used so that the ball $\mathbb{B}^3$ becomes visible inside the surface. The $0$-sphere consists simply of two isolated points on the 1-D line, at unit distance from the origin; the ball $\mathbb{B}^1$ is represented by the line segment in between the two red points.
+
+
+\section{Stereographic Projection}
+\OClabel{stereoproj}
+
+
+
+\section{Lambert Projection}
+\OClabel{lambertproj}
+
+
+
+\section{Gnomonic Projection}
+\OClabel{gnomonicproj}
+
+
+
+
+\section{Other Useful Projections}
+\OClabel{otherprojections}
+
+
+
+
+
+
+
+
+
+
+
+
+

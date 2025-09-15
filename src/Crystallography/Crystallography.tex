@@ -19,28 +19,54 @@
 % language governing permissions and limitations under the License.
 % ###################################################################
 %
-% Author(s) Complete Address(es)
-%
-%
 % Chapter Parameters
 % ###################################################################
-\corechapter{Yes}   % uncomment this line only if this chapter is a core/foundational chapter;
-\chapterauthor{Marc De Graef, Carnegie Mellon University} %this will appear in a secondary header below the chapter title.
+%\corechapter{Yes}   % uncomment this line only if this chapter is a core/foundational chapter;
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University} %this will appear in a secondary header below the chapter title.
+
 % graphics path for all figure *.eps files 
 \renewcommand{\chaptergraphicspath}{src/Crystallography/eps/}
+
+%	redefine the \chabbr command to be a six-character string that uniquely identifies this 
+%	chapter; easiest way to do this is to take the first couple of letters from the title words
+\renewcommand{\chabbr}{BASCRY}
+
 %     replace \noheaderimage by the chapter header image file name (without .eps extension).
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 \chapterimage{\noheaderimage}
-%	redefine the \chabbr command to be a six-character string that uniquely identifies this 
-%	chapter; easiest way to do this is to take the first couple of letters from the title words
+
 %	Make sure to use the \OClabel{} command everywhere instead of \label{} !
-\renewcommand{\chabbr}{BASCRY}
+\chapter{Basic Crystallography}\OClabel{Crystallography}
+
+% add the author information so that it will appear in the Author List at the start of the document
+\writeauthor{BASCRY:Crystallography}{Basic Crystallography}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+
+% Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
+% each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
+% second column if LaTeX breaks the line at an awkward location.
+\lightgraybox{\begin{center}
+    {\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]
+\end{center}
+
+{\color{OCalmostblack}\sffamily
+\begin{multicols}{2}
+\begin{itemize}
+    \item[{\color{OCBurntOrange}\OCref{nonCartesian}:}] Learn how to work with vectors in a non-Cartesian reference frame
+    \item[{\color{OCBurntOrange}\OCref{worldviews}:}] Learn about two world views
+    \item[{\color{OCBurntOrange}\OCref{lattices}:}] Enumerate crystal systems and Bravais lattices
+    \item[{\color{OCBurntOrange}\OCref{crystalcomputations}:}] Perform non-Cartesian computations
+    \item[{\color{OCBurntOrange}\OCref{transform}:}] Transform between direct and reciprocal space
+    \item[{\color{OCBurntOrange}\OCref{Cartesian}:}] Connect back to the good old Cartesian reference frame    
+    \item[{\color{OCBurntOrange}\OCref{usefulcomp}:}] Learn about other useful crystallographic computations
+\end{itemize}
+\end{multicols}}}
+% ###################################################################
 % ###################################################################
 % ###################################################################
 
-\chapter{Basic Crystallography\OClabel{chap:Crystallography}}
 
-\section{Notational Conventions in Cartesian Reference Frames\OClabel{sec:notations}}
+
+\section{Vectors in Non-Cartesian Reference Frames}\OClabel{nonCartesian}
 
 \subsection{Basic vector operations\OClabel{ssec:vectoroperations}}
 We will represent vectors by bold symbols, e.g.,  $\mathbf{a}$, $\mathbf{b}$, $\ldots$.  Unless stated otherwise, we will work with Cartesian (i.e., orthonormal) reference frames\index{Cartesian reference frame}; Cartesian basis vectors\index{Cartesian basis vector} will always be represented by vectors of the type $\mathbf{e}_i$, where the subscript $i$ can take on the values $1, 2, \ldots, D$ and $D$ is the dimension of the space in which the vectors live.  Occasionally, the subscript $i$ will be interpreted to mean $x, y$ in 2D and $x,y,z$ in 3D; this will be clear from the context, and usually this notation is only used to clarify things.  Note that vectors represented by the letter ``\textbf{e}'' will always be assumed to be unit vectors.\index{unit vector}
@@ -103,7 +129,7 @@ Thus, we have:
 	\] 
 \end{itemize}
 
-\subsection{Transformation of a vector\OClabel{ssec:vectortransformation}}
+\subsection{Transformation of a vector}\OClabel{vectortransformation}
 Let us consider two Cartesian reference frames, one given by the 
 orthonormal triplet $\{\mathbf{e}_x,\mathbf{e}_y,\mathbf{e}_z\}$, the second by 
 the triplet 
@@ -232,7 +258,7 @@ frames, then $\mathbf{q}$ is a vector.  Similar transformation rules
 can also be used to define \textit{higher order vectors} or \textit{tensors}.
 
 
-\section{Real Space and Reciprocal Space\OClabel{ssec:spaces}}
+\section{Two Views of the Real World}\OClabel{worldviews}
 After teaching crystallography for several decades as well as writing an extensive textbook on the topic, it has become clear to the author that many students and researchers tend to have an incomplete and sometimes incorrect understanding of the reasons for using both real and reciprocal space.  So, before we introduce these important crystallographic concepts, it is important to ensure that the reader understand why these two spaces are necessary and, more importantly, that they represent two natural ways to look at and describe crystal structures.  There is nothing difficult or mysterious about reciprocal space, in particular.
 
 Let us begin with a familiar example.  A street is lined with a series of trees, planted at a regular distance from each other;  Fig.~\OCref{fig:trees} shows a schematic of a portion of this street.  We take a measuring stick of a given length $S$, and measure the distance $d$ between two consecutive trees in units of $S$.  For the illustration in Fig.~\OCref{fig:trees}(a) we find that $d=1$ S.  Next, we double the length of the measuring stick to $S'=2S$ and once again we measure the distance $d$; this time we find $d = 1/2$ S'.  Now we make the following, almost trivial, observation: \textit{when the length of the measuring stick increases, the numerical value of the distance decreases.} In other words, the length of the measuring stick and the measured quantity vary in opposite ways; when one becomes larger, the other becomes smaller and vice versa.  Hence, we say that the distance between the trees is a \textit{contravariant}\index{contravariant} quantity (``contra'' means ``opposite'' in this context); it varies in the opposite way from the units in which it is measured.
@@ -250,7 +276,11 @@ Clearly, the row of trees is the same in both cases, but we simply consider the 
 So, if the distinction between direct and reciprocal space is this simple, why is it that so many students and researchers struggle with the concept of reciprocal space? One reason might be the strongly visual way in which our brain works; if you take a model crystal structure in your hands, you can easily visualize the atom locations and distances between the atoms. Hence, direct space is a natural way to describe the crystal structure.  It is a bit more difficult to ``visualize'' the number of atoms per unit length.  Another reason may lie in the choice of words: direct \textit{space} and reciprocal \textit{space}.  This choice seems to imply that somehow there are two different spaces, and that, perhaps, these spaces are in different locations.  This incorrect interpretation is likely due to a misunderstanding of the word \textit{space} in this context; the word should be interpreted as an abbreviation for \textit{vector space}, i.e., a mathematical space created by linear combinations of a set of basis vectors.  Direct and reciprocal space then simply refer to the fact that there are two different sets of basis vectors, i.e., two different sets of measuring sticks, used to generate the vector spaces. So, when we say \textit{direct space}, we really mean \textit{the vector space spanned by the direct basis vectors}, and by \textit{reciprocal space} we mean \textit{the vector space spanned by the reciprocal basis vectors}. Both vector spaces are mapped onto the actual crystal structure, so both vector spaces ``occupy'' the same physical space. Next, we will cast these concepts into more precise mathematical statements.
 
 
-\section{Crystallographic Conventions and Computations\OClabel{ssec:crystalconventions}}
+\section{Crystal Systems and Bravais Lattices}\OClabel{lattices}
+
+{\color{red}to be written!!}
+
+\section{Crystallographic Computations}\OClabel{crystalcomputations}
 
 \subsection{Direct space}
 All crystallographic conventions in this book follow the International Tables for Crystallography, Volume A.  In particular, we represent the unit cell\index{unit cell} of a crystal structure\index{crystal structure} by means of the basis vector\index{basis vectors!crystallographic} triplet $\{\mathbf{a}_i\}$ with $i=1,\ldots,3$ or $\{\mathbf{a}, \mathbf{b},\mathbf{c}\}$ (see Fig.~\OCref{fig:unitcell}). The subscripted notation for the basis vectors is much more convenient for analytical calculations, so we will use it whenever possible. The lattice parameters\index{lattice parameters} of the unit cell are the six numbers $\{a,b,c,\alpha,\beta,\gamma\}$, where $a, b, c$ are the lengths of the vectors $\mathbf{a}_1$, $\mathbf{a}_2$, and $\mathbf{a}_3$, respectively, and $\alpha=\text{ang}(\mathbf{a}_2,\mathbf{a}_3)$,  $\beta=\text{ang}(\mathbf{a}_1,\mathbf{a}_3)$,  and $\gamma=\text{ang}(\mathbf{a}_1,\mathbf{a}_2)$, where $\text{ang}(\mathbf{p},\mathbf{q})$ stands for the angle between the vectors $\mathbf{p}$ and $\mathbf{q}$.
@@ -467,6 +497,20 @@ Therefore we have:
 \begin{exercise}
 For the unit cell of Exercise~\OCref{ex:mono}, compute the angle between the $\mathbf{g}_{111}$ and $\mathbf{g}_{120}$ plane normals.
 \end{exercise}
+
+
+\section{Transforming between Direct  and Reciprocal Spaces}\OClabel{transform}
+
+{\color{red}to be written !!}
+
+\section{Connections to the standard Cartesian Reference Frame}\OClabel{Cartesian}
+
+{\color{red}to be written !!}
+
+
+\section{Other Useful Crystallographic Computations}\OClabel{usefulcomp}
+
+{\color{red}to be written !!}
 
 
 

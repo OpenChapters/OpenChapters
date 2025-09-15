@@ -1,0 +1,425 @@
+% !TEX root = ../../Build/main.tex
+% ###################################################################
+% Copyright (c) 2025, Marc De Graef 
+%  Editors: A.D. Rollett & M. De Graef
+% All rights reserved.
+%
+% Licensed under the Creative Commons CC BY-NC-SA 4.0 License, 
+% hereafter referred to as the "License"; you may not use this 
+% document except in compliance with the License. You may obtain 
+% a copy of the License at 
+%     https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode 
+% Unless required by applicable law or agreed to in writing, all 
+% material distributed under the License is distributed on an 
+% "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+% either express or implied. See the License for the specific 
+% language governing permissions and limitations under the License.
+% ###################################################################
+
+% ###################################################################
+% The following lines are to be uncommented or edited as needed 
+
+\corechapter{Yes}
+%     uncomment this line only if this chapter is a core/foundational chapter;
+%     for a core chapter a "Foundational" label will appear on the top left above the chapter title.
+
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University}
+%     this will appear in a secondary header below the chapter title.
+
+% All figures are stored in the src/RotationSymmetry/eps folder and must be of the *.eps type. 
+\renewcommand{\chaptergraphicspath}{../src/LinearAlgebra/eps/}
+
+\renewcommand{\chabbr}{LINALG}
+
+%\chapterimage{LINALGheader.pdf}
+\chapterimage{\noheaderimage}
+%     replace \noheaderimage by the chapter header image file name (without .eps extension).
+%     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
+
+\chapter{Concepts of Linear Algebra}\OClabel{LinearAlgebra}
+
+% add the author information so that it will appear in the Author List at the start of the document
+\writeauthor{LINALG:LinearAlgebra}{Concepts of Linear Algebra}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+
+% Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
+% each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
+% second column if LaTeX breaks the line at an awkward location.
+\lightgraybox{\begin{center}
+    {\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]
+\end{center}
+
+{\color{OCalmostblack}\sffamily
+\begin{multicols}{2}
+\begin{itemize}
+    \item[{\color{OCBurntOrange}\OCref{matrices}:}] Learn about matrices and linear equations
+    \item[{\color{OCBurntOrange}\OCref{matrixproperties}:}] Define general matrix terminology
+    \item[{\color{OCBurntOrange}\OCref{determinant}:}] Learn how to compute a determinant
+    \item[{\color{OCBurntOrange}\OCref{inverse}:}] Define the inverse of a matrix
+    \item[{\color{OCBurntOrange}\OCref{eigen}:}] Learn about eigenvectors and eigenvalues
+\end{itemize}
+\end{multicols}}}
+% ###################################################################
+% ###################################################################
+% ###################################################################
+
+
+\section{Matrices and Linear Equations}\OClabel{matrices}
+
+Consider the following equations~:
+\begin{align}
+x+z&=2\nonumber\\
+2x+y+z&=5\\
+3x+2y+2z&=9\nonumber
+\end{align}
+This is a system of three \textit{linear} equations in the unknowns $x,y,$ and $z$.  The word \textit{linear} means that
+there are no powers or other functions of the unknown variables present. 
+Let us rewrite these equations in a more systematic way~:
+\begin{align}
+1x+0y+1z&=2\nonumber\\
+2x+1y+1z&=5\\
+3x+2y+2z&=9\nonumber
+\end{align}
+To solve this system of equations it is useful to take a closer look at the coefficients.  
+Note that we can interpret the first equation as the dot product of two vectors~:
+the first vector contains the numbers $(1,0,1)$, the second one contains the variables $(x,y,z)$.
+If we denote the first vector by $\mathbf{a}$, and the second one by $\mathbf{x}$, then we can write
+\begin{align}
+\mathbf{a}&=\columnthree{1}{0}{1}\nonumber\\
+\mathbf{x}&=\columnthree{x}{y}{z}\nonumber
+\end{align}
+The dot product between two vectors is the sum of the products of their components and we will use the 
+following notation to indicate this operation~:
+\begin{equation}
+\mathbf{a}\cdot\mathbf{x}=\rowthree{1}{0}{1}\columnthree{x}{y}{z}=1\times x+0\times y+1\times z
+\end{equation}
+Even though a vector is usually represented by a \textit{column} of numbers, we can also arrange the numbers in a row.
+The row-representation of a vector is known as the \textit{transpose} of the column representation, and this is indicated as~:
+\begin{equation}
+\columnthree{1}{0}{1}^{T}=\rowthree{1}{0}{1}
+\end{equation}
+The superscript $T$ stands for Transpose.  In some cases we will also indicate the transpose of a column by the tilde symbol,
+as in $\tilde{x}$.
+
+We can repeat this exercise for the second and third equations as well and we find~:
+\begin{align}
+\rowthree{1}{0}{1}\columnthree{x}{y}{z}&=2\nonumber\\
+\rowthree{2}{1}{1}\columnthree{x}{y}{z}&=5\\
+\rowthree{3}{2}{2}\columnthree{x}{y}{z}&=9\nonumber
+\end{align}
+We can now take the three row vectors together and form an \textit{array} of three rows.
+We will call this array $\mathcal{A}$~:
+\begin{equation}
+\mathcal{A}=\matrixtbt{1}{0}{1}{2}{1}{1}{3}{2}{2}
+\end{equation}
+If we also write the right hand side of the equations as a column of numbers we find~:
+\begin{equation}
+\matrixtbt{1}{0}{1}{2}{1}{1}{3}{2}{2}\columnthree{x}{y}{z}=\columnthree{2}{5}{9}
+\end{equation}
+If we denote 
+\begin{equation}
+\mathbf{b}=\columnthree{2}{5}{9}
+\end{equation}
+then the system of equations can be rewritten in short as~:
+\begin{equation}
+\mathcal{A}\,\mathbf{x}=\mathbf{b}
+\end{equation}
+An array of numbers which is obtained in this way is known as a \textit{matrix}.  
+In the following paragraphs we will explore some of the common properties of matrices.
+
+\section{General properties of matrices}\OClabel{matrixproperties}
+\begin{enumerate}
+\item A matrix has, in general, $n$ \textit{rows}, and $m$ \textit{columns}.  The \textit{dimensions} of the matrix
+are thus $n\times m$.  If $n=m$ then the matrix is a \textit{square matrix}.  Note that the number of rows is always 
+the first dimension.
+
+\item A column vector is an $n\times 1$ matrix.  A row vector is a $1\times m$ matrix.
+
+\item A $1\times 1$ matrix is a scalar.
+
+\item Each element of a matrix is called an \textit{entry}.  The total number of entries is equal to $nm$.
+
+\item Each element has a ``coordinate'' in the array.  This coordinate is denoted by $(i,j)$, where $i$ is the \textit{row number} of the entry,
+and $j$ is the \textit{column number}.  The element $(3,2)$ of the matrix $\mathcal{A}$ is equal to $2$.  It is often useful to write
+the coordinates of the entry as \textit{subscripts} on the matrix symbol, as in $\mathcal{A}_{ij}$.  The element $(3,2)$ is then written as $\mathcal{A}_{32}$.
+Note once more that the first index is \underline{always} the \underline{row number}.
+
+\item Two matrices $\mathcal{A}$ and $\mathcal{B}$ are equal \textit{iff}\footnote{\textit{iff}=if and only if} they have the same dimensions and 
+all of their entries are identical, i.e., $\mathcal{A}_{ij}=\mathcal{B}_{ij}$ for every coordinate $(i,j)$.
+
+\item Two matrices $\mathcal{A}$ and $\mathcal{B}$ can be \textit{added} \textit{iff} they have identical dimensions.  The resulting sum matrix $\mathcal{C}$
+contains the entries
+\[
+\mathcal{C}_{ij}=\mathcal{A}_{ij}+\mathcal{B}_{ij}
+\]
+
+\item A matrix $\mathcal{A}$ can be multiplied by a scalar $\alpha$.  Simply multiply each entry $\mathcal{A}_{ij}$ with this number.
+
+\item A zero-matrix has all of its entries equal to zero.
+
+\item Consider two matrices, $\mathcal{A}$ and $\mathcal{B}$.  If the number of columns of $\mathcal{A}$ is equal to the number of rows of $\mathcal{B}$,
+then we say that $\mathcal{A}$ is \textit{conformable with respect to} $\mathcal{B}$.  Note that the reverse is not necessarily true.  Hence, 
+an $n\times m$ matrix is conformable with respect to an $m\times s$ matrix, but an $m\times s$ matrix is not conformable with respect to an
+$n\times m$ matrix.  Square matrices of equal dimension are conformable in both directions.
+
+\item Consider the matrices $\mathcal{A}$ $n\times m$ and $\mathcal{B}$ $m\times s$.  For these matrices we can define the \textit{product matrix}
+$\mathcal{P}$, by extending the dot product introduced earlier.  We write the entry $(i,j)$ of the product $\mathcal{A}\mathcal{B}$ as
+\begin{equation}
+\mathcal{P}_{ij}=\sum_{k=1}^{m}\mathcal{A}_{ik}\mathcal{B}_{kj}
+\end{equation}
+In other words, the element $\mathcal{P}_{ij}$ is the product of the row $i$ from $\mathcal{A}$ with the
+column $j$ from $\mathcal{B}$.  As an example, let us compute the product of $\mathcal{A}$ with itself.
+\[
+\begin{array}{c}
+\matrixtbt{1}{0}{1}{2}{1}{1}{3}{2}{2}\matrixtbt{1}{0}{1}{2}{1}{1}{3}{2}{2}=\\
+\matrixtbt{1\times 1+0\times 2+1\times 3}{1\times 0+0\times 1+1\times 2}{1\times 1+0\times 1+1\times 2}
+{2\times 1+1\times 2+1\times 3}{2\times 0+1\times 1+1\times 2}{2\times 1+1\times 1+1\times 2}
+{3\times 1+2\times 2+2\times 3}{3\times 0+2\times 1+2\times 2}{3\times 1+2\times 1+2\times 2}\\
+=\matrixtbt{4}{2}{3}{7}{3}{5}{13}{6}{9}\end{array}
+\]
+
+Note that we can always multiply two square matrices with identical dimensions, but the order of the multiplication \textit{is important}.
+Take a look at the following example.  We define two square matrices $\mathcal{S}$ and $\mathcal{T}$~:
+\[
+\mathcal{S}=\matrixtwo{3}{6}{-4}{-8}\qquad\mathcal{T}=\matrixtwo{-10}{-4}{5}{2}
+\]
+It is easy to verify that the products $\mathcal{ST}$ and $\mathcal{TS}$ are \underline{not} equal~:
+\[
+\mathcal{ST}=\matrixtwo{0}{0}{0}{0}\qquad\mathcal{TS}=\matrixtwo{-14}{-28}{7}{14}
+\]
+In contrast with regular numbers, where the order of multiplication is not important, matrix multiplication \textit{is not commutative}.
+
+\item A square matrix $\mathcal{A}$ is called \textit{diagonal} if all the elements with coordinates $(i,j)$ for which $i\neq j$ are equal to zero. 
+Example~:
+\[
+\matrixtbt{2}{0}{0}{0}{-1}{0}{0}{0}{4}\quad\mbox{is a diagonal matrix}
+\]
+
+\item A diagonal matrix with only 1's on the diagonal is called the \textit{identity matrix}.  It is frequently denoted by the symbol $\delta_{ij}$, known as the \textit{Kronecker delta}.
+\[
+\delta_{ij}=\matrixtwo{1}{0}{0}{1}=\matrixtbt{1}{0}{0}{0}{1}{0}{0}{0}{1}=\ldots
+\]
+It is easy to verify that the multiplication of the identity matrix with any square matrix of the same dimension does not change that matrix.
+
+\item The \textit{transpose} of a matrix $\mathcal{A}$ is a new matrix with the rows and columns interchanged~:
+\[
+\left(\mathcal{A}^{T}\right)_{ij}=\mathcal{A}_{ji}
+\]
+This is valid for square and non-square matrices.  The transpose of an $n\times m$ matrix is a $m\times n$ matrix.
+
+\item The \textit{trace} of a square $n\times n$ matrix is the sum of its diagonal elements.
+\[
+\text{Tr}(\mathcal{A})=\sum_{i=1}^{n}\mathcal{A}_{ii}
+\]
+
+\item A matrix is called \textit{symmetric} if it is equal to its transpose, $\mathcal{A}=\mathcal{A}^T$; a matrix is called \textit{antisymmetric} if it is equal to the negative of its transpose, $\mathcal{A}=-\mathcal{A}^T$.
+
+\item Any square matrix $\mathcal{A}$ can be written as the sum of a symmetric matrix $\mathcal{A}^s$ and an antisymmetric matrix $\mathcal{A}^a$ as follows:
+\[
+	\mathcal{A}_{ij} = \frac{1}{2}\left(\mathcal{A}_{ij}+\mathcal{A}_{ji}\right) + \frac{1}{2}\left(\mathcal{A}_{ij}-\mathcal{A}_{ji}\right) \equiv \mathcal{A}^s + \mathcal{A}^a 
+\]
+For the example matrix used above we have:
+\[
+	\matrixtbt{1}{0}{1}{2}{1}{1}{3}{2}{2} = \frac{1}{2}\matrixtbt{2}{2}{4}{2}{2}{3}{4}{3}{4}+\frac{1}{2}\matrixtbt{0}{-2}{-2}{2}{0}{-1}{2}{1}{0}.
+\]
+
+\item A matrix is called \textit{orthogonal} if the dot product of any row with another row, or column with another column, is equal to zero, and the dot product of a row or column with itself is equal to unity.  
+Here is an example with a $2\times 2$ matrix:
+\[
+	\mathcal{A}=\matrixtwo{\cos\theta}{-\sin\theta}{\sin\theta}{\cos\theta}.
+\]
+If the determinant of an orthogonal matrix is equal to $+1$, then that matrix is said to be a \textit{special orthogonal} matrix. The set of all $n\times n$ special orthogonal matrices is represented by $SO(n)$.
+\end{enumerate} 
+
+\section{The Determinant of a matrix}\OClabel{determinant}
+
+Before we look at the general definition of a \textit{determinant} it is instructive to consider a simple example.
+The following system of two equations in two unknowns can be solved analytically~:
+\begin{align}
+a_{11}x+a_{12}y&=b_1\nonumber\\
+a_{21}x+a_{22}y&=b_2\nonumber
+\end{align}
+If we multiply the first equation by $a_{22}$, the second by $-a_{12}$ and then add both equations, we obtain
+\[
+(a_{11}a_{22}-a_{12}a_{21})x=a_{22}b_1-a_{12}b_2
+\]
+If we multiply the first equation by $-a_{21}$, the second by $a_{11}$ and then add both equations, we find
+\[
+(a_{11}a_{22}-a_{12}a_{21})y=a_{11}b_2-a_{21}b_1
+\]
+The solution to the system of equations is thus given by~:
+\begin{align}
+x&=\frac{a_{22}b_1-a_{12}b_2}{a_{11}a_{22}-a_{12}a_{21}}\nonumber\\
+y&=\frac{a_{11}b_2-a_{21}b_1}{a_{11}a_{22}-a_{12}a_{21}}\nonumber
+\end{align}
+Note that this solution can only exist if the denominator is different from zero.  The denominator is therefore
+an important number.  If we write the system of equations in matrix notation we have~:
+\[
+\matrixtwo{a_{11}}{a_{12}}{a_{21}}{a_{22}}\columntwo{x}{y}=\columntwo{b_1}{b_2}
+\]
+The denominator of the solutions can be derived from the $2\times 2$ matrix by computing the product of the diagonal
+elements $a_{11}a_{22}$ and subtracting from that the product of the elements on the opposite diagonal $a_{12}a_{21}$.
+The resulting number is known as the \textit{determinant} of the matrix.  It \textit{determines} whether or not the system
+of equations has a solution.  If the determinant is equal to zero, then the system of equations does not have a solution;  if
+the determinant is different from zero, then the solution exists and is given by the equations above.
+
+The determinant of a matrix $\mathcal{A}$ will, in this course, be denoted by $\det\vert\mathcal{A}\vert$.  The easiest way to
+remember the determinant for a $2\times 2$ matrix is as follows~:  
+\begin{equation}
+\detertwo{a}{b}{c}{d}=ad-bc
+\end{equation}
+Examples~:
+\[
+\detertwo{2}{3}{3}{4}=2\times 4-3\times 3=-1
+\]
+\[
+\detertwo{2}{3}{2}{3}=2\times 3-3\times 2=0
+\]
+
+Now that we know how to compute a $2\times 2$ determinant we can consider larger matrices, such as $3\times 3$ and $4\times 4$.
+The determinants of those matrices can be computed by reducing them to a combination of $2\times 2$ determinants.  Here is how it works~:
+consider the $3\times 3$ determinant 
+\[
+\det\vert\mathcal{A}\vert=\deterthree{a}{b}{c}{d}{e}{f}{g}{h}{i}
+\]
+This determinant can be computed by \textit{Laplace Expansion along a row or column}.  
+For each element $(i,j)$  of the matrix $\mathcal{A}$ we define a \textit{submatrix} $\mathcal{S}$, which is obtained 
+by \textit{removing}  row $i$ and  column $j$ from the original matrix and regrouping the remaining elements into a smaller
+matrix.  Example~: the submatrix $\mathcal{S}_{21}$ of $\mathcal{A}$ is computed by removing the second row and the first column.
+The resulting matrix becomes~:
+\[
+\mathcal{S}_{21}=\matrixtwo{b}{c}{h}{i}
+\]
+The determinant of this matrix $\mathcal{S}_{21}$ is called the $(2,1)$ \textit{minor} of $\mathcal{A}$, and it is defined by
+\begin{equation}
+\mathcal{M}_{ij}=\det\vert\mathcal{S}_{ij}\vert
+\end{equation}
+We also define the $(i,j)$ \textit{cofactor} of $\mathcal{A}$, written as $A_{ij}$, by
+\begin{equation}
+A_{ij}=(-1)^{i+j}\mathcal{M}_{ij}
+\end{equation}
+We can then define the determinant of the matrix $\mathcal{A}$ as the sum of the products of the elements of one row $k$ with their cofactors, or
+\begin{equation}
+\det\vert\mathcal{A}\vert=\sum_{i=1}^{n}\mathcal{A}_{ki}A_{ki}
+\end{equation}
+This definition is valid for square matrices of any dimension $n\times n$.  Note that the cofactor of an element of an $n\times n$ matrix is 
+itself a determinant of dimension $(n-1)\times (n-1)$ and we have to apply the above definition to this determinant as well.  
+
+Let us work out the determinant for the matrix $\mathcal{A}$ above.  We can select any row to apply the Laplace expansion, say row $2$.
+According to the definition we have
+\[
+\det\vert\mathcal{A}\vert=\mathcal{A}_{21}A_{21}+\mathcal{A}_{22}A_{22}+\mathcal{A}_{23}A_{23}
+\]
+Since the cofactors are $2\times 2$ determinants, we can write
+\begin{align}
+\det\vert\mathcal{A}\vert&=d(-1)^{2+1}\detertwo{b}{c}{h}{i}+e(-1)^{2+2}\detertwo{a}{c}{g}{i}+f(-1)^{2+3}\detertwo{a}{b}{g}{h}\nonumber\\
+&=-d(bi-hc)+e(ai-gc)-f(ah-gb)\nonumber\\
+&=aei+bfg+cdh-ceg-bdi-afh\nonumber
+\end{align}
+Expanding the determinant along any other row or column results in the same expression.  As a rule of thumb one should select the row or 
+column which contains the most zero's (if any).  
+
+Example (expansion along the first row)~:
+\begin{align}
+\deterthree{-1}{2}{1}{1}{0}{3}{4}{6}{7}&=(-1)\detertwo{0}{3}{6}{7}+(2)\left(-\detertwo{1}{3}{4}{7}\right)+(1)\detertwo{1}{0}{4}{6}\nonumber\\
+&=(-1)(-18)+(2)(5)+(1)(6)=34\nonumber
+\end{align}
+
+As an exercise, compute the determinant of the following matrix (Answer=7)~:
+\[
+\left(\begin{tabular}{cccc}\centering
+$3$  & $0$  &  $4$ & $2$\\
+$1$  & $-1$  &  $0$ & $1$\\
+$0$  & $-2$  &  $0$ & $-1$\\
+$1$  & $0$  &  $1$ & $0$\end{tabular}\right)
+\]
+
+
+\section{The Inverse of a matrix}\OClabel{inverse}
+
+We have seen that we can write a system of linear equations of dimension $n\times n$ is the form
+\[
+\mathcal{A}\mathbf{x}=\mathbf{b}
+\]
+We can formally solve this system by multiplying left and right hand sides by the matrix $\mathcal{B}$, such
+that the product $\mathcal{BA}$ is equal to the identity matrix $\mathcal{I}$.
+\[
+\mathcal{BA}\mathbf{x}=\mathcal{I}\mathbf{x}=\mathbf{x}=\mathcal{B}\mathbf{b}
+\]
+The matrix $\mathcal{B}$ which satisfies the equation
+\[
+\mathcal{BA}=\mathcal{I}
+\]
+is called the \textit{inverse} of $\mathcal{A}$ and is usually denoted by $\mathcal{A}^{-1}$.
+So the formal solution to the equation above is given by
+\[
+\mathbf{x}=\mathcal{A}^{-1}\mathbf{b}
+\]
+We know from the section on determinants that a system of equations can only have a solution if the 
+determinant is different from zero.  This also means that a matrix has an inverse only if its determinant 
+is different from zero.  The $2\times 2$ example in the previous section can be rewritten as follows~:
+\[
+\columntwo{x}{y}=\frac{1}{a_{11}a_{22}-a_{12}a_{21}}\matrixtwo{a_{22}}{-a_{12}}{-a_{21}}{a_{11}}\columntwo{b_1}{b_2}
+\]
+from which we deduce that the inverse of the $2\times 2$ matrix is given by~:
+\[
+\matrixtwo{a_{11}}{a_{12}}{a_{21}}{a_{22}}^{-1}=\frac{1}{a_{11}a_{22}-a_{12}a_{21}}\matrixtwo{a_{22}}{-a_{12}}{-a_{21}}{a_{11}}
+\]
+The $2\times 2$ matrix on the right hand side of this equation is called the \textit{adjoint} of the matrix $\mathcal{A}$.
+It is defined as the transpose of the matrix of cofactors of $\mathcal{A}$~:
+\[
+\mbox{adj}\mathcal{A}=(A_{ij})^{T}
+\]
+For the example above, the matrix of cofactors is given by
+\[
+A_{ij}=\matrixtwo{a_{22}}{-a_{21}}{-a_{12}}{a_{11}}
+\]
+which is clearly the transpose of the adjoint matrix.  For a general $3\times 3$ matrix we find for the adjoint~:
+\begin{align}
+\mbox{adj}\matrixtbt{a}{b}{c}{d}{e}{f}{g}{h}{i}&=
+\matrixtbtbig{\detertwo{e}{f}{h}{i}}{-\detertwo{d}{f}{g}{i}}{\detertwo{d}{e}{g}{h}}
+{-\detertwo{b}{c}{h}{i}}{\detertwo{a}{c}{g}{i}}{-\detertwo{a}{b}{g}{h}}
+{\detertwo{b}{c}{e}{f}}{-\detertwo{a}{c}{d}{f}}{\detertwo{a}{b}{d}{e}}^{T}\nonumber\\
+&=\matrixtbt{ei-fh}{ch-bi}{bf-ce}{fg-di}{ai-cg}{cd-af}{dh-eg}{bg-ah}{ae-bd}\nonumber
+\end{align}
+and the inverse is then computed by dividing the adjoint by the determinant, which was computed in the 
+previous section.
+
+Example~: compute the inverse of the matrix
+\[
+\mathcal{A}=\matrixtbt{1}{0}{1}{2}{1}{1}{3}{2}{2}
+\]
+The determinant of this matrix is equal to $1$.  The adjoint matrix is given by~:
+\[
+\mbox{adj}\mathcal{A}=\matrixtbt{0}{2}{-1}{-1}{-1}{1}{1}{-2}{1}
+\]
+and since the determinant is equal to $1$ the adjoint is also the inverse.  Multiplication of these two matrices 
+results in the identity matrix.
+
+We can now finally solve the system of equations introduced in the first section of this document.  The solution is
+found by multiplying the inverse of $\mathcal{A}$ with the right hand side vector $\mathbf{b}$~:
+\[
+\columnthree{x}{y}{z}=\matrixtbt{0}{2}{-1}{-1}{-1}{1}{1}{-2}{1}\columnthree{2}{5}{9}=\columnthree{1}{2}{1}
+\]
+
+The inverse of higher order matrices can be computed in the same way, although it is a bit more complicated.
+
+
+\section{Eigenvalues and Eigenvectors}\OClabel{eigen}
+
+{\color{red}to be written !!}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

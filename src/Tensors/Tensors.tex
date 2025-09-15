@@ -1,0 +1,214 @@
+% !TEX root = ../../Build/main.tex
+% ###################################################################
+% Copyright (c) 2025, M. De Graef 
+%  Editors: A.D. Rollett & M. De Graef
+% All rights reserved.
+%
+% Licensed under the Creative Commons CC BY-NC-SA 4.0 License, 
+% hereafter referred to as the "License"; you may not use this 
+% document except in compliance with the License. You may obtain 
+% a copy of the License at 
+%     https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode 
+% Unless required by applicable law or agreed to in writing, all 
+% material distributed under the License is distributed on an 
+% "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+% either express or implied. See the License for the specific 
+% language governing permissions and limitations under the License.
+% ###################################################################
+
+% ###################################################################
+% The following lines are to be uncommented or edited as needed 
+
+\corechapter{Yes}
+%     uncomment this line only if this chapter is a core/foundational chapter;
+%     for a core chapter a "Core" label will appear on the top left above the chapter title.
+
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University}
+%     this will appear in a secondary header below the chapter title.
+
+% All figures are stored in the src/Tensors/eps folder and must be of the *.eps type. 
+\renewcommand{\chaptergraphicspath}{../src/Tensors/eps/}
+
+% this is the 6-character (all uppercase) chapter descriptor used in labels and refs...
+\renewcommand{\chabbr}{TENSOR}
+
+%     replace \noheaderimage by the chapter header image file name (without .eps extension).
+%     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
+\chapterimage{\noheaderimage}
+
+% start the chapter and define the chapter label (outside of the \chapter command!)
+\chapter{Introduction to Tensors}\OClabel{Tensors}
+
+% add the author information so that it will appear in the Author List at the start of the document
+\writeauthor{TENSOR:Tensors}{Introduction to Tensors}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+
+% Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
+% each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
+% second column if LaTeX breaks the line at an awkward location.
+\lightgraybox{\begin{center}
+    {\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]
+\end{center}
+
+{\color{OCalmostblack}\sffamily
+\begin{multicols}{2}
+\begin{itemize}
+    \item[{\color{OCBurntOrange}\OCref{vectorproduct}:}] Discover a new product between two or more vectors
+    \item[{\color{OCBurntOrange}\OCref{tensorproducts}:}] Learn the ways tensors can be multiplied (subscript rules)
+    \item[{\color{OCBurntOrange}\OCref{tensortrafo}:}] Determine how tensors behave under coordinate transformations
+%    \item[{\color{OCBurntOrange}\OCref{algebras}:}] Learn about Normed Division Algebras
+%    \item[{\color{OCBurntOrange}\OCref{othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+\end{itemize}
+\end{multicols}}}
+% ###################################################################
+% ###################################################################
+% ###################################################################
+
+
+% ###################################################################
+
+\section{A new Vector Product}\OClabel{vectorproduct}
+
+\subsection{Products we already Know}\OClabel{knownproducts}
+In most vector calculus courses, two types of products between vectors are introduced: the \indexit{scalar product} or \indexit{dot product} and the \indexit{vector cross product}.  Each of them can be defined in a geometric way as well as an algebraic way:
+\begin{itemize}
+	\item \textbf{\textit{dot product}}: Consider two vectors $\mathbf{p}$ and $\mathbf{q}$ with real components $p_i$ and $q_j$ with respect to a Cartesian reference frame with basis vectors $\mathbf{e}_i$, so that
+	\[
+		\mathbf{p} = p_i\mathbf{e}_i\text{ and }\mathbf{q}=q_j\mathbf{e}_j,
+	\]
+	where the summation convention is adopted\footnote{A summation is implied over any index that occurs twice on the same side of an equation.}. The dot product can then be defined in two ways: geometrically we have
+	\begin{equation}
+		\mathbf{p}\cdot\mathbf{q} \equiv \vert\mathbf{p}\vert\,\vert\mathbf{q}\vert\,\cos\theta,
+	\end{equation}
+	where $\vert\,\,\,\vert$ indicates the norm of the vector and $\theta$ is the angle between the two vectors; or algebraically,
+	\begin{equation}
+		\mathbf{p}\cdot\mathbf{q} = (p_i\mathbf{e}_i)\cdot(q_j\mathbf{e}_j) = p_i (\mathbf{e}_i\cdot\mathbf{e}_j)q_j = p_i\delta_{ij}q_j=p_iq_i=p_xq_x+p_yq_y+\ldots
+	\end{equation}
+	where $\delta_{ij}$ is the identity matrix.  Note that this equation is valid in a vector space of arbitrary dimension $N$; for each additional dimension there is an additional term in the form of the product of the two corresponding vector components.  Hence, the dot product can be defined for pairs of vectors of any dimension.
+
+	\item \textbf{\textit{cross product}}: For the cross product, one can show that it can only be defined in vector spaces of dimension $3$ or $7$;  the mathematical proof of this statement requires some very intricate mathematical reasoning far outside the scope of this chapter.\footnote{It is not possible to define the vector cross product in spaces of dimension other than $3$ or $7$ using an approach that is similar to that used in 3D; it is possible, however, to define a related product, the \indexit{wedge product}, $\mathbf{p}\wedge\mathbf{q}$, which takes on a special role in the theory of \indexit{Geometric Algebra} (GA); GA can be formulated in spaces of arbitrary dimension.}  In this chapter, we will stick to the traditional definition in 3D.  Once again, there is a geometrical definition and an algebraic one; the geometrical definition is:
+	\begin{equation}
+		\mathbf{p}\times\mathbf{q} \equiv \vert\mathbf{p}\vert\,\vert\mathbf{q}\vert\,\sin\theta\, \hat{e}_{pq},
+	\end{equation}
+	where $\hat{e}_{pq}$ is a unit vector perpendicular to both $\mathbf{p}$ and $\mathbf{q}$, as shown in Fig.~\OCref{vproducts}(b).  The direction of this unit vector with respect to the plane formed by the two vectors is determined from the \indexit{right-hand rule}, which states that if the fingers of the right hand are curled from $\mathbf{p}$ to $\mathbf{q}$ (for the product $\mathbf{p}\times\mathbf{q}$), then the thumb points in the direction of $\hat{e}_{pq}$. The length of the cross product vector corresponds to the area of the parallellogram formed by the two vectors; since the vector $\hat{e}_{pq}$ has a well defined direction, one can think of this area as a ``signed area''.  If we changed the order of the two vectors, then the unit vector would change sign, i.e., $\mathbf{p}\times\mathbf{q}=-\mathbf{q}\times\mathbf{p}$, but the absolute value of the area would not change.
+	
+	The algebraic form of the vector cross product requires a little more work. We start with the Cartesian expansions of the vectors and write out the explicit cross products of the basis vectors:
+	\begin{equation}
+		\begin{split}
+			\mathbf{p}\times\mathbf{q} 	&= p_xq_x {\color{OCCarnegieRed}\mathbf{e}_x\times\mathbf{e}_x} + p_xq_y \mathbf{e}_x\times\mathbf{e}_y-p_xq_z {\color{OCblue}\mathbf{e}_z\times\mathbf{e}_x}\\
+									&\quad - p_yq_x {\color{OCblue}\mathbf{e}_x\times\mathbf{e}_y} + p_yq_y {\color{OCCarnegieRed}\mathbf{e}_y\times\mathbf{e}_y}+p_yq_z \mathbf{e}_y\times\mathbf{e}_z\\
+									&\quad+ p_zq_x \mathbf{e}_z\times\mathbf{e}_x - p_zq_y {\color{OCblue}\mathbf{e}_y\times\mathbf{e}_z}+p_zq_z {\color{OCCarnegieRed}\mathbf{e}_z\times\mathbf{e}_z}.
+		\end{split}
+	\end{equation}
+	From the geometrical definition we see that the cross product of a vector with itself must vanish, i.e. $\mathbf{e}_i\times\mathbf{e}_i=0$ (no summation over $i$); those terms are highlighted in red above.  The terms in blue had their sign changed (and thus the order of the vectors), so that we can group them with the terms in black:
+	\begin{equation}
+		\mathbf{p}\times\mathbf{q} = (p_xq_y- p_yq_x) \mathbf{e}_x\times\mathbf{e}_y+(p_yq_z-p_zq_y) \mathbf{e}_y\times\mathbf{e}_z+(p_zq_x-p_xq_z) \mathbf{e}_z\times\mathbf{e}_x\ .
+	\end{equation}
+	Finally, using the fact that the Cartesian reference frame is a right-handed orthonormal reference frame we substitute the remaining cross products by the appropriate basis vector and reorder the terms to arrive at the familiar expression for the cross product:
+	\begin{equation}
+		\mathbf{p}\times\mathbf{q} = (p_yq_z-p_zq_y) \mathbf{e}_x+(p_zq_x-p_xq_z) \mathbf{e}_y+(p_xq_y- p_yq_x) \mathbf{e}_z\ .
+	\end{equation}
+	Note that this relation can also be formulated as a $3\times 3$ determinant by writing the basis vectors on the top row, and the vector components (in the correct order) on the second and third row:
+	\begin{equation}
+		\mathbf{p}\times\mathbf{q} = \det\deterthree{\mathbf{e}_x}{\mathbf{e}_y}{ \mathbf{e}_z}{p_x}{p_y}{p_z}{q_x}{q_y}{q_z}\ . 
+	\end{equation}
+	
+\end{itemize}
+
+\subsection{The Tensor Product}\OClabel{tensorproduct}
+The vector dot product represents the basic step used when multiplying conformable matrices\footnote{Two matrices $A$ and $B$ are conformable if the number of columns in $A$ is the same as the number of rows in $B$.}: take row $i$ from the first matrix and compute the dot product with column $j$ from the second matrix to obtain entry $(i,j)$ of the resulting product matrix. This means that we can also write the dot product as:
+\begin{equation}
+	\mathbf{p}\cdot\mathbf{q} = \rowthree{p_x}{p_y}{p_z}\columnthree{q_x}{q_y}{q_z} = p_xq_x+p_yq_y+p_zq_z\ .
+\end{equation}
+We can consider this as a matrix product of a $1\times 3$ matrix with a $3\times 1$ matrix to obtain a $1\times 1$ matrix, i.e., a scalar. If we change the order of the product to a $3\times 1$ matrix multiplied by a $1\times 3$ matrix (note that they are indeed conformable, so this product is meaningful), then we will obtain a $3\times 3$ matrix.  Such a product is known as an \indexit{outer product} or \indexit{tensor product} and is defined as:
+\begin{equation}
+	\mathbf{p}\otimes\mathbf{q} = \columnthree{p_x}{p_y}{p_z}\rowthree{q_x}{q_y}{q_z}=\matrixtbtb{p_xq_x}{p_xq_y}{p_xq_z}{p_yq_x}{p_yq_y}{p_yq_z}{p_zq_x}{p_zq_y}{p_zq_z}\ .
+\end{equation}
+This is clearly the most general product possible between two vectors, taking one component from the first vector and one component from the second vector.  In index notation we have:
+\begin{equation}
+	(\mathbf{p}\otimes\mathbf{q})_{ij} = p_i\, q_j\ .
+\end{equation}
+Instead of writing $\mathbf{p}\otimes\mathbf{q}$ explicitly, it is common practice to replace it by a single letter symbol, say $r$, so that:
+\begin{equation}
+	r_{ij} = p_i\, q_j\ .
+\end{equation}
+The object created by this tensor product is known as a \indexit{second rank tensor}, where the word ``second'' refers to the fact it has two subscripts (i.e., it was generated by combining two vectors). This brings up the possibility of taking the tensor product of more than two vectors, for instance the three vectors $\mathbf{s}$, $\mathbf{t}$, and $\mathbf{u}$:
+\begin{equation}
+	(\mathbf{s}\otimes\mathbf{t}\otimes\mathbf{u})_{ijk} = s_i\,t_j\,u_k\ .
+\end{equation}
+Note that it is not easy to write this result as a matrix since it would be a $3\times 3\times 3$ matrix with $27$ entries. The subscript notation on the other hand allows for a very compact notation; if we represent the left hand side object by $T$, then we have $T_{ijk}=s_i\,t_j\,u_k$, and $T_{ijk}$ is known as a \indexit{third rank tensor}.
+
+One might ask the question: so, what are these vectors that we apparently need to build a tensor?  It turns out that it really doesn't matter that much. A simple example will show why that is the case. Consider a second rank tensor in a 2D vector space, built from the vectors $\mathbf{p}=(p_x,p_y)$ and $\mathbf{q}=(q_x,q_y)$.  Their tensor product is:
+\begin{equation}
+	\mathbf{p}\otimes\mathbf{q} = \columntwo{p_x}{p_y}\rowtwo{q_x}{q_y}=\matrixtwob{p_xq_x}{p_xq_y}{p_yq_x}{p_yq_y}\ .
+\end{equation}
+If we assign specific values to the components, say $\mathbf{p}=(3,4)$ and $\mathbf{q}=(5,6)$, then we obtain the array:
+\begin{equation}
+	\mathbf{p}\otimes\mathbf{q} = \matrixtwob{15}{18}{20}{24}\ .
+\end{equation}
+Suppose that we would like to find out what the original vectors were that gave rise to this tensor product; we would then need to solve the following equations:
+\begin{equation}
+	\begin{split}
+		p_xq_x &= 15;\\
+		p_xq_y &= 18;\\
+		p_yq_x &= 20;\\
+		p_yq_y &= 24.
+	\end{split}
+\end{equation}
+This system of equations does not have a unique solution; using Mathematica, we find that the solutions can only be expressed in terms of one remaining unknown, namely $p_x$. The solution for the other three components is
+\begin{equation}
+	\begin{split}
+		p_y &= \frac{4 p_x}{3};\\
+		q_x &= \frac{15}{p_x};\\
+		q_y &= \frac{18}{p_x}.
+	\end{split}
+\end{equation}
+So, while a second rank tensor is defined by a tensor product of two vectors, it is a meaningless question to  ask, given the tensor, what are the vectors?  There is an infinite family of vector pairs that will produce the same tensor product.  While the exact values of the vector components don't matter, it \textit{does} really matter that the second rank tensor is defined by a tensor product of two vectors; as we will see in section~\OCref{tensortrafo}, the tensor will \textit{inherit} the transformation rules for the individual vectors when the reference frame is changed.   Before we introduce the transformation rules for general tensors, let's first do some index gymnastics.
+
+
+\section{Tensor Multiplication}\OClabel{tensorproducts}
+Just like real numbers and complex numbers (see chapter~\ref{NUMSYS:NumberSystems}), tensors, which are really just arrays of numbers, can be multiplied with each other.  Let's start with a simple example: the product of two second rank tensors. Consider the tensors $\kappa_{ij}$ and $\lambda_{kl}$; we know that they are each defined by a tensor product of two vectors.  While we don't care about the components of those vectors, we can still write each tensor as a tensor product of two vectors (we'll just pick some letters to represent the vectors):
+\begin{equation}
+	\begin{split}
+		\kappa_{ij} & = (\mathbf{a}\otimes\mathbf{b})_{ij};\\
+		\lambda_{kl} & = (\mathbf{c}\otimes\mathbf{d})_{kl}.
+	\end{split}
+\end{equation}
+Each of these tensors can be written as a $3\times 3$ matrix.  Since they are tensors, we can multiply them together using the tensor product, so we create a new quantity with four subscripts:
+\begin{equation}
+	\kappa_{ij}\lambda_{kl} \equiv \mu_{ijkl} =  (\mathbf{a}\otimes\mathbf{b}\otimes\mathbf{c}\otimes\mathbf{d})_{ijkl}\ .
+\end{equation}
+Alternatively we could express $\mu_{ijkl}$ are tensor product of the two second rank tensors as well:
+\begin{equation}
+	\mu_{ijkl} =  (\bm{\kappa}\otimes\bm{\lambda})_{ijkl}\ .
+\end{equation}
+Note that the order of the subscripts is important and should always be respected. The tensor $\mu_{ijkl}$ has four subscripts and therefore it is a fourth rank tensor; it has $3^4=81$ individual components and, in principle, it can be written out explicitly as a $3\times 3$ array of $3\times 3$ arrays\footnote{The whole point of the subscript notation is that we \textbf{don't} have to write out all the individual components; we can just represent any component by its subscripted symbol, i.e, $\mu_{xxyz}$. Besides, writing all $81$ components of $\mu_{ijkl}$ would be prone to typos and other mistakes.}.  As a rule, any object created by a tensor product, or a series of tensor products, is always a tensor of a higher rank.  The rank is given by the number of subscripts, or by one more than the number of $\otimes$ product symbols.
+
+So far, we have seen how we can multiply two tensors of ranks $r_1$ and $r_2$ together to obtain a new tensor of rank $r_1+r_2$.  However, we need to be careful; the new tensor will only have rank $r_1+r_2$ if all the subscripts of the first tensor \textit{are different} from those of the second tensor.  Consider the following three tensors: $\kappa_{ijk}$, $\lambda_{mno}$, and $\mu_{mjk}$; here are the potential products between those tensors:
+\begin{itemize}
+\item $\kappa_{ijk}\lambda_{mno} = \tau_{ijkmno}$: this product produces a tensor of rank $6$ because all the indices are represented by different letters;
+\item $\kappa_{ijk}\mu_{mjk} = \sigma_{im}$: the subscripts $j$ and $k$ each occur twice on the same side of the equation, so there are two implied summations, and the only remaining subscripts are $i$ and $m$.  The result of this product is a second rank tensor;
+\item $\lambda_{mno}\mu_{mjk}=\omega_{nojk}$: there is one summation over $m$, so the result is a fourth rank tensor.\\
+\end{itemize}
+
+\noindent These examples lead us to formulate the following rules for tensor manipulation:
+\begin{itemize}
+	\item There is an implied summation over any index that occurs twice on the same side of an equation; this is known as the \indexit{summation rule}.  As an example we have $\mu_{ii}=\alpha$; we have a sum of the diagonal terms on the left hand side, and this results in a scalar (the trace of the matrix in this case) on the right hand side.  Note that the rank of the right hand side is two less than the rank on the left, because the summation causes two subscripts to disappear on the left.  In general, this is known as \indexit{tensor contraction}.
+	\item The overall tensor rank must be the same on both sides of an equation (after eliminating pairs by the summation rule).  As an example, consider $\kappa_{ij}\lambda_{jk}=\sigma_{ik}$; the overall rank is two on both sides, because the summed indices do not count in the rank determination.
+	\item If an index occurs on one side of an equation, it must also occur on the other side, except when it is a summation index in which case the other side can not have that same index; this is known as the \indexit{index conservation rule}.
+\end{itemize}
+These simple rules allow us to quickly spot invalid equations; can you spot why the relations below are invalid? [answers in the footnote\footnotemark{}]
+\begin{itemize}
+\item (1) $\lambda_{ijk}\sigma_{klm} = \alpha_{ijm}$
+\item (2) $\sigma_{ii} = \lambda_i$ 
+\item (3) $c_{ijklmn}\epsilon_{kl}\epsilon_{mn} = q$
+\end{itemize}
+
+\footnotetext{\rotatebox{180}{{\parbox{\linewidth}{(1) the subscript $l$ is missing on the right hand side; (2) the summation on the left ``consumes'' the index $i$, so it cannot be present on the right; (3) the subscripts $i$ and $j$ are only present on the left; they must also be present on the right since there is no summation over them.}}}}
+
+
+\section{Tensors and Coordinate Transformations}\OClabel{tensortrafo}
+
+
+%\section{Tensors and Coordinate Transformations}\OClabel{tensortrafo}
+
+

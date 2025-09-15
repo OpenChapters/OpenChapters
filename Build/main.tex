@@ -1,18 +1,19 @@
 % !TEX TS-program = arara
 % arara: copy: { files: [ '../.git/gitHeadinfo.gin' ],
 % arara: --> target: 'gitHeadLocal.gin' }
-% arara: pdflatex
+% arara: clean: {files: ['main-authors.aux'] }
+% arara: pdflatex: { shell: yes }
 % arara: makeindex: { style: StyleInd.ist,  output: ind, log: ilg, input: idx }
 % arara: mergemainbibfiles
 % arara: biber
-% arara: pdflatex
-% arara: pdflatex
+% arara: pdflatex:  { shell: yes }
+% arara: pdflatex:  { shell: yes }
 % arara: clean: { extensions: [aux, bbl, bcf, blg, idx, ilg, ind, log, ptc]} %, toc] }
 % arara: clean: { files: ['gitHeadLocal.gin', 'main.run.xml'] }
 %
 %
 % ###################################################################
-% Copyright (c) 2017-2018, Editors: A.D. Rollett & M. De Graef
+% Copyright (c) 2017-2025, Editors: A.D. Rollett & M. De Graef
 % All rights reserved.
 %
 % Licensed under the Creative Commons CC BY-NC-SA 4.0 License,
@@ -32,8 +33,9 @@
 % load the OpenChapters.sty package file that loads everything else...
 \usepackage{OpenChapters}
 \usepackage{arara}
-%\usepackage{showlabels}
 \usepackage{csquotes}
+
+\input{preamble.ins}
 
 \addbibresource{OpenChapters.bib} % BibTeX bibliography file
 
@@ -50,15 +52,18 @@
 %\includeonly{src/PropertySymmetry/PropertySymmetry}
 %\includeonly{src/ExampleProperties/ExampleProperties}
 
-
 \begin{document}
 
 \input{matter/Frontmatter}
 
+% Open the authors file here for writing when the document begins,
+% but after the FrontMatter has been completed.
+\immediate\openout\authorfile=\jobname-authors.aux%
+
 % Here are all the parts and chapters
 
 % ###################################################################
-%\part{Foundations}
+%\part{Crystallography}
 % ###################################################################
 %\include{src/Crystallography/Crystallography} % Basic Crystallography
 %\include{src/Symmetry/Symmetry} % Crystallographic Symmetry
@@ -66,19 +71,22 @@
 %\include{src/Misorientations/Misorientations} % Misorientations and Disorientations
 
 % ###################################################################
-\part{Properties of Single Crystal Materials}
+%\part{Properties of Single Crystal Materials}
 % ###################################################################
-\include{src/MaterialProperty/MaterialProperty} % What is a Material Property?
+%\include{src/MaterialProperty/MaterialProperty} % What is a Material Property?
 %\include{src/PropertyTensors/PropertyTensors} % Equilibrium and Transport Property Tensors
 %\include{src/PropertySymmetry/PropertySymmetry} % Properties and Symmetry
 %\include{src/ExampleProperties/ExampleProperties} % Example Anisotropic Material Properties
 
-\part{Background Chapters}
-\include{src/NumberSystems/NumberSystems} % tutorial on number systems
-\include{src/2Drotations/2Drotations} % 2D Rotations
+\part{Foundational Chapters}
+%\include{src/NumberSystems/NumberSystems} % tutorial on number systems
+%\include{src/LinearAlgebra/LinearAlgebra} % Linear Algebra
+%\include{src/Projections/Projections} % Various useful projections
+%\include{src/2Drotations/2Drotations} % 2D Rotations
 %\include{src/3Drotations/3Drotations} % 3D Rotation Representations 
+\include{src/Tensors/Tensors} % Introduction to Tensors 
 
-
+% ###################################################################
 \input{matter/Postmatter}
 
 \end{document}

@@ -273,6 +273,29 @@
 % 2 -> frame colour
 % 3 -> icon description
 % 4 -> title colour
+\newtcolorbox{objectivesbox}[4]{
+  adjusted title=#1,
+  adjusted title after break={\centering #1 (ctd.)},
+  halign title=center,
+  fonttitle=\bfseries\sffamily,
+  enhanced,
+  drop lifted shadow,
+  colback=#2!5,
+  colframe=#2,
+  breakable,
+  overlay={#3{#2}},
+  toptitle=0.2em,
+  bottomtitle=.2em,
+  coltitle=#4,
+  before skip=1em,
+  after skip=1.4em
+}
+
+
+% 1 -> title
+% 2 -> frame colour
+% 3 -> icon description
+% 4 -> title colour
 \newtcolorbox{messagebox}[4]{
   adjusted title=#1,
   adjusted title after break={\centering #1 (ctd.)},

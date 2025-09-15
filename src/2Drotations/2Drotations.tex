@@ -23,30 +23,42 @@
 %     uncomment this line only if this chapter is a core/foundational chapter;
 %     for a core chapter a "Core" label will appear on the top left above the chapter title.
 
-\chapterauthor{Marc De Graef, Carnegie Mellon University}
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University}
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/2Drotations/eps folder and must be of the *.eps type. 
 \renewcommand{\chaptergraphicspath}{../src/2Drotations/eps/}
 
-\chapterimage{2DROTSheader.pdf}
+\renewcommand{\chabbr}{2DROTS}
+
 %     replace \noheaderimage by the chapter header image file name (without .eps extension).
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
-\renewcommand{\chabbr}{2DROTS}
-% ###################################################################
+\chapterimage{2DROTSheader.pdf}
 
-\chapter{2D Rotations\label{chap:2Drotations}}
+\chapter{2D Rotations}\OClabel{2Drotations}
 
-\begin{messagebox}{What you will learn in this chapter}{ocre}{\icinfo}{white}
+% add the author information so that it will appear in the Author List at the start of the document
+\writeauthor{2DROTS:2Drotations}{2D Rotations}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+
+% Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
+% each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
+% second column if LaTeX breaks the line at an awkward location.
+\lightgraybox{\begin{center}
+    {\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]
+\end{center}
+
+{\color{OCalmostblack}\sffamily
+\begin{multicols}{2}
 \begin{itemize}
-	\item 2D rotation matrices (\OCref{rotationmatrices})
-	\item Composition of 2D rotations (\OCref{passiveactive})
-	\item 2D rotations with an arbitrary rotation axis (\OCref{2Dgeneral})
-	\item Complex number arithmetic (\OCref{complex})
-	\item The complex representation of 2D rotations (\OCref{complexrotations})
+    \item[{\color{OCBurntOrange}\OCref{rotationmatrices}:}] Perform 2D passive and active rotations with matrices
+    \item[{\color{OCBurntOrange}\OCref{complex2D}:}] Use complex numbers for 2D rotations
+    \item[{\color{OCBurntOrange}\OCref{2Dcomposition}:}] Combine multiple rotations
+    \item[{\color{OCBurntOrange}\OCref{2Darbitrary}:}] Combine rotations with translations    
 \end{itemize}
-\end{messagebox}
-
+\end{multicols}}}
+% ###################################################################
+% ###################################################################
+% ###################################################################
 
 \section{2D Rotation Matrices}
 \OClabel{rotationmatrices}
@@ -71,7 +83,7 @@ Representing the $2\times 2$ active rotation matrix by $R^a(\omega)$ and the vec
 	r'_i = R^a_{ij}(\omega) r_j.
 \end{equation}
 
-\insertfigure{fig2Drot.pdf}{fig2Drot}{Schematic illustration of (a) an active rotation by an angle $\omega$, and (b) a passive rotation by the same counter-clockwise angle $\omega$.}
+\insertfigure{fig2Drot.eps}{fig2Drot}{Schematic illustration of (a) an active rotation by an angle $\omega$, and (b) a passive rotation by the same counter-clockwise angle $\omega$.}
 
 \subsection{Passive 2D rotations}\OClabel{2Dpassive}
 For a passive rotation, shown in Fig.~\OCref{fig2Drot}(b), we keep the vector $\mathbf{r}$ at a constant orientation in space, and we rotate the reference frame $\mathbf{e}_i$ by a positive angle $\omega$ (i.e., counter-clockwise) to the frame $\mathbf{e}'_i$.  To perform this rotation, we note that the components of the new basis vectors in terms of the old ones can be written in terms of the projections of the new vectors onto the old ones; since these are unit vectors, the projections are simply equivalent to the dot products between the new and old basis vectors, and we have:
@@ -107,7 +119,7 @@ Summarizing, for a counter-clockwise 2D rotation by a positive angle $\omega$, t
 
 
 
-\section{Complex number representation\label{ref:complex2D}}
+\section{Complex number representation\OClabel{complex2D}}
 Before we continue with the consecutive operation of 2D rotations, we will take a moment to discuss the use of complex numbers to represent 2D rotations; we begin with the active rotation discussed above.  We will consider the vector $\mathbf{r}$ to lie in the complex plane so that it can be represented by a complex number $z$; in other words, we consider the $y$ axis to be the imaginary axis.  In that case we have 
 \[
 	z = x+\mathrm{i}y = r(\cos\theta+\mathrm{i}\sin\theta) = r \mathrm{e}^{\mathrm{i}\theta}\ ,
@@ -127,7 +139,7 @@ Rotate the complex number $(1+\mathrm{i})/\sqrt{2}$ by $45^{\circ}$, using both 
 
 For passive rotations, all that is required is to take the complex conjugate of the exponential; i.e., multiplication by $\left(\text{exp}(\mathrm{i}\omega)\right)^{\ast}=\text{exp}(-\mathrm{i}\omega)$ corresponds to a passive rotation of the vector $\mathbf{r}$, as is easily verified.  Note that the transposition operation for rotation matrices is replaced by the conjugation operator for complex numbers when changing from active to passive rotations.  In section~\ref{sec:quaternions} we will extend the complex number formalism to 3D rotations, which will require the introduction of  \textit{quaternions}.\index{quaternions}
 
-\section{Composition of 2D rotations}
+\section{Composition of 2D rotations}\OClabel{2Dcomposition}
 In this section we briefly review the composition or concatenation of 2 or more rotations.  In 2D, this is a trivial exercise, since we can simply add the rotation angles together and perform a single rotation by the sum angle.  However, in anticipation of the 3D rotation case, for which the composition rules are more complicated, we will here treat the composition of 2D rotations explicitly.
 
 We begin with active rotations, and we carry out $R^a(\omega_1)$ first, followed by $R^a(\omega_2)$.  The components of the twice rotated vector $\mathbf{r}''$ are then given by:
@@ -171,6 +183,7 @@ This raises an interesting issue in the context of the complex number representa
 \]	
 Since 3D rotations do not commute in general, the generalization of complex numbers to quaternions will need to incorporate this non-commutative behavior; in section~\ref{sec:quaternions} we will see that the product of two quaternions, each representing a 3D rotation, does not commute.  For active rotations, we write the consecutive rotations from right to left; for passive rotations we reverse the multiplication order.
 
+\section{2D rotations combined with translations}\OClabel{2Darbitrary}
 
 
 

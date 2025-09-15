@@ -23,30 +23,46 @@
 %     uncomment this line only if this chapter is a core/foundational chapter;
 %     for a core chapter a "Core" label will appear on the top left above the chapter title.
 
-\chapterauthor{Marc De Graef, Carnegie Mellon University}
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University}
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/MaterialProperty/eps folder and must be of the *.eps type. 
 \renewcommand{\chaptergraphicspath}{../src/MaterialProperty/eps/}
 
-\chapterimage{MATPRPheader.pdf}
+\renewcommand{\chabbr}{MATPRP}
+
 %     replace \noheaderimage by the chapter header image file name (without .eps extension).
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
-\renewcommand{\chabbr}{MATPRP}
+\chapterimage{MATPRPheader.pdf}
+
+\chapter{What is a Material Property?}\OClabel{MaterialProperty}
+
+% add the author information so that it will appear in the Author List at the start of the document
+\writeauthor{MATPRP:MaterialProperty}{What is a Material Property?}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+
+% Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
+% each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
+% second column if LaTeX breaks the line at an awkward location.
+\lightgraybox{\begin{center}
+    {\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]
+\end{center}
+
+{\color{OCalmostblack}\sffamily
+\begin{multicols}{2}
+\begin{itemize}
+    \item[{\color{OCBurntOrange}\OCref{intro}:}] Learn about the Materials Tetrahedron
+    \item[{\color{OCBurntOrange}\OCref{matprop}:}] Formally define what a material property is
+    \item[{\color{OCBurntOrange}\OCref{tensorproperties}:}] Introduce many property tensors
+%    \item[{\color{OCBurntOrange}\OCref{algebras}:}] Learn about Normed Division Algebras
+%    \item[{\color{OCBurntOrange}\OCref{othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+\end{itemize}
+\end{multicols}}}
+% ###################################################################
+% ###################################################################
 % ###################################################################
 
-\chapter{What is a Material Property?\OClabel{MaterialProperty}}
 
-\begin{messagebox}{What you will learn in this chapter}{ocre}{\icinfo}{white}
-\begin{itemize}
-	\item A formal definition of a material property (\OCref{matprop})
-	\item The mechanics of coordinate transformations (\ref{sec:transformations1})
-	\item A formal definition of tensors (\ref{sec:tensors})
-	\item Important material property tensors (\ref{sec:materialtensors})
-\end{itemize}
-\end{messagebox}
-
-\section{Introductory Remarks}
+\section{Introductory Remarks}\OClabel{intro}
 
 \begin{floatingfigure}[r]{3.2in}
 \centering
@@ -107,7 +123,7 @@ Processing describes not only how we make a material (e.g., by solidification fr
 	\item \textit{Polymers}: 
 \end{itemize}
 
-% and it is the primary way we control microstructure. Every processing step, whether heating, cooling, deforming, or applying energy‚ affects the arrangement of atoms and the evolution of microstructure. In metals, solidification from the melt establishes the initial grain structure; plastic deformation by rolling or forging introduces dislocations; subsequent heat treatments can reorganize those dislocations and change phases.
+% and it is the primary way we control microstructure. Every processing step, whether heating, cooling, deforming, or applying energy√¢ affects the arrangement of atoms and the evolution of microstructure. In metals, solidification from the melt establishes the initial grain structure; plastic deformation by rolling or forging introduces dislocations; subsequent heat treatments can reorganize those dislocations and change phases.
 
 %Processing is not limited to traditional metallurgy. In ceramics, careful control of sintering temperature and atmosphere determines porosity and grain growth. In polymers, extrusion and drawing can align chains and improve strength. In electronic materials, epitaxial growth techniques deposit atomically precise thin films. More recently, additive manufacturing methods, such as laser powder bed fusion, are offering unprecedented control by  printing parts layer by layer. A key teaching point is that processing is a lever: by changing it, we can intentionally engineer microstructures, and therefore tune material properties.
 
@@ -122,10 +138,9 @@ Performance thus integrates not just the intrinsic properties of the material bu
 In teaching, performance is often presented as the closing loop of the MSE framework. Microstructure is tailored by processing, which defines properties, which then dictate performance. This cycle emphasizes that materials are not just studied for their own sake but for their essential role in enabling technologies jet engines, medical implants, solar cells, bridges, and countless others.
 
 
-\section{Definition of a Material Property}
-\OClabel{matprop}
+\section{Definition of a Material Property}\OClabel{matprop}
 
-\begin{messagebox}{Important Section}{ocre}{\icattention}{black}
+\begin{messagebox}{{\sffamily\bfseries Important Section}}{ocre}{\icattention}{OCwhite}
 In this section you will learn a formal definition of what a material property is.  Later on in this chapter we will introduce many examples.
 \end{messagebox}
 
