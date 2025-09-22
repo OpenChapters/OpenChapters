@@ -3,12 +3,12 @@
 % arara: --> target: 'gitHeadLocal.gin' }
 % arara: clean: {files: ['main-authors.aux'] }
 % arara: pdflatex: { shell: yes }
-% arara: makeindex: { style: StyleInd.ist,  output: ind, log: ilg, input: idx }
+% arara: makeindex: { style: StyleInd.ist, output: ind, log: ilg, input: idx }
 % arara: mergemainbibfiles
 % arara: biber
-% arara: pdflatex:  { shell: yes }
-% arara: pdflatex:  { shell: yes }
-% arara: clean: { extensions: [aux, bbl, bcf, blg, idx, ilg, ind, log, ptc]} %, toc] }
+% arara: pdflatex: { shell: yes }
+% arara: pdflatex: { shell: yes }
+% arara: clean: { extensions: [aux, bbl, bcf, blg, idx, ilg, ind, log, ptc, toc]}
 % arara: clean: { files: ['gitHeadLocal.gin', 'main.run.xml'] }
 %
 %
@@ -28,16 +28,17 @@
 % language governing permissions and limitations under the License.
 % ###################################################################
 
-\documentclass[11pt,fleqn,A4paper]{book} % Default font size and left-justified equations
+% Default font size and left-justified equations
+\documentclass[11pt,fleqn,A4paper]{book} 
 
 % load the OpenChapters.sty package file that loads everything else...
 \usepackage{OpenChapters}
-\usepackage{arara}
-\usepackage{csquotes}
 
+% user-defined commands
 \input{preamble.ins}
 
-\addbibresource{OpenChapters.bib} % BibTeX bibliography file
+% BibTeX bibliography file
+\addbibresource{OpenChapters.bib} 
 
 % uncomment the chapter you wish to typeset from the list below; to typeset the
 % entire text, leave all lines commented
@@ -79,14 +80,16 @@
 %\include{src/ExampleProperties/ExampleProperties} % Example Anisotropic Material Properties
 
 \part{Foundational Chapters}
-\include{src/NumberSystems/NumberSystems} % tutorial on number systems
+%\include{src/NumberSystems/NumberSystems} % tutorial on number systems
 %\include{src/LinearAlgebra/LinearAlgebra} % Linear Algebra
-%\include{src/Projections/Projections} % Various useful projections
-%\include{src/2Drotations/2Drotations} % 2D Rotations
+\include{src/Projections/Projections} % Various useful projections
+\include{src/2Drotations/2Drotations} % 2D Rotations
 %\include{src/3Drotations/3Drotations} % 3D Rotation Representations 
 %\include{src/Tensors/Tensors} % Introduction to Tensors 
 
 % ###################################################################
 \input{matter/Postmatter}
+
+
 
 \end{document}

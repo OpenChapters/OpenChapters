@@ -44,20 +44,23 @@
 % Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
 % each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
 % second column if LaTeX breaks the line at an awkward location.
-\lightgraybox{\begin{center}
-    {\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]
-\end{center}
-
-{\color{OCalmostblack}\sffamily
-\begin{multicols}{2}
-\begin{itemize}
+%\lightgraybox{\begin{center}
+%    {\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]
+%\end{center}
+%
+%{\color{OCalmostblack}\sffamily
+%\begin{multicols}{2}
+\begin{learningobjectives}
+{\begin{itemize}
     \item[{\color{OCBurntOrange}\OCref{matrices}:}] Learn about matrices and linear equations
     \item[{\color{OCBurntOrange}\OCref{matrixproperties}:}] Define general matrix terminology
     \item[{\color{OCBurntOrange}\OCref{determinant}:}] Learn how to compute a determinant
     \item[{\color{OCBurntOrange}\OCref{inverse}:}] Define the inverse of a matrix
+    \item[{\color{OCBurntOrange}\OCref{GaussianElim}:}] Describe how Gaussian Elimination works
     \item[{\color{OCBurntOrange}\OCref{eigen}:}] Learn about eigenvectors and eigenvalues
-\end{itemize}
-\end{multicols}}}
+\end{itemize}}
+\end{learningobjectives}
+%\end{multicols}}}
 % ###################################################################
 % ###################################################################
 % ###################################################################
@@ -262,7 +265,7 @@ The resulting number is known as the \textit{determinant} of the matrix.  It \te
 of equations has a solution.  If the determinant is equal to zero, then the system of equations does not have a solution;  if
 the determinant is different from zero, then the solution exists and is given by the equations above.
 
-The determinant of a matrix $\mathcal{A}$ will, in this course, be denoted by $\det\vert\mathcal{A}\vert$.  The easiest way to
+The determinant of a matrix $\mathcal{A}$ will be denoted by $\det\vert\mathcal{A}\vert$.  The easiest way to
 remember the determinant for a $2\times 2$ matrix is as follows~:  
 \begin{equation}
 \detertwo{a}{b}{c}{d}=ad-bc
@@ -318,10 +321,10 @@ Since the cofactors are $2\times 2$ determinants, we can write
 Expanding the determinant along any other row or column results in the same expression.  As a rule of thumb one should select the row or 
 column which contains the most zero's (if any).  
 
-Example (expansion along the first row)~:
+Example (expansion along the second row)~:
 \begin{align}
-\deterthree{-1}{2}{1}{1}{0}{3}{4}{6}{7}&=(-1)\detertwo{0}{3}{6}{7}+(2)\left(-\detertwo{1}{3}{4}{7}\right)+(1)\detertwo{1}{0}{4}{6}\nonumber\\
-&=(-1)(-18)+(2)(5)+(1)(6)=34\nonumber
+\deterthree{-1}{2}{1}{1}{0}{3}{4}{6}{7}&=(-1)\detertwo{2}{1}{6}{7}-(3)\detertwo{-1}{2}{4}{6}\nonumber\\
+&=(-1)(8)+(-3)(-14)=34\nonumber
 \end{align}
 
 As an exercise, compute the determinant of the following matrix (Answer=7)~:
@@ -401,23 +404,136 @@ found by multiplying the inverse of $\mathcal{A}$ with the right hand side vecto
 \columnthree{x}{y}{z}=\matrixtbt{0}{2}{-1}{-1}{-1}{1}{1}{-2}{1}\columnthree{2}{5}{9}=\columnthree{1}{2}{1}
 \]
 
-The inverse of higher order matrices can be computed in the same way, although it is a bit more complicated.
+\noindent The inverse of higher order matrices can be computed in the same way, although it is a bit more complicated.
+
+
+\section{Solving Systems of Equations by Gaussian Elimination}\OClabel{GaussianElim}
+
+
+
+
 
 
 \section{Eigenvalues and Eigenvectors}\OClabel{eigen}
+Many scientific computations involving matrices require that the matrix be \indexit{diagonalized}, i.e., transformed into a new matrix that only has entries along the diagonal.  This can be accomplished by determining the \indexit{eigenvalues} and \indexit{eigenvectors}\footnote{The word \textit{eigen} has German roots and means ``own'' (as an adjective) or ``characteristic''.} of the matrix.  In this brief writeup, we will not go into the details of the underlying algebraic theory; we will just present an example based on a simple $2\times 2$ matrix with integer entries. For a more general description we refer the interested reader to the many on-line resources for linear algebra, in particular the excellent Linear Algebra YouTube playlist by {\color{OCblue}\href{https://www.3blue1brown.com/topics/linear-algebra}{3blue1brown}}.
 
-{\color{red}to be written !!}
+Consider the $2\times 2$ matrix $A$ with coefficients:
+\[
+	A = \matrixtwo{8}{-2}{15}{-3}\ .
+\]
+We are tasked with finding a general expression for the $n$-th power of this matrix (with $n$ arbitrary and potentially large); i.e., we need the result of multiplying this matrix with itself $n-1$ times. There is a theorem in linear algebra that states that under certain conditions, there exists a matrix $P$, such that the following product will produce a diagonal matrix:
+\begin{equation}
+	P^{-1}\,A\,P = \matrixtwo{\lambda_1}{0}{0}{\lambda_2} \equiv \Lambda\ ,\OClabel{PiAP}
+\end{equation}
+where $\lambda_i$ are the eigenvalues of the matrix $A$ and $\Lambda$ is the diagonal matrix that contains them.  The columns of the matrix $P$ are the two eigenvectors corresponding to those eigenvalues.  An eigenvalue-eigenvector pair of the matrix $A$ satisfies the relation:
+\begin{equation}
+	A\,\mathbf{v}_i = \lambda_i\, \mathbf{v}_i\ ;\OClabel{eigenequation}
+\end{equation}
+in other words, operation of the matrix $A$ on one of its eigenvectors returns a multiple of that eigenvector.  The reason why we are interested in eigenvalues and eigenvectors is the fact that equation~(\OCref{PiAP}) can be inverted to read:
+\[
+	A = P\, \Lambda\, P^{-1}\ .
+\]
+Let's compute a few powers of $A$:
+\[
+\begin{split}
+	A^2 &= P\, \Lambda\, P^{-1}\,P\, \Lambda\, P^{-1} = P\, \Lambda^2\, P^{-1};\\
+	A^3 &= P\, \Lambda\, P^{-1}\,P\, \Lambda\, P^{-1}\,P\, \Lambda\, P^{-1} = P\, \Lambda^3\, P^{-1};\\
+	A^4 &= P\, \Lambda\, P^{-1}\,P\, \Lambda\,  P^{-1}\,P\, \Lambda\, P^{-1}\,P\, \Lambda\,P^{-1} = P\, \Lambda^4\, P^{-1}\ ,
+\end{split}
+\]
+and so on.  The products $P^{-1}\,P$ vanish because they are equal to the identity matrix.  It is then trivial to compute the powers of a diagonal matrix so we have
+\[
+	\Lambda^n =  \matrixtwo{\lambda^n_1}{0}{0}{\lambda^n_2} 
+\]
+and thus we have solved our original problem:
+\[
+	A^n = P\, \Lambda^n\,P^{-1}\ .
+\]
+We just need the eigenvalues $\lambda_i$ and eigenvectors $\mathbf{v}_i$.
 
+\subsection{The characteristic equation of a square matrix}
+The eigenvalues of a square matrix can be determined as the roots of its characteristic equation; this equation is obtained by the following expression:
+\begin{equation}
+	\det\left\vert A - x\,I\right\vert = 0\ ,\OClabel{characteristic}
+\end{equation}
+where $I$ represents the identity matrix.  For an $n\times n$ matrix, this determinant will expand into a order $n$ polynomial equation in $x$. In our example case we have:
+\[
+	\det\left\vert \matrixtwo{8-x}{-10}{3}{-3-x} \right\vert = x^2-5x+6 = 0\ .
+\]
+The roots are readily found by inspection:
+\[
+	x^2-5x+6 = (x-3)(x-2) = 0
+\]
+so the eigenvalues are $\lambda_1=3$ and $\lambda_2=2$, leading to the following expression:
+\[
+	\Lambda = \matrixtwo{3}{0}{0}{2}.
+\]
 
+\subsection{Determination of the eigenvectors}
+Next we need to solve for the eigenvectors that make up the columns of the $P$ matrix.  From equation~(\OCref{eigenequation}) we have:
+\[
+	(A-\lambda_i\, I)\,\mathbf{v}_i = \columntwo{0}{0}\ .
+\] 
+To solve this equation, we need to look for the \indexit{null space} of the matrix $(A-\lambda_i\, I)$ for each of the eigenvalues.  The null space of a matrix $B$ is the set  of vectors $x$ for which the product $B\,x$ equals the null vector.  To find the null space we first form the so-called \indexit{augmented matrix}, $M$, which means that we bring the right hand side vector into the array, but separated by a solid vertical line. For the first eigenvalue $\lambda_1=3$ we have
+\[
+	M_1 = \left(\begin{array}{ccc}
+	5 &-2 & \vert\,\, 0\\ 
+	15& -6 & \vert\,\, 0 \end{array}\right)\ .
+\]
+and for the second eigenvalue:
+\[
+	M_2 = \left(\begin{array}{ccc}
+	6 &-2 & \vert\,\, 0\\ 
+	15& -5 & \vert\,\, 0 \end{array}\right)\ .
+\]
+Then we perform Gaussian elimination or row reduction on each matrix. For $M_1$ we begin by multiplying row 1 by $3$ and subtracting row 1 from row 2:
+\[
+	\left(\begin{array}{ccc}
+	15 & -6 & \vert\,\, 0\\ 
+	15 & -6 & \vert\,\, 0 \end{array}\right)	\rightarrow 
+	\left(\begin{array}{ccc}
+	15 & -6 & \vert\,\, 0\\ 
+	0 &  0 & \vert\,\, 0 \end{array}\right)\ .
+\]
+Note that the numbers to the right of the vertical bars do not change at all, since they started as zero. Returning to the standard matrix equation form by have:
+\[
+	\left(\begin{array}{cc}
+	15 & -6 \\ 
+	0 &  0  \end{array}\right) \columntwo{x}{y} = \columntwo{0}{0}
+\]
+which results in the single equation $15x-6y=0$ or $2y=5x$.  We have a single free parameter $x$, so we might as well put it equal to $x=2$ so that $y=5$.   The first eigenvector $\mathbf{v}_1$ therefore has components $(2,5)$.
 
+Repeating this process for $M_2$ by multiplying the first row by $5$ and the second row by $2$, then subtracting the first row from the second row results in
+\[
+	\left(\begin{array}{ccc}
+	30 & -10 & \vert\,\, 0\\ 
+	30& -10 & \vert\,\, 0 \end{array}\right) \rightarrow\left(\begin{array}{ccc}
+	30 & -10 & \vert\,\, 0\\ 
+	0& 0 & \vert\,\, 0 \end{array}\right) \ .
+\]
+which leads to the equation $30x-10y=0$ or $y=3x$; setting $x=1$ we have $y=3$ so that the second eigenvector has components $(1,3)$.  Putting them together into the eigenvector matrix $P$ we have:
+\[
+	P = \matrixtwo{2}{1}{5}{3}\ .
+\]
+The inverse of this matrix is given by:
+\[
+	P^{-1} = \matrixtwo{3}{-1}{-5}{2}\ .
+\]
+Next we can put everything together to compute the $n$-th power of the original matrix $A$ as:
+\[
+	A^n = P\, \Lambda^n\,P^{-1} = \left(
+\begin{array}{cc}
+ 2\times 3^{n+1}-5\times 2^n & 2 \left(2^n-3^n\right) \\
+ -15 \left(2^n-3^n\right) & 3\times 2^{n+1}-5\times 3^n \\
+\end{array}
+\right)\ .
+\]
+For $n=7$, for instance, we have:
+\[
+	A^7 = \matrixtwo{12,482}{-4,118}{30,885}{-10,167}\ .
+\]
 
-
-
-
-
-
-
-
+Concluding remarks: In this section, we have only demonstrated the computation of eigenvalues and eigenvectors by means of a simple $2\times 2$ matrix example. There is a significant theoretical machinery that underlies the concept of eigenvalues and eigenvectors, and the interested reader is encouraged to learn more about both the theory and practical applications.
 
 
 

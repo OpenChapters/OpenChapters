@@ -58,6 +58,13 @@
   ] #1 \end{tcolorbox}%
 }
 
+\newenvironment{learningobjectives}[1]{%
+\lightgraybox{\begin{center}{\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]\end{center}%
+%
+{\color{OCalmostblack}\small\sffamily\hyphenpenalty=10000%
+\begin{multicols}{2}#1\end{multicols}\hyphenpenalty=50}}}{}
+
+
 
 % \listfiles
 

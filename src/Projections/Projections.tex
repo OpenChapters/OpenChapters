@@ -43,20 +43,15 @@
 % Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
 % each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
 % second column if LaTeX breaks the line at an awkward location.
-\lightgraybox{\begin{center}
-    {\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]
-\end{center}
-
-{\color{OCalmostblack}\sffamily
-\begin{multicols}{2}
-\begin{itemize}
+\begin{learningobjectives}
+{\begin{itemize}
     \item[{\color{OCBurntOrange}\OCref{intro}:}] Read about hyperspheres and hyperballs
     \item[{\color{OCBurntOrange}\OCref{stereoproj}:}] Learn about the stereographic projection
     \item[{\color{OCBurntOrange}\OCref{lambertproj}:}] Explain the Lambert projection
     \item[{\color{OCBurntOrange}\OCref{gnomonicproj}:}] Define the gnomonic projection
     \item[{\color{OCBurntOrange}\OCref{otherprojections}:}] Learn about other useful projections
-\end{itemize}
-\end{multicols}}}
+\end{itemize}}
+\end{learningobjectives}
 % ###################################################################
 % ###################################################################
 % ###################################################################
@@ -67,21 +62,21 @@
 
 This chapter contains several sections about important projections frequently used in various aspects of materials science and engineering.  A \indexit{projection} in the context of this chapter is a mathematical tool that takes an object in an $n$-D space and reduces it to an $(n-1)$-D representation; in this process, some characteristics of the original $n$-D object are conserved, others are removed or, at the very least, distorted.  Many of the best known projection (or mapping) techniques were developed in the area of cartography, i.e., to project 3-D data residing on a sphere onto a planar representation; those projection techniques include, but are not limited to, the \textit{Aitoff, Albers, Azimuthal, Conic, Cylindrical, {\color{OCHighlandsSkyBlue}Gnomonic}, Hammer, {\color{OCHighlandsSkyBlue}Lambert}, Mercator, Miller-cylindrical, Mollweide, Orthographic, Robinson, Satellite, Sinusoidal, {\color{OCHighlandsSkyBlue}Stereographic},} and \textit{Transverse-Mercator} projections.  In this chapter, we will define and provide examples of the projections highlighted in blue, since those projection methods have considerable use in the fields of crystallography and materials characterization.  For a more complete and in-depth descriptions of cartographic projections we refer the interested reader to \cite{xxx}.
 
-Before we define these projections in detail, it will be useful to define a few concepts and objects.  We begin with the $n$-sphere\index{n-sphere} in an $(n+1)$-D space as the set of points $\mathbf{x}$ at a distance $r$ from the origin:
+Before we define these projections in detail, it will be useful to define a few concepts and objects.  We begin with the $n$-sphere\index{n-sphere} in an $(n+1)$-D space as the set of points $\mathbf{x}$ at a distance $R$ from the origin:
 \begin{equation}
-	\mathbb{S}^n_r = \left\{ \mathbf{x}\in\mathbb{R}^{n+1} \text{ for which } \vert\vert\mathbf{x}\vert\vert = r\right\};
+	\mathbb{S}^n_R = \left\{ \mathbf{x}\in\mathbb{R}^{n+1} \text{ for which } \vert\vert\mathbf{x}\vert\vert = R\right\};
 \end{equation}
-in other words, the $n$-sphere $\mathbb{S}^n_r$ consists of all the $n+1$ dimensional points $\mathbf{x}$ that lie at a distance $r$ from the origin.  Note that such a sphere has an infinitesimal thickness.  The $n$-ball, $\mathbb{B}^n_r$ is defined as the collection of points in an $n$-D space that lie at the most a distance $r$ from the origin, or:
+in other words, the $n$-sphere $\mathbb{S}^n_r$ consists of all the $n+1$ dimensional points $\mathbf{x}$ that lie at a distance $r$ from the origin.  Note that such a sphere has an infinitesimal thickness.  The $n$-ball, $\mathbb{B}^n_R$ is defined as the collection of points in an $n$-D space that lie at the most a distance $R$ from the origin, or:
 \begin{equation}
-	\mathbb{B}^n_r = \left\{ \mathbf{x}\in\mathbb{R}^{n} \text{ for which } \vert\vert\mathbf{x}\vert\vert \le r\right\}.
+	\mathbb{B}^n_R = \left\{ \mathbf{x}\in\mathbb{R}^{n} \text{ for which } \vert\vert\mathbf{x}\vert\vert \le R\right\}.
 \end{equation}
-It is easy to see that the $2$-sphere, $\mathbb{S}^2_r$, represents the surface of the $3$-ball $\mathbb{B}^3_r$.  In most cases we will consider unit radius spheres and unit radius balls, in which case the subscript $r$ will be omitted.  If the inequality in the definition of the ball is a strict inequality $(\vert\vert\mathbf{x}\vert\vert$ < $r)$, then the ball is said to be \textit{open}; if the ball includes the sphere $\mathbb{S}^{n-1}_r$, then the ball is \textit{closed}.
+It is easy to see that the $2$-sphere, $\mathbb{S}^2_R$, represents the surface of the $3$-ball $\mathbb{B}^3_R$.  In many cases we will consider unit radius spheres and unit radius balls, in which case the subscript $R$ will be omitted.  If the inequality in the definition of the ball is a strict inequality $(\vert\vert\mathbf{x}\vert\vert$ < $R)$, then the ball is said to be \textit{open}; if the ball includes the sphere $\mathbb{S}^{n-1}_R$, then the ball is \textit{closed}.
 
 \begin{table}[t]
 \leavevmode\centering
 \begin{tabular}{|l|c|c|}
 \hline
-$n$ & $A(\mathbb{S}^n)$ & $V(\mathbb{B}^n)$ \\
+$n$ & $A(\mathbb{S}^n_R)/R^2$ & $V(\mathbb{B}^n_R)/R^3$ \\
 \hline\hline
 $0$ & $2$ & $1$ \\ 
 $1$ & $2\pi$ & $2$ \\
@@ -95,28 +90,116 @@ $\vdots$ & $\vdots$ & $\vdots$\\
 \caption{\OClabel{tb:hyper}Surface areas and volumes for the first six hyperspheres and hyperballs of unit radius.}
 \end{table}
 
-For $n\ge 2$, the $n$-sphere is generally known as a \indexit{hypersphere} and the $n$-ball as a \indexit{hyperball}.  Both have been the subject of extensive mathematical studies and much is known about higher-dimensional hyperspheres and hyperballs (short of being able to visualize them).  Among the most important results are the expressions for the surface area of the unit hypersphere and the volume of the unit hyperball.  The general expressions are:
+\insertfigure{hyperspheres.eps}{fig:hyperspheres}{Illustration of the three balls, $\mathbb{B}^1$,  $\mathbb{B}^2$,  and $\mathbb{B}^3$ along with the bounding spheres $\mathbb{S}^1$, $\mathbb{S}^2$, and $\mathbb{S}^3$.} 
+
+For $n>2$, the $n$-sphere is generally known as a \indexit{hypersphere} and the $n$-ball (for $n>3$) as a \indexit{hyperball}.  Both have been the subject of extensive mathematical studies and much is known about higher-dimensional hyperspheres and hyperballs (short of being able to visualize them).  Among the most important results are the expressions for the surface area of the unit hypersphere and the volume of the unit hyperball.  The general expressions are:
 \begin{equation}
-	\textit{area: }A(\mathbb{S}^n) = \frac{2\pi^{\frac{n+1}{2}}}{\Gamma[\frac{n+1}{2}]},
+	\textit{area: }\frac{A(\mathbb{S}^n_R)}{R^2} = \frac{2\pi^{\frac{n+1}{2}}}{\Gamma[\frac{n+1}{2}]},
 \end{equation}
 where $\Gamma[x]$ is the \indexit{Gamma function}, an extension of the factorials to complex numbers.  For integer arguments we have $\Gamma[n]=(n-1)!$ or $n!=n\Gamma[n]$.  For the volume of the unit hyperball we have a similar expression:
 \begin{equation}
-	\textit{volume: }V(\mathbb{B}^n) = \frac{\pi^{\frac{n}{2}}}{\Gamma[\frac{n}{2}+1]}.
+	\textit{volume: }\frac{V(\mathbb{B}^n_R)}{R^3} = \frac{\pi^{\frac{n}{2}}}{\Gamma[\frac{n}{2}+1]}.
 \end{equation}
-Values for $n=0\ldots 5$ are listed in Table~\OCref{tb:hyper}.  The surface area of the hypersphere reaches a maximum of $16\pi^3/15$ for $n=7$, and the volume reaches a maximum of $8\pi^2/15$ for $n=5$; both volume and surface area tend to zero when $n$ goes to infinity.
+Values for $n=0\ldots 5$ are listed in Table~\OCref{tb:hyper}.  The surface area of the unit hypersphere reaches a maximum of $16\pi^3/15$ for $n=7$, and the volume reaches a maximum of $8\pi^2/15$ for $n=5$; both volume and surface area tend to zero when $n$ goes to infinity.
 
-\insertfigure{hyperspheres.eps}{fig:hyperspheres}{Illustration of the the three balls, $\mathbb{B}^1$,  $\mathbb{B}^2$,  and $\mathbb{B}^3$ along with the bounding spheres $\mathbb{S}^1$, $\mathbb{S}^2$, and $\mathbb{S}^3$,} 
-
-The (hyper)spheres and (hyper)balls that can be visualized are shown schematically in Fig.~\OCref{fig:hyperspheres}.  Note that the surface mesh actually represents the complete hypersphere $\mathbb{S}^2$; the mesh is used so that the ball $\mathbb{B}^3$ becomes visible inside the surface. The $0$-sphere consists simply of two isolated points on the 1-D line, at unit distance from the origin; the ball $\mathbb{B}^1$ is represented by the line segment in between the two red points.
+The (hyper)spheres and (hyper)balls that can be visualized are shown schematically in Fig.~\OCref{fig:hyperspheres}.  Note that the surface mesh actually represents the complete hypersphere $\mathbb{S}^2$; the mesh is used so that the ball $\mathbb{B}^3$ becomes visible inside the surface. The $0$-sphere $\mathbb{S}^0$ consists simply of two isolated points on the 1-D line, at unit distance from the origin; the ball $\mathbb{B}^1$ is represented by the line segment in between the two red points.
 
 
 \section{Stereographic Projection}
 \OClabel{stereoproj}
 
+The most commonly used \indexit{stereographic projection} is a projection onto the equatorial plane of features distributed on the surface of the 2-sphere $\mathbb{S}^2_R$. From a geometrical point of view, the stereographic projection (SP) is easy to explain: for a given point on the surface of the sphere (we'll work in the upper or Northern hemisphere for now) we connect the point to the South pole and where the connection line intersects the equatorial plane we find the SP of that point.  Any surface feature on the sphere can be mapped this way; in the materials field, we often represent crystal shapes by stereographic projections.  An example is shown in Fig.~\OCref{fig:SP}: in (a) a cube is randomly oriented with its center at the origin. The surface normals $\mathbf{a}$, $\mathbf{b}$ and $\mathbf{c}$ intersect the sphere in the red points. Connecting each to the South pole we find the orange points in the equatorial plane. Switching to a 2D view normal to the equatorial plane in (b) we find the SP of the three face normals.
 
+\insertfigureh{SP.eps}{fig:SP}{(a) schematic illustration of the determination of the stereographic projections of the normals to the faces of a randomly oriented cube; (b) resulting stereographic projection of (a).} 
+
+\subsection{Transformation Relations}\OClabel{SPmath}
+If we complete the reference frame in Fig.~\OCref{fig:SP}(b) to have a $z$ axis perpendicular to the plane of the drawing pointing towards the reader, then we can readily determine the transformation relations from a point $(x,y,z)$ on the sphere to coordinates $(X,Y)$ in the equatorial plane.  Fig.~\OCref{fig:SP2}(a) shows the end-point of the vector $\mathbf{p}$ in the $x$--$z$ plane on the surface of the sphere; the point has coordinates $(x,0,z)$ with $x^2+z^2=R^2$ and the green arrow makes an angle $\theta$ with respect to the $z$ axis.  It is a well known property of a circle that the angle of the connection line from the South pole to the point $P$ is equal to $\theta/2$, so that the SP lies at a distance $R\tan(\theta/2)$ from the origin and has coordinates $(R\tan(\theta/2),0)$.  For the general case shown in  Fig.~\OCref{fig:SP2}(b), there is a second angle, $\varphi$, measured counterclockwise  from the $x$ axis to the projection of the vector $\mathbf{p}$ onto the equatorial plane. We can then express the coordinates of the projection point in polar coordinates as:
+\begin{equation}
+	(\rho,\varphi) = (R\tan(\theta/2),\varphi)\ .
+\end{equation}
+Alternatively, we can avoid angles and trigonometric functions completely by noting from Fig.~\OCref{fig:SP2}(a) that there are two similar triangles so the following ratios must be equal:
+\[
+	\frac{X}{R} = \frac{x}{R+z}\ ,
+\]
+since the sphere has radius $R$. This immediately leads to the following relation for the general case:
+\begin{equation}
+	(X,Y) = \left(\frac{Rx}{R+z},\frac{Ry}{R+z}\right)\ .\OClabel{eq:SP}
+\end{equation}
+
+\insertfigurew{SP2.eps}{fig:SP2}{Figure used for the derivation of the SP transformation expressions for (a) a point in the $(x,0,z)$ plane and (b) a general point $(x,y,z)$.}{\textwidth} 
+
+\noindent If the $z$ component of the vector $\mathbf{p}$ is negative, then we replace equation~(\OCref{eq:SP}) by:
+\begin{equation}
+	(X,Y) = \left(\frac{Rx}{R+\vert z\vert},\frac{Ry}{R+\vert z\vert}\right)\ ,\OClabel{eq:SPalt}
+\end{equation}
+and we represent the point by an open circle instead of a filled circle.  Finally, if the vector lies in the equatorial plane, then $(X,Y)=(x,y)$.
+
+The inverse mapping, from the equatorial plane to the sphere surface, can be performed using the following equation:
+\begin{equation}
+	(x,y,z) = \left( \frac{2R^2X}{R^2+X^2+Y^2}, \frac{2R^2Y}{R^2+X^2+Y^2}, R\frac{R^2-X^2-Y^2}{R^2+X^2+Y^2}\right)\ .\OClabel{eq:SPinv}
+\end{equation}
+
+
+\subsection{Properties of the Stereographic Projection}\OClabel{SPprops}
+
+The most important property of the stereographic projection can be  stated in two equivalent ways:
+\begin{itemize}
+	\item the stereographic projection is an equal-angle\index{equal-angle projection} or angle preserving\index{angle preserving projection} projection;
+	\item  the stereographic projection maps circles on the sphere onto circles in the equatorial plane.
+\end{itemize}
+In mathematics, a projection with this property is known as a \indexit{conformal mapping}.  Fig.~\OCref{fig:SP3}(a) illustrates the mapping of a great circle inclined with respect to the equatorial plane and containing the $x$ axis; the projected points form an arc of a circle through the points $(R,0)$ and $(-R,0)$; this circle can be completed by also mapping the points that lie in the Southern hemisphere. For a tilt angle of $\theta$ degrees above the equatorial plane, the points $(0,R\cos\theta,R\sin\theta)$ and its opposite $(0,-R\cos\theta,-R\sin\theta)$ will be mapped to (projecting both from the South pole):
+\[
+	(0,R\cos\theta,R\sin\theta)\rightarrow \left(0, \frac{R\cos\theta}{1+\sin\theta}\right)\text{ and }(0,-R\cos\theta,-R\sin\theta)\rightarrow \left(0, \frac{-R\cos\theta}{1-\sin\theta}\right)\ ,
+\]
+and the center of the projected circle lies halfway between these points on the $y$ axis leading to a circle radius of $R\sec\theta$.  The equation of the projected circle then becomes:
+\[
+	x^2+\left(y+\frac{R\cos\theta}{1-\sin\theta}-R\sec\theta\right)^2  = R^2\sec^2\theta\ .
+\]
+
+\insertfigurew{SP3.eps}{fig:SP3}{(a) Projection of a great circle at an angle to the equatorial plane; (b) projection of the intersection of a plane perpendicular to the $x$ axis and intersecting the sphere; (c) Wulff net.}{\textwidth} 
+
+A second set of circles can be obtained from the intersection of a series of planes perpendicular to the $x$ axis with the sphere, as shown in Fig.~\OCref{fig:SP3}(b). The plane at a distance $x_0$ from the $x=0$ plane contains the intersection circle of radius $r=R\cos\phi$, parameterized as the set of points $(x_0,r\cos\alpha,r\sin\alpha)$ with $\alpha\in[0,2\pi]$ and $x_0=R\sin\phi$.  The center of the projected circle can be found from the mid-point between the projections for $\alpha=\pi/2$ and $\alpha=-\pi/2$ or $(x_0,0,\pm r)$:
+\[
+	(x_0,0,r)\rightarrow\left(R\tan\frac{\phi}{2},0\right)\text{ and }(x_0,0,-r)\rightarrow\left(R\cot\frac{\phi}{2},0\right)\ ;
+\]
+the average of the two $X$ coordinates is $R\csc\phi$.  For $x_0$ approaching $R$, the center of the circle will coincide with the point $(R,0)$; for $x_0\rightarrow 0$, the radius of the circle approaches infinity and in the limit this represents the center line of the projection along the $y$ axis. The equation for this set of circles is then given by:
+\[
+	(x-R\csc\phi)^2+y^2 = R^2(\tan\frac{\phi}{2}-\csc\phi)^2\ .
+\]
+Combining the two sets of circles, i.e., the projections of great circles and those of a series of planes normal to the $x$ axis, produces the so-called \indexit{Wulff net} shown in Fig.~\OCref{fig:SP3}(c); the angular distance between consecutive circles is $10^{\circ}$ and the range of both angles $\theta$ and $\phi$ is $[-90^{\circ},90^{\circ}]$.  Note that the arc segments outside of the equatorial circle (depicted in light green) correspond to projections of circle segments in the Southern hemisphere. Note also that at any intersection point of two circles, the two circles are perpendicular to each other; this is a characteristic of a \indexit{conformal mapping}.
+
+\newpage
+
+\begin{floatingfigure}[r]{3.2in}
+\centering
+{\includegraphics[width=3.0in]{SPcircle.eps}}
+{\caption{\OClabel{fig:SPcircle}\small Stereographic projection of a circle on the surface of a sphere.}}
+\end{floatingfigure}
+\noindent The Wulff net is created from two sets of special projected circles. In general, the projection of a circle on the surface of a sphere will also generate a circle in the equatorial plane, as illustrated in Fig.~\OCref{fig:SPcircle}.  The equal-angle nature of the stereographic projection makes it particularly useful in the field of crystallography, where the projection is used for the representation of the symmetry elements and equivalent points in point groups as well as for 2-D drawings of, for instance, all the normals to the external facets of a natural crystal. 
+
+While the SP is most often used to reduce points on the 2-sphere to a planar projection, the projection can be defined for any hyper-sphere $\mathbb{S}^n_R$ onto the hyper-ball $\mathbb{B}^n_R$.  Of particular interest for the analysis of the texture of materials is the projection from the unit 3-sphere onto the unit 3-ball, i.e., $\mathbb{S}^3\rightarrow\mathbb{B}^3$. As described in detail in chapter~\ref{NUMSYS:NumberSystems} on Number Systems, there exists a generalization of the complex numbers, the \indexit{quaternions}, which have one real and three imaginary parts, i.e., they are four-component numbers.  Unit quaternions (quaternions with unit norm) reside on the 3-sphere $\mathbb{S}^3$ which can be projected\footnote{We can not visualize the 3-sphere directly since it is embedded in $\mathbb{R}^4$, but the stereographic projection is a convenient tool to project all information into a 3-D ball, which we can readily visualize.} onto the 3-ball $\mathbb{B}^3$ via an equal-angle stereographic projection.  If we represent the quaternion by $q=(q_0,q_1,q_2,q_3)$ with $q_0^2+q_1^2+q_2^2+q_3^2=1$ and $q_0\ge 0$, then the stereographic projection is given by the 3-D point with coordinates:
+\[
+	(X,Y,Z) = \left(\frac{q_1}{1+q_0},\frac{q_2}{1+q_0},\frac{q_3}{1+q_0}\right)\ .
+\]
+Hence, we can represent a collection of unit quaternions by a collection of projected points inside the 3-ball. The equal-angle nature of the projection means that a circle on the unit 3-sphere becomes a circle inside the unit 3-ball.
+
+Similarly, we can project from $\mathbb{S}^1_R$ to $\mathbb{B}^1_R$; both are shown in Fig.~\OCref{fig:hyperspheres}.  The 1-D stereographic projection maps the 1-sphere $\mathbb{S}^1_R$ (a circle) to the 1-ball $\mathbb{B}^1_R$ which is a line segment. A point with coordinates $(x,y)$ with $x^2+y^2=1$ on $\mathbb{S}^1$ is projected onto $\mathbb{B}^1$ by connecting  the ``South pole'' $(0,-1)$ of the circle to the point at $(x,y)$.  The intersection with the horizontal axis is given by:
+\[
+	X = \frac{x}{1+y}\ ;
+\]
+If we represent the point by $(x,y)=(\cos\theta,\sin\theta)$, then the projection coordinates becomes:
+\[
+	X = \frac{\cos\theta}{1+\sin\theta} = \frac{1}{\sec\theta+\tan\theta}.
+\]
+
+
+% 
 
 \section{Lambert Projection}
 \OClabel{lambertproj}
+The \indexit{Lambert azimuthal equal-area projection}, not to be confused with the Lambert conformal conic projection, 
+
+
 
 
 

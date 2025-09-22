@@ -88,7 +88,12 @@ A \textit{field} is a set $\mathcal{F}$ of numbers on which two operations are d
 \end{enumerate}
 A field is also known as a \indexit{commutative ring}.  Among the number systems listed above, $\mathbb{Q}$, $\mathbb{R}$, and $\mathbb{C}$ are fields; in section~\OCref{quaternions} we will introduce the \indexit{quaternions}, which form a generalization of the complex numbers that satisfy all but one of the axioms above: they are not commutative under multiplication.  They form what is called a \indexit{skew field} or a \indexit{division ring}; we will discuss such sets in more detail in section~\OCref{algebras} on division algebras.
 
-A brief and accessible review of number systems and why they are important can be found in the on-line article {\color{OCblue}\href{https://smphysics.wordpress.com/wp-content/uploads/2011/08/numero_extrano_cuerdas.pdf}{The Strangest Numbers in String Theory}} by John C.\ Baez and John Huerta (2011).
+A brief and accessible review of number systems and why they are important can be found in the on-line article {\color{OCblue}\href{https://smphysics.wordpress.com/wp-content/uploads/2011/08/numero_extrano_cuerdas.pdf}{The Strangest Numbers in String Theory}} by John C.\ Baez and John Huerta (2011).  
+
+\begin{messagebox}{The illustrious family}{OCblue}{icnote}{OCwhite}
+\textit{The real numbers are the dependable breadwinner of the family, the complete ordered field we all rely on. The complex numbers are a slightly flashier but still respectable younger brother: not ordered, but algebraically complete. The quaternions, being noncommutative, are the eccentric cousin who is shunned at important family gatherings. But the octonions are the crazy old uncle nobody lets out of the attic: they are nonassociative.} 
+\begin{flushright} --- attributed to John C. Baez\end{flushright} 
+\end{messagebox} 
 
 
 \section{Complex Numbers}
@@ -129,10 +134,10 @@ a+\mathrm{i}b=c+\mathrm{i}d \leftrightarrow a=c\text{ and }b=d
 \end{equation}
 \end{enumerate}
 
-In going from the real numbers to the complex numbers, we give up one property of the real numbers, namely that they are ordered.  In other words, it is meaningful to say that $p$ is greater than or equal to $q$ ($p,q\in\mathbb{R}$) or that $q\le p$. This ordering  property is no longer present for the complex numbers; we can compare the moduli of two complex numbers, since the modulus is a real number, or the phase angle, but  not the complete complex number $z$. It turns out that with every generalization of a number system to a higher order number system, one property of the former system disappears in the latter system.
+In going from the real numbers to the complex numbers, we give up one property of the real numbers, namely that they are ordered.  In other words, it is meaningful to say that $p$ is greater than or equal to $q$ ($p,q\in\mathbb{R}$) or that $q\le p$. This ordering  property is no longer present for the complex numbers; we can compare the moduli of two complex numbers, since the modulus is a real number, or the phase angle, but  not the complete complex number $z$. It turns out that with every generalization of a number system to a higher order number system, one property of the former system disappears in the new system.
 
 
-\insertfigurew{figcomplex.pdf}{figcomplex}{(a) Graphical representation of two complex numbers; (b) 2D rotation by means of multiplication by a unit complex number.}{6.0in}
+\insertfigurew{figcomplex}{figcomplex}{(a) Graphical representation of two complex numbers; (b) 2D rotation by means of multiplication by a unit complex number.}{6.0in}
 
 
 \subsection{Graphical Representation}
@@ -183,7 +188,7 @@ To conclude this section, it is useful to note some special values for the polar
 	\mathrm{e}^{\mathrm{i}0} = 1;\quad \mathrm{e}^{\mathrm{i}\frac{\pi}{2}} = \mathrm{i};\quad \mathrm{e}^{\mathrm{i}\pi} = -1.
 \end{equation}
 
-\subsection{2D Rotations and Unit Complex Numbers}
+\subsection{2D Rotations and Unit Complex Numbers}\OClabel{complexrot}
 
 Unit complex numbers can be used as 2D rotation operators, as illustrated in Fig.~\OCref{figcomplex}(b). The complex number $P=1+\mathrm{i}$ can be rotated counterclockwise by an angle $\omega=\pi/3$ by means of multiplication by the unit complex number (represented by a blue dot on the unit circle):
 \begin{equation}
@@ -293,7 +298,7 @@ Quaternion division then becomes multiplication by the inverse quaternion.  Note
 \subsection{Euler's Formula, unit quaternions and their relation to 3D rotations\OClabel{EulerFormula}}
 A unit quaternion $q$ is a quaternion with unit norm, i.e, $\vert q\vert=1$.  Just as unit complex numbers lie on a unit radius circle (known as $\mathbb{S}^1$) in the complex plane, the unit quaternions lie on a hyperspherical surface in $\mathbb{H}$, a space that is isomorphous with $\mathbb{R}^4$ if we consider quaternions as 4-vectors. This unit radius sphere is known as the three-sphere $\mathbb{S}^3$.  Hyperspheres in $n$-dimensions have been studied extensively by the math community, so a lot is known about $\mathbb{S}^3$.  For our purposes it is sufficient to state that the surface area of the unit hypersphere $\mathbb{S}^3$ is equal to $2\pi^2$.
 
-In section~\ref{2DROTS:complexrotations}, 2D rotations in the complex plane are described in terms of multiplication by a unit complex number.  For 3D rotations, a similar process can be carried out by means of multiplication by unit quaternions.  However, the details are a little more complicated in that the quaternions are part of a 4D space. If we consider a 3D rotation by a counter-clockwise positive angle $\omega$ around a unit rotation axis $\hat{\mathbf{n}}$, then we can represent that rotation axis in terms of the imaginary units $(\qi, \qj, \qk)$ as $\hat{\mathbf{n}}=n_x\qi+n_y \qj+n_z \qk$.  For regular complex numbers we can use the exponential notation for the 2D rotation, and we have a rotation by an angle $\theta$ around the normal to the complex plane; Euler's formula expresses this rotation as:
+In section~\OCref{complexrot}, 2D rotations in the complex plane are described in terms of multiplication by a unit complex number.  For 3D rotations, a similar process can be carried out by means of multiplication by unit quaternions.  However, the details are a little more complicated in that the quaternions are part of a 4D space. If we consider a 3D rotation by a counter-clockwise positive angle $\omega$ around a unit rotation axis $\hat{\mathbf{n}}$, then we can represent that rotation axis in terms of the imaginary units $(\qi, \qj, \qk)$ as $\hat{\mathbf{n}}=n_x\qi+n_y \qj+n_z \qk$.  For regular complex numbers we can use the exponential notation for the 2D rotation, and we have a rotation by an angle $\theta$ around the normal to the complex plane; Euler's formula expresses this rotation as:
 \[
 	\rho = \mathrm{e}^{\theta\qi} = \cos\theta+\qi\,\sin\theta.
 \]
@@ -342,18 +347,24 @@ The tilde above the vector $\mathbf{v}$ indicates that it must be considered as 
 
 \section{Normed Division Algebras}
 \OClabel{algebras}
-Let's start by breaking down the section title into its individual words. An \indexit{algebra} is 
+Let's start by breaking down the section title into its individual words. An \indexit{algebra} over the real numbers is an $N$-dimensional  \indexit{vector space}, $V$, that is equipped with a \indexit{bilinear product}. The elements of $V$ are vectors in a generalized sense,\footnote{These ``vectors'' can be actual vectors with $N$ components, but they can also be square matrices of dimension $N\times N$.} and the operations of vector addition ($p+q=r$ with $p,q,r\in V$) and scalar multiplication ($p'=\alpha\, p$ with $\alpha\in\mathbb{R}$ and $p,p'\in V$) are defined; these operations satisfy a number of the usual properties, including commutativity, associativity, additive identity and additive inverse for  the vector addition, and multiplicative identity and distributivity for the scalar multiplication.  If, in addition, there is a \indexit{bilinear product} defined between pairs of ``vectors'' then that vector space becomes an algebra. As an example, in the vector space $\mathbb{R}^2$ of the complex numbers, the standard complex number product is an example of a bilinear product; in the vector space $\mathbb{R}^{n\times n}$ of square matrices, the standard matrix multiplication is a bilinear operation.
+
+In a \indexit{division algebra}, the operation of division by an element of the algebra is always possible by any element except for zero.  Another way of saying this is the following: if $a$ and $b$ belong to the algebra, and their product $a\,b=0$ then that means either $a=0$ or $b=0$. In some number systems, it is possible for the product of two non-zero numbers to be equal to zero (see section~\OCref{splitnumbers} for an example); in that case we say that there are zero-divisors in the number system.  
+
+Finally, the word ``normed'' refers to the fact that there exists a quadratic form $Q$, such that, for every pair $a,b$ in the algebra, we always have $Q(ab)=Q(a)Q(b)$. Such a function is generally known as a norm, and we have seen examples of norms for both the complex numbers and the quaternions.
 
 
 \subsection{The Cayley-Dickson Construction}
 
 
 We start with four numbers $a, b, c, d$ and at this point we do not specify what kind of numbers they are (although it will help to think of them as real numbers, even though that is not strictly necessary).  We will take the pair of numbers $(a,b)$ to represent a single number defined as $a+bJ$ with $J^2=-1$; note that this is a general symbol $J$, not necessarily the imaginary unit $\mathrm{i}$ of the complex numbers. Then we can impose two rules:
+
 \begin{enumerate}
 \item We define the conjugate of the pair $(a,b)$ as $(a,b)^{\ast}=(a^{\ast},-b)$;
 \item We define the product of two pairs $(a,b)$ and $(c,d)$ as 	$(a,b)(c,d)=( ac-d^{\ast}b, da+bc^{\ast} )$; we assume here that the order of the symbols is important (i.e., we do \textit{not} assume commutativity).
 \end{enumerate}
-This pair of rules is known as the \indexit{Cayley-Dickson construction}; this construction allows us to build the complex numbers $\mathbb{C}$ starting from the real numbers $\mathbb{R}$; the quaternions $\mathbb{H}$ from the complex numbers $\mathbb{C}$; a new number system called the \indexit{octonions} $\mathbb{O}$ from the quaternions $\mathbb{H}$, and so on. Let us illustrate this explicitly.
+
+\noindent This pair of rules is known as the \indexit{Cayley-Dickson construction}; this construction allows us to build the complex numbers $\mathbb{C}$ starting from the real numbers $\mathbb{R}$; the quaternions $\mathbb{H}$ from the complex numbers $\mathbb{C}$; a new number system called the \indexit{octonions} $\mathbb{O}$ from the quaternions $\mathbb{H}$, and so on. Let us illustrate this explicitly.
 
 \subsubsection{Generating the complex numbers $\mathbb{C}$}
 Let us assume that $a,b,c,d \in\mathbb{R}$; we know that the real numbers do not have a conjugate, so we can ignore the first rule and remove the asterisk in the second rule. For the multiplication of two pairs $(a,b)$ and $(c,d)$ the second rule becomes:
@@ -397,7 +408,7 @@ The next step in applying the Cayley-Dickson construction involves taking $a,b,c
 	&= a_0+a_1\mathrm{i}+a_2\mathrm{j}+a_3\mathrm{k} + b_0J+b_1\mathrm{i}J+b_2\mathrm{j}J+b_3\mathrm{k}J.
 \end{split}
 \end{equation}
-This number has one scalar part and seven imaginary parts and is known as an \indexit{octonion}.  There are several notations in use for the imaginary units; the most common simply numbers them from $e_1=\mathrm{i}$ to $e_7=\mathrm{k}J$.  We have $e_i^2=-1$ for all seven imaginary units. Other notations simply continue the numbering of the units with letters; since we have $\mathrm{i}$, $\mathrm{j}$, and $\mathrm{k}$ for the quaternions, the four new units are simply called  $\mathrm{l}$, $\mathrm{m}$, $\mathrm{n}$, and $\mathrm{o}$. The multiplication table is shown in Table~\OCref{tb:octmult}, where {\color{OCGreenThread}green entries} represent complex number multiplication rules, {\color{OCCarnegieRed}red entries} quaternion multiplication rules, and {\color{OCHighlandsSkyBlue}blue entries} octonion multiplication rules. Note that each higher order number system contains all the lower order systems as special cases, so the complex numbers are a special case of both the quaternions and the octonions.  Many properties of the octonions are similar to those of the complex numbers and quaternions, including the conjugate, the norm, division.  The one rule that is lost in going from quaternions to octonions is associativity, i.e., $o_1\cdot(o_2\cdot o_3)\ne (o_1\cdot o_2)\cdot o_3$.
+This number has one scalar part and seven imaginary parts and is known as an \indexit{octonion}.  There are several notations in use for the imaginary units; the most common simply numbers them from $e_1=\mathrm{i}$ to $e_7=\mathrm{k}J$.  We have $e_i^2=-1$ for all seven imaginary units. Other notations simply continue the numbering of the units with letters; since we have $\mathrm{i}$, $\mathrm{j}$, and $\mathrm{k}$ for the quaternions, the four new units are simply called  $\mathrm{l}$, $\mathrm{m}$, $\mathrm{n}$, and $\mathrm{o}$. The multiplication table is shown in Table~\OCref{tb:octmult}, where {\color{OCGreenThread}green entries} represent complex number multiplication rules, {\color{OCCarnegieRed}red entries} quaternion multiplication rules, and {\color{OCHighlandsSkyBlue}blue entries} octonion multiplication rules. Note that each higher order number system contains all the lower order systems as special cases, so the complex numbers are a special case of both the quaternions and the octonions.  Many properties of the octonions are similar to those of the complex numbers and quaternions, including the conjugate, the norm, division.  The one property that is lost in going from quaternions to octonions is associativity, i.e., $o_1\cdot(o_2\cdot o_3)\ne (o_1\cdot o_2)\cdot o_3$.
 
 \begin{table}
 \centering\leavevmode
@@ -506,10 +517,34 @@ and one can read the rotated coordinates $(-5,2)$ from the $\epsilon$ and $\math
 which is indeed the original rotated point shifted $4$ units in the vertical direction to location $(-5,6)$.  The process for dual quaternions is similar to the one shown here. 
 
 
-\subsection{Split Number Systems}
+\subsection{Split Number Systems}\OClabel{splitnumbers}
+In previous sections we have described the complex numbers, of the form $a+\mathrm{i}b$ with $\mathrm{i}^2=-1$, and the dual numbers, of the form $a+b\epsilon$ with $\epsilon^2=0$. There is a third number system, known as the \indexit{split complex numbers} of the form $a+b\mathrm{j}$ with $\mathrm{j}^2=+1$.  It is easily verified that these numbers have some of the properties of complex numbers (for instance, multiplication is commutative and associative), but it is possible for two split complex numbers to multiply to zero when neither of the individual numbers are zero; a simple example would be:
+\[
+	(a+\mathrm{j}a)(a-\mathrm{j}a) = (a^2 - \mathrm{j}^2 a^2) = (a^2-a^2) = 0\ .
+\]
+This means that the set of split complex numbers, often denoted by $\mathbb{C}'$, has zero-divisors.  The squared norm of a split complex number is defined as the number multiplied by its conjugate:
+\[
+	(a+\mathrm{j}b)(a-\mathrm{j}b) = a^2-b^2
+\]
+and this number can become negative, meaning that the norm is not a positive-definite quantity, which it is for all the other number systems  that we have considered thus far.  
 
-
-% maybe a brief section on split complex numbers and split quaternions/octonions ?
+If we consider the series expansion of the exponential function:
+\[
+	\mathrm{e}^x = \sum_{n=0}^{\infty}\frac{x^n}{n!} = 1+ x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}+\frac{x^5}{120}+\frac{x^6}{720}+\ldots
+\]
+and we substitute $x=\mathrm{j}b$, then we obtain:
+\[
+	\mathrm{e}^{\mathrm{j}b} = 1 + \mathrm{j}b + \frac{b^2}{2}+\mathrm{j}\frac{b^3}{6}+\frac{b^4}{24}+\mathrm{j}\frac{b^5}{120}+\frac{b^6}{720}+\ldots
+\]
+Reordering the terms we have:
+\[
+	\mathrm{e}^{\mathrm{j}b} = \left(1 +  \frac{b^2}{2}+\frac{b^4}{24}+\frac{b^6}{720}+\ldots\right) + \mathrm{j}\left(b +\frac{b^3}{6}+\frac{b^5}{120}+\ldots\right)
+\]
+in which we recognize the series expansions of the hyperbolic functions:
+\[
+	\mathrm{e}^{\mathrm{j}b} = \cosh(b) + \mathrm{j}\sinh(b)\ .
+\]
+This is Euler's formula for the split complex numbers, which indicates that these numbers are related to hyperbolic geometry.  In fact, the split complex numbers can be used to describe the geometry of 2-D Minkowski space, where they are used to carry out Lorentz coordinate transformations.  A generalization of this concept to quaternions generates the \indexit{split quaternions}, which can represent planes and  rotations in the full Minkowski space.  In a split quaternion, the first imaginary unit squares to $\mathrm{i}^2=-1$, the other two square to $+1$, i.e., $\mathrm{j}^2=\mathrm{k}^2=\mathrm{ijk}=+1$.  For more details we refer the interested reader to \cite{ozturk2022a}.  It is also possible to define the \indexit{split octonions}, which are useful for some aspects of relativistic quantum theory, electromagnetism, special relativity and other fields of physics.  There are numerous on-line resources covering the properties and applications of all these split number systems.
 
 
 

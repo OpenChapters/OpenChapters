@@ -129,7 +129,7 @@
 %	BIBLIOGRAPHY AND INDEX
 %----------------------------------------------------------------------------------------
 
-\usepackage[style=ext-numeric,citestyle=numeric-comp,sorting=none,autopunct=true,babel=hyphen,hyperref=true,abbreviate=false,backref=false,backend=biber,autocite=superscript,maxnames=99,articlein=false,casechanger=latex2e]{biblatex}
+\usepackage[style=ext-numeric,citestyle=numeric-comp,sorting=none,autopunct=true,autolang=hyphen,hyperref=true,abbreviate=false,backref=false,backend=biber,autocite=superscript,maxnames=99,articlein=false,casechanger=latex2e]{biblatex}
 
 \defbibheading{bibempty}{}
 
@@ -580,7 +580,7 @@ innerbottommargin=5pt]{cBox}
 \usepackage{hyperref}
 \usepackage{url}
 
-\hypersetup{hidelinks,backref=true,pagebackref=true,hyperindex=true,colorlinks=false,breaklinks=true,citecolor=blue,urlcolor=blue,bookmarks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+\hypersetup{hidelinks,colorlinks=false,breaklinks=true,citecolor=blue,urlcolor=blue,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
 
 \usepackage{bookmark}
 \bookmarksetup{
@@ -598,6 +598,9 @@ addtohook={%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This is the end of the original structure.sty file from the Legrand Orange Book template
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{csquotes}
+\usepackage{arara}
 
 %% The following package makes prettier tables.  We're all about the bling!
 \usepackage{booktabs}
@@ -666,6 +669,11 @@ addtohook={%
 %simple command to insert a figure: #1 filename+path; #2 label; #3 caption; #4 width
 \newcommand{\insertfigurew}[4]{\begin{figure}
  \centering\leavevmode\includegraphics[width=#4]{#1}\caption{#3}
+ \OClabel{#2}\end{figure}}
+
+%simple command to insert a figure "here": #1 filename+path; #2 label; #3 caption; #4 width
+\newcommand{\insertfigureh}[3]{\begin{figure}[h]
+ \centering\leavevmode\includegraphics{#1}\caption{#3}
  \OClabel{#2}\end{figure}}
 
 % a few shortcuts for vectors and matrices
