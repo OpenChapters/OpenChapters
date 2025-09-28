@@ -1,4 +1,4 @@
-% !TEX root = ../../Build/main.tex
+% 
 % ###################################################################
 % Copyright (c) 2018, Marc De Graef 
 %  Editors: A.D. Rollett & M. De Graef
@@ -27,7 +27,6 @@
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/MaterialProperty/eps folder and must be of the *.eps type. 
-\renewcommand{\chaptergraphicspath}{../src/MaterialProperty/eps/}
 
 \renewcommand{\chabbr}{MATPRP}
 
@@ -35,7 +34,7 @@
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 \chapterimage{MATPRPheader.pdf}
 
-\chapter{What is a Material Property?}\OClabel{MaterialProperty}
+\chapter{What is a Material Property?}\label{\chabbr:MaterialProperty}
 
 % add the author information so that it will appear in the Author List at the start of the document
 \writeauthor{MATPRP:MaterialProperty}{What is a Material Property?}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
@@ -50,11 +49,11 @@
 {\color{OCalmostblack}\sffamily
 \begin{multicols}{2}
 \begin{itemize}
-    \item[{\color{OCBurntOrange}\OCref{intro}:}] Learn about the Materials Tetrahedron
-    \item[{\color{OCBurntOrange}\OCref{matprop}:}] Formally define what a material property is
-    \item[{\color{OCBurntOrange}\OCref{tensorproperties}:}] Introduce many property tensors
-%    \item[{\color{OCBurntOrange}\OCref{algebras}:}] Learn about Normed Division Algebras
-%    \item[{\color{OCBurntOrange}\OCref{othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+    \item[{\color{OCBurntOrange}\ref{\chabbr:intro}:}] Learn about the Materials Tetrahedron
+    \item[{\color{OCBurntOrange}\ref{\chabbr:matprop}:}] Formally define what a material property is
+    \item[{\color{OCBurntOrange}\ref{\chabbr:tensorproperties}:}] Introduce many property tensors
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
 \end{itemize}
 \end{multicols}}}
 % ###################################################################
@@ -62,18 +61,18 @@
 % ###################################################################
 
 
-\section{Introductory Remarks}\OClabel{intro}
+\section{Introductory Remarks}\label{\chabbr:intro}
 
 \begin{floatingfigure}[r]{3.2in}
 \centering
 {\includegraphics[width=3.0in]{tetrahedron.pdf}}
-{\caption{\OClabel{tetrahedron}\small Graphical representation of the materials paradigm as a tetrahedron.}}
+{\caption{\label{\chabbr:tetrahedron}\small Graphical representation of the materials paradigm as a tetrahedron.}}
 \end{floatingfigure}
-\noindent It is not uncommon for the material scientist to describe their discipline in terms of a \indexit{tetrahedron}.  Each corner of the materials tetrahedron (Fig.~\OCref{tetrahedron}) represents one of the four cornerstones of the field: \textit{Microstructure, Properties, Processing}, and \textit{Performance}. Many materials scientists/engineers believe that optimization of material properties and performance through judicious control of processing parameters to obtain the desired microstructure is the central paradigm of the discipline.  Blacksmiths represent the original (empirical) practitioners of this approach; they vary the microstructure of steels by varying their heat treatment in order to affect their mechanical properties.  In the present day, we control the doping of semiconductors to make quantum dots, resulting in highly efficient light emitting diodes; this is phase separation\index{phase separation} to make a two-phase structure in which the size of the approximately spherical particles of one phase is small enough that quantum effects become important.
+\noindent It is not uncommon for the material scientist to describe their discipline in terms of a \indexit{tetrahedron}.  Each corner of the materials tetrahedron (Fig.~\ref{\chabbr:tetrahedron}) represents one of the four cornerstones of the field: \textit{Microstructure, Properties, Processing}, and \textit{Performance}. Many materials scientists/engineers believe that optimization of material properties and performance through judicious control of processing parameters to obtain the desired microstructure is the central paradigm of the discipline.  Blacksmiths represent the original (empirical) practitioners of this approach; they vary the microstructure of steels by varying their heat treatment in order to affect their mechanical properties.  In the present day, we control the doping of semiconductors to make quantum dots, resulting in highly efficient light emitting diodes; this is phase separation\index{phase separation} to make a two-phase structure in which the size of the approximately spherical particles of one phase is small enough that quantum effects become important.
 
-On the one hand, we have material properties, such as: strength, toughness, formability, conductivity, corrosion resistance, piezoelectricity, , magnetic permeability, $\ldots$ On the other hand we have microstructural features, such as: grain size, grain shape, phase structure, composite structure, chemical composition (alloying), crystal structure, defect structure (e.g., porosity), and many others. It is the primary goal of this collection of chapters to explicitly describe the links between properties and microstructure; in other words, this text focuses on the many connections between the red and blue spheres in Fig.~\OCref{tetrahedron}.\\  
+On the one hand, we have material properties, such as: strength, toughness, formability, conductivity, corrosion resistance, piezoelectricity, , magnetic permeability, $\ldots$ On the other hand we have microstructural features, such as: grain size, grain shape, phase structure, composite structure, chemical composition (alloying), crystal structure, defect structure (e.g., porosity), and many others. It is the primary goal of this collection of chapters to explicitly describe the links between properties and microstructure; in other words, this text focuses on the many connections between the red and blue spheres in Fig.~\ref{\chabbr:tetrahedron}.\\  
 
-\subsection{Microstructure\OClabel{microstructures}}
+\subsection{Microstructure\label{\chabbr:microstructures}}
 \indexit{Microstructure} refers to the internal structure of a material, at various length scales.  Biology was revolutionized when \indexit{Leeuwenhoek} and others started to use optical microscopes to look at the internal structure of plants.  They were able to relate many characteristics of plants to their cell structure, for example.  Similarly, in what is now the materials field, \indexit{Sorby} was one of the first to make cross-sections of materials such as iron and examine them in the microscope, so that he could relate properties to structure.  Microstructure originally meant the structure inside a material that could be observed with the aid of an optical microscope; in the metric system, with its prefixes for units, the micrometer ($1$ $\mu$m $= 10^{-6}$ m) happens to correspond roughly to the wavelength of light.  Light obviously is used to form images in a light/optical microscope.  Thus, microstructure has come to be accepted to cover those elements of structure with a length scale on the order of $1$ $\mu$m.  Given microstructure at the $\mu$m scale, naturally some refer to \textit{nanostructure}\index{nanostructure} at the nm ($=10^{-9}$ m) scale.  Many important material properties are determined at the atomistic length scale. The continuum scale means, in the context of engineering, length scales large enough that materials can be treated as having homogeneous properties.
 
 Most observable elements of microstructure are discontinuities, or \indexit{defects}, in the material.  Some of the most important defects include:
@@ -97,9 +96,9 @@ It is essential to quantify microstructure in order to be able to predict proper
 \end{itemize}
 
 \subsection{Properties}
-\OClabel{properties}
+\label{\chabbr:properties}
 
-A material's \indexit{properties} are those measurable characteristics that determine how the material responds to a variety of external stimuli; we will formalize this statement in section~\OCref{matprop}. Broad property categories and specific examples in each category include:
+A material's \indexit{properties} are those measurable characteristics that determine how the material responds to a variety of external stimuli; we will formalize this statement in section~\ref{\chabbr:matprop}. Broad property categories and specific examples in each category include:
 \begin{itemize}
 \item \indexit{mechanical properties}: strength, hardness, ductility, toughness, fatigue resistance;
 \item \indexit{thermal properties}: conductivity, heat capacity, thermal expansion;
@@ -111,7 +110,7 @@ A material's \indexit{properties} are those measurable characteristics that dete
 We distinguish between properties that are \indexit{intrinsic} and \indexit{extrinsic}. Intrinsic properties are generally determined by the crystal structure (i.e., the 3D arrangement and types of atoms) and in many cases they can be computed/predicted directly from the atomic arrangements using physics-based arguments, in particular quantum-mechanical models.  The electronic \indexit{band gap} of a material is  a typical example of an intrinsic property; it is fundamental to the particular crystal structure and represents the minimum energy needed to promote an electron from the valence band to the conduction band, thereby determining whether the material is an insulator, a conductor, or a semiconductor.  \textit{Ductility}\index{ductility} is an example of an extrinsic property since it depends in a very sensitive way on microstructural parameters, such as the grain size, or the rate at which the material is deformed (i.e., the \indexit{strain rate}).  In general, such extrinsic properties are much more difficult to predict since they depend on many factors that themselves may be difficult to quantify, and improving one extrinsic property, say strength, may have a negative effect on another property, in this case ductility.  The often complex and counter-acting dependencies between microstructure and (extrinsic) properties make it necessary to systematically approach material properties by starting from the single crystal state, and then gradually incorporating the actual microstructural aspects by means of appropriate averaging procedures, which represents a very active area of research.
 
 \subsection{Processing}
-\OClabel{processing}
+\label{\chabbr:processing}
 
 Processing describes not only how we make a material (e.g., by solidification from a melt pool) but also how we subsequently modify the material's microstructure, for instance via thermal annealing or plastic deformation, both belonging to the category of \indexit{thermomechanical processing} techniques.    Each material class (metals, ceramics, polymers, $\ldots$) comes with its own set of specialized processing techniques, but the common goal of all material processing techniques is to achieve a microstructure that will satisfy all performance criteria or metrics (see next section).  
 
@@ -129,7 +128,7 @@ Processing describes not only how we make a material (e.g., by solidification fr
 
 
 \subsection{Performance}
-\OClabel{performance}
+\label{\chabbr:performance}
 
 Performance takes the discussion out of the lab and into the real world. It asks the question: How does the material actually behave in service, under realistic conditions and over long time scales? A material may exhibit excellent tensile strength in a simple test, but if it corrodes rapidly in a marine environment, its performance as a structural material for ships will be poor. Similarly, a ceramic may have outstanding hardness, but if it is too brittle, it cannot perform well in an application involving repeated impact.
 
@@ -138,7 +137,7 @@ Performance thus integrates not just the intrinsic properties of the material bu
 In teaching, performance is often presented as the closing loop of the MSE framework. Microstructure is tailored by processing, which defines properties, which then dictate performance. This cycle emphasizes that materials are not just studied for their own sake but for their essential role in enabling technologies jet engines, medical implants, solar cells, bridges, and countless others.
 
 
-\section{Definition of a Material Property}\OClabel{matprop}
+\section{Definition of a Material Property}\label{\chabbr:matprop}
 
 \begin{messagebox}{{\sffamily\bfseries Important Section}}{ocre}{\icattention}{OCwhite}
 In this section you will learn a formal definition of what a material property is.  Later on in this chapter we will introduce many examples.
@@ -182,7 +181,7 @@ If we truncate the series after the second term (i.e., we ignore all derivatives
 \end{equation}
 This is a \textit{linear} relation between the applied field and the response, and this relation becomes a proportionality between applied field and response when $\mathcal{R}_0=0$.  The quantity $\mathbf{P}$ is a \textit{material property}.\index{material property}  Ignoring the higher order derivatives of $\mathcal{R}$ is generally known as the \textit{linear approximation}.\index{linear approximation}  This approximation considerably simplifies the math and for many purposes it is a useful and accurate approximation.
 
-Since the external field $\mathcal{F}$ is often a vector quantity (e.g., the electric field $\mathcal{F}=\mathbf{E}$) and the response can also be a vector (e.g., the current density $\mathcal{R}=\mathbf{j}$) it is clear that the material property $\mathbf{P}$ is not always going to be described by a single number.  Instead, the material property can become a vector itself, or even a higher order mathematical quantity known as a \indexit{tensor}; nearly all of the interesting and useful material properties are represented by tensors, in particular for single crystals but also in polycrystalline materials.  For now, think of a tensor as an array of numbers with a set of special properties; in Chapter~\OCref{tensors} the concept of a tensor is described in substantial detail.  Without going into the details at this time, we can state that, in general, a material property is represented by a \textit{matrix} of numbers; this can be a column vector, a $3\times 3$ matrix or even a higher dimensional array.  A combination of thermodynamic (or intrinsic) symmetry and the crystallographic symmetry of the material determines which of those numbers can be different from zero, and which \textit{must} be zero.  
+Since the external field $\mathcal{F}$ is often a vector quantity (e.g., the electric field $\mathcal{F}=\mathbf{E}$) and the response can also be a vector (e.g., the current density $\mathcal{R}=\mathbf{j}$) it is clear that the material property $\mathbf{P}$ is not always going to be described by a single number.  Instead, the material property can become a vector itself, or even a higher order mathematical quantity known as a \indexit{tensor}; nearly all of the interesting and useful material properties are represented by tensors, in particular for single crystals but also in polycrystalline materials.  For now, think of a tensor as an array of numbers with a set of special properties; in Chapter~\ref{\chabbr:tensors} the concept of a tensor is described in substantial detail.  Without going into the details at this time, we can state that, in general, a material property is represented by a \textit{matrix} of numbers; this can be a column vector, a $3\times 3$ matrix or even a higher dimensional array.  A combination of thermodynamic (or intrinsic) symmetry and the crystallographic symmetry of the material determines which of those numbers can be different from zero, and which \textit{must} be zero.  
 
 If the series expansion in equation~(\ref{eq:expansion}) is truncated after the third term, then it is said that the material behaves in a non-linear way.  The relation can then be written as:
 \begin{equation}
@@ -198,7 +197,7 @@ One can also express the \textit{energy content} of a material in terms of the e
 Every material property has a number of characteristics\footnote{We could call them \textit{properties} but it is a bit confusing to talk about the properties of a property.} which are of fundamental importance: \textit{homogeneity, anisotropy} and \textit{symmetry}; let us take a brief closer look at each of these concepts.
 
 \subsection{Homogeneity}
-\OClabel{homogeneity}
+\label{\chabbr:homogeneity}
 
 There are several length scales at which we can make observations on a material.  Macroscopic measurements are considered to be those measurements that are performed over distances many times larger than the interatomic distance, e.g.\
 \begin{eqnarray}
@@ -217,12 +216,12 @@ where the points $\mathbf{r}$ and $\mathbf{r}^{\,\prime}$ are separated by a (ra
 % idea: add figure showing color gradations in tourmaline
 
 \subsection{Anisotropy}
-\OClabel{anisotropy}
+\label{\chabbr:anisotropy}
 
 A homogeneous property can be either isotropic or anisotropic in a single crystal.  If a property is the same in every direction, then that property is said to be \textit{isotropic},\index{isotropic} otherwise it is \textit{anisotropic}.\index{anisotropic}  Every isotropic homogeneous quantity must necessarily be described by a \textit{scalar}.  The most interesting properties are usually those which are direction dependent.  We will see later on that the mathematical quantity known as a tensor is perfectly suited for the description of anisotropic behavior.  Examples of properties which may depend upon direction include thermal conductivity, dielectric and magnetic susceptibilities, elastic moduli, and so on.  It is important to note that an anisotropic property in a single crystal can become isotropic in a poly-crystalline material, since all crystal orientations may be simultaneously present in the poly-crystal.
 
 \subsection{Symmetry}
-\OClabel{symmetry}
+\label{\chabbr:symmetry}
 
 Symmetry is one of the more fundamental properties of crystalline matter.  Apart from color, it is also in many cases the most ``eye-catching'' aspect of a natural crystal.  One can introduce the concept as follows: take an arbitrary object and determine if there is a way to ``move'' the object into another orientation in such a way that the initial and final configurations are indistinguishable.  The specific ways of ``moving'' an object into \textit{self-coincidence} represent the symmetries of that object.  Enumeration of the different symmetry properties of a crystal forms the subject of the ``group theory'' of crystallography.
 

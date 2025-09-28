@@ -1,4 +1,4 @@
-% !TEX root = ../../Build/main.tex
+% 
 % ###################################################################
 % Copyright (c) 2018, Marc De Graef 
 %  Editors: A.D. Rollett & M. De Graef
@@ -27,7 +27,6 @@
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/2Drotations/eps folder and must be of the *.eps type. 
-\renewcommand{\chaptergraphicspath}{../src/2Drotations/eps/}
 
 \renewcommand{\chabbr}{2DROTS}
 
@@ -35,7 +34,12 @@
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 \chapterimage{2DROTSheader.pdf}
 
-\chapter{2D Rotations}\OClabel{2Drotations}
+% in HTML mode, the chapter header image is treated differently
+\ifdefstring{\isHTML}{Yes}{%
+\HTMLPageTop{\begin{center}\fbox{\includegraphics{\graphicspath 2DROTSheader.pdf}}\end{center}}
+}{}%
+
+\chapter{2D Rotations}\label{\chabbr:2Drotations}
 
 % add the author information so that it will appear in the Author List at the start of the document
 \writeauthor{2DROTS:2Drotations}{2D Rotations}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
@@ -50,10 +54,10 @@
 {\color{OCalmostblack}\sffamily
 \begin{multicols}{2}
 \begin{itemize}
-    \item[{\color{OCBurntOrange}\OCref{rotationmatrices}:}] Perform 2D passive and active rotations with matrices
-    \item[{\color{OCBurntOrange}\OCref{complex2D}:}] Use complex numbers for 2D rotations
-    \item[{\color{OCBurntOrange}\OCref{2Dcomposition}:}] Combine multiple rotations
-    \item[{\color{OCBurntOrange}\OCref{2Darbitrary}:}] Combine rotations with translations    
+    \item[{\color{OCBurntOrange}\ref{\chabbr:rotationmatrices}:}] Perform 2D passive and active rotations with matrices
+    \item[{\color{OCBurntOrange}\ref{\chabbr:complex2D}:}] Use complex numbers for 2D rotations
+    \item[{\color{OCBurntOrange}\ref{\chabbr:2Dcomposition}:}] Combine multiple rotations
+    \item[{\color{OCBurntOrange}\ref{\chabbr:2Darbitrary}:}] Combine rotations with translations    
 \end{itemize}
 \end{multicols}}}
 % ###################################################################
@@ -61,13 +65,13 @@
 % ###################################################################
 
 \section{2D Rotation Matrices}
-\OClabel{rotationmatrices}
+\label{\chabbr:rotationmatrices}
 
 To define what a 2D rotation is we begin with a standard cartesian reference frame with orthonormal basis vectors $\mathbf{e}_1$ and $\mathbf{e}_2$. We will assume for now that the rotation axis goes through the origin and is perpendicular to the plane of the drawing pointing towards the reader.  We define the rotation angle $\omega$ to be \textit{positive} for a counter-clockwise rotation\index{rotation angle!sign convention} when looking from the end point of the rotation axis towards the origin.  It is important to distinguish between \textit{active}\index{rotation!active} and \textit{passive}\index{rotation!passive} rotations. In an active rotation, the reference frame is kept constant, and the object is rotated; this object can be anything, for instance a point, a line, an ellipse, a grain, and so on.  The result of the active rotation is that the coordinates of the object with respect to the reference frame will have changed.  For a passive rotation, the object is kept constant, and the reference frame is rotated with respect to the object.\footnote{While the distinction between active and passive rotations is easy to comprehend, it is important to always explicitly state which form is used.  Not doing so can lead to all sorts of sign errors in numerical work.}  Thus, for a passive rotation, there are two reference frames, the \textit{old frame}, $\mathbf{e}_i$, and the \textit{new frame}, $\mathbf{e}'_i$; for an active rotation, there is only one reference frame, $\mathbf{e}_i$.  Let us explore both forms in more detail.
 
 
-\subsection{Active 2D rotations}\OClabel{2Dactive}
-Consider the position vector $\mathbf{r}$ with components $(x,y)$ with respect to the Cartesian basis vectors $\mathbf{e}_1$ and $\mathbf{e}_2$, as shown in Fig.~\OCref{fig2Drot}(a).  The vector makes an angle $\theta$ with respect to the $\mathbf{e}_1$ axis and has length $r$, so that the coordinates can be expressed in term of the polar components as $(x,y) = r(\cos\theta,\sin\theta)$.  We rotate the vector counter-clockwise by an angle $\omega$ to $\mathbf{r}'$, so that the new components are given by $(x',y') = r\left(\cos(\theta+\omega),\sin(\theta+\omega)\right)$.  Using the sum formulas for trigonometric functions we can write:
+\subsection{Active 2D rotations}\label{\chabbr:2Dactive}
+Consider the position vector $\mathbf{r}$ with components $(x,y)$ with respect to the Cartesian basis vectors $\mathbf{e}_1$ and $\mathbf{e}_2$, as shown in Fig.~\ref{\chabbr:fig2Drot}(a).  The vector makes an angle $\theta$ with respect to the $\mathbf{e}_1$ axis and has length $r$, so that the coordinates can be expressed in term of the polar components as $(x,y) = r(\cos\theta,\sin\theta)$.  We rotate the vector counter-clockwise by an angle $\omega$ to $\mathbf{r}'$, so that the new components are given by $(x',y') = r\left(\cos(\theta+\omega),\sin(\theta+\omega)\right)$.  Using the sum formulas for trigonometric functions we can write:
 \begin{align*}
 	x' &= r\cos\theta\cos\omega - r\sin\theta\sin\omega = x\cos\omega - y\sin\omega\ ;\\
 	y' &= r\cos\theta\sin\omega + r\sin\theta\cos\omega = x\sin\omega + y\cos\omega\ .	
@@ -85,8 +89,8 @@ Representing the $2\times 2$ active rotation matrix by $R^a(\omega)$ and the vec
 
 \insertfigure{fig2Drot.eps}{fig2Drot}{Schematic illustration of (a) an active rotation by an angle $\omega$, and (b) a passive rotation by the same counter-clockwise angle $\omega$.}
 
-\subsection{Passive 2D rotations}\OClabel{2Dpassive}
-For a passive rotation, shown in Fig.~\OCref{fig2Drot}(b), we keep the vector $\mathbf{r}$ at a constant orientation in space, and we rotate the reference frame $\mathbf{e}_i$ by a positive angle $\omega$ (i.e., counter-clockwise) to the frame $\mathbf{e}'_i$.  To perform this rotation, we note that the components of the new basis vectors in terms of the old ones can be written in terms of the projections of the new vectors onto the old ones; since these are unit vectors, the projections are simply equivalent to the dot products between the new and old basis vectors, and we have:
+\subsection{Passive 2D rotations}\label{\chabbr:2Dpassive}
+For a passive rotation, shown in Fig.~\ref{\chabbr:fig2Drot}(b), we keep the vector $\mathbf{r}$ at a constant orientation in space, and we rotate the reference frame $\mathbf{e}_i$ by a positive angle $\omega$ (i.e., counter-clockwise) to the frame $\mathbf{e}'_i$.  To perform this rotation, we note that the components of the new basis vectors in terms of the old ones can be written in terms of the projections of the new vectors onto the old ones; since these are unit vectors, the projections are simply equivalent to the dot products between the new and old basis vectors, and we have:
 \[
 	\mathbf{e}'_i = (\mathbf{e}'_i\cdot\mathbf{e}_j)\mathbf{e}_j \ .
 \]
@@ -94,7 +98,7 @@ Thus, this rotation is carried out by means of the passive rotation matrix $R^p_
 \[
 	\mathbf{e}'_i = R^p_{ij}\mathbf{e}_j \ .
 \]
-From the sketch in Fig.~\OCref{fig2Drot}(b) we find that the matrix components are given by:
+From the sketch in Fig.~\ref{\chabbr:fig2Drot}(b) we find that the matrix components are given by:
 \[
 	R^p = \left(\begin{array}{cc}
 	\cos\omega & \sin\omega\\
@@ -119,7 +123,7 @@ Summarizing, for a counter-clockwise 2D rotation by a positive angle $\omega$, t
 
 
 
-\section{Complex number representation\OClabel{complex2D}}
+\section{Complex number representation}\label{\chabbr:complex2D}
 Before we continue with the consecutive operation of 2D rotations, we will take a moment to discuss the use of complex numbers to represent 2D rotations; we begin with the active rotation discussed above.  We will consider the vector $\mathbf{r}$ to lie in the complex plane so that it can be represented by a complex number $z$; in other words, we consider the $y$ axis to be the imaginary axis.  In that case we have 
 \[
 	z = x+\mathrm{i}y = r(\cos\theta+\mathrm{i}\sin\theta) = r \mathrm{e}^{\mathrm{i}\theta}\ ,
@@ -139,7 +143,7 @@ Rotate the complex number $(1+\mathrm{i})/\sqrt{2}$ by $45^{\circ}$, using both 
 
 For passive rotations, all that is required is to take the complex conjugate of the exponential; i.e., multiplication by $\left(\text{exp}(\mathrm{i}\omega)\right)^{\ast}=\text{exp}(-\mathrm{i}\omega)$ corresponds to a passive rotation of the vector $\mathbf{r}$, as is easily verified.  Note that the transposition operation for rotation matrices is replaced by the conjugation operator for complex numbers when changing from active to passive rotations.  In section~\ref{sec:quaternions} we will extend the complex number formalism to 3D rotations, which will require the introduction of  \textit{quaternions}.\index{quaternions}
 
-\section{Composition of 2D rotations}\OClabel{2Dcomposition}
+\section{Composition of 2D rotations}\label{\chabbr:2Dcomposition}
 In this section we briefly review the composition or concatenation of 2 or more rotations.  In 2D, this is a trivial exercise, since we can simply add the rotation angles together and perform a single rotation by the sum angle.  However, in anticipation of the 3D rotation case, for which the composition rules are more complicated, we will here treat the composition of 2D rotations explicitly.
 
 We begin with active rotations, and we carry out $R^a(\omega_1)$ first, followed by $R^a(\omega_2)$.  The components of the twice rotated vector $\mathbf{r}''$ are then given by:
@@ -183,7 +187,7 @@ This raises an interesting issue in the context of the complex number representa
 \]	
 Since 3D rotations do not commute in general, the generalization of complex numbers to quaternions will need to incorporate this non-commutative behavior; in section~\ref{sec:quaternions} we will see that the product of two quaternions, each representing a 3D rotation, does not commute.  For active rotations, we write the consecutive rotations from right to left; for passive rotations we reverse the multiplication order.
 
-\section{2D rotations combined with translations}\OClabel{2Darbitrary}
+\section{2D rotations combined with translations}\label{\chabbr:2Darbitrary}
 
 
 

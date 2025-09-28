@@ -1,4 +1,4 @@
-% !TEX root = ../../Build/main.tex
+% 
 % ###################################################################
 % Copyright (c) 2025, Marc De Graef 
 %  Editors: A.D. Rollett & M. De Graef
@@ -29,7 +29,6 @@
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/NumberSystems/eps folder and must be of the *.eps type. 
-\renewcommand{\chaptergraphicspath}{../src/NumberSystems/eps/}
 
 % this is the 6-character (all uppercase) chapter descriptor used in labels and refs...
 \renewcommand{\chabbr}{NUMSYS}
@@ -39,8 +38,14 @@
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 \chapterimage{NUMSYSheader.pdf}
 
+% in HTML mode, the chapter header image is treated differently
+\ifdefstring{\isHTML}{Yes}{%
+\HTMLPageTop{\begin{center}\fbox{\includegraphics{\graphicspath NUMSYSheader.pdf}}\end{center}}
+}{}%
+
+
 % start the chapter and define the chapter label (outside of the \chapter command!)
-\chapter{Number Systems}\OClabel{NumberSystems}
+\chapter{Number Systems}\label{\chabbr:NumberSystems}
 
 % add the author information so that it will appear in the Author List at the start of the document
 \writeauthor{NUMSYS:NumberSystems}{Number Systems}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
@@ -55,10 +60,10 @@
 {\color{OCalmostblack}\sffamily
 \begin{multicols}{2}
 \begin{itemize}
-    \item[{\color{OCBurntOrange}\OCref{complex}:}] Learn a formal description of complex numbers
-    \item[{\color{OCBurntOrange}\OCref{quaternions}:}] Define the quaternion number system\\
-    \item[{\color{OCBurntOrange}\OCref{algebras}:}] Learn about Normed Division Algebras
-    \item[{\color{OCBurntOrange}\OCref{othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+    \item[{\color{OCBurntOrange}\ref{\chabbr:complex}:}] Learn a formal description of complex numbers
+    \item[{\color{OCBurntOrange}\ref{\chabbr:quaternions}:}] Define the quaternion number system\\
+    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
+    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
 \end{itemize}
 \end{multicols}}}
 % ###################################################################
@@ -72,7 +77,7 @@
 %%%%%%%%%%%%%%%%
 
 \section{Introductory Comments}
-\OClabel{intro}
+\label{\chabbr:intro}
 
 This chapter contains several sections about number systems other than the well-known natural numbers ($\mathbb{N}$), the integers ($\mathbb{Z}$),
 the rational numbers ($\mathbb{Q}$), and the real numbers ($\mathbb{R}$).  Most high-school graduates will have learned about the complex numbers ($\mathbb{C}$) as well, but we review them here because this will make generalization to the quaternions ($\mathbb{H}$) a bit easier.  In what follows, it will be useful to have a precise definition of a number of concepts related to a number \indexit{field} which we introduce in this section.
@@ -86,7 +91,7 @@ A \textit{field} is a set $\mathcal{F}$ of numbers on which two operations are d
 \item For each element of the set, with the exception of $0$, there exists a \indexit{multiplicative inverse}: $a\cdot a^{-1} = 1$;
 \item Multiplication is \indexit{distributive} over addition: $a\cdot(b+c)=a\cdot b+a\cdot c$.
 \end{enumerate}
-A field is also known as a \indexit{commutative ring}.  Among the number systems listed above, $\mathbb{Q}$, $\mathbb{R}$, and $\mathbb{C}$ are fields; in section~\OCref{quaternions} we will introduce the \indexit{quaternions}, which form a generalization of the complex numbers that satisfy all but one of the axioms above: they are not commutative under multiplication.  They form what is called a \indexit{skew field} or a \indexit{division ring}; we will discuss such sets in more detail in section~\OCref{algebras} on division algebras.
+A field is also known as a \indexit{commutative ring}.  Among the number systems listed above, $\mathbb{Q}$, $\mathbb{R}$, and $\mathbb{C}$ are fields; in section~\ref{\chabbr:quaternions} we will introduce the \indexit{quaternions}, which form a generalization of the complex numbers that satisfy all but one of the axioms above: they are not commutative under multiplication.  They form what is called a \indexit{skew field} or a \indexit{division ring}; we will discuss such sets in more detail in section~\ref{\chabbr:algebras} on division algebras.
 
 A brief and accessible review of number systems and why they are important can be found in the on-line article {\color{OCblue}\href{https://smphysics.wordpress.com/wp-content/uploads/2011/08/numero_extrano_cuerdas.pdf}{The Strangest Numbers in String Theory}} by John C.\ Baez and John Huerta (2011).  
 
@@ -97,7 +102,7 @@ A brief and accessible review of number systems and why they are important can b
 
 
 \section{Complex Numbers}
-\OClabel{complex}
+\label{\chabbr:complex}
 
 \subsection{General Concepts}
 
@@ -137,14 +142,14 @@ a+\mathrm{i}b=c+\mathrm{i}d \leftrightarrow a=c\text{ and }b=d
 In going from the real numbers to the complex numbers, we give up one property of the real numbers, namely that they are ordered.  In other words, it is meaningful to say that $p$ is greater than or equal to $q$ ($p,q\in\mathbb{R}$) or that $q\le p$. This ordering  property is no longer present for the complex numbers; we can compare the moduli of two complex numbers, since the modulus is a real number, or the phase angle, but  not the complete complex number $z$. It turns out that with every generalization of a number system to a higher order number system, one property of the former system disappears in the new system.
 
 
-\insertfigurew{figcomplex}{figcomplex}{(a) Graphical representation of two complex numbers; (b) 2D rotation by means of multiplication by a unit complex number.}{6.0in}
+\insertfigurew{figcomplex.eps}{figcomplex}{(a) Graphical representation of two complex numbers; (b) 2D rotation by means of multiplication by a unit complex number.}{6.0in}
 
 
 \subsection{Graphical Representation}
 
 Since a complex number consists of two parts, the real and imaginary components, one can display the number on a 2D drawing.
 The plane of such a drawing is known as the \textit{Gaussian Plane}, and the drawing is an \textit{Argand Diagram}.
-In Fig.~\OCref{figcomplex}(a) we show two complex numbers, $P_1=3+2\mathrm{i}$ and $P_2=-4-2\mathrm{i}$.  The real part is drawn along the 
+In Fig.~\ref{\chabbr:figcomplex}(a) we show two complex numbers, $P_1=3+2\mathrm{i}$ and $P_2=-4-2\mathrm{i}$.  The real part is drawn along the 
 horizontal or $x$-axis, the imaginary part along the vertical or $\mathrm{i}y$-axis.  Each point in the Gaussian plane is therefore a representation of a complex number of the form $x+\mathrm{i}y$.
 
 We can also use polar coordinates to express the location of the complex number.  In polar coordinates
@@ -188,9 +193,9 @@ To conclude this section, it is useful to note some special values for the polar
 	\mathrm{e}^{\mathrm{i}0} = 1;\quad \mathrm{e}^{\mathrm{i}\frac{\pi}{2}} = \mathrm{i};\quad \mathrm{e}^{\mathrm{i}\pi} = -1.
 \end{equation}
 
-\subsection{2D Rotations and Unit Complex Numbers}\OClabel{complexrot}
+\subsection{2D Rotations and Unit Complex Numbers}\label{\chabbr:complexrot}
 
-Unit complex numbers can be used as 2D rotation operators, as illustrated in Fig.~\OCref{figcomplex}(b). The complex number $P=1+\mathrm{i}$ can be rotated counterclockwise by an angle $\omega=\pi/3$ by means of multiplication by the unit complex number (represented by a blue dot on the unit circle):
+Unit complex numbers can be used as 2D rotation operators, as illustrated in Fig.~\ref{\chabbr:figcomplex}(b). The complex number $P=1+\mathrm{i}$ can be rotated counterclockwise by an angle $\omega=\pi/3$ by means of multiplication by the unit complex number (represented by a blue dot on the unit circle):
 \begin{equation}
 	\rho=\mathrm{e}^{\mathrm{i}\frac{\pi}{3}}
 \end{equation}
@@ -203,33 +208,33 @@ In the next section we will see that the generalization of unit complex numbers,
 
 
 \section{Quaternions}
-\OClabel{quaternions}
+\label{\chabbr:quaternions}
 
 \subsection{Definition}
-In 1844, William R. Hamilton \cite{hamilton1844a} discovered a generalization of complex numbers, the quaternions, by adding two additional imaginary units, $\qj$ and $\qk$.  The quaternion\index{quaternion!definition} $q$ is defined as follows ($q_i\in\mathbb{R}$):
+In 1844, William R. Hamilton \cite{hamilton1844a} discovered a generalization of complex numbers, the quaternions, by adding two additional imaginary units, $\mathrm{j}$ and $\mathrm{k}$.  The quaternion\index{quaternion!definition} $q$ is defined as follows ($q_i\in\mathbb{R}$):
 \begin{equation}
-	q = q_0 + q_1\qi+q_2\qj+q_3\qk,
+	q = q_0 + q_1\mathrm{i}+q_2\mathrm{j}+q_3\mathrm{k},
 \end{equation}
 where
 \begin{equation}
-	\qi^2=\qj^2=\qk^2=\qi\qj\qk=-1\OClabel{eq:quatunits}
+	\mathrm{i}^2=\mathrm{j}^2=\mathrm{k}^2=\mathrm{i}\mathrm{j}\mathrm{k}=-1\label{\chabbr:eq:quatunits}
 \end{equation}
 and
 \begin{equation}
-	\qi\qj=-\qj\qi=\qk;\quad \qj\qk=-\qk\qj=\qi;\quad \qk\qi=-\qi\qk=\qj.
+	\mathrm{i}\mathrm{j}=-\mathrm{j}\mathrm{i}=\mathrm{k};\quad \mathrm{j}\mathrm{k}=-\mathrm{k}\mathrm{j}=\mathrm{i};\quad \mathrm{k}\mathrm{i}=-\mathrm{i}\mathrm{k}=\mathrm{j}.
 \end{equation}
 There are several alternative notations in use for quaternions. One can regard the components $q_i$ as the components of a 4D vector:
 \begin{equation}
 	q = \left[ q_0, q_1, q_2, q_3\right] \equiv \left[q_0,\mathbf{q}\right];
 \end{equation}
-$q_0$ is known as the scalar part \index{quaternion!scalar part} of the quaternion; the vector part $\mathbf{q}=q_1\qi+q_2\qj+q_3\qk$ is interesting because one can interpret the imaginary units as unit vectors $\hat{\CMimath}$, $\hat{\mkern-3mu\CMjmath}$, and $\hat{k}$:
+$q_0$ is known as the scalar part \index{quaternion!scalar part} of the quaternion; the vector part $\mathbf{q}=q_1\mathrm{i}+q_2\mathrm{j}+q_3\mathrm{k}$ is interesting because one can interpret the imaginary units as unit vectors $\hat{\mathrm{\imath}}$, $\hat{\mkern-3mu\mathrm{\jmath}}$, and $\hat{k}$:
 \begin{equation}
-	\mathbf{q} = q_1\hat{\CMimath}+q_2\hat{\mkern-3mu\CMjmath}+q_3\hat{k},
+	\mathbf{q} = q_1\hat{\mathrm{\imath}}+q_2\hat{\mkern-3mu\mathrm{\jmath}}+q_3\hat{k},
 \end{equation}
 which will be familiar to many readers who took a vector calculus course.  When the scalar part of the quaternion is zero, i.e., $q=[0,\mathbf{q}]$, the resulting quaternion is known as a \indexit{pure quaternion} or a \indexit{versor}.
 
 \begin{messagebox}{About the quaternion unit vectors}{olive}{\icinfo}{white}
-It is historically interesting to note that the  $(\hat{\CMimath}, \hat{\mkern-3mu\CMjmath}, \hat{k})$ notation for the cartesian basis vectors has its origins in the development of quaternions.  In fact, the original formulation of Maxwell's Equations of electrodynamics used quaternions, not vectors and vector operators (e.g., gradient, divergence, etc.).  It is not until the end of the 19th century that vector calculus replaced quaternions, and this introduced the more standard notations of $(\mathbf{e}_1,\mathbf{e}_2,\mathbf{e}_3)$ and  $(\mathbf{e}_x,\mathbf{e}_y,\mathbf{e}_z)$ for the cartesian reference frame, although the $(\hat{\CMimath}, \hat{\mkern-3mu\CMjmath}, \hat{k})$ notation continues to be used to this day.  In the past half century, however, there has been renewed interest in quaternions because of their numerical stability  in describing 3D rotations (all computer game engines use quaternions) \cite{xxx}, and for their natural emergence in the field of \indexit{Geometric Algebra} \cite{xxx}.
+It is historically interesting to note that the  $(\hat{\mathrm{\imath}}, \hat{\mkern-3mu\mathrm{\jmath}}, \hat{k})$ notation for the cartesian basis vectors has its origins in the development of quaternions.  In fact, the original formulation of Maxwell's Equations of electrodynamics used quaternions, not vectors and vector operators (e.g., gradient, divergence, etc.).  It is not until the end of the 19th century that vector calculus replaced quaternions, and this introduced the more standard notations of $(\mathbf{e}_1,\mathbf{e}_2,\mathbf{e}_3)$ and  $(\mathbf{e}_x,\mathbf{e}_y,\mathbf{e}_z)$ for the cartesian reference frame, although the $(\hat{\mathrm{\imath}}, \hat{\mkern-3mu\mathrm{\jmath}}, \hat{k})$ notation continues to be used to this day.  In the past half century, however, there has been renewed interest in quaternions because of their numerical stability  in describing 3D rotations (all computer game engines use quaternions) \cite{hanson2005a}, and for their natural emergence in the field of \indexit{Geometric Algebra} \cite{hestenes1984a}.
 \end{messagebox}
 
 
@@ -247,18 +252,18 @@ The addition of two quaternions $p$ and $q$ is performed component-wise:
 The expression for subtraction follows immediately by replacing all plus-signs by minus-signs.  The \indexit{additive identity} for quaternions is the null-quaternion or $[0,0,0,0]=[0,\mathbf{0}]$.
 
 \subsubsection{Multiplication}
-For the multiplication of two quaternions $p$ and $q$ we can explicitly write all the terms, including the imaginary units, and simplify the resulting expression using the definitions in eq.~(\OCref{eq:quatunits}); this results in:
+For the multiplication of two quaternions $p$ and $q$ we can explicitly write all the terms, including the imaginary units, and simplify the resulting expression using the definitions in eq.~(\ref{\chabbr:eq:quatunits}); this results in:
 \begin{equation}
 \begin{split}
-	(p_0 + p_1\qi+p_2\qj+p_3\qk)(q_0 + q_1\qi+q_2\qj+q_3\qk) &= \left(\,\,\,  (p_0q_0 - {\color{blue}(p_1q_1+ p_2q_2 + p_3q_3)}) \right.\\
-&\quad+(p_0q_1 + p_1q_0 + {\color{blue}p_2q_3 - p_3q_2})\qi\\ 
-&\quad+(p_0q_2 + p_2q_0 + {\color{blue}p_3q_1 - p_1q_3})\qj\\ 
-&\quad\left.+(p_0q_3 + p_3q_0 + {\color{blue}p_1q_2 - p_2q_1})\qk \right).
-\end{split}\OClabel{eq:qmult2}
+	(p_0 + p_1\mathrm{i}+p_2\mathrm{j}+p_3\mathrm{k})(q_0 + q_1\mathrm{i}+q_2\mathrm{j}+q_3\mathrm{k}) &= \left(\,\,\,  (p_0q_0 - {\color{blue}(p_1q_1+ p_2q_2 + p_3q_3)}) \right.\\
+&\quad+(p_0q_1 + p_1q_0 + {\color{blue}p_2q_3 - p_3q_2})\mathrm{i}\\ 
+&\quad+(p_0q_2 + p_2q_0 + {\color{blue}p_3q_1 - p_1q_3})\mathrm{j}\\ 
+&\quad\left.+(p_0q_3 + p_3q_0 + {\color{blue}p_1q_2 - p_2q_1})\mathrm{k} \right).
+\end{split}\label{\chabbr:eq:qmult2}
 \end{equation}
 While this is a somewhat complicated expression, we can see some familiar combinations of terms; for the scalar component on the top row, the terms in blue make up the dot product of the vector parts of the two quaternions, i.e., $\mathbf{p}\cdot\mathbf{q}$. Furthermore, the terms in blue on the second, third, and fourth rows are the components of the familiar cross product $\mathbf{p}\times\mathbf{q}$.  Finally, the first terms in rows 2-4 represents the scalar $p_0$ multiplied by the vector $\mathbf{q}$, and the next set of terms represents $q_0\mathbf{p}$.  Combining everything into vector notation we find the much more manageable expression:
 \begin{equation}
-	[p_0,\mathbf{p}]\,[q_0,\mathbf{q}] = [ p_0q_0-\mathbf{p}\cdot\mathbf{q}, q_0\mathbf{p}+p_0\mathbf{q}+\mathbf{p}\times\mathbf{q} ].\OClabel{eq:qmult}
+	[p_0,\mathbf{p}]\,[q_0,\mathbf{q}] = [ p_0q_0-\mathbf{p}\cdot\mathbf{q}, q_0\mathbf{p}+p_0\mathbf{q}+\mathbf{p}\times\mathbf{q} ].\label{\chabbr:eq:qmult}
 \end{equation}
 Since the vector cross product depends on the order of the vectors, i.e., $\mathbf{p}\times\mathbf{q}=-\mathbf{q}\times\mathbf{p}$ we see immediately the origin of the non-commutative nature of quaternion multiplication: changing the order changes the sign of the vector cross product in the vector part of the resulting product quaternion.
 
@@ -271,12 +276,12 @@ If we make use of the non-commutativity and add or subtract $pq$ and $qp$, we fi
 \end{equation}
 Note that the first result \textit{does} commute with itself, and the second result represents a pure quaternion.
 
-Finally, we note that the \indexit{multiplicative identity} for quaternions is the unit quaternion $[1,\mathbf{0}]$; this is readily verified using the vector expression for the product in eq.~(\OCref{eq:qmult}).
+Finally, we note that the \indexit{multiplicative identity} for quaternions is the unit quaternion $[1,\mathbf{0}]$; this is readily verified using the vector expression for the product in eq.~(\ref{\chabbr:eq:qmult}).
 
 \subsubsection{Norm and conjugate}
 As for the complex numbers, we can define the conjugate of a quaternion simply by changing the sign of all three imaginary components:
 \begin{equation}
-	q^{\ast} = q_0 -q_1\qi-q_2\qj-q_3\qk= [q_0,-q_1,-q_2,-q_3] = [q_0,-\mathbf{q}].
+	q^{\ast} = q_0 -q_1\mathrm{i}-q_2\mathrm{j}-q_3\mathrm{k}= [q_0,-q_1,-q_2,-q_3] = [q_0,-\mathbf{q}].
 \end{equation}
 The quaternion norm is defined analogously by taking the square root of the product of the quaternion with its complex conjugate; using the vector expression for the product we can readily show that:
 \begin{equation}
@@ -295,50 +300,50 @@ Knowing the norm and the conjugate of the quaternion, we can readily define the 
 \end{equation}
 Quaternion division then becomes multiplication by the inverse quaternion.  Note, as always, that division by the null-quaternion is undefined.
 
-\subsection{Euler's Formula, unit quaternions and their relation to 3D rotations\OClabel{EulerFormula}}
+\subsection{Euler's Formula, unit quaternions and their relation to 3D rotations}\label{\chabbr:EulerFormula}
 A unit quaternion $q$ is a quaternion with unit norm, i.e, $\vert q\vert=1$.  Just as unit complex numbers lie on a unit radius circle (known as $\mathbb{S}^1$) in the complex plane, the unit quaternions lie on a hyperspherical surface in $\mathbb{H}$, a space that is isomorphous with $\mathbb{R}^4$ if we consider quaternions as 4-vectors. This unit radius sphere is known as the three-sphere $\mathbb{S}^3$.  Hyperspheres in $n$-dimensions have been studied extensively by the math community, so a lot is known about $\mathbb{S}^3$.  For our purposes it is sufficient to state that the surface area of the unit hypersphere $\mathbb{S}^3$ is equal to $2\pi^2$.
 
-In section~\OCref{complexrot}, 2D rotations in the complex plane are described in terms of multiplication by a unit complex number.  For 3D rotations, a similar process can be carried out by means of multiplication by unit quaternions.  However, the details are a little more complicated in that the quaternions are part of a 4D space. If we consider a 3D rotation by a counter-clockwise positive angle $\omega$ around a unit rotation axis $\hat{\mathbf{n}}$, then we can represent that rotation axis in terms of the imaginary units $(\qi, \qj, \qk)$ as $\hat{\mathbf{n}}=n_x\qi+n_y \qj+n_z \qk$.  For regular complex numbers we can use the exponential notation for the 2D rotation, and we have a rotation by an angle $\theta$ around the normal to the complex plane; Euler's formula expresses this rotation as:
+In section~\ref{\chabbr:complexrot}, 2D rotations in the complex plane are described in terms of multiplication by a unit complex number.  For 3D rotations, a similar process can be carried out by means of multiplication by unit quaternions.  However, the details are a little more complicated in that the quaternions are part of a 4D space. If we consider a 3D rotation by a counter-clockwise positive angle $\omega$ around a unit rotation axis $\hat{\mathbf{n}}$, then we can represent that rotation axis in terms of the imaginary units $(\mathrm{i}, \mathrm{j}, \mathrm{k})$ as $\hat{\mathbf{n}}=n_x\mathrm{i}+n_y \mathrm{j}+n_z \mathrm{k}$.  For regular complex numbers we can use the exponential notation for the 2D rotation, and we have a rotation by an angle $\theta$ around the normal to the complex plane; Euler's formula expresses this rotation as:
 \[
-	\rho = \mathrm{e}^{\theta\qi} = \cos\theta+\qi\,\sin\theta.
+	\rho = \mathrm{e}^{\theta\mathrm{i}} = \cos\theta+\mathrm{i}\,\sin\theta.
 \]
 Hamilton's search for a similar representation for 3D rotations, which led him to develop quaternions, started from the assumption that, by analogy with the complex numbers, the following might work as a 3D rotation operator:
 \[
 	R = \mathrm{e}^{\omega \hat{\mathbf{n}}}.
 \]
-This might seem surprising, but it makes sense if we interpret the argument of the complex exponential for $\rho$ to read $\theta 1 \qi$, i.e., a basis vector $\qi$ multiplied by a length (which will always be $1$ in this 1D space), and then multiplied by the rotation angle.  Applying this to the relation for $R$ we find a potential equivalent for Euler's formula:
+This might seem surprising, but it makes sense if we interpret the argument of the complex exponential for $\rho$ to read $\theta 1 \mathrm{i}$, i.e., a basis vector $\mathrm{i}$ multiplied by a length (which will always be $1$ in this 1D space), and then multiplied by the rotation angle.  Applying this to the relation for $R$ we find a potential equivalent for Euler's formula:
 \[
-	\mathrm{e}^{\omega \hat{\mathbf{n}}} = \cos\omega+ (n_x\qi+n_y \qj+n_z \qk)\sin\omega.
+	\mathrm{e}^{\omega \hat{\mathbf{n}}} = \cos\omega+ (n_x\mathrm{i}+n_y \mathrm{j}+n_z \mathrm{k})\sin\omega.
 \]
 Note that this is a unit quaternion since $\hat{\mathbf{n}}$ is a unit vector which reduces the quaternion norm to $\cos^2\omega+\sin^2\omega=1$.
 
 % insert a concrete example here of why this does not work
-Let's try an arbitrary rotation angle $\omega$ and the rotation axis $\hat{\CMimath}$ and we operate on that same rotation axis, knowing that a rotation axis should be invariant under any rotation.  We apply the vector expression for the quaternion product:
+Let's try an arbitrary rotation angle $\omega$ and the rotation axis $\hat{\mathrm{\imath}}$ and we operate on that same rotation axis, knowing that a rotation axis should be invariant under any rotation.  We apply the vector expression for the quaternion product:
 \begin{equation}
 \begin{split}
-	\mathrm{e}^{\omega \hat{\CMimath}} \hat{\CMimath} &= \left[\cos\omega,[\sin\omega,0,0]\right]\,\left[0,[1,0,0]\right];\\
-	& = \left[-\sin\omega, [\cos\omega,0,0]\right] \ne \hat{\CMimath},
+	\mathrm{e}^{\omega \hat{\mathrm{\imath}}} \hat{\mathrm{\imath}} &= \left[\cos\omega,[\sin\omega,0,0]\right]\,\left[0,[1,0,0]\right];\\
+	& = \left[-\sin\omega, [\cos\omega,0,0]\right] \ne \hat{\mathrm{\imath}},
 \end{split}
 \end{equation}
 where we used the fact that the vector cross product vanishes for parallel vectors.  So, we find that this operator does not leave the rotation axis invariant, so it cannot be the correct operator for 3D rotations.  It is one of Hamilton's major contributions to the field of quaternions to recognize that the correct operation requires use of half the rotation angle, and that the resulting operator should be used twice as follows:
 \begin{equation}
 \begin{split}
-	\mathrm{e}^{\frac{\omega}{2} \hat{\CMimath}}\, \hat{\CMimath}\,\mathrm{e}^{-\frac{\omega}{2} \hat{\CMimath}} &=
-	\mathrm{e}^{\frac{\omega}{2} \hat{\CMimath}} \left[0,[1,0,0]\right]\,\left[\cos\frac{\omega}{2},[-\sin\frac{\omega}{2},0,0]\right];\\
-	&=\mathrm{e}^{\frac{\omega}{2} \hat{\CMimath}} \left[\sin\frac{\omega}{2},[\cos\frac{\omega}{2},0,0]\right];\\
+	\mathrm{e}^{\frac{\omega}{2} \hat{\mathrm{\imath}}}\, \hat{\mathrm{\imath}}\,\mathrm{e}^{-\frac{\omega}{2} \hat{\mathrm{\imath}}} &=
+	\mathrm{e}^{\frac{\omega}{2} \hat{\mathrm{\imath}}} \left[0,[1,0,0]\right]\,\left[\cos\frac{\omega}{2},[-\sin\frac{\omega}{2},0,0]\right];\\
+	&=\mathrm{e}^{\frac{\omega}{2} \hat{\mathrm{\imath}}} \left[\sin\frac{\omega}{2},[\cos\frac{\omega}{2},0,0]\right];\\
 	&= \left[\cos\frac{\omega}{2},[\sin\frac{\omega}{2},0,0]\right] \left[\sin\frac{\omega}{2},[\cos\frac{\omega}{2},0,0]\right];\\
 	&=\left[ \cos\frac{\omega}{2}\sin\frac{\omega}{2}-\cos\frac{\omega}{2}\sin\frac{\omega}{2}, [ \cos^2\frac{\omega}{2}+ \sin^2\frac{\omega}{2},0,0]\right];\\
-	&= \left[0,[1,0,0]\right] = \hat{\CMimath}.
+	&= \left[0,[1,0,0]\right] = \hat{\mathrm{\imath}}.
 \end{split}
 \end{equation}
 Note that the equivalent expression to the standard Euler formula becomes:
 \begin{equation}
-	q = \mathrm{e}^{\frac{\omega}{2} \hat{\mathbf{n}}} = \left[\cos\frac{\omega}{2},(n_x\qi+n_y \qj+n_z \qk)\sin\frac{\omega}{2}\right].\OClabel{eq:quatrot}
+	q = \mathrm{e}^{\frac{\omega}{2} \hat{\mathbf{n}}} = \left[\cos\frac{\omega}{2},(n_x\mathrm{i}+n_y \mathrm{j}+n_z \mathrm{k})\sin\frac{\omega}{2}\right].\label{\chabbr:eq:quatrot}
 \end{equation}
 
-The double product with operators that rotate over half the angle is commonly known as a ``sandwich product''; for an arbitrary 3D vector $\mathbf{v}$, to be rotated by unit quaternion $q$ from eq.~(\OCref{eq:quatrot}), the proper formula is given by:
+The double product with operators that rotate over half the angle is commonly known as a ``sandwich product''; for an arbitrary 3D vector $\mathbf{v}$, to be rotated by unit quaternion $q$ from eq.~(\ref{\chabbr:eq:quatrot}), the proper formula is given by:
 \begin{equation}
-	\tilde{\mathbf{v}}' = q\,\tilde{\mathbf{v}}\,q^{\ast}.\OClabel{eq:quatvecrot}
+	\tilde{\mathbf{v}}' = q\,\tilde{\mathbf{v}}\,q^{\ast}.\label{\chabbr:eq:quatvecrot}
 \end{equation}
 The tilde above the vector $\mathbf{v}$ indicates that it must be considered as a versor, i.e., as a quaternion with zero scalar part. The rotated vector $\mathbf{v}'$ is then the vector part of the final versor.  Note that this procedure works for any 3D rotation about an arbitrary axis.
 
@@ -346,10 +351,10 @@ The tilde above the vector $\mathbf{v}$ indicates that it must be considered as 
 
 
 \section{Normed Division Algebras}
-\OClabel{algebras}
+\label{\chabbr:algebras}
 Let's start by breaking down the section title into its individual words. An \indexit{algebra} over the real numbers is an $N$-dimensional  \indexit{vector space}, $V$, that is equipped with a \indexit{bilinear product}. The elements of $V$ are vectors in a generalized sense,\footnote{These ``vectors'' can be actual vectors with $N$ components, but they can also be square matrices of dimension $N\times N$.} and the operations of vector addition ($p+q=r$ with $p,q,r\in V$) and scalar multiplication ($p'=\alpha\, p$ with $\alpha\in\mathbb{R}$ and $p,p'\in V$) are defined; these operations satisfy a number of the usual properties, including commutativity, associativity, additive identity and additive inverse for  the vector addition, and multiplicative identity and distributivity for the scalar multiplication.  If, in addition, there is a \indexit{bilinear product} defined between pairs of ``vectors'' then that vector space becomes an algebra. As an example, in the vector space $\mathbb{R}^2$ of the complex numbers, the standard complex number product is an example of a bilinear product; in the vector space $\mathbb{R}^{n\times n}$ of square matrices, the standard matrix multiplication is a bilinear operation.
 
-In a \indexit{division algebra}, the operation of division by an element of the algebra is always possible by any element except for zero.  Another way of saying this is the following: if $a$ and $b$ belong to the algebra, and their product $a\,b=0$ then that means either $a=0$ or $b=0$. In some number systems, it is possible for the product of two non-zero numbers to be equal to zero (see section~\OCref{splitnumbers} for an example); in that case we say that there are zero-divisors in the number system.  
+In a \indexit{division algebra}, the operation of division by an element of the algebra is always possible by any element except for zero.  Another way of saying this is the following: if $a$ and $b$ belong to the algebra, and their product $a\,b=0$ then that means either $a=0$ or $b=0$. In some number systems, it is possible for the product of two non-zero numbers to be equal to zero (see section~\ref{\chabbr:splitnumbers} for an example); in that case we say that there are zero-divisors in the number system.  
 
 Finally, the word ``normed'' refers to the fact that there exists a quadratic form $Q$, such that, for every pair $a,b$ in the algebra, we always have $Q(ab)=Q(a)Q(b)$. Such a function is generally known as a norm, and we have seen examples of norms for both the complex numbers and the quaternions.
 
@@ -397,7 +402,7 @@ as expected. We leave it as an exercise for the reader to show that the relation
 \[
 	(ac-d^{\ast}b,da+bc^{\ast}) = \ldots
 \]
-leads directly to the multiplication rule in eq.~(\OCref{eq:qmult2}).  Thus, we have derived the quaternions $\mathbb{H}$ from the complex numbers $\mathbb{C}$ by application of the Cayley-Dickson construction.  In going from the complex numbers to the quaternions we have lost one property of the complex numbers, namely that their multiplication is commutative; quaternion multiplication is non-commutative, as we stated in the introduction to this chapter.  This is also the reason for requiring that the order of multiplication in the second Cayley-Dickson rule be respected.
+leads directly to the multiplication rule in eq.~(\ref{\chabbr:eq:qmult2}).  Thus, we have derived the quaternions $\mathbb{H}$ from the complex numbers $\mathbb{C}$ by application of the Cayley-Dickson construction.  In going from the complex numbers to the quaternions we have lost one property of the complex numbers, namely that their multiplication is commutative; quaternion multiplication is non-commutative, as we stated in the introduction to this chapter.  This is also the reason for requiring that the order of multiplication in the second Cayley-Dickson rule be respected.
 
 \subsection{Octonions}
 The next step in applying the Cayley-Dickson construction involves taking $a,b,c,d\in\mathbb{H}$ and applying the same rules.  For the pair $(a,b)$ we have (where $J$ is again a new imaginary unit):
@@ -408,7 +413,7 @@ The next step in applying the Cayley-Dickson construction involves taking $a,b,c
 	&= a_0+a_1\mathrm{i}+a_2\mathrm{j}+a_3\mathrm{k} + b_0J+b_1\mathrm{i}J+b_2\mathrm{j}J+b_3\mathrm{k}J.
 \end{split}
 \end{equation}
-This number has one scalar part and seven imaginary parts and is known as an \indexit{octonion}.  There are several notations in use for the imaginary units; the most common simply numbers them from $e_1=\mathrm{i}$ to $e_7=\mathrm{k}J$.  We have $e_i^2=-1$ for all seven imaginary units. Other notations simply continue the numbering of the units with letters; since we have $\mathrm{i}$, $\mathrm{j}$, and $\mathrm{k}$ for the quaternions, the four new units are simply called  $\mathrm{l}$, $\mathrm{m}$, $\mathrm{n}$, and $\mathrm{o}$. The multiplication table is shown in Table~\OCref{tb:octmult}, where {\color{OCGreenThread}green entries} represent complex number multiplication rules, {\color{OCCarnegieRed}red entries} quaternion multiplication rules, and {\color{OCHighlandsSkyBlue}blue entries} octonion multiplication rules. Note that each higher order number system contains all the lower order systems as special cases, so the complex numbers are a special case of both the quaternions and the octonions.  Many properties of the octonions are similar to those of the complex numbers and quaternions, including the conjugate, the norm, division.  The one property that is lost in going from quaternions to octonions is associativity, i.e., $o_1\cdot(o_2\cdot o_3)\ne (o_1\cdot o_2)\cdot o_3$.
+This number has one scalar part and seven imaginary parts and is known as an \indexit{octonion}.  There are several notations in use for the imaginary units; the most common simply numbers them from $e_1=\mathrm{i}$ to $e_7=\mathrm{k}J$.  We have $e_i^2=-1$ for all seven imaginary units. Other notations simply continue the numbering of the units with letters; since we have $\mathrm{i}$, $\mathrm{j}$, and $\mathrm{k}$ for the quaternions, the four new units are simply called  $\mathrm{l}$, $\mathrm{m}$, $\mathrm{n}$, and $\mathrm{o}$. The multiplication table is shown in Table~\ref{\chabbr:tb:octmult}, where \textcolor{OCGreenThread}{green entries} represent complex number multiplication rules, \textcolor{OCCarnegieRed}{red entries} quaternion multiplication rules, and \textcolor{OCHighlandsSkyBlue}{blue entries} octonion multiplication rules. Note that each higher order number system contains all the lower order systems as special cases, so the complex numbers are a special case of both the quaternions and the octonions.  Many properties of the octonions are similar to those of the complex numbers and quaternions, including the conjugate, the norm, division.  The one property that is lost in going from quaternions to octonions is associativity, i.e., $o_1\cdot(o_2\cdot o_3)\ne (o_1\cdot o_2)\cdot o_3$.
 
 \begin{table}
 \centering\leavevmode
@@ -416,40 +421,40 @@ This number has one scalar part and seven imaginary parts and is known as an \in
 \hline
     & $1$ & $\mathrm{i}$ & $\mathrm{j}$ & $\mathrm{k}$ & $\mathrm{l}$ & $\mathrm{m}$ &  $\mathrm{n}$ &$\mathrm{o}$ \\
 \hline
- $1$ &  {\color{OCGreenThread}$1$} & {\color{OCGreenThread}$\mathrm{i}$}  & {\color{OCCarnegieRed}$\mathrm{j}$} & {\color{OCCarnegieRed}$\mathrm{k}$} & 
- {\color{OCHighlandsSkyBlue}$\mathrm{l}$} & {\color{OCHighlandsSkyBlue}$\mathrm{m}$} &  {\color{OCHighlandsSkyBlue}$\mathrm{n}$} &{\color{OCHighlandsSkyBlue}$\mathrm{o}$} \\
+$1$ &  \textcolor{OCGreenThread}{$1$} & \textcolor{OCGreenThread}{$\mathrm{i}$}  & \textcolor{OCCarnegieRed}{$\mathrm{j}$} & \textcolor{OCCarnegieRed}{$\mathrm{k}$} & 
+ \textcolor{OCHighlandsSkyBlue}{$\mathrm{l}$} & \textcolor{OCHighlandsSkyBlue}{$\mathrm{m}$} &  \textcolor{OCHighlandsSkyBlue}{$\mathrm{n}$} &\textcolor{OCHighlandsSkyBlue}{$\mathrm{o}$} \\
 \hline
- $\mathrm{i}$ &  {\color{OCGreenThread}$\mathrm{i}$} & {\color{OCGreenThread}$-1$}  & {\color{OCCarnegieRed}$\mathrm{k}$} & {\color{OCCarnegieRed}$-\mathrm{j}$} & 
- {\color{OCHighlandsSkyBlue}$\mathrm{m}$} & {\color{OCHighlandsSkyBlue}$-\mathrm{l}$} &  {\color{OCHighlandsSkyBlue}$-\mathrm{o}$} &{\color{OCHighlandsSkyBlue}$\mathrm{n}$} \\
+ $\mathrm{i}$ &  \textcolor{OCGreenThread}{$\mathrm{i}$} & \textcolor{OCGreenThread}{$-1$}  & \textcolor{OCCarnegieRed}{$\mathrm{k}$} & \textcolor{OCCarnegieRed}{$-\mathrm{j}$} & 
+ \textcolor{OCHighlandsSkyBlue}{$\mathrm{m}$} & \textcolor{OCHighlandsSkyBlue}{$-\mathrm{l}$} &  \textcolor{OCHighlandsSkyBlue}{$-\mathrm{o}$} &\textcolor{OCHighlandsSkyBlue}{$\mathrm{n}$} \\
 \hline
- $\mathrm{j}$ &  {\color{OCCarnegieRed}$\mathrm{j}$} & {\color{OCCarnegieRed}$-\mathrm{k}$}  & {\color{OCCarnegieRed}$-1$} & {\color{OCCarnegieRed}$\mathrm{i}$} & 
- {\color{OCHighlandsSkyBlue}$\mathrm{n}$} & {\color{OCHighlandsSkyBlue}$\mathrm{o}$} &  {\color{OCHighlandsSkyBlue}$-\mathrm{l}$} &{\color{OCHighlandsSkyBlue}$-\mathrm{m}$} \\
+ $\mathrm{j}$ &  \textcolor{OCCarnegieRed}{$\mathrm{j}$} & \textcolor{OCCarnegieRed}{$-\mathrm{k}$}  & \textcolor{OCCarnegieRed}{$-1$} & \textcolor{OCCarnegieRed}{$\mathrm{i}$} & 
+ \textcolor{OCHighlandsSkyBlue}{$\mathrm{n}$} & \textcolor{OCHighlandsSkyBlue}{$\mathrm{o}$} &  \textcolor{OCHighlandsSkyBlue}{$-\mathrm{l}$} &\textcolor{OCHighlandsSkyBlue}{$-\mathrm{m}$} \\
 \hline
- $\mathrm{k}$ &  {\color{OCCarnegieRed}$\mathrm{k}$} & {\color{OCCarnegieRed}$\mathrm{j}$}  & {\color{OCCarnegieRed}$-\mathrm{i}$} & {\color{OCCarnegieRed}$-1$} & 
- {\color{OCHighlandsSkyBlue}$\mathrm{o}$} & {\color{OCHighlandsSkyBlue}$-\mathrm{n}$} &  {\color{OCHighlandsSkyBlue}$\mathrm{m}$} &{\color{OCHighlandsSkyBlue}$-\mathrm{l}$} \\
+ $\mathrm{k}$ &  \textcolor{OCCarnegieRed}{$\mathrm{k}$} & \textcolor{OCCarnegieRed}{$\mathrm{j}$}  & \textcolor{OCCarnegieRed}{$-\mathrm{i}$} & \textcolor{OCCarnegieRed}{$-1$} & 
+ \textcolor{OCHighlandsSkyBlue}{$\mathrm{o}$} & \textcolor{OCHighlandsSkyBlue}{$-\mathrm{n}$} &  \textcolor{OCHighlandsSkyBlue}{$\mathrm{m}$} &\textcolor{OCHighlandsSkyBlue}{$-\mathrm{l}$} \\
 \hline
- $\mathrm{l}$ & {\color{OCHighlandsSkyBlue}$\mathrm{l}$} & {\color{OCHighlandsSkyBlue}$-\mathrm{m}$}  & {\color{OCHighlandsSkyBlue}$-\mathrm{n}$} & {\color{OCHighlandsSkyBlue}$-\mathrm{o}$} & 
- {\color{OCHighlandsSkyBlue}$-1$} & {\color{OCHighlandsSkyBlue}$\mathrm{i}$} &  {\color{OCHighlandsSkyBlue}$\mathrm{j}$} &{\color{OCHighlandsSkyBlue}$\mathrm{k}$} \\
+ $\mathrm{l}$ & \textcolor{OCHighlandsSkyBlue}{$\mathrm{l}$} & \textcolor{OCHighlandsSkyBlue}{$-\mathrm{m}$}  & \textcolor{OCHighlandsSkyBlue}{$-\mathrm{n}$} & \textcolor{OCHighlandsSkyBlue}{$-\mathrm{o}$} & 
+ \textcolor{OCHighlandsSkyBlue}{$-1$} & \textcolor{OCHighlandsSkyBlue}{$\mathrm{i}$} &  \textcolor{OCHighlandsSkyBlue}{$\mathrm{j}$} &\textcolor{OCHighlandsSkyBlue}{$\mathrm{k}$} \\
 \hline
- $\mathrm{m}$ & {\color{OCHighlandsSkyBlue}$\mathrm{m}$} & {\color{OCHighlandsSkyBlue}$\mathrm{l}$}  & {\color{OCHighlandsSkyBlue}$-\mathrm{o}$} & {\color{OCHighlandsSkyBlue}$\mathrm{n}$} & 
- {\color{OCHighlandsSkyBlue}$-\mathrm{i}$} & {\color{OCHighlandsSkyBlue}$-1$} &  {\color{OCHighlandsSkyBlue}$-\mathrm{k}$} &{\color{OCHighlandsSkyBlue}$\mathrm{j}$} \\
+ $\mathrm{m}$ & \textcolor{OCHighlandsSkyBlue}{$\mathrm{m}$} & \textcolor{OCHighlandsSkyBlue}{$\mathrm{l}$}  & \textcolor{OCHighlandsSkyBlue}{$-\mathrm{o}$} & \textcolor{OCHighlandsSkyBlue}{$\mathrm{n}$} & 
+ \textcolor{OCHighlandsSkyBlue}{$-\mathrm{i}$} & \textcolor{OCHighlandsSkyBlue}{$-1$} &  \textcolor{OCHighlandsSkyBlue}{$-\mathrm{k}$} &\textcolor{OCHighlandsSkyBlue}{$\mathrm{j}$} \\
 \hline
- $\mathrm{n}$ &{\color{OCHighlandsSkyBlue}$\mathrm{n}$} & {\color{OCHighlandsSkyBlue}$\mathrm{o}$}  & {\color{OCHighlandsSkyBlue}$\mathrm{l}$} & {\color{OCHighlandsSkyBlue}$-\mathrm{m}$} & 
- {\color{OCHighlandsSkyBlue}$-\mathrm{j}$} & {\color{OCHighlandsSkyBlue}$\mathrm{k}$} &  {\color{OCHighlandsSkyBlue}$-1$} &{\color{OCHighlandsSkyBlue}$-\mathrm{i}$} \\
+ $\mathrm{n}$ &\textcolor{OCHighlandsSkyBlue}{$\mathrm{n}$} & \textcolor{OCHighlandsSkyBlue}{$\mathrm{o}$}  & \textcolor{OCHighlandsSkyBlue}{$\mathrm{l}$} & \textcolor{OCHighlandsSkyBlue}{$-\mathrm{m}$} & 
+ \textcolor{OCHighlandsSkyBlue}{$-\mathrm{j}$} & \textcolor{OCHighlandsSkyBlue}{$\mathrm{k}$} &  \textcolor{OCHighlandsSkyBlue}{$-1$} &\textcolor{OCHighlandsSkyBlue}{$-\mathrm{i}$} \\
 \hline
- $\mathrm{o}$ &{\color{OCHighlandsSkyBlue}$\mathrm{o}$} & {\color{OCHighlandsSkyBlue}$-\mathrm{n}$}  & {\color{OCHighlandsSkyBlue}$\mathrm{m}$} & {\color{OCHighlandsSkyBlue}$\mathrm{l}$} & 
- {\color{OCHighlandsSkyBlue}$-\mathrm{k}$} & {\color{OCHighlandsSkyBlue}$-\mathrm{j}$} &  {\color{OCHighlandsSkyBlue}$\mathrm{i}$} &{\color{OCHighlandsSkyBlue}$-1$} \\
+ $\mathrm{o}$ &\textcolor{OCHighlandsSkyBlue}{$\mathrm{o}$} & \textcolor{OCHighlandsSkyBlue}{$-\mathrm{n}$}  & \textcolor{OCHighlandsSkyBlue}{$\mathrm{m}$} & \textcolor{OCHighlandsSkyBlue}{$\mathrm{l}$} & 
+ \textcolor{OCHighlandsSkyBlue}{$-\mathrm{k}$} & \textcolor{OCHighlandsSkyBlue}{$-\mathrm{j}$} &  \textcolor{OCHighlandsSkyBlue}{$\mathrm{i}$} &\textcolor{OCHighlandsSkyBlue}{$-1$} \\
 \hline
 \end{tabular}
-\caption{\OClabel{tb:octmult}Multiplication rules for the imaginary units of {\color{OCGreenThread}complex numbers}, {\color{OCCarnegieRed}quaternions} and {\color{OCHighlandsSkyBlue}octonions}. Note that table is  anti-symmetric across the diagonal, indicating the non-commutativity of the multiplication operation. The first entry in the product is represented in the first column, the second entry along the top row.}
+\caption{\label{\chabbr:tb:octmult}Multiplication rules for the imaginary units of \textcolor{OCGreenThread}{complex numbers}, \textcolor{OCCarnegieRed}{quaternions} and \textcolor{OCHighlandsSkyBlue}{octonions}. Note that table is  anti-symmetric across the diagonal, indicating the non-commutativity of the multiplication operation. The first entry in the product is represented in the first column, the second entry along the top row.}
 \end{table} 
 
-Octonions form the basic number system for \indexit{string theory} in the study of fundamental particles where they are used extensively to describe the symmetry of the fundamental forces.  They are also used in specialized neural network applications, aspects of signal processing, computer vision problems; in the field of materials science and engineering, they have seen a recent application for the compact description of grain boundaries in polycrystalline materials \cite{degraef2019h}.
+Octonions form the basic number system for \indexit{string theory} in the study of fundamental particles where they are used extensively to describe the symmetry of the fundamental forces.  They are also used in specialized neural network applications, aspects of signal processing, computer vision problems; in the field of materials science and engineering, they have seen a recent application for the compact description of grain boundaries in polycrystalline materials \cite{degraef2019h}.  An overview of the geometry of octonions can be found in \cite{dray2015a}.
 
 
 
 \section{Other Number Systems}
-\OClabel{othernumbers}
+\label{\chabbr:othernumbers}
 
 \subsection{Beyond Octonions}
 The Cayley-Dickson construction can be continued, starting from the octonions; each application of this construction doubles the dimensionality of the number space. While the mathematical operations are no more difficult than before, there are now 15 imaginary parts ($\mathrm{i}$, $\mathrm{j}$, $\ldots$, $\mathrm{o}$ and  $J$, $\mathrm{i}J$, $\mathrm{jJ}$, $\ldots$, $\mathrm{oJ}$) and it becomes difficult to keep track of things. These 16-dimensional hypercomplex numbers have been studied extensively, and they are known as \indexit{sedenions}, represented by $\mathbb{S}$, but they are not useful for regular numerical work because  two non-zero sedenions can have a zero product so that $\mathbb{S}$ is not a division algebra.  
@@ -517,7 +522,7 @@ and one can read the rotated coordinates $(-5,2)$ from the $\epsilon$ and $\math
 which is indeed the original rotated point shifted $4$ units in the vertical direction to location $(-5,6)$.  The process for dual quaternions is similar to the one shown here. 
 
 
-\subsection{Split Number Systems}\OClabel{splitnumbers}
+\subsection{Split Number Systems}\label{\chabbr:splitnumbers}
 In previous sections we have described the complex numbers, of the form $a+\mathrm{i}b$ with $\mathrm{i}^2=-1$, and the dual numbers, of the form $a+b\epsilon$ with $\epsilon^2=0$. There is a third number system, known as the \indexit{split complex numbers} of the form $a+b\mathrm{j}$ with $\mathrm{j}^2=+1$.  It is easily verified that these numbers have some of the properties of complex numbers (for instance, multiplication is commutative and associative), but it is possible for two split complex numbers to multiply to zero when neither of the individual numbers are zero; a simple example would be:
 \[
 	(a+\mathrm{j}a)(a-\mathrm{j}a) = (a^2 - \mathrm{j}^2 a^2) = (a^2-a^2) = 0\ .

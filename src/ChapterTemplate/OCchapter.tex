@@ -1,4 +1,4 @@
-% !TEX root = ../../Build/main.tex
+% 
 % ###################################################################
 %  Copyright (c) 2025, AUTHORNAME 
 %  Editors: A.D. Rollett & M. De Graef
@@ -29,7 +29,6 @@
 \OCchapterauthor{Author Name, Affilication}
 
 % All figures are stored in the src/ChapterTitle/eps folder and must be of the *.eps, *.pdf, or *.png type. 
-\renewcommand{\chaptergraphicspath}{../src/ChapterTitle/eps/}
 
 % this is the 6-character (all uppercase) chapter descriptor used in labels and refs...
 \renewcommand{\chabbr}{AAAAAA}
@@ -40,7 +39,7 @@
 \chapterimage{\noheaderimage}
 
 % start the chapter and define the chapter label (outside of the \chapter command!)
-\chapter{Chapter Title}\OClabel{ChapterTitle} % should be the same as the filename (without extension)
+\chapter{Chapter Title}\label{\chabbr:ChapterTitle} % should be the same as the filename (without extension)
 
 % add the author information so that it will appear in the Author List at the start of the document
 % repeat this line for each author
@@ -53,10 +52,10 @@
 \begin{learningobjectives}
 % This itemized list should be formatted as follows and must be enclosed by { } 
 %{\begin{itemize}
-%    \item[{\color{OCBurntOrange}\OCref{complex}:}] Learn a formal description of complex numbers
-%    \item[{\color{OCBurntOrange}\OCref{quaternions}:}] Define the quaternion number system\\
-%    \item[{\color{OCBurntOrange}\OCref{algebras}:}] Learn about Normed Division Algebras
-%    \item[{\color{OCBurntOrange}\OCref{othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:complex}:}] Learn a formal description of complex numbers
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:quaternions}:}] Define the quaternion number system\\
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
 %\end{itemize}}
 \end{learningobjectives}
 % ###################################################################
@@ -70,9 +69,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{}\OClabel{}
+\section{}\label{\chabbr:}
 
-\subsection{}\OClabel{}
+\subsection{}\label{\chabbr:}
 
 
 

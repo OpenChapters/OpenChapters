@@ -2,6 +2,7 @@
 % arara: copy: { files: [ '../.git/gitHeadinfo.gin' ],
 % arara: --> target: 'gitHeadLocal.gin' }
 % arara: clean: {files: ['main-authors.aux'] }
+% arara: copyImageFiles
 % arara: pdflatex: { shell: yes }
 % arara: makeindex: { style: StyleInd.ist, output: ind, log: ilg, input: idx }
 % arara: mergemainbibfiles
@@ -10,7 +11,7 @@
 % arara: pdflatex: { shell: yes }
 % arara: clean: { extensions: [aux, bbl, bcf, blg, idx, ilg, ind, log, ptc, toc]}
 % arara: clean: { files: ['gitHeadLocal.gin', 'main.run.xml'] }
-%
+%!TEX encoding = UTF-8 Unicode
 %
 % ###################################################################
 % Copyright (c) 2017-2025, Editors: A.D. Rollett & M. De Graef
@@ -33,6 +34,11 @@
 
 % load the OpenChapters.sty package file that loads everything else...
 \usepackage{OpenChapters}
+
+% All figures are stored in the src/ChapterTitle/eps folders and must be of the *.eps, *.pdf, or *.png type. 
+% They are all copied into the ImageFolder before compilation
+\renewcommand{\chaptergraphicspath}{ImageFolder/}
+\renewcommand{\graphicspath}{ImageFolder/}
 
 % user-defined commands
 \input{preamble.ins}
@@ -80,10 +86,11 @@
 %\include{src/ExampleProperties/ExampleProperties} % Example Anisotropic Material Properties
 
 \part{Foundational Chapters}
-%\include{src/NumberSystems/NumberSystems} % tutorial on number systems
-%\include{src/LinearAlgebra/LinearAlgebra} % Linear Algebra
-\include{src/Projections/Projections} % Various useful projections
-\include{src/2Drotations/2Drotations} % 2D Rotations
+%
+\include{src/NumberSystems/NumberSystems} % tutorial on number systems
+\include{src/LinearAlgebra/LinearAlgebra} % Linear Algebra
+%\include{src/Projections/Projections} % Various useful projections
+%\include{src/2Drotations/2Drotations} % 2D Rotations
 %\include{src/3Drotations/3Drotations} % 3D Rotation Representations 
 %\include{src/Tensors/Tensors} % Introduction to Tensors 
 

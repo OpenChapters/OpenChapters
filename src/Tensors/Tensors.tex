@@ -1,4 +1,4 @@
-% !TEX root = ../../Build/main.tex
+% 
 % ###################################################################
 % Copyright (c) 2025, M. De Graef 
 %  Editors: A.D. Rollett & M. De Graef
@@ -27,7 +27,6 @@
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/Tensors/eps folder and must be of the *.eps type. 
-\renewcommand{\chaptergraphicspath}{../src/Tensors/eps/}
 
 % this is the 6-character (all uppercase) chapter descriptor used in labels and refs...
 \renewcommand{\chabbr}{TENSOR}
@@ -36,8 +35,13 @@
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 \chapterimage{\noheaderimage}
 
+% in HTML mode, the chapter header image is treated differently
+%\ifdefstring{\isHTML}{Yes}{%
+%\HTMLPageTop{\begin{center}\fbox{\includegraphics{\graphicspath NUMSYSheader.pdf}}\end{center}}
+%}{}%
+
 % start the chapter and define the chapter label (outside of the \chapter command!)
-\chapter{Introduction to Tensors}\OClabel{Tensors}
+\chapter{Introduction to Tensors}\label{\chabbr:Tensors}
 
 % add the author information so that it will appear in the Author List at the start of the document
 \writeauthor{TENSOR:Tensors}{Introduction to Tensors}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
@@ -52,11 +56,11 @@
 {\color{OCalmostblack}\sffamily
 \begin{multicols}{2}
 \begin{itemize}
-    \item[{\color{OCBurntOrange}\OCref{vectorproduct}:}] Discover a new product between two or more vectors
-    \item[{\color{OCBurntOrange}\OCref{tensorproducts}:}] Learn the ways tensors can be multiplied (subscript rules)
-    \item[{\color{OCBurntOrange}\OCref{tensortrafo}:}] Determine how tensors behave under coordinate transformations
-%    \item[{\color{OCBurntOrange}\OCref{algebras}:}] Learn about Normed Division Algebras
-%    \item[{\color{OCBurntOrange}\OCref{othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+    \item[{\color{OCBurntOrange}\ref{\chabbr:vectorproduct}:}] Discover a new product between two or more vectors
+    \item[{\color{OCBurntOrange}\ref{\chabbr:tensorproducts}:}] Learn the ways tensors can be multiplied (subscript rules)
+    \item[{\color{OCBurntOrange}\ref{\chabbr:tensortrafo}:}] Determine how tensors behave under coordinate transformations
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
 \end{itemize}
 \end{multicols}}}
 % ###################################################################
@@ -66,9 +70,9 @@
 
 % ###################################################################
 
-\section{A new Vector Product}\OClabel{vectorproduct}
+\section{A new Vector Product}\label{\chabbr:vectorproduct}
 
-\subsection{Products we already Know}\OClabel{knownproducts}
+\subsection{Products we already Know}\label{\chabbr:knownproducts}
 In most vector calculus courses, two types of products between vectors are introduced: the \indexit{scalar product} or \indexit{dot product} and the \indexit{vector cross product}.  Each of them can be defined in a geometric way as well as an algebraic way:
 \begin{itemize}
 	\item \textbf{\textit{dot product}}: Consider two vectors $\mathbf{p}$ and $\mathbf{q}$ with real components $p_i$ and $q_j$ with respect to a Cartesian reference frame with basis vectors $\mathbf{e}_i$, so that
@@ -89,7 +93,7 @@ In most vector calculus courses, two types of products between vectors are intro
 	\begin{equation}
 		\mathbf{p}\times\mathbf{q} \equiv \vert\mathbf{p}\vert\,\vert\mathbf{q}\vert\,\sin\theta\, \hat{e}_{pq},
 	\end{equation}
-	where $\hat{e}_{pq}$ is a unit vector perpendicular to both $\mathbf{p}$ and $\mathbf{q}$, as shown in Fig.~\OCref{vproducts}(b).  The direction of this unit vector with respect to the plane formed by the two vectors is determined from the \indexit{right-hand rule}, which states that if the fingers of the right hand are curled from $\mathbf{p}$ to $\mathbf{q}$ (for the product $\mathbf{p}\times\mathbf{q}$), then the thumb points in the direction of $\hat{e}_{pq}$. The length of the cross product vector corresponds to the area of the parallellogram formed by the two vectors; since the vector $\hat{e}_{pq}$ has a well defined direction, one can think of this area as a ``signed area''.  If we changed the order of the two vectors, then the unit vector would change sign, i.e., $\mathbf{p}\times\mathbf{q}=-\mathbf{q}\times\mathbf{p}$, but the absolute value of the area would not change.
+	where $\hat{e}_{pq}$ is a unit vector perpendicular to both $\mathbf{p}$ and $\mathbf{q}$, as shown in Fig.~\ref{\chabbr:vproducts}(b).  The direction of this unit vector with respect to the plane formed by the two vectors is determined from the \indexit{right-hand rule}, which states that if the fingers of the right hand are curled from $\mathbf{p}$ to $\mathbf{q}$ (for the product $\mathbf{p}\times\mathbf{q}$), then the thumb points in the direction of $\hat{e}_{pq}$. The length of the cross product vector corresponds to the area of the parallellogram formed by the two vectors; since the vector $\hat{e}_{pq}$ has a well defined direction, one can think of this area as a ``signed area''.  If we changed the order of the two vectors, then the unit vector would change sign, i.e., $\mathbf{p}\times\mathbf{q}=-\mathbf{q}\times\mathbf{p}$, but the absolute value of the area would not change.
 	
 	The algebraic form of the vector cross product requires a little more work. We start with the Cartesian expansions of the vectors and write out the explicit cross products of the basis vectors:
 	\begin{equation}
@@ -109,19 +113,19 @@ In most vector calculus courses, two types of products between vectors are intro
 	\end{equation}
 	Note that this relation can also be formulated as a $3\times 3$ determinant by writing the basis vectors on the top row, and the vector components (in the correct order) on the second and third row:
 	\begin{equation}
-		\mathbf{p}\times\mathbf{q} = \det\deterthree{\mathbf{e}_x}{\mathbf{e}_y}{ \mathbf{e}_z}{p_x}{p_y}{p_z}{q_x}{q_y}{q_z}\ . 
+		\mathbf{p}\times\mathbf{q} = \begin{vmatrix}\mathbf{e}_x&\mathbf{e}_y&\mathbf{e}_z\\ p_x&p_y&p_z\\ q_x&q_y&q_z\end{vmatrix}\ . 
 	\end{equation}
 	
 \end{itemize}
 
-\subsection{The Tensor Product}\OClabel{tensorproduct}
+\subsection{The Tensor Product}\label{\chabbr:tensorproduct}
 The vector dot product represents the basic step used when multiplying conformable matrices\footnote{Two matrices $A$ and $B$ are conformable if the number of columns in $A$ is the same as the number of rows in $B$.}: take row $i$ from the first matrix and compute the dot product with column $j$ from the second matrix to obtain entry $(i,j)$ of the resulting product matrix. This means that we can also write the dot product as:
 \begin{equation}
-	\mathbf{p}\cdot\mathbf{q} = \rowthree{p_x}{p_y}{p_z}\columnthree{q_x}{q_y}{q_z} = p_xq_x+p_yq_y+p_zq_z\ .
+	\mathbf{p}\cdot\mathbf{q} = \begin{bmatrix}p_x & p_y& p_z\end{bmatrix}\begin{bmatrix}q_x\\ q_y\\ q_z\end{bmatrix} = p_xq_x+p_yq_y+p_zq_z\ .
 \end{equation}
 We can consider this as a matrix product of a $1\times 3$ matrix with a $3\times 1$ matrix to obtain a $1\times 1$ matrix, i.e., a scalar. If we change the order of the product to a $3\times 1$ matrix multiplied by a $1\times 3$ matrix (note that they are indeed conformable, so this product is meaningful), then we will obtain a $3\times 3$ matrix.  Such a product is known as an \indexit{outer product} or \indexit{tensor product} and is defined as:
 \begin{equation}
-	\mathbf{p}\otimes\mathbf{q} = \columnthree{p_x}{p_y}{p_z}\rowthree{q_x}{q_y}{q_z}=\matrixtbtb{p_xq_x}{p_xq_y}{p_xq_z}{p_yq_x}{p_yq_y}{p_yq_z}{p_zq_x}{p_zq_y}{p_zq_z}\ .
+	\mathbf{p}\otimes\mathbf{q} = \begin{bmatrix}p_x\\ p_y\\ p_z\end{bmatrix}\begin{bmatrix}q_x& q_y& q_z\end{bmatrix}= \begin{bmatrix}p_xq_x&p_xq_y&p_xq_z\\ p_yq_x&p_yq_y&p_yq_z\\ p_zq_x&p_zq_y&p_zq_z\end{bmatrix}\ .
 \end{equation}
 This is clearly the most general product possible between two vectors, taking one component from the first vector and one component from the second vector.  In index notation we have:
 \begin{equation}
@@ -139,11 +143,11 @@ Note that it is not easy to write this result as a matrix since it would be a $3
 
 One might ask the question: so, what are these vectors that we apparently need to build a tensor?  It turns out that it really doesn't matter that much. A simple example will show why that is the case. Consider a second rank tensor in a 2D vector space, built from the vectors $\mathbf{p}=(p_x,p_y)$ and $\mathbf{q}=(q_x,q_y)$.  Their tensor product is:
 \begin{equation}
-	\mathbf{p}\otimes\mathbf{q} = \columntwo{p_x}{p_y}\rowtwo{q_x}{q_y}=\matrixtwob{p_xq_x}{p_xq_y}{p_yq_x}{p_yq_y}\ .
+	\mathbf{p}\otimes\mathbf{q} = \begin{bmatrix}p_x\\ p_y\end{bmatrix}\begin{bmatrix}q_x&q_y\end{bmatrix}=\begin{bmatrix}p_xq_x&p_xq_y\\ p_yq_x&p_yq_y\end{bmatrix}\ .
 \end{equation}
 If we assign specific values to the components, say $\mathbf{p}=(3,4)$ and $\mathbf{q}=(5,6)$, then we obtain the array:
 \begin{equation}
-	\mathbf{p}\otimes\mathbf{q} = \matrixtwob{15}{18}{20}{24}\ .
+	\mathbf{p}\otimes\mathbf{q} = \begin{bmatrix}15&18\\ 20&24\end{bmatrix}\ .
 \end{equation}
 Suppose that we would like to find out what the original vectors were that gave rise to this tensor product; we would then need to solve the following equations:
 \begin{equation}
@@ -162,10 +166,10 @@ This system of equations does not have a unique solution; using Mathematica, we 
 		q_y &= \frac{18}{p_x}.
 	\end{split}
 \end{equation}
-So, while a second rank tensor is defined by a tensor product of two vectors, it is a meaningless question to  ask, given the tensor, what are the vectors?  There is an infinite family of vector pairs that will produce the same tensor product.  While the exact values of the vector components don't matter, it \textit{does} really matter that the second rank tensor is defined by a tensor product of two vectors; as we will see in section~\OCref{tensortrafo}, the tensor will \textit{inherit} the transformation rules for the individual vectors when the reference frame is changed.   Before we introduce the transformation rules for general tensors, let's first do some index gymnastics.
+So, while a second rank tensor is defined by a tensor product of two vectors, it is a meaningless question to  ask, given the tensor, what are the vectors?  There is an infinite family of vector pairs that will produce the same tensor product.  While the exact values of the vector components don't matter, it \textit{does} really matter that the second rank tensor is defined by a tensor product of two vectors; as we will see in section~\ref{\chabbr:tensortrafo}, the tensor will \textit{inherit} the transformation rules for the individual vectors when the reference frame is changed.   Before we introduce the transformation rules for general tensors, let's first do some index gymnastics.
 
 
-\section{Tensor Multiplication}\OClabel{tensorproducts}
+\section{Tensor Multiplication}\label{\chabbr:tensorproducts}
 Just like real numbers and complex numbers (see chapter~\ref{NUMSYS:NumberSystems}), tensors, which are really just arrays of numbers, can be multiplied with each other.  Let's start with a simple example: the product of two second rank tensors. Consider the tensors $\kappa_{ij}$ and $\lambda_{kl}$; we know that they are each defined by a tensor product of two vectors.  While we don't care about the components of those vectors, we can still write each tensor as a tensor product of two vectors (we'll just pick some letters to represent the vectors):
 \begin{equation}
 	\begin{split}
@@ -207,7 +211,7 @@ These simple rules allow us to quickly spot invalid equations; can you see why t
 
 
 \newpage
-\section{Tensors and Coordinate Transformations}\OClabel{tensortrafo}
+\section{Tensors and Coordinate Transformations}\label{\chabbr:tensortrafo}
 
 \subsection{Derivation of a coordinate transformation matrix}
 
@@ -231,18 +235,18 @@ We can collect the nine numbers $\mathbf{e}'_i\cdot\mathbf{e}_j$ in a $3\times 3
 \]
 Therefore, we have a compact relation that expresses the new basis vectors in terms of the old ones:
 \begin{equation}
-	\mathbf{e}'_i = \alpha_{ij}\mathbf{e}_j.\OClabel{alphadef}
+	\mathbf{e}'_i = \alpha_{ij}\mathbf{e}_j.\label{\chabbr:alphadef}
 \end{equation}
 This is a linear relation between two basis vector triplets and is known as a \indexit{coordinate transformation}.  We will assume throughout this text that the origin itself does not change during the coordinate transformation.  If there were a change in the position of the origin as well, then we would have to add a translation vector to the equations above.  The transformation described by the matrix $\alpha_{ij}$ is known as a 3D rotation.
  
 The inverse transformation must also exist and is described by the inverse of the matrix $\alpha_{ij}$:
 \begin{equation}
-	\mathbf{e}_i=\alpha^{-1}_{ij}\mathbf{e}_{j}^{\,\prime}.\OClabel{basistrafoinverse}
+	\mathbf{e}_i=\alpha^{-1}_{ij}\mathbf{e}_{j}^{\,\prime}.\label{\chabbr:basistrafoinverse}
 \end{equation}
 It is an important property of this type of transformation matrix that the inverse of the matrix is equal to the transpose; matrices with this property are known as orthonormal matrices.\index{orthonormal matrix} In addition, one can show that these matrices have a determinant of $\det\alpha_{ij}=+1$, making them \indexit{special orthogonal matrices}.
 
 \subsection{Transformation rule for a rank-1 tensor}
-We learned in section~\OCref{tensorproduct} that a rank-1 tensor is just a regular vector, say $\mathbf{q}$.  A vector has a direction and a magnitude (length) and in general it exists independent of a reference frame.  It is only when we chose a reference frame, say $\mathbf{e}_j$, that the vector ``acquires'' components, say $q_j$. If we pick a different reference frame, related to the first one by $\mathbf{e}'_i = \alpha_{ij}\mathbf{e}_j$, then we will have new vector components $q'_i$ so that $\mathbf{q}=q'_i \mathbf{e}'_i$ and $\mathbf{q}=q_j \mathbf{e}_j$. This suggests that the components $q'_i$ and $q_j$ must also be related to each other by the rotation matrix $\alpha_{ij}$; we will derive this relation below. Before we do so, we should note that, if we know how the components of a vector transform between different reference frames, then we also know how a tensor of arbitrary rank will transform, since every tensor can be defined by a tensor product of vectors, as described in section~\OCref{tensorproduct}.
+We learned in section~\ref{\chabbr:tensorproduct} that a rank-1 tensor is just a regular vector, say $\mathbf{q}$.  A vector has a direction and a magnitude (length) and in general it exists independent of a reference frame.  It is only when we chose a reference frame, say $\mathbf{e}_j$, that the vector ``acquires'' components, say $q_j$. If we pick a different reference frame, related to the first one by $\mathbf{e}'_i = \alpha_{ij}\mathbf{e}_j$, then we will have new vector components $q'_i$ so that $\mathbf{q}=q'_i \mathbf{e}'_i$ and $\mathbf{q}=q_j \mathbf{e}_j$. This suggests that the components $q'_i$ and $q_j$ must also be related to each other by the rotation matrix $\alpha_{ij}$; we will derive this relation below. Before we do so, we should note that, if we know how the components of a vector transform between different reference frames, then we also know how a tensor of arbitrary rank will transform, since every tensor can be defined by a tensor product of vectors, as described in section~\ref{\chabbr:tensorproduct}.
 
 Next, we consider the effect of the transformation matrix on the components of the vector $\mathbf{q}$.  We must have the following relations:
 \begin{equation}
@@ -251,30 +255,30 @@ Next, we consider the effect of the transformation matrix on the components of t
 We can then carry out the following series of steps:
 \begin{align*}
 	\mathbf{q} &= q_j\mathbf{e}_j;\\
-	&= q_j (\alpha^{-1}_{ji}\mathbf{e}'_i)\quad\text{(apply transformation rule (\OCref{basistrafoinverse}) for basis vectors)};\\
+	&= q_j (\alpha^{-1}_{ji}\mathbf{e}'_i)\quad\text{(apply transformation rule (\ref{\chabbr:basistrafoinverse}) for basis vectors)};\\
 	&= (q_j \alpha^{-1}_{ji})\mathbf{e}'_i\quad\text{(associativity of product)};\\
 	&= q'_i\mathbf{e}'_i.
 \end{align*}
 Therefore we have $q'_i= q_j \alpha^{-1}_{ji}$. Due to the orthogonality of the matrix $\alpha$ we have $\alpha^{-1}_{ji}=\tilde{\alpha}_{ji}=\alpha_{ij}$, so that:
 \begin{equation}
-	q'_i = \alpha_{ij}q_j\ .\OClabel{vectransfo}
+	q'_i = \alpha_{ij}q_j\ .\label{\chabbr:vectransfo}
 \end{equation}
 This equation is the transformation rule for vector components.  Similarly, one can readily show (exercise) that
 \begin{equation}
-	q_i=\tilde{\alpha}_{ij}q_j^{\prime}.\OClabel{vectransfoinv}
+	q_i=\tilde{\alpha}_{ij}q_j^{\prime}.\label{\chabbr:vectransfoinv}
 \end{equation}
-We can interpret equations~(\OCref{vectransfo}) and (\OCref{vectransfoinv}) as follows: \textit{the vector $\mathbf{q}$ is independent of the chosen reference frame if its components with respect to two different reference frames are related to each other by equations~(\OCref{vectransfo}) and (\OCref{vectransfoinv})}.  In other words, the transformation relations can be used to define when a triplet of numbers represents a vector.  If the triplets $(q_x,q_y,q_z)$ and $(q_x^{\prime},q_y^{\prime},q_z^{\prime})$ satisfy both equations for all pairs of reference frames, then $\mathbf{q}$ is a vector.  
+We can interpret equations~(\ref{\chabbr:vectransfo}) and (\ref{\chabbr:vectransfoinv}) as follows: \textit{the vector $\mathbf{q}$ is independent of the chosen reference frame if its components with respect to two different reference frames are related to each other by equations~(\ref{\chabbr:vectransfo}) and (\ref{\chabbr:vectransfoinv})}.  In other words, the transformation relations can be used to define when a triplet of numbers represents a vector.  If the triplets $(q_x,q_y,q_z)$ and $(q_x^{\prime},q_y^{\prime},q_z^{\prime})$ satisfy both equations for all pairs of reference frames, then $\mathbf{q}$ is a vector.  
 
 
 \subsection{Transformation rule for a rank-2 tensor}
 
-Let us begin by considering a rank-2 tensor $\bm{\sigma}$; we represent this tensor by a bold symbol, just like we did for the vector $\mathbf{q}$ in the previous section. This indicates that the tensor ``exists'' as a mathematical object, independent of any reference frame.\footnote{In section~\OCref{tensorgraph} we will describe one possible way to graphically represent a second rank tensor.}  We know from section~\OCref{tensorproduct} that a second rank tensor can be obtained by a tensor product of two vectors; let's call them $\mathbf{a}$ and $\mathbf{b}$.  All we need to know about them is that they are vectors (i.e. rank-1 tensors), so their components obey the transformation rule derived in the previous section.  We start from the definition:
+Let us begin by considering a rank-2 tensor $\bm{\sigma}$; we represent this tensor by a bold symbol, just like we did for the vector $\mathbf{q}$ in the previous section. This indicates that the tensor ``exists'' as a mathematical object, independent of any reference frame.\footnote{In section~\ref{\chabbr:tensorgraph} we will describe one possible way to graphically represent a second rank tensor.}  We know from section~\ref{\chabbr:tensorproduct} that a second rank tensor can be obtained by a tensor product of two vectors; let's call them $\mathbf{a}$ and $\mathbf{b}$.  All we need to know about them is that they are vectors (i.e. rank-1 tensors), so their components obey the transformation rule derived in the previous section.  We start from the definition:
 \begin{equation}
 	\bm{\sigma} = \mathbf{a}\otimes\mathbf{b}\rightarrow \sigma_{ij} = (\mathbf{a}\otimes\mathbf{b})_{ij} = a_i\,b_j\ ,
 \end{equation}
 where we have selected a reference frame $\mathbf{e}_i$ to determine the components of the vectors $\mathbf{a}$ and $\mathbf{b}$.  
 
-Next, we introduce a second reference frame related to the first one by the standard transformation rule $\mathbf{e}'_i = \alpha_{ij}\mathbf{e}_j$ from equation~(\OCref{alphadef}).  Equation~(\OCref{vectransfoinv}) can then be applied to express the components of the vectors $\mathbf{a}$ and $\mathbf{b}$ in the old reference frame in terms of the components in the new (primed) reference frame:
+Next, we introduce a second reference frame related to the first one by the standard transformation rule $\mathbf{e}'_i = \alpha_{ij}\mathbf{e}_j$ from equation~(\ref{\chabbr:alphadef}).  Equation~(\ref{\chabbr:vectransfoinv}) can then be applied to express the components of the vectors $\mathbf{a}$ and $\mathbf{b}$ in the old reference frame in terms of the components in the new (primed) reference frame:
 \[
 	a_i = \tilde{\alpha}_{ik}a'_k\text{ and }b_j=\tilde{\alpha}_{jl}b'_l\ .
 \]
@@ -284,21 +288,21 @@ Substituting these into the previous equation we have:
 \]
 We have used the fact that the product $a'_k\,b'_l$ represents the same tensor $\bm{\sigma}$ but in the primed reference frame, so that $a'_k\,b'_l=\sigma'_{kl}$.  Therefore we have the following transformation rule:
 \begin{equation}
-	\sigma_{ij} = \tilde{\alpha}_{ik}\tilde{\alpha}_{jl} \sigma'_{kl}\ .\OClabel{ranktwotrafo1}
+	\sigma_{ij} = \tilde{\alpha}_{ik}\tilde{\alpha}_{jl} \sigma'_{kl}\ .\label{\chabbr:ranktwotrafo1}
 \end{equation}
-If we start from the relation $\sigma'_{kl}=a'_k\,b'_l$ and apply equation~(\OCref{vectransfo}) to each set of vector components we obtain in a similar way the inverse of the transformation in equation~(\OCref{ranktwotrafo1}):
+If we start from the relation $\sigma'_{kl}=a'_k\,b'_l$ and apply equation~(\ref{\chabbr:vectransfo}) to each set of vector components we obtain in a similar way the inverse of the transformation in equation~(\ref{\chabbr:ranktwotrafo1}):
 \begin{equation}
-	\sigma'_{kl} = \alpha_{ki}\alpha_{lj} \sigma_{ij}\ .\OClabel{ranktwotrafo2}
+	\sigma'_{kl} = \alpha_{ki}\alpha_{lj} \sigma_{ij}\ .\label{\chabbr:ranktwotrafo2}
 \end{equation}
 If a set of nine numbers $\sigma_{ij}$ satisfies both of these equations for any pair of reference frames, then we say that $\bm{\sigma}$ is a rank-2 tensor.
 
-Let us analyze these relations in a little more detail.  Starting from equation~(\OCref{ranktwotrafo2}) we see that both subscripts $i$ and $j$ are repeated, so there must be summations over both indices:
+Let us analyze these relations in a little more detail.  Starting from equation~(\ref{\chabbr:ranktwotrafo2}) we see that both subscripts $i$ and $j$ are repeated, so there must be summations over both indices:
 \[
 	\sigma'_{kl} = \sum_{i=1}^3\sum_{j=1}^3\alpha_{ki}\alpha_{lj} \sigma_{ij}\ .
 \]
 In other words, every tensor component $\sigma'_{kl}$ can be written as a sum of all nine components $\sigma_{ij}$; this relation therefore describes nine equations (one for each combination of $k$ and $l$), and each equation has nine terms, with each term containing the product of two entries of the transformation matrix $\alpha$.  This clearly illustrates the compactness of the subscript notation!
 
-An alternative way to carry out these summations is to consider all three factors on the right hand side of equation~(\OCref{ranktwotrafo2}) to be $3\times 3$ matrices, and to perform the summations in terms of matrix multiplications.  Recall that matrix multiplication can only be performed between conformable matrices, so we need to pay careful attention to the order of the factors; in the relation:
+An alternative way to carry out these summations is to consider all three factors on the right hand side of equation~(\ref{\chabbr:ranktwotrafo2}) to be $3\times 3$ matrices, and to perform the summations in terms of matrix multiplications.  Recall that matrix multiplication can only be performed between conformable matrices, so we need to pay careful attention to the order of the factors; in the relation:
 \[
 	\sigma'_{kl} = \alpha_{ki}\alpha_{lj} \sigma_{ij}\ ,
 \]
@@ -312,17 +316,17 @@ Hence we can multiply the first two factors using the standard matrix multiplica
 \]
 Written in this way, we can carry out all the summations as two consecutive matrix products; written explicitly, we have:
 \[
-	\matrixtbtb{\sigma'_{xx}}{\sigma'_{xy}}{\sigma'_{xz}}{\sigma'_{yx}}{\sigma'_{yy}}{\sigma'_{yz}}{\sigma'_{zx}}{\sigma'_{zy}}{\sigma'_{zz}}=
-	\matrixtbt{\alpha_{xx}}{\alpha_{xy}}{\alpha_{xz}}{\alpha_{yx}}{\alpha_{yy}}{\alpha_{yz}}{\alpha_{zx}}{\alpha_{zy}}{\alpha_{zz}}
-	\matrixtbtb{\sigma_{xx}}{\sigma_{xy}}{\sigma_{xz}}{\sigma_{yx}}{\sigma_{yy}}{\sigma_{yz}}{\sigma_{zx}}{\sigma_{zy}}{\sigma_{zz}}
-	\matrixtbt{\alpha_{xx}}{\alpha_{yx}}{\alpha_{zx}}{\alpha_{xy}}{\alpha_{yy}}{\alpha_{zy}}{\alpha_{xz}}{\alpha_{yz}}{\alpha_{zz}}\ .
+	\begin{bmatrix}\sigma'_{xx}&\sigma'_{xy}&\sigma'_{xz}\\ \sigma'_{yx}&\sigma'_{yy}&\sigma'_{yz}\\ \sigma'_{zx}&\sigma'_{zy}&\sigma'_{zz}\end{bmatrix}=
+	\begin{pmatrix}\alpha_{xx}&\alpha_{xy}&\alpha_{xz}\\ \alpha_{yx}&\alpha_{yy}&\alpha_{yz}\\ \alpha_{zx}&\alpha_{zy}&\alpha_{zz}\end{pmatrix}
+	\begin{bmatrix}\sigma_{xx}&\sigma_{xy}&\sigma_{xz}\\ \sigma_{yx}&\sigma_{yy}&\sigma_{yz}\\ \sigma_{zx}&\sigma_{zy}& \sigma_{zz}\end{bmatrix}
+	\begin{pmatrix}\alpha_{xx}&\alpha_{yx}&\alpha_{zx}\\ \alpha_{xy}&\alpha_{yy}&\alpha_{zy}\\ \alpha_{xz}&\alpha_{yz}&\alpha_{zz}\end{pmatrix}\ .
 \]
 Note that we use square brackets to represent a tensor as a matrix, and round brackets for a regular matrix (the rotation matrix $\alpha_{ij}$ is not a second rank tensor). 
 
 
 \subsection{Transformation rule for a rank-n tensor}
 
-In section~\OCref{tensorproduct} we described how a rank-n tensor can be considered to be a tensor product of $n$ vectors; in the previous section we described how the transformation rule for a rank-2 tensor can be obtained by considering the transformations of the individual vectors that define the tensor. This then suggest how we should handle the general case of a rank-n tensor.  We will begin with a rank-3 tensor and then generalize to a rank-n tensor.
+In section~\ref{\chabbr:tensorproduct} we described how a rank-n tensor can be considered to be a tensor product of $n$ vectors; in the previous section we described how the transformation rule for a rank-2 tensor can be obtained by considering the transformations of the individual vectors that define the tensor. This then suggest how we should handle the general case of a rank-n tensor.  We will begin with a rank-3 tensor and then generalize to a rank-n tensor.
 
 We can define a rank-3 tensor $\delta_{ijk}$ as a tensor product of the three vectors $\mathbf{a}$, $\mathbf{b}$, and $\mathbf{c}$ as $\bm{\delta} = \mathbf{a}\otimes\mathbf{b}\otimes\mathbf{c}$, or, in component notation $\delta_{ijk}=a_i\,b_j\,c_k$. Using the same reasoning as above, we can immediately write down the transformation rule for the components of $\bm{\delta}$ in the primed reference frame:
 \begin{equation}
@@ -350,7 +354,7 @@ where the dots represent the positions of the indices. Application of rule 3 the
 \]
 and rule 4 completes the transformation rule:
 \begin{equation}
-	\mu'_{ijklm} = \alpha_{io}\,\alpha_{jp}\,\alpha_{kq}\,\alpha_{lr}\,\alpha_{ms}\, \mu_{opqrs}\ .\OClabel{rankfive}
+	\mu'_{ijklm} = \alpha_{io}\,\alpha_{jp}\,\alpha_{kq}\,\alpha_{lr}\,\alpha_{ms}\, \mu_{opqrs}\ .\label{\chabbr:rankfive}
 \end{equation}
 While this may be a little abstract, it might help if you think of $\mu_{opqrs}$ as a mathematical object that represents all possible products of the components of five individual vectors; it has $3^5=243$ components, and they transform according to this transformation rule when we change the reference frame. Just as a vector exists, independent of the reference frame, this object also exists, independent of the reference frame (although it might not be so easy to visualize what it looks like).  
 
@@ -360,10 +364,10 @@ Objects like these are important, because they allow us to state the laws of phy
 \]
 Since $W_{ij}$ is a second rank tensor, we can change the reference frame by any 3D rotation and this will not change the value of $W$, which is a scalar and thus does not depend on the reference frame.  The components of the tensor $W_{ij}$ will in general be different from those in a different reference frame ($W'_{kl}$), but the trace of this matrix, which is a scalar, is an invariant, and does not depend on the reference frame.  This illustrates that the use of tensors permits us to formulate the laws of nature/physics in a frame-invariant way; this is the main reason for the use of tensors.  In addition, tensor relations represent a very compact notation of what could be a large set of equations with many terms in each equation.
 
-In summary,  we can now state the formal definition of a tensor:\index{tensor!definition} \textit{if a set of numbers $\tau_{ijkl\ldots}$ with $n$ subscripts satisfies equations of the type (\OCref{rankfive}) for all rotation matrices $\alpha_{pq}$ connecting two Cartesian reference frames, then that set of numbers constitutes a rank-$n$ tensor.}  While we introduced tensors by means of the tensor product of two or more vectors, let us just restate that we will usually not be interested in the individual vectors that make up the tensor; we will consider the tensor itself as an array of numbers, without worrying about which vectors were used to construct it. While each tensor, regardless of its rank, can be considered to be a mathematical object that ``exists'' independent of the reference frame, there is usually no satisfactory visual representation of a tensor of arbitrary rank.  In some cases, however, it is possible to obtain a visual representation, as we will illustrate in the next section.
+In summary,  we can now state the formal definition of a tensor:\index{tensor!definition} \textit{if a set of numbers $\tau_{ijkl\ldots}$ with $n$ subscripts satisfies equations of the type (\ref{\chabbr:rankfive}) for all rotation matrices $\alpha_{pq}$ connecting two Cartesian reference frames, then that set of numbers constitutes a rank-$n$ tensor.}  While we introduced tensors by means of the tensor product of two or more vectors, let us just restate that we will usually not be interested in the individual vectors that make up the tensor; we will consider the tensor itself as an array of numbers, without worrying about which vectors were used to construct it. While each tensor, regardless of its rank, can be considered to be a mathematical object that ``exists'' independent of the reference frame, there is usually no satisfactory visual representation of a tensor of arbitrary rank.  In some cases, however, it is possible to obtain a visual representation, as we will illustrate in the next section.
 
 
-\section{Example of a graphical interpretation of a second rank tensor}\OClabel{tensorgraph}
+\section{Example of a graphical interpretation of a second rank tensor}\label{\chabbr:tensorgraph}
 
 Consider an arbitrary symmetric second rank tensor $\beta_{ij}=\beta_{ji}$.  If we denote the components of a position vector $\mathbf{r}$ by $x_i=(x,y,z)$, then we can combine the tensor and vector to construct a scalar quantity which, for convenience, we set equal to unity:
 \[
@@ -390,7 +394,7 @@ where $a$, $b$, and $c$ are the three radii along the principal axes.  This mean
 \begin{messagebox}{Symmetric Material Property Tensors}{OCblue}{icnote}{OCwhite}
 Diagonal second rank property tensors are usually found for the higher symmetry point groups (tetragonal, orthorhombic and cubic), which means that the corresponding ellipsoid is aligned with respect to the crystallographic axes (figures a-c below).  For lower symmetries, one can still define an ellipsoid.  It can be shown that there exists a coordinate transformation which will convert the tensor $\beta_{ij}$ to a diagonal tensor $\beta'_{ij}$.  The corresponding ellipsoid is no longer oriented along the main crystallographic directions, but is still described by the tensor elements (figure d).  One can think of it in the following way: three of the six tensor elements (along the diagonal) are used to describe the principal radii of the ellipsoid, the other three off-diagonal elements define the orientation of the main ellipsoid axis.  
 
-\includegraphics[width=0.98\textwidth]{tensorellipsoid}
+\includegraphics[width=0.98\textwidth]{\graphicspath tensorellipsoid.eps}
 \end{messagebox}
 
 

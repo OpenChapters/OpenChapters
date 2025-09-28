@@ -1,4 +1,4 @@
-% !TEX root = ../../Build/main.tex
+% 
 % ###################################################################
 % Copyright (c) 2025, Marc De Graef 
 %  Editors: A.D. Rollett & M. De Graef
@@ -27,7 +27,6 @@
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/RotationSymmetry/eps folder and must be of the *.eps type. 
-\renewcommand{\chaptergraphicspath}{../src/LinearAlgebra/eps/}
 
 \renewcommand{\chabbr}{LINALG}
 
@@ -36,7 +35,13 @@
 %     replace \noheaderimage by the chapter header image file name (without .eps extension).
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 
-\chapter{Concepts of Linear Algebra}\OClabel{LinearAlgebra}
+% in HTML mode, the chapter header image is treated differently
+%\ifdefstring{\isHTML}{Yes}{%
+%\HTMLPageTop{\begin{center}\fbox{\includegraphics{\graphicspath NUMSYSheader.pdf}}\end{center}}
+%}{}%
+%
+
+\chapter{Concepts of Linear Algebra}\label{\chabbr:LinearAlgebra}
 
 % add the author information so that it will appear in the Author List at the start of the document
 \writeauthor{LINALG:LinearAlgebra}{Concepts of Linear Algebra}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
@@ -52,12 +57,12 @@
 %\begin{multicols}{2}
 \begin{learningobjectives}
 {\begin{itemize}
-    \item[{\color{OCBurntOrange}\OCref{matrices}:}] Learn about matrices and linear equations
-    \item[{\color{OCBurntOrange}\OCref{matrixproperties}:}] Define general matrix terminology
-    \item[{\color{OCBurntOrange}\OCref{determinant}:}] Learn how to compute a determinant
-    \item[{\color{OCBurntOrange}\OCref{inverse}:}] Define the inverse of a matrix
-    \item[{\color{OCBurntOrange}\OCref{GaussianElim}:}] Describe how Gaussian Elimination works
-    \item[{\color{OCBurntOrange}\OCref{eigen}:}] Learn about eigenvectors and eigenvalues
+    \item[{\color{OCBurntOrange}\ref{\chabbr:matrices}:}] Learn about matrices and linear equations
+    \item[{\color{OCBurntOrange}\ref{\chabbr:matrixproperties}:}] Define general matrix terminology
+    \item[{\color{OCBurntOrange}\ref{\chabbr:determinant}:}] Learn how to compute a determinant
+    \item[{\color{OCBurntOrange}\ref{\chabbr:inverse}:}] Define the inverse of a matrix
+    \item[{\color{OCBurntOrange}\ref{\chabbr:GaussianElim}:}] Describe how Gaussian Elimination works
+    \item[{\color{OCBurntOrange}\ref{\chabbr:eigen}:}] Learn about eigenvectors and eigenvalues
 \end{itemize}}
 \end{learningobjectives}
 %\end{multicols}}}
@@ -66,7 +71,7 @@
 % ###################################################################
 
 
-\section{Matrices and Linear Equations}\OClabel{matrices}
+\section{Matrices and Linear Equations}\label{\chabbr:matrices}
 
 Consider the following equations~:
 \begin{align}
@@ -87,40 +92,40 @@ Note that we can interpret the first equation as the dot product of two vectors~
 the first vector contains the numbers $(1,0,1)$, the second one contains the variables $(x,y,z)$.
 If we denote the first vector by $\mathbf{a}$, and the second one by $\mathbf{x}$, then we can write
 \begin{align}
-\mathbf{a}&=\columnthree{1}{0}{1}\nonumber\\
-\mathbf{x}&=\columnthree{x}{y}{z}\nonumber
+\mathbf{a}&=\begin{pmatrix}1\\ 0\\ 1\end{pmatrix}\nonumber\\
+\mathbf{x}&=\begin{pmatrix}x\\ y\\ z\end{pmatrix}\nonumber
 \end{align}
 The dot product between two vectors is the sum of the products of their components and we will use the 
 following notation to indicate this operation~:
 \begin{equation}
-\mathbf{a}\cdot\mathbf{x}=\rowthree{1}{0}{1}\columnthree{x}{y}{z}=1\times x+0\times y+1\times z
+\mathbf{a}\cdot\mathbf{x}=\begin{pmatrix}1 &0 &1\end{pmatrix}\begin{pmatrix}x\\ y\\ z\end{pmatrix}=1\times x+0\times y+1\times z
 \end{equation}
 Even though a vector is usually represented by a \textit{column} of numbers, we can also arrange the numbers in a row.
 The row-representation of a vector is known as the \textit{transpose} of the column representation, and this is indicated as~:
 \begin{equation}
-\columnthree{1}{0}{1}^{T}=\rowthree{1}{0}{1}
+\begin{pmatrix}1\\ 0\\ 1\end{pmatrix}^{T}=\begin{pmatrix}1 &0 &1\end{pmatrix}
 \end{equation}
 The superscript $T$ stands for Transpose.  In some cases we will also indicate the transpose of a column by the tilde symbol,
 as in $\tilde{x}$.
 
 We can repeat this exercise for the second and third equations as well and we find~:
 \begin{align}
-\rowthree{1}{0}{1}\columnthree{x}{y}{z}&=2\nonumber\\
-\rowthree{2}{1}{1}\columnthree{x}{y}{z}&=5\\
-\rowthree{3}{2}{2}\columnthree{x}{y}{z}&=9\nonumber
+\begin{pmatrix}1 &0 &1\end{pmatrix}\begin{pmatrix}x\\ y\\ z\end{pmatrix}&=2\nonumber\\
+\begin{pmatrix}2 &1 &1\end{pmatrix}\begin{pmatrix}x\\ y\\ z\end{pmatrix}&=5\\
+\begin{pmatrix}3 &2 &1\end{pmatrix}\begin{pmatrix}x\\ y\\ z\end{pmatrix}&=9\nonumber
 \end{align}
 We can now take the three row vectors together and form an \textit{array} of three rows.
 We will call this array $\mathcal{A}$~:
 \begin{equation}
-\mathcal{A}=\matrixtbt{1}{0}{1}{2}{1}{1}{3}{2}{2}
+\mathcal{A}=\begin{pmatrix}1&0&1\\ 2&1&1\\ 3&2&2\end{pmatrix}
 \end{equation}
 If we also write the right hand side of the equations as a column of numbers we find~:
 \begin{equation}
-\matrixtbt{1}{0}{1}{2}{1}{1}{3}{2}{2}\columnthree{x}{y}{z}=\columnthree{2}{5}{9}
+\begin{pmatrix}1&0&1\\ 2&1&1\\ 3&2&2\end{pmatrix}\begin{pmatrix}x\\ y\\ z\end{pmatrix}=\begin{pmatrix}2\\ 5\\ 9\end{pmatrix}
 \end{equation}
 If we denote 
 \begin{equation}
-\mathbf{b}=\columnthree{2}{5}{9}
+\mathbf{b}=\begin{pmatrix}2\\ 5\\ 9\end{pmatrix}
 \end{equation}
 then the system of equations can be rewritten in short as~:
 \begin{equation}
@@ -129,7 +134,7 @@ then the system of equations can be rewritten in short as~:
 An array of numbers which is obtained in this way is known as a \textit{matrix}.  
 In the following paragraphs we will explore some of the common properties of matrices.
 
-\section{General properties of matrices}\OClabel{matrixproperties}
+\section{General properties of matrices}\label{\chabbr:matrixproperties}
 \begin{enumerate}
 \item A matrix has, in general, $n$ \textit{rows}, and $m$ \textit{columns}.  The \textit{dimensions} of the matrix
 are thus $n\times m$.  If $n=m$ then the matrix is a \textit{square matrix}.  Note that the number of rows is always 
@@ -171,37 +176,41 @@ $\mathcal{P}$, by extending the dot product introduced earlier.  We write the en
 \end{equation}
 In other words, the element $\mathcal{P}_{ij}$ is the product of the row $i$ from $\mathcal{A}$ with the
 column $j$ from $\mathcal{B}$.  As an example, let us compute the product of $\mathcal{A}$ with itself.
+{\small
 \[
-\begin{array}{c}
-\matrixtbt{1}{0}{1}{2}{1}{1}{3}{2}{2}\matrixtbt{1}{0}{1}{2}{1}{1}{3}{2}{2}=\\
-\matrixtbt{1\times 1+0\times 2+1\times 3}{1\times 0+0\times 1+1\times 2}{1\times 1+0\times 1+1\times 2}
-{2\times 1+1\times 2+1\times 3}{2\times 0+1\times 1+1\times 2}{2\times 1+1\times 1+1\times 2}
-{3\times 1+2\times 2+2\times 3}{3\times 0+2\times 1+2\times 2}{3\times 1+2\times 1+2\times 2}\\
-=\matrixtbt{4}{2}{3}{7}{3}{5}{13}{6}{9}\end{array}
-\]
+\begin{pmatrix}1&0&1\\ 2&1&1\\ 3&2&2\end{pmatrix}\begin{pmatrix}1&0&1\\ 2&1&1\\ 3&2&2\end{pmatrix}=\\
+\begin{pmatrix}1\times 1+0\times 2+1\times 3&1\times 0+0\times 1+1\times 2&1\times 1+0\times 1+1\times 2\\
+2\times 1+1\times 2+1\times 3&2\times 0+1\times 1+1\times 2&2\times 1+1\times 1+1\times 2\\
+3\times 1+2\times 2+2\times 3&3\times 0+2\times 1+2\times 2&3\times 1+2\times 1+2\times 2\end{pmatrix}\\
+=\begin{pmatrix}4&2&3\\ 7&3&5\\ 13&6&9\end{pmatrix}
+\]}
 
 Note that we can always multiply two square matrices with identical dimensions, but the order of the multiplication \textit{is important}.
 Take a look at the following example.  We define two square matrices $\mathcal{S}$ and $\mathcal{T}$~:
 \[
-\mathcal{S}=\matrixtwo{3}{6}{-4}{-8}\qquad\mathcal{T}=\matrixtwo{-10}{-4}{5}{2}
+\mathcal{S}=\begin{pmatrix}3&6\\-4&-8\end{pmatrix}\qquad\mathcal{T}=\begin{pmatrix}-10&-4\\ 5&2\end{pmatrix}
 \]
 It is easy to verify that the products $\mathcal{ST}$ and $\mathcal{TS}$ are \underline{not} equal~:
 \[
-\mathcal{ST}=\matrixtwo{0}{0}{0}{0}\qquad\mathcal{TS}=\matrixtwo{-14}{-28}{7}{14}
+\mathcal{ST}=\begin{pmatrix}0&0\\ 0&0\end{pmatrix}\qquad\mathcal{TS}=\begin{pmatrix}-14& -28\\ 7&14\end{pmatrix}
 \]
 In contrast with regular numbers, where the order of multiplication is not important, matrix multiplication \textit{is not commutative}.
 
 \item A square matrix $\mathcal{A}$ is called \textit{diagonal} if all the elements with coordinates $(i,j)$ for which $i\neq j$ are equal to zero. 
 Example~:
 \[
-\matrixtbt{2}{0}{0}{0}{-1}{0}{0}{0}{4}\quad\mbox{is a diagonal matrix}
+\begin{pmatrix}2&0&0\\ 0&-1&0\\ 0&0&4\end{pmatrix}\quad\mbox{is a diagonal matrix}
 \]
 
-\item A diagonal matrix with only 1's on the diagonal is called the \textit{identity matrix}.  It is frequently denoted by the symbol $\delta_{ij}$, known as the \textit{Kronecker delta}.
+\item A diagonal matrix with only 1's on the diagonal is called the \textit{identity matrix}.  It is frequently denoted by the symbol $\delta_{ij}$, known as the \indexit{Kronecker delta}.
 \[
-\delta_{ij}=\matrixtwo{1}{0}{0}{1}=\matrixtbt{1}{0}{0}{0}{1}{0}{0}{0}{1}=\ldots
+\delta_{ij}=\begin{pmatrix}1&0\\ 0&1\end{pmatrix}=\begin{pmatrix}1&0&0\\ 0&1&0\\ 0&0&1\end{pmatrix}=\ldots\ ;
 \]
-It is easy to verify that the multiplication of the identity matrix with any square matrix of the same dimension does not change that matrix.
+in other words:
+\[
+	\delta_{ij} = \left\{ \begin{matrix}1\text{ if }i=j\\ 0\text{ if } i\ne j\end{matrix}\right.
+\]
+for $i,j=1\ldots N$ and $N$ the size of the $N\times N$ identity matrix.  It is easy to verify that the multiplication of the identity matrix with any square matrix of the same dimension does not change that matrix.
 
 \item The \textit{transpose} of a matrix $\mathcal{A}$ is a new matrix with the rows and columns interchanged~:
 \[
@@ -222,18 +231,18 @@ This is valid for square and non-square matrices.  The transpose of an $n\times 
 \]
 For the example matrix used above we have:
 \[
-	\matrixtbt{1}{0}{1}{2}{1}{1}{3}{2}{2} = \frac{1}{2}\matrixtbt{2}{2}{4}{2}{2}{3}{4}{3}{4}+\frac{1}{2}\matrixtbt{0}{-2}{-2}{2}{0}{-1}{2}{1}{0}.
+	\begin{pmatrix}1&0&1\\ 2&1&1\\ 3&2&2\end{pmatrix} = \frac{1}{2}\begin{pmatrix}2&2&4\\ 2&2&3\\ 4&3&4\end{pmatrix}+\frac{1}{2}\begin{pmatrix}0&-2&-2\\ 2& 0 &-1\\ 2&1&0\end{pmatrix}.
 \]
 
 \item A matrix is called \textit{orthogonal} if the dot product of any row with another row, or column with another column, is equal to zero, and the dot product of a row or column with itself is equal to unity.  
 Here is an example with a $2\times 2$ matrix:
 \[
-	\mathcal{A}=\matrixtwo{\cos\theta}{-\sin\theta}{\sin\theta}{\cos\theta}.
+	\mathcal{A}=\begin{pmatrix}\cos\theta& -\sin\theta\\ \sin\theta& \cos\theta\end{pmatrix}.
 \]
 If the determinant of an orthogonal matrix is equal to $+1$, then that matrix is said to be a \textit{special orthogonal} matrix. The set of all $n\times n$ special orthogonal matrices is represented by $SO(n)$.
 \end{enumerate} 
 
-\section{The Determinant of a matrix}\OClabel{determinant}
+\section{The Determinant of a matrix}\label{\chabbr:determinant}
 
 Before we look at the general definition of a \textit{determinant} it is instructive to consider a simple example.
 The following system of two equations in two unknowns can be solved analytically~:
@@ -257,7 +266,7 @@ y&=\frac{a_{11}b_2-a_{21}b_1}{a_{11}a_{22}-a_{12}a_{21}}\nonumber
 Note that this solution can only exist if the denominator is different from zero.  The denominator is therefore
 an important number.  If we write the system of equations in matrix notation we have~:
 \[
-\matrixtwo{a_{11}}{a_{12}}{a_{21}}{a_{22}}\columntwo{x}{y}=\columntwo{b_1}{b_2}
+\begin{pmatrix}a_{11}&a_{12}\\ a_{21}&a_{22}\end{pmatrix}\begin{pmatrix}x\\ y\end{pmatrix}=\begin{pmatrix}b_1&b_2\end{pmatrix}
 \]
 The denominator of the solutions can be derived from the $2\times 2$ matrix by computing the product of the diagonal
 elements $a_{11}a_{22}$ and subtracting from that the product of the elements on the opposite diagonal $a_{12}a_{21}$.
@@ -268,21 +277,21 @@ the determinant is different from zero, then the solution exists and is given by
 The determinant of a matrix $\mathcal{A}$ will be denoted by $\det\vert\mathcal{A}\vert$.  The easiest way to
 remember the determinant for a $2\times 2$ matrix is as follows~:  
 \begin{equation}
-\detertwo{a}{b}{c}{d}=ad-bc
+\begin{vmatrix}a&b\\ c&d\end{vmatrix}=ad-bc
 \end{equation}
 Examples~:
 \[
-\detertwo{2}{3}{3}{4}=2\times 4-3\times 3=-1
+\begin{vmatrix}2&3\\ 3&4\end{vmatrix}=2\times 4-3\times 3=-1
 \]
 \[
-\detertwo{2}{3}{2}{3}=2\times 3-3\times 2=0
+\begin{vmatrix}2&3\\ 2&3\end{vmatrix}=2\times 3-3\times 2=0
 \]
 
 Now that we know how to compute a $2\times 2$ determinant we can consider larger matrices, such as $3\times 3$ and $4\times 4$.
 The determinants of those matrices can be computed by reducing them to a combination of $2\times 2$ determinants.  Here is how it works~:
 consider the $3\times 3$ determinant 
 \[
-\det\vert\mathcal{A}\vert=\deterthree{a}{b}{c}{d}{e}{f}{g}{h}{i}
+\det\vert\mathcal{A}\vert=\begin{vmatrix}a&b&c\\ d&e&f\\ g&h&i\end{vmatrix}
 \]
 This determinant can be computed by \textit{Laplace Expansion along a row or column}.  
 For each element $(i,j)$  of the matrix $\mathcal{A}$ we define a \textit{submatrix} $\mathcal{S}$, which is obtained 
@@ -290,7 +299,7 @@ by \textit{removing}  row $i$ and  column $j$ from the original matrix and regro
 matrix.  Example~: the submatrix $\mathcal{S}_{21}$ of $\mathcal{A}$ is computed by removing the second row and the first column.
 The resulting matrix becomes~:
 \[
-\mathcal{S}_{21}=\matrixtwo{b}{c}{h}{i}
+\mathcal{S}_{21}=\begin{pmatrix}b&c\\ h&i\end{pmatrix}
 \]
 The determinant of this matrix $\mathcal{S}_{21}$ is called the $(2,1)$ \textit{minor} of $\mathcal{A}$, and it is defined by
 \begin{equation}
@@ -314,7 +323,7 @@ According to the definition we have
 \]
 Since the cofactors are $2\times 2$ determinants, we can write
 \begin{align}
-\det\vert\mathcal{A}\vert&=d(-1)^{2+1}\detertwo{b}{c}{h}{i}+e(-1)^{2+2}\detertwo{a}{c}{g}{i}+f(-1)^{2+3}\detertwo{a}{b}{g}{h}\nonumber\\
+\det\vert\mathcal{A}\vert&=d(-1)^{2+1}\begin{vmatrix}b&c\\ h&i\end{vmatrix}+e(-1)^{2+2}\begin{vmatrix}a&c\\ g&i\end{vmatrix}+f(-1)^{2+3}\begin{vmatrix}a&b\\ g&h\end{vmatrix}\nonumber\\
 &=-d(bi-hc)+e(ai-gc)-f(ah-gb)\nonumber\\
 &=aei+bfg+cdh-ceg-bdi-afh\nonumber
 \end{align}
@@ -323,21 +332,17 @@ column which contains the most zero's (if any).
 
 Example (expansion along the second row)~:
 \begin{align}
-\deterthree{-1}{2}{1}{1}{0}{3}{4}{6}{7}&=(-1)\detertwo{2}{1}{6}{7}-(3)\detertwo{-1}{2}{4}{6}\nonumber\\
+\begin{vmatrix}-1&2&1\\ 1&0&3\\ 4&6&7\end{vmatrix}&=(-1)\begin{vmatrix}2&1\\ 6&7\end{vmatrix}-(3)\begin{vmatrix}-1&2\\ 4&6\end{vmatrix}\nonumber\\
 &=(-1)(8)+(-3)(-14)=34\nonumber
 \end{align}
 
 As an exercise, compute the determinant of the following matrix (Answer=7)~:
 \[
-\left(\begin{tabular}{cccc}\centering
-$3$  & $0$  &  $4$ & $2$\\
-$1$  & $-1$  &  $0$ & $1$\\
-$0$  & $-2$  &  $0$ & $-1$\\
-$1$  & $0$  &  $1$ & $0$\end{tabular}\right)
+	\begin{vmatrix} 3 & 0 & 4 & 2\\ 1 & -1 & 0 & 1\\ 0 & -2 & 0 & -1\\ 1 & 0 & 1 & 0\end{vmatrix}
 \]
 
 
-\section{The Inverse of a matrix}\OClabel{inverse}
+\section{The Inverse of a matrix}\label{\chabbr:inverse}
 
 We have seen that we can write a system of linear equations of dimension $n\times n$ is the form
 \[
@@ -361,11 +366,11 @@ We know from the section on determinants that a system of equations can only hav
 determinant is different from zero.  This also means that a matrix has an inverse only if its determinant 
 is different from zero.  The $2\times 2$ example in the previous section can be rewritten as follows~:
 \[
-\columntwo{x}{y}=\frac{1}{a_{11}a_{22}-a_{12}a_{21}}\matrixtwo{a_{22}}{-a_{12}}{-a_{21}}{a_{11}}\columntwo{b_1}{b_2}
+\begin{pmatrix}x\\ y\end{pmatrix}=\frac{1}{a_{11}a_{22}-a_{12}a_{21}}\begin{pmatrix}a_{22}&-a_{12}\\ -a_{21}&a_{11}\end{pmatrix}\begin{pmatrix}b_1\\ b_2\end{pmatrix}
 \]
 from which we deduce that the inverse of the $2\times 2$ matrix is given by~:
 \[
-\matrixtwo{a_{11}}{a_{12}}{a_{21}}{a_{22}}^{-1}=\frac{1}{a_{11}a_{22}-a_{12}a_{21}}\matrixtwo{a_{22}}{-a_{12}}{-a_{21}}{a_{11}}
+\begin{pmatrix}a_{11}&a_{12}\\ a_{21}&a_{22}\end{pmatrix}^{-1}=\frac{1}{a_{11}a_{22}-a_{12}a_{21}}\begin{pmatrix}a_{22}&-a_{12}\\ -a_{21}&a_{11}\end{pmatrix}
 \]
 The $2\times 2$ matrix on the right hand side of this equation is called the \textit{adjoint} of the matrix $\mathcal{A}$.
 It is defined as the transpose of the matrix of cofactors of $\mathcal{A}$~:
@@ -374,26 +379,26 @@ It is defined as the transpose of the matrix of cofactors of $\mathcal{A}$~:
 \]
 For the example above, the matrix of cofactors is given by
 \[
-A_{ij}=\matrixtwo{a_{22}}{-a_{21}}{-a_{12}}{a_{11}}
+A_{ij}=\begin{pmatrix}a_{22}&-a_{21}\\ -a_{12}&a_{11}\end{pmatrix}
 \]
 which is clearly the transpose of the adjoint matrix.  For a general $3\times 3$ matrix we find for the adjoint~:
-\begin{align}
-\mbox{adj}\matrixtbt{a}{b}{c}{d}{e}{f}{g}{h}{i}&=
-\matrixtbtbig{\detertwo{e}{f}{h}{i}}{-\detertwo{d}{f}{g}{i}}{\detertwo{d}{e}{g}{h}}
-{-\detertwo{b}{c}{h}{i}}{\detertwo{a}{c}{g}{i}}{-\detertwo{a}{b}{g}{h}}
-{\detertwo{b}{c}{e}{f}}{-\detertwo{a}{c}{d}{f}}{\detertwo{a}{b}{d}{e}}^{T}\nonumber\\
-&=\matrixtbt{ei-fh}{ch-bi}{bf-ce}{fg-di}{ai-cg}{cd-af}{dh-eg}{bg-ah}{ae-bd}\nonumber
-\end{align}
+\begin{equation}
+\mbox{adj}\begin{pmatrix}a&b&c\\ d&e&f\\ g&h&i\end{pmatrix}=
+\begin{pmatrix}\begin{vmatrix}e&f\\ h&i\end{vmatrix}&-\begin{vmatrix}d&f\\ g&i\end{vmatrix} & \begin{vmatrix}d&e\\ g&h\end{vmatrix}\\
+                        -\begin{vmatrix}b&c\\ h&i\end{vmatrix}&\begin{vmatrix}a&c\\ g&i\end{vmatrix} &-\begin{vmatrix}a&b\\ g&h\end{vmatrix}\\
+                         \begin{vmatrix}b&c\\ e&f\end{vmatrix}&-\begin{vmatrix}a&c\\ d&f\end{vmatrix}&\begin{vmatrix}a&b\\ d&e\end{vmatrix}\end{pmatrix}^{T}
+=\begin{pmatrix}ei-fh&ch-bi&bf-ce\\ fg-di&ai-cg&cd-af\\ dh-eg&bg-ah&ae-bd\end{pmatrix}\nonumber
+\end{equation}
 and the inverse is then computed by dividing the adjoint by the determinant, which was computed in the 
 previous section.
 
 Example~: compute the inverse of the matrix
 \[
-\mathcal{A}=\matrixtbt{1}{0}{1}{2}{1}{1}{3}{2}{2}
+\mathcal{A}=\begin{pmatrix}1&0&1\\ 2&1&1\\ 3&2&2\end{pmatrix}
 \]
 The determinant of this matrix is equal to $1$.  The adjoint matrix is given by~:
 \[
-\mbox{adj}\mathcal{A}=\matrixtbt{0}{2}{-1}{-1}{-1}{1}{1}{-2}{1}
+\mbox{adj}\mathcal{A}=\begin{pmatrix}0&2&-1\\ -1&-1&1\\ 1&-2&1\end{pmatrix}
 \]
 and since the determinant is equal to $1$ the adjoint is also the inverse.  Multiplication of these two matrices 
 results in the identity matrix.
@@ -401,49 +406,48 @@ results in the identity matrix.
 We can now finally solve the system of equations introduced in the first section of this document.  The solution is
 found by multiplying the inverse of $\mathcal{A}$ with the right hand side vector $\mathbf{b}$~:
 \[
-\columnthree{x}{y}{z}=\matrixtbt{0}{2}{-1}{-1}{-1}{1}{1}{-2}{1}\columnthree{2}{5}{9}=\columnthree{1}{2}{1}
+\begin{pmatrix}x\\ y\\ z\end{pmatrix}=\begin{pmatrix}0&2&-1\\ -1&-1&1\\ 1&-2&1\end{pmatrix}\begin{pmatrix}2\\ 5\\ 9\end{pmatrix}=
+\begin{pmatrix}1\\ 2\\ 1\end{pmatrix}\ .
 \]
 
 \noindent The inverse of higher order matrices can be computed in the same way, although it is a bit more complicated.
 
 
-\section{Solving Systems of Equations by Gaussian Elimination}\OClabel{GaussianElim}
+\section{Solving Systems of Equations by Gaussian Elimination}\label{\chabbr:GaussianElim}
 
 
 
 
 
 
-\section{Eigenvalues and Eigenvectors}\OClabel{eigen}
+\section{Eigenvalues and Eigenvectors}\label{\chabbr:eigen}
 Many scientific computations involving matrices require that the matrix be \indexit{diagonalized}, i.e., transformed into a new matrix that only has entries along the diagonal.  This can be accomplished by determining the \indexit{eigenvalues} and \indexit{eigenvectors}\footnote{The word \textit{eigen} has German roots and means ``own'' (as an adjective) or ``characteristic''.} of the matrix.  In this brief writeup, we will not go into the details of the underlying algebraic theory; we will just present an example based on a simple $2\times 2$ matrix with integer entries. For a more general description we refer the interested reader to the many on-line resources for linear algebra, in particular the excellent Linear Algebra YouTube playlist by {\color{OCblue}\href{https://www.3blue1brown.com/topics/linear-algebra}{3blue1brown}}.
 
 Consider the $2\times 2$ matrix $A$ with coefficients:
 \[
-	A = \matrixtwo{8}{-2}{15}{-3}\ .
+	A = \begin{pmatrix}8&-2\\ 15&-3\end{pmatrix}\ .
 \]
 We are tasked with finding a general expression for the $n$-th power of this matrix (with $n$ arbitrary and potentially large); i.e., we need the result of multiplying this matrix with itself $n-1$ times. There is a theorem in linear algebra that states that under certain conditions, there exists a matrix $P$, such that the following product will produce a diagonal matrix:
 \begin{equation}
-	P^{-1}\,A\,P = \matrixtwo{\lambda_1}{0}{0}{\lambda_2} \equiv \Lambda\ ,\OClabel{PiAP}
+	P^{-1}\,A\,P = \begin{pmatrix}\lambda_1&0\\ 0&\lambda_2\end{pmatrix} \equiv \Lambda\ ,\label{\chabbr:PiAP}
 \end{equation}
 where $\lambda_i$ are the eigenvalues of the matrix $A$ and $\Lambda$ is the diagonal matrix that contains them.  The columns of the matrix $P$ are the two eigenvectors corresponding to those eigenvalues.  An eigenvalue-eigenvector pair of the matrix $A$ satisfies the relation:
 \begin{equation}
-	A\,\mathbf{v}_i = \lambda_i\, \mathbf{v}_i\ ;\OClabel{eigenequation}
+	A\,\mathbf{v}_i = \lambda_i\, \mathbf{v}_i\ ;\label{\chabbr:eigenequation}
 \end{equation}
-in other words, operation of the matrix $A$ on one of its eigenvectors returns a multiple of that eigenvector.  The reason why we are interested in eigenvalues and eigenvectors is the fact that equation~(\OCref{PiAP}) can be inverted to read:
+in other words, operation of the matrix $A$ on one of its eigenvectors returns a multiple of that eigenvector.  The reason why we are interested in eigenvalues and eigenvectors is the fact that equation~(\ref{\chabbr:PiAP}) can be inverted to read:
 \[
 	A = P\, \Lambda\, P^{-1}\ .
 \]
 Let's compute a few powers of $A$:
-\[
-\begin{split}
-	A^2 &= P\, \Lambda\, P^{-1}\,P\, \Lambda\, P^{-1} = P\, \Lambda^2\, P^{-1};\\
-	A^3 &= P\, \Lambda\, P^{-1}\,P\, \Lambda\, P^{-1}\,P\, \Lambda\, P^{-1} = P\, \Lambda^3\, P^{-1};\\
-	A^4 &= P\, \Lambda\, P^{-1}\,P\, \Lambda\,  P^{-1}\,P\, \Lambda\, P^{-1}\,P\, \Lambda\,P^{-1} = P\, \Lambda^4\, P^{-1}\ ,
-\end{split}
-\]
+\begin{eqnarray*}
+	A^2 &=& P\, \Lambda\, P^{-1}\,P\, \Lambda\, P^{-1} = P\, \Lambda^2\, P^{-1};\\
+	A^3 &=& P\, \Lambda\, P^{-1}\,P\, \Lambda\, P^{-1}\,P\, \Lambda\, P^{-1} = P\, \Lambda^3\, P^{-1};\\
+	A^4 &=& P\, \Lambda\, P^{-1}\,P\, \Lambda\,  P^{-1}\,P\, \Lambda\, P^{-1}\,P\, \Lambda\,P^{-1} = P\, \Lambda^4\, P^{-1}\ ,
+\end{eqnarray*}
 and so on.  The products $P^{-1}\,P$ vanish because they are equal to the identity matrix.  It is then trivial to compute the powers of a diagonal matrix so we have
 \[
-	\Lambda^n =  \matrixtwo{\lambda^n_1}{0}{0}{\lambda^n_2} 
+	\Lambda^n =  \begin{pmatrix}\lambda^n_1&0\\ 0&\lambda^n_2\end{pmatrix}\ , 
 \]
 and thus we have solved our original problem:
 \[
@@ -454,11 +458,11 @@ We just need the eigenvalues $\lambda_i$ and eigenvectors $\mathbf{v}_i$.
 \subsection{The characteristic equation of a square matrix}
 The eigenvalues of a square matrix can be determined as the roots of its characteristic equation; this equation is obtained by the following expression:
 \begin{equation}
-	\det\left\vert A - x\,I\right\vert = 0\ ,\OClabel{characteristic}
+	\det\left\vert A - x\,I\right\vert = 0\ ,\label{\chabbr:characteristic}
 \end{equation}
 where $I$ represents the identity matrix.  For an $n\times n$ matrix, this determinant will expand into a order $n$ polynomial equation in $x$. In our example case we have:
 \[
-	\det\left\vert \matrixtwo{8-x}{-10}{3}{-3-x} \right\vert = x^2-5x+6 = 0\ .
+	\det \begin{vmatrix}8-x&-2\\ 15&-3-x\end{vmatrix} = x^2-5x+6 = 0\ .
 \]
 The roots are readily found by inspection:
 \[
@@ -466,71 +470,69 @@ The roots are readily found by inspection:
 \]
 so the eigenvalues are $\lambda_1=3$ and $\lambda_2=2$, leading to the following expression:
 \[
-	\Lambda = \matrixtwo{3}{0}{0}{2}.
+	\Lambda = \begin{pmatrix}3&0\\ 0&2\end{pmatrix}.
 \]
 
 \subsection{Determination of the eigenvectors}
-Next we need to solve for the eigenvectors that make up the columns of the $P$ matrix.  From equation~(\OCref{eigenequation}) we have:
+Next we need to solve for the eigenvectors that make up the columns of the $P$ matrix.  From equation~(\ref{\chabbr:eigenequation}) we have:
 \[
-	(A-\lambda_i\, I)\,\mathbf{v}_i = \columntwo{0}{0}\ .
+	(A-\lambda_i\, I)\,\mathbf{v}_i = \begin{pmatrix}0\\ 0\end{pmatrix}\ .
 \] 
 To solve this equation, we need to look for the \indexit{null space} of the matrix $(A-\lambda_i\, I)$ for each of the eigenvalues.  The null space of a matrix $B$ is the set  of vectors $x$ for which the product $B\,x$ equals the null vector.  To find the null space we first form the so-called \indexit{augmented matrix}, $M$, which means that we bring the right hand side vector into the array, but separated by a solid vertical line. For the first eigenvalue $\lambda_1=3$ we have
 \[
-	M_1 = \left(\begin{array}{ccc}
+	M_1 = \begin{pmatrix}
 	5 &-2 & \vert\,\, 0\\ 
-	15& -6 & \vert\,\, 0 \end{array}\right)\ .
+	15& -6 & \vert\,\, 0 \end{pmatrix}\ .
 \]
 and for the second eigenvalue:
 \[
-	M_2 = \left(\begin{array}{ccc}
+	M_2 = \begin{pmatrix}
 	6 &-2 & \vert\,\, 0\\ 
-	15& -5 & \vert\,\, 0 \end{array}\right)\ .
+	15& -5 & \vert\,\, 0 \end{pmatrix}\ .
 \]
 Then we perform Gaussian elimination or row reduction on each matrix. For $M_1$ we begin by multiplying row 1 by $3$ and subtracting row 1 from row 2:
 \[
-	\left(\begin{array}{ccc}
+	\begin{pmatrix}
 	15 & -6 & \vert\,\, 0\\ 
-	15 & -6 & \vert\,\, 0 \end{array}\right)	\rightarrow 
-	\left(\begin{array}{ccc}
+	15 & -6 & \vert\,\, 0 \end{pmatrix}	\rightarrow 
+	\begin{pmatrix}
 	15 & -6 & \vert\,\, 0\\ 
-	0 &  0 & \vert\,\, 0 \end{array}\right)\ .
+	0 &  0 & \vert\,\, 0 \end{pmatrix}\ .
 \]
-Note that the numbers to the right of the vertical bars do not change at all, since they started as zero. Returning to the standard matrix equation form by have:
+Note that the numbers to the right of the vertical bars do not change at all, since they started as zero. Returning to the standard matrix equation form we have:
 \[
-	\left(\begin{array}{cc}
+	\begin{pmatrix}
 	15 & -6 \\ 
-	0 &  0  \end{array}\right) \columntwo{x}{y} = \columntwo{0}{0}
+	0 &  0  \end{pmatrix} \begin{pmatrix}x\\ y\end{pmatrix} = \begin{pmatrix}0\\ 0\end{pmatrix}
 \]
 which results in the single equation $15x-6y=0$ or $2y=5x$.  We have a single free parameter $x$, so we might as well put it equal to $x=2$ so that $y=5$.   The first eigenvector $\mathbf{v}_1$ therefore has components $(2,5)$.
 
 Repeating this process for $M_2$ by multiplying the first row by $5$ and the second row by $2$, then subtracting the first row from the second row results in
 \[
-	\left(\begin{array}{ccc}
+	\begin{pmatrix}
 	30 & -10 & \vert\,\, 0\\ 
-	30& -10 & \vert\,\, 0 \end{array}\right) \rightarrow\left(\begin{array}{ccc}
+	30& -10 & \vert\,\, 0 \end{pmatrix} \rightarrow\begin{pmatrix}
 	30 & -10 & \vert\,\, 0\\ 
-	0& 0 & \vert\,\, 0 \end{array}\right) \ .
+	0& 0 & \vert\,\, 0 \end{pmatrix}\ .
 \]
 which leads to the equation $30x-10y=0$ or $y=3x$; setting $x=1$ we have $y=3$ so that the second eigenvector has components $(1,3)$.  Putting them together into the eigenvector matrix $P$ we have:
 \[
-	P = \matrixtwo{2}{1}{5}{3}\ .
+	P = \begin{pmatrix}2&1\\ 5&3\end{pmatrix}\ .
 \]
 The inverse of this matrix is given by:
 \[
-	P^{-1} = \matrixtwo{3}{-1}{-5}{2}\ .
+	P^{-1} = \begin{pmatrix}3&-1\\ -5&2\end{pmatrix}\ .
 \]
 Next we can put everything together to compute the $n$-th power of the original matrix $A$ as:
 \[
-	A^n = P\, \Lambda^n\,P^{-1} = \left(
-\begin{array}{cc}
+	A^n = P\, \Lambda^n\,P^{-1} = \begin{pmatrix}
  2\times 3^{n+1}-5\times 2^n & 2 \left(2^n-3^n\right) \\
  -15 \left(2^n-3^n\right) & 3\times 2^{n+1}-5\times 3^n \\
-\end{array}
-\right)\ .
+\end{pmatrix}\ .
 \]
 For $n=7$, for instance, we have:
 \[
-	A^7 = \matrixtwo{12,482}{-4,118}{30,885}{-10,167}\ .
+	A^7 = \begin{pmatrix}12,482&-4,118\\ 30,885&-10,167\end{pmatrix}\ .
 \]
 
 Concluding remarks: In this section, we have only demonstrated the computation of eigenvalues and eigenvectors by means of a simple $2\times 2$ matrix example. There is a significant theoretical machinery that underlies the concept of eigenvalues and eigenvectors, and the interested reader is encouraged to learn more about both the theory and practical applications.

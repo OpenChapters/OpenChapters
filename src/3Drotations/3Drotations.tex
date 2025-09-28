@@ -1,4 +1,4 @@
-% !TEX root = ../../Build/main.tex
+% 
 % ###################################################################
 % Copyright (c) 2018, Marc De Graef 
 %  Editors: A.D. Rollett & M. De Graef
@@ -27,7 +27,6 @@
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/3Drotations/eps folder and must be of the *.eps type. 
-\renewcommand{\chaptergraphicspath}{src/3Drotations/eps/}
 
 \renewcommand{\chabbr}{3DROTS}
 
@@ -35,7 +34,12 @@
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 \chapterimage{\noheaderimage}
 
-\chapter{3D Rotation Representations}\OClabel{3Drotations}
+% in HTML mode, the chapter header image is treated differently
+%\ifdefstring{\isHTML}{Yes}{%
+%\HTMLPageTop{\begin{center}\fbox{\includegraphics{\graphicspath NUMSYSheader.pdf}}\end{center}}
+%}{}%
+
+\chapter{3D Rotation Representations}\label{\chabbr:3Drotations}
 
 % add the author information so that it will appear in the Author List at the start of the document
 \writeauthor{3DROTS:3Drotations}{3D Rotation Representations}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
@@ -50,10 +54,10 @@
 {\color{OCalmostblack}\sffamily
 \begin{multicols}{2}
 \begin{itemize}
-    \item[{\color{OCBurntOrange}\OCref{passive3D}:}] Learn how to represent 3D passive rotations by matrices
-    \item[{\color{OCBurntOrange}\OCref{eulerangles}:}] Define the Euler angle representation
-    \item[{\color{OCBurntOrange}\OCref{neoEulerian}:}] Going beyond the Eulerian description 
-    \item[{\color{OCBurntOrange}\OCref{othernumbers}:}] 
+    \item[{\color{OCBurntOrange}\ref{\chabbr:passive3D}:}] Learn how to represent 3D passive rotations by matrices
+    \item[{\color{OCBurntOrange}\ref{\chabbr:eulerangles}:}] Define the Euler angle representation
+    \item[{\color{OCBurntOrange}\ref{\chabbr:neoEulerian}:}] Going beyond the Eulerian description 
+    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] 
 \end{itemize}
 \end{multicols}}}
 % ###################################################################
@@ -62,11 +66,11 @@
 
 
 
-\section{Passive 3D Rotation Matrices}\OClabel{passive3D}
+\section{Passive 3D Rotation Matrices}\label{\chabbr:passive3D}
 
 In the first part of this chapter, we cover 3D rotations in their most basic representation, namely by means of $3\times 3$ rotation matrices. Since it is straightforward to switch between active and passive rotations, we will concentrate on the treatment of passive rotations, since material texture analysis relies mostly on passive rotations, and we will mention expressions for active rotations as footnotes.
 
-\subsection{Single rotations}\OClabel{single3Drotationmatrices}
+\subsection{Single rotations}\label{\chabbr:single3Drotationmatrices}
 
 For a passive 3D rotation, we go from the old to the new reference frame using the same relation as for the 2D case, but now the subscripts run from $1$ to $3$:
 \[
@@ -94,7 +98,7 @@ If we interpret each row of the matrix as a $3$-component vector, then this rela
 \end{equation}
 The relations in this section are valid for both active and passive matrices; we can view an active rotation matrix as a passive matrix with the opposite rotation angle, as we illustrated in the 2D case.  All $3\times 3$ matrices that satisfy these relations (i.e., $R^{-1}=R^T$) are known as \textit{orthogonal matrices}\index{orthogonal matrices}.  In addition, one can show that the determinant of a rotation matrix must always be equal to $+1$; orthogonal matrices with determinant equal to $+1$ are known as \textit{special orthogonal matrices}\index{special orthogonal matrix}\index{orthogonal matrix!special}.  They belong to the set $SO(3)$, the set of all special orthogonal $3\times 3$ matrices, which is commonly known as the \textit{3D rotation group};\index{rotation group}\index{$SO(3)$}  $SO(3)$ is a group with respect to the operation of rotation composition, which we will discuss next.
 
-\subsection{3D rotation composition}\OClabel{3Drotationcomposition}
+\subsection{3D rotation composition}\label{\chabbr:3Drotationcomposition}
 
 It is easy to convince yourself, using a non-symmetric object, that, in general, the order in which 3D active rotations are executed, matters; reversing the order of two active rotations produces a different outcome for an object in the same starting orientation, and the same is true for passive rotations.\footnote{For the passive case, instead of using a single non-symmetric object, one could hold three pencils with different colors perpendicular to each other, and perform two different rotations to the triad in opposite order.  While this involves some amount of dexterity, it is not too difficult to see that passive rotations do not commute either.} For the composition of two passive rotations, $R^p_1$ first, followed by $R^p_2$, we know from the 2D analysis that we must write the matrices from left to right:
 \begin{equation}
@@ -110,21 +114,21 @@ Consider the following rotations:
 \end{align*}
 We introduce here a simple notation of the form $\omega @[\beta_1\beta_2\beta_3]$, which stands for a passive rotation by an angle $\omega$ around an axis with direction cosines $(\beta_1,\beta_2,\beta_3)$.  It is easy to show that the resulting passive matrices are given by:
 \[
-	R^p_1 = \left(\begin{array}{ccc}
+	R^p_1 = \begin{pmatrix}
 	1 & 0 & 0\\
 	0 & 0 & 1\\
-	0 & -1 & 0\end{array}\right)\ ; \qquad
-	R^p_2 = \left(\begin{array}{ccc}
+	0 & -1 & 0\end{pmatrix}\ ; \qquad
+	R^p_2 = \begin{pmatrix}
 	0 & 1 & 0\\
 	-1 & 0 & 0\\
-	0 & 0 & 1\end{array}\right)\ .
+	0 & 0 & 1\end{pmatrix}\ .
 \]
 Hence, the composition of the matrices results in the rotation $R^p_3$, given by the matrix:
 \[
-	R^p_3 = R^p_1 R^p_2 = \left(\begin{array}{ccc}
+	R^p_3 = R^p_1 R^p_2 = \begin{pmatrix}
 	0 & 1 & 0\\
 	0 & 0 & 1\\
-	1 & 0 & 0\end{array}\right)\ .
+	1 & 0 & 0\end{pmatrix}\ .
 \]
 Application to the column vector $\mathbf{r}=(0,1,0)^T$, we find $R^p_2(0,1,0)^T = (1,0,0)^T$ and $R^p_1(1,0,0)^T = (1,0,0)^T$; clearly we also have $R^p_3(0,1,0)^T=(1,0,0)^T$. In the reverse order, we have $R^p_1(0,1,0)^T = (1,0,0)^T$ and $R^p_2(1,0,0)^T=(-1,0,0)^T$, which is a different vector.  Hence, 3D rotations do not commute in general; the only time they do commute is when both rotations have the same rotation axis.
 \end{example}}}
@@ -132,7 +136,7 @@ Application to the column vector $\mathbf{r}=(0,1,0)^T$, we find $R^p_2(0,1,0)^T
 In later sections we will introduce additional ways to compose multiple rotations using rotation representations  that are more suitable for such operations.  In particular, we will see how to compose rotations using generalized complex numbers or quaternions.
 
 
-\section{Euler Angles and their Properties}\OClabel{eulerangles}
+\section{Euler Angles and their Properties}\label{\chabbr:eulerangles}
 
 \subsection{Definitions}
 Euler has shown that every 3D rotation can be decomposed into three separate rotations around the coordinate axes $x$, $y$ and $z$. This decomposition, however, is not unique since there are several ways in which the axes and their ordering can be chosen.  One distinguishes decompositions in which the three axes are different from those where two of the rotations are around a similarly named axis.  In the former case, one refers to the three rotation angles at \textit{Tait-Bryan angles}\index{Tait-Bryan angles}; in the latter case they are generically known as \textit{Euler angles}\index{Euler angles}.  
@@ -144,47 +148,47 @@ For Euler angles, the same is true, but the choice of reference frame is limited
 For each rotation, we can write down a passive rotation matrix.  The first rotation, $R^p(\varphi_1)$, relates the reference
 frame $\mathbf{e}'_i$ (red) to the green frame $\mathbf{e}_i$, and is given by:
 \begin{equation}
-	\mathbf{e}'_i = R_z(\varphi_1)_{ij} \mathbf{e}_j \rightarrow \columnthreeb{\mathbf{e}'_x}{\mathbf{e}'_y}{\mathbf{e}'_z} = 
-	\matrixtbt{\cos\varphi_1}{\sin\varphi_1}{0}{-\sin\varphi_1}{\cos\varphi_1}{0}{0}{0}{1}
-	\columnthreeb{\mathbf{e}_x}{\mathbf{e}_y}{\mathbf{e}_z}\ . 
+	\mathbf{e}'_i = R_z(\varphi_1)_{ij} \mathbf{e}_j \rightarrow \begin{pmatrix}\mathbf{e}'_x\\ \mathbf{e}'_y\\ \mathbf{e}'_z\end{pmatrix} = 
+	\begin{pmatrix}\cos\varphi_1&\sin\varphi_1&0\\ -\sin\varphi_1&\cos\varphi_1&0\\ 0&0&1\end{pmatrix}
+	\begin{pmatrix}\mathbf{e}_x\\ \mathbf{e}_y\\ \mathbf{e}_z\end{pmatrix}\ . 
 \end{equation}
 The second rotation brings the red reference frame $\mathbf{e}'_i$ to $\mathbf{e}''_i$ (dark blue) 
 by a counterclockwise rotation of 
 $\Phi$ around the $\mathbf{e}'_x$ axis.  It is represented by:
 \begin{equation}
-	\mathbf{e}''_i = R_x(\Phi)_{ij} \mathbf{e}'_j \rightarrow \columnthreeb{\mathbf{e}''_x}{\mathbf{e}''_y}{\mathbf{e}''_z} = 
-	\matrixtbt{1}{0}{0}{0}{\cos\Phi}{\sin\Phi}{0}{-\sin\Phi}{\cos\Phi}
-	\columnthreeb{\mathbf{e}'_x}{\mathbf{e}'_y}{\mathbf{e}'_z}\ . 
+	\mathbf{e}''_i = R_x(\Phi)_{ij} \mathbf{e}'_j \rightarrow \begin{pmatrix}\mathbf{e}''_x\\ \mathbf{e}''_y\\ \mathbf{e}''_z\end{pmatrix} = 
+	\begin{pmatrix}1&0&0\\ 0&\cos\Phi&\sin\Phi\\ 0&-\sin\Phi&\cos\Phi\end{pmatrix}
+	\begin{pmatrix}\mathbf{e}'_x\\ \mathbf{e}'_y\\ \mathbf{e}'_z\end{pmatrix}\ . 
 \end{equation}
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics{EulerRotations}
-\label{fig:eulers}
+\includegraphics{\graphicspath EulerRotations.eps}
+\label{\chabbr:fig:eulers}
 \caption{Illustration of the three Bunge Euler angles, one step at a time.}
 \end{figure}
 
 The final rotation of $\varphi_2$ around the new $\mathbf{e}''_{z}$ axis is described by:
 \begin{equation}
-	\mathbf{e}'''_i = R_z(\varphi_2)_{ij} \mathbf{e}''_j \rightarrow \columnthreeb{\mathbf{e}'''_x}{\mathbf{e}'''_y}{\mathbf{e}'''_z} = 
-	\matrixtbt{\cos\varphi_2}{\sin\varphi_2}{0}{-\sin\varphi_2}{\cos\varphi_2}{0}{0}{0}{1}
-	\columnthreeb{\mathbf{e}''_x}{\mathbf{e}''_y}{\mathbf{e}''_z}\ . 
+	\mathbf{e}'''_i = R_z(\varphi_2)_{ij} \mathbf{e}''_j \rightarrow \begin{pmatrix}\mathbf{e}'''_x\\ \mathbf{e}'''_y\\ \mathbf{e}'''_z\end{pmatrix} = 
+	\begin{pmatrix}\cos\varphi_2&\sin\varphi_2&0\\ -\sin\varphi_2&\cos\varphi_2&0\\ 0&0&1\end{pmatrix}
+	\begin{pmatrix}\mathbf{e}''_x\\ \mathbf{e}''_y\\ \mathbf{e}''_z\end{pmatrix}\ . 
 \end{equation}
 This leads to the following relation between the reference frames $\mathbf{e}'''_i$ (light blue) and $\mathbf{e}_i$ (green); for 
 brevity, we write $c_i\equiv\cos\varphi_i$, $s_i\equiv\sin\varphi_i$, $c\equiv\cos\Phi$, and $s\equiv\sin\Phi$:
 {\small 
 \begin{equation}
-	\columnthreeb{\mathbf{e}'''_x}{\mathbf{e}'''_y}{\mathbf{e}'''_z} = 
-	\matrixtbt{c_2}{s_2}{0}{-s_2}{c_2}{0}{0}{0}{1}
-	\matrixtbt{1}{0}{0}{0}{c}{s}{0}{-s}{c}
-	\matrixtbt{c_1}{s_1}{0}{-s_1}{c_1}{0}{0}{0}{1}
-	\columnthreeb{\mathbf{e}_x}{\mathbf{e}_y}{\mathbf{e}_z}\ . 
+	\begin{pmatrix}\mathbf{e}'''_x\\ \mathbf{e}'''_y\\ \mathbf{e}'''_z\end{pmatrix} = 
+	\begin{pmatrix}c_2&s_2&0\\ -s_2&c_2&0\\ 0&0&1\end{pmatrix}
+	\begin{pmatrix}1&0&0\\ 0&c&s\\ 0&-s&c\end{pmatrix}
+	\begin{pmatrix}c_1&s_1&0\\ -s_1&c_1&0\\ 0&0&1\end{pmatrix}
+	\begin{pmatrix}\mathbf{e}_x\\ \mathbf{e}_y\\ \mathbf{e}_z\end{pmatrix}\ . 
 \end{equation}}
 The product of the three matrices can be worked out easily, and is given by:
 {\small\begin{equation}
-	\mathbf{g}_{ij}(\varphi_1,\Phi,\varphi_2) = \matrixtbt{c_1c_2-s_1cs_2}{s_1c_2+c_1cs_2}{ss_2}
-	{-c_1s_2-s_1cc_2}{-s_1s_2+c_1cc_2}{sc_2}
-	{s_1s}{-c_1s}{c}\ .\label{eq:eulermatrix}
+	\mathbf{g}_{ij}(\varphi_1,\Phi,\varphi_2) = \begin{pmatrix}c_1c_2-s_1cs_2&s_1c_2+c_1cs_2&ss_2\\
+	-c_1s_2-s_1cc_2&-s_1s_2+c_1cc_2&sc_2\\
+	s_1s&-c_1s&c\end{pmatrix}\ .\label{eq:eulermatrix}
 \end{equation}}
 Note that this matrix is often represented with a bold symbol.  This is customary in the texture literature, and the symbol
 $\mathbf{g}$ is known as the \textit{orientation matrix}. 
@@ -194,13 +198,13 @@ Show that the matrix $\mathbf{g}_{ij}$ is an orthogonal matrix.
 \end{exercise}
 
 
-\subsection{Alternative Euler triplet definitions\label{sec:Eulteralternatives}}
+\subsection{Alternative Euler triplet definitions}\label{sec:Eulteralternatives}
 While the Bunge convention is the most widely used Euler triplet, there are other forms scattered throughout the texture literature. 
 
-\subsection{Metric properties of Euler angle triplets\label{sec:eulermetric}}
+\subsection{Metric properties of Euler angle triplets}\label{sec:eulermetric}
 {\color{blue}describe/derive volume element for Euler angle representation}
 
-\subsection{Graphical representation of Euler space\label{sec:eulerspace}}
+\subsection{Graphical representation of Euler space}\label{sec:eulerspace}
 The Bunge Euler angle triplet can be represented as a point inside a 3D box with each angle varying along one of the box edges. It is customary to draw this box such that the $\varphi_1$ and $\varphi_2$ axes lie in the bottom plane of the box and the $\Phi$ axis is vertical, as shown in Fig.~\ref{fig:eulerbox1}. Note that the box edges have lengths $[2\pi, \pi, 2\pi]$ along $(\varphi_1,\Phi,\varphi_2)$, respectively.  It is important to point out that this Euler box is periodic along the two horizontal axes, \textit{but not along the $\Phi$ axis}.  In other words, it is easy to see from the matrix form in eq.~\ref{eq:eulermatrix} that adding $2\pi$ to either $\varphi_1$ or $\varphi_2$ does not alter the matrix at all:
 \begin{align*}
 	\mathbf{g}_{ij}(\varphi_1,\Phi,\varphi_2) &=\mathbf{g}_{ij}(\varphi_1+2\pi,\Phi,\varphi_2)\ ;\\
@@ -218,17 +222,17 @@ since $\cos(\Phi+\pi)=-\cos\Phi$ and $\sin(\Phi+\pi)=-\sin\Phi$.  Even though Eu
 
 If we put $\Phi=0$ in Eq.~\ref{eq:eulermatrix}, then we obtain the following expression:
 \begin{align}
-	\mathbf{g}_{ij}(\varphi_1,0,\varphi_2) &= \matrixtbt{c_1c_2-s_1s_2}{s_1c_2+c_1s_2}{0}
-	{-c_1s_2-s_1c_2}{-s_1s_2+c_1c_2}{0}
-	{0}{0}{1}\ ;\nonumber\\
-	&= \matrixtbt{\cos(\varphi_1+\varphi_2)}{\sin(\varphi_1+\varphi_2)}{0} {-\sin(\varphi_1+\varphi_2)}{\cos(\varphi_1+\varphi_2)}{0} {0}{0}{1}\ .\label{eq:eulermatrix2}
+	\mathbf{g}_{ij}(\varphi_1,0,\varphi_2) &= \begin{pmatrix}c_1c_2-s_1s_2&s_1c_2+c_1s_2&0\\
+	-c_1s_2-s_1c_2&-s_1s_2+c_1c_2&0\\
+	0&0&1\end{pmatrix}\ ;\nonumber\\
+	&=  \begin{pmatrix}\cos(\varphi_1+\varphi_2)&\sin(\varphi_1+\varphi_2)&0\\ -\sin(\varphi_1+\varphi_2)&\cos(\varphi_1+\varphi_2)&0\\ 0&0&1\end{pmatrix}\ .\label{eq:eulermatrix2}
 \end{align}
 In other words, when $\Phi=0$, the Euler angle triplet $(\varphi_1,0,\varphi_2)$ represents a rotation around the $\mathbf{e}_z$ axis by an angle $\varphi_1+\varphi_2$.  If we now select $\varphi_2=-\varphi_1$, then we obtain the identity rotation matrix $\delta_{ij}$; this is a bit of a disconserting result since it means that \textit{all Euler triplets of the form $(\varphi_1,0,2\pi n-\varphi_1)$ with $n$ an arbitrary integer represent the identity orientation}.  Apart from the periodicity of Euler space, there is hence no unique Euler angle triplet inside the basic cell that represents the identity; we say that, in the Euler representation, the identity rotation is \textit{infinitely degenerate}.  Graphically, we represent the triplets of the form $(\varphi_1,0,2\pi n-\varphi_1)$ by the diagonal dashed lines with equation $\varphi_2=2\pi n-\varphi_1$ in the bottom $\Phi=0$ plane of the Euler cell (Fig.~\ref{fig:euleridentity}).  The degeneracy of the identity orientation is clearly not a desirable mathematical property of the Euler representation.  In fact, for any rotation by an angle $\varphi$ around the $\mathbf{e}_z$ axis, the Euler representation is infinitely degenerate since we can write the Euler triplet as $(\varphi_1,0,\varphi-\varphi_1)$ or $(\varphi+\varphi_1,0,-\varphi_1)$ with $\varphi_1$ an arbitrary angle.  This means that one must be careful in numerical applications whenever $\Phi=0$.
 
 Despite this mathematical inconvenience, the Euler angle orientation/rotation representation has become the standard in the texture literature, and we will use it frequently throughout this text.  There are several other orientation representations that do not suffer from this kind of degeneracies, and we will take a closer look at the class of \textit{neo-Eulerian} representations in the next section.
 
 
-\section{Neo-Eulerian Rotation Representations}\OClabel{neoEulerian}
+\section{Neo-Eulerian Rotation Representations}\label{\chabbr:neoEulerian}
 
 {\color{red}to be written...}
 
