@@ -50,11 +50,11 @@
 % second column if LaTeX breaks the line at an awkward location.
 \begin{learningobjectives}
 {\begin{itemize}
-    \item[{\color{OCBurntOrange}\ref{\chabbr:intro}:}] Read about hyperspheres and hyperballs
-    \item[{\color{OCBurntOrange}\ref{\chabbr:stereoproj}:}] Learn about the stereographic projection
-    \item[{\color{OCBurntOrange}\ref{\chabbr:lambertproj}:}] Explain the Lambert projection
-    \item[{\color{OCBurntOrange}\ref{\chabbr:gnomonicproj}:}] Define the gnomonic projection
-    \item[{\color{OCBurntOrange}\ref{\chabbr:otherprojections}:}] Learn about other useful projections
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:intro}:}] Read about hyperspheres and hyperballs
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:stereoproj}:}] Learn about the stereographic projection
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:lambertproj}:}] Explain the Lambert projection
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:gnomonicproj}:}] Define the gnomonic projection
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:otherprojections}:}] Learn about other useful projections
 \end{itemize}}
 \end{learningobjectives}
 % ###################################################################
@@ -63,7 +63,7 @@
 
 
 
-\section{Hyperspheres and Hyperballs}\label{\chabbr:intro}
+\section{Hyperspheres and Hyperballs}\label{\chabbr:sec:intro}
 
 This chapter contains several sections about important projections frequently used in various aspects of materials science and engineering.  A \indexit{projection} in the context of this chapter is a mathematical tool that takes an object in an $n$-D space and reduces it to an $(n-1)$-D representation; in this process, some characteristics of the original $n$-D object are conserved, others are removed or, at the very least, distorted.  Many of the best known projection (or mapping) techniques were developed in the area of cartography, i.e., to project 3-D data residing on a sphere onto a planar representation; those projection techniques include, but are not limited to, the \textit{Aitoff, Albers, Azimuthal, Conic, Cylindrical, {\color{OCHighlandsSkyBlue}Gnomonic}, Hammer, {\color{OCHighlandsSkyBlue}Lambert}, Mercator, Miller-cylindrical, Mollweide, Orthographic, Robinson, Satellite, Sinusoidal, {\color{OCHighlandsSkyBlue}Stereographic},} and \textit{Transverse-Mercator} projections.  In this chapter, we will define and provide examples of the projections highlighted in blue, since those projection methods have considerable use in the fields of crystallography and materials characterization.  For a more complete and in-depth descriptions of cartographic projections as well as navigation techniques based on such projections we refer the interested reader to \cite{bowditch2016a}.
 
@@ -111,7 +111,7 @@ The (hyper)spheres and (hyper)balls that can be visualized are shown schematical
 
 
 \section{Stereographic Projection}
-\label{\chabbr:stereoproj}
+\label{\chabbr:sec:stereoproj}
 
 The most commonly used \indexit{stereographic projection} is a projection onto the equatorial plane of features distributed on the surface of the 2-sphere $\mathbb{S}^2_R$. From a geometrical point of view, the stereographic projection (SP) is easy to explain: for a given point on the surface of the sphere (we'll work in the upper or Northern hemisphere for now) we connect the point to the South pole and where the connection line intersects the equatorial plane we find the SP of that point.  Any surface feature on the sphere can be mapped this way; in the materials field, we often represent crystal shapes by stereographic projections.  An example is shown in Fig.~\ref{\chabbr:fig:SP}: in (a) a cube is randomly oriented with its center at the origin. The surface normals $\mathbf{a}$, $\mathbf{b}$ and $\mathbf{c}$ intersect the sphere in the red points. Connecting each to the South pole we find the orange points in the equatorial plane. Switching to a 2D view normal to the equatorial plane in (b) we find the SP of the three face normals.
 
@@ -145,7 +145,7 @@ The inverse mapping, from the equatorial plane to the sphere surface, can be per
 \end{equation}
 
 
-\subsection{Properties of the Stereographic Projection}\label{\chabbr:SPprops}
+\subsection{Properties of the Stereographic Projection}\label{\chabbr:sec:SPprops}
 
 The most important property of the stereographic projection can be  stated in two equivalent ways:
 \begin{itemize}
@@ -173,8 +173,6 @@ the average of the two $X$ coordinates is $R\csc\phi$.  For $x_0$ approaching $R
 \]
 Combining the two sets of circles, i.e., the projections of great circles and those of a series of planes normal to the $x$ axis, produces the so-called \indexit{Wulff net} shown in Fig.~\ref{\chabbr:fig:SP3}(c); the angular distance between consecutive circles is $10^{\circ}$ and the range of both angles $\theta$ and $\phi$ is $[-90^{\circ},90^{\circ}]$.  Note that the arc segments outside of the equatorial circle (depicted in light green) correspond to projections of circle segments in the Southern hemisphere. Note also that at any intersection point of two circles, the two circles are perpendicular to each other; this is a characteristic of a \indexit{conformal mapping}.
 
-\newpage
-
 \begin{floatingfigure}[r]{3.2in}
 \centering
 {\includegraphics[width=3.0in]{\graphicspath SPcircle.eps}}
@@ -197,10 +195,9 @@ If we represent the point by $(x,y)=(\cos\theta,\sin\theta)$, then the projectio
 	X = \frac{\cos\theta}{1+\sin\theta} = \frac{1}{\sec\theta+\tan\theta}.
 \]
 % 
-\newpage
 
 \section{Lambert Projection}
-\label{\chabbr:lambertproj}
+\label{\chabbr:sec:lambertproj}
 
 
 \begin{floatingfigure}[r]{3.2in}
@@ -208,7 +205,7 @@ If we represent the point by $(x,y)=(\cos\theta,\sin\theta)$, then the projectio
 {\includegraphics[width=3.0in]{\graphicspath LP1.eps}}
 {\caption{\label{\chabbr:fig:LP1}\small Lambert equal-area projection of a point on the surface of a sphere.}}
 \end{floatingfigure}
-\noindent The \indexit{Lambert azimuthal equal-area projection}, not to be confused with the Lambert conformal conic projection, takes a point $(x,y,z)$ with $x^2+y^2+z^2=R^2$ on the surface of the 2-sphere $\mathbb{S}^2_R$ and projects it onto a disc of radius $2R$ tangent to the South pole at $(0,0,-R)$ by rotating the original point in a plane normal to the tangent plane and containing the North-South axis.  This is shown schematically in Fig.~\ref{\chabbr:fig:LP1}. This means that the distance $d$ between the point $(x,y,z)$ and the South pole is maintained during the rotation in the vertical plane. It should be noted that the projection of the North pole is undefined since there is no way to define the vertical plane, so that the Lambert projection produces an open disc of radius $2R$, represented by a gray circle tangent to the South pole at $S$.  It is straightforward to determine the conversion relation between coordinates on the sphere and the Lambert coordinates in the disc, as we will show next.\\
+\noindent The \indexit{Lambert azimuthal equal-area projection} takes a point $(x,y,z)$ with $x^2+y^2+z^2=R^2$ on the surface of the 2-sphere $\mathbb{S}^2_R$ and projects it onto a disc of radius $2R$ tangent to the South pole at $(0,0,-R)$ by rotating the original point in a plane normal to the tangent plane and containing the North-South axis.  This is shown schematically in Fig.~\ref{\chabbr:fig:LP1}. This means that the distance $d$ between the point $(x,y,z)$ and the South pole is maintained during the rotation in the vertical plane. It should be noted that the projection of the North pole is undefined since there is no way to define the vertical plane, so that the Lambert projection produces an open disc of radius $2R$, represented by a gray circle tangent to the South pole at $S$.  It is straightforward to determine the conversion relation between coordinates on the sphere and the Lambert coordinates in the disc, as we will show next.\\
 
 \subsection{Transformation Relations}\label{\chabbr:LPmath}
 
@@ -263,9 +260,9 @@ as expected. \\
 
 
 \section{Gnomonic Projection}
-\label{\chabbr:gnomonicproj}
+\label{\chabbr:sec:gnomonicproj}
 
-A \indexit{gnomonic projection} (GP) takes the center of the sphere of radius $R$ to be the projection point, and the projection plane can be anywhere except for the plane going through the projection center.  It is standard practice to take the plane to be the tangent plane through one of the poles, i.e., the points $(0,0,\pm R)$.  Since this is essentially a perspective projection, there are significant distortions to the projections of shapes that lie on the sphere but closer to the equatorial plane.  Fig.~\ref{\chabbr:fig:GP1}(a) shows that all great circles going through the South pole end up as straight lines in the projection plane.  Small circles on the sphere end up being distorted into ellipses in the projection plane, as illustrated in Fig.~\ref{\chabbr:fig:GP1}(b). \vfill
+A \indexit{gnomonic projection} (GP) takes the center of the sphere of radius $R$ to be the projection point, and the projection plane can be anywhere except for the plane going through the projection center.  It is standard practice to take the plane to be the tangent plane through one of the poles, i.e., the points $(0,0,\pm R)$.  Since this is essentially a perspective projection, there are significant distortions to the projections of shapes that lie on the sphere but closer to the equatorial plane.  Fig.~\ref{\chabbr:fig:GP1}(a) shows that all great circles going through the South pole end up as straight lines in the projection plane.  Small circles on the sphere end up being distorted into ellipses in the projection plane, as illustrated in Fig.~\ref{\chabbr:fig:GP1}(b). 
 
 \insertfigurew{GP1.eps}{fig:GP1}{(a) gnomonic projection of a great circle (in blue) going through the South pole; (b) gnomonic projection of a circle on the sphere.}{\textwidth} 
 
@@ -304,7 +301,7 @@ The Greek philosopher Thales is thought to be the first to use the gnomonic proj
 
 
 \section{Other Useful Projections}
-\label{\chabbr:otherprojections}
+\label{\chabbr:sec:otherprojections}
 
 
 

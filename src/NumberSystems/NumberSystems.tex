@@ -53,19 +53,14 @@
 % Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
 % each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
 % second column if LaTeX breaks the line at an awkward location.
-\lightgraybox{\begin{center}
-    {\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]
-\end{center}
-
-{\color{OCalmostblack}\sffamily
-\begin{multicols}{2}
-\begin{itemize}
-    \item[{\color{OCBurntOrange}\ref{\chabbr:complex}:}] Learn a formal description of complex numbers
-    \item[{\color{OCBurntOrange}\ref{\chabbr:quaternions}:}] Define the quaternion number system\\
-    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
-    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
-\end{itemize}
-\end{multicols}}}
+\begin{learningobjectives}
+{\begin{itemize}
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:complex}:}] Learn a formal description of complex numbers
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:quaternions}:}] Define the quaternion number system\\
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:algebras}:}] Learn about Normed Division Algebras
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+\end{itemize}}
+\end{learningobjectives}
 % ###################################################################
 % ###################################################################
 % ###################################################################
@@ -77,7 +72,7 @@
 %%%%%%%%%%%%%%%%
 
 \section{Introductory Comments}
-\label{\chabbr:intro}
+\label{\chabbr:sec:intro}
 
 This chapter contains several sections about number systems other than the well-known natural numbers ($\mathbb{N}$), the integers ($\mathbb{Z}$),
 the rational numbers ($\mathbb{Q}$), and the real numbers ($\mathbb{R}$).  Most high-school graduates will have learned about the complex numbers ($\mathbb{C}$) as well, but we review them here because this will make generalization to the quaternions ($\mathbb{H}$) a bit easier.  In what follows, it will be useful to have a precise definition of a number of concepts related to a number \indexit{field} which we introduce in this section.
@@ -91,7 +86,7 @@ A \textit{field} is a set $\mathcal{F}$ of numbers on which two operations are d
 \item For each element of the set, with the exception of $0$, there exists a \indexit{multiplicative inverse}: $a\cdot a^{-1} = 1$;
 \item Multiplication is \indexit{distributive} over addition: $a\cdot(b+c)=a\cdot b+a\cdot c$.
 \end{enumerate}
-A field is also known as a \indexit{commutative ring}.  Among the number systems listed above, $\mathbb{Q}$, $\mathbb{R}$, and $\mathbb{C}$ are fields; in section~\ref{\chabbr:quaternions} we will introduce the \indexit{quaternions}, which form a generalization of the complex numbers that satisfy all but one of the axioms above: they are not commutative under multiplication.  They form what is called a \indexit{skew field} or a \indexit{division ring}; we will discuss such sets in more detail in section~\ref{\chabbr:algebras} on division algebras.
+A field is also known as a \indexit{commutative ring}.  Among the number systems listed above, $\mathbb{Q}$, $\mathbb{R}$, and $\mathbb{C}$ are fields; in section~\ref{\chabbr:sec:quaternions} we will introduce the \indexit{quaternions}, which form a generalization of the complex numbers that satisfy all but one of the axioms above: they are not commutative under multiplication.  They form what is called a \indexit{skew field} or a \indexit{division ring}; we will discuss such sets in more detail in section~\ref{\chabbr:sec:algebras} on division algebras.
 
 A brief and accessible review of number systems and why they are important can be found in the on-line article {\color{OCblue}\href{https://smphysics.wordpress.com/wp-content/uploads/2011/08/numero_extrano_cuerdas.pdf}{The Strangest Numbers in String Theory}} by John C.\ Baez and John Huerta (2011).  
 
@@ -102,7 +97,7 @@ A brief and accessible review of number systems and why they are important can b
 
 
 \section{Complex Numbers}
-\label{\chabbr:complex}
+\label{\chabbr:sec:complex}
 
 \subsection{General Concepts}
 
@@ -208,7 +203,7 @@ In the next section we will see that the generalization of unit complex numbers,
 
 
 \section{Quaternions}
-\label{\chabbr:quaternions}
+\label{\chabbr:sec:quaternions}
 
 \subsection{Definition}
 In 1844, William R. Hamilton \cite{hamilton1844a} discovered a generalization of complex numbers, the quaternions, by adding two additional imaginary units, $\mathrm{j}$ and $\mathrm{k}$.  The quaternion\index{quaternion!definition} $q$ is defined as follows ($q_i\in\mathbb{R}$):
@@ -305,31 +300,31 @@ A unit quaternion $q$ is a quaternion with unit norm, i.e, $\vert q\vert=1$.  Ju
 
 In section~\ref{\chabbr:complexrot}, 2D rotations in the complex plane are described in terms of multiplication by a unit complex number.  For 3D rotations, a similar process can be carried out by means of multiplication by unit quaternions.  However, the details are a little more complicated in that the quaternions are part of a 4D space. If we consider a 3D rotation by a counter-clockwise positive angle $\omega$ around a unit rotation axis $\hat{\mathbf{n}}$, then we can represent that rotation axis in terms of the imaginary units $(\mathrm{i}, \mathrm{j}, \mathrm{k})$ as $\hat{\mathbf{n}}=n_x\mathrm{i}+n_y \mathrm{j}+n_z \mathrm{k}$.  For regular complex numbers we can use the exponential notation for the 2D rotation, and we have a rotation by an angle $\theta$ around the normal to the complex plane; Euler's formula expresses this rotation as:
 \[
-	\rho = \mathrm{e}^{\theta\mathrm{i}} = \cos\theta+\mathrm{i}\,\sin\theta.
+	\rho = \mathrm{e}^{\mathrm{i}\theta} = \cos\theta+\mathrm{i}\,\sin\theta.
 \]
 Hamilton's search for a similar representation for 3D rotations, which led him to develop quaternions, started from the assumption that, by analogy with the complex numbers, the following might work as a 3D rotation operator:
 \[
-	R = \mathrm{e}^{\omega \hat{\mathbf{n}}}.
+	R = \mathrm{e}^{\hat{\mathbf{n}}\omega}.
 \]
-This might seem surprising, but it makes sense if we interpret the argument of the complex exponential for $\rho$ to read $\theta 1 \mathrm{i}$, i.e., a basis vector $\mathrm{i}$ multiplied by a length (which will always be $1$ in this 1D space), and then multiplied by the rotation angle.  Applying this to the relation for $R$ we find a potential equivalent for Euler's formula:
+This might seem surprising, but it makes sense if we interpret the argument of the complex exponential for $\rho$ to read $\mathrm{i} 1 \theta$, i.e., a basis vector $\mathrm{i}$ multiplied by a length (which will always be $1$ in this 1D space), and then multiplied by the rotation angle.  Applying this to the relation for $R$ we find a potential equivalent for Euler's formula:
 \[
-	\mathrm{e}^{\omega \hat{\mathbf{n}}} = \cos\omega+ (n_x\mathrm{i}+n_y \mathrm{j}+n_z \mathrm{k})\sin\omega.
+	\mathrm{e}^{\hat{\mathbf{n}}\omega} = \cos\omega+ (n_x\mathrm{i}+n_y \mathrm{j}+n_z \mathrm{k})\sin\omega.
 \]
 Note that this is a unit quaternion since $\hat{\mathbf{n}}$ is a unit vector which reduces the quaternion norm to $\cos^2\omega+\sin^2\omega=1$.
 
 % insert a concrete example here of why this does not work
-Let's try an arbitrary rotation angle $\omega$ and the rotation axis $\hat{\mathrm{\imath}}$ and we operate on that same rotation axis, knowing that a rotation axis should be invariant under any rotation.  We apply the vector expression for the quaternion product:
+Let's try an arbitrary rotation angle $\omega$ and the rotation axis $\hat{\mathrm{\imath}}$ and we operate on that same rotation axis, knowing that a rotation axis should be invariant under any rotation around that same axis.  We apply the vector expression for the quaternion product:
 \begin{equation}
 \begin{split}
-	\mathrm{e}^{\omega \hat{\mathrm{\imath}}} \hat{\mathrm{\imath}} &= \left[\cos\omega,[\sin\omega,0,0]\right]\,\left[0,[1,0,0]\right];\\
+	\mathrm{e}^{\hat{\mathrm{\imath}}\omega} \hat{\mathrm{\imath}} &= \left[\cos\omega,[\sin\omega,0,0]\right]\,\left[0,[1,0,0]\right];\\
 	& = \left[-\sin\omega, [\cos\omega,0,0]\right] \ne \hat{\mathrm{\imath}},
 \end{split}
 \end{equation}
 where we used the fact that the vector cross product vanishes for parallel vectors.  So, we find that this operator does not leave the rotation axis invariant, so it cannot be the correct operator for 3D rotations.  It is one of Hamilton's major contributions to the field of quaternions to recognize that the correct operation requires use of half the rotation angle, and that the resulting operator should be used twice as follows:
 \begin{equation}
 \begin{split}
-	\mathrm{e}^{\frac{\omega}{2} \hat{\mathrm{\imath}}}\, \hat{\mathrm{\imath}}\,\mathrm{e}^{-\frac{\omega}{2} \hat{\mathrm{\imath}}} &=
-	\mathrm{e}^{\frac{\omega}{2} \hat{\mathrm{\imath}}} \left[0,[1,0,0]\right]\,\left[\cos\frac{\omega}{2},[-\sin\frac{\omega}{2},0,0]\right];\\
+	\mathrm{e}^{ \hat{\mathrm{\imath}}\frac{\omega}{2}}\, \hat{\mathrm{\imath}}\,\mathrm{e}^{- \hat{\mathrm{\imath}}\frac{\omega}{2}} &=
+	\mathrm{e}^{ \hat{\mathrm{\imath}}\frac{\omega}{2}} \left[0,[1,0,0]\right]\,\left[\cos\frac{\omega}{2},[-\sin\frac{\omega}{2},0,0]\right];\\
 	&=\mathrm{e}^{\frac{\omega}{2} \hat{\mathrm{\imath}}} \left[\sin\frac{\omega}{2},[\cos\frac{\omega}{2},0,0]\right];\\
 	&= \left[\cos\frac{\omega}{2},[\sin\frac{\omega}{2},0,0]\right] \left[\sin\frac{\omega}{2},[\cos\frac{\omega}{2},0,0]\right];\\
 	&=\left[ \cos\frac{\omega}{2}\sin\frac{\omega}{2}-\cos\frac{\omega}{2}\sin\frac{\omega}{2}, [ \cos^2\frac{\omega}{2}+ \sin^2\frac{\omega}{2},0,0]\right];\\
@@ -338,7 +333,7 @@ where we used the fact that the vector cross product vanishes for parallel vecto
 \end{equation}
 Note that the equivalent expression to the standard Euler formula becomes:
 \begin{equation}
-	q = \mathrm{e}^{\frac{\omega}{2} \hat{\mathbf{n}}} = \left[\cos\frac{\omega}{2},(n_x\mathrm{i}+n_y \mathrm{j}+n_z \mathrm{k})\sin\frac{\omega}{2}\right].\label{\chabbr:eq:quatrot}
+	q = \mathrm{e}^{\hat{\mathbf{n}}\frac{\omega}{2}} = \left[\cos\frac{\omega}{2},(n_x\mathrm{i}+n_y \mathrm{j}+n_z \mathrm{k})\sin\frac{\omega}{2}\right].\label{\chabbr:eq:quatrot}
 \end{equation}
 
 The double product with operators that rotate over half the angle is commonly known as a ``sandwich product''; for an arbitrary 3D vector $\mathbf{v}$, to be rotated by unit quaternion $q$ from eq.~(\ref{\chabbr:eq:quatrot}), the proper formula is given by:
@@ -351,7 +346,8 @@ The tilde above the vector $\mathbf{v}$ indicates that it must be considered as 
 
 
 \section{Normed Division Algebras}
-\label{\chabbr:algebras}
+\label{\chabbr:sec:algebras}
+
 Let's start by breaking down the section title into its individual words. An \indexit{algebra} over the real numbers is an $N$-dimensional  \indexit{vector space}, $V$, that is equipped with a \indexit{bilinear product}. The elements of $V$ are vectors in a generalized sense,\footnote{These ``vectors'' can be actual vectors with $N$ components, but they can also be square matrices of dimension $N\times N$.} and the operations of vector addition ($p+q=r$ with $p,q,r\in V$) and scalar multiplication ($p'=\alpha\, p$ with $\alpha\in\mathbb{R}$ and $p,p'\in V$) are defined; these operations satisfy a number of the usual properties, including commutativity, associativity, additive identity and additive inverse for  the vector addition, and multiplicative identity and distributivity for the scalar multiplication.  If, in addition, there is a \indexit{bilinear product} defined between pairs of ``vectors'' then that vector space becomes an algebra. As an example, in the vector space $\mathbb{R}^2$ of the complex numbers, the standard complex number product is an example of a bilinear product; in the vector space $\mathbb{R}^{n\times n}$ of square matrices, the standard matrix multiplication is a bilinear operation.
 
 In a \indexit{division algebra}, the operation of division by an element of the algebra is always possible by any element except for zero.  Another way of saying this is the following: if $a$ and $b$ belong to the algebra, and their product $a\,b=0$ then that means either $a=0$ or $b=0$. In some number systems, it is possible for the product of two non-zero numbers to be equal to zero (see section~\ref{\chabbr:splitnumbers} for an example); in that case we say that there are zero-divisors in the number system.  
@@ -454,7 +450,7 @@ Octonions form the basic number system for \indexit{string theory} in the study 
 
 
 \section{Other Number Systems}
-\label{\chabbr:othernumbers}
+\label{\chabbr:sec:othernumbers}
 
 \subsection{Beyond Octonions}
 The Cayley-Dickson construction can be continued, starting from the octonions; each application of this construction doubles the dimensionality of the number space. While the mathematical operations are no more difficult than before, there are now 15 imaginary parts ($\mathrm{i}$, $\mathrm{j}$, $\ldots$, $\mathrm{o}$ and  $J$, $\mathrm{i}J$, $\mathrm{jJ}$, $\ldots$, $\mathrm{oJ}$) and it becomes difficult to keep track of things. These 16-dimensional hypercomplex numbers have been studied extensively, and they are known as \indexit{sedenions}, represented by $\mathbb{S}$, but they are not useful for regular numerical work because  two non-zero sedenions can have a zero product so that $\mathbb{S}$ is not a division algebra.  
@@ -550,17 +546,6 @@ in which we recognize the series expansions of the hyperbolic functions:
 	\mathrm{e}^{\mathrm{j}b} = \cosh(b) + \mathrm{j}\sinh(b)\ .
 \]
 This is Euler's formula for the split complex numbers, which indicates that these numbers are related to hyperbolic geometry.  In fact, the split complex numbers can be used to describe the geometry of 2-D Minkowski space, where they are used to carry out Lorentz coordinate transformations.  A generalization of this concept to quaternions generates the \indexit{split quaternions}, which can represent planes and  rotations in the full Minkowski space.  In a split quaternion, the first imaginary unit squares to $\mathrm{i}^2=-1$, the other two square to $+1$, i.e., $\mathrm{j}^2=\mathrm{k}^2=\mathrm{ijk}=+1$.  For more details we refer the interested reader to \cite{ozturk2022a}.  It is also possible to define the \indexit{split octonions}, which are useful for some aspects of relativistic quantum theory, electromagnetism, special relativity and other fields of physics.  There are numerous on-line resources covering the properties and applications of all these split number systems.
-
-
-
-
-
-
-
-
-
-
-
 
 
 

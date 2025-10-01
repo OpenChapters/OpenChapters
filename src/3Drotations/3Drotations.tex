@@ -47,30 +47,23 @@
 % Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
 % each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
 % second column if LaTeX breaks the line at an awkward location.
-\lightgraybox{\begin{center}
-    {\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]
-\end{center}
-
-{\color{OCalmostblack}\sffamily
-\begin{multicols}{2}
-\begin{itemize}
-    \item[{\color{OCBurntOrange}\ref{\chabbr:passive3D}:}] Learn how to represent 3D passive rotations by matrices
-    \item[{\color{OCBurntOrange}\ref{\chabbr:eulerangles}:}] Define the Euler angle representation
-    \item[{\color{OCBurntOrange}\ref{\chabbr:neoEulerian}:}] Going beyond the Eulerian description 
-    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] 
-\end{itemize}
-\end{multicols}}}
+\begin{learningobjectives}
+{\begin{itemize}
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:passive3D}:}] Learn how to represent 3D passive rotations by matrices
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:eulerangles}:}] Define the Euler angle representation in the context of material textures
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:neoEulerian}:}] Going beyond the Eulerian description: neo-Eulerian representations 
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:misorientations}:}] Learn about the distance between different orientations
+\end{itemize}}
+\end{learningobjectives}
 % ###################################################################
 % ###################################################################
 % ###################################################################
 
-
-
-\section{Passive 3D Rotation Matrices}\label{\chabbr:passive3D}
+\section{Passive 3D Rotation Matrices}\label{\chabbr:sec:passive3D}
 
 In the first part of this chapter, we cover 3D rotations in their most basic representation, namely by means of $3\times 3$ rotation matrices. Since it is straightforward to switch between active and passive rotations, we will concentrate on the treatment of passive rotations, since material texture analysis relies mostly on passive rotations, and we will mention expressions for active rotations as footnotes.
 
-\subsection{Single rotations}\label{\chabbr:single3Drotationmatrices}
+\subsection{Single rotations}\label{\chabbr:ssec:single3Drotationmatrices}
 
 For a passive 3D rotation, we go from the old to the new reference frame using the same relation as for the 2D case, but now the subscripts run from $1$ to $3$:
 \[
@@ -86,19 +79,19 @@ The dot product is commutative, so the nine dot products in this relation are th
 \]
 This is an important property of rotation matrices and is valid for any arbitrary rotation.  Since we have:
 \begin{equation}
-	R^p_{ij} (R^p)^{-1}_{jk} = \delta_{ik}\ ,\label{eq:RRinv}
+	R^p_{ij} (R^p)^{-1}_{jk} = \delta_{ik}\ ,\label{\chabbr:eq:RRinv}
 \end{equation}
 we must also have (converting the inverse to the transpose):
 \begin{equation}
 	R^p_{ij} \left((R^p)^T\right)_{jk} = \delta_{ik}\ .
 \end{equation}
-If we interpret each row of the matrix as a $3$-component vector, then this relation states that the dot product of each row with itself is equal to $1$, whereas the dot products between different rows are equal to $0$.  Interchanging the order of the matrices in eq.~\ref{eq:RRinv} we can show that we must have the same property for the column vectors:
+If we interpret each row of the matrix as a $3$-component vector, then this relation states that the dot product of each row with itself is equal to $1$, whereas the dot products between different rows are equal to $0$.  Interchanging the order of the matrices in eq.~(\ref{\chabbr:eq:RRinv}) we can show that we must have the same property for the column vectors:
 \begin{equation}
 	(R^p)^{-1}_{ij}R^p_{jk} = \delta_{ik} \rightarrow \left((R^p)^T\right)_{ij} R^p_{jk} = \delta_{ik}\ .
 \end{equation}
 The relations in this section are valid for both active and passive matrices; we can view an active rotation matrix as a passive matrix with the opposite rotation angle, as we illustrated in the 2D case.  All $3\times 3$ matrices that satisfy these relations (i.e., $R^{-1}=R^T$) are known as \textit{orthogonal matrices}\index{orthogonal matrices}.  In addition, one can show that the determinant of a rotation matrix must always be equal to $+1$; orthogonal matrices with determinant equal to $+1$ are known as \textit{special orthogonal matrices}\index{special orthogonal matrix}\index{orthogonal matrix!special}.  They belong to the set $SO(3)$, the set of all special orthogonal $3\times 3$ matrices, which is commonly known as the \textit{3D rotation group};\index{rotation group}\index{$SO(3)$}  $SO(3)$ is a group with respect to the operation of rotation composition, which we will discuss next.
 
-\subsection{3D rotation composition}\label{\chabbr:3Drotationcomposition}
+\subsection{3D rotation composition}\label{\chabbr:ssec:3Drotationcomposition}
 
 It is easy to convince yourself, using a non-symmetric object, that, in general, the order in which 3D active rotations are executed, matters; reversing the order of two active rotations produces a different outcome for an object in the same starting orientation, and the same is true for passive rotations.\footnote{For the passive case, instead of using a single non-symmetric object, one could hold three pencils with different colors perpendicular to each other, and perform two different rotations to the triad in opposite order.  While this involves some amount of dexterity, it is not too difficult to see that passive rotations do not commute either.} For the composition of two passive rotations, $R^p_1$ first, followed by $R^p_2$, we know from the 2D analysis that we must write the matrices from left to right:
 \begin{equation}
@@ -136,110 +129,387 @@ Application to the column vector $\mathbf{r}=(0,1,0)^T$, we find $R^p_2(0,1,0)^T
 In later sections we will introduce additional ways to compose multiple rotations using rotation representations  that are more suitable for such operations.  In particular, we will see how to compose rotations using generalized complex numbers or quaternions.
 
 
-\section{Euler Angles and their Properties}\label{\chabbr:eulerangles}
+\section{Euler Angles and their Properties}\label{\chabbr:sec:eulerangles}
 
-\subsection{Definitions}
+\subsection{Definitions}\label{\chabbr:ssec:definitions}
 Euler has shown that every 3D rotation can be decomposed into three separate rotations around the coordinate axes $x$, $y$ and $z$. This decomposition, however, is not unique since there are several ways in which the axes and their ordering can be chosen.  One distinguishes decompositions in which the three axes are different from those where two of the rotations are around a similarly named axis.  In the former case, one refers to the three rotation angles at \textit{Tait-Bryan angles}\index{Tait-Bryan angles}; in the latter case they are generically known as \textit{Euler angles}\index{Euler angles}.  
 
-Tait-Bryan angles are used to describe the independent motions of ships and aircraft.  If we attach a Cartesian reference frame to the center-of-mass of an airplane, such that the $x$ axis points towards the nose, the $y$ axis along the left wing, and the $z$ axis normal to the plane of the wings, then one can distinguish between three independent movements: the tail rudder is used to rotate the plane around the $z$ axis (yaw), the elevators in the tail raise of lower the nose by rotating the plane around the $y$ axis (pitch), and the ailerons in the wings allow for rotation around the $x$ axis (roll).  Obviously we can change the orientation of the reference frame from this $x-y-z$ case to $x-z-y$, $z-x-y$, and so on, for a total of six possible definitions; while the names yaw, pitch, and roll do not change, the corresponding axis symbol depends on the choice of the reference frame.  Mathematically, one must therefore fix the order of the three rotations, and it becomes important to state explicitly which reference frame convention is made before carrying out any numerical computations.
+Tait-Bryan angles are used to describe the independent motions of ships and aircraft.  If we attach a Cartesian reference frame to the center-of-mass of an airplane, such that the $x$ axis points towards the nose, the $y$ axis along the left wing, and the $z$ axis normal to the plane of the wings, then one can distinguish between three independent movements: the tail rudder is used to rotate the plane around the $z$ axis (\indexit{yaw}), the elevators in the tail raise of lower the nose by rotating the plane around the $y$ axis (\indexit{pitch}), and the ailerons in the wings allow for rotation around the $x$ axis (\indexit{roll}).  Obviously we can change the orientation of the reference frame from this $x-y-z$ case to $x$-$z$-$y$, $z$-$x$-$y$, and so on, for a total of six possible definitions; while the names yaw, pitch, and roll do not change, the corresponding axis symbol depends on the choice of the reference frame.  Mathematically, one must therefore fix the order of the three rotations, and it becomes important to state explicitly which reference frame convention is made before carrying out any numerical computations.
 
-For Euler angles, the same is true, but the choice of reference frame is limited to two symbols instead of three; in texture analysis, the most commonly used convention is the \indexit{Bunge convention}, in which the rotation order is $z-x-z$, with angle symbols $(\varphi_1,\Phi,\varphi_2)$.  The fist rotation is by an angle $\varphi_1$ around the $z$ axis (see Fig.~\ref{fig:eulers}(a-b)); the allowed range of this angle is $[0,2\pi]$. The second rotation takes place around the new $x'$ axis by an angle $\Phi$ in the range $[0,\pi]$ (see Fig.~\ref{fig:eulers}(b-c)); and the final rotation is by an angle $\varphi_2$ around the new $z''$ axis, with the angle in the range $[0,2\pi]$ (see Fig.~\ref{fig:eulers}(c-d)).  Since we are rotating the reference frames, the Euler rotations are passive rotations.
+For Euler angles, the same is true, but the choice of reference frame is limited to two symbols instead of three; in texture analysis, the most commonly used convention is the \indexit{Bunge convention}, in which the rotation order is $z$-$x$-$z$, with angle symbols $(\varphi_1,\Phi,\varphi_2)$.  The first rotation is by an angle $\varphi_1$ around the $z$ axis (see Fig.~\ref{\chabbr:fig:eulers}(a-b)); the allowed range of this angle is $[0,2\pi]$. The second rotation takes place around the new $x'$ axis by an angle $\Phi$ in the range $[0,\pi]$ (see Fig.~\ref{\chabbr:fig:eulers}(b-c)); and the final rotation is by an angle $\varphi_2$ around the new $z''$ axis, with the angle in the range $[0,2\pi]$ (see Fig.~\ref{\chabbr:fig:eulers}(c-d)).  Since we are rotating the reference frames, the Euler rotations are passive rotations.
 
 For each rotation, we can write down a passive rotation matrix.  The first rotation, $R^p(\varphi_1)$, relates the reference
-frame $\mathbf{e}'_i$ (red) to the green frame $\mathbf{e}_i$, and is given by:
+frame \textcolor{OCCarnegieRed}{$\mathbf{e}'_i$} to the reference frame \textcolor{OCGreenThread}{$\mathbf{e}_i$}, and is given by:
 \begin{equation}
-	\mathbf{e}'_i = R_z(\varphi_1)_{ij} \mathbf{e}_j \rightarrow \begin{pmatrix}\mathbf{e}'_x\\ \mathbf{e}'_y\\ \mathbf{e}'_z\end{pmatrix} = 
+	\textcolor{OCCarnegieRed}{\mathbf{e}'_i} = R_z(\varphi_1)_{ij} \textcolor{OCGreenThread}{\mathbf{e}_j} \rightarrow \begin{pmatrix}\textcolor{OCCarnegieRed}{\mathbf{e}'_x}\\ \textcolor{OCCarnegieRed}{\mathbf{e}'_y}\\ \textcolor{OCCarnegieRed}{\mathbf{e}'_z}\end{pmatrix} = 
 	\begin{pmatrix}\cos\varphi_1&\sin\varphi_1&0\\ -\sin\varphi_1&\cos\varphi_1&0\\ 0&0&1\end{pmatrix}
-	\begin{pmatrix}\mathbf{e}_x\\ \mathbf{e}_y\\ \mathbf{e}_z\end{pmatrix}\ . 
+	\begin{pmatrix}\textcolor{OCGreenThread}{\mathbf{e}_x}\\ \textcolor{OCGreenThread}{\mathbf{e}_y}\\ \textcolor{OCGreenThread}{\mathbf{e}_z}\end{pmatrix}\ . 
 \end{equation}
-The second rotation brings the red reference frame $\mathbf{e}'_i$ to $\mathbf{e}''_i$ (dark blue) 
-by a counterclockwise rotation of 
-$\Phi$ around the $\mathbf{e}'_x$ axis.  It is represented by:
+The second rotation brings the reference frame \textcolor{OCCarnegieRed}{$\mathbf{e}'_i$} to \textcolor{OCblue}{$\mathbf{e}''_i$} by a counterclockwise rotation of 
+$\Phi$ around the  \textcolor{OCCarnegieRed}{$\mathbf{e}'_x$} axis.  It is represented by:
 \begin{equation}
-	\mathbf{e}''_i = R_x(\Phi)_{ij} \mathbf{e}'_j \rightarrow \begin{pmatrix}\mathbf{e}''_x\\ \mathbf{e}''_y\\ \mathbf{e}''_z\end{pmatrix} = 
+	\textcolor{OCblue}{\mathbf{e}''_i} = R_x(\Phi)_{ij} \textcolor{OCCarnegieRed}{\mathbf{e}'_j} \rightarrow \begin{pmatrix}\textcolor{OCblue}{\mathbf{e}''_x}\\ \textcolor{OCblue}{\mathbf{e}''_y}\\ \textcolor{OCblue}{\mathbf{e}''_z}\end{pmatrix} = 
 	\begin{pmatrix}1&0&0\\ 0&\cos\Phi&\sin\Phi\\ 0&-\sin\Phi&\cos\Phi\end{pmatrix}
-	\begin{pmatrix}\mathbf{e}'_x\\ \mathbf{e}'_y\\ \mathbf{e}'_z\end{pmatrix}\ . 
+	\begin{pmatrix}\textcolor{OCCarnegieRed}{\mathbf{e}'_x}\\ \textcolor{OCCarnegieRed}{\mathbf{e}'_y}\\ \textcolor{OCCarnegieRed}{\mathbf{e}'_z}\end{pmatrix}\ . 
 \end{equation}
 
 \begin{figure}[ht]
 \centering\leavevmode
 \includegraphics{\graphicspath EulerRotations.eps}
-\label{\chabbr:fig:eulers}
-\caption{Illustration of the three Bunge Euler angles, one step at a time.}
+\caption{\label{\chabbr:fig:eulers}Illustration of the three Bunge Euler angles, one step at a time.}
 \end{figure}
 
-The final rotation of $\varphi_2$ around the new $\mathbf{e}''_{z}$ axis is described by:
+The final rotation of $\varphi_2$ around the new \textcolor{OCblue}{$\mathbf{e}''_{z}$} axis is described by:
 \begin{equation}
-	\mathbf{e}'''_i = R_z(\varphi_2)_{ij} \mathbf{e}''_j \rightarrow \begin{pmatrix}\mathbf{e}'''_x\\ \mathbf{e}'''_y\\ \mathbf{e}'''_z\end{pmatrix} = 
+	\textcolor{OClightblue}{\mathbf{e}'''_i} = R_z(\varphi_2)_{ij} \textcolor{OCblue}{\mathbf{e}''_j} \rightarrow \begin{pmatrix}\textcolor{OClightblue}{\mathbf{e}'''_x}\\ \textcolor{OClightblue}{\mathbf{e}'''_y}\\ \textcolor{OClightblue}{\mathbf{e}'''_z}\end{pmatrix} = 
 	\begin{pmatrix}\cos\varphi_2&\sin\varphi_2&0\\ -\sin\varphi_2&\cos\varphi_2&0\\ 0&0&1\end{pmatrix}
-	\begin{pmatrix}\mathbf{e}''_x\\ \mathbf{e}''_y\\ \mathbf{e}''_z\end{pmatrix}\ . 
+	\begin{pmatrix}\textcolor{OCblue}{\mathbf{e}''_x}\\ \textcolor{OCblue}{\mathbf{e}''_y}\\ \textcolor{OCblue}{\mathbf{e}''_z}\end{pmatrix}\ . 
 \end{equation}
-This leads to the following relation between the reference frames $\mathbf{e}'''_i$ (light blue) and $\mathbf{e}_i$ (green); for 
+This leads to the following relation between the reference frames \textcolor{OClightblue}{$\mathbf{e}'''_i$} and \textcolor{OCGreenThread}{$\mathbf{e}_i$}; for 
 brevity, we write $c_i\equiv\cos\varphi_i$, $s_i\equiv\sin\varphi_i$, $c\equiv\cos\Phi$, and $s\equiv\sin\Phi$:
-{\small 
+%{\small 
 \begin{equation}
-	\begin{pmatrix}\mathbf{e}'''_x\\ \mathbf{e}'''_y\\ \mathbf{e}'''_z\end{pmatrix} = 
+	\begin{pmatrix}\textcolor{OClightblue}{\mathbf{e}'''_x}\\ \textcolor{OClightblue}{\mathbf{e}'''_y}\\ \textcolor{OClightblue}{\mathbf{e}'''_z}\end{pmatrix} = 
 	\begin{pmatrix}c_2&s_2&0\\ -s_2&c_2&0\\ 0&0&1\end{pmatrix}
 	\begin{pmatrix}1&0&0\\ 0&c&s\\ 0&-s&c\end{pmatrix}
 	\begin{pmatrix}c_1&s_1&0\\ -s_1&c_1&0\\ 0&0&1\end{pmatrix}
-	\begin{pmatrix}\mathbf{e}_x\\ \mathbf{e}_y\\ \mathbf{e}_z\end{pmatrix}\ . 
-\end{equation}}
+	\begin{pmatrix}\textcolor{OCGreenThread}{\mathbf{e}_x}\\ \textcolor{OCGreenThread}{\mathbf{e}_y}\\ \textcolor{OCGreenThread}{\mathbf{e}_z}\end{pmatrix}\ . 
+\end{equation}%}
 The product of the three matrices can be worked out easily, and is given by:
-{\small\begin{equation}
+\begin{equation}
 	\mathbf{g}_{ij}(\varphi_1,\Phi,\varphi_2) = \begin{pmatrix}c_1c_2-s_1cs_2&s_1c_2+c_1cs_2&ss_2\\
 	-c_1s_2-s_1cc_2&-s_1s_2+c_1cc_2&sc_2\\
-	s_1s&-c_1s&c\end{pmatrix}\ .\label{eq:eulermatrix}
-\end{equation}}
-Note that this matrix is often represented with a bold symbol.  This is customary in the texture literature, and the symbol
-$\mathbf{g}$ is known as the \textit{orientation matrix}. 
+	s_1s&-c_1s&c\end{pmatrix}\ .\label{\chabbr:eq:eulermatrix}
+\end{equation}
+Note that this matrix is often represented with a bold symbol.  This is customary in the texture literature, and the symbol $\mathbf{g}$ is known as the \textit{orientation matrix}. 
 
 \begin{exercise}
 Show that the matrix $\mathbf{g}_{ij}$ is an orthogonal matrix.
 \end{exercise}
 
+The meaning of the Bunge rotation angles is easy to understand in the context of crystalline materials.  Looking at Fig.~\ref{\chabbr:fig:eulers}(a), we can consider the green reference frame to be the external sample frame (or the laboratory frame). For an unrotated crystal, we assume that the crystallographic $\mathbf{c}$ axis is initially parallel to the $z$ axis of the sample reference frame.  The first two Bunge rotations, $\varphi_1$ and $\Phi$, then describe how this $\mathbf{c}$ axis is oriented with respect to the sample frame (this is the $z''$ axis in Fig.~\ref{\chabbr:fig:eulers}(c)).  The final Bunge angle, $\varphi_2$, describes the rotation of the crystal around its $\mathbf{c}$ axis.  In reading the literature of materials textures, one should pay careful attention to the nature of the final rotation matrix $\mathbf{g}_{ij}$: in the description of Fig.~\ref{\chabbr:fig:eulers}, the Euler angle triplet describes the orientation of the crystal reference frame with respect to the external reference frame.  It is also possible to describe the orientation in the opposite way, i.e., the rotation of the external reference frame with respect to the crystal reference frame; that rotation matrix would then be the transpose of the matrix in Eq.~(\ref{\chabbr:eq:eulermatrix}).
 
-\subsection{Alternative Euler triplet definitions}\label{sec:Eulteralternatives}
-While the Bunge convention is the most widely used Euler triplet, there are other forms scattered throughout the texture literature. 
 
-\subsection{Metric properties of Euler angle triplets}\label{sec:eulermetric}
-{\color{blue}describe/derive volume element for Euler angle representation}
+\subsection{Alternative Euler triplet definitions}\label{\chabbr:sec:Eulteralternatives}
+While the Bunge convention is the most widely used Euler triplet, there are other forms used throughout the texture literature. The Roe and Kocks triplets use rotation axes $z$-$y$-$z$, the Canova triplet uses $z$-$x$-$z$:
+\begin{itemize}
+\item \indexit{Roe Euler Angles}: They are represented by the triplet $(\Psi, \Theta, \Phi)$; as for the Bunge angles, the first two angles determine the orientation of the crystal's $\mathbf{c}$ axis, the third angle rotates the crystal around this axis.
+\item \indexit{Kocks Euler Angles}: They are represented by the triplet $(\Psi, \Theta, \phi)$; the first two angles are identical to the Roe Euler angles, but the third one represents a clockwise rotation instead of a counterclockwise rotation, so the angle $\phi$ has the opposite sign.
+\item \indexit{Canova Euler Angles}: They are represented by the triplet $(\omega,\theta,\phi)$ and can be considered to be the inverse of the Bunge angles in the sense that they produce the transpose of the Bunge rotation matrix.
+\end{itemize}
+Conversion relations between these representations can be determined by comparing the $3\times 3$ rotation matrices for each pair of representations. The results of such a comparison are shown in Table~\ref{\chabbr:tb:Eulerconversions} which lists the transformations to go from each system to the Bunge system.
 
-\subsection{Graphical representation of Euler space}\label{sec:eulerspace}
-The Bunge Euler angle triplet can be represented as a point inside a 3D box with each angle varying along one of the box edges. It is customary to draw this box such that the $\varphi_1$ and $\varphi_2$ axes lie in the bottom plane of the box and the $\Phi$ axis is vertical, as shown in Fig.~\ref{fig:eulerbox1}. Note that the box edges have lengths $[2\pi, \pi, 2\pi]$ along $(\varphi_1,\Phi,\varphi_2)$, respectively.  It is important to point out that this Euler box is periodic along the two horizontal axes, \textit{but not along the $\Phi$ axis}.  In other words, it is easy to see from the matrix form in eq.~\ref{eq:eulermatrix} that adding $2\pi$ to either $\varphi_1$ or $\varphi_2$ does not alter the matrix at all:
+\begin{table}[h]
+\centering\leavevmode
+\begin{tabular}{|l|cccc|}
+\hline
+Bunge & $\varphi_1$ & $\Phi$ & $\varphi_2$ &  $z$-$x$-$z$ \\
+\hline
+Kocks & $\Psi+\frac{\pi}{2}$ & $\Theta$ & $\frac{\pi}{2}-\phi$ & $z$-$y$-$z$\\
+Roe    & $\Psi+\frac{\pi}{2}$ & $\Theta$ & $\Phi-\frac{\pi}{2}$ & $z$-$y$-$z$\\
+Canova & $-\phi$& $-\theta$ & $-\omega$ & $z$-$x$-$z$\\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:Eulerconversions}Conversion relations from Euler triplets also used in the texture literature to the more common Bunge representation.}
+\end{table}
+
+
+
+
+
+\subsection{Graphical representation of Euler space}\label{\chabbr:sec:eulerspace}
+The Bunge Euler angle triplet can be represented as a point inside a 3D rectangular box with each angle varying along one of the box edges. It is customary to draw this box such that the $\varphi_1$ and $\varphi_2$ axes lie in the bottom plane of the box and the $\Phi$ axis is vertical, as shown in Fig.~\ref{\chabbr:fig:euleridentity}(a). Note that the box edges have lengths $[2\pi, \pi, 2\pi]$ along $(\varphi_1,\Phi,\varphi_2)$, respectively. Note also that this is essentially a left-handed reference frame, considering the ordering of the angles in the Bunge triplet.  It is important to point out that this Euler box is periodic along the two horizontal axes, \textit{but not along the $\Phi$ axis}.  In other words, it is easy to see from the matrix form in eq.~(\ref{\chabbr:eq:eulermatrix}) that adding $2\pi$ to either $\varphi_1$ or $\varphi_2$ does not alter the matrix at all:
 \begin{align*}
 	\mathbf{g}_{ij}(\varphi_1,\Phi,\varphi_2) &=\mathbf{g}_{ij}(\varphi_1+2\pi,\Phi,\varphi_2)\ ;\\
 	\mathbf{g}_{ij}(\varphi_1,\Phi,\varphi_2) &=\mathbf{g}_{ij}(\varphi_1,\Phi,\varphi_2+2\pi)\ .
 \end{align*}
-However, along the $\Phi$ axis, such a relation does not hold:
+However, along the $\Phi$ axis, which has a range from $0$ to $\pi$, such a relation does not hold:
 \[
 	\mathbf{g}_{ij}(\varphi_1,\Phi,\varphi_2) \ne \mathbf{g}_{ij}(\varphi_1,\Phi+\pi,\varphi_2)
 \]
-since $\cos(\Phi+\pi)=-\cos\Phi$ and $\sin(\Phi+\pi)=-\sin\Phi$.  Even though Euler space is drawn with a range of $[0,\pi]$ along $\Phi$, is is clear that the rotation matrix is invariant when we replace $\Phi$ by $\Phi+2\pi$; this means that the upper half of the periodic cell is not simply related to the lower half by a translation.  In fact, it is easy to show that the following relation holds:
+since $\cos(\Phi+\pi)=-\cos\Phi$ and $\sin(\Phi+\pi)=-\sin\Phi$.  Even though Euler space is drawn with a range of $[0,\pi]$ along $\Phi$, is is clear that the rotation matrix is invariant when we replace $\Phi$ by $\Phi+2\pi$; this means that the upper half of the periodic cell, i.e., the part for $\Phi\in[\pi,2\pi]$, is not simply related to the lower half by a translation.  In fact, it is easy to show that the following relation holds:
 \begin{equation}
 	\mathbf{g}_{ij}(\varphi_1,\Phi,\varphi_2) = \mathbf{g}_{ij}(\varphi_1+\pi,2\pi-\Phi,\varphi_2+\pi)\ .\label{eq:eulerglide}
 \end{equation}
-\sideremark{In a later section we will show that the true Euler unit cell is actually a cell of size $[4\pi, 4\pi, 4\pi]$; in practice, however, one only makes use of the $[2\pi,\pi,2\pi]$ sub-cell.}The translation of $(\pi,0,\pi)$ in the $(\varphi_1,\varphi_2)$ plane along with the mirror operation from $\Phi$ to $2\pi-\Phi$ indicates that the top half of the cell is related to the lower half by a mirror glide operation. The combination of the $2\pi$ periodicity along the three axes when considering a $[2\pi,2\pi,2\pi]$ cell and the glide plane at $\Phi=\pi$ means that the true symmetry of Euler space is given by the monoclinic space group $\mathbf{Pc}$.   This, in turn, indicates that the choice of a right angle between the $\varphi_1$ and $\varphi_2$ axes is one of convenience, and hides the true underlying symmetry.
+The translation of $(\pi,0,\pi)$ in the $(\varphi_1,\varphi_2)$ plane along with the mirror operation from $\Phi$ to $2\pi-\Phi$ indicates that the top half of the cell is related to the lower half by a mirror glide operation. The combination of the $2\pi$ periodicity along the three axes when considering a $[2\pi,2\pi,2\pi]$ cell and the glide plane at $\Phi=\pi$ means that the true symmetry of Euler space is given by the monoclinic space group $\mathbf{Pc}$.   This, in turn, indicates that the choice of a right angle between the $\varphi_1$ and $\varphi_2$ axes is one of convenience, and hides the true underlying symmetry of Euler space.\footnote{In a later section we will show that the true Euler unit cell is, in fact, a cell of size $[4\pi, 4\pi, 4\pi]$; in practice, however, one only makes use of a $[2\pi,\pi,2\pi]$ sub-cell.}
 
-If we put $\Phi=0$ in Eq.~\ref{eq:eulermatrix}, then we obtain the following expression:
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath Euler1}
+\caption{\label{\chabbr:fig:euleridentity}(a) The basic cell of the Euler space representation, drawn as a rectangular prism; (b) representation of the identity as a set of parallel lines.}
+\end{figure}
+
+
+If we put $\Phi=0$ or $\pi$ in Eq.~(\ref{\chabbr:eq:eulermatrix}), then we obtain the following expression:
 \begin{align}
 	\mathbf{g}_{ij}(\varphi_1,0,\varphi_2) &= \begin{pmatrix}c_1c_2-s_1s_2&s_1c_2+c_1s_2&0\\
 	-c_1s_2-s_1c_2&-s_1s_2+c_1c_2&0\\
 	0&0&1\end{pmatrix}\ ;\nonumber\\
 	&=  \begin{pmatrix}\cos(\varphi_1+\varphi_2)&\sin(\varphi_1+\varphi_2)&0\\ -\sin(\varphi_1+\varphi_2)&\cos(\varphi_1+\varphi_2)&0\\ 0&0&1\end{pmatrix}\ .\label{eq:eulermatrix2}
 \end{align}
-In other words, when $\Phi=0$, the Euler angle triplet $(\varphi_1,0,\varphi_2)$ represents a rotation around the $\mathbf{e}_z$ axis by an angle $\varphi_1+\varphi_2$.  If we now select $\varphi_2=-\varphi_1$, then we obtain the identity rotation matrix $\delta_{ij}$; this is a bit of a disconserting result since it means that \textit{all Euler triplets of the form $(\varphi_1,0,2\pi n-\varphi_1)$ with $n$ an arbitrary integer represent the identity orientation}.  Apart from the periodicity of Euler space, there is hence no unique Euler angle triplet inside the basic cell that represents the identity; we say that, in the Euler representation, the identity rotation is \textit{infinitely degenerate}.  Graphically, we represent the triplets of the form $(\varphi_1,0,2\pi n-\varphi_1)$ by the diagonal dashed lines with equation $\varphi_2=2\pi n-\varphi_1$ in the bottom $\Phi=0$ plane of the Euler cell (Fig.~\ref{fig:euleridentity}).  The degeneracy of the identity orientation is clearly not a desirable mathematical property of the Euler representation.  In fact, for any rotation by an angle $\varphi$ around the $\mathbf{e}_z$ axis, the Euler representation is infinitely degenerate since we can write the Euler triplet as $(\varphi_1,0,\varphi-\varphi_1)$ or $(\varphi+\varphi_1,0,-\varphi_1)$ with $\varphi_1$ an arbitrary angle.  This means that one must be careful in numerical applications whenever $\Phi=0$.
+In other words, when $\Phi=0$, the Euler angle triplet $(\varphi_1,0,\varphi_2)$ represents a rotation around the $\mathbf{e}_z$ axis by an angle $\varphi_1+\varphi_2$.  If we now select $\varphi_2=-\varphi_1$, then we obtain the identity rotation matrix $\delta_{ij}$; this is a bit of a disconcerting result since it means that \textit{all Euler triplets of the form $(\varphi_1,0,2\pi n-\varphi_1)$ with $n$ an arbitrary integer represent the identity orientation}.  Apart from the periodicity of Euler space, there is hence no unique Euler angle triplet inside the basic cell that represents the identity; we say that, in the Euler representation, the identity rotation is \textit{infinitely degenerate}.  Graphically, we represent the triplets of the form $(\varphi_1,0,2\pi n-\varphi_1)$ by the diagonal red lines with equation $\varphi_2=2\pi n-\varphi_1$ in the bottom $\Phi=0$ plane of the Euler cell (Fig.~\ref{\chabbr:fig:euleridentity})(b).  The degeneracy of the identity orientation is clearly not a desirable mathematical property of the Euler representation.  In fact, \textit{for any rotation by an angle $\varphi$ around the $\mathbf{e}_z$ axis, the Euler representation is infinitely degenerate} since we can write the Euler triplet as $(\varphi_1,0,\varphi-\varphi_1)$ or $(\varphi+\varphi_1,0,-\varphi_1)$ with $\varphi_1$ an arbitrary angle.  This means that one must be careful in numerical applications whenever $\Phi=0$ or $\Phi=\pi$.  The underlying reason for the infinite degeneracies if the fact that, as we will discus in the next section (section~\ref{\chabbr:sec:eulermetric}), the Euler volume element vanishes for $\Phi=n\pi$ for $n\in\mathbb{Z}$. 
 
-Despite this mathematical inconvenience, the Euler angle orientation/rotation representation has become the standard in the texture literature, and we will use it frequently throughout this text.  There are several other orientation representations that do not suffer from this kind of degeneracies, and we will take a closer look at the class of \textit{neo-Eulerian} representations in the next section.
-
-
-\section{Neo-Eulerian Rotation Representations}\label{\chabbr:neoEulerian}
-
-{\color{red}to be written...}
+Despite this mathematical inconvenience, the Euler angle orientation/rotation representation has become the standard in the texture literature, and we will use it frequently throughout this text.  There are several other orientation representations that do not suffer from this kind of degeneracies, and we will take a closer look at the important class of \textit{neo-Eulerian} representations in section~\ref{\chabbr:sec:neoEulerian}.
 
 
+\subsection{Metric properties of Euler angle triplets}\label{\chabbr:sec:eulermetric}
+When working with polycrystalline microstructures, one often encounters the problem of computing the effective value of a material property, averaged over the distribution of grain orientations.\footnote{This section is more advanced mathematically and may be skipped on first reading.}  If we represent the \indexit{Orientation Distribution Function} or ODF as a function $f$ of the Euler angles, i.e., $f(\varphi_1,\Phi,\varphi_2)$, then the averaging process will invariably involve an integration over the entire range of the three Euler angles. This, in turn, will require that we know the correct volume element, $\mathrm{d}V$, for Euler space which involves the computation of the metric tensor.  
+
+We must first determine how the Euler rotation matrix in Eq.~(\ref{\chabbr:eq:eulermatrix}) changes when we perform infinitesimal rotations, $\mathrm{d}\varphi_1$, $\mathrm{d}\Phi$, and $\mathrm{d}\varphi_2$,  around each of the rotation axes. If we represent the matrix by $R$ as a short-hand notation, then the change of the matrix with respect to each Euler angle is given by the following derivatives (using the same abbreviated notation as before and representing $q_1=\varphi_1$, $q_2=\Phi$ and $q_3=\varphi_2$):
+\[
+	\frac{\partial R}{\partial q_1} = \begin{pmatrix}-c_2s_1-cc_1s_2&c_1c_2-cs_1s_2& 0\\
+	-cc_1c_2+s_1s_2&-cc_2s_1-c_1s_2&0\\
+	c_1s & ss_1 & 0\end{pmatrix}
+\]
+\[
+	\frac{\partial R}{\partial q_2} = \begin{pmatrix}ss_1s_2&-c_1ss_2&cs_2\\
+	c_2ss_1 & -c_1c_2s &cc_2\\
+	cs_1&-cc_1&-s\end{pmatrix}
+\]
+\[
+	\frac{\partial R}{\partial q_3} = \begin{pmatrix}-cc_2s_1-c_1s_2&cc_1c_2-s_1s_2&c_2s\\
+	-c_1c_2+cs_1s_2&-c_2s_1-cc_1s_2&-ss_2\\
+	0&0&0\end{pmatrix}
+\]
+The theory of differential geometry [CITATION] then tells us that the metric tensor, $g_{ij}$, of Euler space can be expressed in terms of these derivative matrices as:
+\[
+	g_{ij} = \frac{1}{2}\text{Tr}\left[ \left(\frac{\partial R}{\partial q_i}\right)^T\,\frac{\partial R}{\partial q_j}\right]\ ,
+\]
+where we have matrix multiplication between the square brackets and Tr indicates the matrix trace.  As an example, we compute $g_{13}$ as:
+{\small\begin{equation*}
+\begin{split}
+	g_{13} &= \frac{1}{2} \text{Tr}\left[ \begin{pmatrix}
+	-c_2s_1-cc_1s_2&-cc_1c_2+s_1s_2&c_1s \\
+	c_1c_2-cs_1s_2&-cc_2s_1-c_1s_2&ss_1\\
+	 0& 0 & 0\end{pmatrix}\begin{pmatrix}-cc_2s_1-c_1s_2&cc_1c_2-s_1s_2&c_2s\\
+	-c_1c_2+cs_1s_2&-c_2s_1-cc_1s_2&-ss_2\\
+	0&0&0\end{pmatrix}\right];\\
+	&= \frac{1}{2} \text{Tr}\begin{pmatrix}c&0&-ss_1\\ 0& c& c_1s\\ 0&0&0\end{pmatrix};\\
+	&= c = \cos\Phi.
+\end{split}
+\end{equation*}}
+Repeating this computation for all entries of the metric tensor results in:
+\begin{equation}
+	g_{ij} = \begin{bmatrix}1&0&\cos\Phi\\0&1&0\\ \cos\Phi& 0& 1\end{bmatrix}\ .
+\end{equation}
+Note that this tensor is constant in planes normal to the $\Phi$ axis in the Euler cell.  The relevant Euler volume element, $\mathrm{d}V$ is then the product of the differentials and the volume, derived as the square root of the determinant of the metric tensor; the determinant equals $\det\vert g_{ij}\vert = 1-\cos^2\Phi$ so that (restricting $\Phi$ to the interval $[0,\pi]$):
+\begin{equation}
+	\mathrm{d}V = \sin\Phi\,\mathrm{d}\varphi_1\,\mathrm{d}\Phi\,\mathrm{d}\varphi_2\ .\label{\chabbr:eq:EulerdV}
+\end{equation}
+This, in turn, allows us to compute the volume of the Euler space box introduced in the previous section.  A naive computation, ignoring the metric properties of Euler space, would result in a volume that is $2\pi\times \pi\times 2\pi=4\pi^3$.  The correct result is obtained by integrating the volume element over the full range of the coordinates:
+\begin{equation}
+	V = \int_0^{2\pi}\!\!\!\mathrm{d}\varphi_1\,\int_0^{\pi}\!\!\!\mathrm{d}\Phi\,\sin\Phi\,\int_0^{2\pi}\!\!\!\mathrm{d}\varphi_2 = 8\pi^2\ ,\label{\chabbr:eq:EulerVolume}
+\end{equation}
+since the integral over $\Phi$ results in a value of $2$.  
+
+Knowledge of the metric tensor also allows for the determination of the infinitesimal line segment $\mathrm{d}s$ (employing the summation convention):
+\begin{equation}
+	{\mathrm{d}s}^2 = \mathrm{d}q_i\,g_{ij}\,\mathrm{d}q_j = {\mathrm{d}\varphi_1}^2+{\mathrm{d}\Phi}^2+{\mathrm{d}\varphi_2}^2+2\cos\Phi\,\mathrm{d}\varphi_1\mathrm{d}\varphi_2\ .\label{\chabbr:eq:Eulerds}
+\end{equation}
 
 
+Returning to the comments in the first paragraph of this section, we are now ready to compute the average value of any material property, $P$, given an ODF $f(\varphi_1,\Phi,\varphi_2)$:
+\begin{equation}
+	\langle P\rangle = \frac{1}{8\pi^2} \int_0^{2\pi}\!\!\!\mathrm{d}\varphi_1\,\int_0^{\pi}\!\!\!\mathrm{d}\Phi\,\sin\Phi\,\int_0^{2\pi}\!\!\!\mathrm{d}\varphi_2\, f(\varphi_1,\Phi,\varphi_2)\, P(\varphi_1,\Phi,\varphi_2)\ ;
+\end{equation}
+in general, the quantity $P$ will also depend on the Euler angles.\footnote{In general, $P$ will be a property tensor (see chapter~\ref{TENSOR:tensors}) and the integrand will have one rotation matrix $R$ for each subscript of the tensor.}  In practical terms, the ODF represents the volume fraction of material that has a given orientation. 
 
+
+\section{Neo-Eulerian Rotation Representations}\label{\chabbr:sec:neoEulerian}
+
+\subsection{Definitions}\label{\chabbr:ssec:neodefinitions}
+
+\indexit{Sir Charles Frank} introduced the name \indexit{neo-Eulerian} \cite{frank1988a} to label a family of orientation/rotation representations with a common mathematical form. If we use the standard representation of a rotation by a counterclockwise angle $\omega$ around a unit rotation axis $\hat{\mathbf{n}}$, then a neo-Eulerian representation is a vector $\mathbf{e}(\omega,\hat{\mathbf{n}})$ of the form:\footnote{The choice of the symbol $\mathbf{e}$ for the neo-Eulerian vector is not particularly important; below we will introduce specific notations for each of the commonly used neo-Eulerian representations.}
+\begin{equation}
+	\mathbf{e}(\omega,\hat{\mathbf{n}}) = \hat{\mathbf{n}}\,f(\omega)\ ,\label{\chabbr:eq:neoEulerian}
+\end{equation}
+where the function $f(\omega)$ is a monotonically increasing function of the angle $\omega\in[0,\pi]$ and $f(0)=0$.  
+
+%The reason for the minus sign in this definition is subtle and has to do with the need for all neo-Eulerian representations to be consistent with the rotation matrix representation when converting between representations; the detailed reasoning can be found in \cite{degraef2015t}.  
+
+While there is an infinite choice for the function $f(\omega)$, a handful of functions have over the years turned out to be useful for rotation representations. In the texture community we make frequent use of the following monotonic functions:
+
+\begin{itemize}
+	\item \textcolor{OCSkiboRed}{$f(\omega) = \omega$}: this is the simplest option, resulting in the \indexit{rotation vector} $\mathbf{R}=\omega\,\hat{\mathbf{n}}$. The collection of all possible rotation vectors can be represented geometrically by a closed ball of radius $\pi$, i.e., $\mathbb{B}^3_{\pi}$. The magnitude of the rotation angle is simply the distance to the origin, and all rotations by an angle $\omega=\pi$ lie on the surface of the ball, i.e., on the 2-sphere $\mathbb{S}^2_{\pi}$.  The rotation vector can be a convenient tool for the visualization of collections of orientations/rotations, but it is not very useful for numerical work.
+	
+	\item \textcolor{OCSkiboRed}{$f(\omega) = \tan\frac{\omega}{2}$}: this function generates the \indexit{Rodrigues vector}, $\bm{\rho}= \tan\frac{\omega}{2}\,\hat{\mathbf{n}}$.  Since the domain of the angle $\omega$ is $[0,\pi]$ we see that the Rodrigues vectors occupy an infinite space; all rotations by an angle $\omega=\pi$ lie at infinity due to the divergence of the tangent function for argument $\pi/2$.  All rotations by an angle $\omega=\pi/2$ lie at unit distance from the origin since $\tan(\pi/4)=1$.  The mathematical space of the Rodrigues vectors is essentially $\mathbb{R}^3$, but, as described in section~\ref{\chabbr:ssec:neoEulerianmetric}, Rodrigues space does not have a Cartesian metric.  This representation is very important to the texture community because (1) there is a closed-form expression for the concatenation of multiple rotations (see section~\ref{\chabbr:ssec:neoEuleriancomposition}), and (2) the space allows for a particularly convenient description of the rotational symmetry of crystal structures.
+\end{itemize}
+
+\noindent The next three representations are related to the concept of \indexit{quaternions}, i.e., 4D complex numbers introduced in chapter~\ref{NUMSYS:NumberSystems} on Number Systems (see section~\ref{NUMSYS:sec:quaternions}). Eq.~(\ref{NUMSYS:eq:quatrot}) describes the relation between a unit quaternion and a 3D rotation:
+\begin{equation}
+	q = \left[\cos\frac{\omega}{2},\sin\frac{\omega}{2}\,\hat{\mathbf{n}}\right] = [q_0,\mathbf{q}].
+\end{equation}
+Note that the Rodrigues vector introduced above is related to the quaternion as follows:
+\begin{equation}
+	\bm{\rho} = \frac{\mathbf{q}}{q_0} = \frac{\sin\frac{\omega}{2}}{\cos\frac{\omega}{2}}\,\hat{\mathbf{n}} = \tan\frac{\omega}{2}\,\hat{\mathbf{n}}\ .
+\end{equation}
+
+\begin{itemize}
+	\item \textcolor{OCSkiboRed}{$f(\omega) = \sin\frac{\omega}{2}$}: We see that this function is present in the vector part of the quaternion, i.e., $\mathbf{q}=\sin\frac{\omega}{2}\,\hat{\mathbf{n}}$.  These vectors end in points that lie inside or on the surface of a unit ball $\mathbb{B}^3$, with the surface $\mathbb{S}^2$ once again representing  the rotations by an angle $\omega=\pi$.  
+	\item \textcolor{OCSkiboRed}{$f(\omega) = \tan\frac{\omega}{4}$}: Since all unit quaternions reside on the 3-sphere, $\mathbb{S}^3$, we can perform an angle-preserving \indexit{stereographic projection} to the unit 3-ball $\mathbb{B}^3$. As described in chapter~\ref{PROJTS:Projections} (section~\ref{PROJTS:sec:SPprops}) the mathematical description of the stereographic projection simply requires taking  $N-1$ components of the unit vector and dividing them by the remaining component.  For the unit quaternion above, we take the scalar part $q_0$ to represent that remaining component and we arrive at the \indexit{3D stereographic vector}
+	\[
+		\mathbf{s} = \frac{\mathbf{q}}{1+q_0} = \frac{\sin\frac{\omega}{2}}{1+\cos\frac{\omega}{2}}\,\hat{\mathbf{n}} = \tan\frac{\omega}{4}\,\hat{\mathbf{n}}\ .
+	\]
+	\item \textcolor{OCSkiboRed}{$f(\omega) = [3(\omega-\sin\omega)/4]^{1/3}$}:	in section~\ref{PROJTS:sec:lambertproj} we introduced the Lambert projection from the 2-sphere $\mathbb{S}^2$ to the 2-ball (disc) $\mathbb{B}^2_2$ with radius $R=2$, and we showed by means of an example that this is an area-preserving mapping.  Some sophisticated math (\cite{degraef2014r}) shows that, if we increase the dimensions by one, we obtain a generalized Lambert projection between the 3-sphere $\mathbb{S}^3$ and the 3-ball $\mathbb{B}^3_{\rho}$ where $\rho=[3\pi/4]^{1/3}$.  The function that achieves this \indexit{equal-volume mapping} is precisely the function $f(\omega) = [3(\omega-\sin\omega)/4]^{1/3}$.  In the texture community, this representation is known as the \indexit{homochoric representation}, and we have the \indexit{homochoric vector} $\mathbf{h}=  [3(\omega-\sin\omega)/4]^{1/3}\,\hat{\mathbf{n}}$.
+\end{itemize}
+ 
+\noindent Contrary to the Euler angle representation, for which the identity is infinitely degenerate, in the neo-Eulerian representations there are no degeneracies related to the identity; in all cases the identity is a single point at the origin of an orthonormal reference frame (Rodrigues vectors) or at the center of a ball (all others). All neo-Eulerian representations also share the property, which is clear from the general definition in Eq.~(\ref{\chabbr:eq:neoEulerian}), that all rotations around a given axis $\hat{\mathbf{n}}$ lie along a straight line through the origin (since $f(0)=0$).
+
+\subsection{Graphical Representations}\label{\chabbr:ssec:visualization}
+
+Each of the neo-Eulerian representations can be visualized quite easily, since the spaces involved are either $\mathbb{R}^3$ or a closed ball $\mathbb{B}^3_R$ with radius depending on the representation. To illustrate this, we start from a randomly selected rotation of $\omega=60^{\circ}$ around an axis with unit vector $\hat{\mathbf{n}}=[1/\sqrt{14},2/\sqrt{14},3/\sqrt{14}]$.  Using the functions $f(\omega)$ for the various representations, it is easy to show that we have:
+\[
+	\mathbf{R} = \frac{\pi}{3}\hat{\mathbf{n}} = \left[0.27987, 0.55975, 0.83962\right]\ ;
+\]
+\[
+	\bm{\rho} = \tan(\frac{\pi}{6})\hat{\mathbf{n}} =\left[0.15430, 0.30861,  0.46291\right]\ ;
+\]
+\[
+	\mathbf{q} = \sin(\frac{\pi}{6})\hat{\mathbf{n}} =  \left[0.13363, 0.26726, 0.40089\right]\ ;
+\]
+\[
+	\mathbf{s} = \tan(\frac{\pi}{12})\hat{\mathbf{n}} = \left[0.07161, 0.14322,  0.21484\right]\ ;
+\]
+\[
+	\mathbf{h} = [3(\frac{\pi}{3}-\frac{\sqrt{3}}{2})/4]^{1/3}\hat{\mathbf{n}} = \left[0.13740, 0.27480,  0.41220\right]\ .
+\]
+Using the \indexit{Watson sampling} technique described in section~\ref{\chabbr:sec:sampling}, we generated a sample of $500$ random orientations clustered around the above rotation, using a maximum cluster radius of $5^{\circ}$.  The sampling was performed on the unit quaternion sphere $\mathbb{S}^3$ and orientations were converted to the representations above using the standard expression for each representation. The three illustrations in Fig.~\ref{\chabbr:fig:ORreps} show the orientation cluster in (a) Rodrigues space; (b) homochoric space; and (c) 3D stereographic space.  All three drawings are in the correct relative size; the homochoric ball has a radius of  $1.3307$ units whereas the stereographic ball has unit radius.  The reference frames are parallel in the three drawings.
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath ORreps}
+\caption{\label{\chabbr:fig:ORreps}Three graphical representations of a cluster of $500$ random orientations; the three drawings are correctly scaled relative to each other}
+\end{figure}
+
+
+\subsection{Composition of rotations in the neo-Eulerian representations}\label{\chabbr:ssec:neoEuleriancomposition}
+When rotations are expressed in terms of Euler angles, multiple rotations can be combined into a single rotation by first converting the Euler angles to rotation matrices and then multiplying those matrices together.  Combining rotations in the neo-Eulerian representations is particularly straightforward in the quaternion representation since this representation only requires the direct multiplication of the corresponding unit quaternions.  As an example, consider the rotations $60^{\circ}@[110]$ followed by the rotation $90^{\circ}@[001]$.  Using the standard conversion to quaternions (and remembering to take half of the rotation angle) we have
+\[
+	q_1 = [\frac{\sqrt{3}}{2}, [\frac{1}{2\sqrt{2}},\frac{1}{2\sqrt{2}},0]]\text{ and }q_2 = [\frac{1}{\sqrt{2}},[0,0,\frac{1}{\sqrt{2}}]]\ .
+\]
+Since these are passive rotations we multiply them from left to right using the standard quaternion multiplication rule:
+\begin{equation*}
+\begin{split}
+	q=q_1\,q_2 &= \left[q_{1,0}q_{2,0}-\mathbf{q}_1\cdot\mathbf{q}_2, q_{1,0}\mathbf{q}_2+q_{2,0}\mathbf{q}_1+\mathbf{q}_1\times\mathbf{q}_2\right]\ ;\\
+	&= \left[ \frac{\sqrt{3}}{2\sqrt{2}}, \left[ \frac{1}{2},0,\frac{\sqrt{3}}{2\sqrt{2}}\right]\right]\ ,
+\end{split}
+\end{equation*}
+which represents a rotation of $104.48^{\circ}$ around the unit axis $[0.632456, 0, 0.774597]$.
+
+In the Rodrigues representation we can make use of the \indexit{Rodrigues composition formula} which reads:
+\begin{equation}
+	\bm{\rho} = \frac{\bm{\rho}_1+\bm{\rho}_2+\bm{\rho}_1\times\bm{\rho}_2}{1-\bm{\rho}_1\cdot\bm{\rho}_2}\ .\label{\chabbr:eq:RodComp}
+\end{equation}
+The Rodrigues vectors can be derived from the quaternions above:
+\[
+	\bm{\rho}_1 = \frac{\mathbf{q}_1}{q_{1,0}}=\left[\frac{1}{\sqrt{6}},\frac{1}{\sqrt{6}},0\right]\text{ and }\bm{\rho}_2=\frac{\mathbf{q}_2}{q_{2,0}}=[0,0,1]
+\]
+Substitution in the composition formula results in 
+\[
+	\bm{\rho} = \left[\sqrt{\frac{2}{3}},0,1\right]\ .
+\]
+This is in agreement with the quaternion product computed above; simply dividing the vector part of $q$ by the scalar part results in the same Rodrigues vector, as is readily verified.  
+
+From a numerical point of view, the quaternion product is the most efficient way to combine two or more rotations; there are fewer multiplications and additions involved than for matrix multiplication, and the Rodrigues composition formula involves a division operation which can be expensive in terms of CPU clock cycles.  The numerical efficiency of quaternion operations explains why they are widely used in the computer gaming industry.
+
+
+\subsection{Metric properties of neo-Eulerian representations}\label{\chabbr:ssec:neoEulerianmetric}
+In section~\ref{\chabbr:sec:eulermetric} we derived the metric tensor for Euler space.\footnote{This section uses rather advanced mathematics and may be skipped on first reading.} In a similar way, the metric tensor for each of the neo-Eulerian representations can be derived. It can be shown \cite{kumar1998a} that the metric tensor for the neo-Eulerian representations has the general form (for rotation angle $\omega$ and a unit rotation axis $\hat{\mathbf{n}}$ with components $n_i$):
+\begin{equation}
+	g_{ij} = a\left(\delta_{ij}+b\,n_i\,n_j\right)\ ,
+\end{equation}
+where ($f^{\prime}(\omega)$ represents the derivative of $f(\omega)$ with respect to $\omega$)
+\begin{equation}
+\begin{split}
+	a &= \frac{1-\cos\omega}{2f^2(\omega)}\ ;\\
+	b &= \frac{f^2(\omega)}{2f^{\prime 2}(\omega)(1-\cos\omega)}-1\ .
+\end{split}
+\end{equation}
+
+As an example, we compute the metric tensor for the Rodrigues representation; using $f(\omega)$ and $f'(\omega) = \frac{1}{2}\sec^2(\frac{\omega}{2})$ we find that:
+\[
+	a=\cos^2\left(\frac{\omega}{2}\right)\text{ and } b=-\sin^2\left(\frac{\omega}{2}\right)\ .
+\]
+Therefore we have:
+\begin{equation}
+	g_{ij} = \cos^2\left(\frac{\omega}{2}\right)\left(\delta_{ij}-\sin^2\left(\frac{\omega}{2}\right)\,n_i\,n_j\right)\ ,\label{\chabbr:eq:metricRodrigues}
+\end{equation}
+and for the Jacobian determinant and the volume element we find:
+\[
+	J = \cos^4\left(\frac{\omega}{2}\right)\rightarrow \mathrm{d}V = \cos^4\left(\frac{\omega}{2}\right) \mathrm{d}\rho_1\,\mathrm{d}\rho_2\,\mathrm{d}\rho_3\ .
+\]
+Similarly, for the 3D stereographic representation we find:
+\[
+	a=4\cos^4\left(\frac{\omega}{4}\right)\text{ and } b=0\ .
+\]
+Therefore we have:
+\begin{equation}
+	g_{ij} = 4\cos^4\left(\frac{\omega}{4}\right)\delta_{ij}\ ,\label{\chabbr:eq:metricStereographic}
+\end{equation}
+and for the Jacobian determinant and the volume element we find:
+\[
+	J = 8\cos^6\left(\frac{\omega}{4}\right)\rightarrow \mathrm{d}V = 8\cos^6\left(\frac{\omega}{4}\right) \mathrm{d}s_1\,\mathrm{d}s_2\,\mathrm{d}s_3\ .
+\]
+The expressions for the homochoric representation are not particularly difficult to derive but they are more complicated so we omit them here. The only noteworthy comment is that the Jacobian is equal to $1$, since this is an equal-volume mapping from the unit quaternion sphere $\mathbb{S}^3$ onto a closed ball with the same volume.  Therefore, the volume element for the homochoric representation is given by:
+\[
+	\mathrm{d}V =  \mathrm{d}h_1\,\mathrm{d}h_2\,\mathrm{d}h_3\ .
+\]
+It should be noted that in the literature on these representations, the metric tensors may have a scaling factor up front; this factor is used to guarantee that an integration over the whole space for a given representation has a specific value, often $1$, but not always.  The reader should be aware that there are several different potential scaling factors in use.
+
+While this section contains some more advanced math than the rest of this chapter, it is important for the reader to appreciate the fact that these rotation spaces do not generally have simple Cartesian metrics; as a consequence, whenever one performs integrations over orientation distributions expressed in these representations, one must follow the rules of differential geometry to properly carry out the computations.  The paper by Kumar and Dawson \cite{kumar1998a} represents a good starting point for the interested reader.
+
+%\section{Sampling of Orientations/Rotations}\label{\chabbr:sec:sampling}
+%
+%In this section we take a closer look at different ways to generate random sets of orientations that are either uniform or clustered. The techniques described here belong to the field of \indexit{Directional Statistics} which handles the theory of uniform and clustered distributions of points on (hyper)-spheres.  While the following sections present a basic overview, the interested reader is encouraged to consult the excellent book ``Directional Statistics'' by Mardia and Jupp \cite{mardia2009a}. Before we cover these sampling concepts, it is important to introduce the concept of \indexit{misorientation}, which is a measure for the ``distance'' between two orientations.
+%
+%\subsection{Misorientations}\label{\chabbr:ssec:misorientations}
+
+\section{Misorientations}\label{\chabbr:sec:misorientations}
+
+We have defined a rotation as a passive operation that rotates one cartesian reference frame (the ``old'' frame) into another reference frame (the ``new'' frame).  In terms of rotation matrices, we commonly write:
+\[
+	\mathbf{e}'_i = \alpha_{ij}\mathbf{e}_j\ ,
+\]
+where $\alpha_{ij}\equiv \mathbf{e}'_i\cdot\mathbf{e}_j$ is a special orthogonal $3\times 3$ matrix, i.e., it belongs to the rotation group $SO(3)$. It is common practice in the texture community to select a reference frame attached to the sample as the old reference frame, and the reference frame of an individual grain as the new reference frame.  In addition to the rotation matrix $\alpha_{ij}$ we can use Euler angles or any of the neo-Eulerian representations introduced before to describe the grain orientation.  In this subsection, we will use the quaternion representation from here on out.
+
+A polycrystalline material has many grains that form pairwise \indexit{grain boundaries}; each grain orientation can be represented by a quaternion $q_i$ with $i\in[1,N]$ with $N$ the total number of grains.  If we focus on two grains that are nearest neighbors, say grains $1$ and $2$, then their orientations with respect to the sample reference frame are given by the quaternions $q_1$ and $q_2$.  We now ask the question: how can we rotate directly from the reference frame of grain $1$ to that of grain $2$?  To answer this question we can make use of the fact that the inverse of a rotation is described by the complex conjugate of the rotation quaternion.  So, to get from grain $1$ to grain $2$ (in terms of their orientation), we can first go from grain $1$ to the sample reference frame by means of $q_1^{\ast}$, and then from the sample frame to grain $2$ by means of $q_2$.  This results in the \indexit{misorientation quaternion} $q_m$ (ordering the passive quaternions from left to right):
+\begin{equation}
+	q_m = q_1^{\ast}\,q_2\rightarrow q_m^{\ast} = (q_1^{\ast}\,q_2)^{\ast} = q_2^{\ast}\,q_1\ .\label{\chabbr:eq:misorientation}
+\end{equation}
+The misorientation quaternion $q_m$ rotates the reference frame of grain $1$ into the orientation of the reference frame of grain $2$.  The conjugate quaternion $q_m^{\ast}$ will achieve the opposite rotation.  Note that, in this section, we ignore the crystal symmetry of the individual grains; in other words, we consider the grains to have a structure described by space group \#1.  The consequences of adding actual crystal symmetry, which leads to the concept of \indexit{disorientation}, are discussed elsewhere.
+
+As an example, let us consider a planar grain boundary, as illustrated in Fig.~\ref{\chabbr:fig:GB}, where both grains have a single crystal axis in common, say they share the $\mathbf{e}_z$ axis, but they are rotated in opposite directions by an angle $\theta$ with respect to the boundary plane (this type of grain boundary is known as a \indexit{symmetric tilt boundary}). In the quaternion representation, we have for grain $1$ (with a counterclockwise rotation):
+\[
+	q_1 = \left[\cos\frac{\theta}{2},\left[0,0,\sin\frac{\theta}{2}\right]\right]\ ;
+\]
+and for grain $2$ we have:
+\[
+	q_2 = \left[\cos\frac{\theta}{2},\left[0,0,-\sin\frac{\theta}{2}\right]\right]\ ;
+\]
+For the misorientation quaternion we find:
+\begin{equation*}
+\begin{split}
+	q_m &= \left[\cos^2\frac{\theta}{2}-\sin^2\frac{\theta}{2},\left[0,0,-2\cos\frac{\theta}{2}\sin\frac{\theta}{2}\right]\right]\ ;\\
+	&=\left[\cos(\theta),\left[0,0,-\sin(\theta)\right]\right]\ .
+\end{split}
+\end{equation*}
+The misorientation angle $\Delta\theta$ is therefore a clockwise angle of magnitude $2\theta$ (clockwise because the sign in front of $\sin\theta$ is negative).  
+
+One can show that the full quaternion multiplication is not necessary to obtain the misorientation angle (it is necessary, however, if the rotation axis is also needed). If we consider the quaternions as $4$-component vectors, then we can compute the dot product between those vectors using the normal approach; the dot product will then be equal to the cosine of half of the misorientation angle:
+\[
+	\cos\frac{\Delta\theta}{2} = q_1\cdot q_2 = \cos^2\frac{\theta}{2}-\sin^2\frac{\theta}{2} = \cos\theta\ ;
+\]
+note that we do \textit{not} use the conjugate quaternion $q_1^{\ast}$ in the dot product.  As before, we find for the misorientation angle that $\Delta\theta=2\theta$. 
+
+% insert an exercise here...
+
+%\subsection{Uniform Orientation Sampling}\label{\chabbr:ssec:uniformsampling}
+% 
+% not sure if we really need these sections... math gets pretty involved
+%
+%\subsection{Orientation Cluster Sampling}\label{\chabbr:ssec:clustersampling}
+%
+%
 
 
 

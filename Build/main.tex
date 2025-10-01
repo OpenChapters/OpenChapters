@@ -11,6 +11,7 @@
 % arara: pdflatex: { shell: yes }
 % arara: clean: { extensions: [aux, bbl, bcf, blg, idx, ilg, ind, log, ptc, toc]}
 % arara: clean: { files: ['gitHeadLocal.gin', 'main.run.xml'] }
+% arara: clean: { files: ['ImageFolder/*.eps', 'ImageFolder/*.pdf'] }
 %!TEX encoding = UTF-8 Unicode
 %
 % ###################################################################
@@ -34,11 +35,14 @@
 
 % load the OpenChapters.sty package file that loads everything else...
 \usepackage{OpenChapters}
+\usepackage{arara}
 
 % All figures are stored in the src/ChapterTitle/eps folders and must be of the *.eps, *.pdf, or *.png type. 
 % They are all copied into the ImageFolder before compilation
 \renewcommand{\chaptergraphicspath}{ImageFolder/}
 \renewcommand{\graphicspath}{ImageFolder/}
+\newcommand{\isHTML}{No}
+\newcommand{\isEPUB}{No}
 
 % user-defined commands
 \input{preamble.ins}
@@ -89,10 +93,10 @@
 %
 \include{src/NumberSystems/NumberSystems} % tutorial on number systems
 \include{src/LinearAlgebra/LinearAlgebra} % Linear Algebra
-%\include{src/Projections/Projections} % Various useful projections
-%\include{src/2Drotations/2Drotations} % 2D Rotations
-%\include{src/3Drotations/3Drotations} % 3D Rotation Representations 
-%\include{src/Tensors/Tensors} % Introduction to Tensors 
+\include{src/Projections/Projections} % Various useful projections
+\include{src/2Drotations/2Drotations} % 2D Rotations
+\include{src/3Drotations/3Drotations} % 3D Rotation Representations 
+\include{src/Tensors/Tensors} % Introduction to Tensors 
 
 % ###################################################################
 \input{matter/Postmatter}

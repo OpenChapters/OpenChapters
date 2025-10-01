@@ -48,7 +48,7 @@
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
-\ProvidesPackage{OpenChapters}
+\ProvidesPackage{OpenChaptersEPUB}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % next is the content of the Legrand Orange Book structure.sty file, but with many
@@ -103,34 +103,6 @@
 \usepackage{amsmath}
 %\usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Symbol, Chancery and Computer Modern fonts
 
-% =============================================
-%Import symbols from font cm without importing the whole package
-%this is needed to properly put a \hat on top of the quaternion imaginary units i and j,
-% since the mathptmx package does not define \jmath.  [MDG]
-% =============================================
-\newcommand\imCMsym[4][\mathord]{%
-  \DeclareFontFamily{U} {#2}{}
-  \DeclareFontShape{U}{#2}{m}{n}{
-    <-6> #25
-    <6-7> #26
-    <7-8> #27
-    <8-9> #28
-    <9-10> #29
-    <10-12> #210
-    <12-> #212}{}
-  \DeclareSymbolFont{CM#2} {U} {#2}{m}{n}
-  \DeclareMathSymbol{#4}{#1}{CM#2}{#3}
-}
-\newcommand\alsoimCMsym[4][\mathord]{\DeclareMathSymbol{#4}{#1}{CM#2}{#3}}
-
-\imCMsym{cmmi}{123}{\CMimath}
-\imCMsym{cmmi}{124}{\CMjmath}
-\imCMsym[\mathop]{cmsy}{113}{\CMamalg}
-\imCMsym[\mathop]{cmex}{96}{\CMcoprod}
-\alsoimCMsym[\mathop]{cmex}{97}{\CMbigcoprod}
-
-
-
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY AND INDEX
 %----------------------------------------------------------------------------------------
@@ -153,6 +125,7 @@
 % Change color of chapter entries in ToC [defined with help from CIT's Nathan Snizaski]
 \definecolor{OCpurple}{RGB}{173,73,104}
 \definecolor{OCblue}{RGB}{20,107,176}
+\definecolor{OClightblue}{RGB}{121,194,202}
 \definecolor{OCalmostblack}{RGB}{32,32,32}
 \definecolor{OCwhite}{RGB}{255,255,255}
 \definecolor{OCBurntOrange}{RGB}{204,85,0}

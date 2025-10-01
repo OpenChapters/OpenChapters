@@ -32,6 +32,7 @@
 %\NeedsTeXFormat{LaTeX2e}
 %\ProvidesPackage{arara}[2020/03/01 Arara User Manual Configuration]
 
+% All package loads have been moved to OpenChapters.sty but are commented out here
 \usepackage{upquote}
 
 \usetikzlibrary{patterns}
@@ -41,38 +42,12 @@
 \definecolor{warningcolour}{rgb}{0.75, 0.09, 0}
 \definecolor{attentioncolour}{rgb}{0.82, 0.86, 0.07}
 
-\usepackage{tcolorbox}
 \tcbuselibrary{skins}
 \tcbuselibrary{breakable}
 \tcbuselibrary{listings}
-
-%\usepackage{amsmath}
-%\usepackage{amssymb}
-%\usepackage{amsfonts}
-%\usepackage{kmath}
-%\usepackage{bookman}
-\usepackage{comfortaa}
-%\usepackage[regular]{sourcecodepro}
-
-\usepackage{adforn}
-%\usepackage{fontawesome}
-
-\usepackage{forest}
 \useforestlibrary{edges}
 
-\usepackage{enumitem}
-%\setlist[description]{font=\sffamily\bfseries,style=nextline,leftmargin=2em}
-
-\usepackage{tabularx}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
-
-%\usepackage[
-%  colorlinks,
-%  linkcolor={black},
-%  citecolor={araracolour},
-%  urlcolor={araracolour},
-%  pdfpagelabels
-%]{hyperref}
 
 \newcommand{\araratext}[1]{{\normalfont\comfortaa\color{araracolour}\bfseries#1}}
 \newcommand*\arara{\araratext{ar\kern-.03emar\kern-.03ema}}
@@ -422,69 +397,6 @@
   top=1.6pt,
   bottom=0.8pt
 }
-
-%\newcommand{\varbox}[1]{\rbox[araracolour]{$\diamondsuit$\,#1}}
-%\newcommand{\mtbox}[1]{\rbox{$\diamondsuit$\,#1}}
-%\newcommand{\prbox}[1]{\rbox[attentioncolour]{\color{black}$\rhd$\,#1}}
-%\newcommand{\opbox}[1]{\rbox[cyan]{\color{black}{-}#1}}
-%\newcommand{\cdbox}[1]{\rbox{$\star$\,#1}}
-%\newcommand{\describe}[2]{\rbox[araracolour]{#1}~%
-%\abox{#2}}
-%\newcommand{\describecontext}[3]{\rbox[araracolour]{#1}~%
-%\rbox{#2$\rightarrow$}~\abox{#3}}
-%\newcommand{\describecontextt}[4]{\rbox[araracolour]{#1}~%
-%\rbox[araracolour]{#2}~\rbox{#3$\rightarrow$}~\abox{#4}}
-%\newcommand{\describeconditional}[2]{\rbox[araracolour]%
-%{\normalfont\itshape\,\,#1\enspace}~\cdbox{#2}}
-%\newcommand{\describeop}[2]{\opbox{#1}~\opbox{{-}#2}}
-%\newcommand{\describeopp}[3]{\describeop{#1}{#2}~\prbox{#3}}
-%\newcommand{\describecf}[4]{\rbox[araracolour]{#1}~%
-%\rbox{\normalfont\itshape\,\,#2\enspace}~\abox{#3}%
-%\hfill{\normalfont\itshape default:} \rbox{#4}}
-%\newcommand{\describecfn}[3]{\rbox[araracolour]{#1}~%
-%\rbox{\normalfont\itshape\,\,#2\enspace}~\abox{#3}}
-%\newcommand{\rrbox}[1]{\rbox[araracolour]{$\triangle$\,#1}}
-%\newcommand{\ctbox}[1]{\rbox[cyan]{#1}}
-%\newcommand{\mdbox}[3]{\ctbox{#1}~\mtbox{#2}\hfill\rrbox{#3}}
-%\newcommand{\mddbox}[4]{\ctbox{#1}~\mdbox{#2}{#3}{#4}}
-%
-%\renewcommand{\secheadstyle}{\Large\normalfont\em}
-%\renewcommand{\subsecheadstyle}{\large\normalfont\em}
-%\renewcommand{\subsubsecheadstyle}{\normalsize\normalfont\em}
-%\renewcommand{\paraheadstyle}{\normalsize\normalfont\em}
-%\renewcommand{\subparaheadstyle}{\normalsize\normalfont\em}
-%\renewcommand{\partnumfont}{\Large\comfortaa\bfseries}
-%\renewcommand{\partnamefont}{\Large\comfortaa\bfseries}
-%\renewcommand{\parttitlefont}{\Huge\normalfont\em}
-%\renewcommand{\booktitlefont}{\huge\normalfont\em}
-%\renewcommand{\booknamefont}{\huge\normalfont\em}
-%\renewcommand{\booknumfont}{\huge\normalfont\em}
-%\renewcommand{\printpartname}{\centering\includegraphics[scale=.3]{logos/bird.pdf}\par\partnamefont \textcolor{araracolour}{part}}
-%\renewcommand{\printpartnum}{\partnumfont\textcolor{araracolour}{\numtoname{\c@part}}}
-%\cftpagenumbersoff{part}
-%\renewcommand\partnumberline[1]{\hfil\hspace\@tocrmarg {\normalfont\normalsize\adforn{16}}\quad#1\hspace{0.5em}---\hspace{0.5em}}
-%\renewcommand*{\cftpartafterpnum}{\quad\adforn{44}}
-%\setlength\cftchapternumwidth{2em}
-%\setlength\cftsectionnumwidth{3em}
-%
-%\renewcommand{\midpartskip}{\par\vskip 3.0\onelineskip}
-%
-%\makechapterstyle{araraheadings}{%
-%  \setlength{\beforechapskip}{2\onelineskip}%
-%  \setlength{\afterchapskip}{1.5\onelineskip%
-%                            \@plus .1\onelineskip%
-%                            \@minus 0.167\onelineskip}%
-%  \renewcommand*{\chapnamefont}{\normalfont}%
-%  \renewcommand*{\printchaptername}{%
-%    \centering\includegraphics[scale=.15]{logos/bird.pdf}\par}%
-%  \renewcommand*{\chapnumfont}{\comfortaa\bfseries}%
-%  \renewcommand*{\printchapternum}{\centering \chapnumfont \ifanappendix
-%    \thechapter \else \textcolor{araracolour}{\numtoname{\c@chapter}}\fi}%
-%  \renewcommand*{\chaptitlefont}{\normalfont\itshape\huge\centering}%
-%  \renewcommand*{\printchapternonum}{%
-%    \centering\includegraphics[scale=.15]{logos/bird.pdf}\par%
-%    \vskip\midchapskip}%
-%}
 
 \newcommand{\cbyes}[1]{%
 \raisebox{#1pt}{\begin{tikzpicture}[

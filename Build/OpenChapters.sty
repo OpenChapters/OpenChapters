@@ -58,6 +58,14 @@
 %	VARIOUS REQUIRED PACKAGES AND CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
+% package loads from the original arara.sty file have been moved here
+\usepackage{upquote}
+\usepackage{tcolorbox}
+\usepackage{comfortaa}
+\usepackage{adforn}
+\usepackage{forest}
+\usepackage{tabularx}
+
 \usepackage[top=3cm,bottom=3cm,left=3cm,right=3cm,headsep=10pt,a4paper]{geometry} % Page margins
 
 \usepackage{graphicx} % Required for including pictures
@@ -146,6 +154,7 @@
 % Change color of chapter entries in ToC [defined with help from CIT's Nathan Snizaski]
 \definecolor{OCpurple}{RGB}{173,73,104}
 \definecolor{OCblue}{RGB}{20,107,176}
+\definecolor{OClightblue}{RGB}{121,194,202}
 \definecolor{OCalmostblack}{RGB}{32,32,32}
 \definecolor{OCwhite}{RGB}{255,255,255}
 \definecolor{OCBurntOrange}{RGB}{204,85,0}
@@ -629,8 +638,8 @@ addtohook={%
 \usepackage[shadow,colorinlistoftodos,textsize=scriptsize,textwidth=2.8cm]{mytodonotes}
 
 % and define a few frequently used todo formats
-\newcommand{\sideremark}[1]{\todo[noline,backgroundcolor=green!20]{#1}}
-\newcommand{\danger}{\marginpar{\dbend}}
+%\newcommand{\sideremark}[1]{\todo[noline,backgroundcolor=green!20]{#1}}
+%\newcommand{\danger}{\marginpar{\dbend}}
 
 % and we will stick to SI units, so we use the appropriate package
 \usepackage[squaren]{SIunits}

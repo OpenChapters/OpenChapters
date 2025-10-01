@@ -58,6 +58,7 @@
 \begin{itemize}
     \item[{\color{OCBurntOrange}\ref{\chabbr:vectorproduct}:}] Discover a new product between two or more vectors
     \item[{\color{OCBurntOrange}\ref{\chabbr:tensorproducts}:}] Learn the ways tensors can be multiplied (subscript rules)
+    \item[{\color{OCBurntOrange}\ref{\chabbr:tensorcontraction}:}] Learn how the rank of a tensor can be changed
     \item[{\color{OCBurntOrange}\ref{\chabbr:tensortrafo}:}] Determine how tensors behave under coordinate transformations
 %    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
 %    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
@@ -168,6 +169,13 @@ This system of equations does not have a unique solution; using Mathematica, we 
 \end{equation}
 So, while a second rank tensor is defined by a tensor product of two vectors, it is a meaningless question to  ask, given the tensor, what are the vectors?  There is an infinite family of vector pairs that will produce the same tensor product.  While the exact values of the vector components don't matter, it \textit{does} really matter that the second rank tensor is defined by a tensor product of two vectors; as we will see in section~\ref{\chabbr:tensortrafo}, the tensor will \textit{inherit} the transformation rules for the individual vectors when the reference frame is changed.   Before we introduce the transformation rules for general tensors, let's first do some index gymnastics.
 
+It is important to recognize that the tensor product is really a product between basis vectors.  Consider two vectors $\mathbf{p}$ and $\mathbf{q}$ and a Cartesian reference frame $\mathbf{e}_i$.  We can then write the tensor product of $\mathbf{p}$ and $\mathbf{q}$ as:
+\[
+	\mathbf{p}\otimes \mathbf{q} = (p_i\,\mathbf{e}_i)\otimes (q_j\,\mathbf{e}_j) = p_i\,q_j\,(\mathbf{e}_i\otimes\mathbf{e}_j) = r_{ij}\,(\mathbf{e}_i\otimes\mathbf{e}_j)\ ,
+\]
+where the vector components were brought up front because they are just scalars.  It is standard practice to omit the tensor product between the basis vectors, but one should always be mindful of the fact that the tensor components of $r_{ij}$ are expressed with respect to their own basis, just like the vector components $p_i$ are expressed with respect to the basis vectors $\mathbf{e}_i$.  The tensor product of basis vectors therefore creates a new basis, $\mathbf{e}_i\otimes\mathbf{e}_j$, with respect to which the components $r_{ij}$ are expressed. 
+
+
 
 \section{Tensor Multiplication}\label{\chabbr:tensorproducts}
 Just like real numbers and complex numbers (see chapter~\ref{NUMSYS:NumberSystems}), tensors, which are really just arrays of numbers, can be multiplied with each other.  Let's start with a simple example: the product of two second rank tensors. Consider the tensors $\kappa_{ij}$ and $\lambda_{kl}$; we know that they are each defined by a tensor product of two vectors.  While we don't care about the components of those vectors, we can still write each tensor as a tensor product of two vectors (we'll just pick some letters to represent the vectors):
@@ -210,7 +218,30 @@ These simple rules allow us to quickly spot invalid equations; can you see why t
 \footnotetext{\rotatebox{180}{{\parbox{\linewidth}{(1) after the summation of $k$, four subscripts remain on the left; the subscript $l$ is missing on the right hand side; (2) the summation on the left ``consumes'' the index $i$, so it cannot be present on the right; (3) the subscripts $i$ and $j$ are only present on the left; they must also be present on the right since there is no summation over them.}}}}
 
 
-\newpage
+\subsection{Tensor Contraction}\label{\chabbr:tensorcontraction}
+In the previous section we saw how, in a general tensor product, the new tensor inherits all the subscripts of two (or more) tensors in the product and the resulting rank is the sum of the original ranks.  In this section we describe a version of the tensor product where the rank of the resulting tensor is two less than that of the product tensors.  This process is known as \indexit{tensor contraction} and the simplest example involves going from a second rank tensor, $\sigma_{ij}$, to a scalar (which is a rank 0 tensor).  In linear algebra we define the \indexit{trace} of a matrix as the sum of the diagonal elements of the matrix.  Since $\sigma_{ij}$ can be represented as a $3\times 3$ matrix, we have for the trace:
+\[
+	\text{Tr}(\sigma_{ij}) = \sigma_{11}+\sigma_{22}+\sigma_{33} = \sigma_{ii}\ ,
+\]
+where we used the summation convention in the last equality.  Note that the summation index $i$ is now present twice \textit{on the same tensor}; by carrying out the summation over $i$, we have reduced the rank of $\sigma_{ij}$ by 2 to arrive at a scalar, the trace of the tensor.
+
+Tensor contraction can be performed on any tensor of rank $2$ or higher; it can also be performed on the tensor product of two tensors, as long as their combined ranks sum to at least $2$.  As an example, consider a tensor of rank $3$, $\tau_{ijk}$; we can contract this tensor to a vector by putting two of its subscripts equal to each other, for instance $i=k$:
+\[
+	\tau_{ijk}\rightarrow \tau_{iji} = \tau_{1j1}+\tau_{2j2}+\tau_{3j3} = t_j
+\]
+where each component of the vector $\mathbf{t}$ is the sum of three elements of the original third-rank tensor.  We can clearly obtain two other vectors by performing the contractions $\tau_{iik}$ and $\tau_{ijj}$:
+\[
+	\tau_{iik} = \tau_{11k}+\tau_{22k}+\tau_{33k}\text{ and } \tau_{ijj} = \tau_{i11}+\tau_{i22}+\tau_{i33}\ .
+\]
+These are clearly three different vectors.  The same process is valid for higher order tensors; for the fifth-rank tensor $\alpha_{mnopq}$ there are $10$ different ways of setting two subscripts equal to each other and obtaining a third-rank tensor in each case, for instance $\alpha_{mnomq}$ and $\alpha_{mnopo}$.  Note that multiple contractions are also possible; we can contract $\alpha_{mnopq}$ to a rank-one tensor, i.e., a vector, by contracting over two pairs of subscripts, as in $\alpha_{mmopp}$.  Since the subscript $o$ can be located in any of  the five slots, there are five vectors that can be derived from this tensor by pairs of contractions.
+
+The product of two tensors can also undergo contraction and produce a tensor of rank two less than the original sum of ranks.  As we saw before, we obtain a fourth rank tensor by tensor multiplication of two second rank tensors: $\mu_{ijkl} =  \kappa_{ij}\lambda_{kl}$; but if we put $j=k$, then we obtain a second rank tensor by summing (contracting) over the repeated subscript $j$:
+\[
+	 \kappa_{ij}\lambda_{jl} =  \kappa_{i1}\lambda_{1l} + \kappa_{i2}\lambda_{2l} + \kappa_{i3}\lambda_{3l} = \mu_{il}. 
+\]
+We can then contract this tensor to a scalar, $\mu_{ii}$, by setting $i=l$; this scalar is the sum of all the pairwise products of the original two tensors, i.e., $\kappa_{ij}\lambda_{ij}$.
+
+
 \section{Tensors and Coordinate Transformations}\label{\chabbr:tensortrafo}
 
 \subsection{Derivation of a coordinate transformation matrix}
