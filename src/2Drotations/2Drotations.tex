@@ -57,7 +57,7 @@
     \item[{\color{OCBurntOrange}\ref{\chabbr:rotationmatrices}:}] Perform 2D passive and active rotations with matrices
     \item[{\color{OCBurntOrange}\ref{\chabbr:complex2D}:}] Use complex numbers for 2D rotations
     \item[{\color{OCBurntOrange}\ref{\chabbr:2Dcomposition}:}] Combine multiple rotations
-    \item[{\color{OCBurntOrange}\ref{\chabbr:2Darbitrary}:}] Combine rotations with translations    
+    \item[{\color{OCBurntOrange}\ref{\chabbr:2Darbitrary}:}] Combine rotations with translations using homogeneous coordinates   
 \end{itemize}
 \end{multicols}}}
 % ###################################################################
@@ -185,11 +185,34 @@ This raises an interesting issue in the context of the complex number representa
 	=\mathrm{e}^{\mathrm{i}(\omega_1+\omega_2)} = 
 	\mathrm{e}^{\mathrm{i}\omega_1}\mathrm{e}^{\mathrm{i}\omega_2}\ .
 \]	
-Since 3D rotations do not commute in general, the generalization of complex numbers to quaternions will need to incorporate this non-commutative behavior; in section~\ref{sec:quaternions} we will see that the product of two quaternions, each representing a 3D rotation, does not commute.  For active rotations, we write the consecutive rotations from right to left; for passive rotations we reverse the multiplication order.
+Since 3D rotations do not commute in general, the generalization of complex numbers to quaternions will need to incorporate this non-commutative behavior; in section~\ref{NUMSYS:sec:quaternions} we will see that the product of two quaternions, each representing a 3D rotation, does not commute.  For active rotations, we write the consecutive rotations from right to left; for passive rotations we reverse the multiplication order.
 
 \section{2D rotations combined with translations}\label{\chabbr:2Darbitrary}
+Translations become important in the description of crystal structures and crystal symmetry, so in this section we describe how we can combine a 2D rotation with a translation in terms of a single matrix operation.  Consider an operation consisting of a rotation, $R_{ij}$, followed by a translation by a vector $\mathbf{t}=(t_x,t_y)$ so that the new vector $\mathbf{r}'$ is given by $\mathbf{r}' = R\,\mathbf{r}+\mathbf{t}$ . In component notation we have:
+\[
+	r'_i = R_{ij}\, r_j + t_i\ .
+\]
+In the field of mathematics known as \indexit{projective geometry}, one extends the standard Euclidean geometry to include the points at infinity by introducing \indexit{homogeneous coordinates}; this means that a third coordinate is added to the pair $(x,y)$ to become $(wx,wy,w)$ where $w\in\mathbb{R}$. In the special case of $w=0$, the homogeneous coordinates become $(x,y,0)$ and this indicates the point at infinity in the direction of the vector $(x,y)$.  In practice, we put $w=1$ although all values of $w\ne0$ represent the same point $(x,y)$.  The 2D homogeneous coordinates of the point $(x,y)$ are therefore $(x,y,1)$.  Restating the above equation in homogeneous coordinates and combining rotation and translation into a single $3\times 3$ matrix we have:
+\[
+	\begin{pmatrix}x'\\ y'\\ 1\end{pmatrix} = \begin{pmatrix} R_{xx} & R_{xy} & t_x\\ R_{yx} & R_{yy} & t_y\\ 0&0&1\end{pmatrix} \begin{pmatrix}x\\ y\\ 1\end{pmatrix}\ .
+\]
+It is easy to see that this relation reproduces the original one, and the third equation simply states that $1=1$.  
 
-
-
+We can use this approach to work out what the transformation matrix would be for a counterclockwise rotation by an angle $\theta$ with the rotation axis located at a point $\mathbf{p}=(p_x,p_y)$. In vector notation, this would be equivalent to:
+\[
+	\mathbf{r}' = R\,(\mathbf{r}-\mathbf{p}) + \mathbf{p}\ ;
+\]
+in other words, we translate the rotation axis to the origin by means of the vector $-\mathbf{p}$, then we apply the rotation, and then we translate back to $\mathbf{p}$. In matrix notation, using homogeneous coordinates, this results in:
+\begin{equation*}
+\begin{split}
+	\begin{pmatrix}x'\\ y'\\ 1\end{pmatrix} &= 
+	\begin{pmatrix} 1 & 0 & p_x\\ 0 & 1 & p_y\\ 0&0&1\end{pmatrix}
+	\begin{pmatrix} \cos\theta & -\sin\theta & 0\\ \sin\theta & \cos\theta & 0\\ 0&0&1\end{pmatrix} 
+	\begin{pmatrix} 1& 0 & -p_x\\ 0 & 1 & -p_y\\ 0&0&1\end{pmatrix}
+	\begin{pmatrix}x\\ y\\ 1\end{pmatrix}\\
+	& = 	\begin{pmatrix} \cos\theta & -\sin\theta & p_x(1-\cos\theta)+p_y\sin\theta\\ \sin\theta & \cos\theta & p_y(1-\cos\theta)-p_x\sin\theta\\ 0&0&1\end{pmatrix} 	\begin{pmatrix}x\\ y\\ 1\end{pmatrix}\ .
+\end{split}
+\end{equation*}
+This approach can easily be extended to rotations and translations in 3D.
 
 

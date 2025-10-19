@@ -1,0 +1,7 @@
+
+pandoc can produce an epub file from the html sources...
+this could be added as an arara step ... 
+
+pandoc -f html -t epub3 -o pandoctest.epub index.html node-*.html
+
+

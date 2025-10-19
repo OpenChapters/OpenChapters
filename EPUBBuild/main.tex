@@ -1,18 +1,26 @@
 % !TEX TS-program = arara
 % arara: copy: { files: [ '../.git/gitHeadinfo.gin' ],
 % arara: --> target: 'gitHeadLocal.gin' }
+% arara: fixEPUBgitHeadLocal
 % arara: clean: {files: ['main-authors.aux'] }
-% arara: copyImageFiles
+% arara: createEPUBSVGfiles
 % arara: pdflatex: { shell: yes }
 % arara: makeindex: { style: StyleInd.ist, output: ind, log: ilg, input: idx }
 % arara: mergemainbibfiles
 % arara: biber
-% arara: pdflatex: { shell: yes }
-% arara: pdflatex: { shell: yes }
+% arara: lwarpmk: { options: ['print'] }
+% arara: lwarpmk: { options: ['html'] }
+% arara: lwarpmk: { options: ['limages'] }
+% arara: lwarpmk: { options: ['html1'] }
+% arara: lwarpmk: { options: ['limages'] }
+% arara: lwarpmk: { options: ['printindex'] }
+% arara: lwarpmk: { options: ['html'] }
+% arara: lwarpmk: { options: ['html'] }
+%%%%% % arara: lwarpmk: { options: ['clean'] }
 % arara: clean: { extensions: [aux, bbl, bcf, blg, idx, ilg, ind, log, ptc, toc]}
 % arara: clean: { files: ['gitHeadLocal.gin', 'main.run.xml'] }
-% arara: clean: { files: ['ImageFolder/*.eps', 'ImageFolder/*.pdf'] }
-%!TEX encoding = UTF-8 Unicode
+%
+% This version of the main.tex file is handled by lwarpmk to generate the EOUB version
 %
 % ###################################################################
 % Copyright (c) 2017-2025, Editors: A.D. Rollett & M. De Graef
@@ -33,19 +41,65 @@
 % Default font size and left-justified equations
 \documentclass[11pt,fleqn,A4paper]{book} 
 
-% load the OpenChapters.sty package file that loads everything else...
-\usepackage{OpenChapters}
-\usepackage{arara}
+\usepackage{iftex}
+
+% --- LOAD FONT SELECTION AND ENCODING BEFORE LOADING LWARP ---
+
+\ifPDFTeX
+\usepackage{lmodern}            % pdflatex or dvi latex
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\else
+\usepackage{fontspec}           % XeLaTeX or LuaLaTeX
+\fi
+
+% --- LWARP IS LOADED NEXT ---
+\usepackage[
+ makeindex,%
+ ImagesDirectory=ImageFolder,
+ HomeHTMLFilename=index,     % Filename of the homepage.
+ HTMLFilename={node-},       % Filename prefix of other pages.
+ latexmk,                    % Use latexmk to compile.
+% mathjax,                    % Use MathJax to display math.
+]{lwarp}
+%
+% we are going to make an EPUB:
+\booltrue{FormatEPUB}
+
+% then load all other packages via OpenChapters.sty 
+% make sure hyperref and cleveref are the last packages loaded
+\usepackage{OpenChaptersEPUB}
+\usepackage{arara}  % this does not load any packages
+
+% --- LATEX AND HTML CUSTOMIZATION ---
+\title{OpenChapters EPUB Test Project}
+\author{Marc De Graef}
+\setcounter{tocdepth}{2}        % Include subsections in the \TOC.
+\setcounter{secnumdepth}{2}     % Number down to subsections.
+\setcounter{FileDepth}{1}       % Split \HTML\ files at sections
+\booltrue{CombineHigherDepths}  % Combine parts/chapters/sections
+\boolfalse{FileSectionNames}     % force numbering of the section files
+\setcounter{SideTOCDepth}{1}    % Include subsections in the side\TOC
+\HTMLTitle{OpenChapters EPUB Test}       % Overrides \title for the web page.
+\HTMLAuthor{Marc De Graef}        % Sets the HTML meta author tag.
+\HTMLLanguage{en-US}            % Sets the HTML meta language.
+\HTMLDescription{A first test run of the EPUB version of the OpenChapters project.}% Sets the HTML meta description.
+\HTMLFirstPageTop{\begin{center}\fbox{\includegraphics{\graphicspath TOCheader.pdf}}\end{center}}
+%\HTMLPageTop{}
+\HTMLPageBottom{\begin{center}Editors: M. De Graef and A.D. Rollett (Carnegie Mellon University) \\  Licensed under the Creative Commons CC BY-NC-SA 4.0 License\end{center} }
+\CSSFilename{lwarp_sagebrush.css}
+
+\setcounter{FileDepth}{0}
 
 % All figures are stored in the src/ChapterTitle/eps folders and must be of the *.eps, *.pdf, or *.png type. 
-% They are all copied into the ImageFolder before compilation
+% They are all copied into the ImageFolder before compilation and conversion to .svg format for web display
 \renewcommand{\chaptergraphicspath}{ImageFolder/}
 \renewcommand{\graphicspath}{ImageFolder/}
+\newcommand{\isEPUB}{Yes}
 \newcommand{\isHTML}{No}
-\newcommand{\isEPUB}{No}
 
-% user-defined commands
-\input{preamble.ins}
+% user-defined commands; this should NOT load any packages
+\input{preambleEPUB.ins}
 
 % BibTeX bibliography file
 \addbibresource{OpenChapters.bib} 
@@ -53,7 +107,7 @@
 % uncomment the chapter you wish to typeset from the list below; to typeset the
 % entire text, leave all lines commented
 %\includeonly{src/Crystallography/Crystallography}
-\includeonly{src/Symmetry/Symmetry,src/Crystallography/Crystallography}
+%\includeonly{src/Symmetry/Symmetry}
 %\includeonly{src/2Drotations/2Drotations}
 %\includeonly{src/3Drotations/3Drotations}
 %\includeonly{src/RotationSymmetry/RotationSymmetry}
@@ -63,11 +117,9 @@
 %\includeonly{src/PropertySymmetry/PropertySymmetry}
 %\includeonly{src/ExampleProperties/ExampleProperties}
 
-%\includeonly{src/LinearAlgebra/LinearAlgebra,src/Tensors/Tensors}
-
 \begin{document}
 
-\input{matter/Frontmatter}
+\input{matter/FrontmatterEPUB}
 
 % Open the authors file here for writing when the document begins,
 % but after the FrontMatter has been completed.
@@ -76,10 +128,10 @@
 % Here are all the parts and chapters
 
 % ###################################################################
-\part{Crystallography}
+%\part{Crystallography}
 % ###################################################################
-\include{src/Symmetry/Symmetry} % Crystallographic Symmetry
-\include{src/Crystallography/Crystallography} % Basic Crystallography
+%\include{src/Crystallography/Crystallography} % Basic Crystallography
+%\include{src/Symmetry/Symmetry} % Crystallographic Symmetry
 %\include{src/RotationSymmetry/RotationSymmetry} % Rotations and Symmetry
 %\include{src/Misorientations/Misorientations} % Misorientations and Disorientations
 
@@ -92,7 +144,6 @@
 %\include{src/ExampleProperties/ExampleProperties} % Example Anisotropic Material Properties
 
 \part{Foundational Chapters}
-%
 \include{src/NumberSystems/NumberSystems} % tutorial on number systems
 \include{src/LinearAlgebra/LinearAlgebra} % Linear Algebra
 \include{src/Projections/Projections} % Various useful projections
@@ -101,7 +152,7 @@
 \include{src/Tensors/Tensors} % Introduction to Tensors 
 
 % ###################################################################
-\input{matter/Postmatter}
+\input{matter/PostmatterEPUB}
 
 
 

@@ -344,7 +344,7 @@ As an exercise, compute the determinant of the following matrix (Answer=7)~:
 
 \section{The Inverse of a matrix}\label{\chabbr:inverse}
 
-We have seen that we can write a system of linear equations of dimension $n\times n$ is the form
+We have seen that we can write a system of linear equations of dimension $n\times n$ in the form
 \[
 \mathcal{A}\mathbf{x}=\mathbf{b}
 \]
@@ -414,10 +414,47 @@ found by multiplying the inverse of $\mathcal{A}$ with the right hand side vecto
 
 
 \section{Solving Systems of Equations by Gaussian Elimination}\label{\chabbr:GaussianElim}
+As shown above, we can use the inverse of a matrix, $\mathcal{A}^{-1}$, to solve the system of linear equations:
+\[
+	\mathcal{A}\,\mathbf{x} = \mathbf{b}\rightarrow \mathbf{x} = \mathcal{A}^{-1}\,\mathbf{b}\ .
+\]
+An alternative approach involves the concept of the \indexit{augmented matrix}; the augmented matrix is defined as the original matrix $\mathcal{A}$ with an extra column containing the right-hand side vector $\mathbf{b}$.  In other words, the augmented matrix of an $n\times n$ matrix is a $n\times (n+1)$ matrix. To clearly delineate the extra column, it is customary to separate those entries from the rest of the matrix using a  vertical line. For the example problem from the beginning of this chapter:
+\[
+	\begin{pmatrix}1&0&1\\ 2&1&1\\ 3&2&2\end{pmatrix}\begin{pmatrix}x\\ y\\ z\end{pmatrix}=\begin{pmatrix}2\\ 5\\ 9\end{pmatrix}
+\]
+the augmented matrix is written as:
+\[
+	\mathcal{A}_{\mathbf{b}} = \begin{pmatrix}1&0&1&\bigm|&2\\ 2&1&1&\bigm|&5\\ 3&2&2&\bigm|&9\end{pmatrix}\ .
+\]
+Using the augmented matrix, we can perform any one of three operations as many times as needed: (1) multiplying a row by a non-zero number; (2) adding or subtracting a multiple of one row from another row; and (3) swapping any two rows.  The final goal of these steps is to eliminate the lower triangle entries in the matrix.  For the matrix $\mathcal{A}_{\mathbf{b}}$ we can perform the following operations (the rows are labeled by $r_i$ and the operations are described above/below the arrows):
+{\small
+\[
+\begin{pmatrix}1&0&1&\bigm|&2\\ 2&1&1&\bigm|&5\\ 3&2&2&\bigm|&9\end{pmatrix}
+\underset{r_3\rightarrow r_3-3r_1}{\overset{r_2\rightarrow r_2-2r_1}{\longrightarrow}}
+\begin{pmatrix}1&0&1&\bigm| & 2 \\ 0&1&-1 &\bigm| &1\\ 0&2&-1&\bigm| &3\end{pmatrix}
+\overset{r_3\rightarrow r_3-2r_2}{\longrightarrow}
+\begin{pmatrix}1&0&1&\bigm|&2 \\ 0&1&-1 &\bigm|&1\\ 0&0&1&\bigm|&1\end{pmatrix}\ .
+\]
+}
+Note that the lower triangle entries are now zeroed out, and the third equation reads: $1\,z=1$ so that $z=1$; substituting in the second equation $y-z=1$ so that $y=2$, and finally the first equation reads $x+z=2$ so that $x=1$. The solution vector, $\mathbf{x}=(1,2,1)$, is in agreement with the one found in the previous section using the matrix inverse.  
 
-
-
-
+This approach is known as \indexit{Gaussian elimination} and it can also be used to find the inverse of a matrix; in that case we replace the extra column by the full $3\times 3$ identity matrix, and we apply the three rules to this $3\times 6$ augmented matrix with as a goal to obtain the identity matrix on the left side.  What remains on the right is then the inverse matrix.  Using the same matrix $\mathcal{A}$, we perform the following operations:
+{\small
+\begin{equation*}
+\begin{split}
+&\begin{pmatrix}1&0&1&\bigm|&1 & 0 & 0\\ 2&1&1 &\bigm|&0 & 1 & 0\\ 3&2&2&\bigm|& 0 & 0 & 1\end{pmatrix}
+\underset{r_3\rightarrow r_3-3r_1}{\overset{r_2\rightarrow r_2-2r_1}{\longrightarrow}}
+\begin{pmatrix}1&0&1&\bigm|& 1 & 0 & 0 \\ 0&1&-1 &\bigm|& -2 & 1 & 0\\ 0&2&-1&\bigm|& -3 & 0 & 1\end{pmatrix}
+\overset{r_3\rightarrow r_3-2r_2}{\longrightarrow}\\
+&\begin{pmatrix}1&0&1&\bigm|&1 & 0 & 0 \\ 0&1&-1 &\bigm|&-2 & 1 & 0\\ 0&0&1&\bigm|&1 & -2 & 1\end{pmatrix}
+\underset{r_2\rightarrow r_2-r_3}{\overset{r_1\rightarrow r_1-r_2}{\longrightarrow}}
+\begin{pmatrix}1&1&0&\bigm|&-1 & 1 & 0 \\ 0&1&0 &\bigm|&-1 & -1 & 1\\ 0&0&1&\bigm|& 1 & -2 & 1\end{pmatrix}
+\overset{r_1\rightarrow r_1-r_2}{\longrightarrow}\\
+&\begin{pmatrix}1&0&0&\bigm|&0 & 2 & -1 \\ 0&1&0 &\bigm|&-1 & -1 & 1\\ 0&0&1&\bigm|& 1 & -2 & 1\end{pmatrix}\ .
+\end{split}
+\end{equation*}
+}
+Comparison with the inverse matrix in the previous section shows that the two are in full agreement.
 
 
 \section{Eigenvalues and Eigenvectors}\label{\chabbr:eigen}
@@ -478,26 +515,26 @@ Next we need to solve for the eigenvectors that make up the columns of the $P$ m
 \[
 	(A-\lambda_i\, I)\,\mathbf{v}_i = \begin{pmatrix}0\\ 0\end{pmatrix}\ .
 \] 
-To solve this equation, we need to look for the \indexit{null space} of the matrix $(A-\lambda_i\, I)$ for each of the eigenvalues.  The null space of a matrix $B$ is the set  of vectors $x$ for which the product $B\,x$ equals the null vector.  To find the null space we first form the so-called \indexit{augmented matrix}, $M$, which means that we bring the right hand side vector into the array, but separated by a solid vertical line. For the first eigenvalue $\lambda_1=3$ we have
+To solve this equation, we need to look for the \indexit{null space} of the matrix $(A-\lambda_i\, I)$ for each of the eigenvalues.  The null space of a matrix $B$ is the set  of vectors $x$ for which the product $B\,x$ equals the null vector.  To find the null space we first form the so-called \indexit{augmented matrix}, $M$, introduced in the previous section; this means that we bring the right hand side vector into the array, but separated by a solid vertical line. For the first eigenvalue $\lambda_1=3$ we have
 \[
 	M_1 = \begin{pmatrix}
-	5 &-2 & \vert\,\, 0\\ 
-	15& -6 & \vert\,\, 0 \end{pmatrix}\ .
+	5 &-2 & \bigm|& 0\\ 
+	15& -6 & \bigm|& 0 \end{pmatrix}\ .
 \]
 and for the second eigenvalue:
 \[
 	M_2 = \begin{pmatrix}
-	6 &-2 & \vert\,\, 0\\ 
-	15& -5 & \vert\,\, 0 \end{pmatrix}\ .
+	6 &-2 & \bigm|& 0\\ 
+	15& -5 & \bigm|& 0 \end{pmatrix}\ .
 \]
 Then we perform Gaussian elimination or row reduction on each matrix. For $M_1$ we begin by multiplying row 1 by $3$ and subtracting row 1 from row 2:
 \[
 	\begin{pmatrix}
-	15 & -6 & \vert\,\, 0\\ 
-	15 & -6 & \vert\,\, 0 \end{pmatrix}	\rightarrow 
+	15 & -6 & \bigm|& 0\\ 
+	15 & -6 & \bigm|& 0 \end{pmatrix}	\rightarrow 
 	\begin{pmatrix}
-	15 & -6 & \vert\,\, 0\\ 
-	0 &  0 & \vert\,\, 0 \end{pmatrix}\ .
+	15 & -6 & \bigm|& 0\\ 
+	0 &  0 & \bigm|& 0 \end{pmatrix}\ .
 \]
 Note that the numbers to the right of the vertical bars do not change at all, since they started as zero. Returning to the standard matrix equation form we have:
 \[
@@ -510,10 +547,10 @@ which results in the single equation $15x-6y=0$ or $2y=5x$.  We have a single fr
 Repeating this process for $M_2$ by multiplying the first row by $5$ and the second row by $2$, then subtracting the first row from the second row results in
 \[
 	\begin{pmatrix}
-	30 & -10 & \vert\,\, 0\\ 
-	30& -10 & \vert\,\, 0 \end{pmatrix} \rightarrow\begin{pmatrix}
-	30 & -10 & \vert\,\, 0\\ 
-	0& 0 & \vert\,\, 0 \end{pmatrix}\ .
+	30 & -10 & \bigm|& 0\\ 
+	30& -10 & \bigm|& 0 \end{pmatrix} \rightarrow\begin{pmatrix}
+	30 & -10 & \bigm|& 0\\ 
+	0& 0 & \bigm|&0 \end{pmatrix}\ .
 \]
 which leads to the equation $30x-10y=0$ or $y=3x$; setting $x=1$ we have $y=3$ so that the second eigenvector has components $(1,3)$.  Putting them together into the eigenvector matrix $P$ we have:
 \[

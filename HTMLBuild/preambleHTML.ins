@@ -73,11 +73,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-% define a few frequently used todo formats
-\newcommand{\sideremark}[1]{\todo[noline,backgroundcolor=green!20]{#1}}
-\newcommand{\danger}{\marginpar{\dbend}}
-
-
 % These commands are used to pretty-print LaTeX commands
 \newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
 \newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
@@ -101,17 +96,17 @@
 %simple command to insert a figure: #1 filename+path; #2 label; #3 caption
 \newcommand{\insertfigure}[3]{\begin{figure}
  \centering\leavevmode\includegraphics{\graphicspath #1}\caption{#3}
- \OClabel{#2}\end{figure}}
+ \label{\chabbr:#2}\end{figure}}
 
 %simple command to insert a figure: #1 filename+path; #2 label; #3 caption; #4 width
 \newcommand{\insertfigurew}[4]{\begin{figure}
  \centering\leavevmode\includegraphics[width=#4]{\graphicspath #1}\caption{#3}
- \OClabel{#2}\end{figure}}
+ \label{\chabbr:#2}\end{figure}}
 
 %simple command to insert a figure "here": #1 filename+path; #2 label; #3 caption; #4 width
 \newcommand{\insertfigureh}[3]{\begin{figure}[h]
  \centering\leavevmode\includegraphics{\graphicspath #1}\caption{#3}
- \OClabel{#2}\end{figure}}
+ \label{\chabbr:#2}\end{figure}}
 
 % each chapter needs to have a 6-character identification string so that we can automate 
 % the chapter dependencies, in particular for the Foundational chapters.  
@@ -120,9 +115,6 @@
 % has to be called with the traditional \ref{chabbr:foo}.  The abbreviations used for all available 
 % chapters are stored in a chaptertitles.txt file in the top folder of the repository.
 \newcommand{\chabbr}{AAAAAA}
-\newrobustcmd{\OClabel}[1]{\label{\chabbr:#1}}
-\newrobustcmd{\OCref}[1]{\ref{\chabbr:#1}}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % any user defined 
