@@ -48,8 +48,8 @@
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:allowedrots}:}] Find out which combinations of rotations can exist    
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:pointgroups}:}] Enumerate the crystallographic point groups
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:spacegroups}:}] Add translations to point groups
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:GaussianElim}:}] Describe how Gaussian Elimination works
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:eigen}:}] Learn about eigenvectors and eigenvalues
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:spacegroups}:}] Learn about time reversal symmetry
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:spacegroups}:}] Enumerate magnetic point and space groups
 \end{itemize}}
 \end{learningobjectives}
 
@@ -137,7 +137,7 @@ In this section, we ask the question: what happens when we combine an operation 
 We can also combine a rotation with an orthogonal mirror to obtain a \indexit{mirror-rotation}; one can show using stereographic projections that every mirror-rotation is equivalent to a roto-inversion, so we will not consider mirror-rotations in this text.
 
 
-\subsection{Matrix representation of symmetry operators}
+\subsection{Matrix representation of symmetry operators}\label{\chabbr:ssec:4b4matrices}
 
 In this section we will assume that the basis vectors $\mathbf{a}_i$ form an orthogonal reference frame.
 
@@ -405,7 +405,7 @@ The transformation relations between the 3- and 4-index symbols are then given b
 \begin{equation}
 \begin{split}
 	u'&=2u+v;\quad v'=2v+u; \quad w'=w;\\
-	u &= \frac{1}{3}(2u'-v');\quad v=\frac{1}{3}(2v'-u');\quad t=-(u+v);\quad w=w'\ .
+	u &= \frac{1}{3}(2u'-v');\quad v=\frac{1}{3}(2v'-u');\quad t=-(u+v);\quad w=w'\ .\label{\chabbr:eq:MBconvert}
 \end{split}
 \end{equation}
 We will see later that the use of the Miller-Bravais symbols for directions in a hexagonal structure has important advantages in terms of determining which directions are symmetrically equivalent to each other.
@@ -594,33 +594,33 @@ The final three cubic point groups are obtained by adding mirror planes and the 
 \caption{\label{\chabbr:fig:cubic}Graphical representations of the point groups \pg{28} and \pg{30}.}
 \end{figure}
 
-In the International Tables for Crystallography, Volume A, the CPGs are grouped together by crystal system, and each point group receives a sequential number between $1$ and $32$.  Table~\ref{\chabbr:tb:CPGs} shows the point groups in their numerical order, along with the International (H-M) symbol, the Sch\"onflies (S) symbol, and the full H-M symbol when that is different from the commonly used (abbreviated) symbol. Point groups labeled in red are pure rotation groups, meaning that all equivalent points have the same handedness; they are collectively known as the \indexit{Laue groups}.  All other CPGs have a mix of black and red points in their stereographic projections. If the point group number has an asterisk, then that group has a second setting where all symmetry elements  are rotated around the primary axis by $\pi/6$ or $\pi/4$, depending on the order of the primary axis.
+In the International Tables for Crystallography, Volume A, the CPGs are grouped together by crystal system, and each point group receives a sequential number between $1$ and $32$.  Table~\ref{\chabbr:tb:CPGs} shows the point groups in their numerical order, along with the International (H-M) symbol, the Sch\"onflies (S) symbol, and the full H-M symbol when that is different from the commonly used (abbreviated) symbol. Point groups labeled in {\color{OCScotsRose}red} are pure rotation groups, meaning that all equivalent points have the same handedness. Centrosymmetric point groups are highlighted in {\color{OCHighlandsSkyBlue}blue}; they are collectively known as the \indexit{Laue groups}.  All non-rotational PGs have a mix of black and red points in their stereographic projections. If the point group number has an asterisk, then that group has a second setting where all symmetry elements are rotated around the primary axis by an angle depending on the order of the primary axis.
 
 \begin{table}[h]
 \centering\leavevmode
-\begin{tabular}{|lll||lll|}
+{\small\begin{tabular}{|lll||lll|}
 \hline
 \# & H-M (S) & Full H-M & \# & H-M (S) & Full H-M \\
 \hline\hline
-1 & a: {\color{red}\pg{1}} & & 17 & R: \pg{17} & \\
-2 & a: \pg{2} &  & 18$^{\ast}$ & R: {\color{red}\pg{18}} & \\\cline{1-3}
-3 & m: {\color{red}\pg{3}} &  & 19$^{\ast}$ & R: \pg{19} & \\
-4 & m: \pg{4} &  & 20$^{\ast}$ & R: \pg{20} & $\mathbf{\bar{3}\,2/m}$\\\cline{4-6}
-5 & m: \pg{5} &  & 21 & h: {\color{red}\pg{21}} & \\\cline{1-3}
-6 & o: {\color{red}\pg{6}} &  & 22 & h: \pg{22} & \\
-7 & o: \pg{7} &  & 23 & h: \pg{23} & \\
-8 & o: \pg{8} & $\mathbf{2/m\,2/m\,2/m}$ & 24 & h: {\color{red}\pg{24}} & \\\cline{1-3}
-9 & t: {\color{red}\pg{9}} &  & 25 & h: \pg{25} & \\
+1 & a: {\color{OCScotsRose}\pg{1}} & & 17 & R: {\color{OCHighlandsSkyBlue}\pg{17}} & \\
+2 & a: {\color{OCHighlandsSkyBlue}\pg{2}} &  & 18$^{\ast}$ & R: {\color{OCScotsRose}\pg{18}} & \\\cline{1-3}
+3 & m: {\color{OCScotsRose}\pg{3}} &  & 19$^{\ast}$ & R: \pg{19} & \\
+4 & m: \pg{4} &  & 20$^{\ast}$ & R: {\color{OCHighlandsSkyBlue}\pg{20}} & $\mathbf{\bar{3}\,2/m}$\\\cline{4-6}
+5 & m: {\color{OCHighlandsSkyBlue}\pg{5}} &  & 21 & h: {\color{OCScotsRose}\pg{21}} & \\\cline{1-3}
+6 & o: {\color{OCScotsRose}\pg{6}} &  & 22 & h: \pg{22} & \\
+7 & o: \pg{7} &  & 23 & h: {\color{OCHighlandsSkyBlue}\pg{23}} & \\
+8 & o: {\color{OCHighlandsSkyBlue}\pg{8}} & $\mathbf{2/m\,2/m\,2/m}$ & 24 & h: {\color{OCScotsRose}\pg{24}} & \\\cline{1-3}
+9 & t: {\color{OCScotsRose}\pg{9}} &  & 25 & h: \pg{25} & \\
 10 & t: \pg{10} &  & 26$^{\ast}$ & h: \pg{26} & \\
-11 & t: \pg{11} &  & 27 & h: \pg{27} & $\mathbf{6/m\,2/m\,2/m}$\\\cline{4-6}
-12 & t: {\color{red}\pg{12}} &  & 28 & c: {\color{red}\pg{28}} & \\
-13 & t: \pg{13} &  & 29 & c: \pg{29} & $\mathbf{2/m\,\bar{3}}$\\
-14$^{\ast}$ & t: \pg{14} &  & 30 & c: {\color{red}\pg{30}} & \\
-15 & t: \pg{15} & $\mathbf{4/m\,2/m\,2/m}$ & 31 & c: \pg{31} & \\\cline{1-3}
-16 & R: {\color{red}\pg{16}} &  & 32 & c: \pg{32} &$\mathbf{4/m\,\bar{3}\,2/m}$ \\
+11 & t: {\color{OCHighlandsSkyBlue}\pg{11}} &  & 27 & h: {\color{OCHighlandsSkyBlue}\pg{27}} & $\mathbf{6/m\,2/m\,2/m}$\\\cline{4-6}
+12 & t: {\color{OCScotsRose}\pg{12}} &  & 28 & c: {\color{OCScotsRose}\pg{28}} & \\
+13 & t: \pg{13} &  & 29 & c: {\color{OCHighlandsSkyBlue}\pg{29}} & $\mathbf{2/m\,\bar{3}}$\\
+14$^{\ast}$ & t: \pg{14} &  & 30 & c: {\color{OCScotsRose}\pg{30}} & \\
+15 & t: {\color{OCHighlandsSkyBlue}\pg{15}} & $\mathbf{4/m\,2/m\,2/m}$ & 31 & c: \pg{31} & \\\cline{1-3}
+16 & R: {\color{OCScotsRose}\pg{16}} &  & 32 & c: {\color{OCHighlandsSkyBlue}\pg{32}} &$\mathbf{4/m\,\bar{3}\,2/m}$ \\
 \hline
-\end{tabular}
-\caption{\label{\chabbr:tb:CPGs}\small The $32$ CPGs in numerical order, grouped by crystal system; groups in red are the Laue groups. Horizontal lines delineate crystal systems and an asterisk next to the point group number indicates that the group has two different settings with respect to the reference frame.}
+\end{tabular}}
+\caption{\label{\chabbr:tb:CPGs}\small The $32$ CPGs in numerical order, grouped by crystal system; groups in red are the purely rotational groups, groups in {\color{OCHighlandsSkyBlue}blue} are the centrosymmetric or Laue point groups. Horizontal lines delineate crystal systems and an asterisk next to the point group number indicates that the group has two different settings with respect to the reference frame.}
 \end{table}
 
 \clearpage
@@ -628,6 +628,7 @@ In the International Tables for Crystallography, Volume A, the CPGs are grouped 
 
 \section{Lattice Planes in Bravais Lattices}\label{\chabbr:sec:planes}
 
+\subsection{Miller Indices}\label{\chabbr:ssec:Miller}
 Thus far, we have considered directions of the type $\mathbf{t}_{uvw}$ in the space lattice, connecting one lattice node to another.  The lattice nodes themselves are clearly arranged in planes, the faces of the unit cell being the most obvious ones.  It was realized a long time ago that the facets of natural crystals could be labeled by integer numbers; this is known as the \indexit{Law of Rational Intercepts}.  The intercepts of a facet plane with the three coordinate axes, measured in appropriate units along those axes, are always rational numbers; hence, we can write them as fractions which we can reduce to integers.  Since some planes are parallel to the coordinate axes, they intersect those axes at infinity, so it is more convenient to invert the intercept ratios before converting them to integers.  The resulting integers are typically written as $(hkl)$ and are known as \textit{Miller indices}\index{Miller indices}.  A simple illustration of the process of determining Miller indices is shown in Fig.~\ref{\chabbr:fig:planes}(a).
 
 The figure shows an arbitrary unit cell with basis vectors $\mathbf{a}$, $\mathbf{b}$, and $\mathbf{c}$ along with three different planes, colored in orange, cyan, and magenta. Starting with the orange plane, the intercepts with the basis vectors are $(1/2,1,2/3)$ which upon inversion becomes $(2,1,3/2)$; rescaling the values to relative primes by multiplication by $2$ results in $(4,2,3)$, which we write without commas as the Miller indices $(423)$ of the plane. The cyan plane intersects the $\mathbf{b}$ and $\mathbf{c}$ axes at $1$ and is parallel to the $\mathbf{a}$ axis, so the intercepts are $(\infty,1,1)$ which results in the Miller indices $(011)$.  Finally, the magenta plane is parallel to the plane formed by $\mathbf{a}$ and $\mathbf{b}$ and intersects the $\mathbf{c}$ axis at $1/2$, resulting in the Miller indices $(002)$.  Note that the planes can be moved along their normal and the ratios of the intercepts will not change; therefore, the Miller indices $(nh\, nk\, nl)$ with $n\in\mathbb{Z}$ all represent planes that are parallel to $(hkl)$. 
@@ -640,18 +641,158 @@ The figure shows an arbitrary unit cell with basis vectors $\mathbf{a}$, $\mathb
 
 This is illustrated in Fig.~\ref{\chabbr:fig:planes}(b) which shows the $(433)$ and $(866)$ planes.  These Miller triplets represent planes that are parallel to each other, which can readily be shown by reducing the indices $(866)$ to relative primes, which becomes $(433)$.  For an arbitrary plane, the Miller indices may become large integers, but they will always be relative primes. This immediately suggests that not all possible planes can be represented this way; indeed, it is possible by making the intercepts irrational numbers to generate a plane that only intersects the origin and no other lattice nodes. The regular (rational) index planes on the other hand will always intersect an infinite number of lattice nodes if the plane goes through the node at the origin.  While the distinction between rational and irrational intercepts may seem largely an academic one, it is an important distinction leading to the concept of \indexit{quasi-crystals} and a redefinition in 1992 of what a crystal is; more on this in Chapter~\ref{BASCRY:Crystallography}.  
 
-
+\subsection{4-component Miller indices in hexagonal crystal systems}\label{\chabbr:ssec:Millerhexagonal}
+In section~\ref{\chabbr:ssec:MBindices} we introduced the Miller-Bravais direction indices for the hexagonal system; those indices have four components instead of the usual three, and are typically written as $[uvtw]$ or $[uv.w]$ with $t=-(u+v)$.  The conversion relations between 3- and 4-index symbols are given in equation~(\ref{\chabbr:eq:MBconvert}). 
+\begin{floatingfigure}[r]{3.0in}
+\centering
+{\includegraphics[width=2.8in]{\graphicspath hki.eps}}
+{\caption{\label{\chabbr:fig:hki}\small Illustration of the derivation of the relation $i=-(h+k)$.}}
+\end{floatingfigure}
+\noindent We can use the same approach to define 4-index Miller indices which we will write as $(hkil)$ or $(hk.l)$; the $i$ index is determined in the same way as the others, by determining the intersection of the plane with the $\mathbf{a}_3$ axis and considering all four intercepts in the inversion to relative prime integers. Note that at least one of the three indices $h$, $k$, and $i$ must have a different sign from the others.  Fig.~\ref{\chabbr:fig:hki} shows a projection along the $\mathbf{c}$ axis; an arbitrary plane (thick solid line) intersects the $\mathbf{a}_i$ axes at the points $a/h$, $a/k$ and $-a/i$. We can equate the area of the triangle $AOB$ to the sum of the areas of the triangles $AOC$ and $BOC$. Using the expression for the area of a triangle when two sides and the included angle are given, we obtain:
+\[
+	\frac{1}{2}\frac{a}{h}\frac{a}{k}\sin\frac{2\pi}{3} = -\frac{1}{2}\frac{a}{h}\frac{a}{i}\sin\frac{\pi}{3}-\frac{1}{2}\frac{a}{k}\frac{a}{i}\sin\frac{\pi}{3}
+\]
+Cancelling $a^2/2$ as well as the sines we have:
+\[
+	\frac{1}{h\,k}=-\frac{1}{h\,i}-\frac{1}{k\,i}\quad\overset{{\small \times h\, k\, i}}{\longrightarrow} \quad i = -(h+k)\ ,
+\]
+which is the desired result.  Contrary to the case of 4-index direction symbols, for the 4-index plane notation we can simply drop the $i$-index to obtain the 3-index symbol, i.e., $(hkil) = (hk.l)=(hkl)$.\\
 
 
 \section{Crystallographic Space Groups}\label{\chabbr:sec:spacegroups}
 
-In this section, we consider the effect of adding translations to the point group symmetries; in other words, we will combined the point groups with the Bravais lattices.  This will give rise to $230$ space groups; we will only derive two of them to provide an illustration of the process.  Before we can do so, there are a few additional symmetry operators to be introduced.
+In this section, we consider the effect of adding translations to the point group symmetries; in other words, we will combine the $32$ point groups with the $14$ Bravais lattices.  This will give rise to $230$ space groups; we will  derive only a few of them to provide an illustration of the process.  Before we can do so, there are several additional symmetry operators to be introduced.
 
 \subsection{Screw Axes and Glide Planes}\label{\chabbr:ssec:glidescrew}
+The symmetry operators used to generate the crystallographic point groups are all considered to be point symmetry operators in the sense that they intersect in a single point; all the generated equivalent points form a 3D cluster of points around the intersection point.  Once we introduce translations into the mix, then there are no longer any fixed points, since repeated operation of a translation moves points ever farther away from the origin.  
+
+\subsubsection{Screw axes}
+A \indexit{screw axis} combines a rotation $n$ around a given axis $\mathbf{t}$ with a translation by a vector $\bm{\tau}$ parallel to the axis. If we apply this combined operation $n$ times then we will have translated a distance $n\bm{\tau}$ away from the original point, and this distance must be an integer multiple of a lattice translation vector $\mathbf{t}$, i.e., $n\bm{\tau}=m\mathbf{t}$ so that we have $\bm{\tau}=m\mathbf{t}/n$.  We represent this new symmetry operation by the symbol $n_m$. The distance, $\vert\bm{\tau}\vert$, translated in one rotational step is known as the \indexit{pitch} of the screw axis. The integer $m$ falls in the interval $[1\ldots n-1]$ and combining this with the knowledge that $n$ is restricted to the values $2$, $3$, $4$, and $6$, we arrive at the following $11$ crystallographic screw axis operations: $2_1$, $3_1$, $3_2$, $4_1$, $4_2$, $4_3$, $6_1$, $6_2$, $6_3$, $6_4$, and $6_5$.   
+
+Since the screw axis combines a rotation with a translation, the $4\times 4$ matrix notation introduced in section~\ref{\chabbr:ssec:4b4matrices} is perfectly suitable. Consider the screw axis $4_3$ around the $\mathbf{c}$ axis of a tetragonal unit cell; this operator has a pitch vector of $\bm{\tau}=3\mathbf{c}/4$. The corresponding $4\times 4$ matrix is then given by:
+\[
+	\mathcal{W}_{4_3} = \begin{pmatrix} 0 & 1 & 0 & 0\\ -1 & 0 & 0 & 0\\ 0 & 0 & 1 & 3/4\\ 0 & 0 & 0 & 1\end{pmatrix}\ .
+\]
+When we apply this matrix $4$ times to the homogeneous coordinates $\begin{pmatrix}x&y&z&1\end{pmatrix}^T$, then we will have completed a full turn around the axis, and we will have moved a distance $3\mathbf{c}$ parallel to the rotation axis; we can readily derive the set of equivalent coordinates by repeated operation of the matrix, and we obtain (each arrow represents a left-multiplication of the preceding column vector by $\mathcal{W}_{4_3}$):
+\[
+	\begin{pmatrix}x\\ y\\ z\\ 1\end{pmatrix}\longrightarrow 	\begin{pmatrix}y\\ -x\\ z+3/4\\ 1\end{pmatrix}\longrightarrow	\begin{pmatrix}-x\\ -y\\ z+6/4\\ 1\end{pmatrix}\longrightarrow	\begin{pmatrix}-y\\ x\\ z+9/4\\ 1\end{pmatrix}\longrightarrow\begin{pmatrix}x\\ y\\ z+3\\ 1\end{pmatrix}\ .
+\]
+It is common practice to always reduce the coordinates back to the basic unit cell, which can be done by taking the fractional parts of the translations, so that we obtain the equivalent points:
+\[
+	\begin{pmatrix}x\\ y\\ z\end{pmatrix};\quad \begin{pmatrix}y\\ -x\\ z+3/4\end{pmatrix};\quad \begin{pmatrix}-x\\ -y\\ z+1/2\end{pmatrix}; \quad \begin{pmatrix}-y\\ x\\ z+1/4\end{pmatrix}\ .
+\]
+We can readily repeat this computation for all the other screw axes to obtain the sets of equivalent points.  Once the general coordinates are known, then it is a matter of using a rendering program to generate the illustrations in Fig.~\ref{\chabbr:fig:screws}.  Below each screw axis, the international symbol for the axis is shown. Note that for $2_1$, $4_2$, and $6_3$, the symbol has two versions that are each other's mirror image; either one can be used. A second observation that is clear from the figure is that each screw axis has a mirror equivalent, or $n_m$ is the mirror image of $n_{n-m}$, so that those screw axes have opposite handedness. We say that they are \indexit{chiral} versions of each other, i.e., they cannot be superimposed on each other.  When $m=n/2$ on the other hand, as stated before, the screw axis is achiral.
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath screws.eps}
+\caption{\label{\chabbr:fig:screws}3D renderings of the $11$ crystallographic screw axes along with their graphical symbols.}
+\end{figure}
+
+% cover the graphical symbols for screw axes in the plane of the drawing
 
 
+\subsubsection{Glide planes}
+A \indexit{glide plane} combines a mirror plane with a translation parallel to the plane by a fraction of a lattice vector.  In a primitive lattice, this is half of a unit cell basis vector, in which case we call this an \indexit{axial glide}, or half of a face or body diagonal vector, which is known as a \indexit{diagonal glide}.  When the lattice is centered, glide planes with half of a centering vector are also possible, in which case we refer to them as \indexit{diamond glides} because the diamond crystal structure is a prime example of such glide planes.  Table~\ref{\chabbr:tb:glides} lists the possible glide planes by type and enumerates the possible \indexit{glide vectors}.
+
+\begin{table}[hb]
+\centering\leavevmode
+\begin{tabular}{|l|c|c|}
+\hline
+Glide type & Symbol & Potential glide vectors \\
+\hline\hline
+axial & $a, b, c$ & $\mathbf{a}/2,\,\mathbf{b}/2,\,\mathbf{c}/2$\\
+diagonal & $n$ & $\mathbf{A},\,\mathbf{B},\,\mathbf{C},\,{\color{OCHighlandsSkyBlue}\mathbf{I}}$\\
+diamond & $d$ & $(\mathbf{a}\pm\mathbf{b})/4,\,(\mathbf{a}\pm\mathbf{c})/4,\,(\mathbf{b}\pm\mathbf{c})/4,\,
+{\color{OCHighlandsSkyBlue}(\mathbf{a}\pm\mathbf{b}\pm\mathbf{c})/4}$\\
+double glide & $e$ & see text \\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:glides}List or possible glide planes and their glide vectors.  Vectors in {\color{OCHighlandsSkyBlue}blue} are only possible in cubic and tetragonal cells.}
+\end{table}
+
+% cover the e-glide plane as well
+
+The \indexit{double glide} or \indexit{$e$-glide} is a special glide type that can only occur in centered unit cells; as the name suggests, there are two possible glide vectors associated with the $e$-glide, but they are related to each other by a centering vector.   As an example, consider a $C$-centered unit cell that has an $(001)$  glide plane with two glide vectors $\mathbf{a}/2$ and $\mathbf{b}/2$.  The double glide plane is to be considered as a single symmetry operation, so it should only generate one equivalent point inside the same unit cell, generated by, say, $\mathbf{a}/2$. And yet, there is a second glide vector, $\mathbf{b}/2$ which would appear to generate a second equivalent point, also inside the unit cell, as illustrated in Fig.~\ref{\chabbr:fig:glide}(a).  At first, this seems to be somewhat contradictory because all symmetry operators considered so far have always generated only one equivalent point in each application. The correct interpretation of the double glide plane is that one can use \textit{either} $\mathbf{a}/2$ \textit{or} $\mathbf{b}/2$ as the glide vector, \textit{and the other equivalent point is generated by the $C$-centering operation.}  In the case of the drawing in Fig.~\ref{\chabbr:fig:glide}(a), the $\mathbf{a}/2$ glide vector generates point $2$, starting from point $1$, and the $(\mathbf{b}-\mathbf{a})/2$ centering vector generates point $3$ from point $2$; conversely, one could think of point $3$ as being generated by the $\mathbf{b}/2$ glide, and point $2$ from the $C$-centering with centering vector $(\mathbf{a}-\mathbf{b})/2$.\footnote{Note that one can always add/subtract a lattice translation vector to/from a centering vector and one will always obtain a symmetrically equivalent centering vector pointing into a different unit cell.}
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath glide.eps}
+\caption{\label{\chabbr:fig:glide}(a) Schematic illustration of a double glide plane with glide vectors $\mathbf{a}/2$ and $\mathbf{b}/2$ in a $C$-centered unit cell; (b) Illustration of a diagonal $\mathbf{B}$ glide on the $(\bar{1}01)$ plane in a cubic cell; red and blue spheres indicate alternating handedness.}
+\end{figure}
+
+
+Once again, $4\times 4$ matrices and homogeneous coordinates are well suited for the description of glide plane operations; for instance, consider a diagonal glide with glide vector $\mathbf{B}=(\mathbf{a}+\mathbf{c})/2$ parallel to the $(\bar{1}01)$ mirror plane for a cubic unit cell.  This mirror plane interchanges the basis vectors $\mathbf{a}$ and $\mathbf{c}$ and leaves $\mathbf{b}$ unchanged; hence the corresponding $4\times 4$ matrix is given by:
+\[
+	\mathcal{W}_{n} = \begin{pmatrix}0& 0& 1 & 1/2\\ 0&1&0&0\\ 1&0&0&1/2\\ 0&0&0&1\end{pmatrix}\ .
+\]
+Application of this operator to a general point results in 
+\[
+	\begin{pmatrix}x\\ y\\ z\\ 1\end{pmatrix}\longrightarrow\begin{pmatrix}z+1/2\\ y\\ x+1/2\\ 1\end{pmatrix}\ .
+\]
+While the screw axis keeps the handedness of an object unchanged, a glide plane does change the handedness, so in a drawing the points on opposite sides of the mirror plane could be drawn in different colors.  Fig.~\ref{\chabbr:fig:glide}(a) shows the diagonal glide described above along with blue and red spheres to indicate the operation of the glide plane on the (red) initial sphere with coordinates $(1/8,1,1/4)$; repeated operation of the matrix $\mathcal{W}_n$ then results in the coordinates $(3/4,1,5/8)$, $(9/8,1,5/4)$ and $(7/4,1,13/8)$.  
+
+% symbols for glide planes
+
+%
 
 \subsection{Example Derivations of Space Groups}\label{\chabbr:ssec:SGexamples}
+
+
+
+\subsubsection{Symmorphic space groups}
+
+\subsubsection{Non-symmorphic space groups}
+
+
+
+
+
+\section{Magnetic Symmetry}\label{\chabbr:sec:magsym}
+
+In this section, we introduce the concept of \indexit{time reversal symmetry}, which is, quite literally, the replacement of the time variable $t$ by $-t$ in an equation, in the same way that regular (or spatial) inversion symmetry refers to the replacement of the spatial position variable $\mathbf{r}$ by $-\mathbf{r}$. An equation that is invariant under the substitution $\mathbf{r}\rightarrow-\mathbf{r}$ is said to have a \indexit{spatial parity} of $p_{r}=+1$; the absence of inversion symmetry corresponds to a spatial parity of $p_{r}=-1$.  Similarly, an equation that is invariant under the substitution $t\rightarrow -t$ is said to have a \indexit{temporal parity} of $p_t=+1$; absence of time reversal symmetry corresponds to a temporal parity of $p_t=-1$.  A simple example can  illustrate both concepts: consider Newton's equation of motion for a 1-D system with mass $m$, position $x$, and subjected to a constant force $F$:
+\[
+	m\frac{\partial^2 x}{\partial t^2} = F\ .
+\]
+If we replace $t$ by $-t$, then the equation does not change, because:
+\[
+	\frac{\partial^2 x}{\partial t^2}\rightarrow \frac{\partial^2 x}{\partial (-t)^2} =\frac{\partial^2 x}{\partial t^2}
+\]
+so the equation has temporal parity $p_t=+1$, but spatial parity $p_r=-1$, since the substitution $x\rightarrow -x$ does change the equation. If the force were an oscillatory force with frequency $\nu$, then the equation would read:
+\[
+	m\frac{\partial^2 x}{\partial t^2} = F \sin(2\pi\nu t)\ ,
+\]
+and the right-hand side would change sign under time reversal, leading to $p_t=-1$.  The pair of parities, $(p_r,p_t)$ thus has four possible combinations $(\pm 1, \pm 1)$.  The simple concepts of spatial and temporal parity have profound consequences in magnetic systems and we will see later in this section that inclusion of time reversal symmetry as a possible symmetry operator results in the $122$ \indexit{magnetic point groups} and $1,651$ \indexit{magnetic space groups}.  Since the time dimension is, in a sense, orthogonal to (or independent of) the spatial dimensions, it follows that the order in which spatial symmetry operators and the time reversal operator are applied does not matter, i.e., time reversal commutes with all spatial symmetry operators.
+
+
+\subsection{Polar and Axial Quantities}\label{\chabbr:ssec:polaraxial}
+In physics, we generally distinguish between two types of physical quantities: quantities that rely on the \indexit{right-hand rule} for their definition, and quantities that do not.  Quantities that do rely on the right-hand rule are known as \indexit{axial quantities}, and all other quantities are referred to as \indexit{polar quantities}.  The right-hand rule is a mnemonic for determining the direction of a vector cross product. If we have the product $\mathbf{p}\times\mathbf{q}$, then the direction of the resulting vector, which will be normal to the plane formed by the two vectors, can be determined by curling the four fingers of the right hand in the sense of the rotation that would bring $\mathbf{p}$ towards $\mathbf{q}$; the thumb then points in the direction of the cross product.  
+
+If we consider a right-handed Cartesian reference frame for which $\mathbf{e}_x\times\mathbf{e}_y=\mathbf{e}_z$, then no matter how much we translate or rotate this reference frame (in other words, apply a symmetry operation of the first kind), it will always remain a right-handed reference frame.  Looking at the reference frame in a mirror, on the other hand, will change the handedness, as illustrated in Fig.~\ref{\chabbr:fig:mirrorframe}(a).  Applying the right-hand rule to the red and green vectors in the mirror image would result in the blue vector pointing down, not up.  
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=0.5\textwidth]{\graphicspath mirrorframe.eps}
+\caption{\label{\chabbr:fig:mirrorframe}(a) Reflection of a right-handed reference frame in a mirror produces a left-handed frame, and the blue arrow should be pointing down. (b)}
+\end{figure}
+
+
+
+
+
+\subsection{Time Reversal Symmetry}\label{\chabbr:ssec:timereversal}
+
+
+\subsection{Magnetic Point Groups}\label{\chabbr:ssec:mpg}
+
+
+\subsection{Magnetic Bravais Lattices}\label{\chabbr:ssec:magBravais}
+
+
+\subsection{Magnetic Space Groups}\label{\chabbr:ssec:msg}
+
+
+
 
 
 

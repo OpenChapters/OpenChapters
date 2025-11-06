@@ -58,13 +58,13 @@
 % ###################################################################
 
 \section{Two Views of the Real World}\label{\chabbr:sec:worldviews}
-One of the most important topics covered later in this chapter is the description of crystal structures using the concept of \indexit{reciprocal space}. In the present section, we diverge 
+One of the most important topics covered later in this chapter is the description of crystal structures using the concept of \indexit{reciprocal space}. In the present section, we will diverge for
 \begin{floatingfigure}[r]{0.5\textwidth}
 \centering
 {\includegraphics[width=0.48\textwidth]{\graphicspath streetview.eps}}
 {\caption{\label{\chabbr:fig:trees}\small Sketch of trees lining a street (AI-generated image via Google's Gemini).}}
 \end{floatingfigure}
-\noindent momentarily from the crystallographic path to provide the reader with an intuitive notion of the need to use two very different but closely related ways of looking at the world around us.  We will achieve this by considering a very familiar example: a street lined with trees, planted at a regular distance from each other;  Fig.~\ref{\chabbr:fig:trees} shows a schematic of a portion of this street.  We take a measuring stick of a given length $S$, and measure the distance $d$ between two consecutive trees in units of $S$.  For the illustration in Fig.~\ref{\chabbr:fig:trees} we find that $d=1$ S.  Next, we double the length of the measuring stick to $S'=2S$ and once again we measure the distance $d$; this time we find $d = 1/2$ S'.  Now we make the following, almost trivial, observation: \textit{when the length of the measuring stick increases, the numerical value of the measured distance decreases.} In other words, the length of the measuring stick and the measured quantity vary in opposite ways; when one becomes larger, the other becomes smaller and vice versa.  Hence, we say that the distance between the trees is a \indexit{contravariant} quantity (``contra'' means ``opposite'' in this context); it varies in the opposite way from the units in which it is measured.
+\noindent a moment from the crystallographic path to provide the reader with an intuitive notion of the need to use two very different but closely related ways of looking at the world around us.  We will achieve this by considering a very familiar example: a street lined with trees, planted at a regular distance from each other;  Fig.~\ref{\chabbr:fig:trees} shows a schematic of a portion of this street.  We take a measuring stick of a given length $S$, and measure the distance $d$ between two consecutive trees in units of $S$.  For the illustration in Fig.~\ref{\chabbr:fig:trees} we find that $d=1$ S.  Next, we double the length of the measuring stick to $S'=2S$ and once again we measure the distance $d$; this time we find $d = 1/2$ S'.  Now we make the following, almost trivial, observation: \textit{when the length of the measuring stick increases, the numerical value of the measured distance decreases.} In other words, the length of the measuring stick and the measured quantity vary in opposite ways; when one becomes larger, the other becomes smaller and vice versa.  Hence, we say that the distance between the trees is a \indexit{contravariant} quantity (``contra'' means ``opposite'' in this context); it varies in the opposite way from the units in which it is measured.
 
 
 Next, we rephrase the question about the distance between trees as follows: \textit{how many trees are there per unit distance $T$?}  From Fig.~\ref{\chabbr:fig:trees} we find that there are $r=2$ trees per unit distance $T$, or $r=2$ T$^{-1}$.  Doubling the measuring stick to $T'=2T$, we find that $r=4$ T'$^{-1}$.  Interestingly, in this case both the measuring unit and the quantity measured vary in the same way; when one becomes larger, so does the other.  Therefore, the number of trees per unit length is a \indexit{covariant} quantity (``co'' meaning ``with'' or ``in the same way''); it varies in the same way as the units in which it is measured.
@@ -75,7 +75,7 @@ So, if the distinction between direct and reciprocal space is really this simple
 
 
 
-\section{Crystallographic Computations in a Bravais Lattice: Part I: Direct Space}\label{\chabbr:sec:crystalcomputations}
+\section{Crystallographic Computations in a Bravais Lattice}\label{\chabbr:sec:crystalcomputations}
 
 \subsection{Introductory remarks}\label{\chabbr:ssec:intro}
 
@@ -86,10 +86,10 @@ Atom positions inside the unit cell are represented by fractional position vecto
 Returning to the measuring sticks described in section~\ref{\chabbr:sec:worldviews}, in crystallography we consider the unit cell basis vectors to be the measuring sticks. We describe the lattice and the atom position vectors in units of the basis vector lengths which, in general, means that we use sticks of different lengths in the three spatial directions of the lattice.  This is different from regular Cartesian geometry where the three basis vectors $\mathbf{e}_i$ have the same (unit) length. In a Bravais lattice, the basis vectors do not have unit length and are not necessarily orthogonal to each other, which means that geometry in a crystal lattice is essentially an exercise in \indexit{non-Cartesian geometry}.
 
 
-\subsection{Direct Space Computations}\label{\chabbr:ssec:DScomps}
+\subsection{Geometry in Direct Space }\label{\chabbr:ssec:DS}
 We begin by considering a pair of vectors, $\mathbf{p}$ and $\mathbf{q}$, in a Cartesian reference frame with basis vectors $\mathbf{e}_i$ ($i\in[1\ldots 3]$). Each vector has components with respect to the basis vectors: $\mathbf{p}=p_i\mathbf{e}_i$ and $\mathbf{q}=q_j\mathbf{e}_j$ where we use the \indexit{summation convention}.  The dot product $\mathbf{p}\cdot\mathbf{q}$ can then be written in terms of the components as:
 \[
-	\mathbf{p}\cdot\mathbf{q} = (p_i\mathbf{e}_i)\cdot (q_j\mathbf{e}_j) = p_i(\mathbf{e}_i\cdot\mathbf{e}_j) q_j
+	\mathbf{p}\cdot\mathbf{q} = (p_i\mathbf{e}_i)\cdot (q_j\mathbf{e}_j) = p_i(\mathbf{e}_i\cdot\mathbf{e}_j) q_j\ .
 \]
 It will be useful for what follows to rewrite this expression in matrix form:
 \begin{equation}
@@ -145,7 +145,7 @@ Applying this expression to the dot products $\mathbf{a}_i\cdot\mathbf{a}_j$ in 
 \end{equation}
 
 \begin{messagebox}{About units}{OCBlueThread}{\icinfo}{OCwhite}
-If we take nanometers (nm) to be the units of our measuring stick, to use the terminology of section~\ref{\chabbr:sec:worldviews}, then we can ask the question: in the expression $\mathbf{q}=q_i\,\mathbf{a}_i$, which quantity carries the units?  The vector components $q_i$ are always dimensionless; they are scalars that express how many units of each basis vector $\mathbf{a}_i$ should be taken to generate the complete vector $\mathbf{q}$. It is the basis vectors $\mathbf{a}_i$ (the measuring sticks) that carry the units.  Therefore, the length of $\mathbf{a}_1$ or the lattice parameter $a$, has units of length (in crystallography, this would typically be nanometers or \AA ngstrom).  When writing the lattice parameters in the form $\{a,b,c,\alpha,\beta,\gamma\}$, one generally omits the units on $a$, $b$, and $c$, but they are implied, in the same way that the angles are expressed in radians or degrees.  As a consequence, the units of the metric tensor are (length)$^2$, but, in the interest of brevity, we typically do not write this explicitly.
+If we take nanometers (nm) to be the units of our measuring stick, to use the terminology of section~\ref{\chabbr:sec:worldviews}, then we can answer the question: in the expression $\mathbf{q}=q_i\,\mathbf{a}_i$, which quantity carries the units?  The vector components $q_i$ are always dimensionless; they are scalars that express how many units of each basis vector $\mathbf{a}_i$ should be taken to generate the complete vector $\mathbf{q}$. It is the basis vectors $\mathbf{a}_i$ (the measuring sticks) that carry the units.  Therefore, the length of $\mathbf{a}_1$ or the lattice parameter $a$, has units of length (in crystallography, this would typically be nanometers or \AA ngstrom).  When writing the lattice parameters in the form $\{a,b,c,\alpha,\beta,\gamma\}$, one generally omits the units on $a$, $b$, and $c$, but they are implied, in the same way that the angles are expressed in radians or degrees.  As a consequence, the units of the metric tensor are (length)$^2$, but, in the interest of brevity, we typically do not write this explicitly.
 \end{messagebox}
 
 It is important to note that, if the lattice parameters $\{a,b,c,\alpha,\beta,\gamma\}$ are known, then the metric tensor can be obtained explicitly by simple substitution. As an example, consider the hexagonal lattice with lattice parameters $\{4,4,6,\pi/2,\pi/2,2\pi/3\}$; since $\cos(\pi/2)=0$ and $\cos(2\pi/3)=-1/2$, we have:
@@ -169,9 +169,9 @@ If we apply the general definition of the dot product in equation~(\ref{\chabbr:
 	 a b \cos\gamma & b^2 & b c \cos\alpha\\
 	 a c \cos\beta & b c \cos\alpha & c^2\end{pmatrix}\begin{pmatrix}p_1\\ p_2\\ p_3\end{pmatrix}
 	\]
-	When we work out this matrix product we will obtain an explicit expression for the square of the length of a vector $\mathbf{p}$ \textit{in any crystal system}. Many crystallography text books will have a table with the explicit distance expressions for each crystal system separately; this is not necessary here, since we use a single equation that is valid for all crystal systems. 
+	When we work out this matrix product we will obtain an explicit expression for the square of the length of a vector $\mathbf{p}$ \textit{in an arbitrary crystal system}. Many crystallography text books will have a table with the explicit distance expressions for each crystal system separately; this is not necessary here, since we use a single equation that is valid for all crystal systems. 
 	
-	If we use the example hexagonal lattice introduced above, we can compute the distance between the origin of the lattice and lattice node $\mathbf{t}_{102}$ or $[102]$ as a directional symbol.  We have:
+	If we use the example hexagonal unit cell introduced above, we can compute the distance between the origin of the lattice and lattice node $\mathbf{t}_{102}$ or $[102]$ as a directional symbol.  We have:
 	\begin{equation*}
 	\begin{split}
 		\vert[102]\vert^2 &= \begin{pmatrix}1&0&2\end{pmatrix}\begin{pmatrix}16 & -8& 0 \\ -8 & 16 & 0\\  0 & 0 & 36\end{pmatrix}
@@ -225,20 +225,20 @@ The volume of the Bravais lattice unit cell can be determined from the direct me
 \end{equation*}
 For the hexagonal lattice above, we have:
 \[
-	V^2 = \det \begin{pmatrix}16 & -8& 0 \\ -8 & 16 & 0\\  0 & 0 & 36\end{pmatrix} = 36(16^2 - 8^2)=36(16+8)(16-8) = 6912\ ,
+	V^2 = \det \begin{pmatrix}16 & -8& 0 \\ -8 & 16 & 0\\  0 & 0 & 36\end{pmatrix} = 36(16^2 - 8^2)= 6912\ ,
 \]
 so that $V=48\sqrt{3}$ which equals $a^2c\sqrt{3}/2$ for the general hexagonal case.  
 
-\begin{exercise}
-For a monoclinic lattice with lattice parameters $(a,b,c) = (1, 4, 2)$ and $\beta=60^{\circ}$, what is the distance between atoms at fractional positions $(1/2,0,1/2)$ and $(0,1/2,1/2)$?\label{\chabbr:ex:mono}
-\end{exercise}
+%\begin{exercise}
+%For a monoclinic lattice with lattice parameters $(a,b,c) = (1, 4, 2)$ and $\beta=60^{\circ}$, what is the distance between atoms at fractional positions $(1/2,0,1/2)$ and $(0,1/2,1/2)$?\label{\chabbr:ex:mono}
+%\end{exercise}
+%
+%\begin{exercise}
+%For the unit cell of Exercise~\ref{\chabbr:ex:mono}, compute the angle between the $[111]$ and $[120]$ directions.
+%\end{exercise}
+%
 
-\begin{exercise}
-For the unit cell of Exercise~\ref{\chabbr:ex:mono}, compute the angle between the $[111]$ and $[120]$ directions.
-\end{exercise}
-
-
-\subsection{Reciprocal Space}\label{\chabbr:sec:RS}
+\subsection{Geometry in Reciprocal Space}\label{\chabbr:sec:RS}
 
 \subsubsection{Introductory remarks}
 In the chapter on crystallographic symmetry (Chapter~\ref{CRYSYM:Symmetry}) we introduced two types of symbols: the direction symbol, $[uvw]$, and the Miller indices, $(hkl)$, which represent the inverse of the intercepts of a lattice plane with the basis vectors, reduced to relative primes.  The direction symbol corresponds to the lattice vectors $\mathbf{t}_{uvw}$ and they are translations from the origin to any one of the lattice nodes with coordinates $(u,v,w)$.  Since the integers $(hkl)$ are related to a particular set of lattice planes, we can ask the question: \textit{does the vector $h\mathbf{a}+k\mathbf{b}+l\mathbf{c}$ have any particular geometrical interpretation with  respect to the plane $(hkl)$?}  
@@ -251,7 +251,7 @@ In Fig.~\ref{\chabbr:fig:hkltetra} a tetragonal unit cell is shown with $c/a$ ra
 \caption{\label{\chabbr:fig:hkltetra}(a) and (b) different views of the $(011)$ plane (orange) and the $[011]$ direction (magenta) in a tetragonal unit cell. (c) the same plane and direction in  a cubic unit cell.}
 \end{figure}
 
-In Fig.~\ref{\chabbr:fig:hkltetra}(c), the same plane and direction are depicted in a cubic unit cell; the angle $\theta$ between plane and direction increases from its value in the tetragonal cell to a right angle in the cubic cell.  This is a general behavior in the cubic crystal system: a direction $[uvw]$ is always perpendicular to the plane with Miller indices $(uvw)$.  But this is \textit{only} true for the cubic crystal system. In all other crystal systems, there is no general relation between the direction $[uvw]$ and the plane $(uvw)$. Therefore, we have to consider a different reference frame known as the \indexit{reciprocal reference frame}.
+In Fig.~\ref{\chabbr:fig:hkltetra}(c), the same plane and direction are depicted in a cubic unit cell; the angle $\theta$ between plane and direction increases from its value in the tetragonal cell to a right angle in the cubic cell.  This is a general behavior in the cubic crystal system: a direction $[uvw]$ is always perpendicular to the plane with Miller indices $(uvw)$.  But this is \textit{only} true for the cubic crystal system. In all other crystal systems, there is no general relation between the direction $[uvw]$ and the plane $(uvw)$. Therefore, if we wish to consider $(hkl)$ as the components of a vector related geometrically to the plane, then we will need to consider a different reference frame known as the \indexit{reciprocal reference frame}.
 
 
 \subsubsection{Definition of reciprocal space}
@@ -268,7 +268,7 @@ Since we want to measure the lineal density along plane normals, we will define 
 To determine the constant $C$, we require that the dot product of $\mathbf{a}_i^{\ast}$ with the corresponding direct basis vector $\mathbf{a}_i$ be equal to $1$; after all, we want the two spaces to be reciprocal to each other.\footnote{Note that, in the physics literature, it is common to insert a factor of $2\pi$ in the definition of $C$, i.e., $C=2\pi/V$.  In the crystallographic community, this factor is usually not included.} Recognizing that the mixed product of the three direct space vectors is the unit cell volume, $V$, we find that $C=1/V=1/\mathbf{a}_1\cdot(\mathbf{a}_2\times\mathbf{a}_3)$.  Hence, the reciprocal basis vectors are defined as:
 \begin{align}
 	\mathbf{a}^{\ast}_1 &= \frac{\mathbf{a}_2\times\mathbf{a}_3}{V} \ ;\nonumber\\
-	\mathbf{a}^{\ast}_2 &= \frac{\mathbf{a}_3\times\mathbf{a}_1}{V} \ ;\\
+	\mathbf{a}^{\ast}_2 &= \frac{\mathbf{a}_3\times\mathbf{a}_1}{V} \ ;\label{\chabbr:eq:stardef}\\
 	\mathbf{a}^{\ast}_3 &= \frac{\mathbf{a}_1\times\mathbf{a}_2}{V} \ .\nonumber	
 \end{align}
 or, equivalently, by the relation:
@@ -295,269 +295,487 @@ And the angle between two reciprocal lattice  vectors $\mathbf{h}$ and $\mathbf{
 \end{equation}
 Note that these relations are identical to those for the direct crystal lattice.  It is easy to show that the reciprocal metric tensor is the inverse of the direct metric tensor, i.e., $g^{\ast}_{ij} = (g^{-1})_{ij}$.
 
-\subsection{Reciprocal Space Computations}
+\subsection{Example Reciprocal Space Computations}
 We conclude this section with a few examples of crystallographic computations in reciprocal space.   
-\begin{example}
-First of all, let us compute the reciprocal metric tensor for the tetragonal structure described earlier:
+\begin{example}\label{\chabbr:ex:exam1}
+Consider a tetragonal structure with lattice parameters $\{\frac{1}{2},\frac{1}{2},\frac{4}{5},\frac{\pi}{2},\frac{\pi}{2},\frac{\pi}{2}\}$ with the lengths in nm; we begin with the computation of the reciprocal metric tensor, $g^{\ast}_{ij}$, by inverting the direct metric tensor, $g_{ij}$:
 \[
-	g_{ij} = \left(\begin{array}{ccc}
+	g_{ij} = \begin{pmatrix}
+			\frac{1}{4} & 0 & 0\\
+			0 & \frac{1}{4} & 0\\
+			0 & 0 & \frac{16}{25}\end{pmatrix} \rightarrow g^{\ast}_{ij} = (g^{-1})_{ij} = 
+	 	    \begin{pmatrix}
 			4 & 0 & 0\\
 			0 & 4 & 0\\
-			0 & 0 & 16\end{array}\right) \rightarrow g^{\ast}_{ij} = (g^{-1})_{ij} = 
-	 	   \left(\begin{array}{ccc}
-			\frac{1}{4} & 0 & 0\\
-			0 & \frac{1}{4} & 0\\
-			0 & 0 & \frac{1}{16}\end{array}\right) \ .
+			0 & 0 & \frac{25}{16}\end{pmatrix}\ .
 \]
-The interplanar spacing $d_{111}$ for the $(111)$ planes is then given by the inverse of the length of $\mathbf{g}_{111}$, or
-\begin{align*}
-	\vert\mathbf{g}_{111}\vert^2 &= \left(\begin{array}{ccc}1& 1 & 1\end{array}\right)
-			\left(\begin{array}{ccc}
-			\frac{1}{4} & 0 & 0\\
-			0 & \frac{1}{4} & 0\\
-			0 & 0 & \frac{1}{16}\end{array}\right)
-			\left(\begin{array}{c}1 \\ 1 \\ 1\end{array}\right)\ ; \\
-			&=  \left(\begin{array}{ccc}1& 1 & 1\end{array}\right)
-			\left(\begin{array}{c}\frac{1}{4} \\ \frac{1}{4} \\ \frac{1}{16}\end{array}\right)\ ; \\
-			&= \frac{9}{16}\ .
-\end{align*}
-Thus, we have $\vert\mathbf{g}_{111}\vert = \sqrt{9/16} = 0.75$ and $d_{111} = 1.3333$.
+Since the off-diagonal entries remain zero, the angles between the reciprocal basis vectors are all right angles, i.e., $\alpha^{\ast}=\beta^{\ast}=\gamma^{\ast}=\pi/2$; the reciprocal lattice parameters are then easily derived by taking the square roots of the diagonal entries, so that $a^{\ast}=b^{\ast}=2$ nm$^{-1}$ and $c^{\ast}=5/4$ nm$^{-1}$, leading to a reciprocal lattice with lattice parameters $\{2,2,5/4,\frac{\pi}{2},\frac{\pi}{2},\frac{\pi}{2}\}$. 
+
+Using the definition~(\ref{\chabbr:eq:stardef}) for the reciprocal basis vectors directly, we can confirm this result.  The volume of the unit cell is $V=1/5$ nm$^3$ so that:
+\[
+ 	\mathbf{a}^{\ast}=\frac{1}{1/5}\mathbf{b}\times \mathbf{c} = 5\vert\mathbf{b}\vert\,\vert\mathbf{c}\vert\,\sin\alpha\, \frac{\mathbf{a}}{a} = 
+	5\,\frac{1}{2}\,\frac{4}{5}\, 2\, \mathbf{a} = 4\mathbf{a}\ ;
+\]
+Therefore, the reciprocal basis vector $\mathbf{a}^{\ast}$ is parallel to $\mathbf{a}$, and its length is given by:
+\[
+	a^{\ast} = \vert \mathbf{a}^{\ast} \vert = 4\vert \mathbf{a}\vert = 2\text{ nm$^{-1}$}\ ,
+\]
+as we found before.  Note that $\vert \mathbf{a}^{\ast}\vert$ is four times the length of the measuring stick, the vector $\mathbf{a}$, which itself has length $1/2$ nm, so we have $\mathbf{a}^{\ast}=2$ nm$^{-1}$.  Repeating this computation for the other reciprocal basis vectors we find that they are all parallel to the corresponding direct basis vectors. Fig.~\ref{\chabbr:fig:exam1} shows the two sets of vectors drawn to scale in the proper relative orientation.  The blue cell is the direct space unit cell, the red cell the corresponding reciprocal space unit cell.  The black spheres on each of the axis are at a distance of $1$ nm from the origin. Since the direct space unit cell has dimensions less than $1$ nm, the reciprocal unit cell must have dimensions larger than $1$ nm$^{-1}$, as is clearly illustrated in the figure.  The volume of the reciprocal unit cell is equal to the inverse of the direct unit cell volume, or $V^{\ast}=5$ nm$^{-3}$.
 \end{example}
 
-\begin{exercise}
-For the unit cell of Exercise~\ref{\chabbr:ex:mono}, compute the $d$-spacing for the $(113)$ planes.
-\end{exercise}
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=0.6\textwidth]{\graphicspath exam1.eps}
+\caption{\label{\chabbr:fig:exam1}Illustration of the tetragonal direct space (blue) and reciprocal space (red) unit cells for Example~\protect\ref{\chabbr:ex:exam1}  in the correct relative orientation and size.}
+\end{figure}
+
+\begin{example}
+What is the interplanar spacing $d_{210}$ for the $(210)$ planes in this tetragonal unit cell?  To determine $d_{210}$ we need to compute the inverse of the length of $\mathbf{g}_{210}$, or
+\[
+	\vert\mathbf{g}_{210}\vert^2 = \begin{pmatrix}2& 1 & 0\end{pmatrix}
+			\begin{pmatrix}
+			4 & 0 & 0\\
+			0 & 4 & 0\\
+			0 & 0 & \frac{25}{16}\end{pmatrix}
+			\begin{pmatrix}2 \\ 1 \\ 0\end{pmatrix}=  \begin{pmatrix}2& 1 & 0\end{pmatrix}
+			\begin{pmatrix}8 \\ 4 \\ 0\end{pmatrix}= 20\ .
+\]
+Thus, we have $\vert\mathbf{g}_{210}\vert = \sqrt{20} = 4.4721$ nm$^{-1}$ and $d_{210} = 0.2236$ nm.
+\end{example}
+
+%\begin{exercise}
+%For the unit cell of Exercise~\ref{\chabbr:ex:mono}, compute the $d$-spacing for the $(113)$ planes.
+%\end{exercise}
 
 \begin{example}
 Next, consider the angle between the $\mathbf{h}_{111}$ and $\mathbf{g}_{120}$ plane normals.  
 \begin{align*}
-	\left(\begin{array}{cc}\mathbf{h}\cdot\mathbf{h}&\mathbf{h}\cdot\mathbf{g}\\
-	\mathbf{g}\cdot\mathbf{h}&\mathbf{g}\cdot\mathbf{g}\end{array}\right) &= \left(\begin{array}{ccc}1 & 1 & 1\\ 1 & 2 & 0\end{array}\right)
-	\left(\begin{array}{ccc}
-			\frac{1}{4} & 0 & 0\\
-			0 & \frac{1}{4} & 0\\
-			0 & 0 & \frac{1}{16}\end{array}\right)\left(\begin{array}{cc} 1 & 1\\ 1 & 2\\ 1 & 0\end{array}\right)\ ;\\
-	&= \left(\begin{array}{ccc}1 & 1 & 1\\ 1 & 2 & 0\end{array}\right)
-	\left(\begin{array}{cc} \frac{1}{4} & \frac{1}{4}\\ \frac{1}{4} & \frac{1}{2}\\ \frac{1}{16} & 0\end{array}\right)\ ; \\
-	&= \left(\begin{array}{cc}\frac{9}{16} & \frac{3}{4} \\ \frac{3}{4} & \frac{5}{4} \end{array}\right)\ .
+	\begin{pmatrix}\mathbf{h}\cdot\mathbf{h}&\mathbf{h}\cdot\mathbf{g}\\
+	\mathbf{g}\cdot\mathbf{h}&\mathbf{g}\cdot\mathbf{g}\end{pmatrix} &= \begin{pmatrix}1 & 1 & 1\\ 1 & 2 & 0\end{pmatrix}
+	\begin{pmatrix}
+			4 & 0 & 0\\
+			0 & 4 & 0\\
+			0 & 0 & \frac{25}{16}\end{pmatrix}\begin{pmatrix} 1 & 1\\ 1 & 2\\ 1 & 0\end{pmatrix}\ ;\\
+	&=\begin{pmatrix}1 & 1 & 1\\ 1 & 2 & 0\end{pmatrix}
+	\begin{pmatrix} 4 & 4\\ 4 & 8\\ \frac{25}{16} & 0\end{pmatrix}\ ; \\
+	&= \begin{pmatrix}\frac{153}{16} & 12 \\ 12 & 20 \end{pmatrix}\ .
 \end{align*}
 Therefore we have:
 \[
-	\text{ang}(\mathbf{h}_{111},\mathbf{g}_{120}) = \arccos\left(\frac{3/4}{\sqrt{\frac{9}{16}}\sqrt{\frac{5}{4}}}\right) = \arccos\left(\frac{2}{\sqrt{5}}\right) = 26.56^{\circ}\ .
+	\text{ang}(\mathbf{h}_{111},\mathbf{g}_{120}) = \arccos\left(\frac{12}{\sqrt{\frac{153}{16}\times 20}}\right) = \arccos\left(0.867722\right) = 29.80^{\circ}\ .
 \]
 \end{example}
 
-\begin{exercise}
-For the unit cell of Exercise~\ref{\chabbr:ex:mono}, compute the angle between the $\mathbf{g}_{111}$ and $\mathbf{g}_{120}$ plane normals.
-\end{exercise}
+
+\begin{example}\label{\chabbr:ex:exam2}
+For a monoclinic structure with lattice parameters $\{4/5,1,6/5,\frac{\pi}{2},\frac{\pi}{3},\frac{\pi}{2}\}$, compute the reciprocal lattice parameters and draw both unit cells.  
+
+The direct metric tensor is given by:
+\[
+	g_{ij} = \begin{pmatrix}\frac{16}{25} & 0 & \frac{12}{25}\\ 0 & 1 & 0\\ \frac{12}{25} & 0 & \frac{36}{25}\end{pmatrix}\ .
+\]
+The determinant of this matrix is equal to $\text{det}(g_{ij}) = 432/625$ so that the unit cell volume equals $V = 12\sqrt{3}/25$. The inverse of this matrix is the reciprocal metric tensor:
+\[
+	g^{\ast}_{ij} = \begin{pmatrix}\frac{25}{12} & 0 & -\frac{25}{36}\\ 0 & 1 & 0\\ -\frac{25}{36} & 0 & \frac{25}{27}\end{pmatrix}\ .
+\]
+The reciprocal basis vector lengths are directly determined from the diagonal components: $a^{\ast}=5/2\sqrt{3}$, $b^{\ast}=1$, and $c^{\ast}=5/3\sqrt{3}$.  For the angles we have $\alpha^{\ast}=\gamma^{\ast}=\frac{\pi}{2}$ and 
+\[
+	\cos(\beta^{\ast}) = \frac{g^{\ast}_{13}}{a^{\ast}\,c^{\ast}} = -\frac{25}{36}\times \frac{2\sqrt{3}}{5}\times\frac{3\sqrt{3}}{5} = -\frac{1}{2}\longrightarrow \beta^{\ast} = \frac{2\pi}{3}.
+\]
+Alternatively, we could have used equation~(\ref{\chabbr:eq:stardef}), to obtain the reciprocal basis vectors directly:
+\[
+	\mathbf{a}^{\ast}=\frac{25}{12\sqrt{3}}\times 1\times \frac{6}{5}\times1\times\hat{\mathbf{e}}_{bc} = \frac{5}{2\sqrt{3}}\hat{\mathbf{e}}_{bc}
+\]
+where the unit vector $\hat{\mathbf{e}}_{bc}$ is perpendicular to both $\mathbf{b}$ and $\mathbf{c}$.  Similarly, we find:
+\[
+	\mathbf{b}^{\ast}=\frac{25}{12\sqrt{3}}\times \frac{6}{5}\times \frac{4}{5}\times  \frac{\sqrt{3}}{2}\times\hat{\mathbf{e}}_{ca} = \hat{\mathbf{e}}_{ca}\ ;
+\]
+\[
+	\mathbf{c}^{\ast}=\frac{25}{12\sqrt{3}}\times \frac{4}{5}\times 1\times 1\times\hat{\mathbf{e}}_{ab} = \frac{5}{3\sqrt{3}} \hat{\mathbf{e}}_{ab}\ .
+\]
+Note in Fig.~\ref{\chabbr:fig:exam2}, which shows two different views of the direct and reciprocal unit cells, that the vectors $\mathbf{a}^{\ast}$, $\mathbf{a}$, $\mathbf{c}$, and $\mathbf{c}^{\ast}$ are coplanar and normal to $\mathbf{b}$.
+\end{example}
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=0.7\textwidth]{\graphicspath exam2.eps}
+\caption{\label{\chabbr:fig:exam2}Two different views of the monoclinic direct space (blue) and reciprocal space (red) unit cells for Example~\protect\ref{\chabbr:ex:exam2} in the correct relative orientation and size.}
+\end{figure}
+
+\begin{example}
+For the monoclinic cell from the previous example, compute the length of the body diagonal in both the direct and reciprocal unit cells, as well as the angle between the direct space vector $\mathbf{t}_{101}$ and the reciprocal vector $\mathbf{g}_{101}$.
+
+The body diagonal corresponds to the vector with components $(1,1,1)$ in both cells, so we can apply the standard relation that $\vert\mathbf{p}\vert^2 = p_ig_{ij}p_j$, where we substitute $g^{\ast}_{ij}$ for $g_{ij}$ for the reciprocal space calculation.  
+\[
+	\vert \mathbf{t}_{111}\vert^2= \begin{pmatrix}1&1&1\end{pmatrix}\begin{pmatrix}\frac{16}{25} & 0 & \frac{12}{25}\\ 0 & 1 & 0\\ \frac{12}{25} & 0 & \frac{36}{25}\end{pmatrix}
+	\begin{pmatrix}1\\ 1\\ 1\end{pmatrix} = \begin{pmatrix}1&1&1\end{pmatrix}\begin{pmatrix}\frac{28}{25}\\ 1\\ \frac{48}{25}\end{pmatrix} = \frac{101}{25}\longrightarrow \vert \mathbf{t}_{111}\vert= 2.099\ .
+\]
+\[
+	\vert \mathbf{g}_{111}\vert^2= \begin{pmatrix}1&1&1\end{pmatrix}\begin{pmatrix}\frac{25}{12} & 0 & -\frac{25}{36}\\ 0 & 1 & 0\\ -\frac{25}{36} & 0 & \frac{25}{27}\end{pmatrix}
+	\begin{pmatrix}1\\ 1\\ 1\end{pmatrix} = \begin{pmatrix}1&1&1\end{pmatrix}\begin{pmatrix}\frac{50}{36}\\ 1\\ \frac{25}{108}\end{pmatrix} = \frac{283}{108}\longrightarrow \vert \mathbf{g}_{111}\vert= 1.619\ .
+\]
+For the angle between $\mathbf{t}_{101}$ and $\mathbf{g}_{101}$ we note that the dot product between the two vectors does not require the use of a metric tensor because of the way the two lattices are related to each other; hence $\mathbf{t}_{101}\cdot\mathbf{g}_{101}=1\times 1+0\times 0+1\times 1=2$. For the lengths we find, using the same approach as above, $\vert\mathbf{t}_{101}\vert=\frac{2}{5}\sqrt{19}$ and $\vert\mathbf{g}_{101}\vert=\frac{5}{6}\sqrt{7/3}$, so that
+\[
+\text{ang}(\mathbf{t}_{101},\mathbf{g}_{101})=\arccos\left(\frac{2}{\frac{2}{5}\sqrt{19}\times \frac{5}{6}\sqrt{\frac{7}{3}}}\right) = \arccos(0.90112)= 25.69^{\circ}\ .
+\]
+Both vectors are represented by black line segments in Fig.~\ref{\chabbr:fig:exam2}(b).
+\end{example}
 
 
-\section{Transforming between Direct  and Reciprocal Spaces}\label{\chabbr:transform}
-
-{\color{red}to be written !!}
-
-\section{Connections to the standard Cartesian Reference Frame}\label{\chabbr:Cartesian}
-
-{\color{red}to be written !!}
-
-
-\section{Other Useful Crystallographic Computations}\label{\chabbr:usefulcomp}
-
-{\color{red}to be written !!}
+\begin{floatingfigure}[r]{3.4in}
+\centering
+{\includegraphics[width=3.2in]{\graphicspath exam3.eps}}
+{\caption{\label{\chabbr:fig:exam3}\small Illustration of the geometrical relation between direct and reciprocal space lattice for the monoclinic unit cell of Example~\protect\ref{\chabbr:ex:exam3}.}}
+\end{floatingfigure}
+\noindent As a final example we use the monoclinic unit cell defined above to illustrate graphically the relation between a plane defined by Miller indices $(hkl)$ with respect to the direct unit cell and the corresponding vector $\mathbf{g}_{hkl}$ defined with respect to the reciprocal unit cell.  Fig.~\ref{\chabbr:fig:exam3} shows a 2-D projection along the monoclinic $\mathbf{b}$ axis.  Points and vectors in blue represent the direct space lattice, points and vectors in red the reciprocal space lattice; several lattice points are shown for each lattice, and the corresponding translated unit cells are outlined in dashed lines.  Three different lattice planes are shown: $(101)$ in green, $(\bar{1}01)$ in purple, and $(\bar{1}0\bar{2})$ in orange.  The corresponding reciprocal lattice vectors $\mathbf{g}_{101}$, $\mathbf{g}_{\bar{1}01}$, and $\mathbf{g}_{\bar{1}0\bar{2}}$ are shown in the same colors. They intersect their respective lattice planes at right angles, as expected.
 
 
 
-%
-%\section{Vectors in Non-Cartesian Reference Frames}\label{\chabbr:nonCartesian}
-%
-%\subsection{Basic vector operations\label{\chabbr:ssec:vectoroperations}}
-%We will represent vectors by bold symbols, e.g.,  $\mathbf{a}$, $\mathbf{b}$, $\ldots$.  Unless stated otherwise, we will work with Cartesian (i.e., orthonormal) reference frames\index{Cartesian reference frame}; Cartesian basis vectors\index{Cartesian basis vector} will always be represented by vectors of the type $\mathbf{e}_i$, where the subscript $i$ can take on the values $1, 2, \ldots, D$ and $D$ is the dimension of the space in which the vectors live.  Occasionally, the subscript $i$ will be interpreted to mean $x, y$ in 2D and $x,y,z$ in 3D; this will be clear from the context, and usually this notation is only used to clarify things.  Note that vectors represented by the letter ``\textbf{e}'' will always be assumed to be unit vectors.\index{unit vector}
-%
-%\begin{wrapfigure}{r}{0.3\textwidth}
-%  \centering\leavevmode
-%\Ovalbox{\includegraphics[width=0.28\textwidth]{dotproduct}}
-%\caption{\small Illustration of the vector dot product as the projection of $\mathbf{p}$ onto $\mathbf{q}$, multiplied by the length $\vert\mathbf{q}\vert$.}
-%\label{\chabbr:fig:dp}
-%\end{wrapfigure}
-%
-%The dot product\index{dot product} between two vectors (see Fig.~\ref{\chabbr:fig:dp}) is denoted by the symbol $\cdot$, as in:
-%\begin{equation}
-%	\mathbf{p}\cdot\mathbf{q} = \vert\mathbf{p}\vert\vert\mathbf{q}\vert\cos\theta \ ,\label{\chabbr:eq:dotproduct}
-%\end{equation}
-%where $\vert\mathbf{p}\vert$ stands for the norm (length) of the vector $\mathbf{p}$, and $\theta$ is the angle between the two vectors. When two vectors are perpendicular to each other, then their dot product vanishes.  The dot product of a vector with itself results in the square of the length of the vector, or
-%\begin{equation}
-%	\vert\mathbf{p}\vert = \sqrt{\mathbf{p}\cdot\mathbf{p}} \ .\label{\chabbr:eq:vectorlength}
-%\end{equation}
-%
-%The vector cross product\index{vector cross product}\index{cross product} is represented by the symbol $\times$, as in
-%\begin{equation}
-%	\mathbf{p}\times\mathbf{q} = \vert\mathbf{p}\vert\vert\mathbf{q}\vert \sin\theta\ \mathbf{e}^{\perp} \ ,\label{\chabbr:eq:crossproduct}
-%\end{equation}
-%Here, the unit vector $\mathbf{e}^{\perp}$ is perpendicular to both $\mathbf{p}$ and $\mathbf{q}$, such that $\mathbf{p}$, $\mathbf{q}$ and $\mathbf{e}^{\perp}$ form a right-handed reference frame.\footnote{In crystallography and texture analysis we always use right-handed reference frames. Left-handed frames are common in computer vision and animation.}   The cross product of a vector with itself always vanishes. The mixed vector product,\index{mixed vector product} $\mathbf{p}\cdot(\mathbf{q}\times\mathbf{r})$, is equal to the volume, $V$, of the parallellepiped generated by the three vectors.  For a right-handed reference frame, the mixed vector product is always positive; for  a left-handed reference frame it is negative.
-%
-%Vector components are represented by subscripted italic symbols; the Cartesian components of the vector $\mathbf{p}$ can be determined by projecting the vector onto each coordinate axis using the dot product.  Thus, we have:
-%\begin{equation}
-%	\mathbf{p} = \sum_{i=1}^{D}(\mathbf{p}\cdot\mathbf{e}_i)\mathbf{e}_i = \sum_{i=1}^D p_i\mathbf{e}_i \ .
-%\end{equation}
-%We will use the Einstein summation convention:\index{summation convention} \textit{when a subscript is present twice on the right hand side of an equation, a summation over that subscript is implied and the summation sign need not be written}.  
-%Thus, we have:
-%\begin{equation}
-%	\mathbf{p} = p_i\mathbf{e}_i\quad\text{with}\quad p_i = \mathbf{p}\cdot\mathbf{e}_i \ .
-%\end{equation}
-%
-%\noindent In component notation, the vector dot and cross products can be written explicitly as follows:
-%\begin{itemize}
-%	\item For the dot product between $\mathbf{p}$ and $\mathbf{q}$ we have:
-%	\[
-%		\mathbf{p}\cdot\mathbf{q} = (p_i\mathbf{e}_i)\cdot(q_j\mathbf{e}_j)
-%		= p_i (\mathbf{e}_i\cdot\mathbf{e}_j) q_j \ .
-%	\]
-%	The dot product of the orthonormal basis vectors is equal to $1$ for $i=j$ or $0$ for $i\ne j$; we represent this by the Kronecker symbol\index{Kronecker symbol} $\delta_{ij}$, which corresponds to the $D$-dimensional identity matrix:
-%	\[
-%		\mathbf{p}\cdot\mathbf{q} = p_i \delta_{ij} q_j \ .
-%	\]
-%	Carrying out the summation over $j$ we obtain:
-%	\[
-%		\mathbf{p}\cdot\mathbf{q} = p_i q_i \quad [=p_1q_1+p_2q_2+\ldots ]\ .
-%	\]
-%	Using $x,y,\ldots$ as the subscripts, we obtain the familiar expression $\mathbf{p}\cdot\mathbf{q} =p_xq_x+p_yq_y+\ldots$.
-%	\item For the vector cross product we have:
-%	\[
-%		\mathbf{p}\times\mathbf{q} = p_iq_j \epsilon_{ijk} \mathbf{e}_k \ ,
-%	\]
-%	where $\epsilon_{ijk}$ is the permutation symbol\index{permutation symbol}; this symbol is equal to $+1$ if $ijk$ is an even permutation of $123$, $-1$ for an odd permutation, and $0$ whenever two or more of the indices are equal.  This definition leads to the familiar expression:
-%	\[
-%		\mathbf{p}\times\mathbf{q} = (p_2q_3-p_3q_2)\mathbf{e}_1 +(p_3q_1-p_1q_3)\mathbf{e}_2 +(p_1q_2-p_2q_1)\mathbf{e}_3 \ .
-%	\] 
-%\end{itemize}
-%
-%\subsection{Transformation of a vector}\label{\chabbr:vectortransformation}
-%Let us consider two Cartesian reference frames, one given by the 
-%orthonormal triplet $\{\mathbf{e}_x,\mathbf{e}_y,\mathbf{e}_z\}$, the second by 
-%the triplet 
-%$\{\mathbf{e}_x^{\,\prime},\mathbf{e}_y^{\,\prime},\mathbf{e}_z^{\,\prime}\}$.  
-%We also consider a vector, $\mathbf{q}$; this vector has components $q_j$ with respect 
-%to the reference frame $\mathbf{e}_j$, so that $\mathbf{q}=q_j\mathbf{e}_j$.  
-%The vector $\mathbf{q}$ also has components $q'_i$ with respect to the vectors $\mathbf{e}'_i$.  
-%We begin by writing the vector $\mathbf{q}$ as:
-%\[
-%	\mathbf{q} = q_j\mathbf{e}_j\qquad (= q_x\mathbf{e}_x + q_y\mathbf{e}_y+q_z\mathbf{e}_z).
-%\]
-%When we take the dot product with $\mathbf{e}_x$, we obtain:
-%\[
-%	\mathbf{q}\cdot\mathbf{e}_x = q_j \mathbf{e}_j\cdot\mathbf{e}_x;
-%\]
-%since the basis vectors are orthonormal, we have
-%\[
-%	\mathbf{q}\cdot\mathbf{e}_x = q_j \delta_{jx} = q_x.
-%\]
-%Hence, the component $q_x$ is determined by projecting the vector $\mathbf{q}$ onto the 
-%basis vector $\mathbf{e}_x$.  The same is true for the other components:
-%\[
-%		q_y = \mathbf{q}\cdot\mathbf{e}_y;\qquad
-%		q_z = \mathbf{q}\cdot\mathbf{e}_z.
-%\]
-%Therefore, we can write the vector $\mathbf{q}$ as:
-%\[
-%	\mathbf{q} = (\mathbf{q}\cdot\mathbf{e}_j) \mathbf{e}_j.
-%\]
-%This must be valid for every vector $\mathbf{q}$, so in particular it must be valid for $\mathbf{q}=\mathbf{e}'_x$:
-%\[
-%	\mathbf{e}'_x = (\mathbf{e}'_x\cdot\mathbf{e}_j) \mathbf{e}_j.
-%\]
-%A similar relation results for $\mathbf{e}'_y$ and $\mathbf{e}'_z$:
-%\[
-%	\mathbf{e}'_y = (\mathbf{e}'_y\cdot\mathbf{e}_j) \mathbf{e}_j\qquad \mathbf{e}'_z = (\mathbf{e}'_z\cdot\mathbf{e}_j) \mathbf{e}_j.
-%\]
-%In general, we write
-%\[
-%	\mathbf{e}'_i = (\mathbf{e}'_i\cdot\mathbf{e}_j) \mathbf{e}_j;
-%\]
-%Then we introduce the transformation matrix $\alpha_{ij}$, defined as:
-%\[	
-%	\alpha_{ij} \equiv \mathbf{e}'_i\cdot\mathbf{e}_j.
-%\]
-%Explicitly, the transformation matrix is given by:
-%\[
-%	\alpha_{ij} = \left(\begin{array}{ccc}
-%	\mathbf{e}'_x\cdot\mathbf{e}_x & \mathbf{e}'_x\cdot\mathbf{e}_y & \mathbf{e}'_x\cdot\mathbf{e}_z\\
-%	\mathbf{e}'_y\cdot\mathbf{e}_x & \mathbf{e}'_y\cdot\mathbf{e}_y & \mathbf{e}'_y\cdot\mathbf{e}_z\\
-%	\mathbf{e}'_z\cdot\mathbf{e}_x & \mathbf{e}'_z\cdot\mathbf{e}_y & \mathbf{e}'_z\cdot\mathbf{e}_z\end{array}\right)=
-%	\left(\begin{tabular}{ccc}\centering $\alpha_{xx}$ & 
-%$\alpha_{xy}$ & $\alpha_{xz}$ \\
-%$\alpha_{yx}$ & $\alpha_{yy}$ & $\alpha_{yz}$ \\
-%$\alpha_{zx}$ & $\alpha_{zy}$ & $\alpha_{zz}$ \\
-%\end{tabular}\right)
-%\]
-%In general, the relation between the two sets of basis vectors can be 
-%written as~:
-%\begin{eqnarray}
-%\mathbf{e}_x^{\,\prime}&=&\alpha_{xx}\mathbf{e}_x+\alpha_{xy}\mathbf{e}_y+\alpha_{xz}\mathbf{e}_z\nonumber\\
-%\mathbf{e}_y^{\,\prime}&=&\alpha_{yx}\mathbf{e}_x+\alpha_{yy}\mathbf{e}_y+\alpha_{yz}\mathbf{e}_z\\
-%\mathbf{e}_z^{\,\prime}&=&\alpha_{zx}\mathbf{e}_x+\alpha_{zy}\mathbf{e}_y+\alpha_{zz}\mathbf{e}_z\nonumber
-%\end{eqnarray}
-%or, in index notation:
-%\begin{equation}
-%	\mathbf{e}'_i = \alpha_{ij}\mathbf{e}_j.\label{\chabbr:eq:alphadef}
-%\end{equation}
-%This is a \textit{linear} relation, known as a \textit{coordinate 
-%transformation}.\index{coordinate transformation}  We will assume throughout this text that the 
-%origin itself does not change during the coordinate transformation.  
-%If there were a change in the position of the origin as well, then we 
-%would have to add a translation vector to the equations above.  
-%In addition, we are changing the reference frame from $\{\mathbf{e}_i\}$ to $\{\mathbf{e}'_j\}$; this 
-%transformation is also known as a \textit{3D rotation}\index{rotation}.
-% 
-%The \textit{inverse} transformation must also exist and is described 
-%by the inverse of the matrix $\alpha_{ij}$~:
-%\begin{equation}
-%\mathbf{e}_i=\alpha^{-1}_{ij}\mathbf{e}_{j}^{\,\prime}
-%\end{equation}
-%It is an important property of this type of transformation matrix that the inverse of the matrix is
-%equal to the transpose; matrices with this property are known as \textit{orthogonal matrices}.\index{orthogonal matrix}
-%
-%Next, we consider the effect of the transformation matrix on the components of the vector $\mathbf{q}$.  This vector is independent of the reference frame, and has components in both the unprimed and primed reference frames.  We must have the following relations~:
-%\begin{equation}
-%\mathbf{q}=q_j\mathbf{e}_j=q_i^{\prime}\mathbf{e}_i^{\,\prime}
-%\label{\chabbr:eq:stuff1}
-%\end{equation}
-%We can then carry out the following series of steps:
-%\begin{align*}
-%	\mathbf{q} &= q'_i\mathbf{e}'_i;\\
-%	&= q'_i (\alpha_{ij}\mathbf{e}_j);\quad\text{(apply transformation rule for basis vectors)};\\
-%	&= (q'_i \alpha_{ij})\mathbf{e}_j;\\
-%	&= q_j\mathbf{e}_j.
-%\end{align*}
-%Then we have:
-%\begin{align*}
-%	q'_i\alpha_{ij} &= q_j;\\
-%	q'_i\alpha_{ij}(\alpha^{-1})_{jk} &= q_j(\alpha^{-1})_{jk}\quad\text{(multiply both side with inverse matrix)};\\
-%	q'_i\delta_{ik} &= q_j(\alpha^{-1})_{jk}\quad\text{(matrix times inverse matrix = identity matrix)};\\
-%	q'_k &= q_j\tilde{\alpha}_{jk}\quad\text{(inverse of rotation matrix equals transpose)};\\
-%	q'_k &= q_j\alpha_{kj},	
-%\end{align*}
-%which finally becomes:
-%\begin{equation}
-%	q'_i = \alpha_{ij}q_j\label{\chabbr:eq:stuff4}
-%\end{equation}
-%where we have replaced the subscript $k$ by $i$ (we can always do this, as long as we replace the index everywhere).
-%This equation is the transformation rule for vector components.
-%Similarly, one can readily show that
-%\begin{equation}
-%q_i=\tilde{\alpha}_{ij}q_j^{\prime}
-%\label{\chabbr:eq:stuff5}
-%\end{equation}
-%We can interpret equations~\ref{\chabbr:eq:stuff4} and \ref{\chabbr:eq:stuff5} as 
-%follows~: the vector $\mathbf{q}$ is independent of the chosen reference 
-%frame if its components with respect to two different reference frames 
-%are related to each other by equations~\ref{\chabbr:eq:stuff4} and 
-%\ref{\chabbr:eq:stuff5}.  In other words, the transformation relations can be 
-%used to \textit{define} when a triplet of numbers represents a vector.  
-%If the triplets $(q_x,q_y,q_z)$ and 
-%$(q_x^{\prime},q_y^{\prime},q_z^{\prime})$ satisfy 
-%equations~\ref{\chabbr:eq:stuff4} and \ref{\chabbr:eq:stuff5} for all reference 
-%frames, then $\mathbf{q}$ is a vector.  Similar transformation rules 
-%can also be used to define \textit{higher order vectors} or \textit{tensors}.
+
+%\begin{exercise}
+%For the unit cell of Exercise~\ref{\chabbr:ex:mono}, compute the angle between the $\mathbf{g}_{111}$ and $\mathbf{g}_{120}$ plane normals.
+%\end{exercise}
+
+
+\section{Transforming between Direct and Reciprocal Spaces}\label{\chabbr:sec:transform}
+We have seen that the direct and reciprocal spaces are effectively vector spaces that are useful for the description of crystallographic quantities like directions and plane normals. Since both vector spaces describe the same physical space it stands to reason that any vector, $\mathbf{p}$, in the physical space must have components with respect to both direct and reciprocal reference frames; i.e., we have:
+\[
+	 \mathbf{p} = p_i\mathbf{a}_i = p^{\ast}_j\mathbf{a}^{\ast}_j\ .
+\]
+If we take the dot product of both sides of the second equality with a direct basis vector $\mathbf{a}_m$, then we obtain:
+\[
+	p_i\mathbf{a}_i\cdot\mathbf{a}_m = p^{\ast}_j\mathbf{a}^{\ast}_j\cdot\mathbf{a}_m\rightarrow p_i g_{im} = p^{\ast}_j\delta_{jm}\ ,
+\]
+where we used the definition of the metric tensor and the definition of the reciprocal basis vectors. The final relation then becomes:
+\begin{equation}
+	 p^{\ast}_m = p_i g_{im}\ , \label{\chabbr:eq:d2r}
+\end{equation}
+in other words, post-multiplication of the direct space vector components by the direct metric tensor produces the reciprocal space components of the vector $\mathbf{p}$. If we had taken the dot product with respect to a reciprocal basis vector $\mathbf{a}^{\ast}_m$, then the inverse relation would have followed:
+\begin{equation}
+	 p_i = p^{\ast}_m g^{\ast}_{mi}\ , \label{\chabbr:eq:r2d}
+\end{equation}
+The direct and reciprocal metric tensor are therefore the transformation matrices to take vector components from one space to the other space, using post-multiplication.
+
+Another way of thinking about this is the following: consider the components $p_i$ to represent each of the basis vectors in turn; i.e., if $p_i=(1,0,0)$ then we have $\mathbf{p}=\mathbf{a}$. Using the transformation to reciprocal components we have:
+\[
+	p^{\ast}_m = \begin{pmatrix}1 & 0 & 0\end{pmatrix} \begin{pmatrix}a^2 & a b \cos\gamma & a c \cos\beta\\
+	 a b \cos\gamma & b^2 & b c \cos\alpha\\
+	 a c \cos\beta & b c \cos\alpha & c^2\end{pmatrix} = \begin{pmatrix}a^2 & a b \cos\gamma & a c \cos\beta\end{pmatrix}\ .
+\]
+In other words, the rows of the direct metric tensor represent the components of the direct space basis vectors $\mathbf{a}_i$ with respect to the reciprocal basis vectors $\mathbf{a}^{\ast}_j$. Similarly, the rows of the reciprocal metric tensor represent the components of the reciprocal space basis vectors $\mathbf{a}^{\ast}_i$ with respect to the direct basis vectors $\mathbf{a}_j$.  
+
+Since the metric tensors are symmetric tensors, the transformation rules for the basis vectors can also be formulated using pre-multiplication:
+\begin{equation}
+	\mathbf{a}^{\ast}_m = g^{\ast}_{mj} \mathbf{a}_j\text{ and } \mathbf{a}_m = g_{mj}\mathbf{a}^{\ast}_j\ .\label{\chabbr:eq:basistrafo}
+\end{equation}
+
+\noindent Using the direct and reciprocal metric tensors from Example~\ref{\chabbr:ex:exam2} we find:
+\[
+	\begin{pmatrix}\mathbf{a}^{\ast}\\ \mathbf{b}^{\ast}\\ \mathbf{c}^{\ast}\end{pmatrix}=
+	\begin{pmatrix}\frac{25}{12} & 0 & -\frac{25}{36}\\ 0 & 1 & 0\\ -\frac{25}{36} & 0 & \frac{25}{27}\end{pmatrix}
+	\begin{pmatrix}\mathbf{a}\\ \mathbf{b}\\ \mathbf{c}\end{pmatrix} = \begin{pmatrix}\frac{25}{12}\mathbf{a}-\frac{25}{36}\mathbf{c}\\ \mathbf{b}\\ \frac{25}{27}\mathbf{c}-\frac{25}{36}\mathbf{a}\end{pmatrix}\ ,
+\]
+and
+\[
+	\begin{pmatrix}\mathbf{a}\\ \mathbf{b}\\ \mathbf{c}\end{pmatrix}=
+	\begin{pmatrix}\frac{16}{25} & 0 & \frac{12}{25}\\ 0 & 1 & 0\\ \frac{12}{25} & 0 & \frac{36}{25}\end{pmatrix}
+	\begin{pmatrix}\mathbf{a}^{\ast}\\ \mathbf{b}^{\ast}\\ \mathbf{c}^{\ast}\end{pmatrix} = \begin{pmatrix}\frac{16}{25}\mathbf{a}^{\ast}+\frac{12}{25}\mathbf{c}^{\ast}\\ \mathbf{b}^{\ast}\\ \frac{12}{25}\mathbf{a}^{\ast}+\frac{36}{25}\mathbf{c}^{\ast}\end{pmatrix}\ .
+\]
+This type of transformation is useful when making drawings that have both direct and reciprocal space quantities on them.
+
+
+\section{Conversion to a Standard Cartesian Reference Frame}\label{\chabbr:sec:Cartesian}
+
+\subsection{Derivation of the Structure Matrices}\label{\chabbr:sec:SMderivation}
+At the end of the day, when we wish to create a drawing of a crystal structure or a diffraction pattern, the final reference frame to be used is likely a Cartesian reference frame, since screen pixels are usually squares and arranged in a regular square (i.e., orthogonal) grid.  We must therefore consider how to transform crystallographic quantities to a Cartesian representation.  There are many possible choices to relate the crystallographic reference frames to an orthonormal frame; a convention that links both direct and reciprocal frames to the same Cartesian frame is likely going to be the most useful choice.  In this text, we select the Cartesian $\mathbf{e}_x$ axis to be parallel to the $\mathbf{a}$ axis, and the $\mathbf{e}_z$ axis parallel to $\mathbf{c}^{\ast}$, i.e., normal to the $(001)$ plane or parallel to $\mathbf{g}_{001}$.  The $\mathbf{e}_y$ axis is then chosen to complete a right-handed orthonormal reference frame.
+
+In equation form we have:
+\begin{equation}
+\begin{split}
+	\mathbf{e}_x &= \frac{\mathbf{a}}{a} = \frac{\mathbf{a}_1}{ \sqrt{g_{11}} }\ ;\\
+	\mathbf{e}_y &= \mathbf{e}_z\times\mathbf{e}_x=\frac{\mathbf{a}^{\ast}_3\times\mathbf{a}_1}{\sqrt{g^{\ast}_{33}}\sqrt{g_{11}}}\ ;\\
+	\mathbf{e}_z &= \frac{\mathbf{c^{\ast}}}{c^{\ast}}=\frac{\mathbf{a}^{\ast}_3}{\sqrt{g^{\ast}_{33}}}\ .	
+\end{split}
+\end{equation}
+In the second equality, we have replaced the lattice parameters $a$ and $c^{\ast}$ by square roots of metric tensor entries and we use the subscripted expressions for the basis vectors.  Note that the definition for $\mathbf{e}_y$ involves a cross product between a reciprocal basis vector, $\mathbf{a}^{\ast}_3$, and a direct space basis vector, $\mathbf{a}_1$; Using the definition of $\mathbf{a}^{\ast}_3=(\mathbf{a}_1\times\mathbf{a}_2)/V$ we can turn this cross product into:
+\[
+	\mathbf{a}^{\ast}_3\times\mathbf{a}_1 = \frac{1}{V}(\mathbf{a}_1\times\mathbf{a}_2)\times \mathbf{a}_1=-\frac{1}{V}\mathbf{a}_1\times(\mathbf{a}_1\times\mathbf{a}_2).
+\]
+We can use the vector identity $\mathbf{u}\times(\mathbf{v}\times\mathbf{w})=(\mathbf{u}\cdot\mathbf{w})\mathbf{v}-(\mathbf{u}\cdot\mathbf{v})\mathbf{w}$ along with the definition of the metric tensor as $g_{ij}=\mathbf{a}_i\cdot\mathbf{a}_j$ to obtain for $\mathbf{e}_y$:
+\[
+	\mathbf{e}_y = \frac{g_{11}\mathbf{a}_2-g_{12}\mathbf{a}_1}{V\sqrt{g_{11}g^{\ast}_{33}}}
+\]
+For the vector $\mathbf{e}_z$ we can use the transformation rules derived in the previous section to write $\mathbf{a}^{\ast}_3=g^{\ast}_{3m}\mathbf{a}_m$.  This completes the expressions for the Cartesian basis vectors as linear combinations of the direct space basis vectors.
+
+We can now take an arbitrary vector $\mathbf{r}=x_i\mathbf{e}_i$ with $x_i$ the Cartesian components of $\mathbf{r}$, and express it with respect to the direct basis vectors $\mathbf{a}_i$. Using the above derived definitions of the Cartesian vectors, we can reorganize the components to obtain:
+\begin{equation*}
+\begin{split}
+	\mathbf{r}&=x_i\mathbf{e}_i = \left[\frac{x_1}{ \sqrt{g_{11}} }- \frac{g_{21}x_2}{V\sqrt{g_{11}g^{\ast}_{33}}}+ \frac{g^{\ast}_{31}x_3}{\sqrt{g^{\ast}_{33}}} \right]\mathbf{a}_1+
+	\left[ \frac{g_{11}x_2}{V\sqrt{g_{11}g^{\ast}_{33}}}+ \frac{g^{\ast}_{32}x_3}{\sqrt{g^{\ast}_{33}}} \right]\mathbf{a}_2+\sqrt{g^{\ast}_{33}}x_3\mathbf{a}_3\ ;\\
+	&= r_j\mathbf{a}_j
+\end{split}
+\end{equation*}
+From there we can cast this relation into matrix form:
+\begin{equation}
+	\begin{pmatrix}r_1\\ r_2\\ r_3\end{pmatrix} = \begin{pmatrix} \frac{1}{ \sqrt{g_{11}} } & - \frac{g_{21}}{V\sqrt{g_{11}g^{\ast}_{33}}}& \frac{g^{\ast}_{31}}{\sqrt{g^{\ast}_{33}}} \\
+	0 & \frac{g_{11}}{V\sqrt{g_{11}g^{\ast}_{33}}}& \frac{g^{\ast}_{32}}{\sqrt{g^{\ast}_{33}}}  \\
+	0&0&\sqrt{g^{\ast}_{33}}\end{pmatrix}\begin{pmatrix}x_1\\ x_2\\ x_3\end{pmatrix}
+\end{equation}
+We can further simplify this expression by writing it in terms of the direct space lattice parameters. To do so, let us first consider an explicit expression for the reciprocal metric tensor in terms of the direct space lattice parameters; this is obtained by simply inverting the direct metric tensor, which results in:
+\[
+	g^{\ast}_{ij} = \frac{1}{V^2}\begin{pmatrix}b^2c^2\sin^2\alpha & a b c^2\mathcal{F}[\alpha,\beta,\gamma]&a b^2 c \mathcal{F}[\alpha,\gamma,\beta]\\
+	a b c^2\mathcal{F}[\alpha,\beta,\gamma] & a^2c^2\sin^2\beta & a^2bcF[\beta,\gamma,\alpha]\\
+	a b^2 c \mathcal{F}[\alpha,\gamma,\beta] & a^2bcF[\beta,\gamma,\alpha] &a^2b^2\sin^2\gamma\end{pmatrix}\ ,
+\]
+where we have introduced the function $\mathcal{F}[\alpha,\beta,\gamma]=\cos\alpha\cos\beta-\cos\gamma$. Substitution of the appropriate values then results in:
+\begin{equation}
+	\begin{pmatrix}r_1\\ r_2\\ r_3\end{pmatrix} = \begin{pmatrix} \frac{1}{a} & - \frac{1}{a\tan\gamma}& \frac{bc\mathcal{F}[\gamma,\alpha,\beta]}{V\sin\gamma} \\
+	0 & \frac{1}{b\sin\gamma}& \frac{ac\mathcal{F}[\beta,\gamma,\alpha]}{V\sin\gamma}  \\
+	0&0&\frac{ab\sin\gamma}{V}\end{pmatrix}\begin{pmatrix}x_1\\ x_2\\ x_3\end{pmatrix}\ .\label{\chabbr:eq:ainverse}
+\end{equation}
+If we represent the transformation from direct space coordinates $r_j$ to Cartesian coordinates $x_i$ as $x_i=a_{ij}r_j$, then it is easy to see that the matrix derived here is $a^{-1}_{ij}$.  The matrix $a_{ij}$ is known as the \indexit{direct structure matrix}, and it is given explicitly as:
+\begin{equation}
+	a_{ij} = \begin{pmatrix}a & b \cos\gamma & c \cos\beta\\
+	0 & b\sin\gamma & -\frac{c\mathcal{F}[\beta,\gamma,\alpha]}{\sin\gamma}\\
+	0&0&\frac{V}{ab\sin\gamma}\end{pmatrix}\ .\label{\chabbr:eq:dsm}
+\end{equation}
+Note that $a_{ij}$ only depends on the direct space lattice parameters.
+
+If we take a vector $\mathbf{k}$ expressed in the reciprocal reference frame as $\mathbf{k}=k_i\mathbf{a}^{\ast}_i$, then we can transform the reciprocal basis vectors to direct space as $\mathbf{k}=k_i g^{\ast}_{ij}\mathbf{a}_j$.  Since this expresses the vector $\mathbf{k}$ with respect to the direct basis vectors, we can apply the direct structure matrix to convert them to the components $q_m$ in the Cartesian basis (we also use the fact that the metric tensor is a symmetric tensor so we can change the order of the subscripts as needed):
+\[
+	q_m = a_{mj} g^{\ast}_{ji} k_i \equiv b_{mi} k_i\ ;
+\]
+this expression defines the \indexit{reciprocal structure matrix} $b_{mi}$ as the product of the direct structure matrix and the reciprocal metric tensor.
+
+The structure matrices have a close relationship to each other and to the metric tensors. It is not difficult (but a bit tedious) to prove the following three relationships:
+\begin{equation}
+	b^T = a^{-1};\qquad a^T\,a=g;\qquad b^T\,b=g^{\ast}\ .
+\end{equation}
+Note that the first relation can be used to determine the explicit form for $b_{ij}$ by taking the transpose of the matrix in equation~(\ref{\chabbr:eq:ainverse}). The other equations show that the structure matrices correspond to the so-called \indexit{LU decomposition}\footnote{A square matrix can be decomposed or factorized into the product of a lower-triangular (\textit{L}) and an upper-triangular (\textit{U}) matrix.} of the respective metric tensors.  
+
+\subsection{Example Applications}\label{\chabbr:sec:SMexamples}
+The structure matrices $a_{ij}$ and $b_{ij}$ provide a general way to transform crystal coordinates, both direct and reciprocal, into a common Cartesian reference frame in a way that is completely independent of the shape of the unit cell (i.e., independent of the crystal system).  While many different choices are possible, in this text we focus on the convention that $\mathbf{e}_x\parallel\mathbf{a}$ and $\mathbf{e}_z\parallel\mathbf{c}^{\ast}$ with $\mathbf{e}_y$ completing the right-handed orthonormal reference frame.  We will once gain use the monoclinic unit cell of Example~\ref{\chabbr:ex:exam2} to illustrate the use of these matrices.
+
+\begin{example}
+Compute the direct and reciprocal structure matrices for the monoclinic unit cell with lattice parameters $\{4/5,1,6/5,\frac{\pi}{2},\frac{\pi}{3},\frac{\pi}{2}\}$. 
+
+\noindent The unit cell volume is given by $V=\sqrt{\text{det }g_{ij}}=12\sqrt{3}/25$ so the structure matrices can be obtained readily by substituting in the lattice parameters:
+\[
+	a_{ij} = \begin{pmatrix}\frac{4}{5}&0&\frac{3}{5}\\
+	0 & 1 & 0\\
+	0 & 0 & \frac{3\sqrt{3}}{5}\end{pmatrix} \text{ and }
+	b_{ij} = \begin{pmatrix}
+	\frac{5}{4}& 0 & 0 \\
+	0 & 1 & 0 \\
+	-\frac{5}{4\sqrt{3}} & 0 & \frac{5}{3\sqrt{3}}
+	\end{pmatrix}\ .
+\]
+It is easy to verify that $a^T\,a=g$:
+\[
+a^T a = \begin{pmatrix}\frac{4}{5}&0&0\\
+	0 & 1 & 0\\
+	\frac{3}{5} & 0 & \frac{3\sqrt{3}}{5}\end{pmatrix}
+	\begin{pmatrix}\frac{4}{5}&0&\frac{3}{5}\\
+	0 & 1 & 0\\
+	0 & 0 & \frac{3\sqrt{3}}{5}\end{pmatrix} = \begin{pmatrix}\frac{16}{25} & 0 & \frac{12}{25}\\ 0 & 1 & 0\\ \frac{12}{25} & 0 & \frac{36}{25}\end{pmatrix}=g\ .
+\]
+\end{example}
+
+\begin{example}
+The main use of the structure matrices is for the conversion of crystallographic quantities to coordinates that can be used to draw crystal structures or sections through the reciprocal lattice, to name just two.  The structure matrices are defined in terms of 
+\begin{floatingfigure}[r]{3.4in}
+\centering
+{\includegraphics[width=3.2in]{\graphicspath exam4.eps}}
+\caption{\label{\chabbr:fig:exam4}\small Drawing of the monoclinic direct and reciprocal lattice nodes using the Cartesian reference frame instead of the Bravais unit cell and its reciprocal cell.}
+\end{floatingfigure}
+\noindent  the lattice parameters, which makes them independent of the crystal system being used. Starting from the monoclinic structure of the previous example, we could have used the Cartesian reference frame along with the structure matrices to draw the direct and reciprocal lattice points.  For a direct space lattice point in the $\mathbf{a}$--$\mathbf{c}$ plane, the general node is located at $u\mathbf{a}+w\mathbf{c}$, which, using the direct structure matrix, results in:
+\[
+	\begin{pmatrix}\frac{4}{5}&0&\frac{3}{5}\\
+	0 & 1 & 0\\
+	0 & 0 & \frac{3\sqrt{3}}{5}\end{pmatrix} \begin{pmatrix}u\\ 0\\ w\end{pmatrix} = 
+	\begin{pmatrix}\frac{4u+3w}{5}\\ 0\\ \frac{3w\sqrt{3}}{5}\end{pmatrix}\ .
+\]
+And for the reciprocal lattice nodes $h\mathbf{a}^{\ast}+l\mathbf{c}^{\ast}$ we have:
+\[
+\begin{pmatrix}
+	\frac{5}{4}& 0 & 0 \\
+	0 & 1 & 0 \\
+	-\frac{5}{4\sqrt{3}} & 0 & \frac{5}{3\sqrt{3}}
+	\end{pmatrix}\begin{pmatrix}h\\ 0\\ l\end{pmatrix}=
+	\begin{pmatrix}\frac{5h}{4}\\ 0\\ \frac{5}{\sqrt{3}}(\frac{l}{3}-\frac{h}{4})\end{pmatrix}\ .
+\]
+Fig.~\ref{\chabbr:fig:exam4} shows the same basis vectors as in Fig.~\ref{\chabbr:fig:exam3}, but this time the Cartesian basis vectors are superimposed in black, and the direct and reciprocal lattice points are drawn using the Cartesian coordinates above.  Note that all lattice nodes are in identical positions in the two drawings.  Two points are indicated with respect to the Cartesian basis vectors: the direct lattice point $[001]$ which has coordinates $(3/5,3\sqrt{3}/5)=(0.6,1.0392)$, and the reciprocal lattice point $(\bar{1}00)$ which has coordinates $(-5/4,5/4\sqrt{3})=(-1.25,0.7217)$.
+\end{example}
+
+\section{Other Useful Crystallographic Computations}\label{\chabbr:sec:usefulcomp}
+In this final section we describe a number of useful crystallographic concepts and techniques that don't necessarily have a good fit with the other material in this and the symmetry chapter.  
+
+\subsection{The Vector Cross Product}\label{\chabbr:ssec:crossproduct}
+The cross product between two vectors $\mathbf{p}$ and $\mathbf{q}$ expressed in a Cartesian reference frame $\mathbf{e}_i$ is readily computed by explicitly working out all the cross terms, similar to the dot product expression in equation~(\ref{\chabbr:eq:cartdp}), and using the following facts: $\mathbf{e}_i\times\mathbf{e}_j=-\mathbf{e}_j\times\mathbf{e}_i$ and $\mathbf{e}_i\times\mathbf{e}_i=0$.
+\begin{equation}
+\begin{split}
+\mathbf{p}\times\mathbf{q} &= \begin{pmatrix}p_1&p_2&p_3\end{pmatrix}\begin{pmatrix}	
+	\mathbf{e}_1\times\mathbf{e}_1 & \mathbf{e}_1\times\mathbf{e}_2 & \mathbf{e}_1\times\mathbf{e}_3 \\
+	\mathbf{e}_2\times\mathbf{e}_1 & \mathbf{e}_2\times\mathbf{e}_2 & \mathbf{e}_2\times\mathbf{e}_3 \\
+	\mathbf{e}_3\times\mathbf{e}_1 & \mathbf{e}_3\times\mathbf{e}_2 & \mathbf{e}_3\times\mathbf{e}_3\end{pmatrix}
+	\begin{pmatrix}q_1\\ q_2\\ q_3\end{pmatrix}\ ; \\
+	&=\begin{pmatrix}p_1&p_2&p_3\end{pmatrix}\begin{pmatrix}	
+	0 & \mathbf{e}_3 & -\mathbf{e}_2 \\
+	-\mathbf{e}_3 & 0 & \mathbf{e}_1 \\
+	\mathbf{e}_2 & -\mathbf{e}_1 &0\end{pmatrix}
+	\begin{pmatrix}q_1\\ q_2\\ q_3\end{pmatrix}\ ;\\
+	&=(p_2q_3-p_3q_2)\mathbf{e}_1+(p_3q_1-p_1q_3)\mathbf{e}_2+(p_1q_2-p_2q_1)\mathbf{e}_3\ .\label{\chabbr:eq:cartcp}
+\end{split}
+\end{equation}
+Replacing the Cartesian basis vectors by the Bravais unit cell vectors $\mathbf{a}_i$ we notice one important difference between the handling of the dot products in section~\ref{\chabbr:ssec:DS} and the expression here: The cross product $\mathbf{p}\times\mathbf{q}$ generates a new vector that is normal to the plane formed by $\mathbf{p}$ and $\mathbf{q}$, and we know that normals to planes are reciprocal lattice vectors!  In fact, we \textit{defined} the reciprocal basis vectors in terms of the cross products of the direct basis vectors in equation~(\ref{\chabbr:eq:stardef}). 
+\begin{equation}
+\begin{split}
+\mathbf{p}\times\mathbf{q} &= \begin{pmatrix}p_1&p_2&p_3\end{pmatrix}\begin{pmatrix}	
+	\mathbf{a}_1\times\mathbf{a}_1 & \mathbf{a}_1\times\mathbf{a}_2 & \mathbf{a}_1\times\mathbf{a}_3 \\
+	\mathbf{a}_2\times\mathbf{a}_1 & \mathbf{a}_2\times\mathbf{a}_2 & \mathbf{a}_2\times\mathbf{a}_3 \\
+	\mathbf{a}_3\times\mathbf{a}_1 & \mathbf{a}_3\times\mathbf{a}_2 & \mathbf{a}_3\times\mathbf{a}_3\end{pmatrix}
+	\begin{pmatrix}q_1\\ q_2\\ q_3\end{pmatrix}\ ; \\
+	&=\begin{pmatrix}p_1&p_2&p_3\end{pmatrix}\begin{pmatrix}	
+	0 & V\,\mathbf{a}^{\ast}_3 & -V\,\mathbf{a}^{\ast}_2 \\
+	-V\,\mathbf{a}^{\ast}_3 & 0 & V\,\mathbf{a}^{\ast}_1 \\
+	V\,\mathbf{a}^{\ast}_2 & -V\,\mathbf{a}^{\ast}_1 &0\end{pmatrix}
+	\begin{pmatrix}q_1\\ q_2\\ q_3\end{pmatrix}\ ;\\
+	&=V\,(p_2q_3-p_3q_2)\mathbf{a}^{\ast}_1+V\,(p_3q_1-p_1q_3)\mathbf{a}^{\ast}_2+V\,(p_1q_2-p_2q_1)\mathbf{a}^{\ast}_3\ .\label{\chabbr:eq:Bravaiscp}
+\end{split}
+\end{equation}
+Note that the expression looks very similar to the Cartesian one, but there are two important differences: (1) the result of the cross product is a vector in reciprocal space, and (2) the product is scaled by the volume of the unit cell.  In the Cartesian case, there is no distinction between direct and reciprocal space, and the volume of the cell equals $V=1$, so the new result is fully consistent with the Cartesian expression.  In most crystallographic computations we are not actually interested in the real length of the cross product vector, just in the direction of the vector, so it is standard practice to omit $V$ in all calculations.
+
+As an example, consider the direct space vectors $\mathbf{p}=[112]$ and $\mathbf{q}=[20\bar{1}]$ in an arbitrary Bravais lattice; substitution in eq.~(\ref{\chabbr:eq:Bravaiscp}) results in $\mathbf{p}\times\mathbf{q}=-\mathbf{a}^{\ast}_1+5\mathbf{a}^{\ast}_2-2\mathbf{a}^{\ast}_3$, which we interpret as the reciprocal lattice vector $\mathbf{g}_{\bar{1}5\bar{2}}$ being perpendicular to the plane formed by the $\mathbf{t}_{112}$ and $\mathbf{t}_{20\bar{1}}$ lattice vectors.
+
+By analogy, we can take two reciprocal space vectors $\mathbf{g}$ and $\mathbf{h}$ and form their cross product as:
+\[
+	\mathbf{g}\times\mathbf{h} = V^{\ast}\,(g_2h_3-g_3h_2)\mathbf{a}_1+V^{\ast}\,(g_3h_1-g_1h_3)\mathbf{a}_2+V^{\ast}\,(g_1h_2-g_2h_1)\mathbf{a}_3\ .
+\]
+The resulting vector is clearly a vector in direct space, normal to the plane formed by the two reciprocal lattice vectors.  As an example, let's take the $\mathbf{g}_{100}$ and $\mathbf{g}_{010}$ reciprocal lattice vectors; for their cross product we obtain $\mathbf{g}_{100}\times\mathbf{g}_{010}=\mathbf{a}_3$, which illustrates that the definition~(\ref{\chabbr:eq:stardef}) is also valid for the direct basis vectors by moving the asterisk to all quantities on the other side of the equation:
+\begin{align}
+	\mathbf{a}_1 &= \frac{\mathbf{a}^{\ast}_2\times\mathbf{a}^{\ast}_3}{V^{\ast}} \ ;\nonumber\\
+	\mathbf{a}_2 &= \frac{\mathbf{a}^{\ast}_3\times\mathbf{a}^{\ast}_1}{V^{\ast}} \ ;\label{\chabbr:eq:stardef2}\\
+	\mathbf{a}_3 &= \frac{\mathbf{a}^{\ast}_1\times\mathbf{a}^{\ast}_2}{V^{\ast}} \ .\nonumber	
+\end{align}
+These relations clearly illustrate the duality of the two lattices; the direct space lattice can be considered as the reciprocal lattice to the reciprocal lattice.
+
+\subsection{The Zone Equation}\label{\chabbr:ssec:zones}
+Fig.~\ref{\chabbr:fig:zone}(a) shows a series of lattice planes that have one direction (blue arrow) in common; the normals to these planes are represented by the red vectors, which are perpendicular to the blue vector.  Such a collection of planes is referred to as a \indexit{zone} and the direction vector $\mathbf{t}_{uvw}$ is known as the \indexit{zone axis}.
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=0.7\textwidth]{\graphicspath zone.eps}
+\caption{\label{\chabbr:fig:zone}Illustrations of (a) a zone axis $\mathbf{t}_{uvw}$ being the direction in common to all the lattice planes; and (b) directions lying in a plane with plane normal $\mathbf{g}_{hkl}$.}
+\end{figure}
+
+In (b), the plane with plane normal $\mathbf{g}_{hkl}$ contains multiple directions $\mathbf{t}_{uvw}$ which are all perpendicular to the plane normal. It is clear that (a) and (b) are dual to each other.  In each case, the dot product of the direction vector and the plane normal must vanish:
+\begin{equation*}
+\begin{split}
+	\mathbf{t}_{uvw}\cdot\mathbf{g}_{hkl} &= (u_i\mathbf{a}_i)\cdot(g_j\mathbf{a}^{\ast}_j)\ ;\\
+	&= u_i(\mathbf{a}_i\cdot\mathbf{a}^{\ast}_j)g_j\ ;\\
+	&= u_i\delta_{ij}g_j = u_i\,g_i = 0\ .
+\end{split}
+\end{equation*}
+Writing the last equality explicitly we obtain:
+\begin{equation}
+	h\,u+k\,v+l\,w=0\ .\label{\chabbr:eq:zoneeq}
+\end{equation}
+This equation is known as the \indexit{zone equation}: for a given zone axis $[uvw]$ it represents the condition for a lattice plane $(hkl)$ to belong to the zone, and for a given lattice plane $(hkl)$ it represents the condition for a direction $[uvw]$ to lie in that plane.  When we employ the four-index notation for the hexagonal system, we can extend the zone equation to include the extra index:
+\begin{equation}
+	h\,u+k\,v+i\, t + l\,w=0\ .\label{\chabbr:eq:zoneeqhex}
+\end{equation}
+
+\noindent It is straightforward to apply the zone equation:
+\begin{itemize}
+	\item \textit{Which planes belong to the $[10\bar{2}]$ zone?} We set $u=1$ and $w=-2$ in the zone equation and obtain $h-2l=0$ or $h=2l$; this means that all planes with Miller indices of the form $(2l\,k\,l)$ belong to the $[10\bar{2}]$ zone (examples include $(201)$ and $(020)$).
+	\item \textit{Which directions lie in the plane $(130)$?} Setting $h=1$ and $k=3$ in the zone equation we obtain $u+3v=0$ or $u=-3v$, so that the directions are of the type $[-3v\,v\,w]$ (for instance $[\bar{3}14]$ and $[001]$).
+	\item \textit{In a hexagonal crystal, which planes belong to the $[10\bar{1}2]$ zone?} Plugging in the numbers we obtain the equation $h-i+2l=0$.  Since $i=-(h+k)$ this becomes $2h+k+2l=0$ (example planes include $(02.\bar{1})$ and $(10.\bar{1})$).  Converting the four-index zone axis $[10\bar{1}2]$ to its three-index version we find  $[212]$ which leads to the same zone equation $2h+k+2l=0$.
+\end{itemize}
+
+% comment on where this might be useful
+
+
+\subsection{General Coordinate Transformations}\label{\chabbr:ssec:trafos}
+
+Many crystalline materials undergo a structural change when external conditions, such as temperature or pressure, are changed. Such a change is generally known as a \indexit{phase transition} or \indexit{phase transformation}.  The change to the crystal structure during such a transformation may be subtle, for instance the tilting of oxygen octahedra in perovskite compounds, or it can be a drastic change, such as the introduction of transformation twins, or a change in the stacking sequence of close packed planes.  The structural change may involve only slight atom movements, as is the case in the $\alpha$-$\beta$ transformation in SiO$_2$ (quartz); the crystal structure changes from hexagonal to trigonal, with two chiral variants in the trigonal state. In terms of the space groups, the high temperature $\beta$-quartz structure (stable above $1,078$K) belongs to the hexagonal space group \#171: \spgr{171}; the low (room) temperature $\alpha$-quartz structure has trigonal symmetry and belongs to either of the chiral pair space groups \spgr{152} or \spgr{154}.  In other words, at room temperature, quartz can have either of two structures that are each other's mirror image (note the $3_1$ and $3_2$ screw axes in the space group symbols).
+
+\begin{figure}[hb]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath quartz.eps}
+\caption{\label{\chabbr:fig:quartz}Illustrations of (a) trigonal $\alpha$-SiO$_2$ and (b) hexagonal $\beta$-SiO$_2$; the hexagonal unit cell is indicated for each structure.}
+\end{figure}
+
+The two structures are shown in Fig.~\ref{\chabbr:fig:quartz}; the hexagonal unit cell is outlined for each structure.  Note that the lattice parameters differ only slightly ($a=0.49137$ nm, $c=0.54047$ nm for $\alpha$-quartz, $a=0.49965$ nm, $c=0.54546$ nm for $\beta$-quartz), which means that a particular plane $(hkl)$ will be in nearly the same orientation in both phases, i.e., $(hkl)_{\alpha}\parallel (hkl)_{\beta}$ and similarly for directions.  There is thus no need to transform Miller or direction indices between the two phases.
+
+In other systems, the changes can be significantly larger and can involve a change of crystal system and/or Bravais lattice\footnote{Note that for the quartz example, the crystal systems of $\alpha$ and $\beta$ quartz are different, but the trigonal system can be described using a hexagonal cell so effectively both phases are described as hexagonal structures.}.  As an example, we consider the structure of the perovskite compound SrTiO$_3$, which is primitive cubic at room temperature and transforms to a larger body-centered tetragonal unit cell below $105$K.  Fig.~\ref{\chabbr:fig:STO} show the two structures looking down the respective $[001]$ directions.  The cubic cell has a lattice parameter of $a_c=0.3905$ nm, and the tetragonal cell has lattice parameters $a_t=0.552$ nm and $c_t=0.779$ nm.  The structures have been drawn with a relative orientation that shows the relation between the unit cells; the tetragonal cell is rotated by $45^{\circ}$ with respect to the cubic cell, and the TiO$_6$ octahedra are rotated in an alternating clockwise-counterclockwise pattern along the tetragonal $[001]$ direction, resulting in a doubling of the cubic lattice parameter. From the figure, we can see that the idealized relations between the Bravais basis vectors are as follows:
+\begin{equation*}
+\begin{split}
+	\mathbf{a}_t &= \mathbf{a}_c+\mathbf{b}_c\ ;\\
+	\mathbf{b}_t &= -\mathbf{a}_c+\mathbf{b}_c\ ;\\
+	\mathbf{c}_t &= 2\mathbf{c}_c\ .
+\end{split}
+\end{equation*}
+It should be noted that the actual reported lattice parameters only approximately satisfy these relations; the first equation implies that $a_t=\sqrt{2}a_c$ and we have $a_t=0.552$ nm and $\sqrt{2}a_c = 0.5525$ nm which is very close. The third equation has $c_t=2c_c$ with $c_t=0.779$ nm and $2c_c=0.781$ nm, still very close.
+
+\begin{figure}[h]
+\centering\leavevmode
+\includegraphics[width=0.6\textwidth]{\graphicspath STO.eps}
+\caption{\label{\chabbr:fig:STO}$[001]$ projections of (a) cubic perovskite SrTiO$_3$ and (b) tetragonal SrTiO$_3$; the unit cells are outlined for each structure.}
+\end{figure}
+
+In order to keep the symbols clear and uncluttered, we will represent, from here onwards, cubic quantities in {\color{OCScotsRose}red}, and tetragonal quantities in {\color{OCHighlandsSkyBlue}blue}.  In matrix form, the transformation from the {\color{OCScotsRose}old}  to the {\color{OCHighlandsSkyBlue}new} basis vectors and its inverse can be written as:
+\[
+	{\color{OCHighlandsSkyBlue}\mathbf{a}_i} = \alpha_{ij}{\color{OCScotsRose}\mathbf{a}_j}\text{ with } \alpha_{ij}=\begin{pmatrix}1&1&0\\ -1&1&0\\ 0&0&2\end{pmatrix}\text{ and } {\color{OCScotsRose}\mathbf{a}_i}=\alpha^{-1}_{ij}{\color{OCHighlandsSkyBlue}\mathbf{a}_j}\text{ with }\alpha^{-1}_{ij} = \frac{1}{2}\begin{pmatrix}1&-1&0\\ 1&1&0\\ 0&0&1\end{pmatrix}\ .
+\] 
+The determinant of $ \alpha_{ij}$ is equal to $4$, which is the ratio of the two unit cell volumes. In what follows, it will be useful to also have the direct and reciprocal metric tensors for the two structures:
+{\color{OCScotsRose}\[
+	g_{ij} = a_c^2\delta_{ij}\text{ {\color{OCBlack}and} } g^{\ast}_{ij} = \frac{1}{a_c^2}\delta_{ij}\ .
+\]}
+{\color{OCHighlandsSkyBlue}\[
+	g_{ij} = \begin{pmatrix}a_t^2&0&0\\ 0&a_t^2&0\\ 0&0&c_t^2\end{pmatrix}\text{ {\color{OCBlack}and} } g^{\ast}_{ij} = \begin{pmatrix}\frac{1}{a_t^2}&0&0\\ 0&\frac{1}{a_t^2}&0\\ 0&0&\frac{1}{c_t^2}\end{pmatrix}
+\]}
+
+\subsubsection{Transformation of directions}
+If we start with a direction vector {\color{OCScotsRose}$\mathbf{t}=t_i\mathbf{a}_i$} then we can write the cubic basis vectors in terms of the tetragonal vectors using ${\color{OCScotsRose}\mathbf{a}_i}=\alpha^{-1}_{ij}{\color{OCHighlandsSkyBlue}\mathbf{a}_j}$:
+\[
+	{\color{OCScotsRose}\mathbf{t}=t_i\mathbf{a}_i = t_i}\alpha^{-1}_{ij}{\color{OCHighlandsSkyBlue}\mathbf{a}_j=t_j\mathbf{a}_j=\mathbf{t}}\rightarrow
+	{\color{OCHighlandsSkyBlue}t_j}={\color{OCScotsRose}t_i}\alpha^{-1}_{ij} \text{ and the inverse relation }{\color{OCScotsRose}t_i}={\color{OCHighlandsSkyBlue}t_j}\alpha_{ji}\ .
+\]
+As simple examples we have the transformations ${\color{OCScotsRose}[110]}\rightarrow{\color{OCHighlandsSkyBlue}[100]}$, and ${\color{OCHighlandsSkyBlue}[1\bar{1}1]}\rightarrow{\color{OCScotsRose}[202]=[101]}$, where we have reduced the last set of indices to relative primes.
+
+\subsubsection{Transformation of reciprocal basis vectors}
+In section~\ref{\chabbr:sec:transform} we have seen how we can use the metric tensors to transform the basis vectors between direct and reciprocal spaces; in particular, we have $\mathbf{a}^{\ast}_m = g^{\ast}_{mj} \mathbf{a}_j$ and $\mathbf{a}_m = g_{mj}\mathbf{a}^{\ast}_j$.  Applying this to the cubic reciprocal basis vectors we have:
+\[
+	{\color{OCScotsRose}\mathbf{a}^{\ast}_i =  g^{\ast}_{mj} \mathbf{a}_j=g^{\ast}_{mj}}\alpha^{-1}_{jk}{\color{OCHighlandsSkyBlue}\mathbf{a}_k}={\color{OCScotsRose}g^{\ast}_{mj}}\alpha^{-1}_{jk}{\color{OCHighlandsSkyBlue}g_{kl}\mathbf{a}^{\ast}_l}\rightarrow {\color{OCScotsRose}\mathbf{a}^{\ast}_i =(g^{\ast}_{mj}}\alpha^{-1}_{jk}{\color{OCHighlandsSkyBlue}g_{kl})\mathbf{a}^{\ast}_l}.
+\]
+Substituting the three matrices in this expression we obtain:
+\[
+	{\color{OCScotsRose}g^{\ast}_{mj}}\alpha^{-1}_{jk}{\color{OCHighlandsSkyBlue}g_{kl}} = \begin{pmatrix}\frac{a_t^2}{2a_c^2}&-\frac{a_t^2}{2a_c^2}&0\\
+	\frac{a_t^2}{2a_c^2}&\frac{a_t^2}{2a_c^2}&0\\ 0&0&\frac{c_t^2}{2a_c^2}\end{pmatrix}
+\]
+At the start of this section we observed that for this SrTiO$_3$ compound, it is a very good approximation to set $a_t=a_c\sqrt{2}$ and $c_t=2a_c $; inserting these values the matrix product reduces to:
+\[
+	{\color{OCScotsRose}g^{\ast}_{mj}}\alpha^{-1}_{jk}{\color{OCHighlandsSkyBlue}g_{kl}} = \begin{pmatrix}1&-1&0\\ 1&1&0\\ 0&0&2\end{pmatrix} = \alpha^T_{ml}\ ;
+\]
+For the ideal lattice parameters of the tetragonal structure we find for the relation between the reciprocal basis vectors:
+\[
+	{\color{OCScotsRose}\mathbf{a}^{\ast}_i} = \alpha^T_{ij}{\color{OCHighlandsSkyBlue}\mathbf{a}^{\ast}_j} = {\color{OCHighlandsSkyBlue}\mathbf{a}^{\ast}_j}\alpha_{ji}\text{ and the inverse relation } {\color{OCHighlandsSkyBlue}\mathbf{a}^{\ast}_i} = {\color{OCScotsRose}\mathbf{a}^{\ast}_i}\alpha^{-1}_{ji}\ .
+\]
+We leave it as a reader exercise to verify the following expression:
+\[
+	{\color{OCHighlandsSkyBlue}\mathbf{a}^{\ast}_i =(g^{\ast}_{mj}}\alpha_{jk}{\color{OCScotsRose}g_{kl})\mathbf{a}^{\ast}_l}\ .
+\]
+
+
+\subsubsection{Transformation of plane normals}
+Consider a plane normal ${\color{OCScotsRose}\mathbf{g}_{hkl}}$ in the cubic reference frame.  We can transform this vector to the tetragonal reference frame using the results from the preceding subsections:
+\[
+	{\color{OCScotsRose}\mathbf{g}=g_i\mathbf{a}^{\ast}_i=g_i}\alpha^T_{ij}{\color{OCHighlandsSkyBlue}\mathbf{a}^{\ast}_j=\mathbf{g}}\rightarrow {\color{OCHighlandsSkyBlue}g_j}={\color{OCScotsRose}g_i}\alpha^T_{ij}
+	=\alpha_{ji}{\color{OCScotsRose}g_i}\text{ and the inverse relation }{\color{OCScotsRose}g_i}=\alpha^{-1}_{ij}{\color{OCHighlandsSkyBlue}g_j}\ .
+\]
+Examples include ${\color{OCScotsRose}(111)}\rightarrow  {\color{OCHighlandsSkyBlue}(202)}$ and  ${\color{OCHighlandsSkyBlue}(10\bar{1})}\rightarrow  {\color{OCScotsRose}(11\bar{1})}$.  Note that it is often necessary to rescale the resulting fractional vector components to relative prime numbers.
+
+
 
 
 

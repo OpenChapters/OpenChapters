@@ -61,6 +61,29 @@
 % ###################################################################
 
 
+%Chapter structure
+%- introductory remarks
+%- what is a property?
+%  - formal definition
+%  - characteristics of a property
+%- representation of a property by tensors
+%  - example electrical conductivity
+%  - properties by tensor rank
+%- intrinsic thermodynamic symmetry
+%  - equilibrium properties
+%    - 13x13 K matrix
+%  - transport properties
+%    - 9x9 L matrix
+%- crystallographic symmetry
+%  - Neumann's theorem
+%  - example for low order point group
+%
+%
+%
+
+
+
+
 \section{Introductory Remarks}\label{\chabbr:intro}
 
 \begin{floatingfigure}[r]{3.2in}
@@ -139,9 +162,9 @@ In teaching, performance is often presented as the closing loop of the MSE frame
 
 \section{Definition of a Material Property}\label{\chabbr:matprop}
 
-\begin{messagebox}{{\sffamily\bfseries Important Section}}{ocre}{\icattention}{OCwhite}
-In this section you will learn a formal definition of what a material property is.  Later on in this chapter we will introduce many examples.
-\end{messagebox}
+%\begin{messagebox}{{\sffamily\bfseries Important Section}}{ocre}{\icattention}{OCwhite}
+%In this section you will learn a formal definition of what a material property is.  Later on in this chapter we will introduce many examples.
+%\end{messagebox}
 
 Although it is difficult to provide a general abstract description of a material property, valid for all possible properties, it is instructive to think of a material property as \textit{the link between an external influence and the material's response to that influence}.  If we denote the external influence by $\mathcal{F}$ ($\mathcal{F}$ stands for \underline{F}ield or \underline{F}orce) and the material \underline{R}esponse or \underline{R}eaction by $\mathcal{R}$, then in the most general sense the relation between the two is given by
 \begin{equation}
@@ -181,7 +204,7 @@ If we truncate the series after the second term (i.e., we ignore all derivatives
 \end{equation}
 This is a \textit{linear} relation between the applied field and the response, and this relation becomes a proportionality between applied field and response when $\mathcal{R}_0=0$.  The quantity $\mathbf{P}$ is a \textit{material property}.\index{material property}  Ignoring the higher order derivatives of $\mathcal{R}$ is generally known as the \textit{linear approximation}.\index{linear approximation}  This approximation considerably simplifies the math and for many purposes it is a useful and accurate approximation.
 
-Since the external field $\mathcal{F}$ is often a vector quantity (e.g., the electric field $\mathcal{F}=\mathbf{E}$) and the response can also be a vector (e.g., the current density $\mathcal{R}=\mathbf{j}$) it is clear that the material property $\mathbf{P}$ is not always going to be described by a single number.  Instead, the material property can become a vector itself, or even a higher order mathematical quantity known as a \indexit{tensor}; nearly all of the interesting and useful material properties are represented by tensors, in particular for single crystals but also in polycrystalline materials.  For now, think of a tensor as an array of numbers with a set of special properties; in Chapter~\ref{\chabbr:tensors} the concept of a tensor is described in substantial detail.  Without going into the details at this time, we can state that, in general, a material property is represented by a \textit{matrix} of numbers; this can be a column vector, a $3\times 3$ matrix or even a higher dimensional array.  A combination of thermodynamic (or intrinsic) symmetry and the crystallographic symmetry of the material determines which of those numbers can be different from zero, and which \textit{must} be zero.  
+Since the external field $\mathcal{F}$ is often a vector quantity (e.g., the electric field $\mathcal{F}=\mathbf{E}$) and the response can also be a vector (e.g., the current density $\mathcal{R}=\mathbf{j}$) it is clear that the material property $\mathbf{P}$ is not always going to be described by a single number.  Instead, the material property can become a vector itself, or even a higher order mathematical quantity known as a \indexit{tensor}; nearly all of the interesting and useful material properties are represented by tensors, in particular for single crystals but also in polycrystalline materials.  For now, think of a tensor as an array of numbers with a set of special properties; in the Foundational Chapter~\ref{TENSOR:Tensors} the concept of a tensor is described in substantial detail.  Without going into the details at this time, we can state that, in general, a material property is represented by a \textit{matrix} of numbers; this can be a column vector, a $3\times 3$ matrix or even a higher dimensional array.  A combination of thermodynamic (or intrinsic) symmetry and the crystallographic symmetry of the material determines which of those numbers can be different from zero, and which \textit{must} be zero.  
 
 If the series expansion in equation~(\ref{eq:expansion}) is truncated after the third term, then it is said that the material behaves in a non-linear way.  The relation can then be written as:
 \begin{equation}
@@ -218,13 +241,19 @@ where the points $\mathbf{r}$ and $\mathbf{r}^{\,\prime}$ are separated by a (ra
 \subsection{Anisotropy}
 \label{\chabbr:anisotropy}
 
-A homogeneous property can be either isotropic or anisotropic in a single crystal.  If a property is the same in every direction, then that property is said to be \textit{isotropic},\index{isotropic} otherwise it is \textit{anisotropic}.\index{anisotropic}  Every isotropic homogeneous quantity must necessarily be described by a \textit{scalar}.  The most interesting properties are usually those which are direction dependent.  We will see later on that the mathematical quantity known as a tensor is perfectly suited for the description of anisotropic behavior.  Examples of properties which may depend upon direction include thermal conductivity, dielectric and magnetic susceptibilities, elastic moduli, and so on.  It is important to note that an anisotropic property in a single crystal can become isotropic in a poly-crystalline material, since all crystal orientations may be simultaneously present in the poly-crystal.
+A homogeneous property can be either isotropic or anisotropic in a single crystal.  If a property is the same in every direction, then that property is said to be \textit{isotropic},\index{isotropic} otherwise it is \textit{anisotropic}.\index{anisotropic}  Every isotropic homogeneous quantity must necessarily be described by a \textit{scalar}.  The most interesting properties are usually those which are direction dependent.  In Foundational Chapter~\ref{TENSOR:Tensors} we describe in detail how a  that the mathematical quantity known as a tensor is perfectly suited for the description of anisotropic behavior.  Examples of properties which may depend upon direction include thermal conductivity, dielectric and magnetic susceptibilities, elastic moduli, and so on.  It is important to note that an anisotropic property in a single crystal can become isotropic in a poly-crystalline material, since all crystal orientations may be simultaneously present in the poly-crystal.
+
+% move electrical conductivity example here
+
+
+
 
 \subsection{Symmetry}
 \label{\chabbr:symmetry}
 
-Symmetry is one of the more fundamental properties of crystalline matter.  Apart from color, it is also in many cases the most ``eye-catching'' aspect of a natural crystal.  One can introduce the concept as follows: take an arbitrary object and determine if there is a way to ``move'' the object into another orientation in such a way that the initial and final configurations are indistinguishable.  The specific ways of ``moving'' an object into \textit{self-coincidence} represent the symmetries of that object.  Enumeration of the different symmetry properties of a crystal forms the subject of the ``group theory'' of crystallography.
+Symmetry is one of the more fundamental properties of crystalline matter.  Apart from color, it is also in many cases the most ``eye-catching'' aspect of a natural crystal.  One can introduce the concept as follows: take an arbitrary object and determine if there is a way to ``move'' the object into another orientation in such a way that the initial and final configurations are indistinguishable.  The specific ways of ``moving'' an object into \textit{self-coincidence} represent the symmetries of that object.  Enumeration of the different symmetry properties of a crystal forms the subject of the ``group theory'' of crystallography.  All possible crystallographic symmetry operations and their combinations into point groups and space groups are described in detail in Chapter~\ref{CRYSYM:Symmetry}.
 
+% insert section on effect of symmetry on 
 
 \section{About Coordinate Transformations and Tensors}
 \label{sec:transformations1}
