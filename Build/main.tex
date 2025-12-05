@@ -53,16 +53,17 @@
 % uncomment the chapter you wish to typeset from the list below; to typeset the
 % entire text, leave all lines commented
 %\includeonly{src/Crystallography/Crystallography}
-\includeonly{src/Symmetry/Symmetry}
+%\includeonly{src/Symmetry/Symmetry}
 %\includeonly{src/Symmetry/Symmetry,src/Crystallography/Crystallography}
 %\includeonly{src/2Drotations/2Drotations}
 %\includeonly{src/3Drotations/3Drotations}
-%\includeonly{src/RotationSymmetry/RotationSymmetry}
+\includeonly{src/OrientationSymmetry/OrientationSymmetry}
 %\includeonly{src/Misorientations/Misorientations}
 %\includeonly{src/MaterialProperty/MaterialProperty}
 %\includeonly{src/PropertyTensors/PropertyTensors}
 %\includeonly{src/PropertySymmetry/PropertySymmetry}
-%\includeonly{src/ExampleProperties/ExampleProperties}
+%\includeonly{src/SelectedProperties/SelectedProperties,src/TransportProperties/TransportProperties}
+%\includeonly{src/MicrostructureDescriptors/MicrostructureDescriptors}
 
 %\includeonly{src/LinearAlgebra/LinearAlgebra,src/Tensors/Tensors}
 
@@ -80,17 +81,21 @@
 \part{Crystallography}
 % ###################################################################
 \include{src/Symmetry/Symmetry} % Crystallographic Symmetry
-%\include{src/Crystallography/Crystallography} % Basic Crystallography
-%\include{src/RotationSymmetry/RotationSymmetry} % Rotations and Symmetry
+\include{src/Crystallography/Crystallography} % Basic Crystallography
+\include{src/OrientationSymmetry/OrientationSymmetry} % Rotations and Symmetry
 %\include{src/Misorientations/Misorientations} % Misorientations and Disorientations
+
+\include{src/MicrostructureDescriptors/MicrostructureDescriptors} % Misorientations and Disorientations
+
 
 % ###################################################################
 %\part{Properties of Single Crystal Materials}
 % ###################################################################
-%\include{src/MaterialProperty/MaterialProperty} % What is a Material Property?
+\include{src/MaterialProperty/MaterialProperty} % What is a Material Property?
 %\include{src/PropertyTensors/PropertyTensors} % Equilibrium and Transport Property Tensors
 %\include{src/PropertySymmetry/PropertySymmetry} % Properties and Symmetry
-%\include{src/ExampleProperties/ExampleProperties} % Example Anisotropic Material Properties
+\include{src/SelectedProperties/SelectedProperties} % Example Anisotropic Material Properties
+\include{src/TransportProperties/TransportProperties} % Example Transport Properties
 
 \part{Foundational Chapters}
 %

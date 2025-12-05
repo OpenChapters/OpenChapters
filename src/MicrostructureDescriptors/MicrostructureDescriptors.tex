@@ -1,0 +1,636 @@
+% 
+% ###################################################################
+%  Copyright (c) 2025, AUTHORNAME 
+%  Editors: A.D. Rollett & M. De Graef
+%  All rights reserved.
+%
+% Licensed under the Creative Commons CC BY-NC-SA 4.0 License, 
+% hereafter referred to as the "License"; you may not use this 
+% document except in compliance with the License. You may obtain 
+% a copy of the License at 
+%     https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode 
+% Unless required by applicable law or agreed to in writing, all 
+% material distributed under the License is distributed on an 
+% "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+% either express or implied. See the License for the specific 
+% language governing permissions and limitations under the License.
+% ###################################################################
+
+% ###################################################################
+% ###################################################################
+% ###################################################################
+% The following lines are to be uncommented or edited as needed 
+
+%     uncomment this line only if this chapter is a core/foundational chapter;
+%     for a core chapter a "Foundational" label will appear on the top left above the chapter title.
+%\corechapter{Yes}
+
+%     this will appear in a secondary header below the chapter title.
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University}
+
+% All figures are stored in the src/ChapterTitle/eps folder and must be of the *.eps, *.pdf, or *.png type. 
+
+% this is the 6-character (all uppercase) chapter descriptor used in labels and refs...
+\renewcommand{\chabbr}{MICROD}
+
+%     replace \noheaderimage by the chapter header image file name (without .eps extension).
+%     pdf files are also acceptable.
+%     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
+\chapterimage{\noheaderimage}
+
+% start the chapter and define the chapter label (outside of the \chapter command!)
+\chapter{Microstructure Descriptors}\label{\chabbr:MicrostructureDescriptors} % should be the same as the filename (without extension)
+
+% add the author information so that it will appear in the Author List at the start of the document
+% repeat this line for each author
+\writeauthor{MICROD:MicrostructureDescriptors}{Microstructure Descriptors}{De Graef}{Marc}{Materials Science \& Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://kernie.materials.cmu.edu/~degraef/www/}
+
+% Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels.
+% Each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
+% second column if LaTeX breaks the line at an awkward location.  The label color (OCBurntOrange) should not be changed.
+% Within the itemize environment, hyphenation is temporarily turned off.
+\begin{learningobjectives}
+% This itemized list should be formatted as follows and must be enclosed by { } 
+{\begin{itemize}
+    \item[{\color{OCBurntOrange}\ref{\chabbr:whatisit}:}] Understand what a microstructure is
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:quaternions}:}] Define the quaternion number system\\
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+\end{itemize}}
+\end{learningobjectives}
+% ###################################################################
+% ###################################################################
+% ###################################################################
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% This where the actual chapter content starts   %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introductory Remarks}\label{\chabbr:sec:whatisit}
+Modern materials characterization tools cover the entire range of length scales encountered in materials, as illustrated in Fig.~\ref{\chabbr:fig:lengthscales}; from the atomistic range (using scanning and transmission electron microscopes, x-ray diffraction, and scanning probe microscopes) to the macroscopic range, visible to the unaided eye.  In this chapter, we introduce a number of descriptors that are mostly applicable to the intermediate ``micro'' range which covers length scales between about $100$ nm and $1$ mm.  In this ``micro'' range, we can use visible light (often in the form of an optical microscope) to study what the material looks like. Accordingly, we call the collective features that are ``visible'' at this length scale range the \indexit{microstructure} of the material; in other words, microstructure refers to those features that can be made visible using, essentially, an optical microscope (or an instrument that uses a similar wave length range).   In broad terms, we distinguish between \indexit{single crystalline materials} and \indexit{polycrystalline materials}. In the former case, the crystal lattice has a single orientation across the entire sample, in the latter case the sample consists of many domains with different orientations of the crystal lattice; we call such domains \indexit{grains}. 
+
+In this chapter, we will focus our attention on polycrystalline materials, and we will introduce a series of grain descriptors, ranging from grain size and grain shape to grain orientation.  We will see that all of those grain attributes have an impact of material properties and behavior when the material is subjected to a set of external conditions (temperature, stress, electromagnetic fields, etc.). The analysis of grain orientations leads to the study of a material's \indexit{texture} and this will be the topic of a separate chapter.
+
+Quantification of microstructures is an important area in MSE; we borrow techniques and tools from statistics, image recognition and processing, and mathematics, and we combine those tools into algorithms that are suitable to solve the microstructure problems we face.  Machine learning tools are becoming increasingly relevant to address specific problems, such as feature segmentation, background corrections, and contrast improvement.  But before we can use advanced tools, we must begin with the basic microstructure descriptors that underly many of our theoretical models for microstructure properties: grain size, area/volume fraction, grain boundary length and area, and so on.  Historically, optical microscopy played an important role in this area; 2D images were readily obtainable (after proper sample preparation), and before the advent of computer-based image processing, standardized manual measurement methods were developed along with techniques to connect the measured 2D quantities to their 3D equivalents.  This is the domain of \indexit{stereology}, a branch of mathematics, and we will cover some of the basic stereological concepts in this chapter.  We then conclude this chapter with a brief introduction to 2D and 3D shape quantification.
+
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=6in]{\graphicspath lengthscales.eps}
+\caption{\label{\chabbr:fig:lengthscales}Microstructure length scales, the electromagnetic spectrum, and the resolution ranges of various experimental characterization techniques.}
+\end{figure}
+
+\section{Grain Size Measurements}\label{\chabbr:sec:grainsize}
+In this section, we will consider \indexit{equiaxed grains}, i.e., grains that have very nearly the same size when measured in random directions. The perfect equiaxed 2D shape would obviously be the circle, but it is not possible to tile the plane without gaps using circles, nor is it possible to tile all of space with spheres.  Grains touch each other along \indexit{grain boundaries} and, in general, three boundaries will meet in a \indexit{triple junction}. In the absence of significant porosity, there is in general no empty space between grains. Equiaxed grains can generally be well approximated by a circle (or sphere, in 3D); this means that we can assign an \indexit{equivalent circle diameter} as an approximate grain size.  One of the central questions to be answered is then: how do we measure the diameter of a large number of grains without introducing a statistical bias in the measurements? As we will see in the next subsection, it is not uncommon for such microstructure measurements to be carried out using random sampling.
+
+\subsection{Random Measurements}\label{\chabbr:ssec:random}
+The French naturalist and mathematician, the Comte de Buffon (1707-1788), proposed the following problem: consider a plane, ruled with equidistant parallel lines, where the distance between the lines is $D$.  A needle of length $L<D$ is tossed onto the plane. What is the probability that the needle intersects one of the lines?  The situation is illustrated in Fig.~\ref{\chabbr:fig:buffon}.  Needles of length $L$ are randomly tossed onto the grid of lines in part (a) of the figure.  If we consider one particular case, shown in (b), then we see that this needle will intersect the top line, provided the distance $L\sin\theta$ is greater than $y$.  If $L\sin\theta$ is less than $y$, then the needle is not long enough to intersect the top line.  The range of $y$ values is $[0,D]$, and the range of $\theta$ values is $[0,\pi]$, so we can draw a diagram which shows all possible positions and orientations for the needle (the gray rectangle in Fig.~\ref{\chabbr:fig:buffon}c) and all cases for which the needle intersects a line, given by the area below the sine-curve.  The probability of randomly hitting a line is then equal to the area under the sine-curve, divided by the area of the rectangle, or:
+\[
+	P = \frac{L}{\pi D} \int_0^{\pi} \sin\theta\,\mathrm{d}\theta = \frac{2L}{\pi D}.
+\]
+
+\begin{figure}[b!]
+\centering\leavevmode
+\includegraphics[width=6in]{\graphicspath buffon.eps}
+\caption{\label{\chabbr:fig:buffon}(Microstructure length scales, the electromagnetic spectrum, and the resolution ranges of various experimental characterization techniques.)a) schematic of the Buffon needle experiment; (b) geometry of the problem; (c) integration area to obtain the probability $P$.}
+\end{figure}
+
+If we now carry out this experiment for a needle with length $L=D$, then the probability is precisely $P=2/\pi$. In practice, we would toss the needle a number of times, say $N$, and count how many times it intersects a line, say $C$, and then we would have $\pi=2N/C$, an estimate of $\pi$!  It is therefore possible to determine the value of $\pi$, by randomly tossing a needle onto a set of parallel lines.\footnote{Over a nine-year period, we had the students of the junior level class on Microstructure and Properties at Carnegie Mellon University carry out $100$ attempts each and count how many times an intersection occurred. The total number of attempts over that period was $N=27,600$ and the number of intersections was $C=17,478$, leading to an estimate for $\pi$ of $3.1583$, i.e. about $0.5\%$ too large.}  Table~\ref{tb:buffon} shows how closely we can approximate $\pi$ by repeating the experiment.  Obviously, these are numerical results, not from a real experiment!\footnote{There are several websites which have Java applets illustrating this problem;  a good one can be found at \href{http://mste.illinois.edu/activity/buffon/}{{\color{blue}here}}.}
+
+
+\begin{table}[t!]
+\centering\leavevmode
+\begin{tabular}{|c|c|l|r|}
+\hline
+$N$ & $C$ &  $2N/C$ & \% error\\
+\hline\hline
+$10^{2}$ & 63&3.17460& 1.0507\\
+$10^{3}$ & 652 &3.06748& -2.3589\\
+$10^{4}$ & 6504 & 3.07503& -2.1187\\
+$10^{5}$ & 63338 &3.15766& 0.5115\\
+$10^{6}$ & 636091 & 3.14420& 0.0831\\
+$10^{7}$ & 6364338 &3.14251& 0.0292\\
+$10^{8}$ & 63662298 & 3.14158&-0.0005\\
+\hline
+Exact & $2/\pi=0.63661977$&3.1415926&---\\
+\hline
+\end{tabular}
+\caption{\label{tb:buffon}Results from simulations based on uniform random number generation of the Buffon needle problem.}
+\end{table}
+
+It is not unusual to use \indexit{random sampling} approaches to determine or estimate quantities that would otherwise be difficult to measure and Buffon's needle problem serves as a particularly simple example of this approach. Random sampling lies at the core of a class of numerical techniques commonly known as \indexit{Monte Carlo simulations}
+
+
+\subsection{Manual grain size measurements}
+In the materials field, several techniques have been introduced for measuring the grain size based on random sampling, mostly before the advent of digital image processing and machine learning approaches.  While these methods are based on random sampling, they are precisely defined by the \indexit{American Society for Testing of Materials} (ASTM)\index{ASTM}, in their document E112: \textit{Standard test methods for determining average grain size}. There are several methods described in this document, and we will select one of them: the \indexit{lineal intercept method}. Consider a hypothetical grain structure, such as the one shown in Fig.~\ref{fig:grains}.  The magnification of the ``image''  is $100\times$, so that $1$ mm in the image corresponds to $10 \mu$m in the sample.  The lineal intercept method is then carried out as follows:
+
+\begin{enumerate}
+	\item Count the number of grains intercepted by a straight line, long enough to yield at least $50$ intercepts. You may 
+	need to adjust the image magnification so that this condition is satisfied.  An \indexit{intercept} is defined as a line segment 
+	that overlays one grain.  An \indexit{intersection} is the point at which the line crosses a grain boundary.  It is customary to
+	count the intersections as follows:  each intersection counts as $1$ count.  If the line ends inside a grain, add $1/2$ count.
+	If the line ends on a grain boundary, add $1$ count. If the line is tangent to a grain boundary, add $1$ intersection.
+	If the line crosses the junction of three grains, add $3/2$ counts.
+	
+	\item Repeat this procedure for $3$ or $4$ additional line orientations, \textit{or} move the line parallel to itself by about $1/5$th
+	of the image width.  This will increase the precision of your measurement.
+	
+	\item Repeat this procedure for several different fields of view (regions in your sample), assuming that the grain
+	size is uniform across the entire sample.
+
+	\item Compute the number of intersections per unit line length, $N_L$, and the average segment length, $\ell$.  The \indexit{ASTM
+	grain size number}, $G$, is then given by
+	\begin{align}
+		G &= -6.6439\log_{10}(\ell) - 3.288;\\
+		G &= 6.6439\log_{10}(N_L) - 3.288.
+	\end{align}
+	
+	\item If the magnification used for the measurements is not $M_b=100\times$, but rather $M$, then
+	one must add a correction factor to $G$ (add, not multiply, because the relation uses logarithms).  The correction factor $Q$ is given by:
+	\[
+		Q = 6.6439 \log_{10}\left(\frac{M}{M_b}\right)
+	\]
+\end{enumerate}
+
+This procedure results in a number $G$ which is usually rounded to the nearest half integer and reported as ``the ASTM grain size number''; the actual grain size information can then be looked up in a conversion table in the ASTM standard document.  It is customary to report grain sizes in ASTM units, i.e., as a ASTM grain size number $G$.
+
+Carrying out this procedure for the image in Fig.~\ref{\chabbr:fig:grains}, for the $4$ straight lines of length $75$ mm each, we find the following result:  total number of intersections: $33.5$; total length of the lines at magnification of $100\times$: $3$ mm; $N_L=11.16\rightarrow G = 3.67$.  This is obviously not very accurate because the number of intersections is very low. Typically, the grain size number is rounded to the nearest half integer, so in this case we find $G=3.5$.
+
+We could also randomly place a circle of known diameter on the microstructure and count the number of intersections in the same way as for the straight lines.  For the example in the figure there are $22$ intersections, and the circumference of the circle at the stated magnification is $2.59$ mm, leading to $N_{L}=8.49$ or an ASTM grain size number of $G=3$. Given the small number of intercepts used, the agreement between the two numbers is quite good.
+
+\subsection{Digital grain size measurements}
+The manual measurement methods described above were introduced at a time when all microscopy images were obtained using standard ``wet'' photography methods, i.e., record an image with a camera loaded with photographic film, develop the film, and use a calibrated magnifying system to project enlarged images on special photographic paper subsequently used for the measurements. Since the introduction of digital image recording devices in the mid-seventies, there have been significant developments in the area of \indexit{digital image processing}, both user-assisted and fully automated.  To illustrate how much progress has been made in the past fifty years, consider that the original Eastman Kodak digital camera (1975) had $0.01$ mega-pixels while the Vera Rubin LSST telescope camera installed in mid-2025 has $3,200$ mega-pixels, an increase by five orders of magnitude in five decades.  Typical cameras used today in the materials characterization field are in the range $512\times 512$ to $4,096\times 4,096$ pixels$^2$, i.e., $1/4$ to $16$ mega-pixels; depending on the application, those cameras have a single channel (grayscale) or three channels for RGB color images.  As digital cameras and images became more common, a parallel development of image processing algorithms occurred, a development that is still underway today.
+
+There are many image processing packages that can be used to analyze microstructure images.  One of the more useful ones is \href{https://imagej.net/Fiji/Downloads}{{\color{blue}Fiji}} (formerly known as ImageJ); Fiji, written in Java and originally developed in the medical community, has grown to a package with many built-in tools that are perfectly suited for grain size determination and much more.  \indexit{Python}, an interpreted, object-oriented, high-level programming language has many open-source image analysis libraries, including \textit{Scikit-image}, \textit{HyperSpy}, \textit{Mahotas}, etc.  In addition to Fiji and Python, there are numerous other packages available, some free, some commercial.  Among the commercial packages, \href{http://www.reindeergraphics.com}{{\color{blue}FoveaPro}} is a very comprehensive image analysis program. There are also several scripting languages that provide image analysis tools, in particular \href{http://www.mathworks.com}{{\color{blue}Matlab}}, and \href{https://www.harrisgeospatial.com/docs/using_idl_home.html}{the {\color{blue}Interactive Data Language}} (IDL).  Most microscope companies have their own image analysis package, often optimized for a particular instrument (e.g., optical microscopy images or scanning electron microscopy images).
+
+{\color{red}to be completed}
+
+\subsection{Other relevant descriptors}
+
+\subsubsection{Area and perimeter related quantities}
+Using image analysis tools, the area, $A$, of a grain is probably the easiest quantity to determine simply by counting how many pixels it contains; multiplication by the square of the scaling factor (e.g., $\mu$m$^2$ per pixel) then produces the actual area.  Care must be taken to properly account for the pixels along the grain boundaries.  
+
+The perimeter, $P$, is a bit more difficult to obtain as it requires a number of morphological operations (see also section~\ref{\chabbr:sec:morphological}). For a given grain, an erosion operation is performed on the grain which makes it one pixel smaller in all directions. This eroded grain is then subtracted from the original grain, leaving the perimeter pixels (an additional erosion step may be needed to ensure a perimeter that is a single pixel wide).  Counting the perimeter pixels and multiplying by the scale factor then produces the perimeter length; alternatively, one can compute the sum of the distances between consecutive pixels along the perimeter.
+
+Once the area and perimeter are known, one can compute the dimensionless  \indexit{compactness} or \indexit{circularity} $C$ as
+\[
+	C = \frac{P^2}{A} .
+\]
+One can show that $4\pi A \le P^2$, with the equality only valid for the circular disk; an inequality of this type is known as an \indexit{isoperimetric inequality}.  Rearranging the factors, we obtain an expression for the \indexit{isoperimetric quotient} $Q$ as:
+\begin{equation}
+	Q \equiv \frac{4\pi A}{P^2} = \frac{4\pi}{C} \le 1\ .\label{\chabbr:eq:IQ}
+\end{equation}
+An equivalent relation also exists in 3D using the volume $V$ and the surface area $S$:
+\begin{equation}
+	Q_3 = \frac{36\pi V^2}{S^3} \le 1\ ,\label{\chabbr:eq:IQ3} 
+\end{equation}
+with the sphere being the only 3D object for which $Q_3=1$. 
+
+An alternative measure for compactness is \indexit{Haralick's circularity}, which is defined by 
+\[
+	C_H = \frac{\mu_R}{\sigma_R},
+\]
+where $R$ is the distance between a perimeter point and the \indexit{centroid} of the grain; $\mu_R$ is the mean distance, and $\sigma_R$ the variance.  The centroid, $\mathbf{c}$, of a grain can be computed by adding together all the coordinates of the pixels of the grain and dividing by the number of pixels $N$ of the grain:
+\[
+	\mathbf{c} = \frac{1}{N} \sum_{i=1}^N (x_i, y_i).
+\]
+Compactness and circularity measures are often used to determine how much a shape deviates from being circular and are hence measures for \indexit{shape complexity}.
+
+
+\subsubsection{Chord, eccentricity, and elongatedness}
+A \indexit{chord} is a line connecting any two points on the perimeter; if all possible chords lie entirely inside the shape, then the object is \indexit{convex}. The \indexit{eccentricity} is defined as the ratio of the maximum chord length to the maximum perpendicular chord length, as illustrated in Fig.~\ref{\chabbr:fig:elongatedness}(a).  The \indexit{elongatedness} is defined as the ratio of the long edge length $a$ to the short edge length $b$ for the circumscribing rectangle with the smallest surface area $ab$.
+
+\begin{figure}[t]
+\centering\leavevmode
+%\includegraphics[width=5in]{\graphicspath elongatedness.eps}
+\caption{\label{\chabbr:fig:elongatedness} Illustration of the eccentricity (a) and the elongatedness (b).}
+\end{figure}
+
+
+\subsubsection{Caliper and Feret diameters}
+The \indexit{Feret diameter} can be obtained by placing an object in a particular orientation and determining the distance between two horizontal tangent lines (or planes in 3D), as illustrated in Fig.~\ref{\chabbr:fig:feret}(a).  The distance $F_h$ between the two horizontal tangents is the horizontal Feret diameter; one can also define a vertical Feret diameter $F_v$ or simply rotate the object $90^{\circ}$ and adjust the horizontal tangents.
+
+\begin{figure}[b]
+\centering\leavevmode
+%\includegraphics[width=5in]{\graphicspath feret.eps}
+\caption{\label{\chabbr:fig:feret}Illustration of the Feret (a) and caliper (b) diameters of an ellipse.}
+\end{figure}
+
+The \indexit{caliper diameter} is the largest possible Feret diameter; it is obtained by rotating the object by $360^{\circ}$ and taking the maximum $F_h$ value; alternatively, one can rotate the set of tangents around the object, as shown in Fig.~\ref{\chabbr:fig:feret}(b).  It is clear that the caliper diameter of the ellipse is equal to twice its major semi-axis.  One can show that the average Feret diameter is related to the perimeter $P$, and is given by:
+\[
+	\langle F_h\rangle = \frac{P}{\pi}
+\]
+for any convex object.
+
+
+\subsection{Image analysis and set theory}
+As digital cameras became more widely available, a need arose for a formal definition of the operations that can be carried out on a digital image. The \indexit{theory of image analysis} was first developed in the late 1970s -- early 1980s by research groups in Europe and the USA.  The underlying mathematics is mostly based on set theory, so it is useful to first take a closer look at basic set operations.  Then we make use of these operations to create morphological image processing tools that can be used on microstructure images.\footnote{Portions of this section are based on Chapter 2 in \cite{ohser2000a}.}
+
+\subsubsection{Basic set operations} 
+We define a \indexit{set} $A$ as a collection of items that satisfy a certain given condition or rule $f$:
+\begin{equation}	
+	  A = \{x\vert f(x)=\text{True}\}
+\end{equation}
+The \indexit{complement} $A^c$ of the set is defined as $A^c = \{ x\vert x \notin A\}$.  There are four basic operations on pairs of sets $A, B$:\index{set!union}\index{set!intersection}\index{set!difference}\index{set!Cartesian product}
+\begin{align}
+	\text{Union:} &\quad A\cup B = \{x\vert x\in A \text{ or } x\in B\};\\
+	\text{Intersection:} &\quad A\cap B = \{x\vert x\in A \text{ and } x\in B\};\\
+	\text{Difference:} &\quad A\backslash B = \{x\vert x\in A \text{ and } x\notin B\};\\
+	\text{Cartesian Product:} &\quad A\times B = \{(x,y)\vert x\in A \text{ and } y\in B\}.
+\end{align}
+The \indexit{Cartesian product of sets} results in pairs of set elements; note that the individual elements need not have the same type, i.e., we can have a set $A$ of apples and $B$ of oranges and create the Cartesian product set with elements of the type (apple, orange).
+
+Often it is possible to define sets that represent geometric objects.  For instance, a \indexit{plane} of points in $\mathbb{R}^3$ with normal unit vector $\hat{\mathbf{n}}$ at a distance $r$ from the origin can be written as:
+\begin{equation}
+	\text{Plane:} \quad E_{r,\hat{\mathbf{n}}} = \{\mathbf{x}\in\mathbb{R}^3\vert\mathbf{x}\cdot\hat{\mathbf{n}} = r \}.
+\end{equation}
+A \indexit{3D section} is then the volume formed by two parallel planes at distances $r_1$ and $r_2$ from the origin:
+\begin{equation}
+	\text{Section:} \quad E_{[r_1,r_2],\hat{\mathbf{n}}} = \{\mathbf{x}\in\mathbb{R}^3\vert r_1\le\mathbf{x}\cdot\hat{\mathbf{n}}\le r_2 \}.
+\end{equation}
+A \indexit{ball} is defined as the collection of points that are at a particular distance $r$ from a given point $\mathbf{r}$, or at less than that distance:
+\begin{equation}
+	\text{Ball:} \quad b(\mathbf{x},r) = \{\mathbf{y}\in\mathbb{R}^3\vert\,\, \vert\vert \mathbf{y}-\mathbf{x}\vert\vert \le r\}.
+\end{equation}
+The symbol $\vert\vert\ldots\vert\vert$ stands for the length of the argument using an appropriate metric.  We distinguish two variants of the ball:\index{open ball}\index{sphere}
+\begin{align}
+	\text{Open Ball:} &\quad b_o(\mathbf{x},r) = \{\mathbf{y}\in\mathbb{R}^3\vert\,\, \vert\vert \mathbf{y}-\mathbf{x}\vert\vert < r\};\\
+	\text{Sphere:} &\quad s(\mathbf{x},r) = \{\mathbf{y}\in\mathbb{R}^3\vert\,\, \vert\vert \mathbf{y}-\mathbf{x}\vert\vert = r\}.
+\end{align}
+Similarly, we can define a one-dimensional \indexit{interval} as:
+\begin{align}
+	\text{Closed Interval:} &\quad [a,b] = \{x\in\mathbb{R}\vert a\le x\le b\};\\
+	\text{Open Interval:} &\quad ]a,b[ = \{x\in\mathbb{R}\vert a< x< b\}.
+\end{align}
+Using the Cartesian product, we can generate equivalent shapes in higher dimensional spaces, for instance the \indexit{closed rectangle}:
+\begin{equation}
+	\text{Closed Rectangle:} \quad [a_1,b_1]\times [a_2,b_2] = \{(x_1,x_2)\in\mathbb{R}^2\vert a_i\le x_i\le b_i, i\in[1,2]\}.
+\end{equation}
+
+We say that a set is \indexit{bounded} if there exists a finite sphere that fully contains the set. The set is \indexit{compact} if it is both closed and bounded, and it is \indexit{connected} if there are no non-empty disjoint closed subsets. To define the morphological operations in the next section, we will need a few additional set operations:\index{set operation!magnification}\index{set operation!reflection}\index{set operation!translation}\index{set operation!rotation}\index{set operation!Euclidean motion}
+\begin{align}
+		\text{Magnification:} &\quad c\,A = \{cx\vert x\in A, c\in \mathbb{R}\};\\
+		\text{Reflection:} &\quad \check{A} = \{-x\vert x\in A\};\\
+		\text{Translation:} &\quad A+y = \{x+y\vert x\in A\};\\
+		\text{Rotation:} &\quad M\,A = \{M\,x\vert x\in A, M\in SO(d)\};\\
+		\text{Euclidean Motion:} &\quad m\,A = \{Mx+y\vert x\in A, (M,y)\in SO(d)\times\mathbb{R}^d\}.
+\end{align}
+$SO(d)$ is the set of $d$-dimensional special orthogonal matrices, i.e., the set of rotations in a $d$-dimensional space.
+
+Next, we introduce a very important type of sum: the \indexit{Minkowski sum}\index{set operation!Minkowski sum} or \text{direct sum}:\index{set operation!direction sum}
+\begin{equation}
+	\text{Direct Sum}:\quad A\oplus B = \{x+y\vert x\in A, y\in B\} = \bigcup_{y\in B} (A+y);
+\end{equation}
+the set $B$ is known as the \indexit{structuring element}.  The second equality expresses the fact that the direct sum can be written as a union of translations. The direct sum is best illustrated by an example. 
+
+\begin{figure}[h]
+\centering\leavevmode
+%\includegraphics[width=4in]{\graphicspath directsum.eps}
+\caption{\label{\chabbr:fig:directsum}Illustration of the Minkowski or direct sum of two sets.}
+\end{figure}
+
+Consider the two shapes in Fig.~\ref{\chabbr:fig:directsum}, a circle and a rectangle, slightly displaced from the origin. The direct sum is obtained by taking the circle, and copying it in every point of the structuring element, i.e., the rectangle set; a few copies are shown in the figure.  The resulting set of points is a rectangle with rounded corners, the radius of curvature being equal to that of the circle.  It should be noted that Minkowski addition is both commutative and associative. A related operation is that of \indexit{dilation},\index{set operation!dilation} which is the direct sum with the reflection of the structuring element:
+\begin{equation}
+	\text{Dilation}:\quad A\oplus \check{B} = \{x-y\vert x\in A, y\in B\};
+\end{equation}
+The dilation has the nice property that if it contains the origin, then the original two objects overlap; this is used in the video gaming industry to detect collisions between objects.
+
+We can also define the \indexit{Minkowski subtraction} as:\index{set operation!Minkowski subtraction}
+\begin{equation}
+	\text{Minkowski Subtraction}:\quad A\ominus B = \left(A^c\oplus B\right)^c = \bigcap_{y\in B} (A+y).
+\end{equation}
+This operation can then be used to define the \indexit{erosion} process:\index{set operation!erosion}
+\begin{equation}
+	\text{Erosion}:\quad A\ominus \check{B} = \{ x\in\mathbb{R}^d\vert (B+x)\subset A\}.
+\end{equation}
+The two operations are illustrated in Fig.~\ref{\chabbr:fig:erosion}. The top row shows the individual steps involved in the Minkowski subtraction: first compute $A^c$, then the direct sum with $B$, and then take the complement.  Similarly, for the erosion operation, the structuring element is first reflected, and then the same steps are taken as for the Minkowski subtraction.
+
+\begin{figure}[ht]
+\centering\leavevmode
+%\includegraphics[width=4in]{\graphicspath erosion.eps}
+\caption{\label{\chabbr:fig:erosion}Illustration of the Minkowski subtraction (top row) of two sets, and the erosion operation (bottom row).}
+\end{figure}
+
+ 
+
+\subsubsection{Morphological operations}\label{\chabbr:sec:morphological}
+Using the set operations defined in the previous section we can create algorithms to modify binary images in a precisely controlled way; the set operations thus provide an unambiguous way to describe algorithms.  In this section, we introduce two important frequently used morphological operations, known as  \indexit{morphological opening} and \indexit{morphological closing}.  The dilation and erosion operations introduced in the previous section can be combined into the following two operations:
+\begin{align}
+	\text{Opening}:\quad A\circ B = \left(A\ominus \check{B}\right)\oplus B\ ;\\
+	\text{Closing}:\quad A\bullet B = \left(A\oplus \check{B}\right)\ominus B\ .
+\end{align}
+The opening operation is typically used to remove objects that have a size smaller than the structuring element; closing does the same, but on the complement of the original image. Closing can thus be used to remove noise pixels.  An example of the morphological opening operation is shown in Fig.~\ref{\chabbr:fig:opening}; a set of circles of varying sizes is opened using the structuring element shown at the center (this is one of the circles from the lower left corner of the input image). In the resulting image, all the circles smaller than the structuring element are removed.
+
+
+\begin{figure}[h]
+\centering\leavevmode
+%\includegraphics[width=5.5in]{\graphicspath opening.eps}
+\caption{\label{\chabbr:fig:opening}Illustration of the morphological opening of the image on the left using the structuring element at the center.}
+\end{figure}
+
+
+\section{Introduction to Stereology}\label{sec:stereology}
+
+Stereology\index{stereology} is a branch of mathematics that connects quantities measured in 2D (i.e., quantities that are relatively easy to measure) to the corresponding quantities in 3D (quantities that are generally more difficult to measure), e.g., area fraction to volume fraction. Stereology is a well developed field that addresses many questions related to microstructure quantification, including:
+\begin{itemize}
+\item How to measure grain size (in 3D)?
+\item How to measure volume fractions, size distributions of a second phase.
+\item How to measure the amount of interfacial area in a material (important for porous materials).
+\item How to measure crystal facets (e.g., in minerals).
+\item How to predict strength (particle pinning of dislocations).
+\item How to predict limiting grain size (boundary pinning by particles).
+\item How to construct or synthesize digital microstructures from 2D data, i.e., how to re-construct a detailed arrangement of grains or particles based on cross-sections.
+\end{itemize}
+In this section, we will introduce the definitions of important quantities, followed by a description of important relations between quantities that are easily measured, and quantities that generally cannot be measured directly.  We will not discuss the proofs of the many stereological relations that are relevant for microstructural measurements; for those, we refer the interested reader to the standard reference for the use of stereology in microstructure measurements, namely the $1970$ book \textit{Quantitative Stereology} by E.E. Underwood \cite{underwood1970a}. For an overview of the image analysis algorithms used to implement stereological relations we recommend the $2000$ book \textit{Statistical Analysis of Microstructures in Materials Science} by J. Ohser and F. M{\"u}cklich \cite{ohser2000a} as well as the 2015 \textit{The Image Processing Handbook} by J.C. Russ and F.B. Neal \cite{russ2015a}.
+
+\subsection{Stereology Definitions}
+Stereology uses a standardized notation scheme for all its fundamental quantities.  This scheme is easy to learn and consists of a small number of capital letters: $P$ for point; $L$ for line length; $A$ for area; $S$ for surface area; $V$ for volume; $N$ for the number of features; and $T$ for total. When these symbols are used as subscripts, then we add the word ``per'' to their definition, for instance $P_A$ represents points per unit area, $L_V$ line length per unit volume (this could be used, for instance, to express dislocation density).  An overbar is used to indicate an averaged quantity, for instance $\bar{A}$ for the average area or $\bar{L}$ for the average line length.  The symbol $[\ell]$ in the following sections can stand for any length unit, e.g., mm, cm, $\mu$m, etc.; a long dash --- denotes dimensionless quantities.
+
+\subsubsection{Point-related measurements}
+
+\begin{enumerate}
+\item $P$ [---]:  \# of test points;
+\item $P_P$ [---]: Point fraction (points-per-point);
+\item $P_L$ [$\ell^{-1}$]: \# point intersections per unit line length; 
+\item $P_A$ [$\ell^{-2}$]: \# points per unit area;
+\item $P_V$ [$\ell^{-3}$]; \# points per unit test volume.
+\end{enumerate}
+
+\subsubsection{Line-related measurements}
+
+\begin{enumerate}
+\item $L$ [$\ell$]: Length of lineal elements, test line length;
+\item $L_L$ [$\ell/\ell$]=[---]: Lineal fraction;
+\item $L_A$ [$\ell/\ell^2$]=[$\ell^{-1}$]: Length of lineal elements per unit test area;
+\item $L_V$ [$\ell/\ell^3$]=[$\ell^{-2}$]; Length of lineal elements per unit test volume.
+\end{enumerate}
+
+
+\subsubsection{(Surface) area-related measurements}
+
+\begin{enumerate}
+\item $A$ [$\ell^2$]: Planar area of intercepted features, planar test area;
+\item $S$ [$\ell^2$]: Surface/interface area (not necessarily planar);
+\item $A_A$ [$\ell^2/\ell^2$=[---]: area fraction;
+\item $S_V$ [$\ell^2/\ell^3$]=[$\ell^{-1}$]: surface area per unit volume\\
+\end{enumerate}
+
+\subsubsection{Volume-related measurements}
+
+\begin{enumerate}
+\item $V$ [$\ell^3$]: Volume of 3D features, test volume;
+\item $V_V$ [$\ell^3/\ell^3$]=[---]:  Volume fraction\\
+\end{enumerate}
+
+
+\subsubsection{Number-of-features measurements}
+
+\begin{enumerate}
+\item $N$ [---]: Number of features;
+\item $N_L$ [$\ell^{-1}$]: Number of interceptions of features per unit line length;
+\item $N_A$ [$\ell^{-2}$]: Number of interceptions of features per unit area;
+\item $N_V$ [$\ell^{-3}$]:  Number  of features per unit test volume.
+\end{enumerate}
+
+\subsubsection{Averaged measurements}
+
+\begin{enumerate}
+\item $\bar{L}$  [$\ell$]: Average lineal intercept $L_L/N_L$;
+\item $\bar{A}$ [$\ell^2$]: Average areal intercept $A_A/N_A$;
+\item $\bar{S}$ [$\ell^2$]: Average surface area $S_V/N_V$;
+\item $\bar{V}$ [$\ell^3$]: Average volume $V_V/N_V$.
+\end{enumerate}
+
+\subsubsection{Miscellaneous measurements}
+In addition to the quantities described above, there are a few other parameters that are frequently used as microstructural descriptors:
+\begin{enumerate}
+\item $\Delta$ [$\ell$]: nearest neighbor spacing, center-to-center (e.g.\ between particles);
+\item $\lambda$  [$\ell$]: mean free path (uninterrupted distance between particles; this is an important quantity for the computation of the critical resolved shear stress for dislocation motion);
+\item $(N_A)_b$  [$\ell^{-2}$]: number of particles per unit area in contact with a grain boundary;
+\item $N_S$  [$\ell^{-2}$]: number of particles per unit area of a surface (important for particle pinning of grain boundaries).
+\end{enumerate}
+
+
+
+
+
+\noindent Let us consider what types of data we can readily extract from a micrograph:
+\begin{enumerate}
+\item We can measure how many points fall in one phase versus another phase, $P_P$ (points per test point) or $P_A$ (points per unit area). Similarly, we can measure area e.g., by counting points on a regular grid, so that each point represents a constant, known area, $A_A$.
+\item We can measure lines in terms of line length per unit area (of section), $L_A$; or we can measure how much of each test line falls, say, into a given phase, $L_L$.
+\item We can use lines to measure the presence of boundaries by counting the number of intercepts per line length, $P_L$.
+\item We can measure the angle between a line and a reference direction; for a grain boundary, this is an inclination angle.
+\end{enumerate}
+
+
+There are several fundamental stereological relationships\index{stereology!fundamental relations} between these quantities; the most important relations are (without proof):
+\begin{itemize}
+	\item $V_V=A_A=L_L=P_P$ (dimensionless) 
+	\item $S_V = (4/\pi)L_A = 2P_L$ (dimension of ``per unit length'')
+	\item $L_V=2P_A$ (dimension of ``per unit area'')
+	\item $P_V = L_VS_V/2 = 2P_AP_L$ (dimension of ``per unit volume'')
+\end{itemize}
+These are exact relationships provided that the measurements are made with statistical uniformity (i.e., randomly); one should always be aware that all experimental data is subject to measurement errors.
+
+Table~\ref{tb:relations} shows the same relationships in tabular form; quantities in blue are easily measured, quantities in red are very difficult to measure, so we make use of the stereological relationships listed above to derive them from the easy measurement results.  There are many additional stereological relationships of importance to materials characterization and we will introduce some of them in later chapters.
+
+\begin{table}[h!]
+\centering\leavevmode
+\begin{tabular}{c|cccccc}
+Microstructural & \multicolumn{6}{c}{Dimension of symbol}\\
+Feature & --- & $\ell^{-1}$ && $\ell^{-2}$ && $\ell^{-3}$ \\
+\hline
+Points & {\color{blue}$P_P$} & {\color{blue}$P_L$} & $\rightarrow$ & {\color{blue}$P_A$} &$\rightarrow$ & {\color{red}$P_V$} \\
+&$\downarrow$ & $\downarrow$ & & $\downarrow$ &$\nearrow$ & \\
+Lines & {\color{blue}$L_L$} & {\color{blue}$L_A$} && {\color{red}$L_V$} && ---\\
+&$\downarrow$ & $\downarrow$  &$\nearrow$ & \\
+Surfaces & {\color{blue}$A_A$} & {\color{red}$S_V$} && --- && --- \\
+&$\downarrow$  \\
+Volumes & {\color{red}$V_V$} & ---& & ---& & --- \\
+\hline
+\end{tabular}
+\caption{\label{tb:relations}Stereological relationships of measured (blue) to calculated (red) quantities. The symbol $\ell$ stands for any length unit.}
+\end{table}
+
+
+\section{Moment-based Shape Descriptors}\label{\chabbr:sec:momentshapedescriptors}
+The human brain is very good at analyzing complex scenes and recognizing individual objects within those scenes. This object identification ability often relies on recognition of certain object shapes. To mimic the brain's ability to recognize shapes by means of a computer algorithm is generally a very difficult problem.  In broad terms, shapes can be described in a number of ways:
+\begin{itemize}
+	\item \textit{verbally}: a verbal description of a shape usually carries limited or no quantitative information, and is likely restricted to shape classes, e.g., ``box-like'' or ``cylindrical'', as well as vague terminology, such as  ``roundish'', ``pear-like'', etc. 
+	\item \textit{mathematically}: this is usually an exact description of a shape and its dimensions and generally involves an implicit or explicit equation for the bounding surfaces of the object.
+	\item \textit{digitally}: an object can be described as a collection of pixels or voxels that lie on a regular grid; this usually involves the use of a characteristic function or shape function, which is set to $1$ for voxels that belong to the object and $0$ outside the object.
+	\item \textit{graphically}: an object is described by a collection of triangles or higher order polygons that fully cover the surface.
+\end{itemize}
+With the exception of the mathematical description, all of these are approximate and/or qualitative descriptions.  
+
+\subsection{Shape functions}
+The \indexit{shape function} or \indexit{characteristic function}, $D(\mathbf{r})$, of an object is defined as follows:
+\begin{equation}
+	D(\mathbf{r}) \equiv \left\{ \begin{array}{lcl}
+	1 & \,& \mathbf{r}\text{ inside the object}\ ;\\
+	\frac{1}{2} && \mathbf{r}\text{ on the surface of the object}\ ;\\
+	0 & & \mathbf{r}\text{ outside the object}\ .
+	\end{array}\right.
+\end{equation}
+In other words, the shape function is equal to unity inside the object and vanishes outside; the value of $1/2$ on the object's surface is only occasionally used.  Note that the shape function is piecewise continuous and generally not fully differentiable because of the discontinuity at the object surface.
+
+There are many applications of shape functions; in the context of microstructures, the main application involves moment-based shape descriptors.  In what follows, we will assume that a 2D or 3D grain with arbitrary shape is represented on a regular (square or cubic) grid of points, and for each point a value of $0$ or $1$ is assigned, depending on whether the point lies outside or inside the shape. The step size of the grid can be adjusted to provide a coarse or fine representation of the shape.  
+
+\subsection{Definition of moments}
+Consider the 1D Gaussian or normal distribution with mean $\mu$ and standard deviation $\sigma$, defined as:
+\begin{equation}
+	G(x;\mu,\sigma) = \frac{1}{\sigma\sqrt{2\pi}}\mathrm{e}^{-\frac{(x-\mu)^2}{2\sigma^2}}\ . 
+\end{equation}
+The $n$-th order geometric moment of this (or any other) distribution is then defined as:
+\begin{equation}
+	\mu_n = \int_{-\infty}^{+\infty}\!\!\!\mathrm{d}x\,x^n\,G(x;\mu,\sigma)\ .
+\end{equation}
+The lowest order moments are $\mu_0=1$ (the area under the curve); $\mu_1=\mu$ (the mean of the distribution); and $\mu_2=\mu^2+\sigma^2$ (the width). The next two moments are known as the \textit{skewness} or \textit{asymmetry} ($\mu_3$) and the \textit{kurtosis} or \textit{peakedness} ($\mu_4$); their explicit expressions are more complicated and not particularly illuminating. Taken together, these moments provide quantitative information about the shape of the distribution.  
+
+If we move the distribution so that its mean lies in the origin, then the corresponding moments are known as \indexit{central moments}; we denote them with an overbar, as follows:
+\begin{equation}
+	\bar{\mu}_n = \int_{-\infty}^{+\infty}\!\!\!\mathrm{d}x\,(x-\mu)^n\,G(x;0,\sigma)\ .
+\end{equation}
+
+These definitions are readily generalized to 2D and 3D moments for an arbitrary distribution $G(\mathbf{r})$:
+\begin{equation}
+	\bar{\mu}_{pqr} = \int_{-\infty}^{+\infty}\!\!\!\mathrm{d}x\,\int_{-\infty}^{+\infty}\!\!\!\mathrm{d}y\,\int_{-\infty}^{+\infty}\!\!\!\mathrm{d}z\,(x-x_c)^p(y-y_c)^q(z-z_c)^r\,G(\mathbf{r})\ .
+\end{equation}
+This defines a 3D central moment of order $n=p+q+r$.  The center-of-mass coordinates $(x_c,y_c,z_c)$ are computed first as the regular geometric moments $(\mu_{100},\mu_{010},\mu_{001})/\mu_{000}$ and they are subsequently used for the computation of all central moments.
+
+If we replace the distribution by the shape function then we can compute the shape moments for an arbitrary shape.  Consider as an example a 2D rectangle with edge lengths $2a$ and $2b$, aligned with the coordinate axes and with the origin at the center of the rectangle. Since $(x_c,y_c)=(0,0)$ by construction, the regular moments are equal to the central moments. We have the following elementary integration:
+\[
+	\mu_{pq} = \int_{-a}^{+a}\!\!\!\mathrm{d}x \int_{-b}^{+b}\!\!\!\mathrm{d}y\,x^p\,y^q = \frac{a^{p+1}b^{q+1}}{(p+1)(q+1)}[(-1)^p+1][(-1)^q+1]\ .
+\]	
+The factors between square brackets take care of the fact that the integral vanishes when $p$ and/or $q$ is odd.  For the lowest order moments we find:
+\begin{equation}
+	\begin{split}
+		\mu_{00} &= 4ab = A\ ;\\
+		\mu_{20} &= \frac{4}{3}a^3b\ ;\\
+		\mu_{11} &= 0\ ;\\
+		\mu_{02} &= \frac{4}{3}ab^3\ .
+	\end{split}
+\end{equation}
+
+For a circle of radius $R$, centered in the origin, we can use the polar coordinate form of the integration:
+\[
+	\mu_{pq} = \int_{0}^{R}\!\!\!r\,\mathrm{d}r \int_{0}^{2\pi}\!\!\!\mathrm{d}\theta\,(r\cos\theta)^p\,(r\sin\theta)^q = \frac{\Gamma \left(\frac{p+1}{2}\right) \Gamma \left(\frac{q+1}{2}\right) R^{p+q+2}}{4 \Gamma \left(\frac{1}{2} (p+q+4)\right)}[(-1)^p+1][(-1)^q+1]\ ,
+\]	
+where $\Gamma(x)$ is the Euler gamma function.  For the lowest order moments we have:
+\begin{equation}
+	\begin{split}
+		\mu_{00} &= \pi\,R^2 = A\ ;\\
+		\mu_{20} &= \frac{\pi}{4}R^4\ ;\\
+		\mu_{11} &= 0\ ;\\
+		\mu_{02} &= \frac{\pi}{4}R^4\ .
+	\end{split}
+\end{equation}
+
+
+\subsection{2D moment invariants}
+The central moments derived in the previous subsection depend on the choice of reference frame; if the reference frame is rotated, then the moments will change accordingly.  Since the second-order moments can be written as a $2\times 2$ matrix, we can make use of the invariants of this matrix: the trace and the determinant.
+\[
+	M = \begin{pmatrix}\mu_{20}& \mu_{11}\\ \mu_{11} & \mu_{02}\end{pmatrix}\rightarrow \left\{\begin{array}{l} \text{Tr}(M) = \mu_{20}+\mu_{02};\\ 
+	\text{det}(M) = \mu_{20}\mu_{02}-\mu^2_{11}\end{array}\right.\ .
+\]
+Both determinant and trace are invariant under coordinate rotations; by combining them with the area $A$ we can also make them scale invariant. We define the \indexit{2D moment invariants} $\omega_1$ and $\omega_2$ by the following relations:
+\begin{equation}
+\begin{split}
+	\omega_1 &= \frac{2A^2}{\mu_{20}+\mu_{02}}\ ;\\
+	\omega_2 &= \frac{A^4}{\mu_{20}\mu_{02}-\mu^2_{11}}\ .
+\end{split}
+\end{equation}
+It can be shown that $\omega_1$ is invariant under \indexit{similarity transformations} (i.e., rotations, translations, and uniform scaling) whereas $\omega_2$ is invariant under \indexit{affine transformations} (similarity transformations plus anisotropic scaling and shearing).
+
+When we substitute the central moments for the circle we obtain $\omega_1=4\pi$ and $\omega_2=16\pi^2$, and for the rectangle we have $\omega_1=24\tau/(1+\tau^2)$ and $\omega_2=144$, where $\tau=a/b$, the rectangle aspect ratio.  If we divide the moment invariants of the rectangle by those of the circle, then we obtain the normalized 2D moment invariants:
+\begin{equation}
+	\bar{\omega}_1=\frac{6}{\pi}\frac{\tau}{1+\tau^2};\quad\text{ and }\quad \bar{\omega}_2 = \frac{9}{\pi^2}\ .	
+\end{equation}
+We can make a few observations regarding these normalized 2D moment invariants:
+\begin{itemize}
+	\item Both $\bar{\omega}_1$ and $\bar{\omega}_2$ vary between $0$ and $1$, which means that we can represent any 2D shape by a point in the unit square.
+	\item $\bar{\omega}_1$ always depends on the aspect ratio of the shape, whereas $\bar{\omega}_2$ does not; in fact, if we take $\bar{\omega}_1$ for a square (i.e., $\tau=1$) then we have $\bar{\omega}_1=12$. Note that for both the circle and the square, which have aspect ratio equal to $1$, we have $\bar{\omega}_2=\bar{\omega}^2_1$. This is a general property that is valid for all shapes: shapes with aspect ratio $1$ lie along the parabola $\bar{\omega}_2=\bar{\omega}^2_1$, and there are no 2D shapes that correspond to points to the right of the parabola.
+	\item When an isotropic shape is distorted by anisotropic scaling, the corresponding point in the $\bar{\omega}_1$--$\bar{\omega}_2$ space moves along a straight horizontal line, i.e., the $\bar{\omega}_2$ value does not change.  This means in particular that the top line $\bar{\omega}_2=1$ represents the circle at $(1,1)$, and all ellipses at $(\bar{\omega}_1,1)$.
+	\item All 2D shapes with a given aspect ratio lie along a parabola similar to $\bar{\omega}_2=\bar{\omega}^2_1$, 
+\end{itemize}
+
+{\color{red}include example map here for some microstructure}
+
+
+%\subsection{}\label{\chabbr:}
+
+
+
+\subsection{3D moment invariants}
+In 3D, the moments can be organized in a symmetric $3\times 3$ matrix given by:
+\[
+	M = \begin{pmatrix}\mu_{200}& \mu_{110} & \mu_{101}\\ \mu_{110} & \mu_{020}&\mu_{011}\\
+	\mu_{101}&\mu_{011}&\mu_{002}\end{pmatrix}\ ,
+\]
+where we have omitted the overbars, i.e., the moments are to be interpreted as central moments. The three rotational invariants of this matrix are given by:
+\begin{equation}
+\begin{split}
+	\mathcal{O}_1 &= \mu_{200}+\mu_{020}+\mu_{002}\ ;\\
+	\mathcal{O}_2 &= \mu_{200}\mu_{020}+\mu_{200}\mu_{002}+\mu_{020}\mu_{002}-\mu_{110}^2-\mu_{101}^2-\mu_{011}^2\ ;\\
+	\mathcal{O}_3 &= \mu_{200}\mu_{020}\mu_{002}+2\mu_{110}\mu_{101}\mu_{011}-\mu_{200}\mu_{011}^2-\mu_{020}\mu_{101}^2
+	-\mu_{002}\mu_{110}^2\ .
+\end{split}
+\end{equation}
+As before, we can make the rotational invariants also scale invariant by combining them with powers of the volume $\mu_{000}$; we obtain three \indexit{3D moment invariants}:
+\begin{equation}
+	\Omega_1\equiv\frac{3\mu_{000}^{5/3}}{\mathcal{O}_1},\qquad\Omega_2\equiv\frac{3\mu_{000}^{10/3}}{\mathcal{O}_2},\qquad\Omega_3\equiv\frac{\mu_{000}^{5}}{\mathcal{O}_3}\ .
+\end{equation}
+$\Omega_1$ and $\Omega_2$ are similarity invariants and therefore they depend on the aspect ratios of the 3D object; $\Omega_3$ is an affine invariant.  
+
+Let us apply these relations to the rectangular prism with edge lengths $a$, $b$, and $c$.   If we introduce two aspect ratios $\tau_1=b/a$ and $\tau_2=c/a$, then the integrations for the central moments are elementary and we obtain:
+\begin{equation*}
+\begin{split}
+	\mu_{pqr} &= \int_{-a/2}^{+a/2}\!\!\!\mathrm{d}x \int_{-b/2}^{+b/2}\!\!\!\mathrm{d}y \int_{-c/2}^{+c/2}\!\!\!\mathrm{d}z \,x^p\,y^q\, z^r\ ;\\
+	 &=\left(\frac{a}{2}\right)^{p+q+r+3}\frac{\tau_1^{q+1}\tau_2^{r+1}}{(p+1)(q+1)(r+1)} [(-1)^p+1][(-1)^q+1][(-1)^r+1]\ .
+	 \end{split}
+\end{equation*}	
+These moments are only non-zero when $p$, $q$, and $r$ are all even in which case the product of the terms in square brackets equals $8$ so that the general moment expression becomes:
+\[
+	\mu_{pqr} = 8 \left(\frac{a}{2}\right)^{p+q+r+3}\frac{\tau_1^{q+1}\tau_2^{r+1}}{(p+1)(q+1)(r+1)}\ .
+\]
+For the lowest order moments we find:
+\begin{equation}
+	\begin{split}
+		\mu_{000} &= a^3\tau_1\tau_2 = abc=V\ ;\\
+		\mu_{200} &= \frac{1}{12}a^5\tau_1\tau_2\ ;\\
+		\mu_{020} &= \frac{1}{12}a^5\tau_1^3\tau_2\ ;\\
+		\mu_{002} &= \frac{1}{12}a^5\tau_1\tau_2^3\ .
+	\end{split}
+\end{equation}
+Combining the moments into the expressions for $\mathcal{O}_i$ we obtain:
+\begin{equation}
+\begin{split}
+	\mathcal{O}_1 &= \mu_{200}+\mu_{020}+\mu_{002} = \frac{1}{12} a^5 \tau_1 \tau_2 \left(1+\tau_1^2+\tau_2^2\right)\ ;\\
+	\mathcal{O}_2 &= \mu_{200}\mu_{020}+\mu_{200}\mu_{002}+\mu_{020}\mu_{002}= \frac{1}{144}a^{10}\tau_1^2\tau_2^2(\tau_1^2+\tau_2^2+\tau_1^2\tau_2^2)\ ;\\
+	\mathcal{O}_3 &= \mu_{200}\mu_{020}\mu_{002} = \frac{1}{1728}a^{15}\tau_1^5\tau_2^5\ .
+\end{split}
+\end{equation}
+The 3D moment invariants $\Omega_i$ for the rectangular prism are then readily shown to be:
+\begin{equation}
+	\Omega_1 = 12 \frac{3(\tau_1\tau_2)^{2/3}}{1+\tau_1^2+\tau_2^2};\qquad 
+	\Omega_2 = 144 \frac{3(\tau_1\tau_2)^{4/3}}{\tau_1^2+\tau_2^2+\tau_1^2\tau_2^2};\qquad
+	\Omega_3 = 1728\ .
+\end{equation}
+If we set both aspect ratios equal to $1$, then we find the 3D moment invariants for the cube to be $\Omega_1=12$, $\Omega_2=144=12^2$, and $\Omega_3=1728=12^3$.  This is a general observation; for \textit{any} isotropic 3D shape, we have the following relations: $\Omega_2=\Omega_1^2$ and $\Omega_3=\Omega_1^3$.
+
+For the 3D sphere of radius $R$, the 3D central moments are $\mu_{200}=\mu_{020}=\mu_{002}=4\pi\,R^5/15$ so that the 3D moment invariants become:
+\begin{equation}
+	\Omega_1 = \left(\frac{2000\pi^2}{9}\right)^{1/3};\qquad \Omega_2 = \left(\frac{2000\pi^2}{9}\right)^{2/3};\qquad \Omega_3 = \frac{2000\pi^2}{9}\ .
+\end{equation}
+One can show that the sphere is the 3D shape with the largest possible value of the $\Omega_3$ invariant, so once again we can divide the $\Omega_i$ values for an arbitrary shape by those of the sphere to obtain normalized moment invariants in the range $[0,1]$, i.e., a cube, with the sphere at the point $(1,1,1)$.
+
+{\color{red}insert figures for whole chapter; create example microstructure and apply algorithms; describe discrete moment calculation; }
+
+
+
+
+
+
+

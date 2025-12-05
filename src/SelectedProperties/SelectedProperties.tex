@@ -1,0 +1,1672 @@
+% 
+% ###################################################################
+% Copyright (c) 2018, AuthorName 
+%  Editors: A.D. Rollett & M. De Graef
+% All rights reserved.
+%
+% Licensed under the Creative Commons CC BY-NC-SA 4.0 License, 
+% hereafter referred to as the "License"; you may not use this 
+% document except in compliance with the License. You may obtain 
+% a copy of the License at 
+%     https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode 
+% Unless required by applicable law or agreed to in writing, all 
+% material distributed under the License is distributed on an 
+% "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+% either express or implied. See the License for the specific 
+% language governing permissions and limitations under the License.
+% ###################################################################
+
+% ###################################################################
+% The following lines are to be uncommented or edited as needed 
+
+%\corechapter{Yes}
+%     uncomment this line only if this chapter is a core/foundational chapter;
+%     for a core chapter a "Core" label will appear on the top left above the chapter title.
+
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University}
+%     this will appear in a secondary header below the chapter title.
+
+% All figures are stored in the src/MaterialProperty/eps folder and must be of the *.eps type. 
+
+\renewcommand{\chabbr}{SELPRP}
+
+%     replace \noheaderimage by the chapter header image file name (without .eps extension).
+%     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
+%\chapterimage{SELPRPheader.pdf}
+\chapterimage{\noheaderimage}
+
+\chapter{Selected Anisotropic Material Properties}\label{\chabbr:SelectedProperties}
+
+% add the author information so that it will appear in the Author List at the start of the document
+\writeauthor{SELPRP:SelectedProperties}{Selected Anisotropic Material Properties}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+
+% Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
+% each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
+% second column if LaTeX breaks the line at an awkward location.
+\begin{learningobjectives}
+{\begin{itemize}
+    \item[{\color{OCBurntOrange}\ref{\chabbr:intro}:}] Learn about 
+    \item[{\color{OCBurntOrange}\ref{\chabbr:matprop}:}] Formally 
+    \item[{\color{OCBurntOrange}\ref{\chabbr:tensorproperties}:}] Introduce  
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+\end{itemize}}
+\end{learningobjectives}
+% ###################################################################
+% ###################################################################
+% ##################################################################
+
+\section{Introduction}\label{\chabbr:sec:matpropIntroduction}
+There are two major categories of crystalline materials: single crystals and polycrystals. In a single crystal, the atomic lattice has the same orientation over large distances, often on a macroscopic scale, and the defect density is intentionally kept as low as possible, or is kept at a precisely controlled level.  The latter is the case for microelectronics, where the precise doping level with donors or acceptors determines the local electrical properties of the substrate single crystal (usually silicon). At the same time, the dislocation density in the substrate is kept as low as possible, because dislocations have their own localized electrical properties that would be deleterious to the functionality of a device.  Silicon single crystals can be grown very large by means of the Czochralski method; cylindrical crystals of $40$ cm diameter and nearly two meters long have been fabricated.  In the power and aviation industries, Ni-based superalloys are routinely produced as large single crystals for turbine blades; in that case, there are two phases present, a face centered cubic matrix and a very high density of aligned cuboidal precipitates of an ordered second phase.  This microstructure has been engineered to make it difficult for dislocations to propagate large distances, thus reducing creep to a very low level and providing high strength at elevated temperatures.  
+
+In polycrystals on the other hand, the crystal lattice has the same orientation only over short distances, millimeters,  tens to hundreds of microns or even in the nanometer range. The orientations of individual grains can be completely random, in which case we speak of an \indexit{untextured microstructure}, or there can be a preferential orientation, which leads to a \indexit{textured microstructure}.  Each grain will have material properties described by some of the tensors that we introduce in this chapter, but the overall properties of the polycrystal will depend on the details of the texture; in the present chapter, we will describe a number of important material property tensors in the context of single crystals.
+
+\section{Engineering Notation}\label{\chabbr:sec:engineering} 
+
+The attentive reader may have noticed that in the $K_{ij}$ matrix of eq.~\ref{PRPSYM:eq:Kmatrix} on page~\pageref{PRPSYM:eq:Kmatrix}, there are $36$ entries for the fourth rank elastic compliance tensor $s_{ijkl}$; they form a $6\times 6$ block along the diagonal of the matrix $K_{ij}$. But we know that a tensor of rank $n$ has $3^n$ components, which means that there are $3^4=81$ compliance components.  Similarly, for the stress and strain tensors, $\sigma_{ij}$ and $\epsilon_{ij}$, only six components are listed in the force and response vectors.  In section~\ref{\chabbr:sec:mechprop} we will see that both of these tensors are symmetric tensors, i.e., $\sigma_{ij}=\sigma_{ji}$ and $\epsilon_{ij}=\epsilon_{ji}$, so that effectively they have only six independent components, but it is unclear at this point why, for instance, the component $s_{zyzx}$ of the compliance tensor does not appear in the $K_{ij}$ matrix.
+
+Since there are only $6$ independent components for both the stress and strain tensors, we may, instead of using $2$ indices that each run from $1$ to $3$, use a single index that runs from $1$ to $6$.  The only thing we need to do is define the correspondence between the double and single indices.  We define the \indexit{engineering notation} or \indexit{Voigt notation} by means of the following relation for the stress tensor:
+\begin{equation}
+	\sigma_{\left(\begin{matrix}
+	11  &  12  &  13 \\
+	21  &  22  &  23 \\
+	31  &  32  &  33 \end{matrix}\right)}
+	\leftrightarrow
+	\sigma^e_{\left(\begin{matrix}
+	1  &  6  &  5 \\
+	6  &  2  &  4 \\
+	5  &  4  &  3 \end{matrix}\right)}\rightarrow \sigma^e_J = \left(\begin{matrix}
+	\sigma_{1}\\ \sigma_{2}\\ \sigma_{3}\\ \sigma_{4}\\ \sigma_{5}\\ \sigma_{6}\end{matrix}\right) 
+	= \left(\begin{matrix}
+	\sigma_{xx}\\ \sigma_{yy}\\ \sigma_{zz}\\ \sigma_{yz}=\sigma_{zy}\\ \sigma_{xz}=\sigma_{zx}\\ \sigma_{xy}=\sigma_{yx}\end{matrix}\right). 
+\end{equation}	
+The numbers $1$ through $3$ along the diagonal represent the normal stresses, while the numbers $4$ to $6$ represent the shear stresses.  We will always denote the single index description with a superscript $^e$, to indicate that the engineering notation is being used, i.e., $\sigma_{13} = \sigma^e_5$ and $\sigma_{22} = \sigma^e_2\ldots$. Furthermore, we will use capital subscripts to indicate that the index goes from $1$ to $6$, e.g. $\sigma^e_J$.
+
+The same indexing scheme can be applied to the strain tensor, with the exception that the engineering shear strains are equal to twice the original shear strains: 
+\begin{subequations}
+\begin{align}
+	\epsilon^e_I&= \epsilon_{ii}\qquad\mbox{for $i=I=1,2,3$};\nonumber\\
+	\epsilon^e_4 &= 2\epsilon_{23};\\
+	\epsilon^e_5 &= 2\epsilon_{13};\\
+	\epsilon^e_6 &= 2\epsilon_{12}.
+\end{align}
+\end{subequations}
+The reason for the factor of two in the shear strain components is not difficult to understand.  We want the relation between strain and stress (in engineering notation) to read:
+\begin{equation}
+	\epsilon^e_I= s^e_{IJ} \sigma^e_J \qquad\left(= \sum_{J=1}^6 s^e_{IJ} \sigma^e_J\right).\label{eq:seIJ}
+\end{equation}
+Note that the compliances $s^e_{IJ}$ are represented by a $6\times 6$ matrix that appears along the diagonal of the $K_{ij}$ matrix; intrinsic symmetry therefore means that $s^e_{IJ}=s^e_{JI}$, in other words, the matrix $s^e_{IJ}$ must be a symmetric matrix.  Since $I$ and $J$ each stand for a pair of subscripts, we find that the compliance tensor itself must have the following symmetry:
+\begin{equation}
+	s_{ijkl} = s_{klij}.
+\end{equation}
+Furthermore, we know that both stress and strain tensors are symmetric, i.e., $\epsilon_{ij}=\epsilon_{ji}$ and $\sigma_{kl} = \sigma_{lk}$.  Hence we have:
+\[
+	s_{ijkl} = s_{jikl} = s_{ijlk} = s_{jilk}.
+\]
+These symmetries reduce the number of independent components from $81$ to $21$ which agrees with the number of independent components in the symmetric $s^e_{IJ}$ matrix, which is given by $(36-6)/2+6$.  
+
+Using eq.~\ref{eq:seIJ}, we have in particular that:
+\begin{eqnarray}
+	\epsilon^e_1 &=& s^e_{11}\sigma^e_1+s^e_{12}\sigma^e_2+s^e_{13}\sigma^e_3+s^e_{14}\sigma^e_4+s^e_{15}\sigma^e_5+s^e_{16}\sigma^e_6;\label{eq:se1}\\
+	\epsilon^e_4 &=& s^e_{41}\sigma^e_1+s^e_{42}\sigma^e_2+s^e_{43}\sigma^e_3+s^e_{44}\sigma^e_4+s^e_{45}\sigma^e_5+s^e_{46}\sigma^e_6\label{eq:se4}.
+\end{eqnarray}
+Starting with $\epsilon^e_1$, we also have:
+\begin{eqnarray*}
+	\epsilon_{11} &=& s_{1111}\sigma_{11} + s_{1122}\sigma_{22} + s_{1133}\sigma_{33} +  s_{1112}\sigma_{12} +  s_{1121}\sigma_{21}  + \\ 
+	&& s_{1113}\sigma_{13}+ s_{1131}\sigma_{31} + s_{1123}\sigma_{23} + s_{1132}\sigma_{32}. 
+\end{eqnarray*}
+Applying the symmetry of the compliance and stress tensors we can group a few terms:
+\[	
+	\epsilon_{11} = s_{1111}\sigma_{11} + s_{1122}\sigma_{22} + s_{1133}\sigma_{33} + 2 s_{1112}\sigma_{12} +2 s_{1113}\sigma_{13} +2 s_{1123}\sigma_{23}. 
+\]
+Since $\epsilon_{11}=\epsilon^e_1$, this expression must be equal to eq.~\ref{eq:se1}; thus we must also have $2s_{1112} = s^e_{16}$, $2s_{1113}=s^e_{15}$ and $2s_{1123} = s^e_{14}$.
+
+For $\epsilon^e_4$ we have two possibilities, since the Voigt index $4$ can stand for both index pairs $23$ and $32$;  we can deal with this by adding the expressions for $\epsilon_{23}$ and $\epsilon_{32}$ together:
+\begin{eqnarray}
+	\epsilon_{23} &=& s_{2311}\sigma_{11} + s_{2322}\sigma_{22} + s_{2333}\sigma_{33} + 2 s_{2312}\sigma_{12} +2 s_{2313}\sigma_{13} +2 s_{2323}\sigma_{23};\\
+	\epsilon_{32} &=& s_{3211}\sigma_{11} + s_{3222}\sigma_{22} + s_{3233}\sigma_{33} + 2 s_{3212}\sigma_{12} +2 s_{3213}\sigma_{13} +2 s_{3223}\sigma_{23}.
+\end{eqnarray}
+The sum of these two equals (using the symmetry properties of the compliance tensor $s_{ijkl}$ and the strain tensor $\epsilon_{ij}$):
+\[
+	2\epsilon_{23} = 2s_{2311}\sigma_{11}+2s_{2322}\sigma_{22} + 2s_{2333}\sigma_{33} + 4 s_{2312}\sigma_{12} +4 s_{2313}\sigma_{13} +4 s_{2323}\sigma_{23}.
+\]
+Comparing this with the engineering notation in eq.~\ref{eq:se4}, we have $\epsilon_4^e=2\epsilon_{23}$, $s^e_{41}=2s_{2311}$, $s^e_{44}=4s_{2323}$ and so on.  Summarizing, we find the definition of the Voigt notation for the strain tensor shown earlier, as well as :
+\begin{subequations}\begin{align}
+	s_{ijkl} &= s^e_{MN} \qquad\mbox{when $M$ and $N$ are $1,2$ or $3$};\\
+	2s_{ijkl} &= s^e_{MN} \qquad\mbox{when either $M$ or $N$ is $4,5$ or $6$};\\
+	4s_{ijkl} &= s^e_{MN} \qquad\mbox{when both $M$ and $N$ are $4,5$ or $6$}.
+\end{align}\end{subequations}
+These conversions allow for a single index notation to be used for stress and strain, and all material tensors related to them.  The disadvantage of using this notation is that the resulting quantities do not satisfy the tensor transformation equations.  To transform a material tensor from one reference frame to another requires the full tensor notation with all indices, not the engineering notation.  In other words, the relation
+\[
+	\epsilon_{ij} = s_{ijkl}\sigma_{kl}
+\]
+is a relation between tensors, but the relation
+\[
+	\epsilon^e_{I} = s^e_{IJ}\sigma^e_J
+\]
+is not.
+
+The same reasoning can be used to derive the engineering notation expressions for the other material property tensors in the $K_{ij}$ matrix that relate a response to the stress tensor; examples include:
+\begin{subequations}\begin{align}
+	\alpha_{ij} &= \alpha^e_K \qquad\mbox{when $K$ is $1,2$ or $3$};\\
+	2\alpha_{ij} &= \alpha^e_K \qquad\mbox{when $K$ is $4,5$ or $6$};\\
+	d_{ijk} &= d^e_{iL} \qquad\mbox{when $L$ is $1,2$ or $3$};\\
+	2d_{ijk} &= d^e_{iL}\qquad\mbox{when $L$ is $4,5$ or $6$}.
+\end{align}\end{subequations}
+
+Using single index notation for stresses and strains, the general material tensor relations can be rewritten as:
+\begin{subequations}\begin{align}
+	\Delta S &= \frac{C}{T}\Delta T +p_iE_i + q_iH_i + \alpha^e_{I}\sigma^e_{I};\\
+	D_i &= p_i\Delta T + \kappa_{ij}E_j + \lambda_{ij} H_j + d^e_{iJ}\sigma^e_{J};\\
+	B_i &= q_i\Delta T + \lambda_{ji}E_j + \mu_{ij} H_j + Q^e_{iJ}\sigma^e_{J};\\
+	\epsilon^e_{I} &= \alpha^e_{I}\Delta T +d^e_{jI}E_j + Q^e_{jI} H_j + s^e_{IJ}\sigma^e_{J}.
+\end{align}\end{subequations}
+Despite the fact that the engineering notation results in relations between quantities that are not tensors, it is possible to write down the transformation rules directly in engineering notation and obtain expressions that are similar to the regular tensor transformations. As an example we consider once again the elastic compliance tensor in Voigt notation, $s^e_{IJ}$.  If we transform this tensor using the standard relation for a rotation matrix $\alpha_{ij}$ we have:
+\[
+	s'_{ijkl} = \alpha_{io}\alpha_{jp}\alpha_{kq}\alpha_{lr} s_{opqr}.
+\]
+We would like for the transformation of the engineering matrix $s^e_{IJ}$ to have a similar form:
+\[
+	s^{\prime e}_{IJ} = a_{IK}a_{JL} s^e_{KL},\qquad\text{(all subscripts run from $1$ to $6$)}
+\]
+where $a_{IK}$ is a $6\times 6$ transformation matrix that can be derived by working out the first fourfold summation explicitly, grouping terms, and converting to the engineering notation.  This is a tedious and lengthy computation but not a particularly difficult one, and the end result is given by:
+{\small\begin{equation}
+a_{IK} = \left(\begin{array}{cccccc}
+		\alpha^2_{11}&\alpha^2_{12}&\alpha^2_{13} &2\alpha_{12}\alpha_{13} &2\alpha_{13}\alpha_{11} &2\alpha_{11}\alpha_{12} \\
+		\alpha^2_{21}&\alpha^2_{22}&\alpha^2_{23} &2\alpha_{22}\alpha_{23} &2\alpha_{23}\alpha_{21} &2\alpha_{21}\alpha_{22} \\
+		\alpha^2_{31}&\alpha^2_{32}&\alpha^2_{33} &2\alpha_{32}\alpha_{33} &2\alpha_{33}\alpha_{31} &2\alpha_{31}\alpha_{32} \\
+		\alpha_{21}\alpha_{31}&\alpha_{22}\alpha_{32} &\alpha_{23}\alpha_{33} &\alpha_{22}\alpha_{33}+\alpha_{23}\alpha_{32} &\alpha_{21}\alpha_{33}+\alpha_{23}\alpha_{31} &\alpha_{22}\alpha_{31}+\alpha_{21}\alpha_{32} \\
+		\alpha_{31}\alpha_{11}&\alpha_{32}\alpha_{12} &\alpha_{33}\alpha_{13} &\alpha_{12}\alpha_{33}+\alpha_{13}\alpha_{32} &\alpha_{13}\alpha_{31}+\alpha_{11}\alpha_{33} &\alpha_{11}\alpha_{32}+\alpha_{12}\alpha_{31} \\
+		\alpha_{11}\alpha_{21}&\alpha_{12}\alpha_{22} &\alpha_{13}\alpha_{23} &\alpha_{12}\alpha_{23}+\alpha_{13}\alpha_{22} &\alpha_{13}\alpha_{21}+\alpha_{11}\alpha_{23} &\alpha_{11}\alpha_{22}+\alpha_{12}\alpha_{21} \\
+		\end{array}\right)\label{eq:aIK}
+\end{equation}}
+
+\section{Mechanical Properties}\label{sec:mechprop}
+
+\subsection{Derivation of the Strain Tensor}
+
+Consider a solid, consisting of a large number of small volume elements, with dimensions $\mathrm{d}x$, $\mathrm{d}y$ and $\mathrm{d}z$, and volume $\mathrm{d}V=\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z$.  Each volume element is characterized by a position vector $\mathbf{r}$.  When this solid is \indexit{deformed} or \indexit{strained}, each point in the solid will move to a new position $\mathbf{r}^{\prime}$.  For small (infinitesimal) distortions, the coordinates of the new point can be found from those of the old point as follows~:
+\[
+\mathbf{r}^{\,\prime}=\mathbf{r}+\mathbf{u}(\mathbf{r}),
+\]
+where the vector $\mathbf{u}$ is a \indexit{displacement} vector field.  If $\mathbf{u}$ is a constant, independent of the position $\mathbf{r}$, then the deformation is equivalent to a \indexit{rigid body translation};  in that case the solid is not deformed, just translated in the direction of $\mathbf{u}$.  In general, the displacement vector $\mathbf{u}$ does depend on the position $\mathbf{r}$ in the solid.  
+
+Now, consider two points A and B in the solid, separated by a small vector $\Delta\mathbf{r}$.  The deformation,  described by $\mathbf{u}(\mathbf{r})$, carries the points A and B into new points A$^{\prime}$ and B$^{\prime}$, with separation vector $\Delta\mathbf{r}^{\prime}$.  The point A is displaced to A$^{\prime}$ by addition of the displacement vector $\mathbf{u}(\mathbf{r})$ (if $\mathbf{r}$ is the position of A).  The point B is then translated to the point B$^{\prime}$, with displacement vector $\mathbf{u}(\mathbf{r}+\Delta\mathbf{r})$ (see Fig.~\ref{fig:h}).
+
+\begin{figure}[b]
+%\centering\leavevmode\includegraphics{Figures/deformation1}
+\caption{Illustration of the effect of a deformation on the relative position of two points in a solid.}
+\label{fig:h}
+\end{figure}
+
+The relative position of A and B after deformation is given by~:
+\[
+\Delta\mathbf{r}^{\prime}=A^{\prime}B^{\prime}=\Delta\mathbf{r}+\mathbf{u}(\mathbf{r}+\Delta\mathbf{r})-\mathbf{u}(\mathbf{r}).
+\]
+The change in magnitude of $\Delta\mathbf{r}$ can be found from the quantity $(\Delta r^{\prime})^2-(\Delta r)^2$. If we denote the Cartesian components of vectors by indices $i,k,\ldots$, where $i=1,2,3$, then the component $i$ of the vector $\Delta\mathbf{r}^{\,\prime}$ is given by~:
+\[
+\Delta x_i^{\prime}=\Delta x_i+u_i(x_1+\Delta x_1,x_2+\Delta x_2,x_3+\Delta x_3)-u_i(x_1,x_2,x_3),
+\]
+or, using a Taylor expansion for $u_i(x_1+\Delta x_1,x_2+\Delta x_2,x_3+\Delta x_3)$:
+\[
+\Delta x_i^{\prime}=\Delta x_i+\frac{\partial u_i}{\partial x_k}\Delta x_k.
+\]
+In a Cartesian reference frame the length of the vectors $\Delta\mathbf{r}$ and $\Delta\mathbf{r}^{\prime}$ is given by~:
+\[
+(\Delta r^{\prime})^2=\sum_{l=1}^{3}(\Delta x^{\prime}_l)^2,\qquad (\Delta r)^2=\sum_{l=1}^{3}(\Delta x_l)^2.
+\]
+Therefore, we find~:
+\begin{eqnarray}
+(\Delta r^{\prime})^2&=&\sum_{l=1}^{3}\left(\Delta x_l+\frac{\partial u_l}{\partial x_k}\Delta x_k
+\right)\left(\Delta x_l+\frac{\partial u_l}{\partial x_m}\Delta x_m\right);\nonumber\\
+&=&\sum_{l=1}^{3}(\Delta x_l)^2
++\Delta x_l\frac{\partial u_l}{\partial x_m}\Delta x_m+\Delta x_l\frac{\partial u_l}{\partial x_k}\Delta x_k
++\frac{\partial u_l}{\partial x_m}\frac{\partial u_l}{\partial x_k}\Delta x_m\Delta x_k.\nonumber
+\end{eqnarray}
+If the function $\mathbf{u}$ is smoothly varying over the solid volume, then its first derivatives will be small, and the product of the two derivatives can be neglected. Combining the second and third terms this leads to
+\[
+	(\Delta r^{\prime})^2-(\Delta r)^2=2\frac{\partial u_l}{\partial x_m}\Delta x_l\Delta x_m.
+\]
+This can be rewritten as~:
+\[
+(\Delta r^{\prime})^2-(\Delta r)^2=\left(\frac{\partial u_l}{\partial x_m}
++\frac{\partial u_m}{\partial x_l}\right)\Delta x_l\Delta x_m=
+2\epsilon_{lm}\Delta x_l\Delta x_m.
+\]
+The quantity $\epsilon_{lm}$ is called the \indexit{linear strain tensor} or \indexit{strain tensor} for short.  Its elements are given by
+\[
+\epsilon_{ij}=\frac{1}{2}\left(\frac{\partial u_i}{\partial x_j}+\frac{\partial u_j}{\partial x_i}\right).
+\]
+This tensor describes how one can compute the \textit{change} in the distance between two points, when a deformation is applied; compare this to the \indexit{metric tensor}, which describes how the distance between two points can be measured in the \textit{absence} of a deformation. The strain tensor can be represented in matrix form~:
+\[
+\epsilon_{ij}=
+\left(\begin{tabular}{ccc}\centering
+$\frac{\partial u_1}{\partial x_1}$  & 
+$\frac{1}{2}\left(\frac{\partial u_1}{\partial x_2}+\frac{\partial u_2}{\partial x_1}\right)$  &  
+$\frac{1}{2}\left(\frac{\partial u_1}{\partial x_3}+\frac{\partial u_3}{\partial x_1}\right)$ \\
+$\frac{1}{2}\left(\frac{\partial u_2}{\partial x_1}+\frac{\partial u_1}{\partial x_2}\right)$  & 
+$\frac{\partial u_2}{\partial x_2}$  &  
+$\frac{1}{2}\left(\frac{\partial u_2}{\partial x_3}+\frac{\partial u_3}{\partial x_2}\right)$ \\
+$\frac{1}{2}\left(\frac{\partial u_3}{\partial x_1}+\frac{\partial u_1}{\partial x_3}\right)$  & 
+$\frac{1}{2}\left(\frac{\partial u_3}{\partial x_2}+\frac{\partial u_2}{\partial x_3}\right)$  &  
+$\frac{\partial u_3}{\partial x_3}$ 
+\end{tabular}\right).
+\]
+Note that the deformation tensor is represented by a \indexit{symmetric matrix}, i.e., $\epsilon_{ij}=\epsilon_{ji}$.
+The diagonal components are the \indexit{normal strains}, the off-diagonal components are the \indexit{shear strains}.
+
+Next we discuss a few simple examples to clarify this new concept.
+\begin{enumerate}\label{strainexamples}
+\item Suppose that the solid is a sphere, and that the deformation is such that the sphere is equally compressed in all directions.  In other words, the deformation tends to decrease the radius of the sphere.  This may be achieved experimentally by surrounding the sphere with a high pressure fluid.  Each point in the sphere will move towards the center and the further away the point is from the center, the more it will move; evidently, the point at the center does not move at all.
+
+The displacement field is then given by~:
+\[
+\mathbf{u}(\mathbf{r})=-\alpha\mathbf{r},
+\]
+with $\alpha$ a small constant describing the reduction of the sphere radius $R$ to $(1-\alpha)R$.  The vector components of $\mathbf{u}$ are hence $\mathbf{u}(\mathbf{r})=[-\alpha x,-\alpha y,-\alpha z]$.  The partial derivatives of the components of $\mathbf{u}$ are easily computed and the strain tensor is then given by~:
+\[
+\epsilon_{ij}=
+\left(\begin{tabular}{ccc}\centering
+$-\alpha$  &  0 & 0 \\ 
+0 & $-\alpha$  &  0 \\
+0 & 0 & $-\alpha$   \\
+\end{tabular}\right).
+\]
+This type of distortion, for which the strain tensor is diagonal, with equal magnitude components, is known as a \indexit{hydrostatic distortion}.  
+
+\item Assume a rectangular body, aligned along the Cartesian axes (see Fig.~\ref{fig:h2}).  A \indexit{shear distortion} is applied, shearing the top of the body to the right, while keeping the bottom in place.  The magnitude of the displacement vector $\mathbf{u}$ depends only upon the distance $z$ from the bottom plane.
+\[
+\mathbf{u}(\mathbf{r})=[0,\alpha z, 0]\qquad\mbox{with}\quad\alpha=\tan\theta.
+\]
+
+\begin{figure}
+%\centering\leavevmode\includegraphics{Figures/deformation2}
+\caption{Shear deformation of a rectangular body.}
+\label{fig:h2}
+\end{figure}
+
+The partial derivatives are again easy to compute and the strain tensor is given by~:
+\[
+\epsilon_{ij}=
+\left(\begin{tabular}{ccc}\centering
+0 & 0 & 0 \\
+0 & 0 & $\frac{\alpha}{2}$\\
+0 & $\frac{\alpha}{2}$  & 0 \\
+\end{tabular}\right).
+\]
+This is indeed a pure shear deformation, since only off-diagonal elements are different from zero. The volume of the solid remains unchanged during a pure shear deformation.
+
+\item Consider a rectangular volume with dimensions $L_x,L_y,L_z$, which is subjected to a diagonal strain $\epsilon_{ii}$ (i.e., no shear strains). What is the volume change $\Delta V$?  
+
+After deformation, the volume is given by $V' = L'_xL'_yL'_z$.  The individuals lengths $L_i$ are changed by an amount $\epsilon_{ii}$, so that $L'_i = (1+\epsilon_{ii})L_i$.  The volume change $\Delta V$ is therefore equal to
+\begin{align*}
+\Delta V = V'-V &= (1+\epsilon_{xx})L_x(1+\epsilon_{yy})L_y(1+\epsilon_{zz})L_z - L_xL_yL_z;\\
+&= V(1+\epsilon_{xx})(1+\epsilon_{yy})(1+\epsilon_{zz})-V;\\
+&\approx V(\epsilon_{xx}+\epsilon_{yy}+\epsilon_{zz}),
+\end{align*}
+where we have ignored the terms quadratic or higher in the strain.  The relative volume change $\Delta$, also known as the \indexit{dilatation}, is defined as
+\[
+	\Delta = \frac{\Delta V}{V} = \epsilon_{xx}+\epsilon_{yy}+\epsilon_{zz} = \text{Tr}(\epsilon_{ij}),
+\]
+where $\text{Tr}$ denotes the \indexit{trace operator} (sum of diagonal components).
+\end{enumerate}
+
+One can impose multiple displacements simultaneously and the resulting strain tensor will be the sum of the individual strain tensors (a consequence of the fact that all approximations are linear).  Note that the magnitude of the components of the strain tensor must always be much smaller than 1, otherwise the approximations made in the derivation of the tensor are no longer valid.  
+
+It is possible to define a more general strain tensor, known as the Lagrange strain tensor, which must be used for larger deformations.  It is defined by:
+ \[
+	\eta_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} +
+	\frac{\partial u_k}{\partial x_i}\frac{\partial u_k}{\partial x_j}\right),
+\]
+where the last term contains a summation over $k$.  When the derivatives are small, $\eta_{ij}\rightarrow\epsilon_{ij}$.  
+
+
+\subsection{Derivation of the Stress Tensor}
+
+To distort an element of volume $\mathrm{d}V$ in a solid, one must exert forces on the faces of this volume element.  A force exerted on a surface is called a \indexit{stress}, and has units of Newton per meter-squared or Pascal.  The \indexit{state of stress} of a volume element in a body is described by nine numbers, denoted $\sigma_{ij}$, with $i,j=1,2,3$ or $i,j=x,y,z$ for a Cartesian reference frame.  The number $\sigma_{ij}$ indicates the force per unit area in the \underline{positive} $i$ direction on a face with an \underline{outward} normal in the $j$ direction (see Fig.~\ref{fig:deformation3}). The diagonal components of the matrix $\sigma_{ij}$ are the \indexit{normal stresses}, the off-diagonal components are the \indexit{shear stresses}.  One can show that the stress tensor must be symmetric, i.e., $\sigma_{ij}=\sigma_{ji}$; if the tensor were not symmetric, then there would be an imbalance between applied forces and the object would begin to rotate; rotational motion is always excluded from the computation of stresses, so that the stress tensor is always symmetric.
+
+\begin{figure}[h]
+%\centering\leavevmode\includegraphics{Figures/deformation3}
+\caption{Components of stress acting on the front, side, and top faces of an elemental cube.}
+\label{fig:deformation3}
+\end{figure}
+
+
+From a thermodynamic point of view, the strain and stress tensors are conjugate quantities, and their product has dimensions of energy density.  When the Lagrange strain tensor is used, the stress tensor must be redefined in order to remain conjugate to the Lagrange strain. This results in a new symmetric tensor $t_{ij}$ known as the \indexit{thermodynamic tension}.  If we expand the internal energy in terms of the Lagrange strain tensor, then we obtain:
+\[
+	U = U(0) + c_{ij}\eta_{ij} + \frac{1}{2}c_{ijkl}\eta_{ij}\eta_{kl} + \ldots
+\]
+The first term is the energy of the unstrained material, which can be taken as zero.  The second term, $c_{ij}\eta_{ij}$, must vanish, because otherwise a material could lower its internal energy by spontaneously deforming.  Therefore, the expansion starts at the third term, which is quadratic in the strain. The thermodynamic tension can be defined by the derivative
+\[
+	\frac{\partial U}{\eta_{ij}} \equiv t_{ij}.
+\]
+
+% inset section on stresses in a bending beam !!!!
+
+
+
+\subsection{Linear Elasticity: Hooke's Law}
+
+In linear elasticity theory, each strain component (the Response) is linearly proportional to each stress component (the Field);  this is known as \indexit{Hooke's law}.  In general, since there are 9 stress components $\sigma_{ij}$ and 9 strain components $\epsilon_{kl}$, there are $9\times9=81$ proportionality constants, called the \indexit{elastic compliances}.  They are  represented by the fourth-rank tensor $s_{ijkl}$: 
+\[
+\epsilon_{ij}= s_{ijkl}\sigma_{kl}.
+\]
+The inverse relation is written as:
+\[
+\sigma_{ij}= c_{ijkl}\epsilon_{kl},
+\]
+where the fourth-rank tensor $c_{ijkl}$ is known as the \indexit{elastic moduli tensor}. Note that these 81 numbers can in principle be written as a $3\times 3\times 3\times 3$ matrix $c_{ijkl}$.  In practice, however, we consider these relations using the Voigt or engineering notation introduced in the previous section.  
+
+
+\begin{table}[t]
+\centering
+\begin{tabular}{llr}
+\hline
+Crystal Class & Point groups & Elastic moduli tensor\\
+\hline\hline
+Triclinic  & \begin{minipage}[c]{1.5in} \pg{1}, \pg{2}\end{minipage} & 
+{\footnotesize
+$\left(\begin{matrix}
+k_{11} & k_{12} & k_{13} & k_{14} & k_{15} & k_{16}\\
+k_{12} & k_{22} & k_{23} & k_{24} & k_{25} & k_{26}\\
+k_{13} & k_{23} & k_{33} & k_{34} & k_{35} & k_{36}\\
+k_{14} & k_{24} & k_{34} & k_{44} & k_{45} & k_{46}\\
+k_{15} & k_{25} & k_{35} & k_{45} & k_{55} & k_{56}\\
+k_{16} & k_{26} & k_{36} & k_{46} & k_{56} & k_{66}\end{matrix}\right)$}
+\\
+\hline
+Monoclinic &\begin{minipage}[c]{1.5in} \pg{3}, \pg{4},\\ \pg{5} \end{minipage}&
+{\footnotesize
+$\left(\begin{matrix}
+k_{11} & k_{12} & k_{13} & 0 & 0 & k_{16}\\
+k_{12} & k_{22} & k_{23} & 0 & 0 & k_{26}\\
+k_{13} & k_{23} & k_{33} & 0 & 0 & k_{36}\\
+0 & 0 & 0 & k_{44} & k_{45} & 0\\
+0 & 0 & 0 & k_{45} & k_{55} & 0\\
+k_{16} & k_{26} & k_{36} & 0 & 0 & k_{66}\end{matrix}\right)$}
+\\
+\hline
+Orthorhombic &\begin{minipage}[c]{1.5in} \pg{6}, \pg{7},\\ \pg{8} \end{minipage}& 
+{\footnotesize
+$\left(\begin{matrix}
+k_{11} & k_{12} & k_{13} & 0 & 0 & 0\\
+k_{12} & k_{22} & k_{23} & 0 & 0 & 0\\
+k_{13} & k_{23} & k_{33} & 0 & 0 & 0\\
+0 & 0 & 0 & k_{44} & 0 & 0\\
+0 & 0 & 0 & 0 & k_{55} & 0\\
+0 & 0 & 0 & 0 & 0 & k_{66}\end{matrix}\right)$}
+\\
+\hline
+Lower Tetragonal &\begin{minipage}[c]{1.0in} \pg{9}, \pg{10},\\ \pg{11} \end{minipage}&
+{\footnotesize
+$\left(\begin{matrix}
+k_{11} & k_{12} & k_{13} & 0 & 0 & k_{16}\\
+k_{12} & k_{11} & k_{13} & 0 & 0 & -k_{16}\\
+k_{13} & k_{13} & k_{33} & 0 & 0 & 0\\
+0 & 0 & 0 & k_{44} & 0 & 0\\
+0 & 0 & 0 & 0 & k_{44} & 0\\
+k_{16} & -k_{16} & 0 & 0 & 0 & k_{66}\end{matrix}\right)$}
+\\
+Upper Tetragonal & \begin{minipage}[c]{1.6in}\pg{12}, \pg{13},\\ \pg{14}, \pg{15} \end{minipage}&
+{\footnotesize
+$\left(\begin{matrix}
+k_{11} & k_{12} & k_{13} & 0 & 0 & 0\\
+k_{12} & k_{11} & k_{13} & 0 & 0 & 0\\
+k_{13} & k_{13} & k_{33} & 0 & 0 & 0\\
+0 & 0 & 0 & k_{44} & 0 & 0\\
+0 & 0 & 0 & 0 & k_{44} & 0\\
+0 & 0 & 0 & 0 & 0 & k_{66}\end{matrix}\right)$}
+\\
+\hline
+\end{tabular}
+\caption{The 32 crystallographic point groups, subdivided into the 11 Laue classes
+and their associated fourth rank symmetric tensors $k_{ij}$.}
+\label{tb:classes}
+\end{table}
+
+\addtocounter{table}{-1}
+\begin{table}[t]
+\centering
+\begin{tabular}{llr}
+\hline
+Crystal Class & Point groups & Elastic moduli tensor\\
+\hline\hline
+Lower Trigonal & \begin{minipage}[c]{1.5in}\pg{16}, \pg{17}  \end{minipage}& 
+{\footnotesize
+$\left(\begin{matrix}
+k_{11} & k_{12} & k_{13} & k_{14} & k_{15} & 0\\
+k_{12} & k_{11} & k_{13} & -k_{14} & -k_{15} & 0\\
+k_{13} & k_{13} & k_{33} & 0 & 0 & 0\\
+k_{14} & -k_{14} & 0 & k_{44} & 0 & -\sqrt{2}k_{15}\\
+k_{15} & -k_{15} & 0 & 0 & k_{44} & \sqrt{2}k_{14}\\
+0 & 0 & 0 & -\sqrt{2}k_{15} & \sqrt{2}k_{14} & k_{11}-k_{12}\end{matrix}\right)$}\\
+Upper Trigonal & \begin{minipage}[c]{1.5in}\pg{18}, \pg{19},\\ \pg{20}  \end{minipage}& 
+{\footnotesize
+$\left(\begin{matrix}
+k_{11} & k_{12} & k_{13} & k_{14} & 0 & 0\\
+k_{12} & k_{11} & k_{13} & -k_{14} & 0 & 0\\
+k_{13} & k_{13} & k_{33} & 0 & 0 & 0\\
+k_{14} & -k_{14} & 0 & k_{44} & 0 & 0\\
+0 & 0 & 0 & 0 & k_{44} & \sqrt{2}k_{14}\\
+0 & 0 & 0 & 0 & \sqrt{2}k_{14} & k_{11}-k_{12}\end{matrix}\right)$}\\
+\hline
+Lower Hexagonal & \begin{minipage}[c]{1.5in}\pg{21}, \pg{22},\\ \pg{23}  \end{minipage}& 
+{\footnotesize
+$\left(\begin{matrix}
+k_{11} & k_{12} & k_{13} & 0 & 0 & 0\\
+k_{12} & k_{11} & k_{13} & 0 & 0 & 0\\
+k_{13} & k_{13} & k_{33} & 0 & 0 & 0\\
+0 & 0 & 0 & k_{44} & 0 & 0\\
+0 & 0 & 0 & 0 & k_{44} & 0\\
+0 & 0 & 0 & 0 & 0 & k_{11}-k_{12}\end{matrix}\right)$}
+\\
+Upper Hexagonal & \begin{minipage}[c]{1.6in}\pg{24}, \pg{25},\\ \pg{26}, \pg{27}  \end{minipage}& 
+{\footnotesize
+$\left(\begin{matrix}
+k_{11} & k_{12} & k_{13} & 0 & 0 & 0\\
+k_{12} & k_{11} & k_{13} & 0 & 0 & 0\\
+k_{13} & k_{13} & k_{33} & 0 & 0 & 0\\
+0 & 0 & 0 & k_{44} & 0 & 0\\
+0 & 0 & 0 & 0 & k_{44} & 0\\
+0 & 0 & 0 & 0 & 0 & k_{11}-k_{12}\end{matrix}\right)$}
+\\
+\hline
+Lower Cubic  &  \begin{minipage}[c]{1.5in}\pg{28}, \pg{29} \end{minipage} &
+{\footnotesize
+$\left(\begin{matrix}
+k_{11} & k_{12} & k_{12} & 0 & 0 & 0\\
+k_{12} & k_{11} & k_{12} & 0 & 0 & 0\\
+k_{12} & k_{12} & k_{11} & 0 & 0 & 0\\
+0 & 0 & 0 & k_{44} & 0 & 0\\
+0 & 0 & 0 & 0 & k_{44} & 0\\
+0 & 0 & 0 & 0 & 0 & k_{44}\end{matrix}\right)$}
+\\
+Upper Cubic & \begin{minipage}[c]{1.5in}\pg{30}, \pg{31},\\ \pg{32}  \end{minipage}&
+{\footnotesize
+$\left(\begin{matrix}
+k_{11} & k_{12} & k_{12} & 0 & 0 & 0\\
+k_{12} & k_{11} & k_{12} & 0 & 0 & 0\\
+k_{12} & k_{12} & k_{11} & 0 & 0 & 0\\
+0 & 0 & 0 & k_{44} & 0 & 0\\
+0 & 0 & 0 & 0 & k_{44} & 0\\
+0 & 0 & 0 & 0 & 0 & k_{44}\end{matrix}\right)$}
+\\
+\hline
+\end{tabular}
+\caption{The 32 crystallographic point groups, subdivided into the 11 Laue classes 
+and their associated fourth rank symmetric tensors $k_{ij}$ (continued).}
+\end{table}
+
+We have already seen that there are $21$ independent compliances or elastic moduli after application of the thermodynamic or intrinsic symmetry to the compliance tensor.  Next, we need to apply crystallographic symmetry using the procedures described in section~\ref{sec:tensorsymmetry}; this is a tedious process so we only show the end result in Table~\ref{tb:classes}. 
+
+To derive the elastic moduli matrix $c^e_{IJ}$ (the elastic compliance matrix $s^e_{IJ}$) from this table, the entries must be divided (multiplied) by a factor $f$, as follows:
+\begin{align*}
+	f &= 1\qquad\mbox{$I,J$ are $1,2,3$};\\
+	f &= 2\qquad\mbox{$I,J$ are $4,5,6$};\\
+	f &= \sqrt{2}\qquad\mbox{$I$ is $1,2,3$; $J$ is $4,5,6$};
+\end{align*}
+\[
+	c^e_{IJ} = k_{IJ}/f\qquad\mbox{and}\qquad s^e_{IJ} = k_{IJ}\times f.
+\]
+
+From the table entries we can see that for an upper tetragonal crystal there are only 6 independent elastic constants, and for a cubic crystal there are only 3 independent constants.  If the material is \indexit{isotropic}, i.e., the elastic properties do not depend on the orientation of the material, then there are only two constants, which are known as the \indexit{Lam{\'e} constants}, $\lambda$ and $G$;  $G$ is also known as the \indexit{shear modulus}.
+
+The relations between applied stress and resulting strain for an elastically isotropic body ($c_{1122}=\lambda$, $c_{2323}=G$, and $c_{1111}=\lambda+2G$) are given by~:
+\begin{eqnarray}
+\sigma_{ii}&=&2G\epsilon_{ii}+\lambda(\epsilon_{11}+\epsilon_{22}+\epsilon_{33});\nonumber\\
+\sigma_{13}=\sigma_{31}&=&2G\epsilon_{13};\nonumber\\
+\sigma_{23}=\sigma_{32}&=&2G\epsilon_{23};\nonumber\\
+\sigma_{12}=\sigma_{21}&=&2G\epsilon_{12}.\nonumber
+\end{eqnarray}
+In $6\times 6$ matrix form, this is equivalent to:
+\begin{equation}
+	\left(\begin{matrix}\sigma_{11}\\\sigma_{22}\\\sigma_{33}\\\sigma_{23}\\\sigma_{13}\\\sigma_{12}\end{matrix}\right) = \left(\begin{matrix}
+\lambda+2G & \lambda& \lambda & 0 & 0 & 0\\
+\lambda & \lambda+2G & \lambda & 0 & 0 & 0\\
+\lambda & \lambda & \lambda+2G & 0 & 0 & 0\\
+0 & 0 & 0 & G & 0 & 0\\
+0 & 0 & 0 & 0 & G & 0\\
+0 & 0 & 0 & 0 & 0 & G\end{matrix}\right)
+\left(\begin{matrix}\epsilon_{11}\\ \epsilon_{22}\\ \epsilon_{33}\\ 2\epsilon_{23}\\ 2\epsilon_{13}\\ 2\epsilon_{12}\end{matrix}\right).
+\end{equation}
+
+For the examples on page~\pageref{strainexamples}, the stresses for an isotropic body can be computed from the equations above~:
+\begin{enumerate}
+\item For the compressed sphere~:
+\begin{equation}
+	\sigma_{11}=\sigma_{22}=\sigma_{33}=-\alpha(2G+3\lambda)\qquad\text{(all others vanish)}\nonumber
+\end{equation}
+One usually defines the \indexit{pressure} as the average of the diagonal elements of the stress tensor, i.e., $P=\langle\sigma_{ii}\rangle=\frac{1}{3}(\sigma_{11}+\sigma_{22}+\sigma_{33})=-\alpha(2G+3\lambda)$.
+
+\item
+For the sheared rectangular body~:
+\begin{equation}
+\sigma_{23}=\sigma_{32}=G\alpha\qquad\text{(all others vanish)}\nonumber
+\end{equation}
+Note that, for pure shears, the Lam\'e constant $\lambda$ does not enter in the equations, hence the name \indexit{shear modulus} for $G$.
+
+\end{enumerate}
+
+The Lam\'e constants can be rewritten in terms of three other constants~:
+\begin{enumerate}
+\item \indexit{Young's modulus}~: the ratio of longitudinal stress to longitudinal strain under uniaxial normal loading in the longitudinal direction.
+\[
+E=2G+\frac{G\lambda}{G+\lambda}\qquad(=2G(1+\nu))
+\]
+\item \indexit{Poisson's ratio}~: minus the ratio of lateral strain to longitudinal strain.
+\[
+\nu=\frac{\lambda}{2(\lambda+G)}
+\]
+\item \indexit{Bulk modulus}~: minus the ratio of pressure to dilatation.
+\[
+K=-\frac{1}{3}\frac{\sigma_{11}+\sigma_{22}+\sigma_{33}}{\epsilon_{11}+\epsilon_{22}+\epsilon_{33}}=-\frac{\text{Tr}(\sigma_{ij})}{3\text{Tr}(\epsilon_{ij})}=\frac{E}{3(1-2\nu)}
+\] 
+\end{enumerate}
+
+\subsection{Relation between Young's modulus and tensile direction}
+As an example application of linear elasticity theory, let us now consider the case of a crystal with cubic symmetry, and ask the question: \textit{how does the Young's modulus change with crystal orientation?}  If we align the crystal in a tension device so that the tensile axis lies along the $x$-direction, and we apply a force per unit area of $\sigma_{11}=\sigma^e_1$ along this direction, then the resulting strain in the direction of the stress will be given by:
+\[
+	\epsilon^e_{1} = s^e_{11}\sigma^e_{1};
+\]
+The Young's modulus $E$ is defined as the slope of the linear part of the stress-strain curve:
+\[
+	E = \frac{\sigma^e_1}{\epsilon^e_1} = \frac{1}{s^e_{11}}.
+\]
+If the crystal is rotated, then the tensor elements must first be transformed from the crystal reference frame to the laboratory reference frame (in which the $x$-direction is defined).  The general transformation relation for a 4-th rank tensor is given by:
+\[
+	s'_{ijkl} = \alpha_{im} \alpha_{jn} \alpha_{ko} \alpha_{lp}s_{mnop},
+\]
+with $\alpha_{ij}$ the coordinate transformation matrix.  In this particular case we do not need to transform the whole tensor, but only the component $s'_{1111}=s^{\prime e}_{11}$.  In the crystal reference frame, the component $s'_{1111}$ is given by:
+\begin{align*}
+	s'_{1111} 	=& 	\alpha_{11}^4s_{1111}+ \alpha_{12}^4s_{2222}+ \alpha_{13}^4s_{3333}+
+				\alpha_{11}^2 \alpha_{12}^2s_{1122}+ \alpha_{11}^2 \alpha_{13}^2s_{1133}+ \alpha_{12}^2 \alpha_{13}^2s_{2233}+\\
+			&	\alpha_{12}^2 \alpha_{11}^2s_{2211}+ \alpha_{13}^2 \alpha_{11}^2s_{3311}+ \alpha_{13}^2 \alpha_{12}^2s_{3322}+
+				\alpha_{12}^2 \alpha_{13}^2s_{2323}+ \alpha_{11}^2 \alpha_{13}^2s_{1313}+ \alpha_{11}^2 \alpha_{12}^2s_{1212}.
+\end{align*}
+Using the symmetry of the cubic compliance tensor and converting to Voigt notation (but dropping the superscript $^e$), this can be simplified as follows:
+\begin{equation}
+	s'_{11} = s_{11}(\alpha_{11}^4+ \alpha_{12}^4+ \alpha_{13}^4)+(2s_{12}+s_{44})(\alpha_{11}^2 \alpha_{12}^2
+	+ \alpha_{11}^2 \alpha_{13}^2+ \alpha_{12}^2 \alpha_{13}^2).
+\end{equation}
+
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lrrrlrrc}
+\hline
+Element & $c_{11}$ & $c_{12}$ & $c_{44}$ & $A$ & $E_{100}$ & $E_{111}$ & $E_{111}/E_{100}$ \\
+\hline
+\hline
+ Ag &   12.4&    9.3&    4.6&    2.97&    4.42&   12.02&    2.71\\
+ Al &   10.8&    6.1&    2.9&    1.23&    6.40&    7.73&    1.21\\
+ Au &   18.6&   15.7&    4.2&    2.90&    4.23&   11.62&    2.75\\
+ Cu &   16.8&   12.1&    7.5&    3.19&    6.67&   19.02&    2.85\\
+ Fe &   23.7&   14.1&   11.6&    2.42&   13.18&   28.44&    2.16\\
+ Mo &   46.0&   17.6&   11.0&    0.77&   36.26&   29.06&    0.80\\
+ Na &    0.73&    0.63&    0.42&    8.40&    0.15&    1.04&    7.11\\
+ Ni &   24.7&   14.7&   12.5&    2.50&   13.73&   30.46&    2.22\\
+ Pb &    5.0&    4.2&    1.5&    3.75&    1.17&    4.05&    3.47\\
+ W  &   50.1&   19.8&   15.1&    1.00&   38.89&   38.77&    1.00\\
+ \hline
+ Si&              16.6&    6.4&    8.0&    1.57&   13.04&   18.87&    1.45\\
+ Diamond&  107.6&   12.5&   57.6&    1.21&  105.00&  120.47&    1.15\\
+ TiC&            51.2&   11.0&   17.7&    0.88&   47.31&   42.76&    0.90\\
+\hline
+ LiF&   11.2&    4.6&    6.3&    1.91&    8.52&   14.44&    1.69\\
+ MgO&   29.1&    9.0&   15.5&    1.54&   24.85&   34.99&    1.41\\
+ NaCl&    4.9&    1.3&    1.3&    0.72&    4.35&    3.32&    0.76\\
+\hline
+\end{tabular}
+\caption{Selected values for the elastic moduli, the anisotropy, Young's moduli along $[100]$ and $[111]$
+directions and the Zener ratio.  All moduli should be multiplied by $10^{10}$ N/m$^2$.}
+\label{tb:moduli}
+\end{table}
+
+Note that this equation does not contain all the components of the matrix $\alpha_{ij}$, but only the first row.  The components on this row are the direction cosines of the direction $[uvw]$ that is parallel to the tensile axis, measured with respect to the cubic crystal reference frame.  If we denote these direction cosines by the symbol $\beta_i$, with
+\[
+	\beta_1 = \frac{u}{\sqrt{u^2+v^2+w^2}}, \beta_2 = \frac{v}{\sqrt{u^2+v^2+w^2}}, 
+	\beta_3 = \frac{w}{\sqrt{u^2+v^2+w^2}},
+\]
+then, after some algebra, we can rewrite the component $s'_{11}$ once more as:
+\[
+	s'_{11} = s_{11} - 2(s_{11}-s_{12}-\frac{s_{44}}{2})\left[\beta_1^2\beta_2^2+\beta_1^2\beta_3^2
+	+\beta_2^2\beta_3^2\right].
+\]
+The Young's modulus is then the inverse of this expression.  It is straightforward to show that 
+\begin{align*}
+	E_{100} &= \frac{1}{s_{11}};\\
+	E_{111} &= \frac{3}{s_{11}+2s_{12}+s_{44}},
+\end{align*}
+so that we can express the Young's modulus for an arbitrary direction $[uvw]$ as a function of the Young's moduli for the $[100]$ and $[111]$ directions (these are the ones that can usually be found in tables).
+\begin{equation}
+	\frac{1}{E_{uvw}} = \frac{1}{E_{100}} - 3\left(\frac{1}{E_{100}}-\frac{1}{E_{111}}\right)
+	\left[\beta_1^2\beta_2^2+\beta_1^2\beta_3^2+\beta_2^2\beta_3^2\right].
+\end{equation}
+
+ Some representative values of elastic moduli, Young's moduli, and two other important quantities are shown in Table~\ref{tb:moduli}.  The other quantities are:
+ \begin{itemize}
+ 	\item the elastic anisotropy, $A$, defined by 
+	\[
+		A = \frac{2c_{44}}{c_{11}-c_{12}}.
+	\]
+	For an elastically isotropic crystal, $A=1$.
+	
+	\item Zener's ratio is the ratio of the $[111]$ to $[100]$ Young's moduli, and is also a measure for crystal anisotropy.
+\end{itemize}
+It should be noted that elastically isotropic materials still require two elastic moduli (the Lam\'e constants) for a complete description of their elastic properties, even for cubic symmetry.  As the tensor rank increases, one requires an increasing number of independent constants to fully describe the property.
+
+
+
+\subsection{Important other experimental stress tests} 
+The tensile test represents only one of several important stress states that can be generated in a material.  It has a particularly simple geometry in which the stress is approximately constant across the entire cross section $A$ of the gauge length; thus, the stress level, $\sigma$, is simply the load or force $F$ divided by the area $A$, i.e., $\sigma = F/A$.  There are two other important test geometries in which the stress value is not simply the force divided by the area (although the units are still N/m$^2$): the \indexit{bending test} and the \indexit{torsion test}.  We will describe both tests in the following sections.
+
+\subsubsection{Bending tests} 
+% geometries: single beam, three-point, four-point tests 
+Bending tests are used to measure the \indexit{bending strength} or \indexit{flexural strength} of a material.  There are several common geometries that differ in terms of the number of support points and the number of load points. Fig.~\ref{fig:threepointbend} shows a schematic of the three-point bending test. A beam with rectangular cross section $b\times h$ is supported at two points at a distance $L$ from each other.  A force $F$ is applied at the center between the two supports; the force exerts a torque on the beam, causing it to bend.  The top half of the beam is under a compressive stress whereas the bottom half experiences a tensile stress; thus, in the center plane of the beam, there is no stress.  Therefore, the stress depends on position in the beam and can not be computed simply as force divided by cross-sectional area.  
+
+\begin{figure}[h]
+%\centering\leavevmode\includegraphics[width=4in]{Figures/threepointbend}
+\caption{Schematic of a three-point bending test on a beam with rectangular cross section $b\times h$.}
+\label{fig:threepointbend}
+\end{figure}
+
+As the applied force increases, a cross-sectional plane, indicated by the solid vertical line right of center, will be tilted or rotated around its center line (the neutral axis of the cross section). There is an areal moment of inertia associated with this rotation, i.e., a quantity describing the resistance of the cross-section to rotation around the neutral axis.  Denoting the distance from an arbitrary point in the cross section to the neutral axis by $z$, the area moment of inertia, $I$, is given by:
+\[
+	I = \int_{-h/2}^{h/2} z^2\, \mathrm{d}A = b\int_{-h/2}^{h/2} z^2\,\mathrm{d}z = \frac{b\,h^3}{12}.
+\]
+The force $F$ results in a moment with respect to each of the supports, and the maximum moment occurs at the center of the beam. If we remove the right half of the beam, and consider that the force on the left support is $F/2$, then the moment arm on the center cross section has length $L/2$, so that the maximum moment is given by:
+\[
+	M = \frac{F\, L}{4}.
+\]
+The stress magnitude at a level $z$ above or below the center plane of the beam is then given by:
+\[
+	\sigma(z) = \frac{M}{I}z = \frac{F\,L}{4\,I}z = \frac{3F\,L}{b\,h^3}z.
+\]
+Note that the stress varies linearly across the cross section, and that the maximum flexural stress is attained for $z=h/2$:
+\[
+	\sigma_{\text{max}} = \frac{3F\, L}{2b\,h^2}.
+\]
+It can be shown that the maximum deflection $\delta_{\text{max}}$ at the center of a rectangular beam is given by:
+\[
+	\delta_{\text{max}} = \frac{F\,L^3}{48E\,I} = \frac{F\,L^2}{4E\,b\,h^3},
+\]
+where $E$ is the Young's modulus of the material.  Hence, when the sample and instrument dimensions are known, a measurement of the slope of the deflection vs.\ applied force results in a value for $E$, as long as the deformation remains in the elastic regime.  
+
+For beams with other cross-sectional shapes, the correct expression for $I$ needs to be substituted in the equations above.  There are other common geometries for bending tests, in particular the four-point bending test, in which the load is applied in two points instead of one.  Stress and deflection relations for all test geometries are well known and can be found in reference handbooks as well as in the ASTM standards for bending tests.
+
+\subsubsection{Torsion test}
+In a torsion experiment, a sample is twisted by an applied torque that generates shear stresses in the material.  Along the center axis of the (cylindrical) beam, the shear stress is zero, and it is maximal on the outer surface; the center axis is thus the neutral axis.  At a distance $r$ from the neutral axis, the torque, $T$, generates a shear stress, $\tau$, given by:
+\[
+	\tau(r) = \frac{T}{J_T}r
+\]
+where $J_T$ is the torsion constant, a quantity that depends on the cross sectional shape of the beam, and is equal to the polar moment of inertia for solid beams.  For a cylindrical beam of radius $R$, the polar moment of inertia is computed as follows:
+\[
+	J_T = \int_0^{2\pi}\int_0^{R} r^2\,r\mathrm{d}r\mathrm{d}\phi = \frac{\pi R^4}{2}
+\]
+The total (elastic) deflection angle due to torsion can then be formulated as:
+\[
+	\varphi = \frac{2T\,L}{\pi R^4\,G},
+\]
+where $G$ is the shear modulus and $L$ the length of the beam. In the elastic regime, a torsion test can thus be used to determine the shear modulus of a material.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Electrical Properties}\label{sec:emag}
+
+%
+
+Since the discovery by Maxwell in the second half of the 19th century of the equations that govern the behavior of electrical and magnetic fields, the number of applications of electromagnetic fields has grown exponentially.  While we are very familiar with electricity, there are many material properties related to electric fields that might not be as familiar to us.  Similarly, we know (or we think we know) what a magnetic field is, because we deal with magnets not infrequently, but there are many less familiar areas where magnetism plays a crucial role.  In this section, we will first introduce the basic definitions of electromagnetic fields, and then concentrate on the material properties that are related to them.  At this point, we will only discuss the properties of single crystals.
+
+\subsection{Paraelectric behavior}
+
+When electrical charges, positive or negative, are distributed throughout space, there will be an \indexit{electric field}, $\mathbf{E}$, associated with this distribution.   According to electrodynamics, the electric field is defined as the gradient of the \indexit{electrical potential}, $\phi_e$, which, in turn, is determined by the charge distribution, $\rho_e(\mathbf{r})$.  The mathematical relations between them are given by:
+\begin{equation}
+	\mathbf{E}(\mathbf{r}) = -\bm{\nabla} \phi_e(\mathbf{r}) = -(\frac{\partial \phi_e}{\partial x_1}\mathbf{e}_1+
+		\frac{\partial \phi_e}{\partial x_2}\mathbf{e}_2+
+		\frac{\partial \phi_e}{\partial x_3}\mathbf{e}_3),
+\end{equation}
+and 
+\begin{equation}
+	\phi_e(\mathbf{r}) = \frac{1}{4\pi\epsilon_0} \int \frac{\rho(\mathbf{r}')}{\vert\mathbf{r}-\mathbf{r}'\vert}\,\mathrm{d}\mathbf{r}',
+\end{equation}
+where $\epsilon_0$ is the \indexit{permittivity of free space}, equal to  $8.854\times 10^{-12}$ F/m (Farad per meter).\footnote{One Farad is equal  to 1 Coulomb per Volt $[C/V]$, and is the unit of capacitance.}  The integration runs over all of space. This expression essentially states that the electrical potential in a given point $\mathbf{r}$ is determined by all charges located at positions $\mathbf{r}'$.  The denominator indicates that the potential energy is inversely proportional to the distance.  The potential is measured in Volts $[V]$, and the electric field in Volts per meter $[V/m]$.
+
+Consider next a material which is placed in this electric field.  It is a good assumption to consider the material as electrically neutral, i.e., the centers of charge for positive and negative charges coincide, when the material is outside the field.  In the field, opposing forces are exerted on positive and negative charges, so that the centers of positive and negative charge no longer coincide.  Basically, the electrons of each atom move in the direction of the field, and the nuclei, which are positively charged, move in the opposite direction.  The distance between the two charge centers in a given atom is very small, but it does give rise to an atomic \indexit{dipole moment}, which we can represent as $\mathbf{p}_i$ for atom $i$.  The dipole moment  is defined as the charge magnitude $q$ multiplied by the distance $d$ between the two charge centers.  The units of dipole moment are hence equal to $[Cm]$, and the vector points from negative to positive charges.  The total \indexit{polarization} (=dipole moment per unit volume) for the entire material is simply the sum of all atomic dipole moment vectors divided by the material volume:
+\begin{equation}
+	\mathbf{P} = \frac{1}{V}\sum_i \mathbf{p}_i.
+\end{equation}
+The units of polarization are therefore $[C/m^2]$, i.e., a surface charge density. In the absence of the material body, the relation between electric field and charge density is given by the Maxwell equation:
+\begin{equation}
+	\bm{\nabla}\cdot\mathbf{E} = \frac{1}{\epsilon_0}\rho,
+\end{equation}
+where $\bm{\nabla}\cdot$ indicates the divergence operator.  This relation states that electric field lines can only begin or end at electrical charges.  If we place the material in the field, then we will effectively add electrical charges, described by the polarization vector $\mathbf{P}$, to the system.  The Maxwell equation must therefore be modified as follows:
+\begin{equation}
+	\bm{\nabla}\cdot\mathbf{E} = \frac{1}{\epsilon_0}\rho - \frac{1}{\epsilon_0}\bm{\nabla}\cdot\mathbf{P}
+\end{equation}
+If we define a new vector field, $\mathbf{D}$, known as the \indexit{electric displacement}, as
+\begin{equation}
+	\mathbf{D} = \epsilon_0\mathbf{E}+\mathbf{P},
+\end{equation}
+then the new Maxwell equation can be written as:
+\begin{equation}
+	\bm{\nabla}\cdot\mathbf{D} = \rho.
+\end{equation}
+The electric displacement will be proportional to the field $\mathbf{E}$, as long as $\mathbf{E}$ remains small. The polarization is also proportional to the field, so that 
+\begin{equation}
+	\mathbf{P} = \epsilon_0\bm{\chi}_e\mathbf{E},
+\end{equation}
+with $\bm{\chi}_e$ the electric susceptibility tensor (a dimensionless second rank tensor), and also
+\begin{equation}
+	\mathbf{D} = \bm{\epsilon}\mathbf{E},
+\end{equation}
+with $\bm{\epsilon}$ the \indexit{electric permittivity tensor} (measured in $[F/m]$).   For an isotropic material, the ratio $\epsilon/\epsilon_0$ is known as the \indexit{dielectric constant}; for most materials it is in the range $1-10$ (dimensionless).  Note that $\mathbf{D}$ and $\mathbf{P}$ are just different notations for the same phenomenon: polarization.  They have the same units.
+
+The behavior described in the previous paragraphs is known as \indexit{paraelectric} behavior, and it is displayed by \textit{every} material.  The reason for this is that the electric susceptibility is a second rank tensor, and even for the highest symmetry (cubic) this tensor never vanishes (it reduces to a scalar).  The susceptibility and permittivity tensors are related to each other by the following equation:
+\begin{equation}
+	\bm{\epsilon} = \epsilon_0(\bm{\delta}+\bm{\chi}_e)
+\end{equation}
+with $\bm{\delta}$ the second rank identity tensor/matrix.
+
+{\color{red}insert a subsection of the frequency dependence of dielectric behavior; see Beth's notes}
+
+
+\subsection{Pyroelectric and ferroelectric behavior}
+
+In the previous section, the polarization was induced by an applied electric field.  It increases linearly with the field strength (for small fields), and disappears when the field is removed.  The amount of polarization can depend on the direction of the applied field, and therefore the permittivity/susceptibility is a tensor quantity.
+
+In Chapter~\ref{chap:PropertySymmetry}, we have seen that there is a cross effect between the temperature change $\Delta T$ and the electric displacement $\mathbf{D}$ (or polarization $\mathbf{P}$).  This effect is known as the \indexit{pyroelectric effect}, and is described by a vector quantity, $\mathbf{p}'_i$.  The components of $p'_i$ are numerically equal to those of the vector $\mathbf{p}$, which describes the electrocaloric effect (an entropy change caused by an electric field).  The pyroelectric effect can only exist in materials with point groups that have only one single rotation axis \indexit{without} a perpendicular mirror plane.  If there were a mirror plane, then both the vector $\mathbf{p}'$ and $-\mathbf{p}'$ would describe the same effect, which means that $\mathbf{p}'=\mathbf{0}$.  If there were more than one rotation axis present, then there would be multiple equivalent vectors $\mathbf{p}'$ pointing in different directions, and that can only happen when $\mathbf{p}'=\mathbf{0}$.  Hence, there are only $10$ of the $32$ point groups for which the pyroelectric effect is present.  They are the following groups:  \pg{1}, \pg{3}, \pg{4}, \pg{7}, \pg{16}, \pg{19}, \pg{9}, \pg{13}, \pg{21}, and \pg{25}.  It is easy to show that in the group \pg{1}, all three components of the pyroelectric vector can be non-zero; in the groups \pg{3}, \pg{16}, \pg{9}, \pg{21}, \pg{7}, \pg{19}, \pg{13}, and \pg{25}, only the $p'_3$ component can be different from zero;  and in the group \pg{4}, $\mathbf{p'}$ must lie in the mirror plane, so that the components $p'_1$  and $p'_2$ can be different from zero, but $p'_3$ must be zero. These $10$ point groups are known as \indexit{polar groups}.
+
+The pyroelectric effect is described by the relation $\Delta P_i =  p'_i\Delta T$, i.e., the polarization increases when the temperature is increased.  Typical values for the pyroelectric coefficients are in the range $10^{-2}$ -- $10^{-8}$ C/m$^2$/K.  The effect is used for a large variety of applications, among others, infrared and millimeter wave detectors, temperature sensors, calorimeters,  thermal imagers, and television camera tubes.  The most important pyroelectric materials are lead zirconate  titanate ceramics, lithium tantalate single crystals, and polyvinylidene fluoride, which can be made in large oriented sheets.  
+
+\begin{messagebox}{Pyroelectric Sensors and Motion Detection}{olive}{\icinfo}{white}
+\begin{minipage}{\textwidth}
+The skin temperature of the human body is about $34^{\circ}$C which corresponds to infra-red electromagnetic radiation with a wave length in the range of $9$ to $10$ $\mu$m.  By using a pyroelectric crystal and an infra-red lens sensitive to the $8$ through $12$ $\mu$m range, one can generate a basic \indexit{motion detector} that covers a particular field of view. There are many possible designs, but in one of the simplest cases an electronic circuit continuously monitors the polarization state of the pyroelectric crystal. If an object with a temperature different from the ambient temperature passes through the field of view, then the polarization state will suddenly change, and the electronic circuit can detect this and raise an alarm.  In more advanced designs, multiple detector crystals are used. 
+\end{minipage}
+\end{messagebox}
+
+Since electrostatic interactions are very strong, polar crystals do not display a net polarization.  When the  polarization changes as the temperature is increased, electrical charges from the ambient air or charges from the interior of the material migrate quickly towards the surfaces and cancel out any net polarization effects.  It is for this reason that there is no electrical equivalent to a bar magnet.  For most pyroelectrics, the dielectric response (polarization induced by an electric field) is rather small. There is, however, a subclass of pyroelectrics in which an electric field induces a large and permanent polarization; these are the \indexit{ferroelectrics}.  In terms of our discussion in Chapter~\ref{chap:MaterialProperty}, for ferroelectrics the $\mathcal{R}_0$ term in the Taylor expansion can be non-zero.  A material is said to be ferroelectric if it possesses two or more polar states, between which it can flip by means of an electric field.
+
+Let us consider an example material: BaTiO$_3$.  This is an oxide with a perovskite high temperature structure.  The perovskite unit cell is a primitive cubic unit cell, with Ba at the corners, Ti in the body-center, and O in all the face centers; Ti is therefore octahedrally coordinated by oxygen (Fig.~\ref{fig:batio3}). The centers of positive and negative charges coincide in the center of the unit cell, so there is no net polarization.  When the temperature is decreased below $130^{\circ}$C, the structure changes to a tetragonal structure, and the Ti atom moves slightly away from the center of the cell.  As a result, there is a net displacement between the positive and negative charge centers, so that the cell has a net electric moment, and hence a net polarization.  For tetragonal BaTiO$_3$ at room temperature, the maximum polarization is about $0.26$ C/m$^2$.  The actual displacement of the Ti atom is only $7.2$~pm!
+
+\begin{figure}[t]
+\centering\leavevmode
+%\includegraphics[width=3in]{Figures/BaTiO3}
+\caption{BaTiO$_3$ high temperature cubic phase (a) and low temperature tetragonal phase (b).}
+\label{fig:batio3}
+\end{figure}
+
+While the electric susceptibility is a linear effect in paraelectric materials, this is no longer the case in ferroelectrics.  This is the first example of a material for which the linear approximation to the Taylor expansion does not work at all, nor do higher order approximations.  Ferroelectrics are described by a \indexit{constitutive relation}: $\mathbf{P} = \mathbf{P}(\mathbf{E})$, instead of $\mathbf{P}=\epsilon_0\bm{\chi}_e\mathbf{E}$.  When the polarization is measured as a function of the electric field, with the field going from a large negative value to a large positive value, the resulting curve is usually similar to the one shown in Fig.~\ref{fig:ferroelectric}.  This is clearly a non-linear relation.
+
+The following symbols are defined in this figure:
+\begin{itemize}
+	\item $P_S$ = \indexit{saturation polarization}, the maximum polarization that can be obtained;
+	
+	\item $E_c$ = \indexit{coercive field}, the field for which the polarization vanishes;
+	
+	\item $P_r$ = \indexit{remanent polarization}, the polarization that remains when the field is removed.
+\end{itemize}
+The area inside the curve is the total energy that has to be put into the system to go once around the loop. Such a loop is known as a \indexit{hysteresis curve}.  This is a clear indication of the non-linear relation between polarization and electric field for a ferroelectric material.
+
+\begin{figure}[h]
+\centering\leavevmode
+%\includegraphics{Figures/ferroelectric}
+\caption{Schematic illustration of a ferroelectric hysteresis curve.}
+\label{fig:ferroelectric}
+\end{figure}
+
+Consider next the high temperature phase of BaTiO$_3$.  When we cool down to just above the Curie temperature, $T_C$, the dielectric constant begins to increase to very large values, $10,000$ or more.  Then the structure changes from cubic to tetragonal, and the dielectric constant, this time of the tetragonal phase, decreases again.  As we pass through the Curie temperature, the entire sample will undergo the phase transition, except that in different regions of  the sample the Ti shift may occur in different directions; there are $6$ possible shift directions, $\pm [001]$, $\pm [100]$ and $\pm [010]$.  This will give rise to \indexit{polarization domains}, i.e., regions where the polarization has a certain orientation.  Those domains are separated from each other by \indexit{domain walls}.  It is easy to see that there are two types of domain walls in BaTiO$_3$.  First of all, there are the so-called $180^{\circ}$ walls, where the polarization changes sign (Fig.~\ref{fig:domains}a).  Second, the polarization may change by $90^{\circ}$, which gives rise to $90^{\circ}$ domain walls (Fig.~\ref{fig:domains}b).  
+
+\begin{figure}[h]
+\centering\leavevmode
+%\includegraphics{Figures/domains}
+\caption{Schematic illustration of $180^{\circ}$ (a) and $90^{\circ}$ (b) ferroelectric domains. Combinations of these domains can give rise to complex microstructures, such as the one shown in (c).}
+\label{fig:domains}
+\end{figure}
+
+When the sample is initially cooled through $T_C$, all domain orientations have the same probability of occurring, so that the total polarization is the sum of the $6$ polarization vectors, each multiplied with the corresponding volume fraction, $v_i$:
+\begin{equation}
+	\mathbf{P} = \sum_{i=1}^6 v_i \mathbf{P}_i.
+\end{equation}
+If the volume fractions are equal, then the net polarization is zero.  This means that in the absence of an applied field, there is no net polarization, which is indicated by the origin in Fig.~\ref{fig:ferroelectric}.  When we apply a positive field, say along the $x$ direction, then domains with their polarization along $-x$ will shrink, since they will have the highest energy $-\mathbf{P}\cdot\mathbf{E}$.  The net polarization increases along the curved dashed line, at first linearly, and continues to increase with increasing field strength, until the entire sample is polarized in one direction (i.e., the entire sample forms a single domain).  At this point, the polarization can no longer increase, and we have reached the so-called \indexit{saturation polarization}, $P_S$.
+
+When we reduce the applied electric field to zero (upper curve), then the total polarization will decrease somewhat. The precise amount depends, among other things, on the shape of the sample. If there are any sharp edges or corners in the sample, then the electrostatic energy required to maintain a uniformly polarized single domain state will be rather large, and it will be energetically more favorable for the sample to create a few domains with polarizations in other directions, thereby decreasing the net polarization to the \indexit{remanent} value, $P_r$.  When the field is  reversed and increased, the polarization drops further until it becomes zero at the \indexit{coercive field} $E_c$. A further increase of the field reverses the polarization until it saturates again at $-P_S$.  Reversal of the field then follows the lower curve to the remanent polarization $-P_r$.
+
+\subsection{Piezoelectric behavior}\index{piezoelectric effect}
+
+We have seen that an applied stress $\bm{\sigma}$ may give rise to a polarization $\mathbf{P}$; conversely, an applied electric field $\mathbf{E}$ may give rise to a strain $\bm{\epsilon}$.   These effects are known as the direct and converse piezoelectric effects, respectively.  The piezoelectric tensor, $d_{ijk}$, is symmetric in the last two indices, because the stress tensor is symmetric, hence:
+\[
+	d_{ijk} = d_{ikj}.
+\]
+Furthermore, the symmetry of $K_{ij}$ implies that the converse and direct piezoelectric tensors are related:
+\[
+	d'_{jki} = d_{ijk},
+\]
+where $d'_{jki}$ is symmetric in the first two indices.  It is common practice to write the piezoelectric tensor in engineering notation, $d^e_{iJ}$, where the second index, $J$, takes on the values $1\ldots 6$.  This means that  the tensor can be represented by a $3\times 6$ matrix.  The non-zero elements of this matrix can be determined for each point group; a full analysis shows that the piezoelectric effect can exist in only $20$ of the $32$ point groups, namely those groups that do not have an inversion center, with the exception of \pg{30}, where the effect vanishes because of the large number of rotational symmetry elements. The tensor elements (engineering notation) are shown in Table~\ref{tb:piezo} for all $20$ piezoelectric point groups. Note that all ferroelectrics are also piezoelectric, but the reverse is not necessarily true. Note also that, for the cubic point groups \pg{28} and \pg{31}, there is only one piezoelectric coefficient, $d^e_{14}$, which indicates that a polarization can only be induced by a shear stress, not by a normal stress.
+
+\begin{table}[h]
+\hspace*{-0.35in}
+\begin{tabular}{|lr|lr|}
+\hline
+Point groups & Piezoelectric tensor
+& Point groups & Piezoelectric tensor
+\\
+\hline\hline
+\pg{1} & 
+{\footnotesize
+$\left[\begin{matrix}
+d^e_{11} & d^e_{12} & d^e_{13} & d^e_{14} & d^e_{15} & d^e_{16}\\
+d^e_{21} & d^e_{22} & d^e_{23} & d^e_{24} & d^e_{25} & d^e_{26}\\
+d^e_{31} & d^e_{32} & d^e_{33} & d^e_{34} & d^e_{35} & d^e_{36}\\
+\end{matrix}\right]$}
+& \pg{14} & 
+{\footnotesize
+$\left[\begin{matrix}
+0 & 0 & 0 & d^e_{14} & 0 & 0\\
+0 & 0 & 0 & 0 & d^e_{14} & 0\\
+0 & 0 & 0 & 0 & 0 & d^e_{36}\\
+\end{matrix}\right]$}
+\\[5pt]
+\hline
+\pg{4} & 
+{\footnotesize
+$\left[\begin{matrix}
+d^e_{11} & d^e_{12} & d^e_{13} & 0 & 0 & d^e_{16}\\
+d^e_{21} & d^e_{22} & d^e_{23} & 0 & 0 & d^e_{26}\\
+0 & 0 & 0 & d^e_{34} & d^e_{35} & 0\\
+\end{matrix}\right]$} &
+\begin{minipage}[c]{0.75in}\pg{12}\\ \pg{24}\end{minipage} & 
+{\footnotesize
+$\left[\begin{matrix}
+0 & 0 & 0 & d^e_{14} & 0 & 0\\
+0 & 0 & 0 & 0 & -d^e_{14} & 0\\
+0 & 0 & 0 & 0 & 0 & 0\\
+\end{matrix}\right]$}
+\\[5pt]
+\hline
+\pg{3} & 
+{\footnotesize
+$\left[\begin{matrix}
+0 & 0 & 0 & d^e_{14} & d^e_{15} & 0\\
+0 & 0 & 0 & d^e_{24} & d^e_{25} & 0\\
+d^e_{31} & d^e_{32} & d^e_{33} & 0 & 0 & d^e_{36}\\
+\end{matrix}\right]$} & 
+\pg{16} & 
+{\footnotesize
+$\left[\begin{matrix}
+d^e_{11} & -d^e_{11} & 0 & d^e_{14} & d^e_{15} & -2d^e_{22}\\
+-d^e_{22} & d^e_{22} & 0 & d^e_{15} & -d^e_{14} & -2d^e_{11}\\
+d^e_{31} & d^e_{31} & d^e_{33} & 0 & 0 & 0\\
+\end{matrix}\right]$}
+\\[5pt]
+\hline
+\pg{7} & 
+{\footnotesize
+$\left[\begin{matrix}
+0 & 0 & 0 & 0 & d^e_{15} & 0\\
+0 & 0 & 0 & d^e_{24} & 0 & 0\\
+d^e_{31} & d^e_{32} & d^e_{33} & 0 & 0 & 0\\
+\end{matrix}\right]$} &
+\pg{19} & 
+{\footnotesize
+$\left[\begin{matrix}
+0 & 0 & 0 & 0 & d^e_{15} & -2d^e_{22}\\
+-d^e_{22} & d^e_{22} & 0 & d^e_{15} & 0 & 0\\
+d^e_{31} & d^e_{31} & d^e_{33} & 0 & 0 & 0\\
+\end{matrix}\right]$}
+\\[5pt]
+\hline
+\pg{6} & 
+{\footnotesize
+$\left[\begin{matrix}
+0 & 0 & 0 & d^e_{14} & 0 & 0\\
+0 & 0 & 0 & 0 & d^e_{25} & 0\\
+0 & 0 & 0 & 0 & 0 & d^e_{36}\\
+\end{matrix}\right]$} &
+\pg{18} & 
+{\footnotesize
+$\left[\begin{matrix}
+d^e_{11} & -d^e_{11} & 0 & d^e_{14} & 0 & 0\\
+0 & 0 & 0 & 0 & -d^e_{14} & -2d^e_{11}\\
+0 & 0 & 0 & 0 & 0 & 0\\
+\end{matrix}\right]$}
+\\[5pt]
+\hline
+\begin{minipage}[c]{0.75in}\pg{9}\\ \pg{21}\end{minipage} & 
+{\footnotesize
+$\left[\begin{matrix}
+0 & 0 & 0 & d^e_{14} & d^e_{15} & 0\\
+0 & 0 & 0 & d^e_{15} & -d^e_{14} & 0\\
+d^e_{31} & d^e_{31} & d^e_{33} & 0 & 0 & 0\\
+\end{matrix}\right]$} &
+\pg{22} & 
+{\footnotesize
+$\left[\begin{matrix}
+d^e_{11} & -d^e_{11} & 0 & 0 & 0 & -2d^e_{22}\\
+-d^e_{22} & d^e_{22} & 0 & 0 & 0 & -2d^e_{11}\\
+0 & 0 & 0 & 0 & 0 & 0\\
+\end{matrix}\right]$}
+\\[5pt]
+\hline
+\pg{10} & 
+{\footnotesize
+$\left[\begin{matrix}
+0 & 0 & 0 & d^e_{14} & d^e_{15} & 0\\
+0 & 0 & 0 & -d^e_{15} & d^e_{14} & 0\\
+d^e_{31} & -d^e_{31} & 0 & 0 & 0 & d^e_{36}\\
+\end{matrix}\right]$} &
+\pg{26} & 
+{\footnotesize
+$\left[\begin{matrix}
+0 & 0 & 0 & 0 & 0 & -2d^e_{22}\\
+-d^e_{22} & d^e_{22} & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0\\
+\end{matrix}\right]$}
+\\[5pt]
+\hline
+\begin{minipage}[c]{0.75in}\pg{13}\\ \pg{25}\end{minipage} & 
+{\footnotesize
+$\left[\begin{matrix}
+0 & 0 & 0 & 0 & d^e_{15} & 0\\
+0 & 0 & 0 & d^e_{15} & 0 & 0\\
+d^e_{31} & d^e_{31} & d^e_{33} & 0 & 0 & 0\\
+\end{matrix}\right]$} &
+\begin{minipage}[c]{0.75in}\pg{28}\\ \pg{31}\end{minipage} & 
+{\footnotesize
+$\left[\begin{matrix}
+0 & 0 & 0 & d^e_{14} & 0 & 0\\
+0 & 0 & 0 & 0 & d^e_{14} & 0\\
+0 & 0 & 0 & 0 & 0 & d^e_{14}\\
+\end{matrix}\right]$}
+\\[5pt]
+\hline
+\end{tabular}
+\caption{The 20 piezoelectric point groups, 
+and their associated third rank piezoelectric tensors $d^e_{iJ}$.}
+\label{tb:piezo}
+\end{table}
+
+The piezoelectric coefficients have units of $[C/N]$ (Coulomb per Newton).  As an example, consider quartz.  Quartz is essentially pure SiO$_2$, and can take on a number of different crystal structures.  The most important one from a technological point of view is $\alpha$-quartz,\index{quartz!$\alpha$ quartz} which has a symmetry belonging to point group \pg{18}. According to Table~\ref{tb:piezo}, there are only $2$ non-zero piezoelectric coefficients, $d^e_{11}$ and $d^e_{14}$.  Their numerical values at room temperature are $d^e_{11}=2.25$ and $d^e_{14}=-0.85$ pC/N. This means (exercise) that a positive polarization is created when either a normal stress ($d^e_{11}$) or a shear stress ($d^e_{14}$) is applied.  Conversely, the application of an electric field creates either a normal or a shear strain.
+
+Ferroelectricity was discovered in 1920 in Rochelle salt (sodium potassium tartrate tetrahydrate). By now, more than $500$ compounds have been found that exhibit ferroelectricity; nearly all of those compounds are oxides. BaTiO$_3$, PbTiO$_3$, and KNbO$_3$ are the best known examples.  It is possible to use the two remnant  states of a ferroelectric to create ferroelectric random access memory (FRAM); however, magnetic and semiconductor memories remain more competitive than FRAM.  Piezoelectrics are used in a wide range of sensor and transducer applications (e.g., sonar), and also as crystals in oscillator circuits (e.g., the quartz crystal in an electronic watch); piezoelectricity was discovered in 1880 by the brothers Pierre and Jaques Curie.
+
+\subsection{Example piezoelectric application}
+$\alpha$-SiO$_2$ is used as an oscillator crystal in digital watches and other electronic equipment because of its specific piezoelectric properties.  When an oscillating electric field is applied normal to a thin plate of quartz, the plate will vibrate at its natural frequency (which depends on its dimensions, density, and stiffness).  For quartz watches, the dimensions are chosen so that the frequency of vibration is  a power of $2$, typically $f=2^{15}=32,768$ Hz, so that simple digital counting circuits can be used to keep track of the number of vibrations.
+
+The crystal structure of $\alpha$-SiO$_2$ is rhombohedral with point group \textbf{32}, so that there are only two independent piezoelectric constants:
+\[
+	d^{e}_{11}=2.25\,\text{pC/N};\qquad d^{e}_{14}=-0.85\,\text{pC/N}.
+\]
+For an applied electric field, the response is a strain, so that the governing tensor relation is given by:
+\[
+	\epsilon_{ij} = d_{ijk}E_k,
+\]
+or in engineering notation:
+\[
+	\epsilon^{e}_{M} = d^e_{Mk}E_k,
+\]
+where the $6\times 3$ matrix $d^e_{Mk}$ is the transpose of the one listed in Table~\ref{tb:piezo}.  In explicit notation, we have:
+\[
+	\left(\begin{matrix}
+	\epsilon^e_1 \\
+	\epsilon^e_2 \\
+	\epsilon^e_3 \\
+	2\epsilon^e_4 \\
+	2\epsilon^e_5 \\
+	2\epsilon^e_6 \end{matrix}\right) = 
+	\left(\begin{matrix}
+	d^e_{11} & 0 & 0 \\
+	-d^e_{11} & 0 & 0 \\
+	0 & 0 & 0 \\
+	d^e_{14} & 0 & 0 \\
+	0 & -d^e_{14} & 0 \\
+	0 & -2d^e_{11} & 0\end{matrix}\right)\left(\begin{matrix} E_1\\ E_2\\ E_3\end{matrix}\right).
+\]
+
+For applications in digital watches, the quartz plates are cut in such a way that they contain the $x$-axis, which lies in the $(0\bar{1}.1)$ plane and is normal to the $z$-axis (using hexagonal Miller-Bravais indices). As shown in Fig.~\ref{fig:quartzcuts}, the cuts are inclined by an angle $\theta$ away from the $z$-axis, leading to a rotation matrix of the following  form (we write $a$ to avoid confusion with the thermal expansion tensor $\alpha_{ij}$):
+\[
+	a_{ij} = \left(\begin{matrix}
+	1 & 0 & 0\\
+	0 & \cos\theta & \sin\theta\\
+	0 & -\sin\theta & \cos\theta\end{matrix}\right).
+\]
+Since the field is applied normal to the plate, along the rotated $\mathbf{e}'_z$ axis, the field components will be $(0,0,E'_3)$.  In the primed reference frame, the strain can be written as:
+\[
+	\epsilon'_{ij} = d'_{ijk}E'_k = d'_{ij3}E'_3.
+\]
+We must therefore determine the components of the converse piezoelectric tensor in the rotated reference frame; only those components that have the third index equal to $3$ are needed for this particular geometry.
+
+The general tensor transformation relation for a third rank tensor reads as follows:
+\[
+	d'_{ijk} = a_{ip}a_{jq}a_{kr}d_{pqr},
+\]
+which in our case becomes:
+\[
+	d'_{ij3} = a_{ip}a_{jq}a_{3r}d_{pqr}.
+\]
+First we carry out the summation over $r$, and we find:
+\[
+	d'_{ij3} = a_{ip}a_{jq}(-\sin\theta d_{pq2} + \cos\theta d_{pq3}).
+\]
+Noting that $d_{pq3}=0$ for all values of $p$ and $q$, we simplify to:
+\[
+	d'_{ij3} = -\sin\theta a_{ip}a_{jq}d_{pq2}.
+\]
+Next we sum over $p$ and $q$; to do so, we note that the only non-zero entries for $d_{pq2}$ are the ones with engineering indices $M=5$ and $M=6$.  These correspond to the cases: $(p,q)$ = $(1,3),(3,1),(1,2),(2,1)$, and we obtain:
+\[
+	d'_{ij3} = -\sin\theta \left[a_{i1}a_{j3}d_{132}+a_{i3}a_{j1}d_{312}+a_{i1}a_{j2}d_{122}+a_{i2}a_{j1}d_{212}\right].
+\]
+Since we are interested in the thickness shear mode, for which only $\epsilon^e_5$ and $\epsilon^e_6$ are non-zero, we set $(i,j)$ equal to $(1,3)$ for $M=5$ and $(1,2)$ for $M=6$, and we substitute the rotation matrix entries to obtain:
+\begin{eqnarray*}
+	d'_{133} &= \sin^2\theta d_{122}-\sin\theta\cos\theta d_{132};\\
+	d'_{123} &= -\sin\theta\cos\theta d_{122} - \sin^2\theta d_{132}
+\end{eqnarray*}
+We convert this to engineering notation:
+\begin{eqnarray*}
+	d^{\prime e}_{53} &= \sin^2\theta d^e_{62}-\sin\theta\cos\theta d^e_{52};\\
+	d^{\prime e}_{63} &= -\sin\theta\cos\theta d^e_{62} - \sin^2\theta d^e_{52}.
+\end{eqnarray*}
+and we conclude by substituting the actual matrix entries:
+\begin{eqnarray*}
+	d^{\prime e}_{53} &= -2\sin^2\theta d^e_{11}+\sin\theta\cos\theta d^e_{14};\\
+	d^{\prime e}_{63} &= 2\sin\theta\cos\theta d^e_{11} + \sin^2\theta d^e_{14}.
+\end{eqnarray*}
+Therefore, the two (shear) strain components in the primed reference frame are given by:
+\begin{eqnarray*}
+	\epsilon^{\prime e}_{5} &= \frac{1}{2}(-2\sin^2\theta d^e_{11}+\sin\theta\cos\theta d^e_{14})E'_3;\\
+	\epsilon^{\prime e}_{6} &= \frac{1}{2}(2\sin\theta\cos\theta d^e_{11} + \sin^2\theta d^e_{14})E'_3.
+\end{eqnarray*}
+These strains are plotted as a function of the cut angle $\theta$ in Fig.~\ref{fig:qm} for $E'_3=10^8$ V/m.
+
+\begin{figure}[t]
+\centering\leavevmode
+%\includegraphics[width=5in]{Figures/piezostrain}
+\caption{\label{fig:qm}Strain components in \% for a perpendicular electric field of $10^8$ V/m.  The two vertical blue lines indicate the standard AT and BT cuts at $\theta=35^{\circ}$ and $\theta=-49^{\circ}$.}
+\end{figure}
+
+\subsection{Optimization of crystal cuts for quartz watches} 
+Since digital watches\index{piezoelectric effect!quartz watch} are used in a range of temperatures, we would like for the vibration frequency of the cut crystal to be virtually independent of temperature over the typical use range of temperatures from freezing to body temperature.  This will guarantee that the watch remains accurate despite temperature fluctuations.  The AT and BT cuts illustrated in Fig.~\ref{fig:quartzcuts} are specifically chosen because they have near zero effective temperature coefficients.  The temperature coefficient $T\!c$ is the derivative of the elastic modulus with respect to temperature; in nearly all piezoelectric materials, these coefficients are negative, because the lattice softens as the temperature is increased.  For quartz, however, one of the temperature coefficients, $T\!c_{66}$, is positive, i.e., the lattice becomes stiffer with increasing temperature; this is due to the fact that $\alpha$-quartz undergoes a phase transition to $\beta$-quartz at $573^{\circ}$C that involves rotations of SiO$_4$ tetrahedra that stiffen the lattice against certain distortions related to $c_{66}$.  It is this positive temperature coefficient that makes it possible to design quartz watches that are stable against temperature excursions, as we will now prove.
+
+\begin{figure}[ht]
+\centering\leavevmode
+%\includegraphics[width=3in]{Figures/quartzcuts}
+\caption{Schematic illustration of a quartz crystal with the major facets labeled; the commonly used X, Y, AT, and BT cuts are indicated as well.}
+\label{fig:quartzcuts}
+\end{figure}
+
+We select a Cartesian reference frame for the crystal as shown in Fig.~\ref{fig:quartzcuts}, and a second (primed) reference frame attached to the cut slab in the following way: the $z'$ axis of the plate is normal to the cut plane, and $x'$ and $y'$ are in the cut plane, with $x'\parallel x$.  It can be shown that application of an oscillating electric field along $y$ generates a thickness shear mode vibration that is governed by the $c'_{66}=c'_{xyxy}$ elastic modulus. Basic mechanics tells us that the resonant frequency, $\nu$, of such a shear mode is given by
+\begin{equation}
+	\nu = \frac{1}{2t}\sqrt{\frac{c'_{66}}{\rho}},
+\end{equation}
+with $t$ the thickness of the plate, and $\rho$ the density of quartz.  Our objective is now to find the value(s) of the cut angle $\theta$ for which this frequency does not drift appreciably with changes in temperature.  It should be noted that $c'_{66}$, $t$, and $\rho$ all change with temperature.
+
+The basic problem is then to minimize the temperature derivative of the frequency with respect to the angle $\theta$. Taking the logarithm of the frequency we have:
+\[
+	\ln \nu = \ln(1/2)-\ln(t)+\frac{1}{2}(\ln(c'_{66})-\ln(\rho)),
+\]
+from which we derive the relative frequency change as
+\[
+	\frac{1}{\nu}\frac{\mathrm{d}\nu}{\mathrm{d}T} = -\frac{1}{t}\frac{\mathrm{d}t}{\mathrm{d}T}+\frac{1}{2c'_{66}}\frac{\mathrm{d}c'_{66}}{\mathrm{d}T}-\frac{1}{2\rho}\frac{\mathrm{d}\rho}{\mathrm{d}T}
+\]
+The first and third term on the right hand side correspond to thermal expansion effects, the middle term to mechanical softening.  It is clear from this expression that the contributions have different signs, so that there may be a combination of parameters for which the relative frequency change is small or zero.
+
+Let us evaluate the three derivatives individually:
+\begin{itemize}
+	\item The relative thickness change is due to thermal expansion, so that the force-response relation can be written as:
+	\[
+		\epsilon = \alpha\Delta T
+	\]
+	with $\alpha$ a thermal expansion coefficient. Therefore we have:
+	\[
+		\alpha = \frac{\epsilon}{\Delta T}=\frac{\Delta t}{t\Delta T}=\frac{1}{t}\frac{\mathrm{d}t}{\mathrm{d}T}
+	\]
+	The relevant thermal expansion coefficient in the direction normal to the plate is $\alpha'_{22}$. This can be converted to the crystal reference frame by means of the usual tensor transformation, recognizing that the thermal expansion tensor in the crystal reference frame for trigonal $\alpha$-quartz is given by:
+	\[
+		\alpha_{ij} = \left[ \begin{array}{ccc}\alpha_{11}&0&0\\ 0&\alpha_{11}&0\\ 0&0&\alpha_{33}\end{array}\right]
+	\]
+	Therefore we have:
+	\[	\frac{1}{t}\frac{\mathrm{d}t}{\mathrm{d}T} = \alpha'_{22} = a^2_{21}\alpha_{11}+a^2_{22}\alpha_{22}+a^2_{23}\alpha_{33}
+	= \alpha_{11}\cos^2\theta+\alpha_{33}\sin^2\theta.
+	\]
+	
+	\item For the relative density change with temperature we have
+	\[
+		\frac{1}{\rho}\frac{\mathrm{d}\rho}{\mathrm{d}T} = -\text{Tr}(\alpha_{ij}) = -(2\alpha_{11}+\alpha_{33})
+	\]
+	
+	\item For the stiffness coefficient $c'_{66}$ we have the standard tensor transformation relation:
+	\[
+		c'_{66} = c'_{1212} = a_{1i}a_{2j}a_{1k}a_{2l}c_{ijkl}.
+	\]
+	Using the trigonal stiffness tensor from Table~\ref{tb:moduli} we can show that 
+	\[
+		c'_{1212} = c_{1313}\sin^2\theta+(c_{1312}+c_{1213})\sin\theta\cos\theta+c_{1212}\cos^2\theta
+	\]
+	which we can write in engineering notation as (omitting the superscript $e$):
+	\[
+		c'_{66} = c_{44}\sin^2\theta + 2c_{14}\sin\theta\cos\theta + c_{66}\cos^2\theta
+	\]
+	This then results in the following expression for the relative change in the stiffness component:
+	\[
+		\frac{1}{2c'_{66}}\frac{\mathrm{d}c'_{66}}{\mathrm{d}T} = \frac{1}{2}\frac{T\!c_{44}\sin^2\theta + 2T\!c_{14}\sin\theta\cos\theta + T\!c_{66}\cos^2\theta}{c_{44}\sin^2\theta + 2c_{14}\sin\theta\cos\theta + c_{66}\cos^2\theta}
+	\]
+	where $T\!c = c\,\mathrm{d}c/\mathrm{d}T$.
+\end{itemize}
+Combining the three relative changes we obtain for the relative frequency change:
+\begin{align*}
+	\frac{1}{\nu}\frac{\mathrm{d}\nu}{\mathrm{d}T} =& - \alpha_{11}\cos^2\theta-\alpha_{33}\sin^2\theta +\frac{1}{2}(2\alpha_{11}+\alpha_{33})\\
+	& + \frac{1}{2}\frac{T\!c_{44}\sin^2\theta + 2T\!c_{14}\sin\theta\cos\theta + T\!c_{66}\cos^2\theta}{c_{44}\sin^2\theta + 2c_{14}\sin\theta\cos\theta + c_{66}\cos^2\theta}
+\end{align*}
+To solve this equation for the angle(s) $\theta$ for which the relative frequency change vanishes we must know the numerical values of all the constants involved; we find for the room temperature parameters ($25^{\circ}$C) \footnote{R. Ward, The constants of alpha quartz (1992 update) 14th Piezoelectric Devices Conference and Exhibit.}
+\begin{itemize}
+	\item $\alpha_{11} = 13.54\times10^{-6}$ K$^{-1}$;
+	\item $\alpha_{33} = 7.3\times10^{-6}$ K$^{-1}$;
+	\item $c_{14} = -18.1$ MPa;
+	\item $c_{44} = 58.0$ MPa;
+	\item $c_{66} = 40.6$ MPa;
+	\item $c_{14}T\!c_{14} = -1.83\times 10^{-3}$ MPa/K;
+	\item $c_{44}T\!c_{44} = -1.03\times 10^{-2}$ MPa/K;
+	\item $c_{66}T\!c_{66} = 7.22\times 10^{-3}$ MPa/K.
+\end{itemize}
+As verified by the plot in Fig.~\ref{fig:roots}, this relative frequency change has two zero crossings, one for $\theta=-49.2^{\circ}$ (the BT cut) and one for $\theta=35.3^{\circ}$ (the AT cut).  For these cuts, the relative frequency change is minimized over a relatively large temperature range, typically less than $10$ ppm variation between $-45^{\circ}$C and $+90^{\circ}$C.  The accuracy with which these cuts can be made will determine how stable the vibrational frequency is; the cut accuracy is one of the important differences between cheap and expensive quartz watches.  The cost of AT quartz crystals in particular goes up significantly the smaller the required relative frequency change.
+
+\begin{figure}[t]
+\centering\leavevmode
+%\includegraphics[width=4in]{Figures/dfdt1}
+\caption{\label{fig:roots}The relative frequency change as a function of the angle $\theta$; the AT and BT cuts correspond to the zero crossings of this curve.}
+\end{figure}
+
+\begin{messagebox}{Touch Sensors}{olive}{\icinfo}{white}
+\begin{minipage}{\textwidth}
+An $0.33$ mm thick AT-cut quartz plate will vibrate with a natural frequency of about $5$ MHz. When driven at this resonance frequency by an oscillating electric field, any slight touching of the vibrating crystal\index{touch sensor} will change the vibration frequency which can be detected readily; frequency changes of $10^{-7}$ of the resonance frequency (i.e., about $1$ Hz for $5$ MHz) can be detected, which produces a very sensitive tactile sensor \cite{krishna2004a}.    
+\end{minipage}
+\end{messagebox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Magnetic properties}
+
+Much of what we have seen in the previous section can simply be copied for the magnetic field.  There are, however, some subtle differences, so that we should go through all the relevant properties in the same level of detail that we used for the electrical properties.  The main differences between magnetic and electrical properties are  related to the fact that there are no magnetic charges in nature.\footnote{This is still a topic of considerable interest. It was shown by Dirac that, if even a single magnetic monopole would exist, it would explain why electrical charges  come in multiples of the unit charge $e$.  So far, no magnetic monopoles have been found.}  While the basic entity of electrostatics  is the electrical charge, the basic entity of magnetics is the \indexit{magnetic dipole}.
+
+\subsection{Diamagnetism and paramagnetism}
+
+In the early nineteenth century, it was shown by several researchers that electrical currents give rise to magnetic fields.  Maxwell combined all these results and wrote them down in two equations:
+\begin{align}
+	\bm{\nabla}\cdot\mathbf{B} &= 0;\\
+	\bm{\nabla}\times\mathbf{B} &= \mu_0\mathbf{j},
+\end{align}
+where $\mathbf{B}$ is the \indexit{magnetic induction} or \indexit{magnetic flux density}, $\mathbf{j}$ is the electrical current density, and $\mu_0=4\pi\times 10^7$ Newton per square ampere $[N/A^2]$ of Henry per meter $[H/m]$ is the permeability of vacuum.  The operator $\bm{\nabla}\times$ is the curl operator.  The equations state that there are no magnetic charges, so that magnetic field lines must be closed loops, and that an electrical current creates a magnetic induction.  It is possible to express the magnetic induction in terms of the current density:
+\begin{equation}
+	\mathbf{B}(\mathbf{r}) = \frac{\mu_0}{4\pi}\int \mathbf{j}(\mathbf{r}')\times
+	\frac{\mathbf{r}-\mathbf{r}'}{\vert\mathbf{r}-\mathbf{r}'\vert^3}\,\mathrm{d}\mathbf{r}'.
+\end{equation}
+If there is no current density, then the second equation above becomes $\bm{\nabla}\times\mathbf{B}=0$, and then we can define a \indexit{magnetic scalar potential}, $\phi_m$, for which 
+\[
+	\mathbf{B} = -\bm{\nabla}\phi_m,
+\]
+just as we did for the electric field.  If the current density is non-zero, then we must use instead the so-called \indexit{magnetic vector potential}, $\mathbf{A}$, and we have
+\[
+	\mathbf{B} = \bm{\nabla}\times\mathbf{A}.
+\]
+We will assume in what follows that there are no macroscopic electrical currents, so that we can use the magnetic scalar potential $\phi_m$.  It is important, however, to consider the microscopic electrical currents associated with electrons moving around the nucleus of each atom.  If a current runs in a closed loop, then we can associate with this loop a \indexit{magnetic moment}, $\mathbf{m}$, measured in units of $[Am^2]$ (ampere times meter squared).   If each atom in the material has a magnetic moment $\mathbf{m}_i$, then the total magnetic moment per unit volume, or \indexit{magnetization}. is given by:
+\begin{equation}
+	\mathbf{M} = \frac{1}{V}\sum_i \mathbf{m}_i,
+\end{equation}
+which has units of $[A/m]$.
+
+Before we proceed, we must point out that not every atom has a magnetic moment.  We know that electrons are described by orbitals, and that in every orbital we can place two electrons, one with spin up, the other with spin down.  Since atoms have either an odd or an even number of electrons, they may end up with a total net moment, or no net moment.  Consider first a material in which there is no net magnetic moment.  If we apply an external magnetic field, $\mathbf{H}$, measured in $[A/m]$, to such a material, then the field will produce electrical currents around each atom (and hence a net magnetization) which will tend to counteract the applied field.  Since the response of a material to an applied magnetic field is given by the magnetic induction, we have (see Table~\ref{tensors} on page~\pageref{tensors}):
+\begin{equation}
+	\mathbf{B} = \bm{\mu}  \mathbf{H},
+\end{equation}
+where $\bm{\mu}$ is a second rank tensor known as the \indexit{magnetic permeability tensor}.  Since this is  a principal effect, $\bm{\mu}$ is a symmetric tensor.  By analogy with the electric polarization,\index{electric polarization} we have the following relation:
+\begin{equation}
+	\mathbf{B} = \mu_0(\mathbf{H}+\mathbf{M}).
+\end{equation}
+If we take a field oriented along the $x$ direction, and we assume that $\bm{\mu}$ is a diagonal tensor, then we have:
+\[
+	B_x = \mu_0(H_x+M_x)
+\]
+and also
+\[
+	B_x = \mu_{xx} H_x;
+\]
+combining the two, we find for the magnetization:
+\[
+	M_x = \left(\frac{\mu_{xx}}{\mu_0}-1\right)H_x.
+\]
+Since this magnetization is in the direction opposite to the field, the prefactor of $H_x$ must be negative, which means that $\mu_{xx}/\mu_0 < 1$.  For Bismuth, in which this effect is the strongest, we have
+\[
+	\frac{\mu_{xx}}{\mu_0} = 0.99982.
+\]
+In all other materials, this ratio is closer to but smaller than one, indicating that the induced magnetization is very small, of the order of $10^{-4}$ or less times the applied field.  This effect is known as \indexit{diamagnetism}.
+
+If there are unpaired electrons in the atom, i.e., incompletely filled orbitals, then the atom has a net magnetic moment and the substance is called \indexit{paramagnetic}.  In that case, we must have
+\[
+	\frac{\mu_{xx}}{\mu_0} > 1,
+\]
+and the induced field lines up with the applied field.  The ratio above is typically in the range $[1,1.01]$ at room temperature and decreases at higher temperatures, since the thermal fluctuations are strong enough to randomize the magnetic moment orientations.
+
+The \indexit{magnetic susceptibility tensor}, $\bm{\chi}_m$, is defined by the relation:
+\begin{equation}
+	\mathbf{M} = \bm{\chi}_m\mathbf{H}.
+\end{equation}
+This tensor is related to the permeability tensor by:
+\[
+	\bm{\mu} = \mu_0(\bm{\delta}+\bm{\chi}_m).
+\]
+Diamagnetic materials have negative susceptibility, whereas paramagnetic materials have positive susceptibility. The susceptibility tensor is also a symmetric tensor, since $\bm{\mu}$ is symmetric.
+
+\subsection{Ferromagnetism}
+
+Magnetism is entirely due to the properties of the electron.  The magnetic moment of a single electron is known as the \indexit{Bohr magneton}, $\mu_B = 9.27\times 10^{-24}$ A m$^2$.  When electrons form the orbitals of an atom, each electron contributes this magnetic moment, but because of the filling principles of the orbitals, most moments cancel each other.  The only atoms for which the cancellation is incomplete are the first row transition elements, and the actinides and lanthanides.  The net magnetic moment in elements from these groups is due to incomplete cancellation of electron magnetic moments in the inner shells.  It turns out that there are only $4$ elements in which the net moment is significant: Fe, Co, Ni, and Gd.  Materials made from these elements, either in pure or in alloy form, have a permanent magnetization, and are hence called \indexit{ferromagnetic}.  The relation between $\mathbf{B}$ and $\mathbf{H}$ is not linear, but a constitutive relation $\mathbf{B} = \mathbf{B}(\mathbf{H})$.  The resulting $M$--$H$ hysteresis diagram looks very much like that for the ferroelectric materials, and we can define the following quantities:
+\begin{itemize}
+	\item $M_S$ = \indexit{saturation magnetization}, the maximum magnetization that can be obtained;
+	
+	\item $H_c$ = \indexit{coercive field}, the field for which the magnetization vanishes;
+	
+	\item $M_r$ = \indexit{remanent magnetization}, the magnetization that remains when the field is removed.
+\end{itemize}
+The resulting curve is shown in Fig.~\ref{fig:hystmag}.  The grey rectangle in the left upper quadrant is the largest rectangle (largest with respect to its area) that can be drawn inside the magnetization curve. It is a measure for the energy stored in the magnet and is known as its \indexit{energy product}. The larger the energy product, the smaller the magnet can be for a given required magnetic field strength.
+
+\begin{figure}[h]
+\centering\leavevmode
+%+\includegraphics{Figures/histmag}
+\caption{Schematic illustration of a ferromagnetic hysteresis curve.}
+\label{fig:hystmag}
+\end{figure}
+
+If the energy product is very small, then it is easy to change the overall magnetization of the material, and we say that the material is a \indexit{soft magnetic material}.  Recall that the area inside the hysteresis loop corresponds to the energy we need to put into the system in order to cycle the magnetization once; for a small energy product, the area inside the loop is also very small, so that switching of the magnetization does not cost much energy.  This is a desirable property for magnetic materials used in electrical transformers where we wish to minimize energy losses.  For other applications, we want the hysteresis curve to have a large area with a near-square shape; in the case we talk about \textit{hard} magnets,\index{hard magnetic material} because it takes a lot of energy to switch the magnetization.  This is a desirable property for magnetic memory, since random temperature fluctuations will not be sufficient to switch the magnetization state (and hence lead to a loss of stored information).
+
+
+Note that, just as in the ferroelectric case, there are also \indexit{magnetic domains}, and \indexit{magnetic domain walls} between them.  The process of domain formation and migration is similar to that of the ferroelectric case, and for an applied field $\mathbf{H}$, domains that have a large potential energy $-\mathbf{H}\cdot\mathbf{M}$ will shrink, i.e., domains with a magnetization opposing that of the applied field.  
+
+\begin{messagebox}{Magnetic domains visualized}{olive}{\icinfo}{white}
+\begin{minipage}{\textwidth}
+\vspace{.8em}
+%{\centering\includegraphics[width=0.95\textwidth]{Figures/Lorentz}\par}
+\vspace{.7em}
+The figure above shows three transmission electron microscopy images of a $50$ nm thick polycrystalline Permalloy\index{Permalloy} island (Ni$_{80}$Fe$_{20}$) placed on a Si$_3$N$_4$ support film; the island has dimensions of $2\times 1$ $\mu$m$^2$.  The image in (b) is the in-focus image; the images in (a) and (c) were obtained by slightly defocusing the objective lens of the microscope; this out-of-focus imaging highlights the positions of magnetic domain walls as dark and bright lines that intersect each other in various points, and that change contrast when going from under-focus (a) to over-focus (c). Using numerical image processing techniques, the three images can be combined into a single phase map (the phase of the electron wave that travels through the sample) shown in (d); the contours are parallel to the magnetic induction lines inside the sample and change direction at the domain walls, which were overlayed on the phase map. Finally, by taking the gradient of the phase map and color-coding the gradient directions one obtains image (e), which shows the individual magnetic domains in different colors defined by the colorwheel (blue means magnetization points up, green to the left, etc.).
+\end{minipage} 
+\end{messagebox}
+
+\subsection{Other magnetic properties}
+
+We conclude this section with a brief review of a few other important magnetic properties.  We consider the  following cross-effects: the \indexit{magnetocaloric effect} (tensor of rank $1$), \indexit{magnetoelectric polarization} (rank $2$), and the \indexit{piezomagnetic effect} (rank $3$).
+
+\subsubsection{The magnetocaloric effect}\label{ssec:magnetocaloric}
+
+The magnetocaloric effect, discovered in 1881, causes a temperature change in a material when it is subjected to a magnetic field. Table~\ref{tensors} on page~\pageref{tensors} lists two related effects, the magnetocaloric and pyromagnetic effects:
+\begin{equation}
+	\Delta S = q_i H_i\qquad\text{ and }\qquad \Delta T = q'_i B_i;
+\end{equation}
+the components of the vectors $\mathbf{q}$ and $\mathbf{q}'$ are equal due to intrinsic symmetry.  The equality between these components is an expression of the following thermodynamic Maxwell relation:
+\begin{equation}
+	\left(\frac{\partial S(T,H))}{\partial H}\right)_T = \left(\frac{\partial M(T,H)}{\partial T}\right)_H;
+\end{equation}
+this relation states that a magnetic entropy change can be achieved either by changing the field, $H$, or when the magnetization changes with a temperature change.  One can show that the magnetocaloric effect is strongest near the Curie temperature, where the magnetization is most strongly dependent on the temperature.  
+
+Since the entropy is a scalar quantity, i.e., polar, the magnetocaloric vector $\mathbf{q}$ must be an axial vector. An analysis using the $90$ magnetic point groups indicates that the magnetocaloric (or pyromagnetic) effect can only exist for $31$ magnetic point groups and vanishes in all others, in particular in all cubic groups. These $31$ groups are also the symmetry groups for which ferromagnetism is possible (see page~\pageref{tab:table1}). 
+
+\begin{messagebox}{Adiabatic demagnetization}{olive}{\icinfo}{white}
+\begin{minipage}{\textwidth}
+The magnetocaloric effect has important applications in refrigeration, where it can be used to create refrigerators that do not use ozone-depleting chemicals or greenhouse gases.  In fact, magnetic refrigeration can be used to reach extremely low temperatures ($\mu$K) through the process of \indexit{adiabatic demagnetization}.  Starting with a demagnetized sample, a field is applied under adiabatic conditions (i.e., no heat exchange with surroundings), causing the temperature to increase and the magnetic moments to become aligned. The heat is then extracted by a heat exchanging fluid, but the material remains magnetized in the field. The field is removed adiabatically, causing the sample temperature to decrease as the magnetic moments disorder. The sample absorbs heat from the medium to be cooled, which thus cools down, and the cycle is repeated.  Note that this cycle may require that the magnetic material be moved between two systems, the heat exchanger fluid and the volume to be cooled down.  This magnetocaloric effect is particularly strong in Gd$_5$Si$_2$Ge$_2$, PrNi$_5$, and La(Fe$_x$Si$_{1-x}$)$_{13}$H$_x$, as well as in several materials based on Mn and As.
+\end{minipage} 
+\end{messagebox}
+
+\subsubsection{The magnetoelectric effect}\label{ssec:magnetoelectric}
+
+The \indexit{magnetoelectric effect} describes an electrical polarization induced by a magnetic field, or, conversely, a magnetic induction created by an electric field:
+\begin{align}
+	D_i &= \lambda_{ij} H_j;\\
+	B_i &= \lambda'_{ij} E_j,
+\end{align}
+and since this is a cross effect we must have $\lambda'_{ij} = \lambda_{ji}$.  Since only one of the two vectors in each equation above is an axial vector, $\bm{\lambda}$ must be an axial tensor.  $58$ of the $90$ magnetic point groups can exhibit one or more non-zero components of the magnetoelectric tensor.  The presence of this effect can be verified experimentally, although it is often very weak, and it often helps to decide which of the magnetic point groups is the proper one.  The magnetoelectric effect was first detected in the antiferromagnetic material Cr$_2$O$_3$ in 1960 \cite{astrov1960a}.
+
+
+\subsubsection{The piezomagnetic effect}\label{ssec:piezomagnetic}
+
+The \indexit{piezomagnetic effect} is described by the third rank tensor $Q_{ijk}$.  As for the piezoelectric effect, there is a converse piezomagnetic effect as well:
+\begin{align}
+	B_i &= Q_{ijk} \sigma_{jk};\\
+	\epsilon_{ij} &= Q'_{ijk} H_k.
+\end{align}
+These axial tensors are symmetric in the first $(Q'_{ijk}=Q'_{jik})$ or last $(Q_{ijk}=Q_{ikj})$ pair of indices, and are typically represented in engineering notation.  This effect can not occur for non-magnetic crystals. There are $66$ magnetic point groups for which this effect can occur, but there are not many known crystals for which the effect has been measured.  In those materials where the effect is present, e.g., CoF$_2$, MnF$_2$, and LiCoPO$_4$, it is generally much smaller than the non-linear related effect of magnetostriction, which is described in section~\ref{sec:magnetostriction}.
+
+
+
+\section{Optical Properties}\label{sec:optical}
+
+\subsection{Symmetric second-rank tensors and quadratic surfaces}\label{sec:quadrics}
+
+Consider an arbitrary symmetric second rank tensor $\beta_{ij}=\beta_{ji}$.  If we denote the components of a position vector $\mathbf{r}$ by $x_i$, then we can combine the tensor and vector to construct a scalar quantity which, for convenience, we set equal to unity:
+\[
+	\beta_{ij}x_ix_j = 1.
+\]
+A summation is implied over both indices, so if we write the full summation explicitly we obtain:
+\[
+	\beta_{11}x_1^2+\beta_{22}x_2^2+\beta_{33}x_3^2 + 2\beta_{12}x_1x_2+2\beta_{13}x_1x_3+2\beta_{23}x_2x_3=1.
+\]
+For a given set of $6$ coefficients $\beta_{ij}$, this equation represents an object in a three-dimensional space.  In general, such an object is known as a \indexit{quadratic surface}.  Depending on the actual values of the coefficients, these surfaces include spheres, ellipsoids, hyperboloids, and paraboloids.\index{sphere}\index{ellipsoid}\index{hyperboloid}\index{paraboloid}  For instance, consider the case where $\beta_{ij}$ is a diagonal tensor,\index{diagonal tensor} with all elements along the diagonal equal to $\beta$; this would occur, for instance, in cubic materials.  In that case, the equation above reduces to:
+\[
+	x_1^2 + x_2^2+x_3^2 = \frac{1}{\beta},
+\]
+which is the equation of a sphere with radius $1/\sqrt{\beta}$.  If the diagonal elements are different from each other, then the object is described by:
+\[
+	\beta_{11}x_1^2+\beta_{22}x_2^2+\beta_{33}x_3^2=1;
+\]
+such an object is known as an \indexit{ellipsoid}, provided all three coefficients are positive.  If one or two coefficients are negative, then the object is a \indexit{hyperboloid}.  The general equation of such an ellipsoid is
+\[
+	\frac{x_1^2}{a^2} + \frac{x_2^2}{b^2} + \frac{x_3^2}{c^2} = 1,
+\]
+where $a$, $b$, and $c$ are the three radii along the principal axes.  This means that the numbers $1/\sqrt{\beta_{ii}}$ for a  diagonal second rank tensor $\beta_{ij}$ can be interpreted as the principal radii of an ellipsoid (if all are positive) or  hyperboloid (if one or two are negative).  If two of the diagonal components are equal to each other, then the ellipsoid is an \indexit{ellipsoid of revolution}.
+
+Diagonal second rank property tensors are usually found for the higher symmetry point groups (tetragonal, orthorhombic and cubic), which means that the corresponding ellipsoid is aligned with respect to the crystallographic axes (Fig.~\ref{fig:tensorellipsoid}(a-c)).  For lower symmetries, one can still define an ellipsoid.  It can be shown that there exists a coordinate transformation which will convert the tensor $\beta_{ij}$ to a diagonal tensor $\beta'_{ij}$.  The corresponding ellipsoid is no longer oriented along the main crystallographic directions, but is still described by the tensor elements (Fig.~\ref{fig:tensorellipsoid}(d)).  One can think of it in the following way: three of the six tensor elements are used to describe the principal radii of the ellipsoid, the other three elements define the orientation of the main ellipsoid axis.  
+
+\begin{figure}[h]
+\centering\leavevmode
+%\includegraphics[width=0.95\textwidth]{tensorellipsoid}
+\caption{Illustration of the ellipsoid corresponding to a symmetric second-rank tensor for (a) cubic, (b) tetragonal, (c) orthorhombic, and (d) triclinic crystal symmetry.}
+\label{fig:tensorellipsoid}
+\end{figure}
+
+\subsection{The refractive index}
+
+We begin by considering the velocity of light,\index{velocity of light} $c=2.99792458\times 10^{8}$ m/s.  According to classical electrodynamics, this velocity is also equal to
+\begin{equation}
+	c = \frac{1}{\sqrt{\epsilon_0\mu_0}},
+\end{equation}
+with $\epsilon_0$ the permittivity and $\mu_0$ the permeability of vacuum.  When a light wave travels through a medium that is not vacuum, then the speed of light changes (decreases) depending on the dielectric permittivity $\bm{\epsilon}$ and the magnetic permeability $\bm{\mu}$ of the medium.  If we take these to be scalars, $\epsilon$ and $\mu$, then the velocity of light changes to 
+\begin{equation}
+	c_m = \frac{1}{\sqrt{\epsilon\mu}}.
+\end{equation}
+We define the \indexit{refractive index} of a material as the ratio of the velocity of light in vacuum to the velocity of light in the medium, or:
+\begin{equation}
+	n = \frac{c}{c_m} = \sqrt{\frac{\epsilon\mu}{\epsilon_0\mu_0}}.
+\end{equation}
+Since the velocity of light in vacuum is the maximum velocity at which anything can move, the refractive index is always larger than $1$.  We also find that, if the medium is not isotropic, then the velocity of light will depend on the crystallographic direction along which the light travels.  In most cases, it is the dielectric permittivity which contributes most strongly to the refractive index, in particular for non-magnetic materials for which $\mu$ is about equal to $\mu_0$.
+
+\begin{messagebox}{Refractive index for a glass sphere}{olive}{\icinfo}{white}
+\begin{minipage}{0.45\textwidth}
+\vspace{.8em}
+%{\centering\includegraphics[width=0.9\textwidth]{Figures/GlassSphere}\par}
+
+\vspace{.7em}
+
+\em Image of an arrow when looking through a glass sphere with increasing refractive index.\label{pageglasssphere}
+\end{minipage}\hspace{1em}
+\begin{minipage}{0.5\textwidth}
+The typical example for the refraction of light\index{refraction of light} at the interface between two materials with different refractive index is that of a rod placed in a beaker filled with water; the rod appears to have a kink at the interface, and the angles are described by \indexit{Snell's Law}.  The figure on the left illustrates the same behavior looking at an arrow through a glass sphere with increasing refractive index, from $n=1$ to $n=2$.  In both cases, the refracting material is amorphous (liquid and glass); in the present section, we will consider what happens to light when it traverses a transparent crystalline material.
+
+Two rendered movies showing this behavior for a glass sphere are available \href{http://neon.materials.cmu.edu/degraef/27301/GlassSphere1.html}{here} and  \href{http://neon.materials.cmu.edu/degraef/27301/GlassSphere2.html}{here}.
+\end{minipage}
+\end{messagebox}
+
+
+In general, the permittivity tensor, and hence the refractive index, is a function of the wavelength of the light.  This is known as \indexit{dispersion}, and is most easily visualized by taking a glass prism and sending white light into it on one side.  On the other side, we will observe all colors in a rainbow-type display.  For optical applications in lenses and eye glasses, one would typically look for a glass which has a nearly constant refractive index across the entire range of visible light wavelengths.
+
+In the previous section we established that every symmetric second rank tensor can be represented graphically by an ellipsoid; next, we will consider the special case of the \indexit{optical indicatrix}, the ellipsoid that represents the inverse of the symmetric dielectric tensor:
+\begin{equation}
+	\beta_{ij} = \frac{\epsilon_0}{\epsilon_{ij}} = \frac{1}{n^2_{ij}}.
+\end{equation}
+We know from electrodynamics that a light wave consists of a perpendicular pair of oscillating electric and magnetic fields.  The direction of the electric field vector is normal to the propagation direction, $\mathbf{k}$, of the wave and to the magnetic field vector; we will consider the direction of $\mathbf{E}$ to be the direction of \indexit{polarization} of the wave.  The optical indicatrix is then a quadratic surface displaying the index of refraction; the positive nature of the refractive index means that the surface will be an ellipsoid.  The distance of a point on the surface to the origin represents a refractive index for the corresponding polarization direction.  
+
+Consider first a  material which has an isotropic dielectric tensor $\epsilon_{ij} = \epsilon\delta_{ij}$.  The index of refraction is independent of the direction of the light traveling through the material.  If a light wave travels along the $\mathbf{k}$ direction (Fig.~\ref{fig:indicatrix}), the polarization direction lies in the plane normal to $\mathbf{k}$; for each possible polarization direction we plot two points at a distance $\pm n$ from the origin.  If we repeat this for all possible incident wave directions, then we obtain a sphere, since $n$ does not depend on direction for a cubic material.  In other words, the optical indicatrix for a cubic material is a sphere of radius $n$.  The red and blue arrows in Fig.~\ref{fig:indicatrix} represent two orthogonal polarization directions; the letter $o$ stands for \textit{ordinary} and will be explained next.
+
+\begin{figure}[h]
+\centering\leavevmode
+%\includegraphics[width=3in]{Figures/indicatrix}
+\caption{Illustration of the optical indicatrix for an isotropic material.}
+\label{fig:indicatrix}
+\end{figure}
+
+
+Once we have the optical indicatrix, then we can determine the refractive index for an arbitrary wave direction as follows: draw the wave normal (propagation direction of the wave) starting in the center of the indicatrix.  Then draw a line normal to the wave normal in the plane of polarization of the light wave.  The radius of the indicatrix along this line is the refractive index for propagation along that particular direction.  Obviously, if the indicatrix is a sphere, then all $n$ are equal, but for the more general case that will not be true.  
+
+One distinguishes between two types of anisotropic optical materials: \indexit{uniaxial} and \indexit{biaxial}.  A uniaxial indicatrix is an ellipsoid with two of its axes of identical length; this will be the case for hexagonal, trigonal, and tetragonal materials.  For orthorhombic, monoclinic, and triclinic materials, the indicatrix has three different radii.  Unpolarized light which enters an optically anisotropic material will be split in two components with different velocities; the electric field vectors corresponding to those two components are at right angles to each other.  For a uniaxial material, we already know that there are two dielectric constants $\epsilon_1$ and $\epsilon_2$, with $\epsilon_2$ corresponding to the value along the symmetry axis, and $\epsilon_1$ the value for the plane normal to the symmetry axis (which we will call the \indexit{basal} plane).  Two different dielectric constants correspond to two different refractive indices, and, therefore, two waves traveling at different velocities inside the crystal;  we represent the larger refractive index by $n_s$, and the smaller by $n_f$, with $n_s>n_f$.  The subscript $s$ stands for the \textit{slower} wave, $f$ for the \textit{faster} wave. The difference between the refractive indices of the slow and the fast waves, $\vert n_s-n_f\vert$, is known as the \indexit{birefringence}.  If $\epsilon_2>\epsilon_1$, then we say that the material is positive uniaxial, and negative uniaxial when $\epsilon_2<\epsilon_1$.  For trigonal calcite (CaCO$_3$) we have $n_s=1.658$ for propagation in the basal plane and $n_f=1.486$ for axial propagation, resulting in a birefringence of $0.172$; calcite is therefore an optically negative material, since $\epsilon_1>\epsilon_2$.
+
+The resulting indicatrix can have one of two shapes: either the refractive index along the $c$ direction is  larger than along $a$, or smaller, resulting in a prolate ellipsoid and an oblate ellipsoid, respectively.   The \indexit{optical axis} of the material is defined as the axis normal to the plane that intersects the ellipsoid in a perfect circle; for a uniaxial material this is obviously the $c$ axis.  As an example of the use of the indicatrix, consider a positive uniaxial material represented by the prolate ellipsoid shown in Fig.~\ref{fig:uniaxial}.  If the incident wave with wave vector $\mathbf{k}$ travels along the $c$ axis (Fig.~\ref{fig:uniaxial}(a)), then the two waves inside the crystal, with orthogonal polarizations, both have the same refractive index because the polarization lies in the basal plane.  The red and blue vectors indicate two possible polarization directions; both waves are ordinary waves corresponding to $n_1$, in this case the smaller of the two, so that both waves are fast waves. Since the refractive indices for these waves are identical, there will be only one single image when looking at an object along the $c$ axis of the crystal.  In Fig.~\ref{fig:uniaxial}(b), the wave travels in the basal plane, and the two orthogonal polarization directions correspond to the red vector (refractive index $n_1$ of the fast wave) and the blue vector along the $c$ axis (with $n_2$ or the slow wave).  The slower wave is known as the \indexit{extraordinary wave}, labelled $e$ in the figure.  Finally for the general propagation direction, shown in Fig.~\ref{fig:uniaxial}(c), the \indexit{ordinary wave} has a polarization direction in the basal plane, and the extraordinary wave now corresponds to a refractive index between the $n_1$ and $n_2$ values. Therefore, looking at an object through a crystal along this direction will produce two images, but they are separated by a smaller distance than in case (b), which corresponds to the maximal birefringence.
+
+\begin{figure}[h]
+\centering\leavevmode
+%\includegraphics[width=6in]{Figures/uniaxialpropagation}
+\caption{Illustration of the optical indicatrix for a uniaxial material for three different incident wave directions.}
+\label{fig:uniaxial}
+\end{figure}
+
+If $\theta$ represents the angle between the optical axis and the incident beam direction, then one can show that the refractive index $n(\theta)$ is given by:
+\[
+	\frac{1}{n^2(\theta)} = \frac{\cos^2\theta}{n^2_o}+\frac{\sin^2\theta}{n^2_e}
+\]
+where $n_o=n_1$ and $n_e=n_2$.  Snell's Law,\index{Snell's Law} which is valid only for optically isotropic materials, must now be replaced by two relations, one for the ordinary wave (we take air to have refractive index $1$):
+\[
+	\sin\theta_1 = n_o\sin\theta_o;
+\]
+and one for the extraordinary wave:
+\[
+	\sin\theta_1 = n(\theta_a+\theta_e)\sin\theta_e,
+\]
+where the angles are defined in Fig.~\ref{fig:birefringence}.  This figure illustrates a slab of a uniaxial crystal with a light wave incident from below at an angle $\theta_1$ with respect to the surface normal; the double arrow and the dotted circle indicate two orthogonal polarization directions, and the set of four parallel lines represent the wave fronts, which are normal to the propagation direction. Inside the crystal, this wave splits into two separate waves, the ordinary and extraordinary waves which travel in different directions at angles $\theta_o$ and $\theta_e$ with respect to the surface normal. Note that the wave fronts have the same orientation for both waves, but the extraordinary propagation direction is not normal to the wave front.  When the two waves reach the top surface, they emerge at different locations, explaining why there are two images instead of just one.  Both waves are now polarized with orthogonal polarization directions; using a simple sheet polarizer one can easily demonstrate that there are two separate images that are displaced with respect to each other.
+
+\begin{figure}[ht]
+\centering\leavevmode
+%\includegraphics[width=4in]{Figures/birefringence}
+\caption{Illustration of the principle of birefringence.}
+\label{fig:birefringence}
+\end{figure}
+
+In summary, for an optically uniaxial material (hexagonal or tetragonal), each wave splits into an ordinary and an extraordinary wave.  The ordinary wave has the refractive index corresponding to the direction normal to the optical axis.  The extraordinary wave has a refractive index which depends on the orientation of the incident wave.  The presence of two waves inside the crystal gives rise to two images of an object placed on one side of the crystal (double refraction or birefringence).
+
+For orthorhombic, monoclinic and triclinic materials, there are three independent diagonal components to the dielectric tensor,  and hence three different refractive indices.  The indicatrix is therefore no longer an ellipsoid of revolution, but rather a general ellipsoid.  For the orthorhombic case, the axes are still aligned with the crystallographic directions, but this is no longer the  case for the lower symmetries.  The main difference with the uniaxial case is that there are two possible planar sections through the  general ellipsoid which are circular.  Therefore, there are two normals to those planar sections and hence two optical axes (hence the name \textit{biaxial}).  The orientation of these axes is not related to the crystallographic axes, but rather to the relative magnitudes of the components of the dielectric tensor.  As a consequence of the two optical axes, neither the slow nor the fast wave will travel along the primary wave normal and hence both waves are extraordinary waves.  One can again use the graphical indicatrix constructions to determine refractive indices and polarization directions, but the drawings become rather complicated and there are several special cases when the primary wave is either parallel to or normal to one of the optical axes.  The interested reader may find more detailed literature on this topic in various books on optical mineralogy.
+
+\subsection{Other Optical Properties}\label{sec:otheroptical}
+
+\subsubsection{Optical Activity}
+
+If we send a plane polarized wave of light onto a crystal, then, in some materials, we will observe a rotation of this polarization plane proportional to the distance traveled through the crystal.  This rotation is know as \indexit{optical activity}.  This property is only known in crystal structures where the building blocks have a specific handedness, and the overall structure does not destroy this handedness.  For instance, a helical molecule can be left handed or right handed; if a crystal structure built from such molecules uses only one of the two types, then the resulting structure will be \indexit{chiral}.  In point group terminology, this means that only point groups which contain pure rotations will show optical activity ($15$ of the $32$ point groups). Furthermore, the space group must have screw axes, so that a particular handedness exists inside the lattice.  Crystals which show optical activity usually exist in two forms which are related to each other by a mirror operation; such forms are called \indexit{enantiomorphic}.  $\alpha$-quartz is a common example of an optically active material; it has point group $\hm{32}$, which consists only of rotations, and space group $P3_12$ or $P3_22$, depending on the handedness.  
+
+The angle of rotation per unit length of material is related to a scalar quantity $G$, known as the \indexit{optical gyration}. Note that $G$ changes sign when the handedness of the crystal is changed, so $G$ is a so-called \indexit{pseudo-scalar} quantity. $G$ does depend on the direction of the light wave inside the crystal.  If we write $\alpha_i$ for the direction cosines of the wave normal, then we have:
+\[
+	G = g_{ij}\alpha_i\alpha_j
+\]
+where $g_{ij}$ is the symmetric \indexit{gyration tensor};  note that $g_{ij}$ is an axial tensor.  The optical activity is present in addition to birefringence, so that the two must be distinguished when quantitative measurements are needed.  Optical activity of molecules in solution is an important diagnostic tool to determine whether the left handed or right handed enantiomorphs of a particular  molecule are present.  This is particularly important because biological systems appear to have a preference for one particular handedness.  In many cases, molecules used for medicinal applications have a mix of both chiralities, and, since the body will only respond to one of the two chiralities, one might as well attempt to remove the other half which will not be used by the body.  This can be done by synthesizing the molecules on crystal surfaces that have a handedness, i.e., chiral surfaces. 
+
+\subsubsection{Field-induced changes in refractive index}
+
+Crystals which are not birefringent in their natural state, may become birefringent under application of an external field, i.e., they may undergo a change of the refractive index. If this field is stress, then the effect is known as the \indexit{photoelastic effect}, for an electric field we speak of the \indexit{electro-optic effect}, and for a magnetic field we have the \indexit{magneto-optic effect}. 
+
+It is customary to work with the inverse of the dielectric permittivity tensor $\epsilon_{ij}$, which is denoted by $\beta_{ij}$ and  known as the \indexit{impermeability tensor}.   If $\beta_{ij}$ is diagonal, then the diagonal elements are equal to the inverse of the squares of the principal refractive indices. A change $\Delta\beta_{ij}$ in the components of the $\bm{\beta}$ tensor is then effectively a change of the refractive indices. The refractive indices might change under an applied electric field or an applied stress.  If we allow for electric field terms of second order (i.e., a non-linear behavior), then we can write:
+\begin{equation}
+	\Delta \beta_{ij} = r_{ijk}E_k + p_{ijkl}E_kE_l + q_{ijkl}\sigma_{kl}
+\end{equation}
+In this relation, $r_{ijk}$ describes the linear electro-optic effect (known as the \indexit{Pockels effect}), $p_{ijkl}$ is a 4th rank tensor describing the quadratic electro-optic effect or \indexit{Kerr effect}, and $q_{ijkl}$ describes the photoelastic effect. It should be noted that changes in refractive index can be measured with very high precision, often better than one part per million. It is common practice to use engineering notation for these three property tensors. Since both $\beta_{ij}$ and $\sigma_{kl}$ are symmetric tensors, we have $r_{ijk}=r_{jik}$, $p_{ijkl}=p_{jikl}=p_{ijlk}=p_{jilk}$, and $q_{ijkl}=q_{jikl}=q_{ijlk}=q_{jilk}$.  Crystal symmetry will, as usual, impose further conditions on the components of these tensors.  Note that these 4th rank tensors are \textit{not} symmetric under the change $ijkl\rightarrow klij$ (i.e., they do not have intrinsic thermodynamic symmetry), so that both tensors have $36$ independent components instead of $21$ for the lowest crystal symmetry.
+
+The refractive index can also change under influence of a magnetic field, or a magnetization in a material.  While the theory becomes a bit more complex, in practice one can make use of the so-called magneto-optical Kerr effect (MOKE) to image magnetic domain structures.  The principle works as follows:  polarized light is reflected off of the surface of a magnetic material.  The angle between the incident beam and the surface normal, $\theta$, is equal to the angle between the reflected beam and the surface normal (Snell's law).  If the light is polarized in the plane formed by the three directions (p-polarized), of normal to this plane (s-polarized), then, for a non-magnetic material, the polarization state after reflection does not change. If the material is magnetic, then the polarization plane will be rotated by a small amount, the Kerr rotation angle $\Phi_K$. Typical angles are in the range of $1^{\circ}$ or less.  Regions with opposite direction of the magnetization will give rise to opposite Kerr angles.  When the reflected beam is passed through a polarizer screen rotated by the Kerr angle, then there will be contrast between magnetic domains with oppositely oriented magnetization.  Depending on the angle $\theta$, the  method is sensitive to the in-plane component of $\mathbf{M}$, or to the normal component; in the latter case, the effect is known as the polar Kerr effect.  This effect has been used to create magneto-optical disk drives, where $1$ bits of information are stored as small regions of magnetization with a certain orientation, whereas $0$ bits have the opposite magnetization. Using the polar Kerr angle ($0.37^{\circ}$ for amorphous Tb$_{0.21}$Fe$_{0.79}$, the material of choice for magneto-optical disks) one can again obtain image contrast between oppositely oriented domains.  MOKE is easily adapted to so-called \indexit{in-situ observations}, where the domain structure can be changed in real-time by the application of an external magnetic field.
+
+
+
+\section{Selected Non-Linear Properties}\label{sec:nonlinear}\index{non-linear properties}
+
+\subsubsection{Second harmonic generating crystals}
+
+Consider the relation between electric polarization $\mathbf{P}$ and applied electric field $\mathbf{E}$, extended to include the next term in the Taylor expansion:
+\begin{equation}
+	P_i = \chi_{ij}E_j + \chi^{(2)}_{ijk}E_jE_k.\label{eq:SHG}
+\end{equation}
+Here $\chi_{ij}$ is the standard dielectric susceptibility tensor, and $\chi^{(2)}_{ijk}$ is the third rank, second order susceptibility tensor. The components of both tensors depend on the wavelength of the light used.  Note that $\chi^{(2)}_{ijk}$ is symmetric in the last two indices.
+
+If we have an optically transparent material, and the electric field is due to a light wave traveling through this material, then the non-linear contribution can give rise to an interesting effect: \indexit{second harmonic generation} (SHG), i.e., a doubling of the frequency of the light.  Here is how it works:  consider a light wave traveling along the $x$ direction, described by an electric field vector
+\[
+	\mathbf{E}(x,t) = \mathbf{E}^0 \cos(2\pi(\nu t - \frac{x}{\lambda}))
+\]
+with $\nu$ the frequency and $\lambda$ the wave length.  Inside a material, this wave travels at a velocity $c_m=\frac{c}{n}$, with $n$ the refractive index.  The quantity $\frac{c}{n}=\lambda\nu$ is known as the \indexit{phase velocity} of the wave.  Equation~(\ref{eq:SHG}) states that the polarization inside the material when subjected to this incident light wave is given by
+\begin{align*}
+	P_i &= \chi_{ij}{E}^0_j \cos(2\pi(\nu t - \frac{x}{\lambda}))+\chi^{(2)}_{ijk}
+	{E}^0_j{E}^0_k \cos^2(2\pi(\nu t - \frac{x}{\lambda}));\\
+	&= \frac{1}{2}\chi^{(2)}_{ijk}{E}^0_j{E}^0_k  +\chi_{ij}{E}^0_j \cos(2\pi(\nu t - \frac{x}{\lambda}))
+	+\frac{1}{2}\chi^{(2)}_{ijk}{E}^0_j{E}^0_k\cos(2\pi(2\nu t - \frac{2x}{\lambda})).
+\end{align*}
+where we have used the fact that $\cos^2\alpha = \frac{1}{2}(\cos 2\alpha+1)$.  We see that the second order term has two contributions to the polarization: first, the average polarization changes in magnitude due to the first term in the equation above.  Second,  the polarization oscillates with two different frequencies, $\nu$ for the basic wave, and $2\nu$ for the new wave, entirely due to the  non-linear term.  This is the so-called \indexit{second harmonic wave}.  How much  of this wave is actually present depends in a sensitive way on the magnitude of the electric field (i.e., the intensity of the light) and on the magnitude of the coupling coefficient $\chi^{(2)}_{ijk}$. In other words, if we send a sufficiently strong light wave of wavelength $700$ nm (bright red visible light), then a crystal with a large SHG effect (second harmonic generation) will produce, in addition to the red wave, also a wave with a wavelength of $350$ nm (purple).  Since the refractive index depends on the wavelength, the phase velocity of this wave will in general not be equal to that of the incident wave.  The maximum efficiency of the SHG effect is obtained when the phase velocities of both waves are matched, and this can be done by means of the birefringence effect, i.e., by carefully orienting the crystal.
+
+It is also possible to create two different wavelengths by allowing two incident beams with different frequencies $\nu_1$ and $\nu_2$ to interact inside the crystal.  This gives rise to the sum and difference frequencies $\nu_1\pm\nu_2$.  The SHG effect has important applications in laser spectroscopy, tunable and high power optical devices, generation of UV laser light, and generation of ultra-short ($10^{-14}$ s) light pulses.  SHG is one of the central material properties in optical communications and optical computing.
+
+\subsubsection{Magnetostriction}\label{sec:magnetostriction}\index{magnetostriction}
+
+When we add the second order term of the Taylor series to the expression for the piezomagnetic effect we obtain:
+\begin{equation}
+	\epsilon_{ij} = Q'_{ijk} H_k + \lambda_{ijkl}H_kH_l.
+\end{equation}
+The fourth-rank tensor $\lambda_{ijkl}$ is known as the \indexit{magnetostriction} tensor. Whereas the piezomagnetic tensor is an axial tensor, the magnetostriction tensor is polar because the product $H_kH_l$ is polar.  That means that we only have to consider the $32$ crystallographic point groups when discussing the components of $\lambda_{ijkl}$ that must vanish by symmetry.  Since both $\epsilon_{ij}$ and $H_kH_l$ are symmetric, we have that $\lambda_{ijkl}=\lambda_{jikl}=\lambda_{ijlk}=\lambda_{jilk}$; this means that the magnetostriction tensor has the same symmetry as the photoelastic tensor $q_{ijkl}$ described briefly in section~\ref{sec:otheroptical}.  
+
+Let us assume that we expose a material with vanishing piezomagnetic tensor but non-zero magnetostriction tensor to an alternating magnetic field of the form $H_z(t) = H_0 \cos(2\pi\nu t)$ with frequency $\nu$; an example would be an electrical transformer, where we have stacks of thin metal layers subjected to an alternating magnetic field with a frequency of $\nu=60$ Hz.  The resulting strain component $\epsilon_{zz}$ is then given by:
+\[
+	\epsilon_{zz}(t) = \lambda_{zzzz}H_z^2(t) = H_0^2 \lambda_{zzzz}\cos^2(2\pi\nu t). 
+\]
+Once again we make use of the fact that $\cos^2\alpha = \frac{1}{2}(\cos 2\alpha+1)$ and we observe that the frequency of the magnetostrictive strain is twice the driving frequency of the field, $2\nu$; thus, the transformer stack will undergo vibrations with a frequency of $120$ Hz (this is the frequency of the typical humming sound made by electrical transformers; the frequency lies between $A\#$ and $B$ in the US, and is closer to $G$ in Europe due to the fact that they use a $50$ Hz driving frequency).  Since it takes energy to generate the vibrations, it stands to reason that electrical transformers can be made more energy efficient by using magnetic materials that have been designed to have near zero magnetostriction (in addition to zero piezomagnetism).  
+
+Other engineering applications rely on the magnetostriction effect; for instance, one type of department store security device is the \indexit{acousto-magnetic security tag} shown in Fig.~\ref{fig:acoustomagnetic}.  This tag consists of two metallic strips encased in a plastic sleeve; one of the metals is highly magnetostrictive, the other is magnetized along the long direction, so that it generates a magnetic biasing field, $H_b$, for the magnetostrictive strip.  One side of the security gate produces brief bursts of an oscillating magnetic field, $H(t)=H_0\cos(2\pi\nu t)$, with a frequency of $\nu=58$ kHz; the other side listens for sounds around that frequency. When the tag is active and brought between the two gates, the total field experienced by the magnetostrictive strip is:
+\[
+	H = H_b + H_0\cos(2\pi\nu t);
+\]
+this will generate an oscillating strain in the magnetostrictive strip:
+\[
+	\epsilon(t) = \lambda H^2.
+\]
+When $H_0<H_b$, the strain will oscillate with frequency $\nu$, as shown in Fig.~\ref{fig:acoustomagnetic}(b) and this produces an audible sound of frequency $\nu$; when the driving pulse ends, the magnetostrictive strip's vibration will decay for a while, and the microphone will pick up this signal and sound the alarm. When the tag is deactivated by demagnetization of the bias strip, the field $H_b$ becomes very small or zero, and the strain will now oscillate with frequency $2\nu$, due to the quadratic dependence on the field (Fig.~\ref{fig:acoustomagnetic}(c)).  While the tag does make sound, the microphone system is not listening at the frequency $2\nu$, so the tag passes through the security gate undetected.
+
+
+\begin{figure}[ht]
+\centering\leavevmode
+%\includegraphics[width=5in]{Figures/acoustomagnetictag}
+\caption{Principle of acousto-magnetic security tags.}
+\label{fig:acoustomagnetic}
+\end{figure}
+
+
+\subsubsection{Third order elastic moduli}\label{sec:TOEM}
+
+As a final example of non-linear effects, consider the energy of a system which is exposed to large deformations.  We have seen in section~\ref{sec:mechprop} that this requires the use of the Lagrange strain tensor $\eta_{ij}$ instead of the normal strain tensor $\epsilon_{ij}$, and the conjugate thermodynamic tension, $t_{ij}$, as the stress tensor. If we expand the internal energy in terms of the Lagrange strain tensor, and keep terms up to third order in the strain, then we obtain:
+\[
+	U = U(0) + c_{ij}\eta_{ij} + \frac{1}{2}c_{ijkl}\eta_{ij}\eta_{kl} + \frac{1}{6}c_{ijklmn}\eta_{ij}\eta_{kl}\eta_{mn} + \ldots
+\]
+The factors $c_{ijkl}$ are the \indexit{second order elastic moduli}, and the sixth-rank tensor $c_{ijklmn}$ represents the \indexit{third order elastic moduli}.  In order for the crystal to be mechanically stable against any arbitrary deformation, the principal second order elastic moduli (i.e., the eigenvalues of the $6\times 6$ $c^e_{IJ}$ matrix) must all be positive.  
+
+The third order elastic moduli, $c_{ijklmn}$, measure the deviation from linear elasticity.  Note that there are $3^6=729$ moduli of third order; of these, a large number will vanish because of intrinsic and crystallographic symmetry. For a cubic material, only $6$ of the $729$ constants are independent. Using the thermodynamic tension, we can write:
+\begin{align*}
+	t_{ij} &= c_{ijkl} \eta_{kl} + \frac{1}{2}c_{ijklmn}\eta_{kl}\eta_{mn};\\
+	&= \left[ c_{ijkl}+\frac{1}{2}c_{ijklmn}\eta_{mn}\right] \eta_{kl};\\
+	&= c_{ijkl}^{\text{eff}}(\eta_{mn}) \eta_{kl},
+\end{align*}
+where $c^{\text{eff}}_{ijkl}$ are the \indexit{effective second order moduli}; they depend on the strain $\eta_{mn}$, and therefore they are non-linear properties.
+
+The strain dependence of the effective second order elastic moduli can become important in certain materials that have a very high elastic anisotropy, such as $\beta$-CuZn (brass) which has an anisotropy of around $A=12$, depending on the exact alloy composition.  Table~\ref{tb:brass} shows results from measurements of the second and third order elastic moduli for a $\beta$-Cu-$20.8$Zn-$12.7$Al (at\%) single crystal; the $\beta$ phase has the primitive CsCl structure and has a very low resistance against shear on $\{110\}$-type planes (this resistance is described by the $C'=(c_{11}-c_{12})/2$ modulus). 
+
+\begin{table}[ht]
+\centering\leavevmode
+\begin{tabular}{|l|rrrr|}
+\hline
+Modulus & $293$ K & $253$ K & $213$ K & $183$ K \\
+\hline\hline
+$c_{11}$ & 116.4 & 116.8 & 117.4 & 117.8 \\
+$c_{12}$ & 102.3 & 103.0 & 104.0 & 104.4 \\
+$c_{44}$ & 84.4 & 85.9 & 87.3 & 88.4 \\
+$C'$        & 7.06 & 6.94 & 6.81 & 6.72 \\
+$A$         & 11.97 & 12.45 & 12.82 & 13.15 \\
+\hline
+$c_{111}$ & -2080 & -1760 & -1740 & -1720\\
+$c_{112}$ & -1060 & -790 & -800 & -680 \\
+$c_{123}$ & -920 & -680 & -720 & -570\\
+$c_{144}$ & -1020 & -790 & -690 & -720\\
+$c_{166}$ & -1020 & -790 & -700 & -690\\
+$c_{456}$ & -660 & -680 & -640 & -470 \\
+\hline
+\end{tabular}
+\caption{\label{tb:brass}Second and third order elastic moduli (in GPa) as a function of temperature for a single crystal of $\beta$-Cu-$20.8$Zn-$12.7$Al (at\%); the third order moduli have substantial error bars \protect\cite{verlinden1987a}.}
+\end{table}
+
+As can be seen from the table, the resistance against $\{110\}$ shear decreases with decreasing temperature; this is unusual, since most materials become stiffer with decreasing temperature.  In addition, the mechanical anisotropy $A$ increases. In order to have a mechanically stable lattice, all the eigenvalues of the $c^e_{IJ}$ matrix must be positive.  The $C'$ modulus is one of those eigenvalues, and it is rather low compared to the other moduli. In addition, the analysis above shows that in the presence of strain, the effective second order moduli must be used. In regions close to lattice defects such as dislocations, strain fields can become appreciable so that the effective moduli can locally become rather different from the original moduli. Thus, it is possible for the lattice to have an effective $C'$ modulus close to zero or negative in regions near lattice defects. When a lattice becomes locally unstable, typically a new crystal structure will be formed locally, because the atoms move towards a more stable configuration. When the size of this transformed region (a nucleus of the new phase) reaches a critical size, it will continue to grow spontaneously.  In this particular material system, the newly formed phase is monoclinic and is known as \indexit{martensite}; the phase transformation, triggered by lattice instabilities, is known as a \indexit{martensitic transformation}; it is diffusionless and is dominated by shear instabilities on the $\{110\}$ planes.
+
+\section{Can material tensor component values be predicted?}\label{sec:atomistic}
+
+So far, we have seen that the components of material property tensors are determined, to some extent, by both thermodynamic rules (intrinsic symmetry) and crystallographic symmetry.  These symmetries impose relations between the tensor components, forcing some of them to vanish, and making others equal to each other. Symmetry does not, however, tell us anything about the magnitude or sign of the components that are allowed to be non-zero; we must use other methods to determine the magnitude of the tensor components.  In many cases, we must use quantum mechanics to determine how big a  certain effect is.  That is clearly beyond the reach of this text.  There are a few situations, however, where we can use a classical physics approach to determine the components.  In this section, we will describe how the elastic moduli of a material can be computed from the atom positions in the unit cell and knowledge of a function known as the \indexit{interatomic interaction potential}.
+
+Consider two identical atoms, positioned at a very large distance from each other.  There is only a negligible interaction between these atoms, so that we may safely say that the interaction energy vanishes, $\varphi(\infty)=0$ (a large distance is represented by the infinity symbol).  When the atoms are brought closer together, at a distance $r<\infty$, they will interact through Coulomb forces, and, in general, this is an attractive interaction which we will represent by a negative energy, i.e., $\varphi(r)<0$, at least for a distance larger than the sum of the radii of the two atoms.  When the atoms come even closer together, their electron clouds will strongly interact, due to the so-called \indexit{Pauli exclusion principle}, which states that no two electrons can occupy the same space and have identical quantum numbers. Therefore, at small distances, the interaction between the two atoms must become repulsive, so that the  energy $\varphi(r)$ increases and rapidly becomes positive.  The function $\varphi(r)$ is the \indexit{interatomic interaction potential} between the two atoms.  In our simple model, it is a pair potential  (only two atoms interact through it), and it does not depend on direction, only on the relative distance $r$ between the two atoms.
+
+If we now consider the interaction energy for a particular crystal structure, consisting of only one type of atom, then we must sum the pair interactions over all pairs of atoms in the crystal.  The energy per unit volume associated with a particular atom at location $\mathbf{r}_i$ is then equal to
+\[
+	E_i = \frac{1}{2\Omega_0} \sum_{j\ne i} \varphi(\vert\mathbf{r}_j-\mathbf{r}_i\vert),
+\]
+where $\Omega_0$ is the volume available to each atom.  Since we have a radial potential, independent of direction, we may rewrite this expression as:
+\[
+	E_i = \frac{1}{2\Omega_0} \sum_{j\ne i} \varphi(r_{ij}).
+\]
+Next, let us assume that the atoms are located on a cubic face centered lattice, and that this lattice is  deformed by a very small amount, described by the strain tensor $\epsilon_{ij}$.  It can then be shown that the square of the distance between two atoms after distortion, $r^2$, is related to that distance before distortion, $R^2$, by the following relation:\footnote{This relation is only approximately valid.  In principle we should use another strain tensor, the Lagrange strain tensor, to perform this derivation.  For simplicity, we will assume that the approximations made are rather good.}
+\begin{equation}
+	r^2 = R^2 + R_{i}\epsilon_{ij}R_{j}.\label{eq:rr}
+\end{equation}
+Just as we did for the definition of a material property, we can write a Taylor expansion for the energy density $E$  in terms of the strain tensor $\epsilon_{ij}$.  This relation is as follows:
+\begin{equation}
+	E(\epsilon_{ij}) = E(0) +\left.\frac{\partial E}{\partial \epsilon_{ij}}\right\vert_0\epsilon_{ij} +
+	\left.\frac{1}{2!}\frac{\partial^2 E}{\partial \epsilon_{ij}\partial\epsilon_{kl}}\right\vert_0\epsilon_{ij}\epsilon_{kl}  + \ldots 
+	=E(0) +c_{ij}\epsilon_{ij} + \frac{1}{2}c_{ijkl}\epsilon_{ij}\epsilon_{kl}  + \ldots 
+\end{equation}
+Since the zero of energy can be arbitrarily selected we can set $E(0)=0$;  also, since the energy must increase with arbitrary deformation for the equilibrium state, we the first derivative of the energy must vanish, $c_{ij}=0$.  Hence, we have:
+\begin{equation}
+	E(\epsilon_{ij}) = \frac{1}{2}c_{ijkl}\epsilon_{ij}\epsilon_{kl}  + \ldots 
+\end{equation}
+which, according to Hooke's Law, can be rewritten as
+\begin{equation}
+	E(\epsilon_{ij}) = \frac{1}{2}\sigma_{ij}\epsilon_{ij}  + \ldots 
+\end{equation}
+
+We also have a relation between the energy density and the interatomic potential $\varphi(r)$ which we substitute in the second derivative to obtain:\begin{equation}
+	c_{ijkl} = \frac{1}{2\Omega_0}\sum_{n} \frac{\partial^2\varphi(r_n)}{\partial\epsilon_{ij}\partial\epsilon_{kl}}.
+\end{equation}
+In other words, the elastic moduli are related to the second derivatives of the interatomic potential $\varphi$. Since the derivative of a function with respect to a tensor is somewhat difficult, we apply the chain rule and write:
+\[
+	\frac{\partial\varphi}{\partial\epsilon_{ij}} = \frac{\partial \varphi}{\partial r^2}\frac{\partial r^2}{\partial \epsilon_{ij}}.
+\]
+If we write 
+\[
+	\varphi' \equiv \frac{\partial\varphi}{\partial r^2}
+\]
+then we also find:
+\[
+	\frac{\partial\varphi}{\partial\epsilon_{ij}} = \varphi' \frac{\partial r^2}{\partial \epsilon_{ij}}.
+\]
+The remaining derivative can be computed easily using equation~\ref{eq:rr}
+\[
+	\frac{\partial r^2}{\partial \epsilon_{ij}} = 2 R_iR_j,
+\]
+so that 
+\[
+	\frac{\partial\varphi}{\partial\epsilon_{ij}} = 2\varphi' R_iR_j.
+\]
+If we apply this again for the second derivative, then we find for the elastic moduli:
+\begin{equation}
+	c_{ijkl} = \frac{1}{2\Omega_0}\sum 4\varphi'' R_iR_jR_kR_l,
+\end{equation}
+where the sum goes over all atoms in the crystal.  We know from crystallography that each atom in the fcc structure is equivalent to every other atom, so that we may arbitrarily select one atom as the origin.  If we only allow atoms out to the second nearest neighbor shell, then the number of atoms in first and second nearest neighbor shells and their coordinates are:
+\begin{table}[h]
+\centering\leavevmode
+\begin{tabular}{cccc}
+\hline
+Shell & \# atoms & $R_j$ & $\vert \mathbf{R}\vert$ \\
+\hline
+\hline
+1 & 12 & $\frac{a}{2}(\pm 1,\pm 1,0)$ & $a\frac{\sqrt{2}}{2}$ \\ 
+2 & 6 & $\frac{a}{2}(\pm 1, 0, 0)$ & $a$ \\ 
+\hline
+\end{tabular}
+\end{table}
+Since the atomic volume is equal to $\Omega_0 = a^3/4$, we can now write explicit expressions for the second order elastic moduli of a cubic fcc unit cell:
+\begin{align}
+	c_{1111} &= \frac{8}{a^3} \sum_{j=1}^2 \varphi''_{j}x_j^4  = 4a\varphi''_1+a\varphi''_2;\\
+	c_{1122} &= \frac{8}{a^3} \sum_{j=1}^2 \varphi''_{j}x_j^2y_j^2  = 2a\varphi''_1;\\
+	c_{2323} &= \frac{8}{a^3} \sum_{j=1}^2 \varphi''_{j}x_j^2y_j^2  = 2a\varphi''_1;
+\end{align}
+The second order elastic moduli for the fcc unit cell can thus be written as linear combinations of the second order derivatives of the interatomic potential, evaluated at the various nearest neighbor shell distances.  For our particularly simple model of the potential $\varphi$, we find that $c_{1122} = c_{2323}$, which is not necessarily true, as we have seen in Table~\ref{tb:moduli} on page~\pageref{tb:moduli}.  We must therefore use a more complicated potential to allow for $c_{1122}$ to be different from $c_{2323}$; the general procedure, however, remains the same.  For other material property tensor components, it is almost always possible to formulate the prediction of the components as an application of quantum mechanics.
+
+
+

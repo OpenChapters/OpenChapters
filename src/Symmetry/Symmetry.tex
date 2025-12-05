@@ -738,16 +738,222 @@ While the screw axis keeps the handedness of an object unchanged, a glide plane 
 
 \subsection{Example Derivations of Space Groups}\label{\chabbr:ssec:SGexamples}
 
-
-
 \subsubsection{Symmorphic space groups}
 
+As a first example, we consider the tetragonal point group \pg{13}, a point group of order $8$ (see Fig.~\ref{\chabbr:fig:nm}).  There are two tetragonal Bravais lattices, $tP$ and $tI$, so we have two potential combinations of the point group with translational symmetry.  Fig.~\ref{\chabbr:fig:P4mm} shows the $tP$ unit cell on the left as well as a schematic representation of the \pg{13} point group. To generate a space group, we need to translate the point group by the Bravais lattice translation vectors, and the result is shown on the right.  Note that the mirror planes have been extended so that they are continuous along the unit cell edges and along the diagonals. The points that fall inside the unit cell have been numbered $1$ through $8$. Selected points outside the unit cell have been labelled with primed numbers.  The presence of parallel mirror planes through neighboring lattice site gives rise to additional mirror plane midway between the sites; these newly generated symmetry elements are indicated in green to distinguish them from the elements that were part of the point group.  It is a requirement of symmetry groups that one should have a symmetry element connecting each pair of points; the vertical green mirror plane connects the points $1$ and $4$, $2$ and $3$, and so on; the horizontal green mirror plane connects $1$ and $8$, $2$ and $4$ and so on. When two orthogonal mirrors intersect each other, there must be a two-fold rotation axis along the intersection line, indicated by the green symbols.  The two-fold axis at the top of the drawing connects the points $2$ and $6'$ as well as $3$ and $7'$, among many other pairs. 
+
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath P4mm.eps}
+\caption{\label{\chabbr:fig:P4mm}Construction of the tetragonal space group $\mathbf{P4mm}$.}
+\end{figure}
+
+
+There must also be additional mirror planes between each pair of original diagonal mirrors. Points $7$ and $8$ do not have any mirror equivalents on the opposite side of the green dashed line, but a diagonal translation of point $7$ by the vector $-(\mathbf{a}+\mathbf{b})/2$ results in the point $4'$, which has opposite handedness of point $7$; this indicates that this mirror plane is a diagonal glide instead of a regular mirror plane.  Similarly, there are diagonal glides between each pair of regular diagonal mirrors; the graphical symbol for such a glide plane is a dashed line when the mirror plane is perpendicular to the plane of the drawing.\footnote{The International Tables for Crystallography, Volume A, uses a dashed line for the glide planes in this space group. However, the convention for a diagonal glide plane is to use a dash-dot line; it is not clear whether or not this is an error in ITC. For consistency with ITC, Fig.~\ref{\chabbr:fig:P4mm} also uses a dashed line.}  
+
+For the $tI$ Bravais lattice, there is a lattice site at the center of the unit cell, as shown on the left of Fig.~\ref{\chabbr:fig:I4mm}; the label $+1/2$ indicates that this point is located at a distance $c/2$ above the plane of the drawing.  Once again we copy the point group symbol onto every lattice site, including at the body center.  There are now $16$ equivalent sites inside the tetragonal unit cell, half of them at height $+$, the others at height $+1/2$ above the plane of the drawing.  As in the previous example, we know that there must be mirror planes halfway between the existing mirror planes from the point group drawings. The question is: what kind of mirror planes are they?  Starting with point $2$, we see that there is no equivalent point across the new vertical mirror plane, but there is one, point $16$, at a translation vector $(\mathbf{a}+\mathbf{c})/2$; this turns the mirror plane into a diagonal glide plane, indicated by a green dash-dot line.  Similarly, there is a second glide plane connecting points $3$ and $13$.  Two more diagonal glide planes are drawn horizontally, connecting points $1$ and $11$, and $8$ and $14$.   
+The lines indicated by a dash-dot-dot pattern are double glide planes represented by the symbol $e$; they have two glide vectors connected to each other by the body-centering vector.  Point $2$ glides to point $13$ (but at height $+$, not $+1/2$) by the translation $(\mathbf{a}+\mathbf{b})/2$ and is then mirrored to the point $1'$.  The second glide vector, $\mathbf{c}/2$, connects point $3$ to $11$ and $4$ to $12$, using the same glide plane.  Note that the two glide vectors are connected to one another by a version of the body-centering vector, namely $(\mathbf{a}+\mathbf{b})/2+(-\mathbf{a}-\mathbf{b}+\mathbf{c})/2=\mathbf{c}/2$, hence the designation of \indexit{double glide plane}.
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath I4mm.eps}
+\caption{\label{\chabbr:fig:I4mm}Construction of the tetragonal space group $\mathbf{I4mm}$.}
+\end{figure}
+
+The intersection of the diagonal glide planes gives rise to two-fold screw axes connecting, for instance, points $2$ and $9$, $3$ and $12$, and $7$ and $16$. Point $2$ is connected to $11$ by a four-fold screw $4_2$ which is located at the center of the unit cell's top edge. Since a space group is a group of infinite order, this means that there must exist a symmetry operator that connects, for instance, point $3$, to point $11+13\mathbf{b}$, i.e., a unit cell a distance $13\mathbf{b}$ from the central cell; and this must be true for every pair of equivalent points in this infinite lattice.  For simplicity, we define the ``order'' of the infinite space group to be the number of equivalent points inside the primary (or fundamental) unit cell.
+
+We can repeat this procedure for all $14$ Bravais lattices and $32$ point groups, thereby generating, for each crystal system, a number of space groups determined by the number of unit cell centerings multiplied by the number of point groups belonging to the crystal system; a quick calculation then determines this number to be 
+$1\times 2$ (triclinic) $+\, 2 \times 3$ (monoclinic) $+\, 4 \times 3$ (orthorhombic) $+\, 2\times 7$ (tetragonal) $+\, 1 \times 5$ (trigonal) $+\,1\times 7$ (hexagonal) $+\, 3 \times 5$ (cubic) $= 61$ space groups.  For some point groups there is more than one way to orient the symmetry operators onto the Bravais lattice, and this gives rise to an additional $12$ space groups. They are all listed in Table~\ref{\chabbr:tb:symmorphic} and they are collectively known as the \indexit{symmorphic space groups}.
+
+\begin{table}[h!]
+\centering\leavevmode
+{\small\begin{tabular}{lll||lll}
+\toprule
+S.G.\# & PG &Symbol & S.G.\# &PG &Symbol\\
+\midrule
+1 & \pg{1} & \spgr{1} &143& \pg{16} &\spgr{143}\\
+2 & \pg{2} & \spgr{2} & \underline{146}& &\spgr{146} \\
+3 & \pg{3} & \spgr{3} & 147&\pg{17}&\spgr{147}\\
+5 & & \spgr{5}& \underline{148}& &\spgr{148}\\
+6 & \pg{4} & \spgr{6}&149&\pg{18} &\spgr{149}\\
+8 & & \spgr{8}& \underline{150}& &\spgr{150}\\
+10 & \pg{5} & \spgr{10}& \underline{155}& &\spgr{155}\\
+12 & & \spgr{12}&156&\pg{19}&\spgr{156}\\
+16 & \pg{6} & \spgr{16}& \underline{157}& &\spgr{157}\\
+21 & & \spgr{21}& \underline{160}& &\spgr{160}\\
+22 & & \spgr{22}& 162&\pg{20}&\spgr{162}\\
+23 & & \spgr{23}& \underline{164}& &\spgr{164}\\
+25 & \pg{7} & \spgr{25}&\underline{166}& &\spgr{166}\\
+35 & &\spgr{35}&168 &\pg{21}&\spgr{168}\\
+\underline{38} & & \spgr{38}&174 &\pg{22}&\spgr{174}\\
+42 & & \spgr{42}&175&\pg{23} &\spgr{175}\\
+44 & & \spgr{44}&177&\pg{24}&\spgr{177}\\
+47 & \pg{8} & \spgr{47}&183&\pg{25}&\spgr{183}\\
+65 & & \spgr{65}&187&\pg{26}&\spgr{187}\\
+69 & & \spgr{69}&\underline{189}& &\spgr{189}\\
+71 & & \spgr{71}&191&\pg{27}&\spgr{191}\\
+75 & \pg{9} & \spgr{75}&195&\pg{28}&\spgr{195}\\
+79 & & \spgr{79}&196& &\spgr{196}\\
+81 & \pg{10}&\spgr{81}&197& &\spgr{197}\\
+82 & &\spgr{82}&200&${\bf m}{\bar{\bf 3}}{(T_h)}$&\spgr{200}\\
+83 & \pg{11} & \spgr{83}&202& &\spgr{202}\\
+87 & & \spgr{87}&204& &\spgr{204}\\
+89 & \pg{12} & \spgr{89}&207&\pg{30}&\spgr{207}\\
+97 & & \spgr{97}&209& &\spgr{209}\\
+99 & \pg{13} & \spgr{99}&211& &\spgr{211}\\
+107 & &\spgr{107}&215&\pg{31}&\spgr{215}\\
+111&\pg{14}&\spgr{111}&216&&\spgr{216}\\
+\underline{115}&$\bar{\mathbf{4}}\mathbf{m2}$
+(\textit{D$_{2d}$})&\spgr{115}&217&&\spgr{217}\\
+\underline{119}&$\bar{\mathbf{4}}\mathbf{m2}$
+(\textit{D$_{2d}$})&\spgr{119}&221&\pg{32}&\spgr{221}\\
+121&\pg{14}&\spgr{121}&225&&\spgr{225}\\
+123&\pg{15}&\spgr{123}&229&&\spgr{229}\\
+139& &\spgr{139}&&&\\
+\bottomrule
+\end{tabular}} %%%\renewcommand{\arraystretch}{1.0}\
+\caption{\label{\chabbr:tb:symmorphic}The $73$ symmorphic space groups, with
+sequential number, International and Sch$\ddot{\rm o}$nflies symbols, and
+corresponding point group. Underlined space group numbers represent the $12$ extra groups obtained when the point group is oriented in two different ways with respect to the Bravais lattice.}
+\end{table}
+
+\clearpage
 \subsubsection{Non-symmorphic space groups}
+For each of the $73$ symmorphic space groups one can now ask the question: do we obtain a new space group if we systematically replace rotation axes by screw axes and mirror planes by glide planes?  As an example we consider the orthorhombic symmorphic space group \spgr{16} shown in Fig.~\ref{\chabbr:fig:P222}.  On the left, the point group \pg{6} is represented schematically; two-fold axes in the plane of the drawing are shown as arrows.  When the point group is copied onto the $oP$ unit cell, additional two-fold axes are created; they are shown in green. 
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath P222.eps}
+\caption{\label{\chabbr:fig:P222}Construction of the orthorhombic space groups \spgr{16} and \spgr{17}.}
+\end{figure}
+
+When the two-fold axis along $\mathbf{c}$ is replaced by a $2_1$ screw axis, then the two-fold axis along $\mathbf{b}$ moves to a height of $1/4$ above the $\mathbf{a}$--$\mathbf{b}$ plane; this is readily shown by means of the $4\times 4$ transformation matrices for the $2_1$ and $2_x$ operators:
+\[
+	\mathcal{W}_{2_x} = \begin{pmatrix} 1&0&0&0\\ 0&-1&0&0\\ 0&0&-1&0\\ 0&0&0&1\end{pmatrix};\qquad
+	\mathcal{W}_{2_1} = \begin{pmatrix} -1&0&0&0\\ 0&-1&0&0\\ 0&0&1&1/2\\ 0&0&0&1\end{pmatrix}\ . 
+\]
+The product of these two matrices must again be a symmetry operator and it is  given by:
+\[
+	\mathcal{W}_{2_x} \mathcal{W}_{2_1} = \begin{pmatrix} -1&0&0&0\\ 0&1&0&0\\ 0&0&-1&-1/2\\ 0&0&0&1\end{pmatrix}\ .
+\]
+When operating on a general point $(x,y,z)$ we obtain the new triplet $(-x,y,-1/2-z)$. This operator rotates a point by $180^{\circ}$ around the $\mathbf{b}$ axis and then translates it by $-1/2$ along $\mathbf{c}$; this is equivalent to a two-fold axis going through the point $(0,y,1/4)$ since substitution into $(-x,y,-1/2-z)$ results in $(0,y,-3/4)$ which is equivalent to $(0,y,1/4)$; this means that the line $(0,y,1/4)$ is mapped onto itself so that this line is the rotation axis of the two-fold rotation.  The part of Fig.~\ref{\chabbr:fig:P222} labeled $\mathbf{222_1}$ is not a point group representation, but simply shows the relative orientations and locations of both the symmetry axes and the equivalent points.  Once again, operators in green are generated when this combination of symmetry operators is copied onto the nodes of an $oP$ lattice.  
+
+Space groups that have at least one screw axis or glide plane symbol in their space group label are collectively known as \indexit{non-symmorphic space groups}; there are $157$ non-symmorphic space groups and their labels are listed in Table~\ref{\chabbr:tb:non-symmorphic}.
+
+\begin{table}[h!]
+\centering\leavevmode
+{\small\begin{tabular}{lll||lll}
+\toprule
+S.G.\# & PG &Symbol & S.G.\# &PG &Symbol\\
+\midrule
+4 & \pg{3} & \spgr{4}      & 66 & & \spgr{66}\\
+7 & \pg{4} & \spgr{7}      & 67 & & \spgr{67}\\
+9 & & \spgr{9}             & 68 & & \spgr{68}\\
+11 & \pg{5} & \spgr{11}    & 70 & & \spgr{70}\\
+13 & & \spgr{13}           & 72 & & \spgr{72}\\
+14 & & \spgr{14}           & 73 & & \spgr{73}\\
+15 & & \spgr{15}           & 74 & & \spgr{74}\\
+17 & \pg{6} & \spgr{17}    & 76 & \pg{9} & \spgr{76}\\
+18 & & \spgr{18}           & 77 & & \spgr{77}\\
+19 & & \spgr{19}           & 78 & & \spgr{78}\\
+20 & & \spgr{20}           & 80 & & \spgr{80}\\
+24 & & \spgr{24}           & 84 & \pg{11} & \spgr{84}\\
+26 & \pg{7} & \spgr{26}    & 85 & & \spgr{85}\\
+27 & & \spgr{27}           & 86 & & \spgr{86}\\
+28 & & \spgr{28}           & 88 & & \spgr{88}\\
+29 & & \spgr{29}           & 90 & \pg{12} & \spgr{90}\\
+30 & & \spgr{30}           & 91 & & \spgr{91}\\
+31 & & \spgr{31}           & 92 & & \spgr{92}\\
+32 & & \spgr{32}           & 93 & & \spgr{93}\\
+33 & & \spgr{33}           & 94 & & \spgr{94}\\
+34 & & \spgr{34}           & 95 & & \spgr{95}\\
+36 & & \spgr{36}           & 96 & & \spgr{96}\\
+37 & & \spgr{37}           & 98 & & \spgr{98}\\
+39 & & \spgr{39}           & 100 & \pg{13} & \spgr{100}\\
+40 & & \spgr{40}           & 101 & & \spgr{101}\\
+41 & & \spgr{41}           & 102 & & \spgr{102}\\
+43 & & \spgr{43}           & 103 & & \spgr{103}\\
+45 & & \spgr{45}           & 104 & & \spgr{104}\\
+46 & & \spgr{46}           & 105 & & \spgr{105}\\
+48 & \pg{8} & \spgr{48}    & 106 & & \spgr{106}\\
+49 & & \spgr{49}           & 108 & \pg{13} & \spgr{108}\\
+50 & & \spgr{50}           & 109 & & \spgr{109}\\
+51 & & \spgr{51}           & 110 & & \spgr{110}\\
+52 & & \spgr{52}           & 112 & \pg{14} & \spgr{112}\\
+53 & & \spgr{53}           & 113 & & \spgr{113}\\
+54 & & \spgr{54}           & 114 & & \spgr{114}\\
+55 & & \spgr{55}           & 116 & & \spgr{116}\\
+56 & & \spgr{56}           & 117 & & \spgr{117}\\
+57 & & \spgr57{}           &  118 & & \spgr{118}\\
+ 58 & & \spgr{58}     & 120 & & \spgr{120}\\
+ 59 & & \spgr{59}     & 122 & & \spgr{122}\\
+ 60 & & \spgr{60}     & 124 & \pg{15} & \spgr{124}\\
+ 61 & & \spgr{61}     &125 & & \spgr{125}\\
+ 62 & & \spgr{62}    & 126 & & \spgr{126}\\
+63 & & \spgr{63}     & 127 & & \spgr{127}\\
+64 & & \spgr{64}      &128 & & \spgr{128}\\
+%%%\bottomrule
+\end{tabular}} 
+\caption{\label{\chabbr:tb:non-symmorphic}The non-symmorphic space groups, with sequential number and corresponding point group.}
+\end{table}
+\clearpage
+
+\addtocounter{table}{-1}
+\begin{table}[t]
+\centering\leavevmode
+{\small\begin{tabular}{lll||lll}
+\toprule
+S.G.\# & PG &Symbol & S.G.\# &PG &Symbol\\
+\midrule
+129 & & \spgr{129}                   & 180 & & \spgr{180}\\
+130 & & \spgr{130}                   & 181 & & \spgr{181}\\
+131 & & \spgr{131}                   & 182 & & \spgr{182}\\
+132 & & \spgr{132}                   & 184 & \pg{25} & \spgr{184}\\
+133 & & \spgr{133}                   & 185 & & \spgr{185}\\
+134 & & \spgr{134}                   & 186 & & \spgr{186}\\
+135 & & \spgr{135}                   & 188 & \pg{26} & \spgr{188}\\
+136 & & \spgr{136}                   & 190 & & \spgr{190}\\
+137 & & \spgr{137}                   & 192 & \pg{27} & \spgr{192}\\
+138 & & \spgr{138}                   & 193 & & \spgr{193}\\
+140 & & \spgr{140}                   & 194 & & \spgr{194}\\
+141 & & \spgr{141}                   & 198 & \pg{28} & \spgr{198}\\
+142 & & \spgr{142}                   & 199 & & \spgr{199}\\
+144 & \pg{16} & \spgr{144}           & 201 & ${\bf m}{\bar{\bf 3}}{(T_h)}$ & \spgr{201}\\
+145 & & \spgr{145}                   & 203 & & \spgr{203}\\
+151 & \pg{18} & \spgr{151}           & 205 & & \spgr{205}\\
+152 & & \spgr{152}                   & 206 & & \spgr{206}\\
+153 & & \spgr{153}                   & 208 & \pg{30} & \spgr{208}\\
+154 & & \spgr{154}                   & 210 & & \spgr{210}\\
+158 & \pg{19} & \spgr{158}           & 212 & & \spgr{212}\\
+159 & & \spgr{159}                   & 213 & & \spgr{213}\\
+161 & & \spgr{161}                   & 214 & & \spgr{214}\\
+163 & \pg{20} & \spgr{163}           & 218 & \pg{31} & \spgr{218}\\
+165 & & \spgr{165}                   & 219 & & \spgr{219}\\
+167 & & \spgr{167}                   & 220 & & \spgr{220}\\
+169 & \pg{21} & \spgr{169}           & 222 & \pg{32} & \spgr{222}\\
+170 & & \spgr{170}                   & 223 & & \spgr{223}\\
+171 & & \spgr{171}                   & 224 & & \spgr{224}\\
+172 & & \spgr{172}                   & 226 & & \spgr{226}\\
+173 & & \spgr{173}                   & 227 & & \spgr{227}\\
+176 & \pg{23} & \spgr{176}           & 228 & & \spgr{228}\\
+178 & \pg{24} & \spgr{178}           & 230 & & \spgr{230}\\
+179 & & \spgr{179}\\
+\bottomrule
+\end{tabular}} 
+\caption{\label{\chabbr:tb:non-symmorphic2}The non-symmorphic space groups, with sequential number and corresponding point group (contd.).}
+\end{table}
+
+The $230$ space groups were independently and nearly simultaneously derived by William Barlow in England \cite{Barlow1894a}, Evgraf Stepanovich Federov in Russia \cite{Federov1891a}, and Arthur Moritz Sch{\"o}nflies in Germany \cite{Schoenflies1891a} in the early to mid 1890s.  The successful enumeration of all possible crystal symmetries should be viewed as a major achievement in crystallography, and paved the path to a standardized ``language'' to describe, in an unambiguous and compact fashion, the structure of any solid with translational periodicity.  
+
+\subsubsection{Example applications of space groups}
+{\color{red}to be written}
 
 
 
 
 
+\newpage
 \section{Magnetic Symmetry}\label{\chabbr:sec:magsym}
 
 In this section, we introduce the concept of \indexit{time reversal symmetry}, which is, quite literally, the replacement of the time variable $t$ by $-t$ in an equation, in the same way that regular (or spatial) inversion symmetry refers to the replacement of the spatial position variable $\mathbf{r}$ by $-\mathbf{r}$. An equation that is invariant under the substitution $\mathbf{r}\rightarrow-\mathbf{r}$ is said to have a \indexit{spatial parity} of $p_{r}=+1$; the absence of inversion symmetry corresponds to a spatial parity of $p_{r}=-1$.  Similarly, an equation that is invariant under the substitution $t\rightarrow -t$ is said to have a \indexit{temporal parity} of $p_t=+1$; absence of time reversal symmetry corresponds to a temporal parity of $p_t=-1$.  A simple example can  illustrate both concepts: consider Newton's equation of motion for a 1-D system with mass $m$, position $x$, and subjected to a constant force $F$:
@@ -762,7 +968,7 @@ so the equation has temporal parity $p_t=+1$, but spatial parity $p_r=-1$, since
 \[
 	m\frac{\partial^2 x}{\partial t^2} = F \sin(2\pi\nu t)\ ,
 \]
-and the right-hand side would change sign under time reversal, leading to $p_t=-1$.  The pair of parities, $(p_r,p_t)$ thus has four possible combinations $(\pm 1, \pm 1)$.  The simple concepts of spatial and temporal parity have profound consequences in magnetic systems and we will see later in this section that inclusion of time reversal symmetry as a possible symmetry operator results in the $122$ \indexit{magnetic point groups} and $1,651$ \indexit{magnetic space groups}.  Since the time dimension is, in a sense, orthogonal to (or independent of) the spatial dimensions, it follows that the order in which spatial symmetry operators and the time reversal operator are applied does not matter, i.e., time reversal commutes with all spatial symmetry operators.
+and the right-hand side would change sign under time reversal, leading to $p_t=-1$.  The pair of parities, $(p_r,p_t)$, thus has four possible combinations $(\pm 1, \pm 1)$.  The simple concepts of spatial and temporal parity have profound consequences in magnetic systems and we will see later in this section that inclusion of time reversal symmetry as a possible symmetry operator results in  $122$ \indexit{magnetic point groups} and $1,651$ \indexit{magnetic space groups}.  Since the time dimension is, in a sense, orthogonal to (or independent of) the spatial dimensions, it follows that the order in which spatial symmetry operators and the time reversal operator are applied does not matter, i.e., time reversal commutes with all spatial symmetry operators.
 
 
 \subsection{Polar and Axial Quantities}\label{\chabbr:ssec:polaraxial}
@@ -772,25 +978,254 @@ If we consider a right-handed Cartesian reference frame for which $\mathbf{e}_x\
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=0.5\textwidth]{\graphicspath mirrorframe.eps}
-\caption{\label{\chabbr:fig:mirrorframe}(a) Reflection of a right-handed reference frame in a mirror produces a left-handed frame, and the blue arrow should be pointing down. (b)}
+\includegraphics[width=0.9\textwidth]{\graphicspath mirrorframe.eps}
+\caption{\label{\chabbr:fig:mirrorframe}(a) Reflection of a right-handed reference frame in a mirror produces a left-handed frame, and the blue arrow should be pointing down. (b) Magnetic moment generated by a circular current; in the mirror image, the current has the opposite sense, so the moment vector should point down, not up.}
 \end{figure}
 
+Next, we apply this same reasoning to a \indexit{magnetic moment}.  If a particle with electric charge $q$ travels in a circular orbit of radius $r$, then this system will acquire a magnetic moment with magnitude given by the area of the circular orbit multiplied by the current, $I$, or:
+\[
+	\mu = \pi\,r^2\,I=\pi\,r^2\frac{\mathrm{d}q}{\mathrm{d}t}\ .
+\]
+The direction of the magnetic moment is determined by the right-hand rule: curling the four fingers around the current loop in the direction of the current indicates the direction of the moment along the thumb. Fig.~\ref{\chabbr:fig:mirrorframe}(b) shows a schematic of a circular (counterclockwise) current generating a magnetic moment vector that points up; the mirror image has a clockwise current loop, so the moment vector points down, not up.  In order for the mirror image to show an upward moment vector, the mirror plane must also reverse time, so that the current in the mirror image also runs counterclockwise and produces an upward pointing moment vector.  This means that the mirror plane is not regular mirror but a time-reversing mirror plane which we will denote by $m'$.
 
+We define a \indexit{polar vector}\footnote{For simplicity we will discuss mostly vectors, but higher order tensors (see Foundational Chapter~\ref{TENSOR:Tensors}) can also be polar quantities.} as a vector whose components change sign when the reference frame is inverted.  In other words, if we have a vector $\mathbf{p}=p_i\mathbf{e}_i$ and we invert the coordinate axes, i.e., $\mathbf{e}_i\rightarrow -\mathbf{e}_i$, then the new vector components will be $-p_i$.  This is a somewhat trivial observation, but it becomes important when we consider vector quantities that involve the vector cross product in their definition.  As an example, consider the angular momentum vector $\mathbf{L}$ of a particle rotating at a distance $r$ from a rotation axis; the angular momentum is defined as the vector cross product $\mathbf{L}=\mathbf{r}\times\mathbf{p}$, where $\mathbf{r}$ is the instantaneous position and $\mathbf{p}$ the instantaneous linear momentum.  Both of these vectors have components with respect to the basis vectors, and if we invert the reference frame then both sets of components will change sign ($r_i\rightarrow -r_i$ and $p_i\rightarrow -p_i$), so that the components of $\mathbf{L}$ \textit{do not change sign}.  Therefore, $\mathbf{L}$ is not a polar vector but instead a \indexit{pseudo-vector} or an \indexit{axial vector}.  
 
+An axial vector thus transforms in the same way as a polar vector under transformations of the first kind (rotations, translations), but behaves differently from a polar vector under operations of the second kind (mirrors, inversion). This means that we must update the transformation relation for vector components of an axial vector to include the additional sign change.  If $M_{ij}$ represents a general transformation matrix (first or second kind), then the transformation rule for the components of a polar vector $\mathbf{p}$ is given by:
+\begin{equation}
+	p'_i = M_{ij}\,p_j\ .\label{\chabbr:eq:polartrafo}
+\end{equation}
+For an axial vector $\mathbf{a}$, we must include an extra sign change for transformations of the second kind; this can be accomplished by multiplying with the spatial parity $p_r(M)=\text{det}\vert M\vert$ of the transformation matrix:
+\begin{equation}
+	a'_i = p_r(M)\,M_{ij}\,a_j\ .\label{\chabbr:eq:axialtrafo}
+\end{equation}
+As an example, consider three polar unit vectors with the following (Cartesian) components: $\mathbf{p}_1=(0,0,c)$, $\mathbf{p}_2=(0,\frac{c}{\sqrt{2}},\frac{c}{\sqrt{2}})$, and $\mathbf{p}_3=(0,c,0)$ with $c=1/2$. If we apply a mirror plane in the $z=0$ plane, then the matrix representation of this mirror plane is:
+\[
+	M_m=\begin{pmatrix}1&0&0\\ 0&1&0\\ 0&0&-1\end{pmatrix}\text{ and } p_r(M_m) = \text{det}\vert M_m\vert=-1\ .
+\]
+Using the polar transformation rule in eq.~(\ref{\chabbr:eq:polartrafo}) we find the transformed vector components as $\mathbf{p}'_1=(0,0,-c)$, $\mathbf{p}'_2=(0,\frac{c}{\sqrt{2}},-\frac{c}{\sqrt{2}})$, and $\mathbf{p}'_3=(0,c,0)$, as illustrated by the magenta vectors to the left in Fig.~\ref{\chabbr:fig:mirrorpolaraxial}.  
 
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath mirrorpolaraxial.eps}
+\caption{\label{\chabbr:fig:mirrorpolaraxial}Effect of a mirror operation normal to the $\mathbf{e}_z$ axis on three polar (magenta) and three axial (orange) vectors. }
+\end{figure}
+
+Next, we consider three axial vectors with the same initial components: $\mathbf{a}_1=(0,0,c)$, $\mathbf{a}_2=(0,\frac{c}{\sqrt{2}},\frac{c}{\sqrt{2}})$, and $\mathbf{a}_3=(0,c,0)$.  Application of eq.~(\ref{\chabbr:eq:axialtrafo}) results in the transformed components $\mathbf{a}'_1=(0,0,c)$, $\mathbf{a}'_2=(0,-\frac{c}{\sqrt{2}},\frac{c}{\sqrt{2}})$, and $\mathbf{a}'_3=(0,-c,0)$ since the spatial parity $p_r(R_m)$ causes an additional sign change. The resulting vectors are shown in orange in Fig.~\ref{\chabbr:fig:mirrorpolaraxial}.  Note that the transformation of an axial vector is somewhat counterintuitive; for this reason, one should always rely on the explicit transformation rule in eq.~(\ref{\chabbr:eq:axialtrafo}) rather than try to ``think'' through the problem based on a drawing.
 
 \subsection{Time Reversal Symmetry}\label{\chabbr:ssec:timereversal}
+If we assume that the axial vectors in Fig.~\ref{\chabbr:fig:mirrorpolaraxial} correspond to magnetic moments, then we know that the sense of the current circulation is opposite above and below the mirror plane.  We can bring the axial image vectors $\mathbf{a}'_i$ into the same orientation as the corresponding polar image vectors $\mathbf{p}'_i$ by performing one more sign change, which requires replacement of $t$ by $-t$, i.e., time reversal. When we combine the spatial operation of the mirror plane with the temporal operation of time reversal, we obtain a time-reversing mirror plane, which we represented before by $m'$. We can now extend this concept to all symmetry operations and we find that for each symmetry operator $\mathcal{O}$, there is a time-reversing version of the symmetry operator which we will denote by means of a prime, i.e., $\mathcal{O}'$.  The time reversal operator itself will be denoted by $R$, so that:
+\[
+	\mathcal{O}' = R\mathcal{O} = \mathcal{O}R\ ,
+\]
+since time and space operations always commute.  It is easy to see that this leads to four kinds of symmetry operators, corresponding to the four parity pairs.  For axial vectors, Table~\ref{\chabbr:tb:parities} lists example symmetry operators from each of the four types along with the transformation parities and the transformation rule.  Note that the application of the time reversal operator is not limited to the point group symmetry operators; the concept also extends to screw axes, glide planes, and the Bravais basis vectors.  Every symmetry operator used to generate the $230$ crystallographic space groups has a time-reversing partner.
+
+\begin{table}[h]
+\centering\leavevmode
+\begin{tabular}{|l|cc|c|l|}
+\hline
+Operators & Spatial & Temporal & $(p_r,p_t)$ & Transformation rule\\
+\hline\hline
+\cellcolor{blue!75}{\color{white}$1$, $2$, $3$, $4_3$, $\mathbf{t}$, $\ldots$} & \checkmark & \checkmark &\cellcolor{gray!50} {\color{white}$(+1,+1)$} & $a'_i = M_{ij} a_j$ \\
+\cellcolor{blue!75}{\color{white}$m$, $i$, $n$, $\bar{4}$, $\ldots$}  & --- & \checkmark &\cellcolor{gray!50} {\color{magenta} $(-1,+1)$} & $a'_i = p_r(M)\,M_{ij} a_j$ \\
+\cellcolor{yellow!50}$R$, $2'$, $3'$, $4'_3$, $\mathbf{t}'$, $\ldots$ & \checkmark & --- & \cellcolor{gray!50} {\color{cyan}$(+1,-1)$} & $a'_i = p_t(M)\,M_{ij} a_j$ \\
+\cellcolor{yellow!50}$m'$, $i'$, $n'$, $\bar{4}'$, $\ldots$ & --- & --- &\cellcolor{gray!50} {\color{blue} $(-1,-1)$} & $a'_i = p_t(M)\,p_r(M)\,M_{ij} a_j$ \\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:parities}Example operators along with the transformation parities and transformation rules for an arbitrary axial vector $\mathbf{a}$. The Spatial and Temporal columns have a checkmark if the operators do have that symmetry property. In later figures, time reversing operators will be represented in yellow, regular operators in blue; for axial vectors, the character colors in the third column will be used.}
+\end{table}
 
 
 \subsection{Magnetic Point Groups}\label{\chabbr:ssec:mpg}
 
+\subsubsection{Example derivation of magnetic point groups}
+As an example, we will derive magnetic point groups (MPGs) starting from the orthorhombic crystallographic point group (CPG) \pg{7}, which has a two-fold axis along $\mathbf{c}$ and two mirror planes normal to the $\mathbf{a}$ and $\mathbf{b}$ axes; the group elements are thus given by:
+\[
+	\mathbf{mm2} = \{1, 2, m_a, m_b \}\ .
+\]
+Generation of the corresponding MPGs is a two-step process and involves incorporation of the time reversal operator $R$:
+\begin{enumerate}
+	\item Generation of the \indexit{gray group}:  when we add $R$ as a group element, then we also have to add all the combinations of $R$ with the non-identity elements in order to satisfy the group axioms. The new group that is formed this way has a Hermann-Mauguin symbol consisting of the original CPG symbol with an additional symbol $\mathbf{1'}$ at the end, which signifies that the group explicitly contains the time reversal operator.  In this case we obtain a gray group with $8$ elements:
+	\[
+		\mathbf{mm21'} = \{1, 2, m_a, m_b, R, 2', m'_a, m'_b \}\ .
+	\]
+Since the operator $R$ has no spatial effect, all it does is flip the magnetic moment vector, regardless of where the point $\mathbf{r}$ is located; in other words, if we start with a magnetic moment $\bm{\mu}$ located at $\mathbf{r}$, then the operator $R$ adds a flipped moment $-\bm{\mu}$ at location $\mathbf{r}$, resulting in a total moment $\bm{\mu}-\bm{\mu}=\mathbf{0}$ at position $\mathbf{r}$.  This happens for all $\mathbf{r}$ so that it is not possible to have a net magnetic moment in this point group.  	The magnetic point groups have historically also been called the \indexit{two-color point groups} or the \indexit{black-and-white point groups} to indicate that there are two possible states at each location, in this case $+\bm{\mu}$ and $-\bm{\mu}$. When the net moment is zero, both black and white are present at the same location, hence the name ``gray'' point group.
+
+% add a box about subgroup and index 
+	\item Extraction of subgroups of index $2$: \textit{are there any sub-groups of index 2 in the gray group that are not themselves gray groups?}  We know that any group must contain the identity operator, so we look for an additional three operators other than $R$ so that the group axioms are satisfied.  For the present point group, this leads, by inspection, to two additional groups:
+	\begin{equation*}
+	\begin{split}
+		\mathbf{m'm'2} &= \{1, 2,  m'_a, m'_b \}\ ;\\
+		\mathbf{m'm2'} &= \{1, 2',  m'_a, m_b \}\ .	 
+	\end{split}
+	\end{equation*}
+\end{enumerate}
+
+Let us take a closer look at these two sub-groups and determine how they operate on a general position $(x,y,z)$ with a moment vector $(\mu_x,\mu_y,\mu_z)$. We can use the concept of homogeneous coordinates again to work out the equivalent positions and moment orientations.  Since the transformation rules for an axial vector in Table~\ref{\chabbr:tb:parities} and equations~(\ref{\chabbr:eq:polartrafo}) and (\ref{\chabbr:eq:axialtrafo}) represent multiplication by the respective parities, we can simply multiply the entire $3\times 3$ upper left matrix in the $4\times 4$ matrix $\mathcal{W}$ by $p_r(M)$, and the element $\mathcal{W}_{44}$ by $p_t(M)$, to obtain the correct matrix.  For point group $\mathbf{m'm'2}$, both mirror planes reverse time, so their $4\times 4$ transformation matrices are given by:
+\[
+	m'_a = \begin{pmatrix}-1 & 0 & 0 & 0\\ 0 & 1 & 0 & 0\\ 0  & 0 & 1 & 0\\ 0&0&0&1\end{pmatrix}
+\text{ for polar vectors and }	m'_a = \begin{pmatrix}1 & 0 & 0 & 0\\ 0 & -1 & 0 & 0\\ 0  & 0 & -1 & 0\\ 0&0&0&-1\end{pmatrix}\text{ for axial vectors}
+\]
+and
+\[
+	m'_b = \begin{pmatrix}1 & 0 & 0 & 0\\ 0 & -1 & 0 & 0\\ 0  & 0 & 1 & 0\\ 0&0&0&1\end{pmatrix}
+\text{ for polar vectors and }	m'_b = \begin{pmatrix}-1 & 0 & 0 & 0\\ 0 & 1 & 0 & 0\\ 0  & 0 & -1 & 0\\ 0&0&0&-1\end{pmatrix}\text{ for axial vectors}
+\]
+Note that all entries have a sign change for axial vectors since both spatial and temporal parity are equal to $-1$. 
+
+For a general point with homogeneous coordinates $(x,y,z,1)$, we obtain $(-x,y,z,1)$ for $m'_a$ (since $\mathbf{r}$ is a polar vector) and $(x,-y,z,1)$ for $m'_b$.  For the axial vector $(\mu_x,\mu_y,\mu_z,1)$, we obtain $(\mu_x,-\mu_y,-\mu_z,-1)$ for $m'_a$ and $(-\mu_x,\mu_y,-\mu_z,-1)$ for $m'_b$. Since we require the fourth homogeneous coordinate to be equal to $1$ at all times, we obtain the final components by dividing all components by the fourth component $-1$, to obtain $(-\mu_x,\mu_y,\mu_z,1)$ for $m'_a$ and $(\mu_x,-\mu_y,\mu_z,1)$ for $m'_b$. Combining this with the results from the identity and two-fold axis, we obtain the following set of equivalent coordinates:
+{\small\begin{equation*}
+	(x,y,z)\,[\mu_x,\mu_y,\mu_z];\,\, (-x,-y,z)\,[-\mu_x,-\mu_y,\mu_z];\,\, (-x,y,z)\, [-\mu_x,\mu_y,\mu_z]; \,\, (x,-y,z)\,[\mu_x,-\mu_y,\mu_z]\ .
+\end{equation*}}
+This allows us to determine whether or not this magnetic point group can have a net magnetic moment; taking the sum of the four moment vectors we obtain $[0,0,4\mu_z]$, which is a moment vector parallel to the $\mathbf{c}$ axis.  This means that point group $\mathbf{m'm'2}$ only allows for a net magnetic moment along the $\mathbf{c}$ axis.
+
+Similarly, we can analyze the magnetic point group $\mathbf{m'm2'}$; in this case we have one regular mirror normal to the $\mathbf{b}$ axis, a time-reversing mirror normal to $\mathbf{a}$, and a time reversing two-fold axis. 
+The matrix for $m'_a$ is already described above, and we have for the remaining operators:
+\[
+	m_b = \begin{pmatrix} 1 & 0 & 0 & 0\\ 0 & -1 & 0 & 0\\ 0  & 0 & 1 & 0\\ 0&0&0&1\end{pmatrix}
+\text{ for polar vectors and }	m_b = \begin{pmatrix}-1 & 0 & 0 & 0\\ 0 & 1 & 0 & 0\\ 0  & 0 & -1 & 0\\ 0&0&0&1\end{pmatrix}\text{ for axial vectors}
+\]
+and
+\[
+	2' = \begin{pmatrix}-1 & 0 & 0 & 0\\ 0 & -1 & 0 & 0\\ 0  & 0 & 1 & 0\\ 0&0&0&1\end{pmatrix}
+\text{ for polar vectors and }	2' = \begin{pmatrix}-1 & 0 & 0 & 0\\ 0 &-1 & 0 & 0\\ 0  & 0 & 1 & 0\\ 0&0&0&-1\end{pmatrix}\text{ for axial vectors}
+\]
+We can then readily show that the equivalent positions and moment vectors are given by:
+{\small\begin{equation*}
+	(x,y,z)\,[\mu_x,\mu_y,\mu_z];\,\, (-x,-y,z)\,[\mu_x,\mu_y,-\mu_z];\,\, (-x,y,z)\, [-\mu_x,\mu_y,\mu_z]; \,\, (x,-y,z)\,[-\mu_x,\mu_y,-\mu_z]\ .
+\end{equation*}}
+Summing the magnetic moment vectors results in $[0,4\mu_y,0]$, which means that the only net moment possible in this magnetic point group must align with the $\mathbf{b}$ axis. 
+
+
+\begin{table}[t!]
+\leavevmode\centering
+{\footnotesize
+\begin{tabular}{|l|l|lllll|}
+\hline
+CPG & Gray & \multicolumn{5}{l|}{MPG}\\
+\hline\hline
+\multicolumn{7}{|c|}{\textbf{Triclinic}}\\
+\hline 
+${\color{OCScotsRose}\mathbf{1}}$ & $11'$ & & & & & \\
+${\color{OCScotsRose}\mathbf{\bar{1}}}$ &$\bar{1}1'$ & $\bar{1}'$ & & & & \\
+\hline
+\multicolumn{7}{|c|}{\textbf{Monoclinic}}\\
+\hline 
+${\color{OCScotsRose}\mathbf{2}}$ &  $21'$ & ${\color{OCScotsRose}\mathbf{2'}}$ & & & & \\
+${\color{OCScotsRose}\mathbf{m}}$ & $m1'$ &${\color{OCScotsRose}\mathbf{m'}}$ & & & & \\
+${\color{OCScotsRose}\mathbf{2/m}}$  & $2/m1'$  &${\color{OCScotsRose}\mathbf{2'/m'}}$ & $2/m'$ & $2'/m$ & & \\
+\hline
+\multicolumn{7}{|c|}{\textbf{Orthorhombic}}\\
+\hline 
+$222$  & $2221'$  & ${\color{OCScotsRose}\mathbf{2'2'2}}$ & & & & \\
+$mm2$  & $mm21'$  & ${\color{OCScotsRose}\mathbf{m'm'2}}$ & ${\color{OCScotsRose}\mathbf{2'm'm}}$ & & & \\
+$mmm$  & $mmm1'$  & ${\color{OCScotsRose}\mathbf{mm'm'}}$ & $m'm'm'$ & $mmm'$ & & \\
+\hline
+\multicolumn{7}{|c|}{\textbf{Tetragonal}}\\
+\hline 
+${\color{OCScotsRose}\mathbf{4}}$  & $41'$  & $4'$ & & & & \\
+${\color{OCScotsRose}\mathbf{\bar{4}}}$  & $\bar{4}1'$  & $\bar{4}'$ & & & & \\
+${\color{OCScotsRose}\mathbf{4/m}}$  & $4/m1'$  &$4'/m$ &$4/m'$ & $4'/m'$ & & \\
+$422$ & $4221'$ & $4'22'$ & ${\color{OCScotsRose}\mathbf{42'2'}}$ & & & \\
+$4mm$ & $4mm1'$ & $4'mm'$  & ${\color{OCScotsRose}\mathbf{4m'm'}}$ & & & \\
+$\bar{4}2m$ & $\bar{4}2m1'$ & $\bar{4}'2m'$ & $\bar{4}'m2'$ & ${\color{OCScotsRose}\mathbf{\bar{4}2'm'}}$ & & \\
+$4/mmm$  & $4/mmm1'$  & $4'/mmm'$ &${\color{OCScotsRose}\mathbf{4/mm'm'}}$ & $4/m'm'm'$ & $4/m'mm$ & $4'/m'm'm$ \\
+\hline
+\multicolumn{7}{|c|}{\textbf{Trigonal}}\\
+\hline 
+${\color{OCScotsRose}\mathbf{3}}$ & $31'$ &  & &  & & \\
+${\color{OCScotsRose}\mathbf{\bar{3}}}$ & $\bar{3}1'$ &  $\bar{3}'$ &  & & & \\
+$32$ & $321'$ &  $32'$ &  & &  &\\
+$3m$ & $3m1'$ &  $3m'$ &  & & & \\
+$\bar{3}m$ & $\bar{3}m1'$ &  ${\color{OCScotsRose}\mathbf{\bar{3}m'}}$ & $\bar{3}'m'$ & $\bar{3}'m$ & & \\
+\hline
+\multicolumn{7}{|c|}{\textbf{Hexagonal}}\\
+\hline 
+${\color{OCScotsRose}\mathbf{6}}$ & $61'$ &  $6'$ &  & & & \\
+${\color{OCScotsRose}\mathbf{\bar{6}}}$  & $\bar{6}1'$  & $\bar{6}'$ &  & & & \\
+${\color{OCScotsRose}\mathbf{6/m}}$ & $6/m1'$ &  $6'/m'$ & $6/m'$ & $6'/m$ & & \\
+$622$ & $6221'$ & $6'22'$ & ${\color{OCScotsRose}\mathbf{62'2'}}$ &  & & \\
+$6mm$ & $6mm1'$ & $6'mm'$ & ${\color{OCScotsRose}\mathbf{6m'm'}}$ &  & & \\
+$\bar{6}m2$ & $\bar{6}m21'$ & $\bar{6}'2m'$ &$\bar{6}'m2'$ & ${\color{OCScotsRose}\mathbf{\bar{6}m'2'}}$ & & \\
+$6/mmm$  & $6/mmm1'$  & $6'/m'mm'$ &${\color{OCScotsRose}\mathbf{6/mm'm'}}$ & $6/m'm'm'$ & $6/m'mm$ & $6'/mmm'$ \\
+\hline
+\multicolumn{7}{|c|}{\textbf{Cubic}}\\
+\hline 
+$23$ &$231'$ &  & &  & & \\
+$m\bar{3}$ & $m\bar{3}1'$ & $m'\bar{3}'$ & &  & & \\
+$432$ & $4321'$ & $4'32'$ & &  & & \\
+$\bar{4}3m$ & $\bar{4}3m1'$ & $\bar{4}'3m'$ & &  & & \\
+$m\bar{3}m$ & $m\bar{3}m1'$ & $m\bar{3}m'$ & $m'\bar{3}'m'$ & $m'\bar{3}'m$ & & \\
+\hline
+\end{tabular}
+}
+\caption{\label{\chabbr:tb:MPGs}List of the $32$ crystallographic point groups,  the gray groups,  and the $58$ derived magnetic point groups in Hermann-Mauguin notation. 
+{\color{OCScotsRose}\textbf{Bold red}} group symbols indicate the $31$ groups that allow for a net magnetic moment. }
+\end{table}
+
+
+We can repeat this exercise for each of the $32$ CPGs, in each case generating a gray group first, and then extracting sub-groups of index $2$ when possible.  This process leads to $32$ gray groups, and $58$ point groups that do not contain the time reversal operator $R$, but, instead, have one or more time-reversing symmetry operators. Thus, we have $32+32+58=122$ \indexit{magnetic point groups}, of which the subset of $58$ groups are also known as magnetic point groups.  The groups are listed in Table~\ref{\chabbr:tb:MPGs} with the CPG in the first column, the gray point group in the second, and any magnetic point groups in the third column; MPGs that can have a net non-zero magnetic moment are highlighted in red.  Materials with such point group symmetries have the potential to exhibit a ferromagnetic state.
+
+\subsubsection{Visualization of magnetic point groups}
+When we introduced the CPGs in section~\ref{\chabbr:sec:pointgroups}, we used 3D rendering to illustrate the arrangement of the symmetry elements as well as the set of equivalent points, where we used  helical objects to demonstrate the effect of symmetry operators with negative spatial parity, $p_r=-1$.  In the case of the magnetic point groups we can use a similar approach, this time using an actual vector as the object, and coloring the vector according to the four possibilities of $(p_r,p_t)$.  The colors used for the 3D renderings were already defined in Table~\ref{\chabbr:tb:parities}. Yellow is used for time-reversing symmetry operators, blue for regular symmetry operators, and one of four colors for axial vectors, depending on the parity combination.  
+
+Using those conventions, we can now visualize the four point groups discussed in the previous section: $mm2$,  $mm21'$, $m'm'2$, and  $2'm'm$; Fig.~\ref{\chabbr:fig:mm2} shows all four renderings.  The bottom left rendering of $m'm'2$ has all four axial vectors parallel to the $\mathbf{c}$ axis, illustrating that this group can have a net magnetic moment. On the bottom right, the general moment vector has been rotated to be parallel to the $\mathbf{b}$ axis, and all equivalent vectors point in the same direction, as derived in the previous section.  Similar renderings can be made for all $122$ MPGs; they are available on a dedicated website\footnote{\url{https://mpg.web.cmu.edu}} as a collection of still images, similar to those in Fig.~\ref{\chabbr:fig:mm2}, and movies showing a rotating point group with rotating magnetic moment vectors.  Additional renderings made available on the web page include point groups with polar vectors, helices, and spheres as objects, again as still images and movies.  
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath mm2.eps}
+\caption{\label{\chabbr:fig:mm2}3-D rendering of the magnetic point groups derived from CPG \pg{7} (top left). The color of each vector is determined from the parities according to Table~\protect\ref{\chabbr:tb:parities}.}
+\end{figure}
 
 \subsection{Magnetic Bravais Lattices}\label{\chabbr:ssec:magBravais}
+When we described the derivation of the crystallographic space groups (CSGs), we started with a description of the combination of translations with the point symmetry operators, which led to, first of all, the Bravais lattices, and, secondly, the introduction of screw axes and glide planes.  In preparation for the description of magnetic space groups (MSGs), we need to similarly describe the effect of combining time reversal symmetry with lattice translations.  We will begin by determining in how many different ways the time reversal operator $R$ can be combined with the Bravais lattice vectors $\mathbf{a}$, $\mathbf{b}$, and $\mathbf{c}$ as well as the various lattice centering vectors. A complete analysis reveals that there are $22$ additional \indexit{magnetic Bravais lattices}; we will derive a few of them as examples, and list the others for completeness.
 
+We will consider the standard primitive tetragonal Bravais lattice, $tP$, with lattice parameters $\{a,a,c,90^{\circ},90^{\circ},90^{\circ}\}$ to illustrate the procedure. Starting from the regular basis vectors $(\mathbf{a},\mathbf{b},\mathbf{c})$, there are  $7$ different ways in which we can combine the time-reversal operator with the basis vectors: $(\mathbf{a}',\mathbf{b},\mathbf{c})$, $(\mathbf{a},\mathbf{b}',\mathbf{c})$, $(\mathbf{a},\mathbf{b},\mathbf{c}')$, $(\mathbf{a}',\mathbf{b}',\mathbf{c})$,$(\mathbf{a}',\mathbf{b},\mathbf{c}')$, $(\mathbf{a},\mathbf{b}',\mathbf{c}')$, and $(\mathbf{a}',\mathbf{b}',\mathbf{c}')$.  The four-fold rotation axis of the tetragonal system eliminates the combinations that have vectors of different types (regular and time-reversing) as the first two entries, i.e., $(\mathbf{a}',\mathbf{b},\mathbf{c})$, $(\mathbf{a},\mathbf{b}',\mathbf{c})$, $(\mathbf{a}',\mathbf{b},\mathbf{c}')$, and $(\mathbf{a},\mathbf{b}',\mathbf{c}')$ are not possible.
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath tetraMPG.eps}
+\caption{\label{\chabbr:fig:tetraMPG}3-D rendering of the magnetic Bravais lattices for the tetragonal crystal system (see text for details).}
+\end{figure}
+
+The three remaining triplets all generate a new magnetic Bravais lattice:
+\begin{itemize}
+\item $(\mathbf{a},\mathbf{b},\mathbf{c}')$: Fig.~\ref{\chabbr:fig:tetraMPG}(a) shows a tetragonal unit cell with $\mathbf{a}$ and $\mathbf{b}$ being regular basis vectors, i.e., connecting lattice sites with the same temporal parity, which is represented by the red spheres; green spheres have the opposite parity.\footnote{One could visualize this by means of magnetic moment vectors pointing in some random direction with opposite sense and colors, as shown in Fig.~\ref{\chabbr:fig:tetraMPG}(a), but doing this for each lattice site would generate rather cluttered illustrations. The reader should imagine that each sphere has an associated magnetic moment vector.}  The time-reversing $\mathbf{c}'$ basis vector doubles the unit cell length in that direction, which is illustrated by the alternating colors. This magnetic Bravais lattice has the symbol $tP_c$ where the $t$ stands for the tetragonal crystal system and $P$ means \textit{primitive}, as before; the subscript indicates which basis vector is a time-reversing vector.  
+\item $(\mathbf{a}',\mathbf{b}',\mathbf{c})$: Fig.~\ref{\chabbr:fig:tetraMPG}(b) shows $2\times 2$ tetragonal unit cells since both $\mathbf{a}'$ and $\mathbf{b}'$ double the size of the unit cell by time-reversal. A smaller tetragonal unit cell can be obtained by considering the basis vectors $\mathbf{a}+\mathbf{b}$ and $\mathbf{a}-\mathbf{b}$; this new cell is outlined in black. It is clearly a $C$-centered cell, but the original $\mathbf{b}'$ vector turns the $C$ centering vector into a time-reversing vector $\mathbf{C}'$. The symbol for this Bravais lattice is $tP_C$; note that (1) the cell is still primitive, hence the symbol $P$, and (2) the subscript is an upper-case $C$ representing the time-reversing $C'$ centering vector.
+\item $(\mathbf{a}',\mathbf{b}',\mathbf{c}')$: In this case, all three basis vectors are time-reversing vectors.  For $\mathbf{a}'$ and $\mathbf{b}'$ we can once again use the smaller tetragonal unit cell with basis vectors $\mathbf{a}+\mathbf{b}$ and $\mathbf{a}-\mathbf{b}$, as shown in Fig.~\ref{\chabbr:fig:tetraMPG}(c), but this time the cell is also doubled along the $\mathbf{c}'$ direction. The net result is a body-centered tetragonal cell with symbol $tI_c$; the subscript indicates the time-reversing $\mathbf{c}'$ basis vector.
+\item $(\mathbf{a},\mathbf{b},\mathbf{c})$: There is one more tetragonal magnetic Bravais lattice, but this one is derived from the standard $tI$ lattice by converting the body-centering vector $\mathbf{I}=(\mathbf{a}+\mathbf{b}+\mathbf{c})/2$ into a time-reversing body centering vector $\mathbf{I}'$. The resulting lattice is primitive with symbol $tP_I$, and is shown in Fig.~\ref{\chabbr:fig:tetraMPG}(d).
+\end{itemize}
+
+A similar process leads to an additional $18$ magnetic Bravais lattices.  The single triclinic ($aP_c$) and five monoclinic unit cells ($mP_a$, $mP_b$, $mC_b$, $mC_c$, and $mP_C$) are shown in Fig.~\ref{\chabbr:fig:amMBL}.  
+There are eight orthorhombic magnetic Bravais lattices, represented graphically in Fig.~\ref{\chabbr:fig:oMBL}; they are $oP_a$, $oC_b$, $oF_I$, $oC_c$, $oP_C$, $oI_c$, $oC_A$, and $oP_I$.  
+
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath amMBL.eps}
+\caption{\label{\chabbr:fig:amMBL}3-D renderings of the triclinic and monoclinic magnetic Bravais lattices.}
+\end{figure}
+
+
+\begin{figure}[hb!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath oMBL.eps}
+\caption{\label{\chabbr:fig:oMBL}3-D renderings of the orthorhombic magnetic Bravais lattices.}
+\end{figure}
+\clearpage
+
+
+\newpage
+Finally, there is one rhombohedral magnetic Bravais lattice ($rP_I$), one hexagonal lattice ($hP_c$) and two cubic lattices ($cF_I$ and $cP_I$); 3D renderings of all four magnetic Bravais lattices are shown in Fig.~\ref{\chabbr:fig:rhcMBL}.  This concludes the enumeration of the magnetic unit cells.  There are thus a total of $36$ Bravais lattices, $14$ of them non-magnetic and $22$ magnetic.
+
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath rhcMBL.eps}
+\caption{\label{\chabbr:fig:rhcMBL}3-D renderings of the rhombohedral, hexagonal, and cubic magnetic Bravais lattices.}
+\end{figure}
 
 \subsection{Magnetic Space Groups}\label{\chabbr:ssec:msg}
-
+The final step in the description of magnetic symmetry is to combine the $22$ magnetic Bravais lattices  with the $122$ magnetic point groups to generate the magnetic space groups.  As before, this will require consideration of time-reversing screw axes and glide planes.
 
 
 
