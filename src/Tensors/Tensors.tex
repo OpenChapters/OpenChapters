@@ -73,7 +73,7 @@
 
 \section{A new Vector Product}\label{\chabbr:vectorproduct}
 
-\subsection{Products we already Know}\label{\chabbr:knownproducts}
+\subsection{Products we already Know}\label{\chabbr:ssec:knownproducts}
 In most vector calculus courses, two types of products between vectors are introduced: the \indexit{scalar product} or \indexit{dot product} and the \indexit{vector cross product}.  Each of them can be defined in a geometric way as well as an algebraic way:
 \begin{itemize}
 	\item \textbf{\textit{dot product}}: Consider two vectors $\mathbf{p}$ and $\mathbf{q}$ with real components $p_i$ and $q_j$ with respect to a Cartesian reference frame with basis vectors $\mathbf{e}_i$, so that
@@ -119,24 +119,42 @@ In most vector calculus courses, two types of products between vectors are intro
 	
 \end{itemize}
 
-\subsection{The Tensor Product}\label{\chabbr:tensorproduct}
+\subsection{The Vector Outer Product and the Tensor Product}\label{\chabbr:tensorproduct}
 The vector dot product represents the basic step used when multiplying conformable matrices\footnote{Two matrices $A$ and $B$ are conformable if the number of columns in $A$ is the same as the number of rows in $B$.}: take row $i$ from the first matrix and compute the dot product with column $j$ from the second matrix to obtain entry $(i,j)$ of the resulting product matrix. This means that we can also write the dot product as:
 \begin{equation}
 	\mathbf{p}\cdot\mathbf{q} = \begin{bmatrix}p_x & p_y& p_z\end{bmatrix}\begin{bmatrix}q_x\\ q_y\\ q_z\end{bmatrix} = p_xq_x+p_yq_y+p_zq_z\ .
 \end{equation}
-We can consider this as a matrix product of a $1\times 3$ matrix with a $3\times 1$ matrix to obtain a $1\times 1$ matrix, i.e., a scalar. If we change the order of the product to a $3\times 1$ matrix multiplied by a $1\times 3$ matrix (note that they are indeed conformable, so this product is meaningful), then we will obtain a $3\times 3$ matrix.  Such a product is known as an \indexit{outer product} or \indexit{tensor product} and is defined as:
+We can consider this as a matrix product of a $1\times 3$ matrix with a $3\times 1$ matrix to obtain a $1\times 1$ matrix, i.e., a scalar. If we change the order of the product to a $3\times 1$ matrix multiplied by a $1\times 3$ matrix (note that they are indeed conformable, so this product is meaningful), then we will obtain a $3\times 3$ matrix.  Such a product is known as an \indexit{outer product} or \indexit{tensor product}\footnote{While there are subtle mathematical differences between the outer product and the tensor product, we will use the two terms interchangeably; the tensor product can be regarded as a generalization of the outer product.} and is defined as:
 \begin{equation}
 	\mathbf{p}\otimes\mathbf{q} = \begin{bmatrix}p_x\\ p_y\\ p_z\end{bmatrix}\begin{bmatrix}q_x& q_y& q_z\end{bmatrix}= \begin{bmatrix}p_xq_x&p_xq_y&p_xq_z\\ p_yq_x&p_yq_y&p_yq_z\\ p_zq_x&p_zq_y&p_zq_z\end{bmatrix}\ .
 \end{equation}
-This is clearly the most general product possible between two vectors, taking one component from the first vector and one component from the second vector.  In index notation we have:
+This is clearly the most general product possible between two vectors, taking one component from the first vector and one component from the second vector.  Using index notation we have:
 \begin{equation}
 	(\mathbf{p}\otimes\mathbf{q})_{ij} = p_i\, q_j\ .
 \end{equation}
+It is easy to verify that the tensor product is not commutative; if we change the order of the vectors, then we obtain:
+\begin{equation}
+	\mathbf{q}\otimes\mathbf{p} = \begin{bmatrix}q_x\\ q_y\\ q_z\end{bmatrix}\begin{bmatrix}p_x& p_y& p_z\end{bmatrix}= \begin{bmatrix}q_xp_x&q_xp_y&q_xp_z\\ q_yp_x&q_yp_y&q_yp_z\\ q_zp_x&q_zp_y&q_zp_z\end{bmatrix}\ ;
+\end{equation}
+this matrix is the transpose of the matrix for $\mathbf{p}\otimes\mathbf{q}$ so that:
+\begin{equation}
+	\mathbf{q}\otimes\mathbf{p} = (\mathbf{p}\otimes\mathbf{q})^T
+\end{equation}
+To compute a dot product between two vectors, they must have the same number of components. This is no longer a requirement for the outer product; if we take the vector $\mathbf{p}$ to have two components, then the outer product will be a $2\times 3$ matrix:
+\begin{equation}
+	\mathbf{p}\otimes\mathbf{q} = \begin{bmatrix}p_x\\ p_y\end{bmatrix}\begin{bmatrix}q_x& q_y& q_z\end{bmatrix}= \begin{bmatrix}p_xq_x&p_xq_y&p_xq_z\\ p_yq_x&p_yq_y&p_yq_z\end{bmatrix}\ .
+\end{equation}
+One can reorganize the entries of the outer product matrix by writing them as a single column (or row, by transposing the column); this is known as the \indexit{Kronecker outer product}:
+\begin{equation}
+	\mathbf{p}\otimes_K\mathbf{q} = \begin{bmatrix}p_xq_x\\ p_xq_y\\ p_xq_z\\ p_yq_x\\ p_yq_y\\ p_yq_z\end{bmatrix}\ .
+\end{equation}
+This form of the outer product can be useful in certain numerical applications where vectorization is important.
+
 Instead of writing $\mathbf{p}\otimes\mathbf{q}$ explicitly, it is common practice to replace it by a single letter symbol, say $r$, so that:
 \begin{equation}
 	r_{ij} = p_i\, q_j\ .
 \end{equation}
-The object created by this tensor product is known as a \indexit{second rank tensor}, where the word ``second'' refers to the fact it has two subscripts (i.e., it was generated by combining two vectors). This brings up the possibility of taking the tensor product of more than two vectors, for instance the three vectors $\mathbf{s}$, $\mathbf{t}$, and $\mathbf{u}$:
+The object created by this tensor product is known as a \indexit{second rank tensor}, where the word ``second'' refers to the fact that it has two subscripts (i.e., it was generated by combining two vectors). This brings up the possibility of taking the tensor product of more than two vectors, for instance the three vectors $\mathbf{s}$, $\mathbf{t}$, and $\mathbf{u}$:
 \begin{equation}
 	(\mathbf{s}\otimes\mathbf{t}\otimes\mathbf{u})_{ijk} = s_i\,t_j\,u_k\ .
 \end{equation}
@@ -173,7 +191,7 @@ It is important to recognize that the tensor product is really a product between
 \[
 	\mathbf{p}\otimes \mathbf{q} = (p_i\,\mathbf{e}_i)\otimes (q_j\,\mathbf{e}_j) = p_i\,q_j\,(\mathbf{e}_i\otimes\mathbf{e}_j) = r_{ij}\,(\mathbf{e}_i\otimes\mathbf{e}_j)\ ,
 \]
-where the vector components were brought up front because they are just scalars.  It is standard practice to omit the tensor product between the basis vectors, but one should always be mindful of the fact that the tensor components of $r_{ij}$ are expressed with respect to their own basis, just like the vector components $p_i$ are expressed with respect to the basis vectors $\mathbf{e}_i$.  The tensor product of basis vectors therefore creates a new basis, $\mathbf{e}_i\otimes\mathbf{e}_j$, with respect to which the components $r_{ij}$ are expressed. 
+where the vector components were brought up front because they are just scalars.  It is standard practice to omit the tensor product between the basis vectors, but one should always be mindful of the fact that the tensor components of $r_{ij}$ are expressed with respect to their own basis, just like the vector components $p_i$ are expressed with respect to the basis vectors $\mathbf{e}_i$.  The tensor product of basis vectors therefore creates a new $9$-component basis, $\mathbf{e}_i\otimes\mathbf{e}_j$, with respect to which the components $r_{ij}$ are expressed. 
 
 
 
@@ -189,7 +207,7 @@ Each of these tensors can be written as a $3\times 3$ matrix.  Since they are te
 \begin{equation}
 	\kappa_{ij}\lambda_{kl} \equiv \mu_{ijkl} =  (\mathbf{a}\otimes\mathbf{b}\otimes\mathbf{c}\otimes\mathbf{d})_{ijkl}\ .
 \end{equation}
-Alternatively we could express $\mu_{ijkl}$ are tensor product of the two second rank tensors as well:
+Alternatively we could express $\mu_{ijkl}$ as a tensor product of the two second rank tensors:
 \begin{equation}
 	\mu_{ijkl} =  (\bm{\kappa}\otimes\bm{\lambda})_{ijkl}\ .
 \end{equation}
@@ -199,20 +217,20 @@ So far, we have seen how we can multiply two tensors of ranks $r_1$ and $r_2$ to
 \begin{itemize}
 \item $\kappa_{ijk}\lambda_{mno} = \tau_{ijkmno}$: this product produces a tensor of rank $6$ because all the indices are represented by different letters;
 \item $\kappa_{ijk}\mu_{mjk} = \sigma_{im}$: the subscripts $j$ and $k$ each occur twice on the same side of the equation, so there are two implied summations, and the only remaining subscripts are $i$ and $m$.  The result of this product is a second rank tensor;
-\item $\lambda_{mno}\mu_{mjk}=\omega_{nojk}$: there is one summation over $m$, so the result is a fourth rank tensor.\\
+\item $\lambda_{mno}\mu_{mjk}=\omega_{nojk}$: there is one summation over $m$, so the result is a fourth rank tensor.
 \end{itemize}
 
 \noindent These examples lead us to formulate the following rules for tensor manipulation:
 \begin{itemize}
 	\item There is an implied summation over any index that occurs twice on the same side of an equation; this is known as the \indexit{summation rule}.  As an example we have $\mu_{ii}=\alpha$; we have a sum of the diagonal terms on the left hand side, and this results in a scalar (the trace of the matrix in this case) on the right hand side.  Note that the rank of the right hand side is two less than the rank on the left, because the summation causes two subscripts to disappear on the left.  In general, this is known as \indexit{tensor contraction}.
-	\item The overall tensor rank must be the same on both sides of an equation (after eliminating pairs by the summation rule).  As an example, consider $\kappa_{ij}\lambda_{jk}=\sigma_{ik}$; the overall rank is two on both sides, because the summed indices do not count in the rank determination.
+	\item The overall tensor rank must be the same on both sides of an equation (after eliminating pairs by the summation rule).  As an example, consider $\kappa_{ij}\lambda_{jk}=\sigma_{ik}$; the overall rank is two on both sides, because the summed index $j$ does not count in the rank determination.
 	\item If an index occurs on one side of an equation, it must also occur on the other side, except when it is a summation index in which case the other side can not have that same index; this is known as the \indexit{index conservation rule}.
 \end{itemize}
 These simple rules allow us to quickly spot invalid equations; can you see why the following relations are invalid? [answers in the footnote\footnotemark{}]
 \begin{itemize}
-\item (1) $\lambda_{ijk}\sigma_{klm} = \alpha_{ijm}$
-\item (2) $\sigma_{ii} = \lambda_i$ 
-\item (3) $c_{ijklmn}\epsilon_{kl}\epsilon_{mn} = q$
+\item[(1)] $\lambda_{ijk}\sigma_{klm} = \alpha_{ijm}$
+\item[(2)] $\sigma_{ii} = \lambda_i$ 
+\item[(3)] $c_{ijklmn}\epsilon_{kl}\epsilon_{mn} = q$
 \end{itemize}
 
 \footnotetext{\rotatebox{180}{{\parbox{\linewidth}{(1) after the summation of $k$, four subscripts remain on the left; the subscript $l$ is missing on the right hand side; (2) the summation on the left ``consumes'' the index $i$, so it cannot be present on the right; (3) the subscripts $i$ and $j$ are only present on the left; they must also be present on the right since there is no summation over them.}}}}
@@ -239,7 +257,8 @@ The product of two tensors can also undergo contraction and produce a tensor of 
 \[
 	 \kappa_{ij}\lambda_{jl} =  \kappa_{i1}\lambda_{1l} + \kappa_{i2}\lambda_{2l} + \kappa_{i3}\lambda_{3l} = \mu_{il}. 
 \]
-We can then contract this tensor to a scalar, $\mu_{ii}$, by setting $i=l$; this scalar is the sum of all the pairwise products of the original two tensors, i.e., $\kappa_{ij}\lambda_{ij}$.
+We can then contract this tensor to a scalar, $\mu_{ii}$, by setting $i=l$; this scalar is the sum of all the pairwise products of the original two tensors, i.e., $\kappa_{ij}\lambda_{ji}$.
+
 
 
 \section{Tensors and Coordinate Transformations}\label{\chabbr:tensortrafo}
@@ -428,6 +447,92 @@ Diagonal second rank property tensors are usually found for the higher symmetry 
 \includegraphics[width=0.98\textwidth]{\graphicspath tensorellipsoid.eps}
 \end{messagebox}
 
+
+\section{The Permutation Symbol and the Kronecker Delta}\label{\chabbr:sec:permutation}
+
+\subsection{The Kronecker delta}\label{\chabbr:ssec:kroneckerdelta}
+The \indexit{Kronecker delta} is a mathematical object that is important for tensor calculus; it is generally represented by the symbol $\delta_{ij}$, where $1\le i,j\le N$ and $N$ is the dimension of the space. One can think of the Kronecker delta as a generalization of the identity matrix and it is defined as:
+\begin{equation}
+	\delta_{ij} = \left\{\begin{array}{lcl}1&\quad&i=j\ ;\\ 0&\quad&i\ne j\end{array}\ .\right.
+\end{equation}
+In a Cartesian basis $\mathbf{e}_i$, one can think of the Kronecker delta as the tensor product $\mathbf{e}_i\otimes\mathbf{e}_j$; in a non-Cartesian basis, this relation becomes more nuanced and one must  resort to using direct and reciprocal (or dual) basis vectors.  
+
+In tensor calculations, the Kronecker delta can be used to change subscripts. Consider, for instance, the expression $r_i\delta_{ij}$; this is a contraction (sum) over the subscript $i$:
+\[
+	r_i\delta_{ij} = r_1\delta_{1j}+r_2\delta_{2j}+r_3\delta_{3j}+\ldots + r_N\delta_{Nj}\ ;
+\]
+The subscript $j$ must be equal to one on the numbers between $1$ and $N$, so that one of the terms on the right hand side will survive for each value of $j$. Therefore, the right hand side of the equation becomes $r_j$, or:
+\[
+	r_i\delta_{ij} = r_j\ .
+\]
+Hence, when working in a Cartesian basis, the Kronecker delta simply replaces the summation subscript by the other subscript.
+
+\subsection{The Permutation Symbol}\label{\chabbr:ssec:permutationsymbol}
+Consider the first $n$ natural numbers, starting with $1$, in their natural order $1, 2, 3, \ldots, n$.  We define a permutation operator $P_{ij}$ as the operator that swaps entry $i$ with entry $j$ in this list. If we represent the numbers in the list by $\alpha_{i}$, then we have:
+\[
+	P_{pq}[\alpha_1,\alpha_2,\ldots,\alpha_p,\ldots,\alpha_q,\ldots\alpha_n] = [\alpha_1,\alpha_2,\ldots,\alpha_q,\ldots,\alpha_p,\ldots\alpha_n]\ ; 
+\]
+for instance, we have $P_{23}[1,2,3,4] = [1,3,2,4]$. When we have an arbitrary sequence $\{\alpha_j\}$, then we can always return it to the original natural order by means of a sequence of permutations of the type $P_{pq}$. If the number of such permutations is even, then we say that the sequence $\{\alpha_j\}$ has \textit{even parity}; if the number of permutations is odd, then the sequence has \textit{odd parity}. In the example above, the sequence $[1,3,2,4]$ has odd parity, since only one permutation is sufficient to return it to $[1,2,3,4]$; the sequence $[4,3,2,1]$, on the other hand, has even parity since two permutations are needed (namely $P_{14}$ and $P_{23}$). It is then useful to introduce a new symbol, $\epsilon_{ijkl\ldots}$ with $N$ subscripts; this symbol takes on the value $+a$ if the sequence of subscripts is an even permutation of the natural order, and $-a$ if the sequence is an odd permutation.  If any two (or more) subscripts are equal to each other, then $\epsilon_{ijkl\ldots}=0$.  The number $a$ can be freely chosen, depending on the application, and in many cases one sets $a$ to $+1$.  
+
+The symbol $\epsilon_{ijkl\ldots}$ is known as the \indexit{permutation symbol} or the \indexit{Levi-Civita symbol}. Its main property is that of \indexit{antisymmetry}, i.e., its sign changes whenever two subscripts are swapped.  In a 3D space we have three subscripts, so that:
+\[
+	\epsilon_{ijk} = -\epsilon_{ikj}\ .
+\]
+The value of the permutation symbol is thus equal to the parity of the sequence of its subscripts (using $a=1$).  For instance, we have $\epsilon_{231}=+1$, since we need two permutations to obtain $123$ ($P_{23}$ followed by $P_{12}$). Similarly, $\epsilon_{321}=-1$ since we need $P_{12}$, $P_{23}$, and $P_{12}$ to obtain the natural order $123$; note that the subscripts on the symbol $P_{pq}$ refer to positions in the sequence, not the actual numbers on those positions.
+
+The permutation symbol is a useful tool in many tensor calculations. We have seen in section~\ref{\chabbr:ssec:knownproducts} that the vector cross-product in a Cartesian reference frame is given by:
+\begin{equation}
+	\mathbf{p}\times\mathbf{q} = (p_yq_z-p_zq_y) \mathbf{e}_x+(p_zq_x-p_xq_z) \mathbf{e}_y+(p_xq_y- p_yq_x) \mathbf{e}_z\ .
+\end{equation}
+In subscript notation, the permutation symbol can be used to create a very compact expression:
+\[
+	(\mathbf{p}\times\mathbf{q})_i = \epsilon_{ijk}p_jq_k\ ;
+\]
+for $i=2$, we have:
+\[
+	(\mathbf{p}\times\mathbf{q})_2 = \epsilon_{2jk}p_jq_k= \epsilon_{231}p_zq_x+\epsilon_{213}p_xq_z = p_zq_x-p_xq_z \ ,
+\]
+in agreement with the expression above since $213$ is an odd permutation of $123$.
+
+The permutation symbol can also be used in the definition of the determinant of a $3\times 3$ matrix $A$ with entries $a_{ij}$, as is readily verified by direct computation:
+\[
+	\text{det}\vert A\vert = \epsilon_{ijk}a_{1i}a_{2j}a_{3k}\ .
+\]
+This relation extends to all $n\times n$ matrices; for a $4\times 4$ matrix $B$ with entries $b_{ij}$ we have:
+\[
+	\text{det}\vert B\vert = \epsilon_{ijkl}b_{1i}b_{2j}b_{3k}b_{4l}\ 
+\]
+where all four implicit summations run from $1$ to $4$.
+
+There are many useful relations between the permutation symbol and the Kronecker delta. The easiest way to see the connection between a permutation, say $P_{23}$, and the Kronecker delta is by explicitly writing the permutation as a matrix multiplication:
+\[
+	P_{23}[1,2,3] \rightarrow \begin{pmatrix}1&0&0\\ 0&0 &1\\ 0&1&0\end{pmatrix}\begin{pmatrix}1\\ 2\\ 3\end{pmatrix}=\begin{pmatrix}1\\ 3\\ 2\end{pmatrix}\ .
+\]
+This matrix, which we represent by $M_{23}$, has determinant $-1$ since this is an odd permutation. Note that the matrix contains only ones and zeroes, so we can replace these entries by the appropriate Kronecker deltas:
+\[
+	\begin{pmatrix}1&0&0\\ 0&0 &1\\ 0&1&0\end{pmatrix} = \begin{pmatrix}\delta_{11}&\delta_{12}&\delta_{13}\\ \delta_{31}&\delta_{32} &\delta_{33}\\ \delta_{21}&\delta_{22}&\delta_{23}\end{pmatrix}\ .
+\]	
+As expected, this matrix has its second and third rows swapped compared to the identity matrix.  We thus found, by example, that we can represent the permutation symbol by the determinant of a $3\times 3$ matrix that contains Kronecker deltas; the general expression has the following form:
+\[
+	\epsilon_{ijk} = \text{det}\left\vert \begin{pmatrix}\delta_{i1}&\delta_{i2}&\delta_{i3}\\ \delta_{j1}&\delta_{j2} &\delta_{j3}\\ \delta_{k1}&\delta_{k2}&\delta_{k3}\end{pmatrix}\right\vert\ .
+\]
+Using the fact that the determinant of a product of matrices is the product of the determinants, we can then compute the product of two permutation symbols and we obtain (after a bit of index gymnastics):
+\begin{equation}
+	\epsilon_{ijk}\epsilon_{lmn} = \delta_{il}(\delta_{jm}\delta_{kn}-\delta_{jn}\delta_{km})+\delta_{im}(\delta_{jn}\delta_{kl}-\delta_{jl}\delta_{kn})+\delta_{in}(\delta_{jl}\delta_{km}-\delta_{jm}\delta_{kl})\ .
+\end{equation}
+When $i=l$ this expression simplifies to:
+\begin{equation}
+	\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn}-\delta_{jn}\delta_{km}\ .
+\end{equation}
+Equating two more indices $j=m$ we obtain (summing over both $i$ and $j$):
+\begin{equation}
+	\epsilon_{ijk}\epsilon_{ijn} = \delta_{jj}\delta_{kn}-\delta_{jn}\delta_{kj} = 3\delta_{kn}-\delta_{kj}\delta_{jn}=3\delta_{kn}-\delta_{kn}=2\delta_{kn}\ ,
+\end{equation}
+since $\delta_{jj}$ is the trace of the identity matrix, which equals $3$.
+And finally (a triple summation):
+\begin{equation}
+	\epsilon_{ijk}\epsilon_{ijk} = 2\delta_{kk} = 6\ .
+\end{equation}
 
 
 

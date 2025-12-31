@@ -353,7 +353,7 @@ Note that the Rodrigues vector introduced above is related to the quaternion as 
 	\[
 		\mathbf{s} = \frac{\mathbf{q}}{1+q_0} = \frac{\sin\frac{\omega}{2}}{1+\cos\frac{\omega}{2}}\,\hat{\mathbf{n}} = \tan\frac{\omega}{4}\,\hat{\mathbf{n}}\ .
 	\]
-	\item \textcolor{OCSkiboRed}{$f(\omega) = [3(\omega-\sin\omega)/4]^{1/3}$}:	in section~\ref{PROJTS:sec:lambertproj} we introduced the Lambert projection from the 2-sphere $\mathbb{S}^2$ to the 2-ball (disc) $\mathbb{B}^2_2$ with radius $R=2$, and we showed by means of an example that this is an area-preserving mapping.  Some sophisticated math (\cite{degraef2014r}) shows that, if we increase the dimensions by one, we obtain a generalized Lambert projection between the 3-sphere $\mathbb{S}^3$ and the 3-ball $\mathbb{B}^3_{\rho}$ where $\rho=[3\pi/4]^{1/3}$.  The function that achieves this \indexit{equal-volume mapping} is precisely the function $f(\omega) = [3(\omega-\sin\omega)/4]^{1/3}$.  In the texture community, this representation is known as the \indexit{homochoric representation}, and we have the \indexit{homochoric vector} $\mathbf{h}=  [3(\omega-\sin\omega)/4]^{1/3}\,\hat{\mathbf{n}}$.
+	\item \textcolor{OCSkiboRed}{$f(\omega) = [3(\omega-\sin\omega)/4]^{1/3}$}:	in section~\ref{PROJTS:sec:lambertproj} we introduced the Lambert projection from the 2-sphere $\mathbb{S}^2$ to the 2-ball (disc) $\mathbb{B}^2_2$ with radius $R=2$, and we showed by means of an example that this is an area-preserving mapping.  Some sophisticated math (\cite{degraef2014r}) shows that, if we increase the dimensions by one, we obtain a generalized Lambert projection between the 3-sphere $\mathbb{S}^3$ and the 3-ball $\mathbb{B}^3_{\rho}$ where $\rho=[3\pi/4]^{1/3}$.  The function that achieves this \indexit{equal-volume mapping} is precisely the function $f(\omega) = [3(\omega-\sin\omega)/4]^{1/3}$.  In the texture community, this representation is known as the \indexit{homochoric representation}, and we have the \indexit{homochoric vector} $\mathbf{h}=  [3(\omega-\sin\omega)/4]^{1/3}\,\hat{\mathbf{n}}$.\footnote{It should be noted that the expression $\omega-\sin\omega=h$ with $h$ some constant is a transcendental equation that does not have a closed form solution; hence, to extract the rotation angle from a homochoric vector one must use a numerical procedure, such as the Newton-Raphson method.  Interestingly, this equation is known as \indexit{Kepler's Equation}, an important equation for orbital mechanics.} 
 \end{itemize}
  
 \noindent Contrary to the Euler angle representation, for which the identity is infinitely degenerate, in the neo-Eulerian representations there are no degeneracies related to the identity; in all cases the identity is a single point at the origin of an orthonormal reference frame (Rodrigues vectors) or at the center of a ball (all others). All neo-Eulerian representations also share the property, which is clear from the general definition in Eq.~(\ref{\chabbr:eq:neoEulerian}), that all rotations around a given axis $\hat{\mathbf{n}}$ lie along a straight line through the origin (since $f(0)=0$).
@@ -461,13 +461,13 @@ It should be noted that in the literature on these representations, the metric t
 
 While this section contains some more advanced math than the rest of this chapter, it is important for the reader to appreciate the fact that these rotation spaces do not generally have simple Cartesian metrics; as a consequence, whenever one performs integrations over orientation distributions expressed in these representations, one must follow the rules of differential geometry to properly carry out the computations.  The paper by Kumar and Dawson \cite{kumar1998a} represents a good starting point for the interested reader.
 
-%\section{Sampling of Orientations/Rotations}\label{\chabbr:sec:sampling}
-%
-%In this section we take a closer look at different ways to generate random sets of orientations that are either uniform or clustered. The techniques described here belong to the field of \indexit{Directional Statistics} which handles the theory of uniform and clustered distributions of points on (hyper)-spheres.  While the following sections present a basic overview, the interested reader is encouraged to consult the excellent book ``Directional Statistics'' by Mardia and Jupp \cite{mardia2009a}. Before we cover these sampling concepts, it is important to introduce the concept of \indexit{misorientation}, which is a measure for the ``distance'' between two orientations.
-%
-%\subsection{Misorientations}\label{\chabbr:ssec:misorientations}
 
-\section{Misorientations}\label{\chabbr:sec:misorientations}
+
+\section{Sampling of Orientations/Rotations}\label{\chabbr:sec:sampling}
+
+In this section, we take a closer look at different ways to generate random sets of orientations that are either uniform or clustered. The techniques described here belong to the field of \indexit{Directional Statistics} which handles the theory of uniform and clustered distributions of points on (hyper-)spheres.  While the following sections present a basic overview, the interested reader is encouraged to consult the excellent book ``Directional Statistics'' by Mardia and Jupp \cite{mardia2009a}. Before we cover these sampling concepts, it is important to introduce the concept of \indexit{misorientation}, which is a measure for the ``distance'' between two orientations.
+
+\subsection{Misorientations}\label{\chabbr:ssec:misorientations}
 
 We have defined a rotation as a passive operation that rotates one cartesian reference frame (the ``old'' frame) into another reference frame (the ``new'' frame).  In terms of rotation matrices, we commonly write:
 \[
@@ -479,7 +479,7 @@ A polycrystalline material has many grains that form pairwise \indexit{grain bou
 \begin{equation}
 	q_m = q_1^{\ast}\,q_2\rightarrow q_m^{\ast} = (q_1^{\ast}\,q_2)^{\ast} = q_2^{\ast}\,q_1\ .\label{\chabbr:eq:misorientation}
 \end{equation}
-The misorientation quaternion $q_m$ rotates the reference frame of grain $1$ into the orientation of the reference frame of grain $2$.  The conjugate quaternion $q_m^{\ast}$ will achieve the opposite rotation.  Note that, in this section, we ignore the crystal symmetry of the individual grains; in other words, we consider the grains to have a structure described by space group \#1.  The consequences of adding actual crystal symmetry, which leads to the concept of \indexit{disorientation}, are discussed elsewhere.
+The misorientation quaternion $q_m$ rotates the reference frame of grain $1$ into the orientation of the reference frame of grain $2$.  The conjugate quaternion $q_m^{\ast}$ will achieve the opposite rotation.  Note that, in this section, we ignore the crystal symmetry of the individual grains; in other words, we consider the grains to have a structure described by point group \pg{1}.  The consequences of adding actual crystal symmetry, which leads to the concept of \indexit{disorientation}, are discussed elsewhere.
 
 As an example, let us consider a planar grain boundary, as illustrated in Fig.~\ref{\chabbr:fig:GB}, where both grains have a single crystal axis in common, say they share the $\mathbf{e}_z$ axis, but they are rotated in opposite directions by an angle $\theta$ with respect to the boundary plane (this type of grain boundary is known as a \indexit{symmetric tilt boundary}). In the quaternion representation, we have for grain $1$ (with a counterclockwise rotation):
 \[
@@ -493,10 +493,10 @@ For the misorientation quaternion we find:
 \begin{equation*}
 \begin{split}
 	q_m &= \left[\cos^2\frac{\theta}{2}-\sin^2\frac{\theta}{2},\left[0,0,-2\cos\frac{\theta}{2}\sin\frac{\theta}{2}\right]\right]\ ;\\
-	&=\left[\cos(\theta),\left[0,0,-\sin(\theta)\right]\right]\ .
+	&=\left[\cos\theta,\left[0,0,-\sin\theta\right]\right]\ .
 \end{split}
 \end{equation*}
-The misorientation angle $\Delta\theta$ is therefore a clockwise angle of magnitude $2\theta$ (clockwise because the sign in front of $\sin\theta$ is negative).  
+The misorientation angle $\Delta\theta$ is therefore an angle of magnitude $2\theta$.  
 
 One can show that the full quaternion multiplication is not necessary to obtain the misorientation angle (it is necessary, however, if the rotation axis is also needed). If we consider the quaternions as $4$-component vectors, then we can compute the dot product between those vectors using the normal approach; the dot product will then be equal to the cosine of half of the misorientation angle:
 \[
@@ -506,13 +506,499 @@ note that we do \textit{not} use the conjugate quaternion $q_1^{\ast}$ in the do
 
 % insert an exercise here...
 
-%\subsection{Uniform Orientation Sampling}\label{\chabbr:ssec:uniformsampling}
-% 
-% not sure if we really need these sections... math gets pretty involved
-%
-%\subsection{Orientation Cluster Sampling}\label{\chabbr:ssec:clustersampling}
-%
-%
+
+\subsection{The Cubochoric Orientation Representation}\label{\chabbr:ssec:cubochoric}
+In this section, we introduce an orientation representation that does not belong to the class of neo-Eulerian representations; the new representation takes an orientation, represented by a homochoric vector $\mathbf{h}$, and expresses it as a point $\mathbf{c}$ inside a cube, $\mathbb{C}^3_{\rho}$, with volume $\pi^2$ (and thus edge length $\rho=\pi^{2/3}$).  Note that $\pi^2$ is also the volume of the Northern hemisphere of $\mathbb{S}^3$ as well as the volume of the homochoric representation ball.  The cubochoric representation was introduced in \cite{degraef2014r} with the specific purpose of creating an equal-volume mapping between a cube and a ball, specifically the homochoric ball $\mathbb{B}^3_{\alpha}$ which has radius $\alpha=(3\pi/4)^{1/3}$.  This ball is, itself, an equal-volume Lambert map from the Northern hemisphere of the quaternion unit sphere $\mathbb{S}^3_+$. The concatenation of the two mappings thus establishes a bi-directional equal-volume map from $\mathbb{S}^3_+$ onto $\mathbb{C}^3_{\rho}$.  The reason for creating an equal-volume mapping is simple: if we create a regular grid of points inside the cube, then this will be mapped onto a regular grid of orientations in $\mathbb{S}^3_+$.
+
+The transformations between the cubochoric and homochoric representations given below are somewhat complicated, and are based on the decomposition of cube and ball into six pyramidal sub-volumes, as shown in Fig.~\ref{\chabbr:fig:exploded}; for a detailed derivation, see \cite{degraef2014r}.
+
+\begin{figure}[b!]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath exploded.eps}
+\caption{\label{\chabbr:fig:exploded}Exploded views of the cubochoric cube $\mathbb{C}^3_{\rho}$ with the radius set to $\rho=\pi^{2/3}$ and the homochoric ball $\mathbb{B}^3_{\alpha}$ with radius $\alpha=(3\pi/4)^{1/3}$.  Each sector of the sphere is mapped using an equal-volume mapping onto the corresponding pyramidal sector of the cube.}
+\end{figure}
+
+
+\subsubsection{From cubochoric to homochoric coordinates}
+In the relations below, note that $q$, $c$ and $s$ are auxiliary parameters; they are redefined several times throughout the algorithm.
+
+\begin{enumerate}
+	\item Rearrange the components of $\mathbf{c}$ according to the pyramid in which it lies:  $1,2\rightarrow$ no change needed;
+	$3,4\rightarrow \mathbf{c}=(c_2,c_3,c_1)$; $5,6\rightarrow \mathbf{c}=(c_3,c_1,c_2)$.
+	\item Scale $\mathbf{c}$ to $\mathbf{C} = \mathbf{c}(\pi/6)^{1/6}$;
+	\item If $\mathbf{C}=\mathbf{0}$ then set $\bm{\lambda}=\mathbf{0}$, else if $\mathbf{C}$ lies along the $z$-axis (first two components are zero) then 
+	$\bm{\lambda}=(0,0,C_3\sqrt{6/\pi})$; go to item 5.
+	\item In all other cases we have a general grid point; if $\vert C_2\vert \le \vert C_1\vert$ then
+	\begin{equation*}
+	\begin{split}
+		q &= \frac{\pi}{12}\frac{C_2}{C_1}\rightarrow c = \cos(q)\text{ and }s = \sin(q)\ ;\\
+		q &= \sqrt{\frac{6}{\pi}}2^{\frac{1}{4}} \frac{C_1}{\sqrt{\sqrt{2}-c}}\rightarrow T_1 = (c\sqrt{2}-1)q\text{ and }T_2 = s\,q\,\sqrt{2}\ , 
+	\end{split}
+	\end{equation*}
+	else ( $\vert C_2\vert > \vert C_1\vert$)
+	\begin{equation*}
+	\begin{split}
+		q &= \frac{\pi}{12}\frac{C_1}{C_2}\rightarrow c = \cos(q)\text{ and }s = \sin(q)\ ;\\
+		q &= \sqrt{\frac{6}{\pi}}2^{\frac{1}{4}} \frac{C_2}{\sqrt{\sqrt{2}-c}}\rightarrow T_1 = s\,q\,\sqrt{2}\text{ and }T_2 = (c\sqrt{2}-1)q\ .
+	\end{split}
+	\end{equation*}
+	Then transform to the sphere grid:
+	\begin{equation*}
+	\begin{split}
+		c &= T_1^2+T_2^2\rightarrow s = \frac{\pi c}{24 C_3^2}\text{ and }c = \sqrt{\frac{\pi}{24}}\frac{c}{C_3}\ ;\\
+		q &= \sqrt{1-s};\\
+		\bm{\lambda} &= (q\,T_1, q\,T_2, \sqrt{\frac{6}{\pi}}C_3-c).
+	\end{split}
+	\end{equation*}
+	\item Finally, rearrange the components of $\bm{\lambda}$ back into the correct order depending on
+	the pyramid number: $1,2\rightarrow \mathbf{h}=\bm{\lambda}$; $3,4\rightarrow \mathbf{h}=(\lambda_3,\lambda_1,\lambda_2)$;
+	$5,6\rightarrow \mathbf{h}=(\lambda_2,\lambda_3,\lambda_1)$.  
+\end{enumerate}
+
+\subsubsection{From homochoric to cubochoric coordinates}
+Given the homochoric vector, $\mathbf{h}$ with $\vert\mathbf{h}\vert\le (3\pi/4)^{1/3}$, one can obtain the cubochoric vector, $\mathbf{c}$, by means of the following steps
+(note that $a$, $p$, $q$ and $r$ are auxiliary parameters that are redefined several times):
+\begin{enumerate}
+	\item If this is the identity rotation, then $\mathbf{c}=\mathbf{0}$ and exit.
+	\item Determine which pyramidal section $\mathbf{h}$ is part of, and rearrange the components $h_i$
+	accordingly: pyramids $1,2\rightarrow$ no change; $3,4\rightarrow\,\mathbf{h}=(h_2,h_3,h_1)$; 
+	$5,6\rightarrow\, \mathbf{h}=(h_3,h_1,h_2)$.
+	\item Using the rearranged $\mathbf{h}$, put $q=(2\vert\mathbf{h}\vert/(\vert\mathbf{h}\vert+\vert h_3\vert))^{1/2}$;
+	then compute 
+	\[
+		\mathbf{h}' = \left( q h_1, q h_2, \text{sign}(h_3)\vert\mathbf{h}\vert/\sqrt{6/\pi} \right)
+	\]
+	\item Set $p = h_1^{\prime 2}+h_2^{\prime 2}$; if $h'_1 \ne 0\rightarrow s_x=\text{sign}(h'_1)$, else $s_x=1$;
+	if $h'_2\ne 0\rightarrow s_y=\text{sign}(h'_2)$, else $s_y=1$;
+	\item If $\vert h'_2\vert \le \vert h'_1\vert$ then compute
+	\begin{align*}
+		q &= p + h_1^{\prime 2};\\
+		r &= \sqrt{q};\\
+		q &= \frac{\pi^{5/6}4^{1/3}}{2\sqrt{2}\,(3\pi)^{1/3}6^{1/6}}\sqrt{\frac{q\, p}{(q-\vert h'_1\vert r)}};\\
+		a &= \arccos( (h^{\prime 2}_2+\vert h'_1\vert r)/\sqrt{2}/p);\\
+		T_1 &= q\, s_x;\\
+		T_2 &= 12 q\, s_y\, a/\pi.
+	\end{align*}
+	else ($\vert h'_1\vert \le \vert h'_2\vert$)
+	\begin{align*}
+		q &= p + h_2^{\prime 2};\\
+		r &= \sqrt{q};\\
+		q &= \frac{\pi^{5/6}4^{1/3}}{2\sqrt{2}\,(3\pi)^{1/3}6^{1/6}}\sqrt{\frac{q\, p}{(q-\vert h'_2\vert r)}};\\
+		a &= \arccos( (h^{\prime 2}_1+\vert h'_2\vert r)/\sqrt{2}/p);\\
+		T_1 &= 12 q\, s_x\, a/\pi;\\
+		T_2 &= q\, s_y.
+	\end{align*}
+	Then set $\mathbf{h}''= (6/\pi)^{1/6}(T_1, T_2, h'_3)$.
+	\item Finally, revert the components back to the original order (undoing the pyramid swap): 
+	$1,2\rightarrow \mathbf{c}=\mathbf{h}''$; $3,4\rightarrow \mathbf{c}=(h''_3,h''_1,h''_2)$; and
+	$5,6\rightarrow \mathbf{c}=(h''_2,h''_3,h''_1)$.
+\end{enumerate} 
+
+\subsubsection{Example representation cases}
+As an example of different rotation representations we list in Table~\ref{\chabbr:tb:cubicsym} all $24$ symmetry operators of the cubic rotational point group \pg{30} in axis-angle notation, quaternion, homochoric, stereographic, and cubochoric representations.  The neo-Eulerian representations were computed using the relations in section~\ref{\chabbr:sec:neoEulerian}; the cubochoric representation uses the algorithm for the homochoric-to-cubochoric transformation listed above.
+
+\begin{table}[h!]
+\centering\leavevmode
+{\footnotesize
+\begin{tabular}{ccccc}
+\hline
+$\omega@\hat{\mathbf{n}}$ & Quaternion $q$ & Homochoric $\mathbf{h}$ & Stereographic $\mathbf{s}$ & Cubochoric $\mathbf{c}$ \\
+\hline\hline
+$0@[001]$ &  1.0000, 0.0000, 0.0000, 0.0000 & 0.0000, 0.0000, 0.0000 & 0.0000, 0.0000, 0.0000 & 0.0000, 0.0000, 0.0000 \\
+$90@[100]$ &  0.7071, 0.7071, 0.0000, 0.0000 &  0.7537, 0.0000, 0.0000 &  0.4142, 0.0000, 0.0000 &  0.6075, 0.0000, 0.0000 \\ 
+$90@[010]$ &  0.7071, 0.0000, 0.7071, 0.0000 &  0.0000, 0.7537, 0.0000 &  0.0000, 0.4142, 0.0000 &  0.0000, 0.6075, 0.0000 \\
+$90@[001]$ &  0.7071, 0.0000, 0.0000, 0.7071 &  0.0000, 0.0000, 0.7537 &  0.0000, 0.0000, 0.4142 &  0.0000, 0.0000, 0.6075 \\
+$180@[100]$ &  0.0000, 1.0000, 0.0000, 0.0000 &  1.3307, 0.0000, 0.0000 &  1.0000, 0.0000, 0.0000 &  1.0725, 0.0000, 0.0000 \\
+$180@[010]$ &  0.0000, 0.0000, 1.0000, 0.0000 &  0.0000, 1.3307, 0.0000 &  0.0000, 1.0000, 0.0000 &  0.0000, 1.0725, 0.0000 \\ 
+$180@[001]$ &  0.0000, 0.0000, 0.0000, 1.0000 &  0.0000, 0.0000, 1.3307 &  0.0000, 0.0000, 1.0000 &  0.0000, 0.0000, 1.0725 \\ 
+$270@[100]$ &  0.7071,-0.7071, 0.0000, 0.0000 & -0.7537, 0.0000, 0.0000 & -0.4142, 0.0000, 0.0000 & -0.6075, 0.0000, 0.0000 \\
+$270@[010]$ &  0.7071, 0.0000,-0.7071, 0.0000 &  0.0000,-0.7537, 0.0000 &  0.0000,-0.4142, 0.0000 &  0.0000,-0.6075, 0.0000 \\
+$270@[001]$ &  0.7071, 0.0000, 0.0000,-0.7071 &  0.0000, 0.0000,-0.7537 &  0.0000, 0.0000,-0.4142 &  0.0000, 0.0000,-0.6075 \\
+\hline
+$180@[110]$ &  0.0000, 0.7071, 0.7071, 0.0000 &  0.9409, 0.9409, 0.0000 &  0.7071, 0.7071, 0.0000 &  1.0725, 1.0725, 0.0000 \\ 
+$180@[\bar{1}10]$ &  0.0000,-0.7071, 0.7071, 0.0000 & -0.9409, 0.9409, 0.0000 & -0.7071, 0.7071, 0.0000 & -1.0725, 1.0725, 0.0000 \\
+$180@[011]$ &  0.0000, 0.0000, 0.7071, 0.7071 &  0.0000, 0.9409, 0.9409 &  0.0000, 0.7071, 0.7071 &  0.0000, 1.0725, 1.0725 \\
+$180@[0\bar{1}1]$ &  0.0000, 0.0000,-0.7071, 0.7071 &  0.0000,-0.9409, 0.9409 &  0.0000,-0.7071, 0.7071 &  0.0000,-1.0725, 1.0725 \\
+$180@[101]$ &  0.0000, 0.7071, 0.0000, 0.7071 &  0.9409, 0.0000, 0.9409 &  0.7071, 0.0000, 0.7071 &  1.0725, 0.0000, 1.0725 \\
+$180@[\bar{1}01]$ &  0.0000,-0.7071, 0.0000, 0.7071 & -0.9409, 0.0000, 0.9409 & -0.7071, 0.0000, 0.7071 & -1.0725, 0.0000, 1.0725 \\
+\hline
+$120@[111]$ &  0.5000, 0.5000, 0.5000, 0.5000 &  0.5618, 0.5618, 0.5618 &  0.3333, 0.3333, 0.3333 &  0.7843, 0.7843, 0.7843 \\ 
+$120@[\bar{1}\bar{1}\bar{1}]$ &  0.5000,-0.5000,-0.5000,-0.5000 & -0.5618,-0.5618,-0.5618 & -0.3333,-0.3333,-0.3333 & -0.7843,-0.7843,-0.7843 \\ 
+$120@[1\bar{1}1]$ &  0.5000, 0.5000,-0.5000, 0.5000 &  0.5618,-0.5618, 0.5618 &  0.3333,-0.3333, 0.3333 &  0.7843,-0.7843, 0.7843 \\ 
+$120@[\bar{1}1\bar{1}]$ &  0.5000,-0.5000, 0.5000,-0.5000 & -0.5618, 0.5618,-0.5618 & -0.3333, 0.3333,-0.3333 & -0.7843, 0.7843,-0.7843 \\
+$120@[\bar{1}11]$ &  0.5000,-0.5000, 0.5000, 0.5000 & -0.5618, 0.5618, 0.5618 & -0.3333, 0.3333, 0.3333 & -0.7843, 0.7843, 0.7843 \\
+$120@[1\bar{1}\bar{1}]$ &  0.5000, 0.5000,-0.5000,-0.5000 &  0.5618,-0.5618,-0.5618 &  0.3333,-0.3333,-0.3333 &  0.7843,-0.7843,-0.7843 \\ 
+$120@[\bar{1}\bar{1}1]$ &  0.5000,-0.5000,-0.5000, 0.5000 & -0.5618,-0.5618, 0.5618 & -0.3333,-0.3333, 0.3333 & -0.7843,-0.7843, 0.7843 \\ 
+$120@[11\bar{1}]$ &  0.5000, 0.5000, 0.5000,-0.5000 &  0.5618, 0.5618,-0.5618 &  0.3333, 0.3333,-0.3333 &  0.7843, 0.7843,-0.7843 \\ 
+\hline
+\end{tabular}}
+\caption{\label{\chabbr:tb:cubicsym}24 Cubic rotational symmetry operations in axis-angle (angle in degrees), quaternion, homochoric, stereographic, and cubochoric representations. The Rodrigues vector can be obtained by dividing the vector part of the quaternion by the scalar part.}
+\end{table}
+
+% take distribution from Fig. 11.3 and represent as cubochoric; superimpose points from table
+
+\subsection{Uniform Orientation Grids}\label{\chabbr:sec:grids}
+The cubochoric representation is useful because it allows for a two-step equal-volume mapping, via the homochoric representation, onto the Northern hemisphere, $\mathbb{S}_+^3$ of the unit quaternion sphere, which itself is a double-cover of $SO(3)$, the space of special orthogonal $3\times 3$ matrices.  If we create a uniform cubical grid of points in the cubochoric cell, each grid point will lie at the center of a small cube, and the volume of this cube will remain unchanged when mapped onto $\mathbb{S}_+^3$. The constant step size in the cubochoric grid will translate into a distribution of misorientation angles between neighboring grid points in $\mathbb{S}_+^3$; the main  reason for this distribution is the fact that an equal-volume mapping onto a (hyper)-sphere cannot also be an equal-angle mapping, so the constant grid step size in cubochoric space is mapped to a range of misorientation angles on the quaternion unit sphere.
+
+As an example, consider a line of discrete equidistant orientations along the $c_z$ axis of the cubochoric cube with semi-edge length $a_c=\pi^{2/3}/2$; the coordinates can be  expressed as:
+\[
+	\mathbf{c}_j = (0,0, j \frac{a_c}{n})\text{ with }j\in[-n,n]\ .
+\]
+For this particular case we can apply the algorithm from  the previous section directly and we obtain for the homochoric coordinate:
+\[
+	\mathbf{h}_j = (\frac{3\pi}{4})^{1/3}\,(0,0, \frac{j}{n}) = \text{ with }j\in[-n,n] .
+\]
+We recognize the prefactor to be the radius of the homochoric ball $\mathbb{B}^3$; this means that, when $j=\pm n$, the homochoric point lies on the surface of the ball, which represents a rotation by an angle $\pi$.  All other rotations lie along the $h_z$ axis on a regularly spaced grid.  The conversion to quaternions requires numerical determination of the rotation angle $\omega$ for each homochoric grid point. Computation of the dot product between consecutive quaternions then allows for extraction of the misorientation angle, $\Delta\theta$.  Table~\ref{\chabbr:tb:cubogrid} lists all relevant quantities for a grid of $21$ (i.e., $n=10$) equidistant cubochoric points.
+
+\begin{table}[h!]
+\centering\leavevmode
+{\small\begin{tabular}{cccccc}
+\hline
+$j$ & $c_z$ & $h_z$ & $q_0$ & $q_j\cdot q_{j+1}$ & $\Delta\theta_{j,j+1}$ \\
+\hline\hline
+-10 & -1.0725 & -1.3307 &  0.0000 &  0.9767 & 24.7723 \\
+ -9 & -0.9653 & -1.1976 &  0.2145 &  0.9823 & 21.5969 \\
+ -8 & -0.8580 & -1.0645 &  0.3937 &  0.9854 & 19.5723 \\
+ -7 & -0.7508 & -0.9315 &  0.5442 &  0.9874 & 18.1836 \\
+ -6 & -0.6435 & -0.7984 &  0.6699 &  0.9888 & 17.1934 \\
+ -5 & -0.5363 & -0.6653 &  0.7734 &  0.9897 & 16.4763 \\
+ -4 & -0.4290 & -0.5323 &  0.8562 &  0.9903 & 15.9603 \\
+ -3 & -0.3218 & -0.3992 &  0.9197 &  0.9907 & 15.6023 \\
+ -2 & -0.2145 & -0.2661 &  0.9645 &  0.9910 & 15.3761 \\
+ -1 & -0.1073 & -0.1331 &  0.9911 &  0.9911 & 15.2664 \\
+  0 &  0.0000 &  0.0000 &  1.0000 &  0.9911 & 15.2664 \\
+  1 &  0.1073 &  0.1331 &  0.9911 &  0.9910 & 15.3761 \\
+  2 &  0.2145 &  0.2661 &  0.9645 &  0.9907 & 15.6023 \\
+  3 &  0.3218 &  0.3992 &  0.9197 &  0.9903 & 15.9603 \\
+  4 &  0.4290 &  0.5323 &  0.8562 &  0.9897 & 16.4763 \\
+  5 &  0.5363 &  0.6653 &  0.7734 &  0.9888 & 17.1934 \\
+  6 &  0.6435 &  0.7984 &  0.6699 &  0.9874 & 18.1836 \\
+  7 &  0.7508 &  0.9315 &  0.5442 &  0.9854 & 19.5723 \\
+  8 &  0.8580 &  1.0645 &  0.3937 &  0.9823 & 21.5969 \\
+  9 &  0.9653 &  1.1976 &  0.2145 &  0.9767 & 24.7723 \\
+ 10 & 1.0725 &  1.3307 &  0.0000 & --- & ---  \\
+ \hline
+\end{tabular}}
+\caption{\label{\chabbr:tb:cubogrid}$z$ components of the cubochoric $(c_z)$ and homochoric $(h_z)$ points, the corresponding scalar part $q_0$ of the quaternion, the dot product between neighboring quaternions,  and the misorientation angle $\Delta\theta$ (in degrees) between points $j$ and $j+1$.}
+\end{table}
+
+The misorientation is nearly constant in the middle of the table and becomes larger at the start and end of the list. This table illustrates that an equal-volume sampling in the cubochoric cube produces an equal-volume sampling in both homochoric and quaternion representations, but the misorientation angle between consecutive sampling points is not constant. Note that the sum of the angles in the last column of the table is precisely $360^{\circ}$, as it should be since the line of grid points spans rotations from $-180^{\circ}$ to $+180^{\circ}$ around the $z$ axis.
+
+Fig.~\ref{\chabbr:fig:planarsample}(a) shows the cubochoric cell with a uniform square grid of $9\times 9$ points in the $c_y$--$c_z$ plane; when those points are transformed to the stereographic representation (Fig.~\ref{\chabbr:fig:planarsample}(b)), they form circular sets of points; in other words, a grid of concentric squares in cubochoric space becomes a set of concentric circles in the stereographic representation. Since all neo-Eulerian representations share the property that the distance to the origin is equal to $f(\omega)$, this means that all points on a centered square in cubochoric space have the same rotation angle $\omega$. This remains true for a 3D uniform grid of concentric cubes which is mapped onto a 3D grid of concentric spheres.  The outer surface of the cubochoric cube represents all possible rotations by an angle $\pi$; note that only three facets of the cube (meeting in a single vertex) need to be taken into account to avoid double counting of $1806{\circ}$ rotations.
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath planarsample.eps}
+\caption{\label{\chabbr:fig:planarsample}(a) uniform $9\times 9$ grid of points in the cubochoric $c_y$--$c_z$ plane; (b) representation of those points in a stereographic projection.}
+\end{figure}
+
+When the cubochoric representation is combined with the Rodrigues representation, one can generate uniform orientation samples that are restricted to a crystallographic Fundamental Zone.  Consider the following two examples: the point group symmetries are \pg{24} and \pg{30}, with $N=20$ in the first case and $N=50$ in the second. Without the application of symmetry the total number of points generated would be $(2N+1)^3$ or $68,921$ for $N=20$ and $1,030,301$ for $N=50$.  The application of symmetry is performed by a simple test: first convert each cubochoric point to a Rodrigues vector, then test whether or not the point lies inside the RFZ; keep the point if it lies inside the RFZ, discard it otherwise.  The resulting lists of orientations have $n=5,367$ for \pg{24} and $n=41,625$ for \pg{30}.  The distributions of points along with the RFZ edges are shown as stereographic projections in Fig.~\ref{\chabbr:fig:samples}. Note in particular for \pg{30} that the sampling points lie on concentric spherical surfaces inside the RFZ due to the way they are sampled on concentric cubes in the cubochoric cell.
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath samples.eps}
+\caption{\label{\chabbr:fig:samples}Stereographic projection of orientations uniformly sampled in cubochoric space and restricted to the Rodrigues Fundamental Zone for \pg{24} and \pg{30}.}
+\end{figure}
+
+\subsection{Random Orientation Sampling}\label{\chabbr:sec:randomsampling}
+
+{\color{red}to be written}
+
+
+\clearpage
+\section{Orientation Averaging}\label{\chabbr:sec:orientationaveraging}
+The topic of averaging data on a circle or on a sphere belongs to the branch of statistics that is known as \indexit{Directional Statistics} (DS); DS defines how data on a circle (i.e., data that is periodic) should be treated when averages or other statistical parameters are needed. Similarly, data on spheres and hyper-spheres requires special handling in the context of averaging.  Since 3D rotations and orientations can be represented on the hyper-sphere $\mathbb{S}^3$, it stands to reason that the techniques and concepts introduced in this section will be important for the study of material textures.  We begin with data that lives on a circle.
+
+\subsection{Averaging of Circular Data}\label{\chabbr:ssec:circleaveraging}
+
+\begin{floatingfigure}[r]{3.0in}
+\centering
+{\includegraphics[width=2.8in]{\graphicspath winddirections.eps}}
+{\caption{\label{\chabbr:fig:winddirections}\small Made-up data set representing the daily average wind directions for Pittsburgh, PA, in $5^{\circ}$ bins from North.}}
+\end{floatingfigure}
+\noindent By its very nature, a circle is a periodic shape, and functions defined on the circle are periodic. As an example, consider the function $f(\theta) = \mathrm{e}^{\mathrm{i}\theta}$ which can be written as $\cos\theta+\mathrm{i}\sin\theta$ by Euler's Formula.  $f(\theta)$ is a unit modulus complex number and it is clear from the properties of the trigonometric functions that $f(\theta)=f(\theta+2\pi\,k)$ with $k\in\mathbb{Z}$.  As an example (using made-up data) we consider the daily average wind direction for Pittsburgh, PA, binned in $5^{\circ}$ bins and measured in degrees from North, as shown in Fig.~\ref{\chabbr:fig:winddirections}. 
+
+Since this is periodic data, we can represent it as points on a circle, as shown in Fig.~\ref{\chabbr:fig:windcircle}(a) or by converting the linear histogram into a polar histogram as shown in Fig.~\ref{\chabbr:fig:windcircle}(b). If we naively compute the average direction as a standard numerical average over the range $[0^{\circ}\ldots 360^{\circ}]$ then we obtain $\langle\theta\rangle=107.06^{\circ}$, which is indicated by the red radial line in  Fig.~\ref{\chabbr:fig:windcircle}(b).  
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath windcircle.eps}
+\caption{\label{\chabbr:fig:windcircle}Representation of the wind direction data on a circular plot (a) and a polar plot (b). Colored lines represent the average directions for two different angular ranges.}
+\end{figure}
+
+If we change the horizontal axis of the histogram in Fig.~\ref{\chabbr:fig:winddirections} to the range $[-180^{\circ}\ldots 180^{\circ}]$, and wrap the data periodically, then we obtain for the average angle $\langle\theta\rangle=52.81^{\circ}$, represented by the blue line. 
+So, the value of the conventional average depends on where we pick the starting point on the circle!  From this we learn that \textit{we should never simply take the average of a series of angles or directions}; in particular, one should \textit{never} compute the average of a set of Euler angle triplets by simply taking the average for each angle separately.
+
+For the correct procedure to compute the average for circular data we turn to Directional Statistics. We begin by treating the data as a collection of unit vectors in a 2D plane; the vectors are defined as
+\[
+	\hat{\mathbf{r}}_i = (\cos\theta_i,\sin\theta_i)\ .
+\]
+The center-of-mass of these vectors is given by the vector $(\bar{C},\bar{S})$ with 
+\begin{equation*}
+\begin{split}
+	\bar{C} &= \frac{1}{n}\sum_{i=1}^n \cos\theta_i\ ;\\
+	\bar{S} &= \frac{1}{n}\sum_{i=1}^n \sin\theta_i\ .	
+\end{split}
+\end{equation*}
+Note that we do use the traditional expression for the average, but we apply it to the vector components, not to the angles.  The center-of-mass vector can be written in polar form as: $(\bar{C},\bar{S})=\bar{R}(\cos\bar{\theta},\sin\bar{\theta})$ where $\bar{R}\equiv \sqrt{\bar{C}^2+\bar{S}^2}$ is the \indexit{mean resultant length}, and $\bar{\theta}$ is the mean direction, defined as:
+\begin{equation*}
+	\bar{\theta} = \left\{\begin{array}{lcl}
+	\text{arctan}(\bar{S}/\bar{C}) & \qquad & \bar{C}\ge 0\\
+	\text{arctan}(\bar{S}/\bar{C})+\pi & \qquad & \bar{C}< 0\end{array}\right.\ .	
+\end{equation*}
+When we apply these relations to the wind directions data set, we obtain $\bar{C}=0.539897$ and $\bar{S}=0.345104$, which translates to $\bar{R}=0.640750$ and $\bar{\theta}=32.588^{\circ}$.  Since the angle for the vectors is measured starting from the $x$-axis, and the wind directions are with respect to North, we take the complement of this angle and find $\bar{\theta}=57.41^{\circ}$, which is indicated by the green line in  Fig.~\ref{\chabbr:fig:windcircle}(b).  
+
+The mean resultant length $\bar{R}$ is a measure for how ``concentrated'' the data is; the larger $\bar{R}$, the narrower the distribution of values is. When we introduce distributions on spheres and hyper-spheres in the next section, the parameter corresponding to $\bar{R}$ will be called the \indexit{concentration parameter}.  Other statistical parameters for the circular data case include:
+\begin{itemize}
+	\item the \indexit{sample circular variance}: $V=1-\bar{R}$ ($=0.359$ for the wind direction data)\ ;
+	\item the \indexit{circular standard deviation}: $v=(-2\ln\bar{R})^{1/2}$ ($=0.943$)\ ;
+	\item the \indexit{median direction}: represent the data on the range $[0^{\circ}\ldots 360^{\circ}]$; shift the data to the left by an angle $\theta_m$ such that half of the data points have negative angles and half positive (for the wind directions data set we have $\theta_m=75.40^{\circ}$)\ ;
+	\item for the definition of other circular statistics quantities, including circular dispersion, circular mean difference, and circular range, we refer the interested reader to section 2.3 in \cite{mardia2009a}. 
+\end{itemize}
+
+The example above dealt with discrete data; it is also possible to work with continuous distribution functions. We define a distribution function $F(x)$ as the probability $\text{Pr}(0<\theta\le x)$ that a randomly selected angle $\theta$ lies in the stated range, with $0\le x\le 2\pi$.  For circular data this function has the property that $F(x+2\pi)-F(x)=1$ for all $x$ values.  The probability that the angle $\theta$ falls in the range $[\alpha,\beta]$ is then given by:
+\[
+	\text{Pr}(\alpha<\theta\le\beta)=F(\beta)-F(\alpha)=\int_{\alpha}^{\beta}f(\theta)\,\mathrm{d}\theta\ ,
+\]
+where $f(\theta)$ is the probability density function; this function is positive-valued, periodic, and normalized.  As a simple example, for a uniform probability density, $f(\theta) = 1/2\pi$, we have:
+\[
+	\text{Pr}(\alpha<\theta\le\beta)= \frac{\beta-\alpha}{2\pi}\ .
+\]
+A more interesting and useful distribution is the so-called \indexit{von Mises Distribution}, which can be regarded as the circular equivalent of the normal distribution on the 1D line.  The von Mises distribution $M(\mu,\kappa)$, where $\mu$ is the mean direction and $\kappa$ the concentration parameter, has probability density function:
+\begin{equation}
+	g(\theta;\mu,\kappa)\equiv \frac{1}{2\pi\,I_0(\kappa)}\mathrm{e}^{\kappa\cos(\theta-\mu)}\ ;
+\end{equation}
+In this expression, $I_0(\kappa)$ is a modified Bessel function of the first kind and order $0$, which can be described by the series expansion:
+\[
+	I_0(x) = \sum_{k=0}^{\infty}\frac{1}{(k!)^2}\left(\frac{x}{2}\right)^{2k}=1+\frac{1}{4}x^2+\frac{1}{64}x^4+\frac{1}{2,304}x^6 + \frac{1}{147,456}x^8 + \ldots\ .
+\]
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath vonMises1D.eps}
+\caption{\label{\chabbr:fig:vonMises1D}(a) plots of the von Mises probability density function $g(\theta;\mu,\kappa)$ for $\mu=0$ and different values of the concentration parameter $\kappa$; (b) polar plot for $\mu=\pi/6$ and $\kappa=8$.}
+\end{figure}
+
+Fig.~\ref{\chabbr:fig:vonMises1D}(a) shows the von Mises probability density function $g(\theta;0,\kappa)$ for $\theta\in[-180^{\circ},180^{\circ}]$ and four different values of $\kappa$; note that this function becomes more narrowly peaked as the concentration parameter increases. Fig.~\ref{\chabbr:fig:vonMises1D}(b) shows the function $g(\theta;\pi/6,8)$ as a polar plot.  
+
+
+\subsection{Distributions on (hyper)-spheres}\label{\chabbr:ssec:sphereaveraging}
+
+\subsubsection{Discrete data sets}
+While the theory described in this section is valid for data in higher dimensional spaces of arbitrary dimension $p$, we will focus here on the $3$-sphere $\mathbb{S}^3$ in $\mathbb{R}^4$, so that $p=4$.  By analogy with the circle case, we will not consider the angles directly, but instead we represent data points by unit vectors $\mathbf{x}_i$ pointing to points on $\mathbb{S}^3$; think of this data set as a collection of grain orientations represented as unit quaternions (but pay attention to the ``word of caution'' at the end of this section).  As in the circle case, we take the conventional average over the entire sample of data points, which leads to the sample mean vector 
+$\bar{\mathbf{x}}$:
+\begin{equation}
+	\bar{\mathbf{x}} = \frac{1}{n}\sum_{i=1}^n \mathbf{x}_i\ .\label{\chabbr:eq:regularaverage}
+\end{equation}
+While the $\mathbf{x}_i$ are unit vectors (unit quaternions), the mean vector is not a unit vector so it falls in the space $\mathbb{R}^4$.  We can, however, express the mean vector in terms of its length, the \indexit{mean resultant length} $\bar{R}$, and the \indexit{mean direction vector} $\bar{\mathbf{x}}_0$: 
+\[
+	\bar{\mathbf{x}} = \bar{R}\, \bar{\mathbf{x}}_0\ .
+\] 
+For any data set of vectors $\mathbf{x}_i$ we can ask the question: is this data strongly clustered or is it uniform?  One approach to answering this question is by means of the \indexit{scatter matrix} $\mathbf{T}$, which is defined by means of the outer products $\mathbf{x}_i\otimes \mathbf{x}_i$:\footnote{The outer product of two vector $\mathbf{u}$ and $\mathbf{v}$ is defined in terms of the components by $T_{ij} = u_iv_j$.}
+\[
+	\mathbf{T} = \sum_{i=1}^n \mathbf{x}_i\otimes \mathbf{x}_i\ .
+\]
+For $p=4$, this is a $4\times 4$ matrix; the nature of a distribution on a sphere can be determined from the four eigenvalues $t_i$ of this matrix. If we rank the eigenvalues from smallest, $t_1$, to largest, $t_4$, then the following holds: 
+\begin{itemize}
+\item if all four eigenvalues are approximately equal to each other, then the data is distributed uniformly on the sphere;
+\item if $t_4$ is significantly larger than the other three, and $t_1$, $t_2$, and $t_3$ are approximately equal, then the distribution is clustered and has rotational symmetry around eigenvector $\mathbf{t}_4$; if in addition the mean resultant length $\bar{R}$ is close to unity, then the distribution is unimodal (single peak).
+\item if $t_1$ is significantly smaller than the other three, and those are approximately equal, then we have a symmetric ``girdle'' distribution in the equatorial plane normal to eigenvector $\mathbf{t}_1$.
+\end{itemize}
+For more information about discrete data sets on hyper-spheres we refer the interested reader to section 9.2 in \cite{mardia2009a}.  
+
+One \textbf{word of caution} is needed at this point: the averaging procedure described above is valid for a general three-sphere $\mathbb{S}^3$ in $\mathbb{R}^4$. From a texture point of view, we use the three-sphere to represent 3D orientations using unit-quaternions, and in that case there is an equivalence between $q$ and $-q$, i.e., $\mathbb{S}^3$ is a double-cover of the rotation group. If we take a set of $n$ rotation quaternions $q_i$, and we replace half of them by $-q_i$, then this will clearly change the average defined in eq.~\ref{\chabbr:eq:regularaverage}.  In particular, if we included $q_i$ and $-q_i$ for all orientations, the average would always be zero.  It is therefore important to work only with orientations that lie in a hemisphere of $\mathbb{S}^3$, and it is customary to require that the scalar part of the quaternion be positive or zero; we can conveniently call this hemisphere the ``Northern hemisphere'' of $\mathbb{S}^3$ and denote it by $\mathbb{S}^3_+$.  In section~\ref{\chabbr:ssec:quatav} we will describe other procedures for rotation quaternion averaging.
+
+\subsubsection{Continuous distributions on hyper-spheres}
+The von Mises distribution on the circle can be generalized to (hyper-)spheres in which case we talk about \indexit{spherical data distributions}. In  $p$-dimensional space, the \indexit{von Mises-Fisher} (vMF) probability density is defined by:
+\begin{equation}
+	f(\mathbf{x};\bm{\mu},\kappa)\equiv \left(\frac{\kappa}{2}\right)^{\frac{p}{2}-1}\frac{1}{\Gamma(p/2)I_{\frac{p}{2}-1}(\kappa)}\mathrm{e}^{\kappa\bm{\mu}\cdot\mathbf{x}}\ ,
+\end{equation}
+where, as before, $\bm{\mu}$ is the mean direction and $\kappa$ the concentration parameter; $\mathbf{x}$ is a random vector in the $p$-dimensional space $\mathbb{R}^p$. In the denominator we have the Euler gamma function $\Gamma(x)$ and the modified Bessel function of the first kind and order $\frac{p}{2}-1$.  For quaternions, we have $p=4$, so the vMF probability density simplifies to:
+\begin{equation}
+	f(q;\mu,\kappa) \equiv \frac{\kappa}{2I_1(\kappa)}\mathrm{e}^{\kappa\mu\cdot q}\ ;
+\end{equation}
+in this expression, the exponential contains the standard dot product between two quaternions, the mean direction $\mu$ and the random orientation $q$, as four-component vectors in $\mathbb{R}^4$.  One can show that this distribution if rotationally symmetric around $\mu$; if $\kappa=0$ then the distribution is uniform, if $\kappa>0$ then the orientations are clustered around $\mu$.  The expectation value $E[q]$ of this distribution is $\rho\mu$ with $\rho=I_2(\kappa)/I_1(\kappa)$, i.e., the expectation value is proportional to the mean direction.  Fig.~\ref{\chabbr:fig:vMFW}(a) shows the vMF probability density for several values of $\kappa$; the dot product $\mu\cdot q$ was replaced by $\cos\theta$ with $\theta\in[0,\pi]$.  As for the circle case, the vMF probability density can be considered as the spherical equivalent of the normal distribution.
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath vMFW.eps}
+\caption{\label{\chabbr:fig:vMFW}(a) plots of the von Mises-Fisher probability density function $f(q;\mu,\kappa)$ for $\mu\cdot q=\cos\theta$ and different values of the concentration parameter $\kappa$; (b) plots of the Watson distribution for the same parameters.}
+\end{figure}
+
+When considering orientation distributions in highly textured materials, the concentration parameter $\kappa$ can become large; values above $1,000$ are not uncommon.
+Accurate computation of the prefactor becomes problematic when using the standard numerical implementation of the modified Bessel function $I_1(\kappa)$; it can be shown that, for $\kappa>30$, the following expression is a highly accurate approximation of the vMF density function:
+\begin{equation}
+	f(q;\mu,\kappa) \approx \frac{512}{\sqrt{2}\pi^{3/2}}\frac{\mathrm{e}^{\kappa(\mu\cdot q-1)}\kappa^{9/2}}{1024\kappa^3-384\kappa^2-120\kappa-105}\ .	
+\end{equation}
+
+The \indexit{Watson probability density} explicitly takes into account the equivalence between the quaternions $q$ and $-q$ by squaring the argument of the exponential. For $p=4$, the Watson function is defined by:
+\begin{equation}
+	f_W(\pm q;\mu,\kappa) \equiv \frac{\mathrm{e}^{-\frac{\kappa}{2}}}{I_0(\frac{\kappa}{2})-I_1(\frac{\kappa}{2})}\mathrm{e}^{\kappa(\mu\cdot q)^2}\ ;
+\end{equation}
+This function is shown in Fig.~\ref{\chabbr:fig:vMFW}(b) and has two peaks, one at $\theta=0$, corresponding to $\mu$, and one at $\theta=\pi$, corresponding to $-\mu$. This function also has rotational symmetry around the $(\mu,-\mu)$ axis and therefore represents axial data. As for the vMF density, the prefactor of the Watson density function becomes numerically problematic when $\kappa>30$; an accurate approximation for large $\kappa$ values is given by:
+\begin{equation}
+	f_W(\pm q;\mu,\kappa) \approx 128\sqrt{\pi}\frac{\mathrm{e}^{\kappa((\mu\cdot q)^2-1)}\kappa^{9/2}}{128\kappa^3+96\kappa^2+180\kappa+525}\ .	
+\end{equation}
+For a given value of $\kappa$, the Watson pdf tends to give rise to a tighter orientation distribution than the von Mises-Fisher pdf.
+
+Both vMF and Watson probability density functions (pdfs) have rotational symmetry around the direction $\mu$. If we consider the $n$-dimensional normal pdf:
+\begin{equation}
+	f(x_1,x_2,\ldots,x_n)=\frac{1}{\sqrt{(2\pi)^n\vert\bm{\Sigma}\vert}}\mathrm{e}^{-\frac{1}{2}(\mathbf{x}-\bm{\mu})^T\bm{\Sigma}^{-1}(\mathbf{x}-\bm{\mu})}\ ,
+\end{equation}
+where $\bm{\mu}$ is the mean (or mode) and $\bm{\Sigma}$ is the \indexit{covariance matrix}, then this pdf will have rotational symmetry when the covariance matrix is a diagonal matrix with the same value for each entry. For the 2D case, this means that a projection of the function onto the $(x_1,x_2)$ coordinate plane will have circular symmetry. When the covariance matrix has different values along the diagonal, then the circular projection will become elliptical, with the main axes of the ellipse aligned with the coordinate axes. For a general covariance matrix, the elliptical projections will have principal axes that do not align with the coordinate axes.  
+
+A similar situation arises for spherical distributions; the \indexit{Bingham probability density} function must be used when the data does not have rotational symmetry around the mean direction.  In this general case, there is no single value for $\kappa$, and $\kappa$ and $\mu$ can not be separated from each other in the mathematical formalism. The Bingham pdf for $p=4$ is defined as:
+\begin{equation}
+	f_B(\pm q;\mathbf{A})\equiv \frac{1}{{}_1F_1\left(\frac{1}{2},2,\mathbf{A}\right)}\mathrm{e}^{q^T\mathbf{A}q}\ ,
+\end{equation}
+where $\mathbf{A}$ is a traceless $4\times 4$ matrix and the function ${}_1F_1(a,b;z)$ is a hypergeometric function defined as:
+\[
+	{}_1F_1(a,b;z) = \sum_{k=0}^{\infty}\frac{(a)_k}{k!(b)_k}z^k\text{ with } (d)_k\equiv\frac{\Gamma(d+k)}{\Gamma(d)}\ .
+\]
+The symbol $(d)_k$ is known as a \indexit{Pochhammer symbol}.  Note that, for the Bingham pdf, the argument $z$ of the hypergeometric function is a $4\times 4$ matrix, so the computation of the normalization prefactor represents a non-trivial numerical problem.  
+
+\subsection{Orientation sampling on $\mathbb{S}^3$}\label{\chabbr:ssec:orsamplings3}
+Before we can describe sampling on $\mathbb{S}^3$, we need to introduce two important concepts: the \indexit{tangent-normal decomposition}, and \indexit{rejection sampling}.  Then we will describe random sampling from the von Mises-Fisher and Watson probability density functions.
+
+\subsubsection{The tangent-normal decomposition}
+In this section, we describe how the \indexit{tangent-normal decomposition} is defined for points on $\mathbb{S}^3$; the decomposition is much more general and can be defined on arbitrary surfaces in arbitrary dimensions, but for our purposes the spherical case in $\mathbb{R}^4$ will suffice. Consider a general point $\mathbf{x}$ on $\mathbb{S}^3$; we pick a \textit{reference direction} $\bm{\mu}$, also on the sphere, and determine the \indexit{tangent space} at the point $\bm{\mu}$ (see Fig.~\ref{\chabbr:fig:tndecomp}(a) for a 2D representation).  One can then decompose the vector $\mathbf{x}$ into components along $\bm{\mu}$ and along the unit tangent vector $\bm{\xi}$. We find:
+\begin{equation}
+	\mathbf{x}= t\,\bm{\mu} + \sqrt{1-t^2}\,\bm{\xi}= (\mathbf{x}\cdot\bm{\mu})\,\bm{\mu} + \sqrt{1+(\mathbf{x}\cdot\bm{\mu})^2}\,\bm{\xi}\ ,
+\end{equation}
+where in the second equality we have made use of the fact that $t=\mathbf{x}\cdot\bm{\mu}$. The reference direction $\bm{\mu}$ can be chosen arbitrarily, but the choice of symbol suggests that one often uses the mean direction of a distribution as the reference direction. 
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.6\textwidth]{\graphicspath tndecomp.eps}
+\caption{\label{\chabbr:fig:tndecomp}(a) 2D illustration of the tangent-normal decomposition; (b) Illustration of the possible outcomes of the Buffon needle experiment (gray rectangle) along with the region below the sinusoid which represents the successful outcomes.}
+\end{figure}
+
+
+\subsubsection{Rejection sampling}
+The concept of the rejection sampling algorithm is very similar to the way Buffon's Needle experiment is modeled. In this experiment, a needle of length $L$ is randomly thrown onto a sheet of paper onto which parallel lines with spacing $D$ have been drawn. A random sample (i.e., a single toss of the needle) is rejected if the needle does not cross any of the lines, and it is accepted if one (or more) lines are intercepted. If the orientation of the needle is described by its angle $\theta\in[0,\pi]$ with respect to the lines, then it is easy to see that the needle will intersect a line if the distance $y$ between one end of the needle and the nearest line is less than or equal to $L\sin\theta$. The maximum value of $y$ is $D$, so that all attempts will produce points in a rectangle of area $D\pi$; all successful attempts will fall on or below the curve $L\sin\theta$, so that the probability density function for this geometry is
+\[
+	f(\theta) = \frac{L\sin\theta}{\pi D}\ .
+\]
+The probability of intersecting a line is then:
+\[
+	P = \frac{L}{\pi D}\int_0^{\pi}\sin\theta\,\mathrm{d}\theta = \frac{2L}{\pi D}\ .
+\]
+Rejection sampling in this case can be described as follows (see Fig.~\ref{\chabbr:fig:tndecomp}(b)): consider a rectangular board with dimensions $\pi\times D$; on the board the curve $y=L\sin\theta$ is drawn. If a large number $N$ of darts is randomly thrown at the board, and a total of $C$ darts fall on or below the curve, then $P=C/N$. The attempts above the curve are rejected, those below the curve are accepted.  This approach can be used to randomly sample any distribution.
+
+\subsubsection{Random sampling of a von Mises-Fisher distribution}
+To generate a random sample of orientations for a vMF distribution with given mean direction $\bm{\mu}$ and concentration parameter $\kappa$, we combine the concepts of tangent-normal decomposition and rejection sampling:
+\begin{enumerate}
+	\item Use normal random sampling to select a random 3D unit vector $\mathbf{u}$ on $\mathbb{S}^2$; this will become the tangent space unit vector $\bm{\xi}$ of the tangent-normal decomposition by construction of the unit quaternion $[0,\mathbf{u}]$. We select $[1,0,0,0]$ as the initial normal vector, which in a later step we will rotate to the desired direction $\bm{\mu}$.
+	\item Use rejection sampling to select a random number $t\in[0,1]$ from the distribution:
+	\begin{equation}
+		f(t) = \frac{\kappa^{\frac{5}{2}}\sqrt{1-t^2}\mathrm{e}^{\kappa t}}{\sqrt{2\pi}[\kappa\cosh(\kappa)-\sinh(\kappa)]}\ .\label{\chabbr:eq:rejectionnMF}
+	\end{equation}
+	This function is obtained by integrating the pdf around its mean direction $\bm{\mu}$.
+	\item Combine $t$ and $\mathbf{u}$ using the tangent-normal decomposition into the quaternion:
+	\begin{equation}
+		q = [t,\mathbf{0}] + \sqrt{1-t^2}[0,\mathbf{u}]\ .
+	\end{equation}
+	By construction this is a unit quaternion; also, the tangent vector $[0,\mathbf{u}]$ is perpendicular to the normal vector $[1,\mathbf{0}]$, as is required for the tangent-normal decomposition.
+	\item Rotate the resulting quaternion $q$ to the desired mean direction $\bm{\mu}$ (see description below).
+	\item Repeat this process until the desired number of samples is reached.
+\end{enumerate}
+
+If sampling from the Watson pdf is needed, the same process can be followed but the rejection sampling function $f(t)$ must be replaced by:
+\begin{equation}
+	f(t) = \frac{2}{\pi}\frac{\mathrm{e}^{-\frac{\kappa}{2}}}{I_0(\frac{\kappa}{2})-I_1(\frac{\kappa}{2})}\sqrt{1-t^2}\mathrm{e}^{\kappa t^2}\ .
+\end{equation}
+Since both the vMF and Watson pdfs have rotational symmetry around their respective mean directions $\bm{\mu}$, one can relate the concentration parameter $\kappa$ to an angular interval $\Delta\theta$, which can be regarded as being equivalent to a full-width-at-half-maximum for a normal distribution.  The relation between $\kappa$ and $\Delta\theta$ for both pdfs is given by:
+\begin{equation}
+	\Delta\theta = \arccos(1-\frac{1}{\kappa})\ .
+\end{equation}
+
+
+The rotation matrix needed to rotate all generated quaternions to the mean direction is a $4\times 4$ rotation matrix, i.e., a rotation in $\mathbb{R}^4$. A $4\times 4$ matrix, $A$, is initialized with all zeroes, and the components of the mean direction $\bm{\mu}$ are copied in the first column of $A$. A numerical routine\footnote{For instance, in Matlab this would be the null() operation; in the LAPACK numerical library the singular-value decomposition routine DGESVD() would be used.} is then used to compute the null-space of $A$, which is placed in a $4\times 4$ matrix $B$. The signs of the entries in the first column of $B$ are  flipped and the resulting matrix $B$ is then used to operate, by standard matrix multiplication, on all the quaternions generated by rejection sampling to move the cluster of quaternions so that $\bm{\mu}$ becomes the cluster's mean direction.
+
+As an example, we use the rejection sampling algorithm described above to construct two samples of orientations:
+\begin{itemize}
+	\item A random sample of $1,000$ orientations clustered around the $120^{\circ}@[111]$ orientation with $\Delta\theta=10^{\circ}$, using the vMF pdf;
+	\item A random sample of $100$ orientations clustered around the $90^{\circ}@[0\bar{1}0]$ orientation with $\Delta\theta=5^{\circ}$, using the Watson pdf.
+\end{itemize}
+The corresponding $\kappa$ value is equal to $\kappa=1/(1-\cos\Delta\theta)$, which is $65.8$ for the vMF case, and $262.8$ for the Watson case.  The means directions are represented by the quaternions 
+\[
+	\mu_{\text{vMF}}=\left[\frac{1}{2},\frac{1}{2},\frac{1}{2},\frac{1}{2}\right]
+\]
+and 
+\[
+	\mu_{\text{Watson}}=\left[\frac{1}{\sqrt{2}},0,\frac{1}{\sqrt{2}},0\right]\ .
+\]
+The two distributions are shown as 3D stereographic projections in Fig.~\ref{\chabbr:fig:samplesSP}, the vMF case in (a), and the Watson case in (b).  
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath samplesSP.eps}
+\caption{\label{\chabbr:fig:samplesSP}(a) Stereographic projection of the von Mises-Fisher random sampling described in the text; (b) same for the Watson random sampling.}
+\end{figure}
+
+\subsection{Orientation averaging on $\mathbb{S}^3$}\label{\chabbr:sec:oraverages3}
+In the previous section we answered the question: given a mean orientation and a concentration parameter, generate a random orientation sample using either the vMF or Watson pdf.  In this section we turn the question around: given a set of orientations, what are the mean orientation and concentration parameter that best describe this set for either the vMF or the Watson pdf?  It is important to note that this section deals with the average orientation \textit{in the absence of crystallographic symmetry}; the averaging process becomes significantly more involved when fundamental zones are present.
+
+\subsubsection{The quaternion logarithm average}\label{\chabbr:ssec:quatlogav}
+We have seen that, in the context of orientations, eq.~\ref{\chabbr:eq:regularaverage} does not necessarily provide the correct answer for the average orientation due to the double-cover nature of the unit quaternion sphere $\mathbb{S}^3$. In particular, if we double the size of the set $\{q_i\}$ by adding in the $\{-q_i\}$ rotations, then the simple arithmetic mean of eq.~\ref{\chabbr:eq:regularaverage} will produce a mean resultant length of $\bar{R}=0$, and the mean unit quaternion $\bm{\mu}$ is undefined.  Instead of the conventional mean defined in eq.~\ref{\chabbr:eq:regularaverage}, we can use the quaternion logarithm and exponential operations to obtain an average. Euler's formula for 2D rotations, $\mathrm{e}^{\mathrm{i}\theta}=\cos\theta+\mathrm{i}\sin\theta$, has a quaternion equivalent of the form:
+\begin{equation}
+	\mathrm{e}^{(n_x\mathrm{i}+n_y\mathrm{j}+n_z\mathrm{k})\frac{\theta}{2}} = \cos\frac{\theta}{2}+(n_x\mathrm{i}+n_y\mathrm{j}+n_z\mathrm{k})\sin\frac{\theta}{2}\ .
+\end{equation}
+Applying logarithm rules to the exponential on the left results in:
+\begin{equation}
+	\ln\left(\mathrm{e}^{(n_x\mathrm{i}+n_y\mathrm{j}+n_z\mathrm{k})\frac{\theta}{2}}\right) = (n_x\mathrm{i}+n_y\mathrm{j}+n_z\mathrm{k})\frac{\theta}{2}\equiv
+	\hat{\mathbf{n}}_j\frac{\theta_j}{2}\ ;
+\end{equation}
+note that the right-hand side, for some orientation $j$ in a set of orientations, is similar to the axis-angle representation, but with half the rotation angle. This is a pure quaternion with zero scalar part.  We can then compute the conventional geometric mean of the right-hand side over all orientations in the set, and then take the exponential of the result to obtain an estimate of the average quaternion. If we set:
+\[
+	\mathbf{s} = \frac{1}{n}\sum_{j=1}^{n} \hat{\mathbf{n}}_j\frac{\theta_j}{2}
+\]
+then we can take the quaternion exponential by computing the length of $\mathbf{s}$ as $\bar{s}\equiv\vert\mathbf{s}\vert$, and using:
+\[
+	\bm{\mu} = \left[ \cos(\bar{s}), [s_1,s_2,s_3]\frac{\sin(\bar{s})}{\bar{s}} \right]\ .
+\]
+The average rotation angle, $\omega$, is then $\omega=2\bar{s}$. 
+
+Once again we can illustrate the need to work only with quaternions that belong to one hemisphere of $\mathbb{S}^3$.  If we just have two quaternions, $q$ and $-q$, then the standard geometric average results in $\frac{1}{2}(q-q)=0$, i.e., the zero quaternion, which does not represent a rotation. If instead we use the logarithmic average, we have:
+\[
+	\ln(q) = \hat{\mathbf{n}}\frac{\theta}{2}\text{ and } \ln(-q) = -\hat{\mathbf{n}}\frac{\theta}{2}\rightarrow \mathbf{s} = \frac{1}{2}(\ln(q)+\ln(-q)) = (0,0,0)\ ;
+\]
+in that case we have $\bar{s} = 0$, so that $\cos\bar{s}=1$ and $\frac{\sin\bar{s}}{\bar{s}}=1$ (in the limit of $\bar{s}\rightarrow 0$), and the resulting quaternion exponential is $\bm{\mu}=(1,0,0,0)$ which is the identity quaternion.  While the result of the logarithmic averaging of $q$ and $-q$ is a unit quaternion, which is not always the case for the standard geometric mean, the fact that the logarithm average is the identity quaternion for every antipodal pair illustrates that this procedure does not produce any meaningful results if the full $\mathbb{S}^3$ hypersphere is allowed. 
+
+\subsubsection{The scatter matrix average}\label{\chabbr:ssec:scatav}
+We have introduced the scatter matrix before as the sum of the outer products of all the quaternions in the set $\{q_j\}$. We can slightly generalize this approach by allowing weight factors $w_j$ for the individual quaternions in the set (with the restriction that all quaternions belong to $\mathbb{S}^3_+$ and in the absence of crystallographic symmetry).  Generating the scatter matrix as before we obtain:
+\begin{equation}
+	T_{kl} = \sum_{j=1}^n w_j q_{j,k}q_{j,l}\ ,
+\end{equation}
+where $q_{j,k}$ is the $k$-th component of quaternion $q_j$.  One can then show that the eigenvector corresponding to the largest eigenvalue of $T_{kl}$ is the weighted mean direction $\bm{\mu}$ of the set $\{q_j\}$.  
+
+As a simple example, consider two $90^{\circ}$ rotations, one around the $[100]$ axis, the other around $[001]$. What is the average rotation?  Putting $s=1/\sqrt{2}$, the quaternions are given by $q_1=[s,s,0,0]$ and $q_2=[s,0,0,s]$. Taking unit weights, the scatter matrix is then readily computed to be:
+\[
+	T = q_1\otimes q_1+q_2\otimes q_2 = \begin{pmatrix} 1&1/2&0&1/2\\ 1/2&1/2&0&0\\ 0&0& 0&0\\ 1/2&0&0&1/2\end{pmatrix}
+\]
+The eigenvalues of this matrix are (in descending order) $[3/2,1/2,0,0]$ and the eigenvectors are given by the columns in the following matrix (same order as the eigenvalues):
+\[
+	\begin{pmatrix}2&0&-1&0\\ 1&-1&1&0\\ 0&0&0&1\\1&1&1&0\end{pmatrix}\ .
+\]
+The first column, when normalized, results in the quaternion 
+\[
+	q_{\text{av}}=\frac{1}{\sqrt{6}}[2,1,0,1]=[0.816497, 0.408248, 0.000000, 0.408248]\ ,
+\]
+which represents a rotation of $70.53^{\circ}$ around the $[101]$ axis, i.e, the bisector of the individual rotation axes. This is in full agreement with the standard geometric mean $q_{\text{av}}=\frac{1}{2}(q_1+q_2)$. 
+
+
+\subsubsection{The Expectation Maximization Algorithm}\label{\chabbr:ssec:EM}
+Before we describe averaging using the von Mises-Fisher and Watson distributions, we need to introduce the \indexit{Expectation Maximization} (EM) algorithm.
+
+%  https://medium.com/@clarice.wang/understanding-the-em-algorithm-by-examples-with-code-and-visualization-dc93657adc84
+
+
+\subsubsection{von Mises-Fisher and Watson averaging}\label{\chabbr:ssec:vMFWav}
+
+
+
+
+
 
 
 

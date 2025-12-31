@@ -465,7 +465,7 @@ The human brain is very good at analyzing complex scenes and recognizing individ
 \end{itemize}
 With the exception of the mathematical description, all of these are approximate and/or qualitative descriptions.  
 
-\subsection{Shape functions}
+\subsection{Shape functions}\label{\chabbr:ssec:shapefunctions}
 The \indexit{shape function} or \indexit{characteristic function}, $D(\mathbf{r})$, of an object is defined as follows:
 \begin{equation}
 	D(\mathbf{r}) \equiv \left\{ \begin{array}{lcl}
@@ -627,6 +627,87 @@ For the 3D sphere of radius $R$, the 3D central moments are $\mu_{200}=\mu_{020}
 One can show that the sphere is the 3D shape with the largest possible value of the $\Omega_3$ invariant, so once again we can divide the $\Omega_i$ values for an arbitrary shape by those of the sphere to obtain normalized moment invariants in the range $[0,1]$, i.e., a cube, with the sphere at the point $(1,1,1)$.
 
 {\color{red}insert figures for whole chapter; create example microstructure and apply algorithms; describe discrete moment calculation; }
+
+
+\section{Microstructure Distribution Functions}\label{\chabbr:sec:microdist}
+
+\subsection{$n$-point probability functions}\label{\chabbr:ssec:npoint}
+We can generalize the concept of the \indexit{shape function} or \indexit{characteristic function} introduced in section~\ref{\chabbr:ssec:shapefunctions} to describe multi-phase microstructures.  Let us consider a two-phase microstructure with an infinite volume; the microstructure is considered to be homogeneous, meaning that the material properties are the same everywhere. We label the phases $1$ and $2$, with phase $1$ representing the continuous matrix phase, and phase $2$ consists of isolated regions or precipitates.  If we randomly select a finite sub-volume, see Fig.~\ref{\chabbr:fig:omega}, then we obtain a \indexit{realization}, $\omega$, of this microstructure. On this sub-volume we define the \indexit{structure function} $\xi(\mathbf{r},\omega)$ which, in each point $\mathbf{r}$,  takes on the phase identifier of the phase present at that location, i.e., $\xi(\mathbf{r},\omega)$ is either $1$ or $2$.  
+
+To distinguish the shape functions introduced before (which were defined for a single particle) from the ones needed in the two-phase microstructure, we will use the notation:
+\begin{equation}
+	\mathcal{I}^{(j)}(\mathbf{r},\omega) = \left\{\begin{array}{cl}1&\,\,\mathbf{r}\in\mathcal{V}_j(\omega)\\ 0&\,\,\text{\it otherwise}\end{array}\right.\ .
+\end{equation}
+In this relation, $\mathcal{V}_j(\omega)$ is the sub-volume occupied by phase $j$ in the realization $\omega$.  We have the obvious property that $\mathcal{I}^{(1)}(\mathbf{r},\omega)+\mathcal{I}^{(2)}(\mathbf{r},\omega)=1$ everywhere.
+
+The shape functions $\mathcal{I}^{(j)}$ allow us to introduce the concept of the \indexit{$n$-point probability function}. These functions are defined for the entire microstructure volume, i.e., they are averages over all possible realizations $\omega$. Starting with the $1$-point probability function we have:
+\begin{equation}
+	\mathcal{S}^{(j)}_1(\mathbf{r}) = \text{Pr}\left(\mathcal{I}^{(j)}(\mathbf{r})=1\right) = \left\langle\mathcal{I}^{(j)}(\mathbf{r})\right\rangle\ .\label{\chabbr:eq:onepoint}
+\end{equation}
+The angle brackets indicate the average over all realizations. The probability that an arbitrary point $\mathbf{r}$ will fall in phase $j$ is simply the \indexit{volume fraction}, $\phi_j$, of that phase. 
+
+For the $n$-point probability function in phase $j$ we have:
+\begin{equation}
+\begin{split}
+	\mathcal{S}^{(j)}_n(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_n) & = \text{Pr}\left(\mathcal{I}^{(j)}(\mathbf{r}_1)=1,\mathcal{I}^{(j)}(\mathbf{r}_2)=1,\ldots,\mathcal{I}^{(j)}(\mathbf{r}_n)=1\right)\ ;\\ 
+	& = \left\langle\mathcal{I}^{(j)}(\mathbf{r}_1)\mathcal{I}^{(j)}(\mathbf{r}_2)\ldots\mathcal{I}^{(j)}(\mathbf{r}_n)\right\rangle\ ;\label{\chabbr:eq:npoint}\\
+	& = \left\langle\prod_{i=1}^n\mathcal{I}^{(j)}(\mathbf{r}_i)\right\rangle\ .	
+\end{split}
+\end{equation}
+This represents the probability that $n$ randomly selected points $\mathbf{r}_i$ will all fall in phase $j$. Note that it is possible for a phase to be disjoint, i.e., to consist of isolated regions that do not intersect or overlap each other.  For a two-phase microstructure, we have the obvious relation:
+\begin{equation}
+	\mathcal{S}^{(2)}_n(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_n) = \left\langle\prod_{i=1}^n[1-\mathcal{I}^{(1)}(\mathbf{r}_i)]\right\rangle\ ,
+\end{equation}
+because the shape functions add up to $1$ in every point $\mathbf{r}_i$.
+
+Using the $n$-point probability functions, we can make several general observations:
+\begin{itemize}
+	\item A microstructure is statistically \indexit{homogeneous} when:
+	\begin{equation}
+		\mathcal{S}^{(j)}_n(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_n)=\mathcal{S}^{(j)}_n(\mathbf{r}_1+\mathbf{y},\mathbf{r}_2+\mathbf{y},\ldots,\mathbf{r}_n+\mathbf{y})\,\,\forall\,\mathbf{y}\ .
+	\end{equation}
+	\item A microstructure is statistically isotropic when the $n$-point probability functions are rotationally invariant, i.e., only dependent on the magnitude of the relative position vectors, not their direction.
+	\item The \indexit{ergodic hypothesis} is valid, namely that the result of averaging over all realizations $\omega$ is equivalent to averaging over the volume of one realization in the infinite-volume limit. In other words, every possible realization $\omega$ is present somewhere in the infinite volume.
+	\item If we randomly select two points $\mathbf{r}_1$ and $\mathbf{r}_2$ and set $\mathbf{r}_{12}=\mathbf{r}_2-\mathbf{r}_1$, then in the limit of $\vert\mathbf{r}_{12}\vert\rightarrow 0$, we have $\lim_{\vert\mathbf{r}_{12}\vert\rightarrow 0}\mathcal{S}^{(j)}_2(\mathbf{r}_{12})=\phi_j$, i.e., two random points that are arbitrarily close together will likely fall in the same phase.  Similarly, $\lim_{\vert\mathbf{r}_{12}\vert\rightarrow \infty}\mathcal{S}^{(j)}_2(\mathbf{r}_{12})=\phi^2_j$; this also makes sense since, for an arbitrarily long vector $\mathbf{r}_{12}$, the start and end points of the vector are essentially independent of each other, so each point contributes $\phi_j$ to the probability, resulting in $\phi^2_j$.  For homogeneous media, similar relations exist for higher order probability functions.
+\end{itemize}
+
+\subsection{$2$-point probability functions}\label{\chabbr:ssec:twopoint}
+The $2$-point probability function, also known as the \indexit{autocorrelation function}, occupies a special position among the $n$-point probability functions because it is relatively easy to compute. The process of throwing random vectors onto a microstructure and determining which phase the start and end points fall in can be replaced numerically by the (discrete) \indexit{Fourier transform}. If we represent the two-phase microstructure by a binary image, with phase $1$ represented as black (or $0$) and phase $2$ as white (or $1$), then the autocorrelation function for phase $2$ can be written as (omitting the superscript $^{(2)}$):
+\begin{equation}
+	\mathcal{S}_2(\mathbf{r}) = \mathcal{F}^{-1}\left[\vert\mathcal{F}[\mathcal{I}(\mathbf{r})]\vert^2\right]\ .
+\end{equation}
+
+{\color{blue}insert 2D example here}
+
+If phase $2$ consists of many disjoint particles or regions, then we can further analyze the autocorrelation function, in particular the difference between the information close to the origin and further away.  The shape function of phase $2$, $\mathcal{I}^{(2)}(\mathbf{r})$, can be decomposed into the individual particle shape functions $D_i(\mathbf{r})$ which are each determined with respect to their center-of-mass $\mathbf{r}_i$. Therefore, we have:
+\begin{equation}
+	\mathcal{I}^{(2)}(\mathbf{r}) = \sum_{i=1}^{N_p}D_i(\mathbf{r}-\mathbf{r}_i)\ ,\label{\chabbr:eq:sumD}
+\end{equation}
+where $N_p$ is the number of particles of phase $2$.  We define the $2$-point correlation function, $C(\bm{\rho})$, as the autocorrelation of $\mathcal{I}^{(2)}(\mathbf{r})$:
+\begin{equation}
+	C(\bm{\rho})=\frac{1}{V}\,\mathcal{I}^{(2)}(\mathbf{r})\star\mathcal{I}^{(2)}(\mathbf{r})\equiv\frac{1}{V}\iiint\,\mathrm{d}\mathbf{r}\,\mathcal{I}^{(2)}(\mathbf{r})\mathcal{I}^{(2)}(\mathbf{r}\pm\bm{\rho})\ .
+\end{equation}
+In the 2-D case, this definition is still valid but with the area $A$ replacing the volume, $V$. Substituting eq.~\ref{\chabbr:eq:sumD} results in:
+\begin{equation}
+\begin{split}
+	C(\bm{\rho})&=\frac{1}{V}\sum_{i=1}^{N_p}\sum_{j=1}^{N_p}D_i(\mathbf{r}-\mathbf{r}_i)\star D_j(\mathbf{r}-\mathbf{r}_j)\ ;\\
+	&=\frac{1}{V}\sum_{i=1}^{N_p}D_i(\mathbf{r})\star D_i(\mathbf{r}) + \frac{1}{V}\sum_{i=1}^{N_p}\sum_{\substack{j=1\\ i\ne j}}^{N_p}D_i(\mathbf{r}-\mathbf{r}_i)\star D_j(\mathbf{r}-\mathbf{r}_j)\ ;\\
+	&=\sum_{i=1}^{N_p}C_i(\bm{\rho}) + \sum_{i=1}^{N_p}\sum_{\substack{j=1\\ i\ne j}}^{N_p}C_{ij}(\bm{\rho})\ ,
+\end{split}
+\end{equation}
+ where
+ \begin{equation*}
+ \begin{split}
+ 	C_i(\bm{\rho}) &= \frac{1}{V}\,D_i(\mathbf{r})\star D_i(\mathbf{r})\ ;\\
+	C_{ij}(\bm{\rho}) &= \frac{1}{V}\,D_i(\mathbf{r}-\mathbf{r}_i)\star D_j(\mathbf{r}-\mathbf{r}_j)\ ;
+ \end{split}
+ \end{equation*}
+The function $C_i(\bm{\rho})$ is known as the \indexit{overlap function} for particle $i$, and $C_{ij}(\bm{\rho})$ is the \indexit{mutual overlap function} between particles $i$ and $j$.  The first sum in the expression for $C(\bm{\rho})$ represents the region close to the origin of the $2$-point correlation function; this is where the information of the individual particle shapes is located. The second sum represents cross-correlations between the shape functions for different particles, and this information is located further away from the origin because those particles are disjoint.
+
+{\color{blue}paragraph pointing to Torquato's work}
+
+{\color{blue}paragraph pointing to Kalidindi's work}
+
 
 
 

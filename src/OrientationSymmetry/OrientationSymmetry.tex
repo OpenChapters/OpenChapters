@@ -53,7 +53,247 @@
 % ###################################################################
 
 \section{Introductory Remarks}\label{\chabbr:sec:intro}
-The orientation of an object with respect to an external reference frame can be described by the 3D rotation that is needed to bring this external reference frame into coincidence with the reference frame of the object.  
+This chapter relies heavily on the material in several Foundational Chapters, in particular  Chapter~\ref{NUMSYS:NumberSystems} on Number Systems (section~\ref{NUMSYS:sec:quaternions});  Chapter~\ref{PROJTS:Projections} on Useful Projections (section~\ref{PROJTS:sec:SPprops}); and Chapter~\ref{3DROTS:3Drotations} on 3D Rotation Representations;  The reader is encouraged to consult those chapters for detailed information.  Here, we simply recall a few important results to set the stage for what follows:
+\begin{itemize}
+	\item A 3D rotation has a unit rotation axis $\hat{\mathbf{n}}$ and a counterclockwise rotation angle $\omega\in[0,\pi]$ when looking along the rotation axis towards the origin.  We only consider \indexit{passive rotations}, i.e., rotations that leave an object unchanged, but map one reference frame onto another.
+	\item The orientation of an object (e.g., a grain) with respect to an external reference frame is described by the passive 3D rotation that is needed to bring this external reference frame into coincidence with the reference frame of the object.\footnote{Note that this is the convention used in most of the texture community; it is possible to use the opposite convention in which case the inverse rotation must be used.}	
+	\item The cartesian reference frame of a crystalline object has the $\mathbf{e}_x$ axis parallel to $\mathbf{a}$ and $\mathbf{e}_z$ parallel to $\mathbf{c}^{\ast}$ and is right-handed (see section~\ref{BASCRY:sec:Cartesian}).
+	\item A 3D rotation can be decomposed into three consecutive rotations around Cartesian axes; here we follow the Bunge $zxz$ convention which leads to the Euler angle triplet $(\varphi_1,\Phi,\varphi_2)$.
+	\item The composition of passive rotation matrices occurs from left to right.
+	\item The neo-Eulerian rotation representations have the general form $\hat{\mathbf{n}}\,f(\omega)$ with $f(0)=0$ and $f$ a monotonically increasing function. The following functional forms are frequently used in the texture field: Rodrigues vector $\bm{\rho}=\hat{\mathbf{n}}\,\tan(\omega/2)$; quaternion vector $\mathbf{q}=\hat{\mathbf{n}}\,\sin(\omega/2)$; 3D stereographic vector $\mathbf{s}=\hat{\mathbf{n}}\,\tan(\omega/4)$; homochoric vector $\mathbf{h}=\hat{\mathbf{n}}\,(3(\omega-\sin\omega)/4)^{1/3}$.
+	\item The composition of unit quaternions, representing passive rotations, occurs from left to right. 
+\end{itemize}
+It will be useful to have Table~\ref{\chabbr:tb:spaces} available when we transform fundamental zones between Rodrigues space and other representations.
+
+\begin{table}[h!]
+\centering\leavevmode
+\begin{tabular}{|c|c|c|c|}
+\hline
+Representation & Shape & Dimension & Volume \\
+\hline\hline
+Euler & Rectangular Prism & $(\varphi_1,\Phi,\varphi_2)\in [0\ldots 2\pi,0\ldots\pi,0\ldots2\pi]$& $8\pi^2$\\
+Axis-Angle & Ball & $R=\pi$ & $4\pi^4/3$\\
+Rodrigues-Frank & $\mathbb{R}^3$ & $\tan(\omega/2)\in[0\ldots\infty]$ & $\infty$\\
+Quaternion & 4-D Hemisphere & $R=1$ & $\pi^2$\\
+Rotation Matrix & --- & $SO(3)$ & ---\\
+Homochoric & Ball & $R=(3\pi/4)^{1/3}$ & $\pi^2$\\
+Stereographic & Ball & $R=1$ & $4\pi/3$ \\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:spaces}The mathematical spaces associated with the most important rotation representations.}
+\end{table}
+
+
+\section{Rotations and Crystal Symmetry}\label{\chabbr:sec:rotsym}
+In this section, we will begin to answer the question: \textit{how does crystal symmetry determine which subset of all possible 3D rotations one needs to consider?} In other words, how do we make sure that we do not double-count, or worse, the possible orientations of an object when that object has an intrinsic rotational symmetry?  It is standard practice in the texture community to ignore all symmetry operators that change the handedness of the object, which means that we will consider only the $11$ rotational point groups: \pg{1}, \pg{3}, \pg{6}, \pg{9}, \pg{12}, \pg{16}, \pg{18}, \pg{21}, \pg{24}, \pg{28}, and \pg{30}.  The main reason for this restriction to rotational point groups only is a practical one: the standard tool used for texture measurements, the pole figure measurement, can not detect the absence of inversion symmetry (this is known as Friedel's Law).  More recent experimental techniques, such as electron backscatter diffraction (EBSD), do have the ability to distinguish between centrosymmetric and non-centrosymmetric symmetries, but the main focus in the field has continued to be on the purely rotational symmetries.
+
+As a first example, we consider the cyclic point group \pg{9}; this is a group of order $4$ with rotations of $90^{\circ}$, $180^{\circ}$, and $270^{\circ}$ around the $\mathbf{c}$ axis in addition to the identity operator. Using the definition of a unit rotation quaternion:
+\[
+	q = \left( \cos\frac{\omega}{2}, \hat{\mathbf{n}}\,\sin\frac{\omega}{2}\right)\ ,
+\]
+we find for the four group elements (taking the identity as the first operator):
+{\small\[
+	q_1=\left(1, 0, 0, 0\right);\,\, q_2=\left(\frac{1}{\sqrt{2}}, 0, 0,\frac{1}{\sqrt{2}}\right);\,\, q_3=\left(0, 0, 0, 1\right);\,\, q_4=\left(\frac{1}{\sqrt{2}}, 0, 0, \frac{-1}{\sqrt{2}}\right)\ .
+\]}
+Note that we have applied the rule that $\omega\in[0,\pi]$; effectively this means that whenever the scalar part of the quaternion is negative (as it is for the rotation by $270^{\circ}$) we flip the sign of all quaternion elements.  Next we select a random rotation, say $120^{\circ}$ around the $[111]$ axis (so that $\hat{\mathbf{n}}=[111]/\sqrt{3}$).  The corresponding quaternion $p$ is then given by:
+\[
+	p = \left(\frac{1}{2},\frac{1}{2},\frac{1}{2},\frac{1}{2}\right)\ .
+\]
+For the point group \pg{9}, there are three other rotations that are equivalent to $p$, namely $q_i\,p$ with $i=2,3,4$; carrying out the quaternion multiplications we find:
+{\small\[
+	q_1\,p=\left(\frac{1}{2},\frac{1}{2},\frac{1}{2},\frac{1}{2}\right);\,\, q_2\,p=\left( 0, 0,\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}\right);\,\, q_3\,p=\left(\frac{1}{2},\frac{1}{2},\frac{-1}{2},\frac{-1}{2}\right);\,\, q_4\,p=\left(\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}}, 0, 0\right)\ .
+\]}
+Converting the quaternion components to axis-angle pairs we have $q_2\,p\rightarrow 180^{\circ}@[011]$, $q_3\,p\rightarrow 120^{\circ}@[1\bar{1}\bar{1}]$, and $q_4\,p\rightarrow 90^{\circ}@[100]$.  This means that, for an object with rotational symmetry \pg{9},  the three rotations $q_i\,p$ have exactly the same effect as
+ the rotation $p$.  Note that these four rotations have different rotation angles of $90^{\circ}$, $120^{\circ}$ (two different rotation axes), and $180^{\circ}$. Given that these rotations are equivalent for this point group, we need to impose a convention for selecting one of them to be the ``representative'' rotation. It is standard practice to select the rotation with the smallest rotation angle $\omega$, so that $90^{\circ}@[100]$ is the representative rotation in this case. Since the rotational point groups have different combinations of symmetry operators, this means that the representative rotation equivalent to $p$ will in general be different for each point group. As an example, consider $p$ in the point group \pg{30}; since a rotation of $120^{\circ}$ around $[111]$ is a symmetry operation in this point group, the representative rotation becomes the identity operator with a $0^{\circ}$ rotation angle. In the next section we will introduce a standardized approach for the determination of the unique rotations for a given rotational point group.
+ 
+
+\section{Fundamental Zones}\label{\chabbr:sec:FZs}
+A \indexit{Fundamental Zone} (FZ) or \indexit{asymmetric domain} for a given orientation representation and rotational point group $\mathcal{G}$ is defined as the compact region (i.e., a volume that is closed and bounded)  that contains the identity rotation as well as all representative rotations, i.e., all unique rotations that have the smallest rotation angle after application of the symmetry operators.  For the \pg{9} example above, this would mean that $q_4\, p$ lies in the FZ of this point group, and the other equivalent rotations, $p$, $q_2\,p$ and $q_3\,p$, lie outside the FZ.  The FZ has a different shape for each rotational point group and for each orientation representation.  
+
+Since we require the representative rotation to have the smallest possible rotation angle amongst all equivalent rotations, that means that in the quaternion representation, the scalar part of the quaternion must have the largest possible value since $q_0=\cos(\omega/2)$.   A simple example will help to clarify how the FZ is constructed.  Consider the point group \pg{3} which consists of the identity and a two-fold rotation along the crystallographic $\mathbf{b}$ axis (this is the convention for monoclinic symmetry).  Taking the $\mathbf{b}$ axis to be parallel to $\mathbf{e}_y$, the corresponding quaternion can be expressed as:
+\[
+	q = \left(\cos\frac{\pi}{2},0,\sin\frac{\pi}{2},0\right) = \left(0,0,1,0\right)\ .
+\]
+If we consider a general rotation by an angle $\omega$ around an axis $\hat{\mathbf{n}}$ represented by the quaternion $p$:
+\[
+	p = \left(\cos\frac{\omega}{2},n_x\sin\frac{\omega}{2},n_y\sin\frac{\omega}{2},n_z\sin\frac{\omega}{2}\right)\ ,
+\]
+then operating with the two-fold axis on $p$ we obtain $p'$:
+\[
+	p' = q\,p = \left(n_y\sin\frac{\omega}{2},-n_z\sin\frac{\omega}{2},-\cos\frac{\omega}{2},n_x\sin\frac{\omega}{2}\right)\ ,
+\]
+where we have negated the entire quaternion because the scalar part was negative. As we vary the angle $\omega$, either $p$ will have the largest scalar part, or $p'$ will; the scalar parts are equal when:
+\[
+	\cos\frac{\omega}{2} = n_y\sin\frac{\omega}{2}\rightarrow \cos\frac{\omega}{2} = \cos\beta_2\sin\frac{\omega}{2}
+	\rightarrow \tan\frac{\omega}{2}=\frac{1}{\cos\beta_2}\ ,
+\]
+where $\beta_2$ is the angle between the rotation axis and the $y$-axis.  The presence of $\tan(\omega/2)$ suggests that we should consider these quantities to be in Rodrigues space.  We know that $\tan(\omega/2)$ is the length of a Rodrigues vector, so if we rearrange the final equation to read $\cos\beta_2 \tan(\omega/2) = 1$ then this is the projection of the Rodrigues vector onto the $y$-axis, and this has the value $1=\tan(\pi/4)$ for all angles $\beta_2$.  Summarizing, we find that the scalar parts of $p$ and $p'$ are equal to each other when the projection of the corresponding Rodrigues vectors onto the $y$-axis is equal to unity. Therefore, the boundary at which $p$ being closest to the origin switches to $p'$ being closest is a plane at distance $1$ from the origin (which corresponds to a rotation angle of $\omega=2\times \pi/4=\pi/2$).  It is easy to see that there is a second parallel plane on the opposite side of the origin, also at distance $1$.  We have just shown that, for point group \pg{3}, all unique orientations correspond to points between parallel planes at unit distance from the origin and normal to the $y$-axis, which is the rotation axis.  This is the Fundamental Zone for point group \pg{3}.
+
+We can repeat this procedure for all other rotation axes, and the result is that, for a given rotation axis of order $n$, the unique orientations lie between two parallel planes normal to the rotation axis at distance $\pm\tan(\pi/2n)$ from the origin of Rodrigues space.  For the cyclic point groups, there is only one rotation axis, so the FZ is an infinite slab of thickness $2\tan(\pi/2n)$ normal to the rotation axis. The two parallel planes intersect each other at infinity; those points correspond to rotations by an angle $\pi$ with rotation axes normal to the principal rotation axis. There are no other rotations by an angle $\pi$ inside the cyclic FZs.   If there are multiple rotation axes of different orders, then we have intersecting infinite slabs, one for each rotation axis, which will result in a finite polyhedral FZ. 
+
+Since crystallographic rotations can only be of order $1$, $2$, $3$, $4$, or $6$ we can readily determine the distance from the origin to the bounding planes in Rodrigues representation (we include the $n=5$ case since we will discuss the icosahedral fundamental zone in section~\ref{\chabbr:ssec:TOIFZs}):
+\begin{eqnarray}
+\begin{split}
+	n=1 &\rightarrow \text{no Fundamental Zone}\ ;\\
+	n=2 &\rightarrow \tan(\pi/4) = 1\ ;\\
+	n=3 &\rightarrow \tan(\pi/6) = \frac{1}{\sqrt{3}}= 0.57735\ ;\\
+	n=4 &\rightarrow \tan(\pi/8) = \sqrt{2}-1  = 0.41421\ ;\\
+	n=5 &\rightarrow \tan(\pi/10) = \sqrt{1-\frac{2}{\sqrt{5}}} = 0.32492\ ;\\
+	n=6 &\rightarrow \tan(\pi/12) = 2-\sqrt{3} = 0.26795\ .
+	\label{\chabbr:eq:tans}
+\end{split}
+\end{eqnarray}
+
+The Rodrigues representation is particularly well suited to define the Fundamental Zones, since the boundaries of all FZs are planar. If we map the FZs into other representations, this is no longer the case, and the bounding surfaces of all FZs become curved surfaces.  From a numerical point of view, the Rodrigues FZs are more useful than the other representations because it is straightforward to test whether a point lies on one side or the other side of a plane; this test becomes more complex for curved surfaces.  In the following subsections we will introduce all possible Fundamental Zones in Rodrigues space and discuss mappings onto other rotation representations.  Note that the Rodrigues representation is the only representation that includes points at infinity (all two-fold rotations); all other representations have a finite volume (see Table~\ref{\chabbr:tb:spaces}). 
+
+
+\subsection{Cyclic Fundamental Zones}\label{\chabbr:ssec:cyclicFZs}
+In Rodrigues space, the FZs of the cyclic point groups correspond to infinite slabs normal to the rotation axis at the distances from the origin stated above; a cross section normal to the $\rho_x$-axis is shown in Fig.~\ref{\chabbr:fig:cyclicFZ}(a), which shows the bounding planes (lines in 2D) as solid colored lines, (\pg{3}: red; \pg{16}: green; \pg{9}: blue; \pg{21}: purple), and the five-fold rotation which is indicated with a dashed line.  Fig.~\ref{\chabbr:fig:cyclicFZ}(b) shows the same FZs as $y$--$z$ cross-sections through the homochoric, stereographic, and axis-angle spheres, here drawn as quarter circles; each quadrant has to be mirrored across the horizontal and vertical central lines to obtain the complete cross section of the FZ.  The three quadrants are drawn to the correct relative scale. The 3D representations have rotational symmetry around the $z$ axis ($y$ for \pg{3}), as shown in Fig.~\ref{\chabbr:fig:cyclic3D}(a),  a homochoric projection example for \pg{3}, and (b) a stereographic projection example for \pg{9}.  The representations use a common scale. Note that the FZs for the cyclic point groups are all lens-shaped, except for the Rodrigues representation where they are infinite slabs.  The intersection of the lens with the projection sphere corresponds to all rotations by an angle $\pi$ with rotation axes in the $x$--$y$ plane. 
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath cyclicFZ.eps}
+\caption{\label{\chabbr:fig:cyclicFZ}(a) $\rho_y$--$\rho_z$ cross sections through Rodrigues space indicating the locations of the Fundamental Zone boundaries for the cyclic point groups. (b) similar $y$--$z$ plots for the axis-angle, homochoric, and stereographic representations using a common scale.}
+\end{figure}
+
+
+\subsection{Dihedral Fundamental Zones}\label{\chabbr:ssec:dihedralFZs}
+The dihedral FZs for point groups \pg{6}, \pg{18}, \pg{12}, and \pg{24} are finite volumes with prismatic shapes. Since the highest order rotation axis always lies along the $\rho_z$-direction, all the two-fold axes lie in the $\rho_x$--$\rho_y$ plane; the corresponding bounding planes are therefore normal to the $\rho_x$--$\rho_y$ plane at a distance $1$ from the origin, and normal to each of the two-fold axes.  This leads to a cube for \pg{6} since all rotation axes are two-fold, a hexagonal prism for \pg{18}, an octagonal prism for \pg{12}, and a dodecagonal prism for \pg{24}. The top and bottom surfaces lie at the distances listed in eqs.~(\ref{\chabbr:eq:tans}).  The outlines of the dihedral Rodrigues FZs are shown as nested wireframe volumes in Fig.~\ref{\chabbr:fig:dihedralRFZ}, all on the same scale.  Note that the RFZ for point group \pg{18} has two possible orientations: the standard orientation is for the point group $\mathbf{321}$, and the second orientation for the rotated point group $\mathbf{312}$ is rotated around the $\rho_z$ axis by $\pi/6$.  
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath cyclic3D.eps}
+\caption{\label{\chabbr:fig:cyclic3D}(a) 3D homochoric representation of the Rodrigues Fundamental Zone for point group \pg{3}; (b) 3D stereographic representation for point group \pg{9}. Both representations use a common scale.}
+\end{figure}
+
+\begin{figure}[b!]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath dihedralRFZ.eps}
+\caption{\label{\chabbr:fig:dihedralRFZ}Two different views of the nested dihedral Rodrigues Fundamental Zones. The small red, green and blue spheres are located at a unit distance from the origin along the $\rho_x$, $\rho_y$, and $\rho_z$ axes.}
+\end{figure}
+
+In the neo-Eulerian representations, the flat facets of the Rodrigues FZs become curved, as they are for the cyclic groups.  Fig.~\ref{\chabbr:fig:dihedral3D} shows the 3D wireframe diagrams for the homochoric representation of point group \pg{12} and the stereographic representation of point group \pg{24}, drawn on a common scale.  A general vertex coordinate of the RFZ is listed in Table~\ref{\chabbr:tb:RFZvertices} for each rotational point group, along with the volume of RFZ, the distance of the vertex to the origin and the maximum rotation angle, $\omega_{\text{max}}$, for the RFZ.  The maximum rotation angle for the unique rotations always corresponds to the length of the Rodrigues vector of any one of the vertices.
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath dihedral3D.eps}
+\caption{\label{\chabbr:fig:dihedral3D}(a) 3D homochoric representation of the Rodrigues Fundamental Zone for point group \pg{12}; (b) 3D stereographic representation for point group \pg{24}. Both representations use a common scale.}
+\end{figure}
+
+\begin{table}
+{\footnotesize\begin{tabular}{|c|c|c|c|c|c|c|}      % Alignment for each cell: l=left, c=center, r=right
+\hline
+ PG & $\bm{\rho}_v$                 & $N_v$ & $\vert\bm{\rho}_v\vert$  &  Volume $V$  & Shape & $\omega_{\text{max}}$\\
+\hline\hline
+1   & ---                                                   & ---                                   & ---               & $\infty$    & $\mathbb{R}^3$ & $180.00^{\circ}$\\
+2   & $(\rho_x, \rho_y, \pm\tan(\pi/4)$     & ---                                   & ---                & $\infty$    & infinite slab & $180.00^{\circ}$\\
+3   & $(\rho_x, \rho_y, \pm\tan(\pi/6)$     & ---                                   & ---                & $\infty$    & infinite slab & $180.00^{\circ}$\\
+4   & $(\rho_x, \rho_y, \pm\tan(\pi/8)$     & ---                                   & ---                & $\infty$    & infinite slab & $180.00^{\circ}$\\
+6   & $(\rho_x, \rho_y, \pm\tan(\pi/12)$   & ---                                   & ---                & $\infty$    & infinite slab & $180.00^{\circ}$\\
+222 & $(1,1,1)$                                       & $8$  & $\sqrt{3}$                 & $8.00000$   & cube & $120.00^{\circ}$\\
+32  & $(1,\pm\tan(\pi/6),\tan(\pi/6))$       & $12$ &  $\sqrt{5/3}$                & $4.00000$   & hexagonal prism & $104.48^{\circ}$\\
+422 & $(1,\pm\tan(\pi/8),\tan(\pi/8))$       & $16$ & $\sqrt{7-4\sqrt{2}}$          & $2.74517$   & octagonal prism & $98.42^{\circ}$\\
+622 & $(1,\pm\tan(\pi/12),\tan(\pi/12))$   & $24$ & $\sqrt{15-8\sqrt{3}}$             & $1.72312$   & dodecagonal prism & $93.84^{\circ}$\\
+23  & $(1,0,0)$                                         & $6$  & $1$                  & $1.33333$   & octahedron & $90.00^{\circ}$\\
+432 & $(\sqrt{2}-1,\sqrt{2}-1,3-2\sqrt{2})$ & $24$ &$\sqrt{23-16\sqrt{2}}$           & $0.54949$   & truncated cube & $62.80^{\circ}$\\
+532 & $(\sqrt{10-22/\sqrt{5}},0,\sqrt{17-38/\sqrt{5}})$ & $12$ & $\sqrt{27-12\sqrt{5}}$   & $0.17337$   & dodecahedron  & $44.48^{\circ}$\\
+\hline 
+\end{tabular}}
+\caption{\label{\chabbr:tb:RFZvertices}General vertex coordinate and volume for the Rodrigues Fundamental Zones for all rotational point group symmetries.  The complete set of vertices is generated by application of the rotational group elements to $\bm{\rho}_v$.}
+\end{table}
+
+
+\subsection{Tetrahedral, Octahedral and Icosahedral Fundamental Zones}\label{\chabbr:ssec:TOIFZs}
+For point group \pg{28}, the three-fold rotation axes have the closest distance from the origin at $ \tan(\pi/6) = \frac{1}{\sqrt{3}}= 0.57735$. The intersection of the corresponding four infinite slabs, one for each three-fold axis, produces a finite volume with the shape of an octahedron; the vertices of the octahedron lie at the centers of the faces of the cube corresponding to the \pg{6} FZ. Hence the maximum rotation angle for tetrahedral symmetry is $90^{\circ}$.  For point group \pg{30}, the four-fold axes produce a cube with six faces at a distance $\tan(\pi/8) = \sqrt{2}-1  = 0.41421$ from the origin; the corner of the cube lies at a distance of $0.717439$ from the origin, which is farther from the origin than the bounding plane of the three-fold axes. Therefore, the cube corners will be truncated by those eight bounding planes and produce the shape shown blue in Fig.~\ref{\chabbr:fig:TOIRFZ}.
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath TOIRFZ.eps}
+\caption{\label{\chabbr:fig:TOIRFZ}Two different views of Rodrigues Fundamental Zones for the \pg{28}, \pg{30}, and \pg{34} point groups. The \pg{6} FZ is shown to set the scale of the drawings; this cube has edge length $2$.}
+\end{figure}
+
+For the icosahedral point group \pg{34}, the bounding planes corresponding to the six five-fold rotation axes are much closer to the origin of Rodrigues space than those of the three-fold and two-fold axes; therefore, the shape of the fundamental zone is a dodecahedron with $12$ pentagonal faces, each at a distance of $0.4089$ from the origin, which corresponds to a maximum rotation angle of $44.48^{\circ}$. The FZ is shown in green in Fig.~\ref{\chabbr:fig:TOIRFZ}.  Fig.~\ref{\chabbr:fig:TOI3D} shows stereographic projections of the Rodrigues FZs for \pg{28} and \pg{30}.
+
+\begin{figure}[hb]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath TOI3D.eps}
+\caption{\label{\chabbr:fig:TOI3D}3D stereographic projections of the tetrahedral (a) and octahedral (b) Rodrigues Fundamental Zones.}
+\end{figure}
+
+\clearpage
+\subsection{Fundamental Zones in Euler Space}\label{\chabbr:ssec:EulerFZs}
+
+\subsubsection{Rotational Symmetry Operators and Euler Space}\label{\chabbr:sssec:RotEuler}
+In Euler space, fundamental zones can be defined in two ways: (1) by mapping the Rodrigues FZ onto Euler space, and (2) by subdividing Euler space itself based on the locations of the rotational symmetry operators.  In this section, we consider how the elements from all the rotational point groups are represented in Euler space.
+
+If we represent a rotational symmetry operator by a Rodrigues vector with components $\bm{\rho}=(\rho_x,\rho_y,\rho_z)$ then one can show that the corresponding Euler angles in the Bunge convention are given by the following relations:
+\begin{equation}
+\begin{split}
+	\varphi_1 &= \text{atan2}(-\rho_x-\rho_y\rho_z,-\rho_y+\rho_x\rho_z)\ ;\\
+	\Phi &= \text{atan2}(1-\rho_x^2-\rho_y^2+\rho_z^2,2\sqrt{(\rho_x^2+\rho_y^2)(1+\rho_z^2)})\ ;\\
+	\varphi_2 &= \text{atan2}(1-\rho_z^2,-2\rho_z)-\varphi_1\ , \label{\chabbr:eq:r2e}
+\end{split}
+\end{equation}
+where the function $\text{atan2}(x,y)\equiv\arctan(y/x)$ is the two-argument version of the inverse tangent.  As an example, consider the following two rotational operators: $6_z$ and $4_x$. In axis-angle notation they are written as $\pi/3@[001]$ and $\pi/2@[100]$.  The corresponding Rodrigues vectors are $\bm{\rho}_{6_z} = [0,0,1/\sqrt{3}]$ and $\bm{\rho}_{4_x}=[1,0,0]$.  Plugging these expressions into the equations (\ref{\chabbr:eq:r2e}) and using the properties of the inverse tangent function we obtain for the $6_z$ rotation:
+\[
+	(\varphi_1,\Phi,\varphi_2) = (\varphi_1,0,-\frac{\pi}{3}-\varphi_1)
+\]
+where $\varphi_1$ is indeterminate because it is given by $\arctan(0/0)$.  This Euler triplet represents a straight line in the $\Phi=0$ plane with equation $\varphi_2=-\pi/3-\varphi_1$.  Note that the identity operator results in the equation $\varphi_2=2\pi k-\varphi_1$, with $k\in\mathbb{Z}$, so that the identity is represented by a set of parallel diagonal lines in the $\Phi=0$ plane.  This degeneracy is caused by the fact that the volume element, $\sin\Phi\,\mathrm{d}\varphi_1\,\mathrm{d}\Phi\,\mathrm{d}\varphi_2$, vanishes in the $\Phi=0$ and $\pi$ planes; as a consequence, all rotations around the $z$-axis are degenerate and represented by continuous lines, as illustrated in Fig.~\ref{\chabbr:fig:EulerRots}(a). Note that all the lines exit the cell on one side and re-enter on the opposite side due to the periodicity of the Euler angles $\varphi_1$ and $\varphi_2$. 
+
+\begin{figure}[b!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath EulerRots.eps}
+\caption{\label{\chabbr:fig:EulerRots}Representation of all rotational point group operators in the $\Phi=0$ (a), $\Phi=\pi/2$ (b), and $\Phi=\pi$ (c) plane of Euler space. See text for definition of the subscripts.}
+\end{figure}
+
+For the rotation $4_x$ we find: 
+\[
+	(\varphi_1,\Phi,\varphi_2) =  (\pi, \frac{\pi}{2}, -\pi) = (\pi, \frac{\pi}{2}, \pi)\ ,
+\]
+where we have used the periodicity of Euler space in the last equality.  This point is the center of the Euler space cell and is shown as a small green sphere in Fig.~\ref{\chabbr:fig:EulerRots}(b), along with a number of other rotation operators that lie in the $\Phi=\pi/2$ plane.  The subscripts on the labels indicate the direction of the rotation axis, with $x$ and $y$ representing the coordinate directions, and $a=[111]$, $b=[1\bar{1}1]$, $c=[11\bar{1}]$, and $d=[\bar{1}11]$.  For two-fold axes that are normal to the $z$ axis we have $\Phi=\pi$, and all those axes are once again degenerate and represented by the blue lines in Fig.~\ref{\chabbr:fig:EulerRots}(c).  Note that the blue lines are orthogonal to the red lines. Two-fold axes with subscripts $c$ and $s$ indicate the directions of the axes in the \pg{18} and \pg{24} point groups. 
+
+Now that we know the locations of all rotational symmetry operators in Euler space, we can generate images for each rotational point group by selecting the appropriate points or lines from Fig.~\ref{\chabbr:fig:EulerRots}.  The result is shown in Fig.~\ref{\chabbr:fig:EulerPG} for the $10$ non-trivial rotational point groups.  
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath EulerPG.eps}
+\caption{\label{\chabbr:fig:EulerPG}Euler representation of all non-trivial rotational point groups.}
+\end{figure}
+
+\subsubsection{Euler Representation of Rodrigues Fundamental Zones}\label{\chabbr:ssec:EulerRFZs}
+Mapping the Rodrigues FZs (RFZs) into Euler space is achieved by means of the same equations (\ref{\chabbr:eq:r2e}). Since each RFZ contains the origin, which is the identity operator, at its center, and the identity in Euler space is the line $\varphi_2=2\pi-\varphi_1$, this means that the mapped RFZs will all contain the complete diagonal line.  For the cyclic rotation groups, the bounding planes of the RFZ are located at $\rho_z=\pm\tan(\pi/2n)$; substituting this into the third equation of (\ref{\chabbr:eq:r2e}) and simplifying using the rules for tangent and inverse tangent functions results in:
+\[
+	\varphi_2 = \mp \frac{\pi}{n}-\varphi_1\ ,
+\]
+which indicates that the RFZ bounding planes will be mapped onto planes in Euler space, parallel to the $\varphi_2=2\pi-\varphi_1$ diagonal and normal to the $\varphi_1$--$\varphi_2$ plane.  The cyclic RFZs will thus become slabs normal to the  $\varphi_1$--$\varphi_2$ plane with a thickness $\pi\sqrt{2}/n$, as shown in the top row of Fig.~\ref{\chabbr:fig:EulerRFZ}; the distance between the yellow circles equals $\pi/n$.  The segments in the opposite corners of the cell are a consequence of the periodicity of Euler space.  The red sphere indicates the origin of Euler space.
+
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath EulerRFZ.eps}
+\caption{\label{\chabbr:fig:EulerRFZ}Rodrigues FZs for all non-trivial rotational point groups mapped onto Euler space.}
+\end{figure}
+
+For the dihedral groups, the truncating planes in the RFZ corresponding to the two-fold axes normal to the main rotation axis will reduce the maximum range of $\Phi$ to a value less than $\pi$; for all dihedral RFZs, the resulting mapping into Euler space can be represented by $\Phi=f_n(\varphi_1,\varphi_2)$ where the explicit form of the function $f_n$ depends on the order $n$ of the main rotation axis \cite{degraef2017c}.  Each RFZ is divided into $n$ trigonal prims, each containing the rotation axis as one prism edge, and a square facet  at distance $1$ on the opposite side. This prism is then mapped onto a curved saddle surface $f_n(\varphi_1,\varphi_2)$ along both sides of the $\varphi_2=2\pi-\varphi_1$ diagonal; the yellow surface segments on the second row of Fig.~\ref{\chabbr:fig:EulerRFZ} represent the mapping $f_n(\varphi_1,\varphi_2)$ of a single prism onto Euler space.  This shape is then repeated along the diagonal for as many square facets as are present on the RFZ. The curved surface is then bounded along the $\Phi$ direction by the same bounding surfaces as the cyclic groups. One can think of the mappings of the dihedral RFZs as a kind of ``unfolding'' of the RFZ along the diagonal, transforming the single point identity operator in Rodrigues space into the diagonal line $\varphi_2=2\pi-\varphi_1$. The outer surface of the RFZ undergoes a non-linear deformation in this mapping process.
+
+Finally, we have the T and O RFZs; their mappings into Euler space are shown on the bottom row of Fig.~\ref{\chabbr:fig:EulerRFZ}.  For point group \pg{28}, the front and back side of the yellow ``tented'' surface correspond to the mappings of the $[111]$ and $[11\bar{1}]$ facets of the Rodrigues FZ, which has an octahedral shape.  The tent ridge corresponds to the edges of the RFZ that lie in the $\rho_x$--$\rho_y$ plane. The mapping of the \pg{30} RFZ, which is a truncated cube, into Euler space produces the volume on the bottom right of Fig.~\ref{\chabbr:fig:EulerRFZ}.  Note that the shape is similar to that of the dihedral group \pg{6}, but the truncated corners give rise to the small curved triangular portions of the surface.
+
+
+
+\subsubsection{Standard Fundamental Zones in the Euler Representation}\label{\chabbr:ssec:EulerFZs}
+
+{\color{red}Does sample symmetry belong in this section?}
+
+
+\section{Misorientation Fundamental Zones}\label{\chabbr:sec:MFZs}
+
+
+
+\section{MacKenzie Misorientation Distributions}\label{\chabbr:sec:MacKenzie}
+
+
+
+\section{Symmetry-Constrained Orientation Sampling}\label{\chabbr:sec:OrientationSampling}
+
 
 
 
