@@ -55,6 +55,11 @@ EPUBBuild/*.synctex.gz(busy)
 EPUBBuild/*.txt
 EPUBBuild/*.pro
 EPUBBuild/ImageFolder
+EPUBBuild/*.cut
 src/*/eps/*.pdf
 src/*/*.aux
 src/*/*html_inc.tex
+src/*/*.fls
+src/*/*.log
+src/*/eps/*.png
+

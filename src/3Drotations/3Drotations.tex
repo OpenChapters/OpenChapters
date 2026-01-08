@@ -508,7 +508,7 @@ note that we do \textit{not} use the conjugate quaternion $q_1^{\ast}$ in the do
 
 
 \subsection{The Cubochoric Orientation Representation}\label{\chabbr:ssec:cubochoric}
-In this section, we introduce an orientation representation that does not belong to the class of neo-Eulerian representations; the new representation takes an orientation, represented by a homochoric vector $\mathbf{h}$, and expresses it as a point $\mathbf{c}$ inside a cube, $\mathbb{C}^3_{\rho}$, with volume $\pi^2$ (and thus edge length $\rho=\pi^{2/3}$).  Note that $\pi^2$ is also the volume of the Northern hemisphere of $\mathbb{S}^3$ as well as the volume of the homochoric representation ball.  The cubochoric representation was introduced in \cite{degraef2014r} with the specific purpose of creating an equal-volume mapping between a cube and a ball, specifically the homochoric ball $\mathbb{B}^3_{\alpha}$ which has radius $\alpha=(3\pi/4)^{1/3}$.  This ball is, itself, an equal-volume Lambert map from the Northern hemisphere of the quaternion unit sphere $\mathbb{S}^3_+$. The concatenation of the two mappings thus establishes a bi-directional equal-volume map from $\mathbb{S}^3_+$ onto $\mathbb{C}^3_{\rho}$.  The reason for creating an equal-volume mapping is simple: if we create a regular grid of points inside the cube, then this will be mapped onto a regular grid of orientations in $\mathbb{S}^3_+$.
+In this section, we introduce an orientation representation that does not belong to the class of neo-Eulerian representations; the new representation takes an orientation, represented by a homochoric vector $\mathbf{h}$, and expresses it as a point $\mathbf{c}$ inside a cube, $\mathbb{C}^3_{\rho}$, with volume $\pi^2$ (and thus edge length $\rho=\pi^{2/3}$).  Note that $\pi^2$ is also the volume of the Northern hemisphere of $\mathbb{S}^3$ as well as the volume of the homochoric representation ball.  The cubochoric representation was introduced in \cite{degraef2014r} with the specific purpose of creating an equal-volume mapping between a cube and a ball, specifically the homochoric ball $\mathbb{B}^3_{\alpha}$ which has radius $\alpha=(3\pi/4)^{1/3}$.  This ball is, itself, an equal-volume Lambert map from the Northern hemisphere $\mathbb{S}^3_+$ of the quaternion unit sphere $\mathbb{S}^3$. The concatenation of the two mappings thus establishes a bi-directional equal-volume map from $\mathbb{S}^3_+$ onto $\mathbb{C}^3_{\rho}$.  The reason for creating an equal-volume mapping is simple: if we create a regular grid of points inside the cube, then this will be mapped onto a regular grid of orientations in $\mathbb{S}^3_+$.
 
 The transformations between the cubochoric and homochoric representations given below are somewhat complicated, and are based on the decomposition of cube and ball into six pyramidal sub-volumes, as shown in Fig.~\ref{\chabbr:fig:exploded}; for a detailed derivation, see \cite{degraef2014r}.
 
@@ -684,7 +684,7 @@ $j$ & $c_z$ & $h_z$ & $q_0$ & $q_j\cdot q_{j+1}$ & $\Delta\theta_{j,j+1}$ \\
 
 The misorientation is nearly constant in the middle of the table and becomes larger at the start and end of the list. This table illustrates that an equal-volume sampling in the cubochoric cube produces an equal-volume sampling in both homochoric and quaternion representations, but the misorientation angle between consecutive sampling points is not constant. Note that the sum of the angles in the last column of the table is precisely $360^{\circ}$, as it should be since the line of grid points spans rotations from $-180^{\circ}$ to $+180^{\circ}$ around the $z$ axis.
 
-Fig.~\ref{\chabbr:fig:planarsample}(a) shows the cubochoric cell with a uniform square grid of $9\times 9$ points in the $c_y$--$c_z$ plane; when those points are transformed to the stereographic representation (Fig.~\ref{\chabbr:fig:planarsample}(b)), they form circular sets of points; in other words, a grid of concentric squares in cubochoric space becomes a set of concentric circles in the stereographic representation. Since all neo-Eulerian representations share the property that the distance to the origin is equal to $f(\omega)$, this means that all points on a centered square in cubochoric space have the same rotation angle $\omega$. This remains true for a 3D uniform grid of concentric cubes which is mapped onto a 3D grid of concentric spheres.  The outer surface of the cubochoric cube represents all possible rotations by an angle $\pi$; note that only three facets of the cube (meeting in a single vertex) need to be taken into account to avoid double counting of $1806{\circ}$ rotations.
+Fig.~\ref{\chabbr:fig:planarsample}(a) shows the cubochoric cell with a uniform square grid of $9\times 9$ points in the $c_y$--$c_z$ plane; when those points are transformed to the stereographic representation (Fig.~\ref{\chabbr:fig:planarsample}(b)), they form circular sets of points; in other words, a grid of concentric squares in cubochoric space becomes a set of concentric circles in the stereographic representation. Since all neo-Eulerian representations share the property that the distance to the origin is equal to $f(\omega)$, this means that all points on a centered square in cubochoric space have the same rotation angle $\omega$. This remains true for a 3D uniform grid of concentric cubes which is mapped onto a 3D grid of concentric spheres.  The outer surface of the cubochoric cube represents all possible rotations by an angle $\pi$; note that only three facets of the cube (meeting in a single vertex) need to be taken into account to avoid double counting of $180^{\circ}$ rotations.
 
 \begin{figure}[h!]
 \centering\leavevmode
@@ -692,17 +692,52 @@ Fig.~\ref{\chabbr:fig:planarsample}(a) shows the cubochoric cell with a uniform 
 \caption{\label{\chabbr:fig:planarsample}(a) uniform $9\times 9$ grid of points in the cubochoric $c_y$--$c_z$ plane; (b) representation of those points in a stereographic projection.}
 \end{figure}
 
-When the cubochoric representation is combined with the Rodrigues representation, one can generate uniform orientation samples that are restricted to a crystallographic Fundamental Zone.  Consider the following two examples: the point group symmetries are \pg{24} and \pg{30}, with $N=20$ in the first case and $N=50$ in the second. Without the application of symmetry the total number of points generated would be $(2N+1)^3$ or $68,921$ for $N=20$ and $1,030,301$ for $N=50$.  The application of symmetry is performed by a simple test: first convert each cubochoric point to a Rodrigues vector, then test whether or not the point lies inside the RFZ; keep the point if it lies inside the RFZ, discard it otherwise.  The resulting lists of orientations have $n=5,367$ for \pg{24} and $n=41,625$ for \pg{30}.  The distributions of points along with the RFZ edges are shown as stereographic projections in Fig.~\ref{\chabbr:fig:samples}. Note in particular for \pg{30} that the sampling points lie on concentric spherical surfaces inside the RFZ due to the way they are sampled on concentric cubes in the cubochoric cell.
+%%%%%%%%%%
+% the following paragraph and figure have been moved to the OrientationSymmetry.tex chapter to avoid having a Foundational chapter reference a Topical chapter. [MDG, 12/31/25]
 
-\begin{figure}[h!]
-\centering\leavevmode
-\includegraphics[width=0.9\textwidth]{\graphicspath samples.eps}
-\caption{\label{\chabbr:fig:samples}Stereographic projection of orientations uniformly sampled in cubochoric space and restricted to the Rodrigues Fundamental Zone for \pg{24} and \pg{30}.}
-\end{figure}
+%When the cubochoric representation is combined with the Rodrigues representation, one can generate uniform orientation samples that are restricted to a crystallographic Fundamental Zone.  Consider the following two examples: the point group symmetries are \pg{24} and \pg{30}, with $N=20$ in the first case and $N=50$ in the second. Without the application of symmetry the total number of points generated would be $(2N+1)^3$ or $68,921$ for $N=20$ and $1,030,301$ for $N=50$.  The application of symmetry is performed by a simple test: first convert each cubochoric point to a Rodrigues vector, then test whether or not the point lies inside the RFZ; keep the point if it lies inside the RFZ, discard it otherwise.  The resulting lists of orientations have $n=5,367$ for \pg{24} and $n=41,625$ for \pg{30}.  The distributions of points along with the RFZ edges are shown as stereographic projections in Fig.~\ref{\chabbr:fig:samples}. Note in particular for \pg{30} that the sampling points lie on concentric spherical surfaces inside the RFZ due to the way they are sampled on concentric cubes in the cubochoric cell.
+%
+%\begin{figure}[h!]
+%\centering\leavevmode
+%\includegraphics[width=0.9\textwidth]{\graphicspath samples.eps}
+%\caption{\label{\chabbr:fig:samples}Stereographic projection of orientations uniformly sampled in cubochoric space and restricted to the Rodrigues Fundamental Zone for \pg{24} and \pg{30}.}
+%\end{figure}
+%%%%%%%%%%
 
-\subsection{Random Orientation Sampling}\label{\chabbr:sec:randomsampling}
+\subsection{Random and Uniform Orientation Sampling}\label{\chabbr:ssec:randomsampling}
+There are several algorithms available to generate random sets of orientations; in this section, we take a brief look at the most important approaches and make recommendations on whether or not they should be used. For each technique, we provide a figure that clearly illustrates any non-uniformities in the data set; the theory behind these maps, known as \indexit{square torus maps}, can be found in section~\ref{\chabbr:sec:CliffordTorus}. An additional method to evaluate uniformity of sampling on a hyper-sphere is explained in section~\ref{\chabbr:sec:Riesz}.
 
-{\color{red}to be written}
+\subsubsection{Naive uniform sampling}\label{\chabbr:sssec:naiveuniformSampling}
+The simplest possible approach to generating a random set of orientations consists of randomly selecting four numbers uniformly on the interval $[-1,1]$. Most computer languages have a basic random number generator, usually on the interval $[0,1]$; such system-based generators generally have limited statistical quality. A better alternative for uniform sampling is the \indexit{Mersenne Twister} algorithm \cite{matsumoto1998a}. The four numbers are then collected as a quaternion, and the quaternion is normalized.  Fig.~\ref{\chabbr:fig:naive}{a} shows the square torus map for this sampling approach; the map clearly has non-uniformities due to the fact that the random uniform sample of four numbers does not intrinsically use any of the geometry or metric of the quaternion hyper-sphere.  
+
+\subsubsection{Marsaglia sampling}\label{\chabbr:sssec:MarsagliaSampling}
+In this approach \cite{marsaglia1972a} we uniformly draw two random numbers $a$ and $b$ from the interval $[-1,1]$ (using the Mersenne Twister); we repeat this step until the parameter $s_1=a^2+b^2\le 1$. Then we repeat this for an additional two numbers $c$ and $d$, until $s_2=c^2+d^2\le 1$. Then we replace $s_2$ by $\sqrt{(1-s_1)/s_2}$ and form the unit quaternion $q=[a,b,c\,s_2,d\,s_2]$. The resulting orientation set is more uniform than the set from the previous approach, but there is still some non-uniformity that shows up as vertical intensity bands in Fig.~\ref{\chabbr:fig:naive}{b}; the level of uniformity in the central vertical band is reasonable.
+
+\subsubsection{Shoemake sampling}\label{\chabbr:sssec:ShoemakeSampling}
+The Shoemake algorithm \cite{shoemake1992a} relies on three uniformly selected random numbers, $u_1$ on the interval $[0,1]$, and $u_2$ and $u_3$ from the interval $[0,2\pi]$. The Mersenne Twister algorithm is most suitable to generate these numbers.  Setting $a=\sqrt{1-u_1}$ and $b=\sqrt{u_1}$, the random unit quaternion is then obtained as $q=[a\sin u_2, a\cos u_2, b \sin u_3, b\cos u_3]$.  This approach generates a highly uniform set of orientations, as evidenced qualitatively by the square torus map in Fig.~\ref{\chabbr:fig:shoemake}(a).
+
+\subsubsection{Cubochoric sampling}\label{\chabbr:sssec:CubochoricSampling}
+This approach does not rely on random numbers, but instead takes a uniform cubical grid in the cubochoric cube and transforms all the points to unit quaternions via the homochoric representation \cite{degraef2014r}. Since the unit quaternions only have a positive scalar part in this approach, the corresponding square torus map only shows the central vertical band (Fig.~\ref{\chabbr:fig:shoemake}(b)). One difference between this technique and the next one compared to the previous three approaches is that the cubochoric sampling generates a uniform orientation set on $\mathbb{S}^3_+$ instead of a random set.
+
+\subsubsection{Super-Fibonacci sampling}\label{\chabbr:sssec:FibonacciSampling}
+Super-Fibonacci sampling was introduced in 2022 \cite{alexa2022a} as a fast sampling technique based on two irrational numbers, $(\phi,\psi)$.  There are several choices for these numbers and here we set $\phi$ equal to the \indexit{golden ratio}, $\phi=(1+\sqrt{5})/2=1.618033989\ldots$, and $\psi$ is the \indexit{super-golden ratio}, the positive root of the equation $\psi^3=\psi^2+1$ so that:
+\[
+	\psi = \frac{1}{3}+\frac{2}{3}\cos\left(\frac{1}{3}\arccos\left(\frac{29}{2}\right)\right)=1.4655712318\ldots\ .
+\]
+To generate a uniformly distributed set of $N$ unit quaternions, we employ the index $i\in[0\ldots N-1]$ and compute the following series of parameters:
+\begin{equation*}
+\begin{split}
+	s &= i+\frac{1}{2}\rightarrow d = 2\pi\,s\ ;\\
+	t &= \frac{s}{N}\rightarrow r = \sqrt{t}\text{ and }R = \sqrt{1-t}\ ;\\
+	\alpha &= \frac{d}{\phi}\text{ and }\beta = \frac{d}{\psi}\ .
+\end{split}
+\end{equation*}
+The unit quaternions are then given by $q_i=[r\sin\alpha, r\cos\alpha, R\sin\beta, R\cos\beta]$. The square torus map for this sampling is shown in Fig.~\ref{\chabbr:fig:shoemake}(c), and is remarkably featureless.  This approach is simple, fast, and easy to implement and produces a highly uniform set of orientations.  
+
+\subsubsection{Other sampling approaches}\label{\chabbr:sssec:OtherSampling}
+
+
+
 
 
 \clearpage
@@ -994,6 +1029,60 @@ Before we describe averaging using the von Mises-Fisher and Watson distributions
 
 
 \subsubsection{von Mises-Fisher and Watson averaging}\label{\chabbr:ssec:vMFWav}
+
+
+
+
+\section{The Clifford Torus}\label{\chabbr:sec:CliffordTorus}
+Any unit quaternion $q$ on the hyper-sphere $\mathbb{S}^3$ can be expressed in terms of two angles, $\theta$ and $\varphi$, each angle in the range $[-\pi,\pi]$, by means of the following expression:
+\begin{equation}
+	q = \frac{1}{\sqrt{2}}[\cos\theta,\sin\theta,\cos\varphi,\sin\varphi]\ ;\label{\chabbr:eq:CliffordTorus}
+\end{equation}
+the prefactor guarantees that this is a quaternion with unit norm. In terms of the quaternion components, it is easy to see that $q_0^2+q_1^2=\frac{1}{2}$ and $q_2^2+q_3^2=\frac{1}{2}$; since the quaternion components ``lie'' along four orthogonal directions, these two expressions represent two orthogonal circles. The combination of two orthogonal circles, each parameterized independently by an angle in the interval $[-\pi,\pi]$, generates a \indexit{torus} known as the \indexit{Clifford torus}; in mathematical terms, this is a 2D sub-manifold of $\mathbb{S}^3$.  It is easy to see that there are two other tori, namely the ones generated by pairs of circles in the $q_0$-$q_2$ and $q_1$-$q_3$ planes, as well as the $q_0$-$q_3$ and $q_1$-$q_2$ planes. There are thus three orthogonal Clifford tori, each a 2D sub-manifold of $\mathbb{S}^3$.  Since 3D rotations/orientations have three degrees of freedom, and each torus has only two parameters, this means that an individual 2D Clifford torus can not be used to reconstruct the three-components of a 3D rotation, but the combination of the three tori does contain all three degrees of freedom.  In fact, each unit quaternion vector component is represented in two of the three tori.
+
+There is a close connection between the Clifford torus representation and the Rodrigues representation. The Rodrigues vector corresponding to equation~(\ref{\chabbr:eq:CliffordTorus}) is given by:
+\begin{equation}
+	\bm{\rho} = \left[ \tan\theta, \frac{\cos\varphi}{\cos\theta},\frac{\sin\varphi}{\cos\theta}\right]=\left[\rho_x,\rho_y,\rho_z\right]\ .
+\end{equation}
+We can readily express the angles $(\theta,\varphi)$ in terms of the components of $\bm{\rho}$ as:
+\begin{equation}
+	(\theta,\varphi)_R = \left(\text{arctan}(\rho_x), \text{arctan}\left(\frac{\rho_z}{\rho_y}\right)\right)\ .
+\end{equation}
+Since each of the angles has a range $[-\pi,\pi]$, and the two corresponding circles are orthogonal, we can represent the rotation $\bm{\rho}$ by a point in a square with side lengths $2\pi$, with $\theta$ along the horizontal axis and $\varphi$ along the vertical axis.  It can be shown that this representation is an isometric projection of the Clifford torus onto a 2D periodic square, periodic since both axes represent an angle.  
+
+We will call the isometric projection of the Clifford torus onto a 2D square a \indexit{square torus map}.  Since there are three different orthogonal Clifford tori, there are thus three independent square torus maps, given by the angle pairs:
+\begin{equation}
+	(\theta,\varphi)_G = \left(\text{arctan}(\rho_y), \text{arctan}\left(\frac{\rho_x}{\rho_z}\right)\right)\text{ and }(\theta,\varphi)_B = \left(\text{arctan}(\rho_z), \text{arctan}\left(\frac{\rho_y}{\rho_x}\right)\right)\ .
+\end{equation}
+The subscripts $R$, $G$, and $B$ on the angle pairs are intentionally selected to indicate that each square torus map can be placed in a channel of an RGB (red-green-blue) color image. We have thus constructed an isometric projection from the unit quaternion sphere $\mathbb{S}^3$ to an RGB color image.
+
+As an example, consider the rotation $\pi/3@[111]$, which is represented by the quaternion:
+\[
+	q=\left[\frac{\sqrt{3}}{2},\frac{1}{2\sqrt{3}},\frac{1}{2\sqrt{3}},\frac{1}{2\sqrt{3}}\right]\ ;
+\]
+This corresponds to the following Rodrigues vector and square torus map parameters:
+\[
+	\bm{\rho}=\left[\frac{1}{3},\frac{1}{3},\frac{1}{3}\right]\rightarrow 
+	(\theta,\varphi)_{R,G,B} = \left(\text{arctan}\left(\frac{1}{3}\right),\text{arctan}\left(1\right)\right)= (0.321751 , 0.785398)\ ,
+\]
+where the angles are expressed in radians. When computing the arctan functions, care must be taken to ensure that the result lies in the correct quadrant; numerically, this means that one must use the two-argument form of the arctan function, which is often implemented as \textsf{atan2(x,y)} which stands for arctan$(y/x)$.  The order of the parameters $x$ and $y$ may vary between programming languages.  
+
+It should also be noted that the square torus map coordinates of quaternions $q$ and $-q$ are different.  In terms of the quaternion components, we can express the angles $(\theta,\varphi)$ as:
+\[
+	(\theta,\varphi)_R = \left(\text{arctan}\frac{q_1}{q_0},\text{arctan}\frac{q_3}{q_2}\right) = \left(\text{atan2}(q_0,q_1),\text{atan2}(q_2,q_3)\right)\ ;
+\]
+for the rotation $\pi/3@[111]$ from above, a simple computation shows that for quaternion $-q$ we have:
+\[
+	-q=\left[-\frac{\sqrt{3}}{2},-\frac{1}{2\sqrt{3}},-\frac{1}{2\sqrt{3}},-\frac{1}{2\sqrt{3}}\right]\ 
+\]
+which leads to the coordinates $(\theta,\varphi)_R=(-2.81984,-2.35619)$, i.e., if the square torus coordinates for $q$ are $(\theta,\varphi)$, then $-q$ projects onto the point $(\theta-\pi,\varphi-\pi)$.
+
+A square torus map can be generated by first determining the coordinates $(\theta_i,\varphi_i)$ for all the orientations in the data set, and then drawing a narrow Gaussian dot at that location in the map; the width of the Gaussian dot can be adjusted as needed. 
+
+
+
+\section{Evaluation of Sampling Uniformity}\label{\chabbr:sec:Riesz}
+
 
 
 
