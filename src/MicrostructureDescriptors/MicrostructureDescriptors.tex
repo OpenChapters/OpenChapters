@@ -120,28 +120,23 @@ Exact & $2/\pi=0.63661977$&3.1415926&---\\
 \caption{\label{tb:buffon}Results from simulations based on uniform random number generation of the Buffon needle problem.}
 \end{table}
 
-It is not unusual to use \indexit{random sampling} approaches to determine or estimate quantities that would otherwise be difficult to measure and Buffon's needle problem serves as a particularly simple example of this approach. Random sampling lies at the core of a class of numerical techniques commonly known as \indexit{Monte Carlo simulations}
+It is not unusual to use \indexit{random sampling} approaches to determine or estimate quantities that would otherwise be difficult to measure and Buffon's needle problem serves as a particularly simple example of this approach. Random sampling lies at the core of a class of numerical techniques commonly known as \indexit{Monte Carlo simulations}.
 
 
 \subsection{Manual grain size measurements}
-In the materials field, several techniques have been introduced for measuring the grain size based on random sampling, mostly before the advent of digital image processing and machine learning approaches.  While these methods are based on random sampling, they are precisely defined by the \indexit{American Society for Testing of Materials} (ASTM)\index{ASTM}, in their document E112: \textit{Standard test methods for determining average grain size}. There are several methods described in this document, and we will select one of them: the \indexit{lineal intercept method}. Consider a hypothetical grain structure, such as the one shown in Fig.~\ref{fig:grains}.  The magnification of the ``image''  is $100\times$, so that $1$ mm in the image corresponds to $10 \mu$m in the sample.  The lineal intercept method is then carried out as follows:
+In the materials field, several techniques have been introduced for measuring the grain size based on random sampling, mostly before the advent of digital image processing and machine learning approaches.  While these methods are based on random sampling, they are precisely defined by the \indexit{American Society for Testing of Materials} (ASTM)\index{ASTM}, in their document E112: \textit{Standard test methods for determining average grain size}. There are several methods described in this document, and we will select one of them: the \indexit{lineal intercept method}. A grain intercept is defined as a line segment that overlays a grain; an \textit{intersection} occurs when the line crosses a grain boundary. Either one can be used for the lineal intercept method.
+
+Consider an MgO microstructure, such as the one shown in Fig.~\ref{fig:grains}.\footnote{The original image of the microstructure was provided by Dr.\ G. Rohrer, Materials Science and Engineering at Carnegie Mellon University.}  The ASTM standard states that the image magnification should be $100\times$, so that $1$ mm in the image corresponds to $10 \mu$m in the sample; other magnifications can be used but require a correction factor at the end of the grain size computation.  The lineal intercept method is carried out as follows:
 
 \begin{enumerate}
-	\item Count the number of grains intercepted by a straight line, long enough to yield at least $50$ intercepts. You may 
-	need to adjust the image magnification so that this condition is satisfied.  An \indexit{intercept} is defined as a line segment 
-	that overlays one grain.  An \indexit{intersection} is the point at which the line crosses a grain boundary.  It is customary to
-	count the intersections as follows:  each intersection counts as $1$ count.  If the line ends inside a grain, add $1/2$ count.
-	If the line ends on a grain boundary, add $1$ count. If the line is tangent to a grain boundary, add $1$ intersection.
-	If the line crosses the junction of three grains, add $3/2$ counts.
+	\item Draw $3$ to $5$ parallel straight lines across the image in a random orientation, such that the lines cover a substantial portion of the image.  The total length of the lines should be long enough that there are at least $50$ grain intercepts.  Count the number of line segments that cross individual grains; if a line crosses a grain, then that counts as $1$ intercept. If the line is tangent to a grain boundary, add $1/2$ intercept; if a line ends within a grain, also add $1/2$ intercept.  The mean intercept length, $\ell$, is then computed as the total length of the lines, $L$, divided by the total number, $N$, of intercepts.  Fig.~\ref{\chabbr:fig:grains}(a) shows five parallel lines equally spaced; the line segments between consecutive red dots are intercepts that are fully inside a grain; counting the number of intercepts we find a total of $50$ intercepts (i.e., $50$ line intervals between pairs of red points).  Green dots indicate lines that end inside a grain; there are $6$ of those.  The total number of intercepts is then $N=50+6/2=53$. The total line length is $L=5\times 120 = 600$ mm which at a magnification of $100\times$ corresponds to $6$ mm, so that $\ell=6/53=0.1132$ mm. The average number of intercepts per unit length is then $N_L=1/\ell=8.83$/mm.
 	
-	\item Repeat this procedure for $3$ or $4$ additional line orientations, \textit{or} move the line parallel to itself by about $1/5$th
-	of the image width.  This will increase the precision of your measurement.
+	\item Repeat this procedure for $3$ or $4$ additional line orientations;  this will increase the precision of your measurement.
 	
 	\item Repeat this procedure for several different fields of view (regions in your sample), assuming that the grain
 	size is uniform across the entire sample.
 
-	\item Compute the number of intersections per unit line length, $N_L$, and the average segment length, $\ell$.  The \indexit{ASTM
-	grain size number}, $G$, is then given by
+	\item The \indexit{ASTM grain size number}, $G$, is then given by
 	\begin{align}
 		G &= -6.6439\log_{10}(\ell) - 3.288;\\
 		G &= 6.6439\log_{10}(N_L) - 3.288.
@@ -154,18 +149,128 @@ In the materials field, several techniques have been introduced for measuring th
 	\]
 \end{enumerate}
 
-This procedure results in a number $G$ which is usually rounded to the nearest half integer and reported as ``the ASTM grain size number''; the actual grain size information can then be looked up in a conversion table in the ASTM standard document.  It is customary to report grain sizes in ASTM units, i.e., as a ASTM grain size number $G$.
+\begin{figure}[b!]
+\centering\leavevmode
+\includegraphics[width=6in]{\graphicspath grains.eps}
+\caption{\label{\chabbr:fig:grains}(Illustration of the lineal intercept method using (a) parallel straight lines of length $100$ mm (or $1$ mm in the real microstructure) and (b) a circle of diameter $120$ mm, corresponding to $7.54$ mm in the microstructure.}
+\end{figure}
 
-Carrying out this procedure for the image in Fig.~\ref{\chabbr:fig:grains}, for the $4$ straight lines of length $75$ mm each, we find the following result:  total number of intersections: $33.5$; total length of the lines at magnification of $100\times$: $3$ mm; $N_L=11.16\rightarrow G = 3.67$.  This is obviously not very accurate because the number of intersections is very low. Typically, the grain size number is rounded to the nearest half integer, so in this case we find $G=3.5$.
+This procedure results in a number $G$ which is usually rounded to the nearest half integer and reported as ``the ASTM grain size number''; the actual grain size information can then be looked up in a conversion table in the ASTM standard document. For the image in Fig.~\ref{\chabbr:fig:grains}, we find $G=2.997$; rounded to the nearest half integer we have $G=3$ for the microstructure in Fig.~\ref{\chabbr:fig:grains}(a).   Table~\ref{\chabbr:tb:ASTMtable} lists the following quantities, all defined in the ASTM standard document:
+\begin{itemize}
+	\item  $\bar{N}_L$: the average number of intercepts per mm, computed as:
+	\[
+		 \bar{N}_L = 10^{\frac{G+3.288}{6.643856}}
+	\]
+	\item $\bar{N}_A$: the average number of grains per mm$^2$, computed as:
+	\[
+		 \bar{N}_A = 10^{\frac{G+2.954}{3.321928}}
+	\]
+	\item $\bar{\ell}$: the average intercept length in $\mu$m, computed as
+	\[
+		\bar{\ell} = 10^{3-\frac{G+3.288}{6.643856}}
+	\]
+	\item $\bar{A}$: the average grain area in $\mu$m$^2$, computed as
+	\[
+		\bar{A} = \frac{10^6}{\bar{N}_A }
+	\]
+	\item $\bar{d}$: the average grain diameter in $\mu$m, computed for a square shape as $\bar{d}=\sqrt{\bar{A}}$ and for a circular shape as $\bar{d}=\sqrt{\frac{4}{\pi}\bar{A}}$.
+\end{itemize}
 
-We could also randomly place a circle of known diameter on the microstructure and count the number of intersections in the same way as for the straight lines.  For the example in the figure there are $22$ intersections, and the circumference of the circle at the stated magnification is $2.59$ mm, leading to $N_{L}=8.49$ or an ASTM grain size number of $G=3$. Given the small number of intercepts used, the agreement between the two numbers is quite good.
+We could also randomly place a circle of known diameter on the microstructure, as shown in Fig.~\ref{\chabbr:fig:grains}(b), and count the number of intersections in the same way as for the straight lines.  For the example in the figure, there are $29$ regular intersections (red points) and $6$ triple junction intersections (blue dots) which count for $3/2$ each; the circumference of the circle at the stated magnification is $7.54$ mm ($120\times 2\pi/100$), leading to $N_{L}=38/7.54=5.04$/mm or an ASTM grain size number of $G=1.5$. Given the small number of intercepts used, the agreement between the two numbers is quite good. As stated in item 3 above, repeating this measurement for multiple independent field of views will improve the accuracy of the final result.
+
+\begin{table}[t]
+\centering\leavevmode
+\begin{tabular}{rrrrrrr}
+$G$ & $\bar{N}_L$ & $\bar{N}_A$ & $\bar{\ell}$ & $\bar{A}$ & $\bar{d}$ (square) & $\bar{d}$ (circle)\\
+\hline
+ 1.0&  4.42&  15.50&226.3&64,524&254.0&286.6\\
+ 1.5&  5.26&  21.92&190.3&45,625&213.6&241.0\\
+ 2.0&  6.25&  31.00&160.0&32,262&179.6&202.7\\
+ 2.5&  7.43&  43.83&134.5&22,812&151.0&170.4\\
+ 3.0&  8.84&  61.99&113.1&16,131&127.0&143.3\\
+\hline
+ 3.5& 10.51&  87.67& 95.1&11,406&106.8&120.5\\
+ 4.0& 12.50& 123.98& 80.0& 8065& 89.8&101.3\\
+ 4.5& 14.87& 175.34& 67.3& 5703& 75.5& 85.2\\
+ 5.0& 17.68& 247.97& 56.6& 4032& 63.5& 71.7\\
+ 5.5& 21.02& 350.68& 47.6& 2851& 53.4& 60.3\\
+\hline
+ 6.0& 25.00& 495.93& 40.0& 2016& 44.9& 50.7\\
+ 6.5& 29.73& 701.35& 33.6& 1425& 37.8& 42.6\\
+ 7.0& 35.36& 991.87& 28.3& 1008& 31.8& 35.8\\
+ 7.5& 42.05&1,402.71& 23.8&  712& 26.7& 30.1\\
+ 8.0& 50.00&1,983.73& 20.0&  504& 22.5& 25.3\\
+\hline
+ 8.5& 59.47&2,805.42& 16.8&  356& 18.9& 21.3\\
+ 9.0& 70.72&3,967.46& 14.1&  252& 15.9& 17.9\\
+ 9.5& 84.10&5,610.84& 11.9&  178& 13.4& 15.1\\
+10.0&100.01&7,934.92& 10.0&  126& 11.2& 12.7\\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:ASTMtable}ASTM Grain size number $G$ along with the average number of intercepts per mm ($\bar{N}_L$), the average number of grains per unit area ($\bar{N}_A$ in mm$^2$), the mean intercept length $\bar{\ell}$ in $\mu$m, the average grain area $\bar{A}$ in $\mu$m$^2$, and the average grain diameter $\bar{d}$ using the assumption of a square grain shape and a circular shape.}
+\end{table}
+
 
 \subsection{Digital grain size measurements}
 The manual measurement methods described above were introduced at a time when all microscopy images were obtained using standard ``wet'' photography methods, i.e., record an image with a camera loaded with photographic film, develop the film, and use a calibrated magnifying system to project enlarged images on special photographic paper subsequently used for the measurements. Since the introduction of digital image recording devices in the mid-seventies, there have been significant developments in the area of \indexit{digital image processing}, both user-assisted and fully automated.  To illustrate how much progress has been made in the past fifty years, consider that the original Eastman Kodak digital camera (1975) had $0.01$ mega-pixels while the Vera Rubin LSST telescope camera installed in mid-2025 has $3,200$ mega-pixels, an increase by five orders of magnitude in five decades.  Typical cameras used today in the materials characterization field are in the range $512\times 512$ to $4,096\times 4,096$ pixels$^2$, i.e., $1/4$ to $16$ mega-pixels; depending on the application, those cameras have a single channel (grayscale) or three channels for RGB color images.  As digital cameras and images became more common, a parallel development of image processing algorithms occurred, a development that is still underway today.
 
 There are many image processing packages that can be used to analyze microstructure images.  One of the more useful ones is \href{https://imagej.net/Fiji/Downloads}{{\color{blue}Fiji}} (formerly known as ImageJ); Fiji, written in Java and originally developed in the medical community, has grown to a package with many built-in tools that are perfectly suited for grain size determination and much more.  \indexit{Python}, an interpreted, object-oriented, high-level programming language has many open-source image analysis libraries, including \textit{Scikit-image}, \textit{HyperSpy}, \textit{Mahotas}, etc.  In addition to Fiji and Python, there are numerous other packages available, some free, some commercial.  Among the commercial packages, \href{http://www.reindeergraphics.com}{{\color{blue}FoveaPro}} is a very comprehensive image analysis program. There are also several scripting languages that provide image analysis tools, in particular \href{http://www.mathworks.com}{{\color{blue}Matlab}}, and \href{https://www.harrisgeospatial.com/docs/using_idl_home.html}{the {\color{blue}Interactive Data Language}} (IDL).  Most microscope companies have their own image analysis package, often optimized for a particular instrument (e.g., optical microscopy images or scanning electron microscopy images).
 
-{\color{red}to be completed}
+As an example of digital image processing applied to a grain microstructure, we take a large area microstructure image from a synthetic Olivine Mg$_2$SiO$_4$ sample.\footnote{The dataset was obtained by means of Electron Back-Scattered Diffraction (EBSD), courtesy of Dr.\ Katharina Marquardt, University of Oxford, UK.} data considered in the previous section.  We will use the {\color{blue}Fiji}  package to perform the analysis listed below.
+
+\begin{enumerate}
+\item Use the line tool to draw a line over the scale marker.
+\item Select \textit{Analyze$\rightarrow$Set Scale}; first set the units (typically micron), then set the known distance (i.e., the true length
+of the scale marker in microns);  make a note of the number of pixels per unit distance.
+\item Select a rectangular area that contains all your grains, but not the scale marker; use \textit{Image$\rightarrow$Crop} to select
+only the grain area. 
+\item Use \textit{Image$\rightarrow$Adjust$\rightarrow$Threshold} to make the boundaries as dark as possible without introducing
+noise inside the grains.  
+\item Click on \textit{Process$\rightarrow$Binary$\rightarrow$Skeletonize} to create grain boundaries that are only 1 pixel wide (Fig.~\ref{\chabbr:fig:OlivineGrainSize}(a)).  Select
+\textit{Process$\rightarrow$Binary$\rightarrow$Dilate} to make the boundaries uniformly 3 pixels wide (Fig.~\ref{\chabbr:fig:OlivineGrainSize}(b)).
+\item Invert the image contrast using the \indexit{Edit$\rightarrow$Invert} action.  This results in black grains separated by white grain boundaries.
+\item Select \textit{Analyze$\rightarrow$Set Measurements}, and select only \textit{Area} and \textit{Perimeter}.  Click OK.
+\item The select \textit{Analyze$\rightarrow$Analyze Particles}, put a minimum size of 10 pixels, and anywhere from 50 to 100 bins.
+Select \textit{Display Results}, \textit{Clear Results},  and \textit{Exclude on Edges}.  Then click OK.  This may take a little
+while, depending on how many grains you have and how fast your computer is.
+\item Save your data as a text file.
+\item Open the text file in a spread sheet program.
+\item Calculate the lost area for each grain as $1.5\times$(unit pixel length)$\times$perimeter, and add it to the area total for each grain.
+\item Compute the grain diameter, assuming that the grains are circular:  $D=2\sqrt{A/\pi}$, where $A$ is the area of each grain.  
+\item Compute the average grain diameter and a standard deviation, and convert to the ASTM grain size.
+\end{enumerate}
+
+For the Olivine data set, this analysis results in a data set with $3,859$ grains; the average grain diameter is determined to be $\langle d\rangle=22.57\,\mu$m with a standard deviation of $13.57\,\mu$m. The grain size histogram is shown in Fig.~\ref{\chabbr:fig:OlivineGrainSize}(c) for a bin size of $1\,\mu$m.  Comparison with the circular grain data in the last column of Table~\ref{\chabbr:tb:ASTMtable} shows that the corresponding ASTM grain size number is $G=8.5$.
+
+\begin{figure}[b!]
+\centering\leavevmode
+\includegraphics[width=6in]{\graphicspath OlivineGrainSize.eps}
+\caption{\label{\chabbr:fig:OlivineGrainSize}(a) Skeletonized Olivine microstructure for an area of $1.764\times 1.305$ mm$^2$; (b) dilated grain boundaries (3 pixels wide); (c) grain diameter histogram; (d) normalized grain diameter histogram with superimposed best fit log-normal distribution.}
+\end{figure}
+
+\subsection{Grain size distribution}
+In materials science, the so-called \indexit{log-normal distribution} has important applications in the description of grain size evolution during recrystallization.  A random variable $X$ is said to be distributed log-normally, when:
+ \[
+ 	\ln(X) \sim \mathcal{N}(\mu,\sigma^2)\ ,
+\]
+where $\mathcal{N}$ denotes a normal distribution with mean $\mu$ and standard deviation $\sigma$ ($\sigma^2$ is the variance).  One can show that the resulting probability density function is given by:
+\[
+	f_X(x; \mu,\sigma^2) = \frac{1}{x\sigma\sqrt{2\pi}}\mathrm{e}^{-\frac{(\ln x-\mu)^2}{2\sigma^2}}\ ,
+\]
+and the cumulative distribution function (CDF) by 
+\[
+	F_X(x)=\Phi\left(\frac{\ln x-\mu}{\sigma}\right)=\frac{1}{2}\left[ 1+\text{erf}\left(\frac{\ln x-\mu}{\sigma\sqrt{2}}\right)\right]\ ,
+\]
+where $\Phi$ is the CDF of the standard normal distribution and $\text{erf}$ is the \indexit{error function}. Example plots of the log-normal distribution for a few values of $(\mu,\sigma)$ are shown in Fig.~\ref{\chabbr:fig:lognormal}.  Note that the curve is asymmetric around its maximum value.  The log-normal function appears in many branches of science and engineering and is also known as the \indexit{Galton distribution}.
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=3in]{\graphicspath lognormal.eps}
+\caption{\label{\chabbr:fig:lognormal}(Illustration of the log-normal distribution for a few parameter pairs $(\mu,\sigma)$.}
+\end{figure}
+
+
+If we apply the log-normal distribution to the olivine data set, we first divide all grain size diameters by the mean value $\langle d\rangle=22.57\,\mu$m to make them dimensionless; setting $x=d/\langle d\rangle$, the mean value is $\mu=-0.1572$ with $\sigma=0.5603$.  Fig.~\ref{\chabbr:fig:OlivineGrainSize}(d) shows the normalized histogram with the log-normal distribution superimposed in red; the distribution shows a very good fit for $x>1$.  For smaller values of $x$, the fit is not as good; this is likely due to reduced accuracy in the determination of the grain size for the smallest grains.  The image processing used to generate the grain boundaries represents a rather simple approach, and there are better algorithms to achieve a more reliable grain size determination for the smallest grains.  
 
 \subsection{Other relevant descriptors}
 
@@ -202,19 +307,19 @@ Compactness and circularity measures are often used to determine how much a shap
 \subsubsection{Chord, eccentricity, and elongatedness}
 A \indexit{chord} is a line connecting any two points on the perimeter; if all possible chords lie entirely inside the shape, then the object is \indexit{convex}. The \indexit{eccentricity} is defined as the ratio of the maximum chord length to the maximum perpendicular chord length, as illustrated in Fig.~\ref{\chabbr:fig:elongatedness}(a).  The \indexit{elongatedness} is defined as the ratio of the long edge length $a$ to the short edge length $b$ for the circumscribing rectangle with the smallest surface area $ab$.
 
-\begin{figure}[t]
+\begin{figure}[h!]
 \centering\leavevmode
-%\includegraphics[width=5in]{\graphicspath elongatedness.eps}
+\includegraphics[width=5in]{\graphicspath elongatedness.eps}
 \caption{\label{\chabbr:fig:elongatedness} Illustration of the eccentricity (a) and the elongatedness (b).}
 \end{figure}
 
 
-\subsubsection{Caliper and Feret diameters}
+\subsubsection{Caliper and Feret diameters and mean breadth}\label{\chabbr:ssec:meanbreadth}
 The \indexit{Feret diameter} can be obtained by placing an object in a particular orientation and determining the distance between two horizontal tangent lines (or planes in 3D), as illustrated in Fig.~\ref{\chabbr:fig:feret}(a).  The distance $F_h$ between the two horizontal tangents is the horizontal Feret diameter; one can also define a vertical Feret diameter $F_v$ or simply rotate the object $90^{\circ}$ and adjust the horizontal tangents.
 
-\begin{figure}[b]
+\begin{figure}[h!]
 \centering\leavevmode
-%\includegraphics[width=5in]{\graphicspath feret.eps}
+\includegraphics[width=5in]{\graphicspath Feret.eps}
 \caption{\label{\chabbr:fig:feret}Illustration of the Feret (a) and caliper (b) diameters of an ellipse.}
 \end{figure}
 
@@ -224,6 +329,15 @@ The \indexit{caliper diameter} is the largest possible Feret diameter; it is obt
 \]
 for any convex object.
 
+The \indexit{mean breadth}, $B$, is defined as the average caliper diameter over all possible orientations of the tangent lines/planes (for a convex object). $B$ is defined mathematically as the mean curvature integrated over the entire surface of the object; this will be explained further in later sections.  For a polyhedron, one can show that the mean curvature is concentrated at the edges of the facets. The general relation for any convex polyhedron is given by:
+\begin{equation}
+	B = \frac{1}{2\pi}\sum_{i=1}^{n_e} \ell_i\,\beta_i\ ,\label{\chabbr:eq:meanbreadth}
+\end{equation}
+where $\ell_i$ are the edge lengths and $\beta_i$ are the \indexit{edge turning angles}, i.e., the angle by which one surface normal needs to turn to become parallel to the surface normal of the adjacent face.  As a simple example, consider a cube of edge length $\ell_i=L$; there are $12$ edges, and at each edge the surface normal turns $\pi/2$, so that 
+\[
+	B_{\text{cube}} = \frac{1}{2\pi}\times 12\times L\times \frac{\pi}{2}=3L\ .
+\]
+Thus, the mean breadth of a cube is three times its edge length.  We will return to the mean breadth when we introduce the \indexit{Minkowski Functionals} in section~\ref{\chabbr:ssec:MinkFunc}.
 
 \subsection{Image analysis and set theory}
 As digital cameras became more widely available, a need arose for a formal definition of the operations that can be carried out on a digital image. The \indexit{theory of image analysis} was first developed in the late 1970s -- early 1980s by research groups in Europe and the USA.  The underlying mathematics is mostly based on set theory, so it is useful to first take a closer look at basic set operations.  Then we make use of these operations to create morphological image processing tools that can be used on microstructure images.\footnote{Portions of this section are based on Chapter 2 in \cite{ohser2000a}.}
@@ -246,11 +360,11 @@ Often it is possible to define sets that represent geometric objects.  For insta
 \begin{equation}
 	\text{Plane:} \quad E_{r,\hat{\mathbf{n}}} = \{\mathbf{x}\in\mathbb{R}^3\vert\mathbf{x}\cdot\hat{\mathbf{n}} = r \}.
 \end{equation}
-A \indexit{3D section} is then the volume formed by two parallel planes at distances $r_1$ and $r_2$ from the origin:
+A \indexit{3D section} is then the volume enclosed by two parallel planes at distances $r_1$ and $r_2$ from the origin:
 \begin{equation}
 	\text{Section:} \quad E_{[r_1,r_2],\hat{\mathbf{n}}} = \{\mathbf{x}\in\mathbb{R}^3\vert r_1\le\mathbf{x}\cdot\hat{\mathbf{n}}\le r_2 \}.
 \end{equation}
-A \indexit{ball} is defined as the collection of points that are at a particular distance $r$ from a given point $\mathbf{r}$, or at less than that distance:
+A \indexit{ball} is defined as the collection of points that are at a particular distance $r$ from a given point $\mathbf{x}$, or at less than that distance:
 \begin{equation}
 	\text{Ball:} \quad b(\mathbf{x},r) = \{\mathbf{y}\in\mathbb{R}^3\vert\,\, \vert\vert \mathbf{y}-\mathbf{x}\vert\vert \le r\}.
 \end{equation}
@@ -287,11 +401,13 @@ the set $B$ is known as the \indexit{structuring element}.  The second equality 
 
 \begin{figure}[h]
 \centering\leavevmode
-%\includegraphics[width=4in]{\graphicspath directsum.eps}
+\includegraphics[width=4in]{\graphicspath directsum.eps}
 \caption{\label{\chabbr:fig:directsum}Illustration of the Minkowski or direct sum of two sets.}
 \end{figure}
 
-Consider the two shapes in Fig.~\ref{\chabbr:fig:directsum}, a circle and a rectangle, slightly displaced from the origin. The direct sum is obtained by taking the circle, and copying it in every point of the structuring element, i.e., the rectangle set; a few copies are shown in the figure.  The resulting set of points is a rectangle with rounded corners, the radius of curvature being equal to that of the circle.  It should be noted that Minkowski addition is both commutative and associative. A related operation is that of \indexit{dilation},\index{set operation!dilation} which is the direct sum with the reflection of the structuring element:
+Consider the two shapes in Fig.~\ref{\chabbr:fig:directsum}, a circle and a rectangle, slightly displaced from the origin. The direct sum is obtained by taking the circle, and copying it in every point of the structuring element, i.e., the rectangle set; a few copies are shown in the figure.  The resulting set of points is a rectangle with rounded corners, the radius of curvature being equal to that of the circle.  It should be noted that Minkowski addition is both commutative and associative. If the structuring element $B$ is a ball $b(\mathbf{o},r)$, then the direct sum $A\oplus B$ is known as a \indexit{parallel set} of $A$.
+
+A related operation is that of \indexit{dilation},\index{set operation!dilation} which is the direct sum with the reflection of the structuring element:
 \begin{equation}
 	\text{Dilation}:\quad A\oplus \check{B} = \{x-y\vert x\in A, y\in B\};
 \end{equation}
@@ -309,7 +425,7 @@ The two operations are illustrated in Fig.~\ref{\chabbr:fig:erosion}. The top ro
 
 \begin{figure}[ht]
 \centering\leavevmode
-%\includegraphics[width=4in]{\graphicspath erosion.eps}
+\includegraphics[width=4in]{\graphicspath erosion.eps}
 \caption{\label{\chabbr:fig:erosion}Illustration of the Minkowski subtraction (top row) of two sets, and the erosion operation (bottom row).}
 \end{figure}
 
@@ -326,10 +442,292 @@ The opening operation is typically used to remove objects that have a size small
 
 \begin{figure}[h]
 \centering\leavevmode
-%\includegraphics[width=5.5in]{\graphicspath opening.eps}
-\caption{\label{\chabbr:fig:opening}Illustration of the morphological opening of the image on the left using the structuring element at the center.}
+\includegraphics[width=5.5in]{\graphicspath opening.eps}
+\caption{\label{\chabbr:fig:opening}Illustration of the morphological opening of the image $A$ on the left using the structuring element $B$ at the center.}
 \end{figure}
 
+One can show that, for a convex compact object $A$ and an arbitrary structuring element $B$, the following relation is always valid:
+\begin{equation}
+	A\circ B \subseteq A \subseteq A\bullet B\ ;
+\end{equation}
+in other words, the opening of $A$ is a subset of $A$, which itself is a subset of the closing of $A$, regardless of the structuring element $B$.  It is also interesting to note that both operations are \indexit{idempotent}, i.e., we have:
+\[
+	(A\circ B ) \circ B = A\circ B \text{ and } (A\bullet B) \bullet B = A\bullet B\ .
+\]
+
+\noindent The \indexit{Hausdorff distance} between two sets $A$ and $B$ is defined as:
+\begin{equation}
+	h(A,B) = \inf\left\{r\vert A\subset B\oplus b(o,r)\text{ and }B\subset A\oplus b(o,r)\right\}\ ;
+\end{equation}
+in words, the Hausdorff distance between two sets $A$ and $B$ is the smallest radius $r$ for which both parallel sets encompass both $A$ and $B$.  This is illustrated in Fig.~\ref{\chabbr:fig:Hausdorff} which shows the parallel sets of two rectangles, $A$, and $B$, as a function of increasing ball radius $r$.  The set $A$ has its lower left corner at position $(180,270)$ (in pixels with the origin in the lower left corner) and has edge lengths $(60,50)$; set $B$ is located at $(260,230)$ with edge lengths $(70, 60)$. The parallel sets completely enclose both original sets when $r=112$, which is shown in the last frame of the figure.  Hence, the Hausdorff distance between the two sets $A$ and $B$ is $112$ pixels.
+
+
+\begin{figure}[h]
+\centering\leavevmode
+\includegraphics[width=5.5in]{\graphicspath Hausdorff.eps}
+\caption{\label{\chabbr:fig:Hausdorff}Illustration of the determination of the Hausdorff distance between two sets $A$ and $B$; the Hausdorff distance condition is met when the radius of the ball $b(\mathbf{o},r)$ is equal to $112$ pixels (each square measures $512\times 512$ pixels).}
+\end{figure}
+
+
+\section{Morphological Measures}\label{\chabbr:sec:morphmeasure}
+
+\subsection{Curvature}\label{\chabbr:ssec:curvature}
+The Minkowski Functionals, introduced in the following section, rely on the concepts of Gaussian and mean curvatures; in this section, we describe briefly how those curvatures are defined and how they can be computed. For a full description we refer the interested reader to the many resources on \textit{differential geometry of surfaces}. 
+
+Consider a curved surface $S$ in $\mathbb{R}^3$; in an arbitrary point $p$ on this surface, we can compute all the vectors that are tangent to the surface in this point using standard vector calculus rules.  Those vectors form the \indexit{tangent plane} and we can locally parameterize the surface $S$, as it deviates from the tangent plane, by means of two parameters, say $(u,v)$.  Every vector in the tangent plane is then a linear combination of two basis vectors which are generally chosen along the directions of fastest change of the parameters $u$ and $v$.  The methods of differential geometry then allow for the computation of the local properties of the surface $S$ by means of dot products between (essentially gradient) vectors in the tangent plane. If the local parameterization of the surface is represented by $\mathbf{r}(u,v)$, then one defines the \indexit{First Fundamental Form} by means of the dot products of the gradient components of $\mathbf{r}$ with respect to the parameters $(u,v)$ (an example will be provided below):
+\begin{equation}
+\begin{split}
+	E &= \frac{\partial \mathbf{r}}{\partial u}\cdot\frac{\partial \mathbf{r}}{\partial u} = \left\vert \frac{\partial \mathbf{r}}{\partial u}\right\vert^2\ ;\\
+	F &= \frac{\partial \mathbf{r}}{\partial u}\cdot\frac{\partial \mathbf{r}}{\partial v}\ ;\\
+	G &= \frac{\partial \mathbf{r}}{\partial v}\cdot\frac{\partial \mathbf{r}}{\partial v}=\left\vert \frac{\partial \mathbf{r}}{\partial v}\right\vert^2\ .
+\end{split}
+\label{\chabbr:eq:firstFF}
+\end{equation}
+The First Fundamental Form can be written as a $2\times 2$ matrix, which is essentially the local metric tensor, $g$, in the tangent plane:
+\begin{equation}
+	g = \begin{pmatrix} E & F\\ F & G\end{pmatrix}\ .
+\end{equation}
+The local unit normal, $\hat{\mathbf{n}}$, to the surface $S$ can be defined by means of the cross product of the gradient vectors in the tangent plane:
+\begin{equation}
+	\hat{\mathbf{n}} = \frac{ \frac{\partial \mathbf{r}}{\partial u} \times \frac{\partial \mathbf{r}}{\partial v} }{\vert\vert \frac{\partial \mathbf{r}}{\partial u} \times \frac{\partial \mathbf{r}}{\partial v} \vert\vert\ } .
+\end{equation}
+The projections of the second derivative components of $\mathbf{r}(u,v)$ onto the unit normal then form the \indexit{Second Fundamental Form}:
+\begin{equation}
+\begin{split}
+	L &= \frac{\partial^2 \mathbf{r}}{\partial u^2}\cdot \hat{\mathbf{n}}\ ;\\
+	M &= \frac{\partial^2 \mathbf{r}}{\partial u\partial v}\cdot \hat{\mathbf{n}}\ ;\\
+	N&= \frac{\partial^2 \mathbf{r}}{\partial v^2}\cdot \hat{\mathbf{n}}\ .
+\end{split}
+\end{equation}
+These three quantities can also be placed in a symmetric $2\times 2$ matrix:
+\begin{equation}
+	h = \begin{pmatrix} L & M\\ M & N\end{pmatrix}\ .
+\end{equation}
+The First and Second Fundamental Forms can be combined into a single matrix, $\mathcal{S}$, known as the \indexit{Shape Operator}:
+\begin{equation}
+	\mathcal{S} = g^{-1}\,h =  \begin{pmatrix} E & F\\ F & G\end{pmatrix}^{-1}\begin{pmatrix} L & M\\ M & N\end{pmatrix}\ .\label{\chabbr:eq:shapeoperator}
+\end{equation}
+The shape operator measures the instantaneous change in the surface normal when moving along the tangent vectors.  The determinant of $\mathcal{S}$ is known as the \indexit{Gaussian curvature}, $K$; since the determinant of a matrix product is the product of the determinants, we  have:
+\begin{equation}
+	K = \frac{L\,N-M^2}{E\,G-F^2}\ .\label{\chabbr:eq:GaussianCurvature}
+\end{equation}
+Half of the trace of $\mathcal{S}$ is known as the \indexit{mean curvature}, $H$; it is readily computed to be:
+\begin{equation}
+\begin{split}
+	H &= \frac{1}{2}\text{Tr}\left[ \frac{1}{E\,G-F^2}\begin{pmatrix} G & -F\\ -F & E\end{pmatrix}\begin{pmatrix} L & M\\ M & N\end{pmatrix}\right]\ ;\\
+	&= \frac{1}{2(E\,G-F^2)} \text{Tr}\left[\begin{pmatrix} G\,L-F\,M& G\,M-F\,N\\ -F\,L+E\,M&-F\,M+E\,N\end{pmatrix}\right]\ ;\\
+	&= \frac{G\,L-2F\,M+E\,N}{2(E\,G-F^2)}\ .
+\end{split}
+\label{\chabbr:eq:meancurvature}
+\end{equation}
+The eigenvalues of $\mathcal{S}$ are known as the \indexit{principal curvatures} and can be expressed as:
+\[
+	\kappa_{\pm} = \frac{EN-2 F M+G L\pm\sqrt{(E N-2 F M+G L)^2-4 \left(EF-F^2\right) \left(LN-M^2\right)}}{2\left(EG-F^2\right)}\ ,
+\]
+which is readily seen to be equivalent to:
+\begin{equation}
+	\kappa_{\pm} = H\pm\sqrt{H^2-K}\ .\label{\chabbr:eq:principalcurvature}
+\end{equation}
+Without loss of generality we take $\kappa_1=\kappa_-$ and $\kappa_2=\kappa_+$ so that $\kappa_2\ge \kappa_1$.  The Gaussian curvature is given by the product of the principal curvatures, $K=\kappa_1\kappa_2$, whereas the mean curvature is the average of the principal curvatures, $H=(\kappa_1+\kappa_2)/2$.  The eigenvectors of $\mathcal{S}$ represent the principal directions in the tangent plane; they can be determined by solving the characteristic equation, as explained in section~\ref{LINALG:characteristic}.
+
+As a simple example, we compute here the curvatures of the sphere.  Working in spherical coordinates $(r,\theta,\phi)$, we can express a general point as:
+\[
+	\mathbf{r} = r(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta)\ .
+\]
+For a given constant radius $r$, the surface can be parameterized by $(u,v)=(\theta,\varphi)$, so that:
+\begin{equation*}
+\begin{split}
+	\frac{\partial \mathbf{r}}{\partial \theta} &= r(\cos\theta\cos\varphi,\cos\theta\sin\varphi,-\sin\theta)\ ;\\
+	\frac{\partial \mathbf{r}}{\partial \varphi} &= r(-\sin\theta\sin\varphi,\sin\theta\cos\varphi,0)\ .
+\end{split}
+\end{equation*}
+The components of the First Fundamental Form are then given by:
+\begin{equation*}
+\begin{split}
+	E &= \frac{\partial \mathbf{r}}{\partial \theta}\cdot\frac{\partial \mathbf{r}}{\partial \theta} = r^2\ ;\\
+	F &= \frac{\partial \mathbf{r}}{\partial \theta}\cdot\frac{\partial \mathbf{r}}{\partial \varphi}=0\ ;\\
+	G &= \frac{\partial \mathbf{r}}{\partial \varphi}\cdot\frac{\partial \mathbf{r}}{\partial \varphi}=r^2\sin^2\theta \ .
+\end{split}
+\end{equation*}
+For the Second Fundamental Form we need an expression for the local unit surface normal, which for the sphere is easily seen to be:
+\[
+	\hat{\mathbf{n}} = (\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta)\ .
+\]
+The second order derivatives can then be combined with this unit vector to generate the components of the Second Fundamental Form:
+\begin{equation*}
+\begin{split}
+	L &= \frac{\partial^2 \mathbf{r}}{\partial \theta^2}\cdot \hat{\mathbf{n}}=-r\ ;\\
+	M &= \frac{\partial^2 \mathbf{r}}{\partial \theta\partial \varphi}\cdot \hat{\mathbf{n}}=0\ ;\\
+	N&= \frac{\partial^2 \mathbf{r}}{\partial \varphi^2}\cdot \hat{\mathbf{n}}=-r\sin^2\theta\ .
+\end{split}
+\end{equation*}
+Substituting these parameters in the expression for the shape operator we find:
+\[
+	\mathcal{S} = \begin{pmatrix} -\frac{1}{r} & 0\\ 0&-\frac{1}{r} \end{pmatrix}\ .
+\]
+The determinant and trace of this matrix are easily determined to be:
+\[
+	K = \frac{1}{r^2}\text{ and } H=-\frac{1}{r}\ ,
+\]
+so that $\kappa_1=\kappa_2=-\frac{1}{r}$.  Note that $\mathcal{S}$ does not depend on the parameters $(\theta,\varphi)$ so that the curvature is the same in every point of the sphere, as expected.  This procedure can be applied to any point on any curved surface.  Note also that the mean and principal curvatures are negative because of the choice of the unit normal; if the surface curves away from the direction of the normal, then the curvature is negative whereas a surface curving towards the normal has a positive curvature.  If we had chosen the inward normal for the sphere, then the curvatures would all be positive.  The curvature must always be a real number, so eq.~(\ref{\chabbr:eq:principalcurvature}) naturally leads to the condition that $K\le H^2$.  
+
+There are several ways in which the curvature distribution in a sample can be represented as a 2-D plot.  Fig.~\ref{\chabbr:fig:curvatureplots}(a) shows the $\kappa_1$--$\kappa_2$ plane; all shapes lie in the half-plane $\kappa_2\ge\kappa_1$ delineated by the diagonal line $\kappa_2=\kappa_1$. The origin corresponds to a flat plane.  If we think of the surface as the interface between  a liquid region and a solid region, then shapes with $\kappa_1=\kappa_2>0$ are solid sphere surrounded by liquid, and $\kappa_1=\kappa_2<0$ are liquid spheres surrounded by solid. Similarly, solid and liquid cylinders are found along the horizontal and vertical axes. Saddle surfaces (principal curvatures have opposite signs) and concave/convex surfaces (principal curvatures have the same sign) are found in between the lines.  A similar plot is obtained if $H$ and $K$ are used for the coordinate axes  (Fig.~\ref{\chabbr:fig:curvatureplots}(b)); the area above the parabola $K=H^2$ is inaccessible.
+
+\begin{figure}[h]
+\centering\leavevmode
+\includegraphics[width=5.5in]{\graphicspath curvatureplots.eps}
+\caption{\label{\chabbr:fig:curvatureplots}Curvature plots in terms of (a) the principal curvatures $(\kappa_1,\kappa_2)$; (b) the Gaussian and mean curvatures $(K,H)$; and (c) the RMS mean curvature and shape parameter $(S,C)$. Regions shaded in light gray are inaccessible for $\kappa_2\ge\kappa_1$.}
+\end{figure}
+
+One can combine the principal curvatures into two new parameters, the root-mean-square (or RMS) curvature $C$, defined as:
+\[
+	C = \sqrt{\kappa_1^2+\kappa_2^2}\ ,
+\]
+and a shape parameter $S$, defined as:
+\[
+	S=\frac{2}{\pi} \arctan \left(\frac{\kappa_2+\kappa_1}{\kappa_2-\kappa_1}\right)\quad\text{with }S\in[-1,1]\ .
+\]
+A curvature plot in terms of those parameters is shown in Fig.~\ref{\chabbr:fig:curvatureplots}(c).
+
+
+
+
+
+\subsection{The Minkowski Functionals}\label{\chabbr:ssec:MinkFunc}
+Consider an arbitrary object $X$; we will represent any parameter $\varphi$ that depends on $X$ as a \indexit{functional} $\varphi(X)$.  This functional may have one or more of the following properties:
+\begin{enumerate}
+\item $\varphi$ is invariant under a Euclidean motion $m$: $\varphi(mX) = \varphi(X)$; 
+\item $\varphi$ is $k$-homogeneous: $\varphi(cX)=c^k\varphi(X)$ with $c\in\mathbb{R}$ and $k\in\mathbb{Z}$;
+\item $\varphi$ is monotone: if $X_1\subseteq X_2\rightarrow \varphi(X_1)\le \varphi(X_2)$;
+\item A small variation in $X$ should give rise to only a small change in the value of $\varphi(X)$ (this is known as the continuity property);
+\item $\varphi$ is additive: $\varphi(X_1\cup X_2) = \varphi(X_1)+\varphi(X_2)-\varphi(X_1\cap X_2)$. The last term prevents double counting of any overlapping volume between the two objects.
+\end{enumerate}
+
+\noindent If we consider an arbitrary convex object $X$, then it can be shown that the following four functionals all have the above five properties:
+\begin{enumerate}
+\item $V(X)$:  the volume of $X$;
+\item $S(X)$: the area of the boundary $\partial X$ of $X$;
+\item $M(X)$: the integral of the mean curvature $H$ of $X$ over the entire boundary $\partial X$;
+\item $K(X)$: the integral of the total (or Gaussian) curvature $K$ over the entire boundary $\partial X$.
+\end{enumerate}
+These four functionals are known as the \indexit{Minkowski functionals}; they are used in many fields of science because it can be shown that \textit{any} functional $\varphi(X)$ that has all five properties described above can be expressed as a linear combination of the Minkowski functionals:
+\begin{equation}
+	\varphi(X) = a_0V(X)+a_1S(X)+a_2M(X)+a_3K(X)\ ,\label{\chabbr:eq:Hadwiger}
+\end{equation}
+where $a_i\in\mathbb{R}$; this is known as \indexit{Hadwiger's characterization theorem}.  Because of this theorem, the Minkowski functionals are only defined up to a constant pre-factor $c_i$, and different conventions for the selection of $c_i$ are in use, depending on the application field.  Selecting a different set of $c_i$ coefficients simply means that the $a_i$ coefficients also change, leaving $\varphi(X)$ unchanged.
+
+The explicit integral definitions of the Minkowski functionals are as follows (expressions for the sphere of radius $R$ are shown between parentheses):
+\begin{equation}
+\begin{split}
+	V(X) &= c_0\iiint_X\,\mathrm{d}V \qquad\left(c_0\frac{4\pi}{3}R^3\right)\ ;\\
+	S(X) &= c_1\iint_{\partial X}\,\mathrm{d}A \qquad\left(c_1\, 4\pi R^2\right)\ ;\\
+	M(X) &= c_2\iint_{\partial X}\,H\,\mathrm{d}A \qquad\left(c_2\, 4\pi R\right)\ ;\\
+	K(X) &= c_3\iint_{\partial X}\,K\,\mathrm{d}A \qquad\left(c_3\, 4\pi\right)\ .
+\end{split}
+\end{equation}
+In one common selection one sets $c_i=1$ for all $i$; another commonly used selection defines them as $c_i=(1, 1/6, 1/3\pi, 1/4\pi)$.  In general, in a $d$-dimensional space, there are $d+1$ Minkowski functionals $W^d_i$ with $i\in[0,d]$.
+
+The integral of mean curvature, $M(X)$ is related to the \indexit{mean breadth} introduced in section~\ref{\chabbr:ssec:meanbreadth}; it can be shown that:
+\begin{equation}
+	B = \frac{1}{2\pi} M(X)\ .
+\end{equation}
+
+The fourth Minkowski functional is proportional to the \indexit{Euler characteristic}, $\chi(X)$, of the object $X$: $\chi = K(X)/4\pi$. The parameter $\chi$ is a \indexit{topological invariant} for a given object; if the object can be continuously shrunk to a single point, then $\chi=1$.  This is the case for all solid convex bodies since they are topologically equivalent to a ball. The sphere (i.e., the surface of the ball) has an Euler characteristic of $\chi=2$. The easiest way to see this is via the Euler formula for a convex polyhedron, where the right-hand side is the Euler characteristic:
+\[
+	V-E+F = 2\ ,
+\]
+with $V$ the number of vertices, $E$ the number of edges, and $F$ the number of faces.  If we were to inflate the polyhedron into a sphere, the right hand side of the equation will not change so that the Euler characteristic of a sphere equals $\chi=2$. The value of $\chi$ can also be expressed in terms of the \indexit{genus} $g$ of the object (i.e., the number of holes in the surface of the object): $\chi = 2-2g$; a sphere has zero holes, and hence $\chi=2$.
+
+The Euler characteristic for 3D objects can be expressed in terms of the so-called \indexit{Betti numbers}, $\beta_n$, with $n\in[0\ldots 2]$\footnote{There is generally an infinite sequence of Betti numbers; in 3D, the first three are the most important numbers.}:
+\begin{equation}
+	\chi = \sum_{n=0}^2 (-1)^n \beta_n\ ;\label{\chabbr:eq:Betti}
+\end{equation}
+in this expression, $\beta_0$ is the number of separate connected components, $\beta_1$ is the number of 1D holes or tunnels through the object, $\beta_2$ is the number of 2D holes (for instance, a hollow sphere).  The $k-$th Betti number thus represents the number of $k$-dimensional holes through the object.  A 1D hole is a loop on the surface of the object that can not be shrunk to a single point. For the sphere, we can take any great circle and slide it across the surface until it collapses into a point, so that $\beta_1=0$ for the sphere. A torus, on the other hand, has two circular loops, orthogonal to each other, that can not be shrunk into a single point without cutting through the surface, so $\beta_1=2$ for the torus. A 2D hole is a void inside the object; for a torus that would be the complete interior region, so $\beta_2=1$. For the sphere, the 2D void is the entire interior region as well, so $\beta_2=1$.  The Euler characteristic for the sphere is thus $\chi=\beta_0-\beta_1+\beta_2=1-0+1=2$, whereas for the torus we have $\chi=1-2+1=0$.
+
+
+\subsection{Computation of the Minkowski Functionals}\label{\chabbr:ssec:compMF}
+Since all functionals that satisfy the five criteria can be expressed as linear combinations of the Minkowski Functionals (MFs), and this is in particular true if a convex object $X$ is modified in a direct sum with a structuring element. If we consider the structuring element to be a ball $b(\mathbf{0},r)$, then the \indexit{Steiner Formulas} express how the MFs for the object $X\oplus b(\mathbf{0},r)$, i.e., the parallel set of $X$ at distance $r$, can be expressed in terms of those of $X$:
+\begin{equation}
+\begin{split}
+	V(X\oplus b(\mathbf{0},r)) &= V(X) + S(X) r + M(X) r^2+K(X)\frac{r^3}{3}\ ;\\
+	S(X\oplus b(\mathbf{0},r)) &= S(X)  + 2M(X) r+K(X)r^2\ ;\\
+	M(X\oplus b(\mathbf{0},r)) &= M(X)+K(X)r\ ;\\
+	K(X\oplus b(\mathbf{0},r)) &= K(X)\ .
+\end{split}
+\label{\chabbr:eq:Steiner}
+\end{equation}
+The Steiner Formulas can be used to generate algorithms for the computation of the MFs for binary 2-D and 3-D datasets by building up shapes one pixel/voxel at a time and correcting the MFs each time by the appropriate amounts.  A detailed derivation can be found in \cite{michielsen2000a} and we illustrate the process here with an example.  Consider a 3D ``empty'' array of $N_x\times N_y\times N_z$ voxels, each with unit edge length; for simplicity we assume that we have cubic voxels.  Each cubic voxel is a convex and closed (i.e., compact) body; one can decompose the cube as the union of the open interior of the cube, a set of six open faces, twelve open edges, and finally eight vertices. The vertices, being points, are simultaneously open and closed, so that the union of all four sets of open bodies is itself closed, representing the complete voxel. By counting the number of these four open sets one can compute the Minkowski Functionals.
+
+
+\begin{table}[b!]
+\centering\leavevmode
+\begin{tabular}{|l|cccc|cccc|}
+\hline
+&$n_c$ & $n_f$ & $n_e$ & $n_v$ & $V$ & $S$ & $2B$ & $\chi$\\
+\hline
+Starting cube & 1 & 6 & 12 & 8 &&&&\\
+&&&&&1&6&3&1\\
+\hline
+Change in value & 1 & 5 & 8 & 4 &&&&\\
+upon adding cube 2 &&&&&1&4&1&0\\
+\hline
+New MF values &&&&&2&10&4&1\\
+\hline
+\end{tabular}
+\end{table}
+
+We represent by $n_c$ the number of open cubes, $n_f$ the number of open faces, $n_e$ the open edges and $n_v$ the number of vertices.  The MFs can then be shown to be given by:
+\begin{equation}
+	V = n_c;\quad S=-6n_c+2n_f;\quad 2B=3n_c-2n_f+n_e;\quad \chi=-n_c+n_f-n_e+n_v\ .\label{\chabbr:eq:MFni}
+\end{equation}
+The counting process can be performed one voxel at a time. We begin with an empty array, so that $V=S=B=\chi=0$.  We place one voxel, labeled $1$, on the array (see Fig.~\ref{\chabbr:fig:MFcubes}(a)). This voxel represents the first voxel of an object with arbitrary shape; the algorithm explained below is exact for convex objects, and approximate for others.  The starting cube has the values for $n_i$ listed on the first line of the table below; inserting them into the relations~(\ref{\chabbr:eq:MFni}) we obtain the values on the second row of the table. Adding cube $2$ (Fig.~\ref{\chabbr:fig:MFcubes}(b)) as a nearest neighbor to cube $1$ produces the numbers $n_i$ on the third row of the table; we avoid double counting existing open sets, so there are $n_f=5$ new faces, $n_e=8$ new edges and $n_v=4$ new vertices, leading to the MF values on row $4$. Adding row $4$ to row $2$ produces row $5$, which are the new MF values for the body consisting of two cubes.
+
+
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=5.0in]{\graphicspath MFcube.eps}
+\caption{\label{\chabbr:fig:MFcubes}Example of the MF computation by gradually adding more cubic voxels.  The open sets are shown as a green cube, blueish facets, blue edges and red vertices; only the sets that are new and avoid double counting are shown for each step.}
+\end{figure}
+
+
+Adding cube $3$ produces the same change values as cube $2$, so the MFs become $(3,14,5,1)$. Cube $4$ produces only $4$ new faces, $5$ new edges, and $2$ new vertices; this leads a change value of $(1,2,0,0)$ and thus $(4,16,5,1)$ for the MFs  (Fig.~\ref{\chabbr:fig:MFcubes}(c)).  Cube $5$ results in the same change as cube $2$, whereas both $6$ and $7$ give rise to the same change as $4$; adding all the changes together results in the following updated MFs: $(7,24,6,1)$ .  Finally, cube $8$ produces 3 new faces, $3$ new edges, and one single new vertex, leading to a change value of $(1,0,0,0)$ and the new totals for the MFs are $V=8$, $S=24$, $2B=6$ and $\chi=1$, as is readily verified directly from Fig.~\ref{\chabbr:fig:MFcubes}(d).  This process can be repeated for an arbitrary shape simply by adding individual voxels and keeping track of the changes in the numbers $n_i$.  
+
+
+
+
+% algorithm to compute the MFs.
+
+
+% KMHDR algorithm results:
+% cube of edge length 20
+
+% V =    8000.00000    = L^3
+% S =    2400.00000    = 6 L^2
+% B =    30.0000000    
+% M =    188.495407    = 3 pi L
+% K =    4.18878698    = 4 pi/3  -> chi = 1
+
+% OM result
+
+%  Volume                  = 8000  =  L^3
+%  Volume fraction V_V     = 0.0305176
+%  Surface area S_V        = 2160.45
+%  Mean curvature M_V      = 170.651
+%  Total curvature K_V     = 12.5664   = 4 pi
+%
+
+% KMHDR sphere of radius 20
+% V =    33552.0000    
+% S =    7584.00000    
+% B =    60.0000000    
+% M =    376.990814    
+% K =    4.18878698    
+
+% OM result
+%specific volume                      =   33552.0000       33510.3226       0.12
+%specific surface area                =    1678.6456        1675.5161       0.19
+%specific integral of mean curvature  =      84.3045          83.7758       0.63
+%specific integral of total curvature =       4.1888   
 
 \section{Introduction to Stereology}\label{sec:stereology}
 
@@ -373,7 +771,7 @@ Stereology uses a standardized notation scheme for all its fundamental quantitie
 \begin{enumerate}
 \item $A$ [$\ell^2$]: Planar area of intercepted features, planar test area;
 \item $S$ [$\ell^2$]: Surface/interface area (not necessarily planar);
-\item $A_A$ [$\ell^2/\ell^2$=[---]: area fraction;
+\item $A_A$ [$\ell^2/\ell^2$]=[---]: area fraction;
 \item $S_V$ [$\ell^2/\ell^3$]=[$\ell^{-1}$]: surface area per unit volume\\
 \end{enumerate}
 
@@ -399,7 +797,7 @@ Stereology uses a standardized notation scheme for all its fundamental quantitie
 \begin{enumerate}
 \item $\bar{L}$  [$\ell$]: Average lineal intercept $L_L/N_L$;
 \item $\bar{A}$ [$\ell^2$]: Average areal intercept $A_A/N_A$;
-\item $\bar{S}$ [$\ell^2$]: Average surface area $S_V/N_V$;
+\item $\bar{S}$ [$\ell^2$]: Average surface area $S_V/N_A$;
 \item $\bar{V}$ [$\ell^3$]: Average volume $V_V/N_V$.
 \end{enumerate}
 
@@ -425,7 +823,7 @@ In addition to the quantities described above, there are a few other parameters 
 \end{enumerate}
 
 
-There are several fundamental stereological relationships\index{stereology!fundamental relations} between these quantities; the most important relations are (without proof):
+\noindent There are several fundamental stereological relationships\index{stereology!fundamental relations} between these quantities; the most important relations are (without proof):
 \begin{itemize}
 	\item $V_V=A_A=L_L=P_P$ (dimensionless) 
 	\item $S_V = (4/\pi)L_A = 2P_L$ (dimension of ``per unit length'')
