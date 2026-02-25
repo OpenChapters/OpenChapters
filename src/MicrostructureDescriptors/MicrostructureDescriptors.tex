@@ -942,6 +942,13 @@ Both determinant and trace are invariant under coordinate rotations; by combinin
 \end{equation}
 It can be shown that $\omega_1$ is invariant under \indexit{similarity transformations} (i.e., rotations, translations, and uniform scaling) whereas $\omega_2$ is invariant under \indexit{affine transformations} (similarity transformations plus anisotropic scaling and shearing).
 
+
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=4.0in]{\graphicspath 2DMImap.eps}
+\caption{\label{\chabbr:fig:2DMImap}2D normalized moment invariant map; all 2D shapes are represented by points inside the shaded region above the parabola $\bar{\omega}_2=\bar{\omega}^2_1$. All shapes with the same aspect ratio $\tau$ lie on a single parabola.}
+\end{figure}
+
 When we substitute the central moments for the circle we obtain $\omega_1=4\pi$ and $\omega_2=16\pi^2$, and for the rectangle we have $\omega_1=24\tau/(1+\tau^2)$ and $\omega_2=144$, where $\tau=a/b$, the rectangle aspect ratio.  If we divide the moment invariants of the rectangle by those of the circle, then we obtain the normalized 2D moment invariants:
 \begin{equation}
 	\bar{\omega}_1=\frac{6}{\pi}\frac{\tau}{1+\tau^2};\quad\text{ and }\quad \bar{\omega}_2 = \frac{9}{\pi^2}\ .	
@@ -949,10 +956,22 @@ When we substitute the central moments for the circle we obtain $\omega_1=4\pi$ 
 We can make a few observations regarding these normalized 2D moment invariants:
 \begin{itemize}
 	\item Both $\bar{\omega}_1$ and $\bar{\omega}_2$ vary between $0$ and $1$, which means that we can represent any 2D shape by a point in the unit square.
-	\item $\bar{\omega}_1$ always depends on the aspect ratio of the shape, whereas $\bar{\omega}_2$ does not; in fact, if we take $\bar{\omega}_1$ for a square (i.e., $\tau=1$) then we have $\bar{\omega}_1=12$. Note that for both the circle and the square, which have aspect ratio equal to $1$, we have $\bar{\omega}_2=\bar{\omega}^2_1$. This is a general property that is valid for all shapes: shapes with aspect ratio $1$ lie along the parabola $\bar{\omega}_2=\bar{\omega}^2_1$, and there are no 2D shapes that correspond to points to the right of the parabola.
+	\item $\bar{\omega}_1$ always depends on the aspect ratio of the shape, whereas $\bar{\omega}_2$ does not; in fact, if we take $\bar{\omega}_1$ for a square (i.e., $\tau=1$) then we have $\bar{\omega}_1=12$. Note that for both the circle and the square, which have aspect ratio equal to $1$, we have $\bar{\omega}_2=\bar{\omega}^2_1$. This is a general property that is valid for all shapes: shapes with aspect ratio $1$ lie along the parabola $\bar{\omega}_2=\bar{\omega}^2_1$, and there are no 2D shapes that correspond to points to the right of the parabola (see Fig.~\ref{\chabbr:fig:2DMImap}).
 	\item When an isotropic shape is distorted by anisotropic scaling, the corresponding point in the $\bar{\omega}_1$--$\bar{\omega}_2$ space moves along a straight horizontal line, i.e., the $\bar{\omega}_2$ value does not change.  This means in particular that the top line $\bar{\omega}_2=1$ represents the circle at $(1,1)$, and all ellipses at $(\bar{\omega}_1,1)$.
-	\item All 2D shapes with a given aspect ratio lie along a parabola similar to $\bar{\omega}_2=\bar{\omega}^2_1$, 
+	\item All 2D shapes with a given aspect ratio lie along a parabola similar to $\bar{\omega}_2=\bar{\omega}^2_1$; this parabola ends on the line of ellipses $\bar{\omega}_2=1$, and the intersection of the parabola with this line represents the \indexit{equivalent ellipse} for all the shapes along the entire parabola. 
 \end{itemize}
+
+In 2D, all affine moment invariants have been worked out up to order $n=12$; there are a total of $80$ affine moment invariants \cite{Flusser2009}. As an example, here are the fourth order MIs:
+\begin{equation}
+\begin{split}
+\tau_1 &= \frac{A^3}{3\pi^2}\left(\bar{\mu}_{40}+2\bar{\mu}_{22}+\bar{\mu}_{04}\right)^{-1}\ ;\\
+\tau_2 &= \frac{A^6}{48\pi^4}\left(\bar{\mu}_{40}\bar{\mu}_{04}-4\bar{\mu}_{31}\bar{\mu}_{13}+3\bar{\mu}^2_{22}\right)^{-1}\ ;\\
+\tau_3 &= \frac{A^9}{1728\pi^6}\left(\bar{\mu}_{40}\bar{\mu}_{04}\bar{\mu}_{22}-\bar{\mu}_{40}\bar{\mu}^2_{13}-\bar{\mu}_{04}\bar{\mu}^2_{31}+
+2\bar{\mu}_{31}\bar{\mu}_{13}\bar{\mu}_{22}-\bar{\mu}^3_{22}\right)^{-1}\ .
+\end{split}
+\end{equation}
+The number of similarity invariants up to order $n=12$ is very large and has not been enumerated.  It should also be noted that odd-order invariants can not be normalized in the usual way because all odd-order invariants vanish for the circle.
+
 
 {\color{red}include example map here for some microstructure}
 
@@ -1016,13 +1035,36 @@ The 3D moment invariants $\Omega_i$ for the rectangular prism are then readily s
 	\Omega_2 = 144 \frac{3(\tau_1\tau_2)^{4/3}}{\tau_1^2+\tau_2^2+\tau_1^2\tau_2^2};\qquad
 	\Omega_3 = 1728\ .
 \end{equation}
-If we set both aspect ratios equal to $1$, then we find the 3D moment invariants for the cube to be $\Omega_1=12$, $\Omega_2=144=12^2$, and $\Omega_3=1728=12^3$.  This is a general observation; for \textit{any} isotropic 3D shape, we have the following relations: $\Omega_2=\Omega_1^2$ and $\Omega_3=\Omega_1^3$.
+If we set both aspect ratios equal to $1$, then we find the 3D moment invariants for the cube to be $\Omega_1=12$, $\Omega_2=144=12^2$, and $\Omega_3=1728=12^3$.  This is a general observation; for \textit{any} isotropic 3D shape, we have the following relations: $\Omega_2=\Omega_1^2$ and $\Omega_3=\Omega_1^3$. Table~\ref{\chabbr:tb:Platonic} lists the 3D moment invariants for the Platonic solids along with the numerical value of $\Omega_3$.
+
+\begin{table}[h!]
+\centering\leavevmode
+\begin{tabular}{llllr}
+\hline
+\textbf{Shape}  &  $\Omega_1$  &  $\Omega_2$ &  $\Omega_3$ & $\Omega_3$\\
+\hline
+Tetrahedron & $\frac{20}{3^{2/3}}$& $\frac{400}{3^{4/3}}$& $\frac{8000}{9}$&$888.889$ \\
+Cube &12 & 144&1728& $1728.000$ \\
+Octahedron & $\frac{20\times 2^{1/3}}{3^{2/3}}$&$\frac{400\times 2^{2/3}}{3^{4/3}}$ & $\frac{16\,000}{9}$& $1777.778$\\
+Dodecahedron & $\frac{150\times10^{1/3}\tau^{2/3}}{17+11\tau}$& $\frac{22\,500\times10^{2/3}\tau^{4/3}}{(17+11\tau)^2}$& $\frac{33\,750\,000\tau^{2}}{(17+11\tau)^3}$&$2096.873$ \\
+Icosahedron &$\frac{10\times 5^{2/3}2^{1/3}}{(3\tau)^{2/3}}$ & $\frac{500\times 5^{1/3}2^{2/3}}{(3\tau)^{4/3}}$& $\frac{50\,000}{9\tau^2}$& $2122.033$ \\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:Platonic}3D moment invariants for the five Platonic solids.}
+\end{table}
 
 For the 3D sphere of radius $R$, the 3D central moments are $\mu_{200}=\mu_{020}=\mu_{002}=4\pi\,R^5/15$ so that the 3D moment invariants become:
 \begin{equation}
 	\Omega_1 = \left(\frac{2000\pi^2}{9}\right)^{1/3};\qquad \Omega_2 = \left(\frac{2000\pi^2}{9}\right)^{2/3};\qquad \Omega_3 = \frac{2000\pi^2}{9}\ .
 \end{equation}
-One can show that the sphere is the 3D shape with the largest possible value of the $\Omega_3$ invariant, so once again we can divide the $\Omega_i$ values for an arbitrary shape by those of the sphere to obtain normalized moment invariants in the range $[0,1]$, i.e., a cube, with the sphere at the point $(1,1,1)$.
+One can show that the sphere is the 3D shape with the largest possible value of the $\Omega_3$ invariant, namely $\Omega_3=2193.245$, so once again we can divide the $\Omega_i$ values for an arbitrary shape by those of the sphere to obtain normalized moment invariants $\bar{\Omega}_i$ in the range $[0,1]$, i.e., a cube, with the sphere at the point $(1,1,1)$.
+
+For the normalized 2D moment invariants, only a portion of the $\bar{\omega}_1$--$\bar{\omega}_2$ space represents actual 2D shapes; no shapes are possible in the area under the parabola in Fig.~\ref{\chabbr:fig:2DMImap}. The same is true for the 3D moment invariants but the analysis of the possible sub-volume of the unit cube is significantly more complex.  We refer the interested reader to reference \cite{degraef2008b}, in particular appendix A. The allowed volume is represented by the two curved surfaces in Fig.~\ref{\chabbr:fig:3DMImap}; the curve along which the two surfaces meet is parameterized by:
+\begin{equation}
+	\bar{\bm{\Omega}}(\zeta) = (\zeta,\zeta^2,\zeta^3)\text{ with }\zeta\in[0\ldots 1]\ .
+\end{equation}
+
+
 
 {\color{red}insert figures for whole chapter; create example microstructure and apply algorithms; describe discrete moment calculation; }
 
