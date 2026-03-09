@@ -1,0 +1,162 @@
+% 
+% ###################################################################
+%  Copyright (c) 2025, AUTHORNAME 
+%  Editors: A.D. Rollett & M. De Graef
+%  All rights reserved.
+%
+% Licensed under the Creative Commons CC BY-NC-SA 4.0 License, 
+% hereafter referred to as the "License"; you may not use this 
+% document except in compliance with the License. You may obtain 
+% a copy of the License at 
+%     https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode 
+% Unless required by applicable law or agreed to in writing, all 
+% material distributed under the License is distributed on an 
+% "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+% either express or implied. See the License for the specific 
+% language governing permissions and limitations under the License.
+% ###################################################################
+
+% ###################################################################
+% ###################################################################
+% ###################################################################
+% The following lines are to be uncommented or edited as needed 
+
+%     uncomment this line only if this chapter is a core/foundational chapter;
+%     for a core chapter a "Foundational" label will appear on the top left above the chapter title.
+%\corechapter{Yes}
+
+%     this will appear in a secondary header below the chapter title.
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University}
+
+% All figures are stored in the src/ChapterTitle/eps folder and must be of the *.eps, *.pdf, or *.png type. 
+
+% this is the 6-character (all uppercase) chapter descriptor used in labels and refs...
+\renewcommand{\chabbr}{TEXCOM}
+
+%     replace \noheaderimage by the chapter header image file name (without .eps extension).
+%     pdf files are also acceptable.
+%     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
+\chapterimage{\noheaderimage}
+
+% start the chapter and define the chapter label (outside of the \chapter command!)
+\chapter{Texture Components}\label{\chabbr:TextureComponents} % should be the same as the filename (without extension)
+
+% add the author information so that it will appear in the Author List at the start of the document
+% repeat this line for each author
+\writeauthor{TEXCOM:TextureComponents}{Texture Components}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+
+% Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels.
+% Each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
+% second column if LaTeX breaks the line at an awkward location.  The label color (OCBurntOrange) should not be changed.
+% Within the itemize environment, hyphenation is temporarily turned off.
+%\begin{learningobjectives}
+% This itemized list should be formatted as follows and must be enclosed by { } 
+%{\begin{itemize}
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:complex}:}] Learn a formal description of complex numbers
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:quaternions}:}] Define the quaternion number system\\
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+%\end{itemize}}
+%\end{learningobjectives}
+% ###################################################################
+% ###################################################################
+% ###################################################################
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% This where the actual chapter content starts   %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The Sample Reference  Frame}\label{\chabbr:sampleref}
+In texture analysis one is generally interested in the distribution of grain orientations with respect to a suitably chosen external reference frame.  Typically, this reference frame is attached to the sample used for the orientation measurements. It makes sense for the basis vectors of the reference frame to be chosen to be parallel to important sample directions.  For instance, in samples that underwent plastic deformation in a rolling mill, it makes good sense for the \indexit{rolling direction} (RD) to be selected to be parallel to one of the basis vectors; the normal to the sample surface, the \indexit{normal direction} (ND), is another logical choice for a basis vector direction.  For samples deformed in torsion mode the torsion axis can be oriented along one of the basis directions, and in additively manufactured samples, the layer deposition direction represents a logical basis direction. For geological samples, the local structural elements will often suggest natural choices for the reference frame directions.  Once a choice is made that is appropriate for a given sample type, other reference frames can be used once the correct rotation between the frames is known.
+
+In this chapter, we will focus our attention on rolled microstructures, and we select the Cartesian basis vectors to be $\mathbf{e}_x$ parallel to the rolling direction RD, $\mathbf{e}_z$ parallel to the normal direction ND, and $\mathbf{e}_y$ parallel to the \indexit{transverse direction} TD, so that the reference frame is right-handed.  A grain orientation with respect to this reference frame can then be determined by specifying two pieces of information: the crystallographic direction $[uvw]$ parallel to RD, and the plane $(hkl)$ normal to ND.  In the following subsections we will describe how the rotation matrix can be determined from $[uvw]$ and $(hkl)$, first for the cubic crystal system, then for a general Bravais lattice.
+
+\subsection{Grain Orientation Matrix for Cubic Symmetry}\label{\chabbr:grainORmatcubic}
+From the knowledge of $[uvw]$ and $(hkl)$, we obtain the corresponding unit vectors as:
+\begin{equation*}
+	\hat{\mathbf{b}} = \frac{(u,v,w)}{\sqrt{u^2+v^2+w^2}}\quad\text{ and }\quad\hat{\mathbf{n}}=\frac{(h,k,l)}{\sqrt{h^2+k^2+l^2}}\ .
+\end{equation*}
+Note that these expressions are only valid for cubic symmetry.  The unit vector along TD can then be determined from the vector cross product:
+\begin{equation*}
+	\hat{\mathbf{t}} = \frac{\hat{\mathbf{n}}\times\hat{\mathbf{b}}}{\vert \hat{\mathbf{n}}\times\hat{\mathbf{b}}\vert}\ .
+\end{equation*}
+We use these three vectors as columns in the rotation matrix $g_{ij}$ that takes the sample reference frame into the (Cartesian) grain reference frame:
+\begin{equation}
+g_{ij}= \begin{pmatrix}
+b_1 & t_1 & n_1\\
+b_2 & t_2 & n_2\\
+b_3 & t_3 & n_3
+\end{pmatrix}
+\end{equation}
+As an example, consider a grain that has $[uvw]=[100]\parallel$RD and $(hkl)=(011)\parallel$ND; the unit vectors are:
+\[
+	\hat{\mathbf{n}}=\left(0,\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}\right), \hat{\mathbf{b}}=(1,0,0)\qquad\rightarrow \hat{\mathbf{t}}=\left(0,\frac{1}{\sqrt{2}},-\frac{1}{\sqrt{2}}\right)\ .
+\]
+The rotation matrix $g_{ij}$ then becomes:
+\[
+g_{ij}=\begin{pmatrix}
+1&0&0\\
+0&\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
+0&-\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}
+\end{pmatrix}\ .
+\]
+We recognize this matrix to represent a counterclockwise $45^{\circ}$ rotation around the $[100]$ axis, i.e., the rolling direction.  
+
+\subsection{Grain Orientation Matrix for General Symmetry}\label{\chabbr:grainORmatgeneral}
+For a general Bravais lattice, the Cartesian basis vectors are typically not parallel to the lattice vectors and we must use the \indexit{direct structure matrix}, $a_{ij}$, for direction vectors and the \indexit{reciprocal structure matrix}, $b_{ij}$, for plane normals; those matrices were defined in section~\ref{BASCRY:sec:SMderivation}.  The vectors $\mathbf{b}$ and $\mathbf{n}$ defined in the previous section must now be transformed from the Bravais reference frame to the Cartesian crystal frame and subsequently normalized before insertion into the columns of the rotation matrix $g_{ij}$.  Writing $n^c_i=b_{ik}n_k$ and $b^c_i=a_{im}b_m$ the rotation matrix becomes:
+\[
+	g_{ij} = \begin{pmatrix}
+	b^c_1 & t'_1 & n^c_1\\
+	b^c_2 & t'_3 & n^c_2\\
+	b^c_3 & t'_3 & n^c_3
+	\end{pmatrix}\ ,
+\]
+where the components $t'_i$ are defined using the permutation symbol as: $t'_i=\epsilon_{ijk}n^c_j b^c_k$. Note that each column of the matrix must represent a unit vector.
+
+As an example we consider the hexagonal $\alpha$-Ti structure with lattice parameters $a=0.2950$ nm, $c=0.4769$ nm, and $\gamma=120^{\circ}$; the volume of this unit cell is $V=0.0353$ nm$^3$.  The direct and reciprocal structure matrices are given by:
+\[
+	a_{ij}=\begin{pmatrix}
+	0.29500&-0.14750&0.00000\\
+	0.00000&0.25548&0.00000\\
+	0.00000&0.00000&0.46790
+	\end{pmatrix};\qquad b_{ij} = \begin{pmatrix}
+	3.38983&0.00000&0.00000\\
+	1.95712&3.91424&0.00000\\
+	0.00000&0.00000&2.13721
+	\end{pmatrix}\ .
+\]
+We consider the following vectors: $\mathbf{n}=(10.0)=(100)$ and $\mathbf{b}=[1\bar{2}.0]=[0\bar{1}0]$, where we used the transformation relations from four-index to three-index notation described in sections~\ref{CRYSYM:ssec:MBindices} and \ref{CRYSYM:ssec:Millerhexagonal}.   Application of the structure matrices leads to $\mathbf{n}^c=b\,\mathbf{n} = (3.38938,1.95712,0.00000)$ and $\mathbf{b}^c=a\,\mathbf{b}=(0.1475,-0.25548,0.00000)$.  After normalization, we have 
+\begin{equation*}
+\begin{split}
+	\hat{\mathbf{n}}&=(0.86602,0.50000,0.00000)=(\sqrt{3}/2,1/2,0);\\ 
+	\hat{\mathbf{b}}&=(0.50000,-0.86602,0.00000)=(1/2,-\sqrt{3}/2,0)
+	\end{split}\ ,
+\end{equation*} 
+leading to $\hat{\mathbf{t}}=(0,0,-1)$ and the rotation matrix:
+\[
+	g_{ij} = \begin{pmatrix}
+	\frac{1}{2} & 0 & \frac{\sqrt{3}}{2}\\
+	-\frac{\sqrt{3}}{2} & 0 & \frac{1}{2}\\
+	0 & -1 & 0
+	\end{pmatrix}\ .
+\]
+If we compare this matrix with the general rotation matrix derived for Bunge Euler angles (section~\ref{3DROTS:ssec:definitions}), we can determine that the corresponding Euler angles are given by $(\varphi_1,\Phi,\varphi_2)=(0^{\circ},90^{\circ},60^{\circ})$.  Reduction of this rotation to the hexagonal Rodrigues Fundamental Zone (see chapter~\ref{ORISYM:OrSym}) results in the rotation $90^{\circ}@[2\bar{1}.0]$.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

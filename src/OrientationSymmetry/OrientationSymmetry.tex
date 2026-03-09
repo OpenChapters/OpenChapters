@@ -280,12 +280,46 @@ Finally, we have the T and O RFZs; their mappings into Euler space are shown on 
 
 
 \subsubsection{Standard Fundamental Zones in the Euler Representation}\label{\chabbr:ssec:EulerFZs}
+Traditionally, most texture publications use the Euler space representation with its own fundamental zones, which we will refer to as Euler FZs; they are unrelated to the now more commonly used Rodrigues fundamental zones.  Working in Bunge angles, $(\varphi_1,\Phi,\varphi_2)$, the Euler FZs can be defined by sub-dividing Euler space into (mostly) rectangular prisms with long axis along $\varphi_1$, i.e., using the full range $[0,2\pi]$. Recall that the identity operation is infinitely degenerate in this representation, and oriented along the diagonal of the space in the $\Phi=0$ plane; therefore, contrary to the RFZs introduced before, not every Euler FZ will contain the identity, and, because of its orientation along the $\varphi_1$ axis, it will at most contain a portion of the equivalent identity orientations. 
 
-{\color{red}Does sample symmetry belong in this section?}
+\begin{figure}[b!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath roof.eps}
+\caption{\label{\chabbr:fig:roof}(a) Sub-divisions of Euler space due to the presence of three-fold axes in the cubic system; the special ``roof'' and ``loaf'' shapes are shaded. (b) 3D rendering of (a). }
+\end{figure}
+
+To determine the boundaries of the Euler FZs, we need to consider the general Euler rotation matrix, $g_{ij}(\varphi_1,\Phi,\varphi_2)$, and apply the rotational symmetry operators of the proper point groups. As an example we consider the three-fold rotation axis of the cubic T and O point groups. This axis permutes the coordinate directions and is represented by the rotation matrices $C$ and $C^2$:
+\[
+	C = \begin{pmatrix} 0&1&0\\ 0 & 0& 1\\ 1&0&0\end{pmatrix}\qquad\text{and}\qquad
+	C^2 = \begin{pmatrix} 0&0&1\\ 1 & 0& 0\\ 0&1&0\end{pmatrix}\ .
+\]
+Looking at the $33$ entry of the transformed matrices, we find:
+\begin{equation*}
+\begin{split}
+	(C\,g)_{33} &= \sin\Phi\,\sin\varphi_2; \\
+	(C^2\,g)_{33} &= \sin\Phi\,\cos\varphi_2.	
+\end{split}
+\end{equation*}
+The original untransformed entry is $g_{33}=\cos\Phi$, so that, for a given value of $\varphi_2$, the range of unique $\Phi$ values is determined by equating $\cos\Phi$ to each of the above expressions.  Taking proper account of the interval of $\varphi_2$, we find that there are two curves that oscillate symmetrically around the value $\Phi=\pi/2$:
+\begin{equation}
+	\Phi = \text{arccot}(\vert\cos(\varphi_2)\vert)\qquad\text{ and }\qquad\Phi = \text{arccot}(\vert\sin(\varphi_2)\vert); \
+\end{equation}
+Those curves are shown in Fig.~\ref{\chabbr:fig:roof}(a); note that the portions of the curves above $\Phi=\pi/2$ are obtained by mirroring the curves below that value.  Since the value of $\varphi_1$ does not enter these expressions, the curves can be extended in the $\varphi_1$ direction, as shown in the rendering of Fig.~\ref{\chabbr:fig:roof}(b).  The vertical planes at multiples of $\pi/2$ and the horizontal plane at $\Phi=\pi/2$ are obtained by applying a similar analysis to the two-fold and four-fold symmetry operators.
+
+The rectangular box along $\varphi_1$ with $0\le\Phi\le\pi/2$ and $0\le\varphi_2\le\pi/2$ contains three copies of each orientation; they are equivalent under operation of the three-fold symmetry axis.  One can either use the entire box to describe cubic textures, realizing that each orientation is present three times, or one can subdivide the box into three volumes. This subdivision can be done in two ways as illustrated by the colored regions in Fig.~\ref{\chabbr:fig:roof}(a): the red shape on the left is known as the ``loaf'', the blue shape on the right as the ``roof''.  Either one can be used to describe octahedral cubic textures with each unique orientation present only once. For the tetrahedral cubic symmetry, the loaf and roof shapes are mirrored above the $\Phi=\pi/2$ line, as shown in the central quadrants of the plot. The intersection point of the red and blue curves closest to the origin has coordinates $(\varphi_2,\Phi)=(\pi/4,\text{arctan}(\sqrt{2}))$.
+
+\begin{figure}[b!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath EFZs.eps}
+\caption{\label{\chabbr:fig:EFZs}The Euler FZs for the non-cubic proper point group symmetries. }
+\end{figure}
+
+The Euler FZs for the non-cubic proper point groups are shown in Fig.~\ref{\chabbr:fig:EFZs}. Note that the order $n$ of the primary rotation axis reduces the range of the $\varphi_2$ angle to $2\pi/n$; in the presence of orthogonal two-fold axes, the range of $\Phi$ is cut in half.  
+
 
 
 \section{Orientation Sampling in the Presence of Fundamental Zones}\label{\chabbr:sec:samplingRFZs}
-In the Fundamental Chapter~\ref{3DROTS:3Drotations}, section~\ref{3DROTS:sec:randomsampling}, several approaches are described to generate random samples of orientations; Schoemake sampling and Super-Fibonacci sampling produce high quality (i.e., uniform) orientation sets, whereas others, like Marsaglia sampling, do not have perfect uniformity, but are still reasonably uniform.  A new orientation representation, the \indexit{cubochoric representation} was introduced in section~\ref{3DROTS:ssec:cubochoric}; this representation was developed with the intent of generating uniform samples of orientations in a numerically convenient way, by starting from a uniform cubical grid.  In the present section, we answer the question: how are these orientation sampling approaches affected by the introduction of Fundamental Zones?
+In the Fundamental Chapter~\ref{3DROTS:3Drotations}, section~\ref{3DROTS:ssec:randomsampling}, several approaches are described to generate random samples of orientations; Schoemake sampling and Super-Fibonacci sampling produce high quality (i.e., uniform) orientation sets, whereas others, like Marsaglia sampling, do not have perfect uniformity, but are still reasonably uniform.  A new orientation representation, the \indexit{cubochoric representation} was introduced in section~\ref{3DROTS:ssec:cubochoric}; this representation was developed with the intent of generating uniform samples of orientations in a numerically convenient way, by starting from a uniform cubical grid.  In the present section, we answer the question: how are these orientation sampling approaches affected by the introduction of Fundamental Zones?
 
 When the cubochoric representation is combined with the Rodrigues representation, one can generate uniform orientation samples that are restricted to a crystallographic Fundamental Zone.  Consider the following two examples: the point group symmetries are \pg{24} and \pg{30}, with $N=20$ in the first case and $N=50$ in the second. Without the application of symmetry the total number of points generated would be $(2N+1)^3$ or $68,921$ for $N=20$ and $1,030,301$ for $N=50$.  The application of symmetry is performed by a simple test: first convert each cubochoric point to a Rodrigues vector, then test whether or not the point lies inside the RFZ; keep the point if it lies inside the RFZ, discard it otherwise.  The resulting lists of orientations have $n=5,367$ for \pg{24} and $n=41,625$ for \pg{30}.  The distributions of points along with the RFZ edges are shown as stereographic projections in Fig.~\ref{\chabbr:fig:samples}. Note in particular for \pg{30} that the sampling points lie on concentric spherical surfaces inside the RFZ due to the way they are sampled on concentric cubes in the cubochoric cell.
 

@@ -53,11 +53,11 @@
 % ###################################################################
 
 \section{Introductory Remarks}\label{\chabbr:sec:intro}
-This chapter introduces the concept of the \indexit{grain boundary}, a boundary, not necessarily planar, between two crystalline regions with a different orientation with respect to an external sample reference frame.  Before we delve into the description of grain boundaries in terms of geometry and symmetry, it is useful to briefly reflect on the question: how many different grain boundaries are there for a given crystal structure, say face-centered cubic?  To answer this question with an estimate, we must begin by determining how many orientations there are for a single grain (ignoring symmetry at first); using Bunge Euler angles, $(\varphi_1,\Phi,\varphi_2)$ with $\varphi_i\in[0,2\pi]$ and $\Phi\in[0,\pi]$\footnote{For simplicity, we ignore the non-linearity of the volume element along the $\Phi$ axis.}, we can bin the orientations using an angular bin size $\Delta$ along all three axes. The total number of orientations is then given by:
+This chapter introduces the concept of the \indexit{grain boundary}, a boundary, not necessarily planar, between two crystalline regions with a different orientation with respect to an external sample reference frame.  Before we delve into the description of grain boundaries in terms of geometry and symmetry, it is useful to briefly reflect on the question: how many different grain boundaries are there for a given crystal structure, say face-centered cubic?  To answer this question with an estimate, we must begin by determining how many orientations there are for a single grain (ignoring symmetry at first); using Bunge Euler angles, $(\varphi_1,\Phi,\varphi_2)$ with $\varphi_i\in[0,2\pi]$ and $\Phi\in[0,\pi]$\footnote{For simplicity, we ignore the non-linearity of the volume element along the $\Phi$ axis for this estimate.}, we can bin the orientations using an angular bin size $\Delta$ along all three axes. The total number of orientations is then given by:
 \[
-	N=\frac{4\pi^3}{\Delta^3} = \frac{124.025}{Delta^3}\ .
+	N=\frac{4\pi^3}{\Delta^3} = \frac{124.025}{\Delta^3}\ .
 \]
-For $\Delta=0.01745$ radians or $1^{\circ}$, there are thus more than $23$ million unique orientations.  When we look at a grain boundary, each of the two grains has this many unique orientations, so the number of combinations at an angular resolution of $\Delta=1^{\circ}$ is $N^2=5.4\times 10^{14}$.  Modern experimental characterization techniques, such as Electron Back-Scatter Diffraction (EBSD), can routinely reach an angular resolution of $0.5^{\circ}$ or better, so that the number of different boundaries increases by at several orders of magnitude, reaching $N^2=5.4\times 10^{20}$ for $\Delta=0.1^{\circ}$.  When we include crystal symmetry (rotational symmetry, as described in Chapter~\ref{ORISYM:OrSym}) this number will be reduced by the square of the order of the point group, or $576$ for cubic octahedral symmetry, so the number of distinct boundaries remains staggeringly large. For this reason, one often uses large bin sizes to analyze collections of grain boundaries; at $\Delta=10^{\circ}$, and for octahedral lattice symmetry, the number of unique orientations becomes $N=972$, a much more manageable number, and the number of distinct boundary misorientations (to be defined later) equals $944,784$.  With few exceptions, it is clear that the description of the effect of grain boundaries on material properties must be of a statistical nature.
+For $\Delta=0.01745$ radians or $1^{\circ}$, there are thus more than $23$ million unique orientations.  When we look at a grain boundary, each of the two grains has this many unique orientations, so the number of combinations at an angular resolution of $\Delta=1^{\circ}$ is $N^2=5.4\times 10^{14}$.  Modern experimental characterization techniques, such as Electron Back-Scatter Diffraction (EBSD), can routinely reach an angular resolution of $0.5^{\circ}$ or better, so that the number of different boundaries increases by several orders of magnitude, reaching $N^2=5.4\times 10^{20}$ for $\Delta=0.1^{\circ}$.  When we include crystal symmetry (rotational symmetry, as described in Chapter~\ref{ORISYM:OrSym}) this number will be reduced by the square of the order of the point group, or $576$ for cubic octahedral symmetry, so the number of distinct boundaries remains staggeringly large. For this reason, one often uses large bin sizes to analyze collections of grain boundaries; at $\Delta=10^{\circ}$, and for octahedral lattice symmetry, the number of unique orientations becomes $N=972$, a much more manageable number, and the number of distinct boundary misorientations (to be defined later) equals $944,784$.  With few exceptions, it is clear that the description of the effect of grain boundaries on material properties must be of a statistical nature.
 
 
 \section{Geometrical Grain Boundary Descriptors}\label{\chabbr:sec:GBgeometry}
@@ -74,7 +74,7 @@ It is clear from the simple illustration in Fig.~\ref{\chabbr:fig:GBatoms} that 
 
 
 \subsection{About Misorientations}\label{\chabbr:ssec:misor}
-In section~\ref{3DROTS:ssec:misorientations} we introduced the concept of the \indexit{misorientation} between two orientations; a simple example will illustrate the concept. Consider two rotations around the $[100]$ axis, one counterclockwise by $\pi/3$, the other counterclockwise.  The corresponding rotation quaternions are then given by:
+In section~\ref{3DROTS:ssec:misorientations} we introduced the concept of the \indexit{misorientation} between two orientations; a simple example will illustrate the concept. Consider two rotations around the $[100]$ axis, one counterclockwise by $\pi/3$, the other clockwise.  The corresponding rotation quaternions are then given by:
 \[
 	q_A = \left[\frac{\sqrt{3}}{2},\frac{1}{2},0,0\right]\quad\text{ and }\quad q_B=\left[\frac{\sqrt{3}}{2},\frac{-1}{2},0,0\right]\ .
 \]
@@ -133,7 +133,7 @@ The relative orientation of the misorientation axis and the boundary plane norma
 
 
 \subsection{Coincident Site Lattice Boundaries}\label{\chabbr:ssec:CSLs}
-Some grain boundaries have significantly lower energy than others due to a particularly good fit across the boundary plane.  If we consider pure tilt and twist boundaries, then there are many for which a finite fraction of the lattice sites coincide between the two lattices.  Consider the schematic in Fig.~\ref{\chabbr:fig:CSL1}(a) which shows two identical overlapping lattices colored blue and red; we wish to rotate the top lattice such that the red point with coordinates $(3,-1)$ is brought into coincidence with the blue point at $(3,1)$.  The result of this rotation is shown in Fig.~\ref{\chabbr:fig:CSL1}(b); note that a fraction of the atom positions overlap and form a periodic pattern with a larger outlined repeat unit.  This new unit cell contains a total of $5$ atoms,\footnote{In reality, of course, there is no new unit cell; it is just the projection of the atom coordinates on both sides of the boundary that gives rise to an apparent new unit cell.} as is readily verified, and the resulting twist boundary is represented by the symbol $\Sigma 5$.  This is a simple example of a \indexit{coincident site lattice} or CSL.  
+Some grain boundaries have significantly lower energy than others due to a particularly good fit across the boundary plane.  If we consider pure tilt and twist boundaries, then there are many for which a finite fraction of the lattice sites coincide between the two lattices.  Consider the schematic in Fig.~\ref{\chabbr:fig:CSL1}(a) which shows two identical overlapping lattices colored blue and red; we wish to rotate the top lattice such that the red point with coordinates $(3,-1)$ is brought into coincidence with the blue point at $(3,1)$.  The result of this rotation is shown in Fig.~\ref{\chabbr:fig:CSL1}(b); note that a fraction of the atom positions overlap and form a periodic pattern with a larger outlined repeat unit.  This new unit cell contains a total of $5$ atoms,\footnote{In reality, of course, there is no new unit cell; it is just the projection of the atom coordinates on both sides of the boundary that gives rise to an apparent new unit cell.} as is readily verified, and the resulting twist boundary is represented by the symbol $\Sigma 5$.  This is a simple example of a \indexit{coincident site lattice} or CSL boundary.  
 
 \begin{figure}[h]
 \centering\leavevmode
@@ -199,7 +199,7 @@ $\Sigma$ & $\theta$ $({}^{\circ})$ & $[uvw]$ & $\varphi_1$ & $\Phi$ & $\varphi_2
 \hline
 19a& 26.53&  110&  18.44& 89.68& 18.44&  1/6&  1/6&  0&  0.973 & 0.162& 0.162& 0.000\\
 19b& 46.8&111&  33.69& 71.59& 56.31&  1/4&  1/4&  1/4& 0.918 & 0.229& 0.229& 0.229\\
-21a& 21.78&  111&  14.03& 79.02& 75.97&  1/9&  1/9&  1/9& 0.982 & 0.109& 0.109& 0.109\\
+21a& 21.79&  111&  14.03& 79.02& 75.97&  1/9&  1/9&  1/9& 0.982 & 0.109& 0.109& 0.109\\
 21b& 44.41&  211&  22.83& 79.02& 50.91&  1/3&  1/6&  1/6& 0.926 & 0.308& 0.154& 0.154\\
 23&  40.45&  311&  15.25& 82.51& 52.13&  1/3&  1/9&  1/9& 0.938 & 0.313& 0.104& 0.104\\
 \hline
@@ -260,14 +260,14 @@ and the maximum misorientation angle (or Brandon angle) would be $\omega_{\text{
 
 Working in the cubic crystal system, we know that there are $24$ symmetry operations which we can represent by the quaternions $q_i$ ($i\in[1\ldots 24]$). Let us consider a pure twist grain boundary between two grains $A$ and $B$ with orientation axis angle pairs $12^{\circ}@[111]$ and $-12^{\circ}@[111]$, respectively.   In quaternion form, these orientations are given by:
 \begin{align*}
-	q_A &= [0.994522, 0.104528, 0.104528, 0.104528];\\
-	q_B &= [0.994522, -0.104528, -0.104528, -0.104528].
+	q_A &= [0.994522, 0.0603495, 0.0603495, 0.0603495];\\
+	q_B &= [0.994522,-0.0603495, -0.0603495, -0.0603495].
 \end{align*}
-The misorientation is then $q_Bq^{\ast}_A = [0.98383, -0.103405, -0.103405, -0.103405]$ or its complex conjugate; note that the grain boundary misorientation angle equals $24^{\circ}$.  To find the closest CSL we need to compute the mis-misorientation for each of the CSL boundaries in Table~\ref{\chabbr:tb:CSL}; we represent the CSL quaternions by $q_k$ with $k\in[1\ldots 28]$.  The computation then requires finding the following minimum over all combinations of $i$, $j$, and $k$:
+The misorientation is then $q^{\ast}_Aq_B = [0.978148, -0.120038, -0.120038, -0.120038]$ or its complex conjugate; note that the grain boundary misorientation angle equals $24^{\circ}$.  To find the closest CSL we need to compute the mis-misorientation for each of the CSL boundaries in Table~\ref{\chabbr:tb:CSL}; we represent the CSL quaternions by $q_k$ with $k\in[1\ldots 28]$.  The computation then requires finding the following minimum over all combinations of $i$, $j$, and $k$:
 \[
-	\min_{ijk}\left\{2\arccos[q_k\cdot((q_jq_B)(q_iq_A)^{\ast})],2\arccos[q_k\cdot((q_jq_A)(q_iq_B)^{\ast})] \right\}.
+	\min_{ijk}\left\{2\arccos[q_k\cdot((q_jq_B)^{\ast}(q_iq_A))],2\arccos[q_k\cdot((q_jq_A)^{\ast}(q_iq_B))] \right\}.
 \]
-This computation represents an easy programming problem, and the result is that the minimum is obtained for the $\Sigma 7$ CSL, with a mis-misorientation angle of $3.06^{\circ}$.  This angle is smaller than the maximum angle of $15^{\circ}/\sqrt{7}=5.67^{\circ}$ from the Brandon criterion, indicating that the twist boundary between grains $A$ and $B$ is close to a CSL of type $\Sigma 7$.
+This computation represents an easy programming problem, and the result is that the minimum is obtained for the $\Sigma 21a$ CSL, with a misorientation angle of $2.21^{\circ}$. Table~\ref{\chabbr:tb:CSL} shows that $\Sigma 21a$ corresponds to the rotation $21.79^{\circ}@[111]$, whereas the selected boundary has a misorientation angle of $24^{\circ} = 21.79^{\circ}+2.21^{\circ}$. The mis-misorientation angle is smaller than the maximum angle of $15^{\circ}/\sqrt{21}=3.27^{\circ}$ from the Brandon criterion, indicating that the twist boundary between grains $A$ and $B$ is close to a CSL of type $\Sigma 21a$.
 
 
 
@@ -275,14 +275,18 @@ This computation represents an easy programming problem, and the result is that 
 
 Consider the 2D rectangular lattice shown in Fig.~\ref{\chabbr:fig:twinschematic}; the red filled circles indicate the initial lattice positions.  If two opposite shear stresses $\tau$ and $-\tau$ are applied in the vertical direction, then one potential response of this system may be the accommodation of the shear stresses by the introduction of a \indexit{deformation twin}, a region in which the lattice sites are displaced in such a way that the original crystal structure is recovered, but in a different orientation.  The blue disks represent the new lattice positions, and it is clear from the schematic that the original rectangular shape is recovered in the central region.  The twinned region is the mirror image of the other two regions, with the \indexit{twin boundary} being a mirror plane.  The blue arrows indicate that the atoms inside the twinned region have been displaced by a shear operation; the shear vector increases in length with increasing distance from the twin plane.  The open blue circles represent the original lattice sites. Since the twin plane remains undistorted (i.e., is invariant), the deformation strain associated with this shear operation is known as an \indexit{invariant-plane strain}.
 
-\begin{figure}[hb]
+
+For a more formal description of twinning we must introduce the so-called \indexit{twinning elements}.  Consider the sketch in Fig.~\ref{\chabbr:fig:twinelements} which represents the twin plane with normal $\mathbf{K}_1$ and the shear vector $\bm{\eta}_{1}$ parallel to the twin plane.  The plane formed by these two vectors (i.e., the plane of the drawing) is known as the \indexit{plane of shear} with normal $\mathbf{P}\parallel\mathbf{K}_1\times\bm{\eta}_{1}$  oriented towards the reader.  In the plane of shear, a semi-circle (black) is deformed into a semi-ellipse (red) by the simple shear $\bm{\eta}_1$. 
+
+
+\begin{figure}[ht]
 \centering\leavevmode
 \includegraphics[width=4.5in]{\graphicspath twinschematic.eps}
 \caption{Schematic of a deformation twin (b), generated when a rectangular 2D lattice (a) is subjected to a shear stress.}
 \label{\chabbr:fig:twinschematic}
 \end{figure}
 
-For a more formal description of twinning we must introduce the so-called \indexit{twinning elements}.  Consider the sketch in Fig.~\ref{\chabbr:fig:twinelements} which represents the twin plane with normal $\mathbf{K}_1$ and the shear vector $\bm{\eta}_{1}$ parallel to the twin plane.  The plane formed by these two vectors (i.e., the plane of the drawing) is known as the \indexit{plane of shear} with normal $\mathbf{P}\parallel\mathbf{K}_1\times\bm{\eta}_{1}$  oriented towards the reader.  In the plane of shear, a semi-circle (black) is deformed into a semi-ellipse (red) by the simple shear $\bm{\eta}_1$. 
+For an arbitrary point $c$ on the semi-circle, the shear moves the point to location $d$; note that the distance $Oc$ is different from $Od$, which is the case for all points on the semi-circle except for locations $a$ and $b$.  The plane through the points $O$ and $a$ and normal to the plane of the drawing is therefore a second undeformed plane (the first being the twin plane); this second plane is rotated by an angle $2\theta$ from its original orientation to the new orientation going through point $b$, so this plane is not an invariant plane.  The second undistorted plane has normal $\mathbf{K}_2$, and defines a second shear direction $\bm{\eta}_2$.  The tangent of the angle $\theta$ between $\bm{\eta}_2$ and $\mathbf{K}_1$ is equal to half the shear magnitude $s$, i.e., $\tan\theta= s/2$.  The set of four vectors $\mathbf{K}_1$, $\mathbf{K}_2$, $\bm{\eta}_1$, $\bm{\eta}_2$, combined with the shear magnitude $s$ are known as the \indexit{twinning elements}. 
 
 \begin{figure}[hb]
 \centering\leavevmode
@@ -290,8 +294,6 @@ For a more formal description of twinning we must introduce the so-called \index
 \caption{Schematic of the twin elements for the deformation of a semi-circle into a semi-ellipse.}
 \label{\chabbr:fig:twinelements}
 \end{figure}
-
-For an arbitrary point $c$ on the semi-circle, the shear moves the point to location $d$; note that the distance $Oc$ is different from $Od$, which is the case for all points on the semi-circle except for locations $a$ and $b$.  The plane through the points $O$ and $a$ and normal to the plane of the drawing is therefore a second undeformed plane (the first being the twin plane); this second plane is rotated by an angle $2\theta$ from its original orientation to the new orientation going through point $b$, so this plane is not an invariant plane.  The second undistorted plane has normal $\mathbf{K}_2$, and defines a second shear direction $\bm{\eta}_2$.  The tangent of the angle $\theta$ between $\bm{\eta}_2$ and $\mathbf{K}_1$ is equal to half the shear magnitude $s$, i.e., $\tan\theta= s/2$.  The set of four vectors $\mathbf{K}_1$, $\mathbf{K}_2$, $\bm{\eta}_1$, $\bm{\eta}_2$, combined with the shear magnitude $s$ are known as the \indexit{twinning elements}. 
 
 As an example, consider the coherent $\Sigma 3$ twin boundary in an fcc material.  The twin plane normal is given by $\mathbf{K}_1=(111)$ and the shear direction in this plane is $\bm{\eta}_1=[11\bar{2}]$.  Since the original stacking sequence ABCABCABC is replaced by ABCABACBA if the twin plane is the central $B$ plane, it is clear that the shear magnitude is related to the length of the Burgers vector of the partial dislocation that changes the C plane to an A plane; the C plane is displaced by a vector $\mathbf{v}=\bm{\eta}_1/6=[11\bar{2}]/6$.  The magnitude of the displacement is then $v=a/\sqrt{6}$ where $a$ is the cubic lattice parameter.  The shear magnitude $s$ can be written as the ratio $s = v/d$, where $d$ is the interplanar distance for the twin plane, i.e., $d = d_{111} = a/\sqrt{3}$.  Thus, the shear magnitude for the fcc twin is
 \[
@@ -336,12 +338,6 @@ hcp & $(11.1)$ & $(00.1)$ & $[11.\bar{6}]$ & $[11.0]$ & $\gamma^{-1}$ & --- &Re,
 
 
 
-
-%\subsection{}\label{\chabbr:ssec:GBtypes}
-
-
-
-
 \section{MacKenzie Misorientation/Disorientation Distributions}\label{\chabbr:sec:MacKenzie}
 
 In the study of polycrystalline microstructures it is important to know what a completely random microstructure looks like. There are two aspects to this question: (1) the randomness can refer to the grain orientations, and (2) the randomness can refer to the misorientation of grains across grain boundaries.  In this section, we consider the probability density for the disorientation angles, first without crystallographic symmetry and subsequently in the presence of crystallographic (rotational) symmetry.  In section~\ref{3DROTS:ssec:neoEulerianmetric} the volume element of Rodrigues space was determined to be:
@@ -379,7 +375,7 @@ It is now clear how we can expand this description in the presence of a point gr
 \begin{equation}
 	p(\omega) = N \frac{\sin^2(\omega/2)}{2\pi^2}\,\chi(\tan(\omega/2))\text{ where }\omega\le\omega_\text{max}\ ;
 \end{equation}
-the function is only evaluated up to the maximum angle $\omega_\text{max}$, and the factor $N$ guarantees that the integral over the entire Rodrigues space remains equal to $1$.
+the function is only evaluated up to the maximum angle $\omega_\text{max}$ for points inside the RFZ, and the factor $N$ guarantees that the integral over the entire Rodrigues space remains equal to $1$.
 
 The function $\chi(\tan(\omega/2))=\chi(r)$ represents the solid angle of a sphere of radius $r$ as it expands; while the value of $\chi(r)$ will be  $4\pi$ for the smallest values of $r$, at some point the sphere will intersect the RFZ boundary, and those portions of the sphere protruding through the boundary into the neighboring FZs must not be counted.  In other words, once the sphere intersects the RFZ, the value of $\chi(r)$ will decrease until it vanishes when $\omega=\omega_\text{max}$.  
 
@@ -402,7 +398,7 @@ Fig.~\ref{\chabbr:fig:MK-cyclic} shows the cyclic MacKenzie disorientation distr
 \caption{\label{\chabbr:fig:MK-cyclic}MacKenzie disorientation distributions $p(\omega)$ for (a) the cyclic and (b) the dihedral crystallographic point groups.}
 \end{figure}
 
-For the dihedral point groups, the top and bottom surfaces of the RFZ are identical to those for the cyclic groups, but the two-fold axes introduce facets normal to the top and bottom surfaces. Hence there are an additional $2n$ spherical cap corrections when the radius $r$ of the sphere exceeds $1$. With increasing radius, the sphere will then intersect the vertical edges of the RFZ and neighboring spherical caps will intersect, which requires an additional correction.  The details of the derivation can be found in \cite{morawiec1995a}.  The solid angle functions for the dihedral point groups \pg{6}, \pg{18}, \pg{12}, and \pg{24} are given by the following expressions (here, $n$ corresponds to the order of the principal rotation axis): 
+For the dihedral point groups, the top and bottom surfaces of the RFZ are identical to those for the cyclic groups, but the two-fold axes introduce facets normal to the top and bottom surfaces. Hence there are an additional $2n$ spherical cap corrections when the radius $r$ of the sphere exceeds $1$. With increasing radius, the sphere will then intersect the vertical edges of the RFZ and neighboring spherical caps will intersect, which requires an additional correction.  The details of the derivation can be found in \cite{morawiec1995a}; representative views of the solid angle sphere for several points on the curve are shown in Fig.~\ref{\chabbr:fig:SphericalCap} for point group \pg{12}.  The solid angle functions for the dihedral point groups \pg{6}, \pg{18}, \pg{12}, and \pg{24} are given by the following expressions (here, $n$ corresponds to the order of the principal rotation axis): 
 \begin{equation}
 \begin{split}
 	r < h_n	&\qquad \chi(r) = 4\pi ;\\
@@ -421,6 +417,12 @@ with
 	C(\alpha,\beta,\gamma) = \text{arccos}\left(\frac{\cos\gamma-\cos\alpha\cos\beta}{\sin\alpha\sin\beta}\right)\ .
 \]
 The MacKenzie disorientation distributions for the dihedral point groups are shown in Fig.~\ref{\chabbr:fig:MK-cyclic}(b).  Note that each function has a different $\omega_\text{max}$ angle.
+
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=0.5\textwidth]{\graphicspath SphericalCap.eps}
+\caption{\label{\chabbr:fig:SphericalCap}Illustration of the protruding sphere at various points along the curve for point group \pg{12}.}
+\end{figure}
 
 For the tetrahedral rotational point \pg{28}, a similar approach leads to the following solid angle function: 
 \begin{equation}
@@ -441,23 +443,23 @@ And for the octahedral group \pg{30}, we find:
 	&\qquad\qquad+48 S_2(\alpha_1,\alpha_2,\text{arccos}(h_3)) ,
 \end{split}
 \end{equation}
-where $\alpha_1=\text{arccos}(h_4/r)$ and $\alpha_2=\text{arccos}(h_3/r)$.  The cubic MacKenzie disorientation distributions are shown in Fig.~\ref{\chabbr:fig:MK-cubic}; note the different angular ranges for tetrahedral and octahedral symmetry.
+where $\alpha_1=\text{arccos}(h_4/r)$ and $\alpha_2=\text{arccos}(h_3/r)$.  The cubic MacKenzie disorientation distributions are shown in Fig.~\ref{\chabbr:fig:MK-cubic}(a); note the different angular ranges for tetrahedral and octahedral symmetry.
 
-{\color{blue}Insert an experimental example here.}
+Fig.~\ref{\chabbr:fig:MK-cubic}(b) shows a comparison between an experimental data set of grain boundary misorientations and the theoretical curve (in red) for a sample of forsterite, an orthorhombic silicate with formula Mg$_2$SiO$_4$. The sample was processed to have random grain orientations, and the experimental misorientation  data for $440,762$ misorientations\footnote{EBSD orientation data courtesy of Dr.\ Katharina Marquardt, University of Oxford, UK.}  closely follows the theoretical profile.
 
 \begin{figure}[t!]
 \centering\leavevmode
-\includegraphics[width=0.5\textwidth]{\graphicspath MK-cubic.eps}
-\caption{\label{\chabbr:fig:MK-cubic}MacKenzie disorientation distributions for tetrahedral and octahedral crystallographic point groups.}
+\includegraphics[width=0.8\textwidth]{\graphicspath MK-cubic.eps}
+\caption{\label{\chabbr:fig:MK-cubic}(a) MacKenzie disorientation distributions for tetrahedral and octahedral crystallographic point groups; (b) comparison of experimental and theoretical misorientation distributions for orthorhombic forsterite.}
 \end{figure}
 
 
 \section{Misorientation Fundamental Zones}\label{\chabbr:sec:MFZs}
-In the preceding sections, we have always restricted the discussion to the rotational point groups, which allowed us to define the Rodrigues Fundamental Zones. We have ignored the full point group symmetry, in other words, no mirror planes and/or inversion center.  This means that there are sets of points inside the RFZ that have rotation axes that are related to each other by the other, non-rotational, symmetry operators in the point group (if there are any).  As an example, consider the rotations $30^{\circ}@[123]$ and $30^{\circ}@[1\bar{2}3]$ in \pg{30}. Application of all $24$ rotational symmetry operators to each of these rotations shows that the lists of equivalent rotations have an empty intersection. In other words, there is no rotational symmetry operation in \pg{30} that relates $30^{\circ}@[123]$ to $30^{\circ}@[1\bar{2}3]$ and both rotations belong to the RFZ of \pg{30}.  If the crystal symmetry is \pg{32}, which contains the rotational group \pg{30} as a sub-group, then there is a mirror plane normal to the $y$ axis that transforms the $[123]$ rotation axis into the $[1\bar{2}3]$ axis. Therefore, from a symmetry point of view, there are $24$ equivalent rotations inside the RFZ that are related to each other by the $24$ \textit{non-rotational} symmetry operators of \pg{32}.  They all have the same rotation angle $\omega$.  There is thus a redundancy in the RFZ and we will need to reduce the RFZ to an even smaller polyhedron to ensure that only one equivalent rotation remains. This smaller polyhedron is known as the \indexit{misorientation fundamental zone}.  
+In Chapter~\ref{ORISYM:OrSym}, we have restricted the discussion to the rotational point groups, which allowed us to define the Rodrigues Fundamental Zones. We have ignored the full point group symmetry, in other words, no mirror planes and/or inversion center.  This means that there are sets of points inside the RFZ that have rotation axes that are related to each other by the other, non-rotational, symmetry operators in the point group (if there are any).  As an example, consider the rotations $30^{\circ}@[123]$ and $30^{\circ}@[1\bar{2}3]$ in \pg{30}. Application of all $24$ rotational symmetry operators to each of these rotations shows that the lists of equivalent rotations have an empty intersection. In other words, there is no rotational symmetry operation in \pg{30} that relates $30^{\circ}@[123]$ to $30^{\circ}@[1\bar{2}3]$ and both rotations belong to the RFZ of \pg{30}.  If the crystal symmetry is \pg{32}, which contains the rotational group \pg{30} as a sub-group, then there is a mirror plane normal to the $y$ axis that transforms the $[123]$ rotation axis into the $[1\bar{2}3]$ axis. Therefore, from a symmetry point of view, there are $24$ equivalent rotations inside the RFZ that are related to each other by the $24$ \textit{non-rotational} symmetry operators of \pg{32}.  They all have the same rotation angle $\omega$.  There is thus a redundancy in the RFZ for the non-rotational point groups and we will need to reduce the RFZ to an even smaller polyhedron to ensure that only one equivalent rotation remains. This smaller polyhedron is known as the \indexit{misorientation fundamental zone}.  
 
 \begin{figure}[t!]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath MFZcubic.eps}
+\includegraphics[width=0.8\textwidth]{\graphicspath MFZcubic.eps}
 \caption{\label{\chabbr:fig:MFZcubic}(a) RFZ for cubic symmetry with the mirror planes of point group \pg{32} superimposed; (b) outline of the MFZ for cubic (octahedral) symmetry.}
 \end{figure}
 
@@ -486,19 +488,52 @@ A Rodrigues vector with components $(\rho_x,\rho_y,\rho_z)$ will lie in the cubi
 \end{equation}
 The second relation is only tested when the first one is found to be satisfied.  For octahedral symmetry, one can always reorder the components of the misorientation vector so that $\rho_x\ge\rho_y\ge\rho_z\ge 0$; this may require taking absolute values of one or more components to bring the Rodrigues vector into the first octant.
 
-The same procedure can be carried out for all the crystallographic point groups.  As examples we consider first the cyclic groups and then the orthorhombic crystal system.  The RFZs for the cyclic point groups are represented by an infinite slab of thickness $2\tan(\pi/2n)$ normal to the rotation axis. For \pg{1}, the RFZ is the entire Rodrigues space so that inclusion of the inversion operator in point group \pg{2} simply divides the space in half; one can select any plane through the origin to split the space, but the most convenient choice is to consider as the MFZ for \pg{2} all Rodrigues vectors with $\rho_z\ge 0$. For point group \pg{3}, the monoclinic $\mathbf{b}$ axis is parallel to the rotation axis (the $\rho_y$ axis in Rodrigues space) and there are two additional point groups, \pg{4} and \pg{5}.  For \pg{4}, we select all Rodrigues vectors with $0\le\rho_y\le1$ to form the MFZ; for \pg{5}, we cut the \pg{4} MFZ in half by selecting only Rodrigues vectors with $0\le\rho_y\le1$ \textit{and} $\rho_x\ge 0$. For \pg{17}, we take $0\le\rho_z\le 1/\sqrt{3}$, as it is for \pg{16}, but we add the restriction that $\rho_y\le XXX$ to obtain a $120^{\circ}$ wedge as the MFZ.  For cyclic group \pg{9}, we have two groups to consider: \pg{10} and \pg{11}. For \pg{10} we select $0\le\rho_z\le\sqrt{2}-1$ \textit{and} $\rho_x\ge 0$, while for \pg{11} the additional restriction $\rho_y\ge 0$ must be added.  Finally, for cyclic group \pg{21} we have two cases to consider: \pg{22} and \pg{23}. For \pg{22} we have $0\le\rho_z\le (2-\sqrt{3})$ and $\rho_y\le XXX$, whereas for \pg{23} the second condition becomes $\rho_y\le XXX$.  This concludes the enumeration of the cyclic MFZs.
+The same procedure can be carried out for all the crystallographic point groups.  As examples we consider first the cyclic groups and then the orthorhombic crystal system.  The RFZs for the cyclic point groups are represented by an infinite slab of thickness $2\tan(\pi/2n)$ normal to the rotation axis. For \pg{1}, the RFZ is the entire Rodrigues space so that inclusion of the inversion operator in point group \pg{2} simply divides the space in half; one can select any plane through the origin to split the space, but the most convenient choice is to consider as the MFZ for \pg{2} all Rodrigues vectors with $\rho_z\ge 0$. For point group \pg{3}, the monoclinic $\mathbf{b}$ axis is parallel to the rotation axis (the $\rho_y$ axis in Rodrigues space) and there are two additional point groups, \pg{4} and \pg{5}.  For \pg{4}, we select all Rodrigues vectors with $0\le\rho_y\le1$ to form the MFZ; for \pg{5}, we cut the \pg{4} MFZ in half by selecting only Rodrigues vectors with $0\le\rho_y\le1$ \textit{and} $\rho_z\ge 0$. For \pg{17}, we take $0\le\rho_z\le 1/\sqrt{3}$, as it is for \pg{16}, but we add the restriction that $\vert\rho_y\vert\le \rho_x\sqrt{3}$ to obtain a $120^{\circ}$ infinite wedge as the MFZ.  For cyclic group \pg{9}, we have two groups to consider: \pg{10} and \pg{11}. For \pg{10} we select $0\le\rho_z\le\sqrt{2}-1$ \textit{and} $\rho_x\ge 0$, while for \pg{11} the additional restriction $\rho_y\ge 0$ must be added.  Finally, for cyclic group \pg{21} we have two cases to consider: \pg{22} and \pg{23}. For \pg{22} we have $0\le\rho_z\le (2-\sqrt{3})$ and $\vert\rho_y\vert\le\rho_x\sqrt{3}$, whereas for \pg{23} the second condition becomes $0\le\rho_y\le\rho_x\sqrt{3}$.  This concludes the enumeration of the cyclic MFZs.  The $13$ cyclic MFZs are represented as 2-D projections along one of the Rodrigues axes in Fig.~\ref{\chabbr:fig:cyclicMFZs}. The axis range on all plots is from $-1.5$ to $+1.5$ for all axes, similar to the plots in Fig.~\ref{ORISYM:fig:cyclicFZ}.  The green shaded regions in each plot are within the respective MFZ and wherever the green volume touches the exterior frame of the plot, an infinite line from the origin through that point is implied.  The corresponding point group symbol is shown below each plot.
 
-For the orthorhombic crystal system, we know that the RFZ of \pg{6} is a cube of edge length $2$ centered at the origin of Rodrigues space.  For point groups \pg{7} and \pg{8}, we will need to further subdivide this cube.
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath cyclicMFZs.eps}
+\caption{\label{\chabbr:fig:cyclicMFZs}Misorientation fundamental zones for all cyclic point groups and the groups derived from them.}
+\end{figure}
 
 
+For the orthorhombic crystal system, we know that the RFZ of \pg{6} is a cube of edge length $2$ centered at the origin of Rodrigues space;  we will need to further subdivide this cube to obtain the MFZs.  If we pick an arbitrary direction $[uvw]$ representing a misrotation axis, then Table~\ref{\chabbr:tb:directions} lists the equivalent axes under the three orthorhombic point group symmetries.
+
+\begin{table}[hb]
+\centering\leavevmode
+\begin{tabular}{|c|l|}
+\hline
+Point Group & Equivalent Misorientation Axes\\
+\hline\hline
+\pg{6} & $[uvw], [\bar{u}\bar{v}w], [\bar{u}v\bar{w}], [u\bar{v}\bar{w}]$\\
+\hline
+\pg{7} & $[uvw], [\bar{u}\bar{v}w], [u\bar{v}w], [\bar{u}vw]$\\
+\hline
+\pg{8} & $[uvw], [\bar{u}\bar{v}\bar{w}], [\bar{u}\bar{v}w], [\bar{u}v\bar{w}],  [u\bar{v}\bar{w}], [uv\bar{w}], [u\bar{v}w], [\bar{u}vw]$\\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:directions}Equivalent misorientation axes for the three orthorhombic point group symmetries.}
+\end{table}
+
+Fig.~\ref{\chabbr:fig:orthoMFZs}(a) shows the orthorhombic fundamental zone outlined in red (a cube with edge length $2$, centered on the origin of Rodrigues space). From the first line of Table~\ref{\chabbr:tb:directions} we see that the list of misorientation axes equivalent to $[uvw]$ does not contain $[\bar{u}\bar{v}\bar{w}]$, so it appears logical that the MFZ for \pg{6} consists of two unit cubes in opposite octants.  For \pg{7}, all equivalent directions have the same sign for the third index, so the MFZ should also include the unit cube in the lower octant, as shown in Fig.~\ref{\chabbr:fig:orthoMFZs}(b). Finally, for \pg{8} the equivalent misorientation axes belong to each of the octants, so a single octant is sufficient as the MFZ (Fig.~\ref{\chabbr:fig:orthoMFZs}(c)).
+
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath orthoMFZs.eps}
+\caption{\label{\chabbr:fig:orthoMFZs}Misorientation fundamental zones for the orthorhombic point groups.}
+\end{figure}
+
+Using a similar approach for the $16$ remaining point groups we can derive their MFZs; they are shown in Fig.~\ref{\chabbr:fig:MFZs}.  As a general rule, the MFZ is sub-divided into $N$ polyhedra, where $N$ is the order of the point group.  The MFZ can thus be regarded as an asymmetric unit that reconstructs the entire RFZ when all $N$ symmetry operators are applied to it.  It is important to appreciate the different roles the operators of the point group play when it comes to the RFZ and the MFZ.  To define the RFZ, we use the rotational symmetry operators of the crystal to determine the indistinguishable orientations of the crystal's unit cell with respect to the external sample reference frame.  This leads, by definition, to a single point inside the RFZ and $N-1$ points outside of it for a given orientation.  For the MFZ, there is no external reference frame, and we use those same symmetry operators to determine the equivalent misorientation axes for a given misorientation, where we ensure that the misorientation angle is limited to the range $0\le\omega\le\omega_\text{max}$.  Whereas the shape of the RFZ is determined, for a given crystal system, by its proper or rotational point groups only, for the MFZ we need to use the full point group symmetry, including any mirror planes and/or the inversion; the RFZ is then sub-divided into $N$ identical polyhedral units where $N$ is the order of the full point group.  For instance, if we were to plot misorientations across grain boundaries in $\alpha$-Ti, which has point group symmetry \pg{27}, then we must use the MFZ for this point group (3rd entry on 3rd row in Fig.~\ref{\chabbr:fig:MFZs}), not the MFZ for the rotational group \pg{24}, since this MFZ would not represent the correct symmetry relations between misorientation axes due to its lack of mirror planes.
 
 
-%\begin{figure}[t!]
-%\centering\leavevmode
-%\includegraphics[width=\textwidth]{\graphicspath MFZcubic.eps}
-%\caption{\label{\chabbr:fig:MFZcubic}(a) RFZ for cubic symmetry with the mirror planes of point group \pg{32} superimposed; (b) outline of the MFZ for cubic (octahedral) symmetry.}
-%\end{figure}
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath MFZs.eps}
+\caption{\label{\chabbr:fig:MFZs}Misorientation fundamental zones (in blue) of the remaining $16$ point groups.}
+\end{figure}
 
+
+\section{Boundaries between Different Crystallographic Phases}\label{\chabbr:sec:twophases}
 
 
 
