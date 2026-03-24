@@ -62,6 +62,7 @@ src/*/*.aux
 src/*/*html_inc.tex
 src/*/*.fls
 src/*/*.log
+src/*/eps/*.eps
 src/*/eps
 src/*/originals
 
