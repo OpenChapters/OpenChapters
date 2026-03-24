@@ -24,13 +24,13 @@
 %\corechapter{Yes}   % uncomment this line only if this chapter is a core/foundational chapter;
 \OCchapterauthor{Marc De Graef, Carnegie Mellon University} %this will appear in a secondary header below the chapter title.
 
-% graphics path for all figure *.eps files 
+% graphics path for all figure *.pdf files 
 
 %	redefine the \chabbr command to be a six-character string that uniquely identifies this 
 %	chapter; easiest way to do this is to take the first couple of letters from the title words
 \renewcommand{\chabbr}{BASCRY}
 
-%     replace \noheaderimage by the chapter header image file name (without .eps extension).
+%     replace \noheaderimage by the chapter header image file name (without .pdf extension).
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 \chapterimage{\noheaderimage}
 
@@ -61,7 +61,7 @@
 One of the most important topics covered later in this chapter is the description of crystal structures using the concept of \indexit{reciprocal space}. In the present section, we will diverge for
 \begin{floatingfigure}[r]{0.5\textwidth}
 \centering
-{\includegraphics[width=0.48\textwidth]{\graphicspath streetview.eps}}
+{\includegraphics[width=0.48\textwidth]{\graphicspath streetview.pdf}}
 {\caption{\label{\chabbr:fig:trees}\small Sketch of trees lining a street (AI-generated image via Google's Gemini).}}
 \end{floatingfigure}
 \noindent a moment from the crystallographic path to provide the reader with an intuitive notion of the need to use two very different but closely related ways of looking at the world around us.  We will achieve this by considering a very familiar example: a street lined with trees, planted at a regular distance from each other;  Fig.~\ref{\chabbr:fig:trees} shows a schematic of a portion of this street.  We take a measuring stick of a given length $S$, and measure the distance $d$ between two consecutive trees in units of $S$.  For the illustration in Fig.~\ref{\chabbr:fig:trees} we find that $d=1$ S.  Next, we double the length of the measuring stick to $S'=2S$ and once again we measure the distance $d$; this time we find $d = 1/2$ S'.  Now we make the following, almost trivial, observation: \textit{when the length of the measuring stick increases, the numerical value of the measured distance decreases.} In other words, the length of the measuring stick and the measured quantity vary in opposite ways; when one becomes larger, the other becomes smaller and vice versa.  Hence, we say that the distance between the trees is a \indexit{contravariant} quantity (``contra'' means ``opposite'' in this context); it varies in the opposite way from the units in which it is measured.
@@ -247,7 +247,7 @@ In Fig.~\ref{\chabbr:fig:hkltetra} a tetragonal unit cell is shown with $c/a$ ra
 
 \begin{figure}[hb]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath hkltetra.eps}
+\includegraphics[width=\textwidth]{\graphicspath hkltetra.pdf}
 \caption{\label{\chabbr:fig:hkltetra}(a) and (b) different views of the $(011)$ plane (orange) and the $[011]$ direction (magenta) in a tetragonal unit cell. (c) the same plane and direction in  a cubic unit cell.}
 \end{figure}
 
@@ -325,7 +325,7 @@ as we found before.  Note that $\vert \mathbf{a}^{\ast}\vert$ is four times the 
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=0.6\textwidth]{\graphicspath exam1.eps}
+\includegraphics[width=0.6\textwidth]{\graphicspath exam1.pdf}
 \caption{\label{\chabbr:fig:exam1}Illustration of the tetragonal direct space (blue) and reciprocal space (red) unit cells for Example~\protect\ref{\chabbr:ex:exam1}  in the correct relative orientation and size.}
 \end{figure}
 
@@ -398,7 +398,7 @@ Note in Fig.~\ref{\chabbr:fig:exam2}, which shows two different views of the dir
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=0.7\textwidth]{\graphicspath exam2.eps}
+\includegraphics[width=0.7\textwidth]{\graphicspath exam2.pdf}
 \caption{\label{\chabbr:fig:exam2}Two different views of the monoclinic direct space (blue) and reciprocal space (red) unit cells for Example~\protect\ref{\chabbr:ex:exam2} in the correct relative orientation and size.}
 \end{figure}
 
@@ -424,7 +424,7 @@ Both vectors are represented by black line segments in Fig.~\ref{\chabbr:fig:exa
 
 \begin{floatingfigure}[r]{3.4in}
 \centering
-{\includegraphics[width=3.2in]{\graphicspath exam3.eps}}
+{\includegraphics[width=3.2in]{\graphicspath exam3.pdf}}
 {\caption{\label{\chabbr:fig:exam3}\small Illustration of the geometrical relation between direct and reciprocal space lattice for the monoclinic unit cell of Example~\protect\ref{\chabbr:ex:exam3}.}}
 \end{floatingfigure}
 \noindent As a final example we use the monoclinic unit cell defined above to illustrate graphically the relation between a plane defined by Miller indices $(hkl)$ with respect to the direct unit cell and the corresponding vector $\mathbf{g}_{hkl}$ defined with respect to the reciprocal unit cell.  Fig.~\ref{\chabbr:fig:exam3} shows a 2-D projection along the monoclinic $\mathbf{b}$ axis.  Points and vectors in blue represent the direct space lattice, points and vectors in red the reciprocal space lattice; several lattice points are shown for each lattice, and the corresponding translated unit cells are outlined in dashed lines.  Three different lattice planes are shown: $(101)$ in green, $(\bar{1}01)$ in purple, and $(\bar{1}0\bar{2})$ in orange.  The corresponding reciprocal lattice vectors $\mathbf{g}_{101}$, $\mathbf{g}_{\bar{1}01}$, and $\mathbf{g}_{\bar{1}0\bar{2}}$ are shown in the same colors. They intersect their respective lattice planes at right angles, as expected.
@@ -585,7 +585,7 @@ a^T a = \begin{pmatrix}\frac{4}{5}&0&0\\
 The main use of the structure matrices is for the conversion of crystallographic quantities to coordinates that can be used to draw crystal structures or sections through the reciprocal lattice, to name just two.  The structure matrices are defined in terms of 
 \begin{floatingfigure}[r]{3.4in}
 \centering
-{\includegraphics[width=3.2in]{\graphicspath exam4.eps}}
+{\includegraphics[width=3.2in]{\graphicspath exam4.pdf}}
 \caption{\label{\chabbr:fig:exam4}\small Drawing of the monoclinic direct and reciprocal lattice nodes using the Cartesian reference frame instead of the Bravais unit cell and its reciprocal cell.}
 \end{floatingfigure}
 \noindent  the lattice parameters, which makes them independent of the crystal system being used. Starting from the monoclinic structure of the previous example, we could have used the Cartesian reference frame along with the structure matrices to draw the direct and reciprocal lattice points.  For a direct space lattice point in the $\mathbf{a}$--$\mathbf{c}$ plane, the general node is located at $u\mathbf{a}+w\mathbf{c}$, which, using the direct structure matrix, results in:
@@ -664,7 +664,7 @@ Fig.~\ref{\chabbr:fig:zone}(a) shows a series of lattice planes that have one di
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=0.7\textwidth]{\graphicspath zone.eps}
+\includegraphics[width=0.7\textwidth]{\graphicspath zone.pdf}
 \caption{\label{\chabbr:fig:zone}Illustrations of (a) a zone axis $\mathbf{t}_{uvw}$ being the direction in common to all the lattice planes; and (b) directions lying in a plane with plane normal $\mathbf{g}_{hkl}$.}
 \end{figure}
 
@@ -701,7 +701,7 @@ Many crystalline materials undergo a structural change when external conditions,
 
 \begin{figure}[hb]
 \centering\leavevmode
-\includegraphics[width=0.8\textwidth]{\graphicspath quartz.eps}
+\includegraphics[width=0.8\textwidth]{\graphicspath quartz.pdf}
 \caption{\label{\chabbr:fig:quartz}Illustrations of (a) trigonal $\alpha$-SiO$_2$ and (b) hexagonal $\beta$-SiO$_2$; the hexagonal unit cell is indicated for each structure.}
 \end{figure}
 
@@ -719,7 +719,7 @@ It should be noted that the actual reported lattice parameters only approximatel
 
 \begin{figure}[h]
 \centering\leavevmode
-\includegraphics[width=0.6\textwidth]{\graphicspath STO.eps}
+\includegraphics[width=0.6\textwidth]{\graphicspath STO.pdf}
 \caption{\label{\chabbr:fig:STO}$[001]$ projections of (a) cubic perovskite SrTiO$_3$ and (b) tetragonal SrTiO$_3$; the unit cells are outlined for each structure.}
 \end{figure}
 

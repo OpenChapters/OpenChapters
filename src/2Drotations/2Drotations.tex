@@ -26,11 +26,11 @@
 \OCchapterauthor{Marc De Graef, Carnegie Mellon University}
 %     this will appear in a secondary header below the chapter title.
 
-% All figures are stored in the src/2Drotations/eps folder and must be of the *.eps type. 
+% All figures are stored in the src/2Drotations/eps folder and must be of the *.pdf type. 
 
 \renewcommand{\chabbr}{2DROTS}
 
-%     replace \noheaderimage by the chapter header image file name (without .eps extension).
+%     replace \noheaderimage by the chapter header image file name (without .pdf extension).
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 \chapterimage{2DROTSheader.pdf}
 
@@ -87,7 +87,7 @@ Representing the $2\times 2$ active rotation matrix by $R^a(\omega)$ and the vec
 	r'_i = R^a_{ij}(\omega) r_j.
 \end{equation}
 
-\insertfigure{fig2Drot.eps}{fig2Drot}{Schematic illustration of (a) an active rotation by an angle $\omega$, and (b) a passive rotation by the same counter-clockwise angle $\omega$.}
+\insertfigure{fig2Drot.pdf}{fig2Drot}{Schematic illustration of (a) an active rotation by an angle $\omega$, and (b) a passive rotation by the same counter-clockwise angle $\omega$.}
 
 \subsection{Passive 2D rotations}\label{\chabbr:2Dpassive}
 For a passive rotation, shown in Fig.~\ref{\chabbr:fig2Drot}(b), we keep the vector $\mathbf{r}$ at a constant orientation in space, and we rotate the reference frame $\mathbf{e}_i$ by a positive angle $\omega$ (i.e., counter-clockwise) to the frame $\mathbf{e}'_i$.  To perform this rotation, we note that the components of the new basis vectors in terms of the old ones can be written in terms of the projections of the new vectors onto the old ones; since these are unit vectors, the projections are simply equivalent to the dot products between the new and old basis vectors, and we have:

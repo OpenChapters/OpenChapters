@@ -28,12 +28,12 @@
 %     this will appear in a secondary header below the chapter title.
 \OCchapterauthor{Marc De Graef, Carnegie Mellon University}
 
-% All figures are stored in the src/ChapterTitle/eps folder and must be of the *.eps, *.pdf, or *.png type. 
+% All figures are stored in the src/ChapterTitle/eps folder and must be of the *.pdf, *.pdf, or *.png type. 
 
 % this is the 6-character (all uppercase) chapter descriptor used in labels and refs...
 \renewcommand{\chabbr}{MICROD}
 
-%     replace \noheaderimage by the chapter header image file name (without .eps extension).
+%     replace \noheaderimage by the chapter header image file name (without .pdf extension).
 %     pdf files are also acceptable.
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 \chapterimage{\noheaderimage}
@@ -78,7 +78,7 @@ Quantification of microstructures is an important area in MSE; we borrow techniq
 
 \begin{figure}[t!]
 \centering\leavevmode
-\includegraphics[width=6in]{\graphicspath lengthscales.eps}
+\includegraphics[width=6in]{\graphicspath lengthscales.pdf}
 \caption{\label{\chabbr:fig:lengthscales}Microstructure length scales, the electromagnetic spectrum, and the resolution ranges of various experimental characterization techniques.}
 \end{figure}
 
@@ -93,7 +93,7 @@ The French naturalist and mathematician, the Comte de Buffon (1707-1788), propos
 
 \begin{figure}[b!]
 \centering\leavevmode
-\includegraphics[width=6in]{\graphicspath buffon.eps}
+\includegraphics[width=6in]{\graphicspath buffon.pdf}
 \caption{\label{\chabbr:fig:buffon}(Microstructure length scales, the electromagnetic spectrum, and the resolution ranges of various experimental characterization techniques.)a) schematic of the Buffon needle experiment; (b) geometry of the problem; (c) integration area to obtain the probability $P$.}
 \end{figure}
 
@@ -151,7 +151,7 @@ Consider an MgO microstructure, such as the one shown in Fig.~\ref{fig:grains}.\
 
 \begin{figure}[b!]
 \centering\leavevmode
-\includegraphics[width=6in]{\graphicspath grains.eps}
+\includegraphics[width=6in]{\graphicspath grains.pdf}
 \caption{\label{\chabbr:fig:grains}(Illustration of the lineal intercept method using (a) parallel straight lines of length $100$ mm (or $1$ mm in the real microstructure) and (b) a circle of diameter $120$ mm, corresponding to $7.54$ mm in the microstructure.}
 \end{figure}
 
@@ -244,7 +244,7 @@ For the Olivine data set, this analysis results in a data set with $3,859$ grain
 
 \begin{figure}[b!]
 \centering\leavevmode
-\includegraphics[width=6in]{\graphicspath OlivineGrainSize.eps}
+\includegraphics[width=6in]{\graphicspath OlivineGrainSize.pdf}
 \caption{\label{\chabbr:fig:OlivineGrainSize}(a) Skeletonized Olivine microstructure for an area of $1.764\times 1.305$ mm$^2$; (b) dilated grain boundaries (3 pixels wide); (c) grain diameter histogram; (d) normalized grain diameter histogram with superimposed best fit log-normal distribution.}
 \end{figure}
 
@@ -265,7 +265,7 @@ where $\Phi$ is the CDF of the standard normal distribution and $\text{erf}$ is 
 
 \begin{figure}[h!]
 \centering\leavevmode
-\includegraphics[width=3in]{\graphicspath lognormal.eps}
+\includegraphics[width=3in]{\graphicspath lognormal.pdf}
 \caption{\label{\chabbr:fig:lognormal}(Illustration of the log-normal distribution for a few parameter pairs $(\mu,\sigma)$.}
 \end{figure}
 
@@ -309,7 +309,7 @@ A \indexit{chord} is a line connecting any two points on the perimeter; if all p
 
 \begin{figure}[h!]
 \centering\leavevmode
-\includegraphics[width=5in]{\graphicspath elongatedness.eps}
+\includegraphics[width=5in]{\graphicspath elongatedness.pdf}
 \caption{\label{\chabbr:fig:elongatedness} Illustration of the eccentricity (a) and the elongatedness (b).}
 \end{figure}
 
@@ -319,7 +319,7 @@ The \indexit{Feret diameter} can be obtained by placing an object in a particula
 
 \begin{figure}[h!]
 \centering\leavevmode
-\includegraphics[width=5in]{\graphicspath Feret.eps}
+\includegraphics[width=5in]{\graphicspath Feret.pdf}
 \caption{\label{\chabbr:fig:feret}Illustration of the Feret (a) and caliper (b) diameters of an ellipse.}
 \end{figure}
 
@@ -401,7 +401,7 @@ the set $B$ is known as the \indexit{structuring element}.  The second equality 
 
 \begin{figure}[h]
 \centering\leavevmode
-\includegraphics[width=4in]{\graphicspath directsum.eps}
+\includegraphics[width=4in]{\graphicspath directsum.pdf}
 \caption{\label{\chabbr:fig:directsum}Illustration of the Minkowski or direct sum of two sets.}
 \end{figure}
 
@@ -425,7 +425,7 @@ The two operations are illustrated in Fig.~\ref{\chabbr:fig:erosion}. The top ro
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=4in]{\graphicspath erosion.eps}
+\includegraphics[width=4in]{\graphicspath erosion.pdf}
 \caption{\label{\chabbr:fig:erosion}Illustration of the Minkowski subtraction (top row) of two sets, and the erosion operation (bottom row).}
 \end{figure}
 
@@ -442,7 +442,7 @@ The opening operation is typically used to remove objects that have a size small
 
 \begin{figure}[h]
 \centering\leavevmode
-\includegraphics[width=5.5in]{\graphicspath opening.eps}
+\includegraphics[width=5.5in]{\graphicspath opening.pdf}
 \caption{\label{\chabbr:fig:opening}Illustration of the morphological opening of the image $A$ on the left using the structuring element $B$ at the center.}
 \end{figure}
 
@@ -464,7 +464,7 @@ in words, the Hausdorff distance between two sets $A$ and $B$ is the smallest ra
 
 \begin{figure}[h]
 \centering\leavevmode
-\includegraphics[width=5.5in]{\graphicspath Hausdorff.eps}
+\includegraphics[width=5.5in]{\graphicspath Hausdorff.pdf}
 \caption{\label{\chabbr:fig:Hausdorff}Illustration of the determination of the Hausdorff distance between two sets $A$ and $B$; the Hausdorff distance condition is met when the radius of the ball $b(\mathbf{o},r)$ is equal to $112$ pixels (each square measures $512\times 512$ pixels).}
 \end{figure}
 
@@ -575,7 +575,7 @@ There are several ways in which the curvature distribution in a sample can be re
 
 \begin{figure}[h]
 \centering\leavevmode
-\includegraphics[width=5.5in]{\graphicspath curvatureplots.eps}
+\includegraphics[width=5.5in]{\graphicspath curvatureplots.pdf}
 \caption{\label{\chabbr:fig:curvatureplots}Curvature plots in terms of (a) the principal curvatures $(\kappa_1,\kappa_2)$; (b) the Gaussian and mean curvatures $(K,H)$; and (c) the RMS mean curvature and shape parameter $(S,C)$. Regions shaded in light gray are inaccessible for $\kappa_2\ge\kappa_1$.}
 \end{figure}
 
@@ -685,7 +685,7 @@ The counting process can be performed one voxel at a time. We begin with an empt
 
 \begin{figure}[t!]
 \centering\leavevmode
-\includegraphics[width=5.0in]{\graphicspath MFcube.eps}
+\includegraphics[width=5.0in]{\graphicspath MFcube.pdf}
 \caption{\label{\chabbr:fig:MFcubes}Example of the MF computation by gradually adding more cubic voxels.  The open sets are shown as a green cube, blueish facets, blue edges and red vertices; only the sets that are new and avoid double counting are shown for each step.}
 \end{figure}
 
@@ -945,7 +945,7 @@ It can be shown that $\omega_1$ is invariant under \indexit{similarity transform
 
 \begin{figure}[t!]
 \centering\leavevmode
-\includegraphics[width=4.0in]{\graphicspath 2DMImap.eps}
+\includegraphics[width=4.0in]{\graphicspath 2DMImap.pdf}
 \caption{\label{\chabbr:fig:2DMImap}2D normalized moment invariant map; all 2D shapes are represented by points inside the shaded region above the parabola $\bar{\omega}_2=\bar{\omega}^2_1$. All shapes with the same aspect ratio $\tau$ lie on a single parabola.}
 \end{figure}
 

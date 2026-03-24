@@ -58,11 +58,10 @@ EPUBBuild/*.pro
 EPUBBuild/ImageFolder
 EPUBBuild/*.cut
 EPUBBuild
-src/*/eps/*.pdf
 src/*/*.aux
 src/*/*html_inc.tex
 src/*/*.fls
 src/*/*.log
-src/*/eps/*.png
-src/*/eps/*.ai
+src/*/eps
+src/*/originals
 

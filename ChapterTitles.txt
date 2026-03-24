@@ -1,0 +1,58 @@
+% This file contains all the chapter titles and abbreviations currently available 
+% in the OpenChapters repository.  They are in no particular order but separated
+% by their type: Foundational and Topical.  As a rule, a Foundational chapter may
+% not reference any material in a Topical chapter, but the reverse is allowed. 
+% Foundational chapters may also reference each other.  Please do not change the
+% informational characters that start some of these entries.
+%
+% The proper format for a chapter descriptor is 
+%    chaptertitle::chapter descriptor::CHABBR
+% where 
+% -  chaptertitle is a single word corresponding to the chaptertitle.tex file;
+%  - chapter descriptor is a very brief multi-word version of the chapter title;
+%  - CHABBR is a six-character upper-case symbol that will be used
+%    to encode all the labels to equations, section, figures and table using the 
+%    \OClabel{} command.
+%
+% At the end of the file, following the line "> Potential Chapters" is a list of
+% of chapters that might be written at some point, along with their reserved
+% CHABBR codes; these codes should not be used for other new chapters.
+%
+> Foundational Chapters
+2Drotations::2D Rotations::2DROTS
+3Drotations::3D Rotation Representations::3DROTS
+RotationSymmetry::Rotations and Symmetry::ROTSYM
+LinearAlgebra::Important Concepts of Linear Algebra::LINALG
+Fourier::Fourier Series and Transforms::FOURST
+NumberSystems::Number Systems used in this collection::NUMSYM
+Projections::Special Projections::PROJTS
+<
+> Topical Chapters
+Crystallography::Basic Crystallography::BASCRY
+Symmetry::Crystallographic Symmetry::CRYSYM
+MaterialProperty::What is a Material Property?::MATPRP
+PropertyTensors::Equilibrium and Transport Property Tensors::PRPTSR
+PropertySymmetry::Properties and Symmetry::PROPSM
+ExampleProperties::Example Anisotropic Material Properties::EXPRPS
+<
+> Potential Chapters
+Misorientations::Misorientations and Disorientations::MISORS
+Microstructures::Microstructure Quantification::MICROQ
+CharacterizationTools::Characterization Tools::CHARTL
+Textures::Textures and Fabrics::TEXFAB
+ODF::Statistical Analysis of Orientations::STATOR
+PropertyAveraging::Orientational Averaging of Properties::PRPAVG
+PFIPF::Pole Figures and Inverse Pole Figures::PFIPFS
+TextureComponents::Important Texture Components::TEXCMP
+TextureVisualization::Visualization of Textures::TEXVIZ
+ElectronDiffraction::Electron Diffraction Methods::ELDIFF
+SerialSectioning::Serial Sectioning::SERSEC
+Tomography::Tomographic Reconstructions::TOMOGR
+HEDM::High Energy Diffraction Microscopy::HEDMIC
+RVEs::Representative Volume Elements::RVOLEL
+Outliers::Microstructural Outliers::OUTLIE
+PropertyBounds::Property Bound Estimation::PRPBND
+EvolutionModeling::Modeling of Microstructure Evolution::MSEVOL
+ImageMethods::Image-based Methods::IMGMET
+FEMethods::Finite Element based Methods::FEMMET
+<

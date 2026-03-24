@@ -28,12 +28,12 @@
 %     this will appear in a secondary header below the chapter title.
 \OCchapterauthor{Marc De Graef, Carnegie Mellon University}
 
-% All figures are stored in the src/ChapterTitle/eps folder and must be of the *.eps, *.pdf, or *.png type. 
+% All figures are stored in the src/ChapterTitle/eps folder and must be of the *.pdf, *.pdf, or *.png type. 
 
 % this is the 6-character (all uppercase) chapter descriptor used in labels and refs...
 \renewcommand{\chabbr}{TEXCOM}
 
-%     replace \noheaderimage by the chapter header image file name (without .eps extension).
+%     replace \noheaderimage by the chapter header image file name (without .pdf extension).
 %     pdf files are also acceptable.
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 \chapterimage{\noheaderimage}
@@ -74,7 +74,7 @@ In texture analysis one is generally interested in the distribution of grain ori
 
 In this chapter, we will focus our attention on rolled microstructures, and we select the Cartesian basis vectors to be $\mathbf{e}_x$ parallel to the rolling direction RD, $\mathbf{e}_z$ parallel to the normal direction ND, and $\mathbf{e}_y$ parallel to the \indexit{transverse direction} TD, so that the reference frame is right-handed.  A grain orientation with respect to this reference frame can then be determined by specifying two pieces of information: the crystallographic direction $[uvw]$ parallel to RD, and the plane $(hkl)$ normal to ND.  In the following subsections we will describe how the rotation matrix can be determined from $[uvw]$ and $(hkl)$, first for the cubic crystal system, then for a general Bravais lattice.
 
-\subsection{Grain Orientation Matrix for Cubic Symmetry}\label{\chabbr:grainORmatcubic}
+\subsection{Grain Orientation Matrix for Cubic Symmetry}\label{\chabbr:ssec:grainORmatcubic}
 From the knowledge of $[uvw]$ and $(hkl)$, we obtain the corresponding unit vectors as:
 \begin{equation*}
 	\hat{\mathbf{b}} = \frac{(u,v,w)}{\sqrt{u^2+v^2+w^2}}\quad\text{ and }\quad\hat{\mathbf{n}}=\frac{(h,k,l)}{\sqrt{h^2+k^2+l^2}}\ .
@@ -105,7 +105,7 @@ g_{ij}=\begin{pmatrix}
 \]
 We recognize this matrix to represent a counterclockwise $45^{\circ}$ rotation around the $[100]$ axis, i.e., the rolling direction.  
 
-\subsection{Grain Orientation Matrix for General Symmetry}\label{\chabbr:grainORmatgeneral}
+\subsection{Grain Orientation Matrix for General Symmetry}\label{\chabbr:ssec:grainORmatgeneral}
 For a general Bravais lattice, the Cartesian basis vectors are typically not parallel to the lattice vectors and we must use the \indexit{direct structure matrix}, $a_{ij}$, for direction vectors and the \indexit{reciprocal structure matrix}, $b_{ij}$, for plane normals; those matrices were defined in section~\ref{BASCRY:sec:SMderivation}.  The vectors $\mathbf{b}$ and $\mathbf{n}$ defined in the previous section must now be transformed from the Bravais reference frame to the Cartesian crystal frame and subsequently normalized before insertion into the columns of the rotation matrix $g_{ij}$.  Writing $n^c_i=b_{ik}n_k$ and $b^c_i=a_{im}b_m$ the rotation matrix becomes:
 \[
 	g_{ij} = \begin{pmatrix}
@@ -131,9 +131,9 @@ As an example we consider the hexagonal $\alpha$-Ti structure with lattice param
 We consider the following vectors: $\mathbf{n}=(10.0)=(100)$ and $\mathbf{b}=[1\bar{2}.0]=[0\bar{1}0]$, where we used the transformation relations from four-index to three-index notation described in sections~\ref{CRYSYM:ssec:MBindices} and \ref{CRYSYM:ssec:Millerhexagonal}.   Application of the structure matrices leads to $\mathbf{n}^c=b\,\mathbf{n} = (3.38938,1.95712,0.00000)$ and $\mathbf{b}^c=a\,\mathbf{b}=(0.1475,-0.25548,0.00000)$.  After normalization, we have 
 \begin{equation*}
 \begin{split}
-	\hat{\mathbf{n}}&=(0.86602,0.50000,0.00000)=(\sqrt{3}/2,1/2,0);\\ 
-	\hat{\mathbf{b}}&=(0.50000,-0.86602,0.00000)=(1/2,-\sqrt{3}/2,0)
-	\end{split}\ ,
+	\hat{\mathbf{n}}&=(0.86602,0.50000,0.00000)=(\sqrt{3}/2,1/2,0)\ ;\\ 
+	\hat{\mathbf{b}}&=(0.50000,-0.86602,0.00000)=(1/2,-\sqrt{3}/2,0)\ ,
+	\end{split}
 \end{equation*} 
 leading to $\hat{\mathbf{t}}=(0,0,-1)$ and the rotation matrix:
 \[
@@ -143,19 +143,132 @@ leading to $\hat{\mathbf{t}}=(0,0,-1)$ and the rotation matrix:
 	0 & -1 & 0
 	\end{pmatrix}\ .
 \]
-If we compare this matrix with the general rotation matrix derived for Bunge Euler angles (section~\ref{3DROTS:ssec:definitions}), we can determine that the corresponding Euler angles are given by $(\varphi_1,\Phi,\varphi_2)=(0^{\circ},90^{\circ},60^{\circ})$.  Reduction of this rotation to the hexagonal Rodrigues Fundamental Zone (see chapter~\ref{ORISYM:OrSym}) results in the rotation $90^{\circ}@[2\bar{1}.0]$.  
+If we compare this matrix with the general rotation matrix derived for Bunge Euler angles (section~\ref{3DROTS:ssec:definitions}), we can determine that the corresponding Euler angles are given by $(\varphi_1,\Phi,\varphi_2)=(0^{\circ},90^{\circ},60^{\circ})$.  Reduction of this rotation to the hexagonal Rodrigues Fundamental Zone (see chapter~\ref{ORISYM:OrSym}) results in the rotation $90^{\circ}@[2\bar{1}.0]$.  Recall that the Bunge Euler angles are interpreted as follows:
+\begin{itemize}
+	\item The first two angles describe the position of the crystallographic $[001]$ axis relative to the sample reference frame; specifically, we rotate the crystal around ND ($\varphi_1$), and then out of the plane around the $[100]$ axis by $\Phi$;
+	\item The third angle $\varphi_2$ then describes how much to rotate the crystal around its $[001]$ axis.  Note that these are the Cartesian axes, not necessarily the Bravais axes.
+\end{itemize}
+
+\section{Pole Figures}\label{\chabbr:sec:PF}
+In metals, especially rolled fcc metals, it is common to give proper names to particular texture components that commonly occur.  Thus, you will encounter names like  ``cube'', ``brass'', ``copper'', ``S'' and the like.  Each component has a particular Euler angle triplet, as we have seen in the previous examples.  Along with these names go the names of so-called \indexit{texture fibers}, fibers such as $\alpha$ and $\beta$.  In rolled bcc metals, it is typical to refer to fibers only, such as the $\alpha$ fiber in which the orientations all have $\langle 110\rangle\parallel$RD, and the $\gamma$ fiber for which $\langle 111\rangle\parallel$ND.  One exception to this is the ``Goss'' component, named after the person who identified the textures critical to transformer steels.  In hexagonal metals, the texture is mostly evident in the basal pole figure and so the names generally refer to the deviation of the $[00.1]$ direction with respect to a particular sample direction, such as ND.  This is described in more detail later on.  In thin films of all kinds, unless an epitaxial texture is present, the texture is described in terms of which crystal direction is most commonly found to be parallel to the normal of the film plane.  Before we consider texture components in more detail, let us first review how we can use stereographic projections to generate \indexit{pole figures}; for a review of stereographic projections we refer to section~\ref{PROJTS:sec:stereoproj}.
+
+\subsection{Euler Angles and Pole Figures}\label{\chabbr:ssec:EulerPF}
+As the name suggests, a pole figure represents the orientation of a crystallographic pole or direction by means of a stereographic projection (SP).  While we typically label a given pole by its direction indices, $[uvw]$, defined with respect to the Bravais basis vectors, we should remember that Euler angles relate Cartesian reference frames, not Bravais frames, so the computation of a pole figure will, in general, require the use of the structure matrices.  Historically, the (RD, TD, ND) axes have always been represented as a left-handed reference frame, with RD pointing up, TD to the right, and ND coming out of the plane of the drawing towards the reader; conversion to a right-handed reference frame is straightforward and requires application of a mirror in the RD-ND plane. As an example, we consider the Euler triplet $(30^{\circ},70^{\circ},40^{\circ})$. Fig~\ref{\chabbr:fig:EulerExample} shows the steps involved in rotating the (RD, TD, ND) reference frame into the orientation of the crystal reference frame $(x''', y''', z''')$. 
+
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=0.7\textwidth]{\graphicspath EulerExample.pdf}
+\caption{\label{\chabbr:fig:EulerExample}Rotation of the sample reference frame (RD, TD, ND) into the crystal reference frame by successive application of the three Euler rotations $(\varphi_1,\Phi,\varphi_2)=(30^{\circ},70^{\circ},40^{\circ})$.}
+\end{figure}
+
+In general, drawing a pole figure for a particular family of directions $\mathbf{t}=\langle uvw\rangle$ or plane normals $\mathbf{g}=\{hkl\}$ requires execution of the following three steps for each member of the family (the rotation matrix $g$ is obtained directly from the Bunge Euler angles $(\varphi_1,\Phi,\varphi_2)$ and we assume a unit radius circle for the SP):
+\begin{enumerate}
+\item Convert the direction $\mathbf{t}$ or plane normal $\mathbf{g}$ to a vector $\mathbf{h}^c$ in the crystal's Cartesian reference frame using the direct or reciprocal structure matrices: $\mathbf{h}^c=a\, \mathbf{t}$ or $\mathbf{h}^c=b\, \mathbf{g}$, and normalize this vector to obtain $\hat{\mathbf{h}}^c$;
+\item Apply the inverse rotation matrix $g^{-1}$ to the unit vector $\hat{\mathbf{h}}^c$ to obtain the components in the sample reference frame: $\hat{\mathbf{h}}'=g^{-1}\,\hat{\mathbf{h}}^c$;
+\item Convert the components of $\hat{\mathbf{h}}'=(h'_x,h'_y,h'_z)$ to the stereographic coordinates $(s_x,s_y)$ using:
+\[
+	(s_x,s_y) = \left(\frac{h'_x}{1+\vert h'_z\vert},\frac{h'_y}{1+\vert h'_z\vert}\right)\ ;
+\]
+Points for which $h'_z\le 0$ lie in the Southern hemisphere and are generally represented by open circles.  Note that the direct transformation from unit vector components to stereographic coordinates avoids the need for the application of trigonometric functions.
+\end{enumerate}
+This procedure generates stereographic coordinates in a right-handed reference frame, so if the TD axis is drawn to the right, then $s_y$ must be replaced by $-s_y$. 
+
+\subsection{Example Pole Figures}\label{\chabbr:ssec:examplePF}
+
+\begin{table}[t!]
+\centering\leavevmode
+{\small
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$(hkl)$ & $(hkl)/\sqrt{3}$ & $(h'_x,h'_y,h'_z)$ & $(s_x,s_y)$ & N/E/S \\
+\hline\hline
+$(111)$ & $( 0.5774, 0.5774, 0.5774)$ & $( 0.4714, 0.3333, 0.8165)$ & $( 0.2595, 0.1835)$ & N \\
+$(\bar{1}11)$ & $(-0.5774, 0.5774, 0.5774)$ & $(-0.4714,-0.3333, 0.8165)$ & $(-0.2595,-0.1835)$ & N \\
+$(1\bar{1}1)$ & $( 0.5774,-0.5774, 0.5774)$ & $( 0.9428,-0.3333, 0.0000)$ & $( 0.9428,-0.3333)$ & E \\
+$(11\bar{1})$ & $( 0.5774, 0.5774,-0.5774)$ & $( 0.0000, 1.0000, 0.0000)$ & $( 0.0000, 1.0000)$ & E \\
+$(\bar{1}\bar{1}1)$ & $(-0.5774,-0.5774, 0.5774)$ & $(0.0000,-1.0000, 0.0000)$ & $(0.0000,-1.0000)$ & E \\
+$(\bar{1}1\bar{1})$ & $(-0.5774, 0.5774,-0.5774)$ & $(-0.9428, 0.3333, 0.0000)$ & $(-0.9428, 0.3333)$ & E \\
+$(1\bar{1}\bar{1})$ & $( 0.5774,-0.5774,-0.5774)$ & $( 0.4714, 0.3333,-0.8165)$ & $( 0.2595, 0.1835)$ & S \\
+$(\bar{1}\bar{1}\bar{1})$ & $(-0.5774,-0.5774,-0.5774)$ & $(-0.4714,-0.3333,-0.8165)$ & $(-0.2595,-0.1835)$ & S \\
+\hline
+\end{tabular}}
+\caption{\label{\chabbr:tb:PFcomp}Intermediate computational results for the stereographic coordinates of the cubic $\{111\}$ family for texture component  $(011)[2\bar{1}1]$.}
+\end{table}
+
+As an example, consider the texture component $(011)[2\bar{1}1]$ in a cubic system. Using the procedure described in section~\ref{\chabbr:ssec:grainORmatcubic}, we arrive at the following rotation matrix:
+\[
+	g_{ij} = \begin{pmatrix}
+	0.8165 & 0.5774 & 0.0000\\
+	-0.4082 & 0.5774 & 0.7071\\
+	0.4082 & -0.5774 & 0.7071
+	\end{pmatrix}\ ,
+\]
+\begin{floatingfigure}[r]{2.0in}
+\centering
+{\includegraphics[width=1.8in]{\graphicspath PFcomp.pdf}}
+{\caption{\label{\chabbr:fig:PFcomp}\small Pole figure for the cubic $\{111\}$ family and the $(011)[2\bar{1}1]$ texture component.}}
+\end{floatingfigure}
+\noindent which corresponds to Euler angles $(35.26^{\circ},45^{\circ},0^{\circ})$.  We are asked to generate a pole figure for the $\{ 111\}$ family of plane normals.  For a cubic crystal structure we do not need to use the structure matrices to transform to a Cartesian reference frame; it is sufficient to normalize the components to obtain $\{ 111\}/\sqrt{3}$.  The intermediate results of the computations are shown in Table~\ref{\chabbr:tb:PFcomp}. The last column indicates whether the resulting point lies in the Northern (N) or Southern (S) hemisphere or on the equator (E). 
+
+The second example concerns hexagonal Mg, which is hexagonal close packed with $c/a$ ratio of $1.624$ (i.e., close to the ideal $c/a$ ratio); the lattice parameters are $a=0.3209$ nm and $c=0.5211$ nm, with a unit cell volume of $V=0.0465$ nm$^3$.  The direct and reciprocal structure matrices are therefore given by:
+\[
+a_{ij}= \begin{pmatrix} 0.32094&      -0.16047&        0.00000\\
+   0.00000&       0.27794&        0.00000\\
+   0.00000&        0.00000&       0.52108\end{pmatrix}\qquad
+   b_{ij}=\begin{pmatrix}
+   3.11585&        0.00000&        0.00000\\     
+   1.79893&        3.59787&        0.00000\\     
+   0.00000&        0.00000&       1.91909
+   \end{pmatrix}
+\]
+In hcp materials, there are many different potential texture components; for this example we will consider the $(10.0)[\bar{1}2.0]$ component. In three-index notation, this corresponds to $(100)[010]$.  We already described how to obtain the rotation matrix in section~\ref{\chabbr:ssec:grainORmatgeneral}, and we find:
+\[
+	g_{ij} = \begin{pmatrix}
+	-\frac{1}{2} & 0 & \frac{\sqrt{3}}{2}\\
+	\frac{\sqrt{3}}{2} & 0 & \frac{1}{2}\\
+	0 & 1 & 0
+	\end{pmatrix}\ .
+\]
+Note that the inverse of $g$ is equal to the transpose, since $g$ is a rotation matrix.  Next we will make a single combined pole figure that shows the family $\{001\}$ in red, $\{100\}$ in green, and $\{\bar{2}10\}$ in blue for the Northern hemisphere only.  The intermediate computational results are shown in Table~\ref{\chabbr:tb:PFcompMg}. 
 
 
+\begin{table}[t!]
+\centering\leavevmode
+{\small
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$(hkl)$ & $(hkl)$ normalized & $(h'_x,h'_y,h'_z)$ & $(s_x,s_y)$ & N/E/S \\
+\hline\hline
+$(001)$ & $( 0.0000, 0.0000, 1.0000)$ & $( 0.0000, 1.0000, 0.0000)$ & $( 0.0000, 1.0000)$ & E \\
+$(00\bar{1})$ & $( 0.0000, 0.0000,-1.0000)$ & $( 0.0000,-1.0000, 0.0000)$ & $( 0.0000,-1.0000)$ & E \\
+\hline
+$(100)$ & $( 1.0000, 0.0000, 0.0000)$ & $( 0.0000, 0.0000, 1.0000)$ & $( 0.0000, 0.0000)$ & N \\
+$(\bar{1}00)$ & $(-1.0000, 0.0000, 0.0000)$ & $( 0.0000, 0.0000,-1.0000)$ & $( 0.0000, 0.0000)$ & S \\
+$(010)$ & $( 0.4472, 0.8944, 0.0000)$ & $( 0.8944, 0.0000, 0.4472)$ & $( 0.6180, 0.0000)$ & N \\
+$(\bar{1}10)$ & $(-0.3437, 0.9391, 0.0000)$ & $( 0.9391, 0.0000,-0.3437)$ & $( 0.6989, 0.0000)$ & S \\
+$(0\bar{1}0)$ & $(-0.4472,-0.8944, 0.0000)$ & $(-0.8944, 0.0000,-0.4472)$ & $(-0.6180, 0.0000)$ & S \\
+$(1\bar{1}0)$ & $( 0.3437,-0.9391, 0.0000)$ & $(-0.9391, 0.0000, 0.3437)$ & $(-0.6989, 0.0000)$ & N \\
+\hline
+$(\bar{2}10)$ & $(-0.7764, 0.6302, 0.0000)$ & $( 0.6302, 0.0000,-0.7764)$ & $( 0.3548, 0.0000)$ & S \\
+$(2\bar{1}0)$ & $( 0.7764,-0.6302, 0.0000)$ & $(-0.6302, 0.0000, 0.7764)$ & $(-0.3548, 0.0000)$ & N \\
+$(1\bar{2}0)$ & $(-0.0668,-0.9978, 0.0000)$ & $(-0.9978, 0.0000,-0.0668)$ & $(-0.9353, 0.0000)$ & S \\
+$(\bar{1}20)$ & $( 0.0668, 0.9978, 0.0000)$ & $( 0.9978, 0.0000, 0.0668)$ & $( 0.9353, 0.0000)$ & N \\
+$(110)$ & $( 0.8069, 0.5907, 0.0000)$ & $( 0.5907, 0.0000, 0.8069)$ & $( 0.3269, 0.0000)$ & N \\
+$(\bar{1}\bar{1}0)$ & $(-0.8069,-0.5907, 0.0000)$ & $(-0.5907, 0.0000,-0.8069)$ & $(-0.3269, 0.0000)$ & S \\
+\hline
+\end{tabular}}
+\caption{\label{\chabbr:tb:PFcompMg}Intermediate computational results for the stereographic coordinates of the hexagonal $\{001\}$, $\{100\}$, and $\{\bar{2}10\}$ families for texture component  $(100)[010]$.}
+\end{table}
 
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.5\textwidth]{\graphicspath PFcompMg.pdf}
+\caption{\label{\chabbr:fig:PFcompMg}Combined pole figure for the hexagonal $\{001\}$ (red), $\{100\}$ (green), and $\{\bar{2}10\}$ (blue) families and the $(10.0)[\bar{1}2.0]$ texture component.}
+\end{figure}
 
+\section{Common Texture Components}\label{\chabbr:sec:commonTC}
 
-
-
-
-
-
-
-
+\subsection{Face-centered cubic textures}\label{\chabbr:ssec:cubicTC}
 
 
 

@@ -589,7 +589,6 @@ innerbottommargin=5pt]{cBox}
 %----------------------------------------------------------------------------------------
 
 \usepackage{hyperref}
-\usepackage{url}
 
 \hypersetup{hidelinks,colorlinks=false,breaklinks=true,citecolor=blue,urlcolor=blue,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
 
@@ -612,9 +611,6 @@ addtohook={%
 
 \usepackage{csquotes}
 \usepackage{arara}
-
-%% The following package makes prettier tables.  We're all about the bling!
-\usepackage{booktabs}
 
 % since this is an open source book managed through a git-style repository, clearly state the version information at the bottom of each page...
 \usepackage[local,mark]{gitinfo2}
@@ -645,7 +641,7 @@ addtohook={%
 %\newcommand{\danger}{\marginpar{\dbend}}
 
 % and we will stick to SI units, so we use the appropriate package
-\usepackage[squaren]{SIunits}
+\usepackage{siunitx}
 
 % These commands are used to pretty-print LaTeX commands
 \newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically

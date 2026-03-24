@@ -26,13 +26,13 @@
 \OCchapterauthor{Marc De Graef, Carnegie Mellon University}
 %     this will appear in a secondary header below the chapter title.
 
-% All figures are stored in the src/Symmetry/eps folder and must be of the *.eps type. 
+% All figures are stored in the src/Symmetry/eps folder and must be of the *.pdf type. 
 
 \renewcommand{\chabbr}{CRYSYM}
 
 \chapterimage{\graphicspath CRYSYMheader.pdf}
 
-%     replace \noheaderimage by the chapter header image file name (without .eps extension).
+%     replace \noheaderimage by the chapter header image file name (without .pdf extension).
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 % ###################################################################
 
@@ -60,7 +60,7 @@ The Merriam-Webster on-line dictionary has several definitions of the word \inde
 \noindent We begin the description of symmetry operations by looking at a basic example.  We are all familiar with the effect of standing between large parallel mirrors and seeing an infinity of self-images bouncing back and forth, often veering off along a curve because the mirrors  \hfill
 \begin{floatingfigure}[r]{3.0in}
 \centering
-{\includegraphics[width=2.8in]{\graphicspath mirrors1.eps}}
+{\includegraphics[width=2.8in]{\graphicspath mirrors1.pdf}}
 {\caption{\label{\chabbr:fig:mirrors1}\small Illustration of the infinity effect for two parallel mirrors.}}
 \end{floatingfigure}
 \noindent are slightly non-parallel. This is illustrated in Fig.~\ref{\chabbr:fig:mirrors1} which shows an illuminated blueish sphere between two mirrors delineated by frames with a slightly different color to clearly distinguish them from each other in the repeated images.  If the distance between the mirrors is $d$, then the repeated images of the sphere appear at a spacing of $2d$ and continue to infinity (or more likely, until the light is completely attenuated).  The underlying interpretation of this effect is that two parallel mirrors produce an apparent \indexit{translation} of the original object, resulting in a 1D periodic structure.  
@@ -68,7 +68,7 @@ The Merriam-Webster on-line dictionary has several definitions of the word \inde
 When two mirrors intersect each other, and an object (i.e., a sphere) is placed between them, then the resulting image after repeated reflections is a ``ring'' of images where the number of objects in the ring depends on the angle between the mirror planes.  This is illustrated in Fig.~\ref{\chabbr:fig:mirrors2} for five different angles: $\theta = 120^{\circ}$, $90^{\circ}$, $72^{\circ}$, $60^{\circ}$, and $36^{\circ}$. Note that the number of equivalent images generated is given by $360^{\circ}/\theta$.  
 \begin{figure}[bh]
 \centering\leavevmode
-\includegraphics[width=0.8\textwidth]{\graphicspath mirrors2.eps}
+\includegraphics[width=0.8\textwidth]{\graphicspath mirrors2.pdf}
 \caption{\label{\chabbr:fig:mirrors2}Two intersecting mirrors produce different numbers of reflections depending on the angle between them.}
 \end{figure}
 
@@ -86,12 +86,12 @@ A \indexit{translation}, represented by the vector $\mathbf{t}$, is a linear ope
 \subsubsection{Rotations} A \indexit{rotation} requires the specification of a rotation angle, $\omega$, and a rotation axis defined as a unit vector $\hat{\mathbf{n}}$. The rotation angle is positive for a counterclockwise rotation when looking from the end point of the vector $\hat{\mathbf{n}}$ towards the origin. As described in detail in Foundational Chapter~\ref{3DROTS:3Drotations}, we can chose whether to use passive or active rotations; it is custom practice in crystallography to actually rotate objects from an original to a new position, so we prefer to employ \indexit{active rotations}. This implies that there is only a single reference frame with respect to which the rotation is carried out.  A rotation can be carried out by an arbitrary rotation angle $\omega$, or the rotation angle can be a fraction $2\pi/n$ (or $360^{\circ}/n$) in which case we talk about a \indexit{cyclic rotation} of order $n$; such an $n$-fold rotation always returns the object to the original position after $n$ steps.  For an arbitrary rotation angle there is no guarantee that one will ever recover the original orientation; in this text we will restrict ourselves to cyclic rotations.
 
 There are several ways to graphically represent a 3D rotation. It seems intuitive that a rotation should be represented by a regular polygon of the corresponding order $n$.  The exception is the rotation by $180^{\circ}$ or $\pi$ which has order $2$; in this case we use a narrow ellipse to represent the rotation axis since there is no two-sided regular polygon. The symbols for rotation axes of orders $2$ through $8$ are then as follows:
-\begin{center}\includegraphics[width=4in]{\graphicspath rotsyms.eps}\end{center}
+\begin{center}\includegraphics[width=4in]{\graphicspath rotsyms.pdf}\end{center}
 The rotation axes are assumed to be normal to the plane of the drawing in all cases.  In Foundational Chapter~\ref{PROJTS:Projections} we define and describe the \indexit{stereographic projection} (SP), an equal-angle projection from the surface of a sphere to the equatorial plane. SPs are frequently used in crystallography to represent crystal directions and plane normals in a 2D drawing while maintaining the ability to measure angles. They are also used to represent the spatial arrangement of symmetry operators that intersect each other in a single point. Fig.~\ref{\chabbr:fig:symopSPs} show the stereographic projections of $3$-, $4$-, and $7$-fold rotation axes; the axes are parallel to the North-South axis of the projection (i.e., normal to the plane of the drawing). The last SP shows a two-fold axis in the equatorial plane.  Note that the rotated point lies in the Southern hemisphere, hence it is represented by an open circle.
 
 \begin{figure}[th]
 \centering\leavevmode
-\includegraphics[width=0.8\textwidth]{\graphicspath symopSPs.eps}
+\includegraphics[width=0.8\textwidth]{\graphicspath symopSPs.pdf}
 \caption{\label{\chabbr:fig:symopSPs}Stereographic projections for 3-fold, 4-fold and 7-fold rotations; on the right, the 2-fold rotation axis lies in the plane of the projection.}
 \end{figure}
 
@@ -99,7 +99,7 @@ While SPs have for a long time been the standard way to display the action of a 
 
 \begin{figure}[hb]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath renders.eps}
+\includegraphics[width=\textwidth]{\graphicspath renders.pdf}
 \caption{\label{\chabbr:fig:renders}3D perspective renderings for (a) 3-fold, (b) 4-fold and (c) 7-fold rotations.  In (a), each sphere is connected to the South pole of the stereographic projection sphere (not shown), and the SP of each sphere is represented by a smaller orange sphere in the horizontal (equatorial) plane.}
 \end{figure}
 
@@ -113,7 +113,7 @@ Mirrors and the inversion operator both change the handedness of any object they
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=0.65\textwidth]{\graphicspath mirrorSPs.eps}
+\includegraphics[width=0.65\textwidth]{\graphicspath mirrorSPs.pdf}
 \caption{\label{\chabbr:fig:mirrorSPs}Stereographic projections for (a) a horizontal mirror; (b) a vertical mirror; and (c) an inversion center.  Objects with different color have opposite handedness. Note that the inversion operator is represented by the symbol $\bar{1}$ in the International notation, and $i$ in the Sch\"onflies notation.}
 \end{figure}
 
@@ -121,7 +121,7 @@ Using 3D renderings, we can improve the representation of the operators of the s
 
 \begin{figure}[hb]
 \centering\leavevmode
-\includegraphics[width=0.65\textwidth]{\graphicspath secondkind.eps}
+\includegraphics[width=0.65\textwidth]{\graphicspath secondkind.pdf}
 \caption{\label{\chabbr:fig:secondkind}3D renderings for (a) a horizontal mirror; (b) an inversion center.  Note that the object is a helix with handedness, and the two objects in each frame have opposite handedness. }
 \end{figure}
 
@@ -130,7 +130,7 @@ In this section, we ask the question: what happens when we combine an operation 
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=0.65\textwidth]{\graphicspath rotinvSP.eps}
+\includegraphics[width=0.65\textwidth]{\graphicspath rotinvSP.pdf}
 \caption{\label{\chabbr:fig:rotinvSP}3D renderings for (a) a horizontal mirror; (b) an inversion center.  Note that the object is a helix with handedness, and the two objects in each frame have opposite handedness. }
 \end{figure}
 
@@ -226,7 +226,7 @@ where the subscript $i$ takes on all the values from $1$ up to the dimensionalit
 \subsection{Lattices and rotations}\label{\chabbr:ssec:latrot}
 In this section we ask the question: \textit{are there any rotational symmetry operators that are compatible with a periodic lattice?}  To answer this question we will assume that the rotation axis represented by the operator $R(\theta)$ passes through lattice node $A$ and is perpendicular to the plane of the drawing: 
 
-\begin{center}\includegraphics[width=0.5\textwidth]{\graphicspath rotlattice.eps}\end{center}
+\begin{center}\includegraphics[width=0.5\textwidth]{\graphicspath rotlattice.pdf}\end{center}
 
 The operator through $A$ rotates lattice node $B$ over an angle $\theta$ to position $C$, which must be a lattice node. A similar rotation axis must be present at $B$ since all nodes must be indistinguishable from each other.  If $R(\theta)$ is a symmetry operator, then $R(-\theta)$ must also be a symmetry operator, so when we apply $R(-\theta)$ at $B$ to node $A$ we obtain $D$, another node.  $C$ and $D$ lie on a line parallel to the vector $\mathbf{a}$, and they are both lattice nodes; therefore the vector connecting them must be an integer multiple of the basis vector: $m\,\mathbf{a}$. Setting $a=\vert\mathbf{a}\vert$, we can see from the drawing that the distance $m\,a$ is also equal to $a+Cc+dD=a + 2a\cos\theta$.  Equating the two we find that:
 \[
@@ -246,7 +246,7 @@ In this section we take a closer look at the compatibility of \textit{multiple} 
 
 \begin{floatingfigure}[r]{3.2in}
 \centering
-{\includegraphics[width=3.0in]{\graphicspath sphericalangles.eps}}
+{\includegraphics[width=3.0in]{\graphicspath sphericalangles.pdf}}
 {\caption{\label{\chabbr:fig:sphericalangles}\small Illustration of the spherical triangle formed by three rotation axes at $A$, $B$, and $C$.}}
 \end{floatingfigure}
 \noindent Fig.~\ref{\chabbr:fig:sphericalangles} shows a spherical triangle formed by three rotation axes going through the center of the sphere and the points $A$, $B$, and $C$. We assume that these rotation axes have rotation angles $\alpha=2\pi/n_{\alpha}$, $\beta=2\pi/n_{\beta}$, and $\gamma=2\pi/n_{\gamma}$, in other words, they have rotational orders $n_{\alpha}$, $n_{\beta}$, and $n_{\gamma}$.  Spherical trigonometry rules can then be applied to this triangle to express the cosines of the circular arcs with arc length $a$, $b$, and $c$ in terms of the rotation semi-angles:
@@ -282,7 +282,7 @@ The first four combinations are known as the \indexit{dihedral} combinations; th
 
 \begin{figure}[hb]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath threeaxisrenderings.eps}
+\includegraphics[width=\textwidth]{\graphicspath threeaxisrenderings.pdf}
 \caption{\label{\chabbr:fig:threeaxisrenderings}3D renderings for the six multi-axis combinations that are compatible with translational periodicity.  The angles between pairs of rotation axes can be read from Table~\protect\ref{\chabbr:tb:axiscomp}. }
 \end{figure}
 
@@ -294,7 +294,7 @@ Around the end of the 18th century, \indexit{Ren\'e-Just Ha{\"u}y} proposed an e
 
 \begin{floatingfigure}[r]{3.2in}
 \centering
-{\includegraphics[width=3.0in]{\graphicspath unitcell.eps}}
+{\includegraphics[width=3.0in]{\graphicspath unitcell.pdf}}
 {\caption{\label{\chabbr:fig:unitcell}\small Definition of the lattice parameters $\{a,b,c,\alpha,\beta,\gamma\}$ as the shape parameters of a parallelepiped.}}
 \end{floatingfigure}
 \noindent Taking the idea of a regular building block, we begin by considering the most general possible ``stackable'' shape for such a block: the \indexit{parallelepiped}, a 3D shape with three sets of two parallel facets, each with a parallelogram shape.  The edge lengths are labelled $a$, $b$, and $c$ (Fig.~\ref{\chabbr:fig:unitcell}), in such a way that the three axes form a right-handed (but not necessarily orthogonal) reference frame.  The angles between the edges are written with Greek letters and correspond to the ``missing'' letter; e.g., for the angle between the $a$ and $c$ axes, the letter $b$ is missing so we label the angle by $\beta$.  These six numbers uniquely specify the shape of the parallelepiped. Since we will stack the unit cells into a space lattice by translations along the $a$, $b$, and $c$ directions, we refer to the sextet $\{a,b,c,\alpha,\beta,\gamma\}$ as the \indexit{lattice parameters} of the space lattice.  We represent the edges of the cell that are connected to the origin by the basis vectors $\mathbf{a}$, $\mathbf{b}$, and $\mathbf{c}$, and, as we discussed in section~\ref{\chabbr:ssec:firstkind}, their integer linear combinations generate the \indexit{lattice translation vectors} $\mathbf{t}_{uvw} = u\mathbf{a}+v\mathbf{b}+w\mathbf{c}$, abbreviated to the \indexit{direction symbol} $[uvw]$.  The lattice nodes are thus the vertices of all the unit cells that make up the space lattice.
@@ -324,7 +324,7 @@ Cubic 			&c&	233, 432	& $\{a,a,a,\frac{\pi}{2},\frac{\pi}{2},\frac{\pi}{2}\}$\\
 \subsection{Lattice Centering Vectors and Bravais Lattices}\label{\chabbr:ssec:Bravais}
 We have seen that all lattice nodes are equivalent, i.e., they have the same surroundings, regardless of the selected node.  This brings up the following question: \textit{are there locations in the unit cell to add nodes in such a way that the surroundings are also the same for each node?}  A quick 2D sketch using a rectangular net will illustrate the question. Consider the corners of the cell below, which represent identical nodes; if we add a node at an arbitrary location $(x,y)$, then we do not obtain a new net because, while the node in the origin has an equivalent node at $(x,y)$, this second node clearly does not have a node at \textit{its} $(x,y)$ position (dashed circle). So, the surroundings look different for the two nodes and therefore we do not have a new net.
 
-\begin{center}\includegraphics[width=4in]{\graphicspath centers.eps}\end{center}
+\begin{center}\includegraphics[width=4in]{\graphicspath centers.pdf}\end{center}
 
 There are, however, several locations in the cell where we can add a node without destroying the equivalence of the nodes; those are the midpoints of the edges and the cell itself.  There are three such points, labeled in red, green and blue.  It is easy to see that only the blue point generates a new net, namely the \indexit{centered rectangular net}; for the other two points, we can simply reduce the size of the cell by half in either the horizontal or the vertical direction to recover a regular rectangular cell.  
 
@@ -343,7 +343,7 @@ We can systematically take any one or any combination of the four centering vect
 
 \begin{figure}[hb]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath centeredcells.eps}
+\includegraphics[width=\textwidth]{\graphicspath centeredcells.pdf}
 \caption{\label{\chabbr:fig:centeredcells}3D renderings for the seven centered unit cells. The node at the origin is indicated in green. }
 \end{figure}
 
@@ -364,7 +364,7 @@ When we consider $2\times 2$ hexagonal unit cells with the obverse centering and
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=0.65\textwidth]{\graphicspath Rsettings.eps}
+\includegraphics[width=0.65\textwidth]{\graphicspath Rsettings.pdf}
 \caption{\label{\chabbr:fig:Rsettings}3D renderings of the obverse and reverse centerings of the hexagonal cell. }
 \end{figure}
 
@@ -377,7 +377,7 @@ The new rhombohedral basis vectors $\mathbf{a}_R$, $\mathbf{b}_R$, and $\mathbf{
 
 \begin{figure}[hb]
 \centering\leavevmode
-\includegraphics[width=0.65\textwidth]{\graphicspath HexRhomCell.eps}
+\includegraphics[width=0.65\textwidth]{\graphicspath HexRhomCell.pdf}
 \caption{\label{\chabbr:fig:HexRhomCell}$2\times 2$ hexagonal cells with the obverse centering.  The magenta lines connect pairs of nodes that form a rhombohedral unit cell.}
 \end{figure}
 
@@ -412,7 +412,7 @@ We will see later that the use of the Miller-Bravais symbols for directions in a
 
 \begin{figure}[hb]
 \centering\leavevmode
-\includegraphics[width=0.65\textwidth]{\graphicspath MillerBravais.eps}
+\includegraphics[width=0.65\textwidth]{\graphicspath MillerBravais.pdf}
 \caption{\label{\chabbr:fig:MillerBravais}Three differently oriented  hexagonal cells, illustrating the freedom to select any pair of vectors from the set $\{\mathbf{a}_1,\mathbf{a}_2, \mathbf{a}_3\}$.}
 \end{figure}
 
@@ -423,7 +423,7 @@ The final piece of information needed before we can enumerate all possible symme
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath cellrenderings.eps}
+\includegraphics[width=\textwidth]{\graphicspath cellrenderings.pdf}
 \caption{\label{\chabbr:fig:cellrenderings}3D renderings for the the unit cells superimposed on the corresponding rotational symmetry operators. $P$, $S$, and $T$ label the directions listed in Table~\protect\ref{\chabbr:tb:directions}. }
 \end{figure}
 
@@ -463,7 +463,7 @@ then the set is a \indexit{commutative group}.  There are numerous examples of g
 
 \begin{floatingfigure}[r]{2.8in}
 \centering
-{\includegraphics[width=2.6in]{\graphicspath pentagon.eps}}
+{\includegraphics[width=2.6in]{\graphicspath pentagon.pdf}}
 {\caption{\label{\chabbr:fig:pentagon}\small(a) Illustration of the symmetry elements of a regular pentagon; (b) corresponding stereographic projection.}}
 \end{floatingfigure}
 \noindent For our purposes we will apply the group concept to sets of symmetry operators, first operators that intersect each other in a single point (leading to the \indexit{crystallographic point groups}), then including the translation operators (leading to the \indexit{crystallographic space groups}). Before we proceed to enumerate the crystallographic point groups, let us consider one non-crystallographic example, namely the symmetry group of the regular pentagon. Fig.~\ref{\chabbr:fig:pentagon}(a) shows the symmetry elements of the regular pentagon: a $5$-fold rotation axis with rotations over multiples of $\varphi=2\pi/5=72^{\circ}$, and five mirror planes $m_i$ going through each vertex and the opposite edge center.  If we label the rotations by $R_i$ with $i=1\ldots 5$ and rotation angle $i\varphi$, then we can ask the question: for any point in the stereographic projection of Fig.~\ref{\chabbr:fig:pentagon}(b), how can we get to any other point in one single step?  For instance, how do we get from point $1$ to point $8$?  The two points have opposite handedness so the operation must be one of the mirror planes; it is not too difficult to see that mirror plane $m_5$ connects the points $1$ and $8$.  On the other hand, we can also get there in two steps, by first applying the rotation $R_2$ and then mirror $m_2$, as in the composition $m_2\,R_2$. We must therefore have that $m_5=m_2\, R_2$.  It is easy to visually verify that any combination of two operations is equivalent to another operation, i.e., the set of $10$ operators is closed, which is the first property of a group.  The second property, associativity, is also readily verified by example; for instance, taking the point $1$ as the starting point, we can operate on it with the sequence $(m_2\, R_3) m_4$. First we must simplify the operation between parentheses: operating on $1$ with $R_3$ results in $4$, then mirror $m_2$ maps $4$ onto $7$. Going directly from $1$ to $7$ requires mirror $m_4$, so that $(m_2\, R_3) m_4 = m_4\,m_4=E$ since a mirror is its own inverse.  If we consider the other combination, $m_2 (R_3\, m_4)$, then operating with $R_3\,m_4$ on $1$ produces point $10$ and the operation that links $1$ and $10$ directly is $m_2$.  Therefore we have $m_2 (R_3\, m_4)=m_2\,m_2=E$, so that $(m_2\, R_3) m_4 = m_2 (R_3\, m_4)$.  Finally, it is clear that $E=R_5$, and that each operator has its inverse.  Therefore, the symmetry operators of the regular pentagon form a group.
@@ -498,7 +498,7 @@ In the following subsections we enumerate the crystallographic point groups; we 
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=0.8\textwidth]{\graphicspath identity.eps}
+\includegraphics[width=0.8\textwidth]{\graphicspath identity.pdf}
 \caption{\label{\chabbr:fig:identity}Example graphical representation of the trivial point group \pg{1}: (left) 3D rendering of symmetry elements; (right) stereographic projection along with International (Hermann-Mauguin or H-M) symbol, Sch\"onflies symbol (S), and point group order. }
 \end{figure}
 
@@ -513,7 +513,7 @@ The cyclic point groups have an H-M symbol that consists of only one rotation or
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath cyclic.eps}
+\includegraphics[width=\textwidth]{\graphicspath cyclic.pdf}
 \caption{\label{\chabbr:fig:cyclic}Graphical representations of the cyclic point groups \pg{3}, \pg{16}, \pg{9} and \pg{21}. }
 \end{figure}
 
@@ -523,13 +523,13 @@ The dihedral point groups have two or more $2$-fold rotation axes perpendicular 
 \newpage
 \begin{figure}[t]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath dihedral.eps}
+\includegraphics[width=\textwidth]{\graphicspath dihedral.pdf}
 \caption{\label{\chabbr:fig:dihedral}Graphical representations of the dihedral point groups \pg{6}, \pg{18}, \pg{12} and \pg{24}. }
 \end{figure}
 
 \begin{figure}[b]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath rotoinvs.eps}
+\includegraphics[width=\textwidth]{\graphicspath rotoinvs.pdf}
 \caption{\label{\chabbr:fig:rotoinvs}Graphical representations of the roto-inversion point groups \pg{2}, \pg{4}, \pg{17}, \pg{10}, and \pg{22}. }
 \end{figure}
 
@@ -543,7 +543,7 @@ The general notation for a rotation axis with a perpendicular mirror plane is $\
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath noverm.eps}
+\includegraphics[width=\textwidth]{\graphicspath noverm.pdf}
 \caption{\label{\chabbr:fig:noverm}Graphical representations of the point groups with a mirror plane perpendicular to the single rotation axis \pg{5}, \pg{11}, and \pg{23}. }
 \end{figure}
 
@@ -553,7 +553,7 @@ The point groups \pg{7}, \pg{19}, \pg{13}, and \pg{25} have mirror planes that c
 \newpage
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath nm.eps}
+\includegraphics[width=\textwidth]{\graphicspath nm.pdf}
 \caption{\label{\chabbr:fig:nm}Graphical representations of the point groups with mirror planes coincident with the single rotation axis: \pg{7}, \pg{19}, \pg{13}, and \pg{25}.}
 \end{figure}
 
@@ -562,7 +562,7 @@ When a roto-inversion axis is combined with a coincident mirror plane, three add
 
 \begin{figure}[hb]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath barnm.eps}
+\includegraphics[width=\textwidth]{\graphicspath barnm.pdf}
 \caption{\label{\chabbr:fig:barnm}Graphical representations of the point groups with mirror planes coincident with the single roto-inversion axis: \pg{20}, \pg{14}, and \pg{26}.}
 \end{figure}
 
@@ -572,7 +572,7 @@ This combination generates three new point groups for the even-order rotation ax
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath novermm.eps}
+\includegraphics[width=\textwidth]{\graphicspath novermm.pdf}
 \caption{\label{\chabbr:fig:novermm}Graphical representations of the point groups with mirror planes coincident with and perpendicular to the single rotation axis: \pg{8}, \pg{15} and \pg{27}.}
 \end{figure}
 
@@ -582,7 +582,7 @@ The remaining five point groups all belong to the cubic crystal system and are b
 
 \begin{figure}[hb]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath TO.eps}
+\includegraphics[width=\textwidth]{\graphicspath TO.pdf}
 \caption{\label{\chabbr:fig:TO}Graphical representations of the point groups \pg{28} and \pg{30}.}
 \end{figure}
 
@@ -590,7 +590,7 @@ The final three cubic point groups are obtained by adding mirror planes and the 
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=0.9\textwidth]{\graphicspath cubic.eps}
+\includegraphics[width=0.9\textwidth]{\graphicspath cubic.pdf}
 \caption{\label{\chabbr:fig:cubic}Graphical representations of the point groups \pg{28} and \pg{30}.}
 \end{figure}
 
@@ -635,7 +635,7 @@ The figure shows an arbitrary unit cell with basis vectors $\mathbf{a}$, $\mathb
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=0.9\textwidth]{\graphicspath planes.eps}
+\includegraphics[width=0.9\textwidth]{\graphicspath planes.pdf}
 \caption{\label{\chabbr:fig:planes}(a) Illustration of three different lattice planes, $(423)$ (orange), $(011)$ (cyan), and $(002)$ (magenta). (b) parallel lattice planes have Miller indices that are integer multiples of each other.}
 \end{figure}
 
@@ -645,7 +645,7 @@ This is illustrated in Fig.~\ref{\chabbr:fig:planes}(b) which shows the $(433)$ 
 In section~\ref{\chabbr:ssec:MBindices} we introduced the Miller-Bravais direction indices for the hexagonal system; those indices have four components instead of the usual three, and are typically written as $[uvtw]$ or $[uv.w]$ with $t=-(u+v)$.  The conversion relations between 3- and 4-index symbols are given in equation~(\ref{\chabbr:eq:MBconvert}). 
 \begin{floatingfigure}[r]{3.0in}
 \centering
-{\includegraphics[width=2.8in]{\graphicspath hki.eps}}
+{\includegraphics[width=2.8in]{\graphicspath hki.pdf}}
 {\caption{\label{\chabbr:fig:hki}\small Illustration of the derivation of the relation $i=-(h+k)$.}}
 \end{floatingfigure}
 \noindent We can use the same approach to define 4-index Miller indices which we will write as $(hkil)$ or $(hk.l)$; the $i$ index is determined in the same way as the others, by determining the intersection of the plane with the $\mathbf{a}_3$ axis and considering all four intercepts in the inversion to relative prime integers. Note that at least one of the three indices $h$, $k$, and $i$ must have a different sign from the others.  Fig.~\ref{\chabbr:fig:hki} shows a projection along the $\mathbf{c}$ axis; an arbitrary plane (thick solid line) intersects the $\mathbf{a}_i$ axes at the points $a/h$, $a/k$ and $-a/i$. We can equate the area of the triangle $AOB$ to the sum of the areas of the triangles $AOC$ and $BOC$. Using the expression for the area of a triangle when two sides and the included angle are given, we obtain:
@@ -685,7 +685,7 @@ We can readily repeat this computation for all the other screw axes to obtain th
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath screws.eps}
+\includegraphics[width=\textwidth]{\graphicspath screws.pdf}
 \caption{\label{\chabbr:fig:screws}3D renderings of the $11$ crystallographic screw axes along with their graphical symbols.}
 \end{figure}
 
@@ -717,7 +717,7 @@ The \indexit{double glide} or \indexit{$e$-glide} is a special glide type that c
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath glide.eps}
+\includegraphics[width=\textwidth]{\graphicspath glide.pdf}
 \caption{\label{\chabbr:fig:glide}(a) Schematic illustration of a double glide plane with glide vectors $\mathbf{a}/2$ and $\mathbf{b}/2$ in a $C$-centered unit cell; (b) Illustration of a diagonal $\mathbf{B}$ glide on the $(\bar{1}01)$ plane in a cubic cell; red and blue spheres indicate alternating handedness.}
 \end{figure}
 
@@ -745,7 +745,7 @@ As a first example, we consider the tetragonal point group \pg{13}, a point grou
 
 \begin{figure}[h!]
 \centering\leavevmode
-\includegraphics[width=0.9\textwidth]{\graphicspath P4mm.eps}
+\includegraphics[width=0.9\textwidth]{\graphicspath P4mm.pdf}
 \caption{\label{\chabbr:fig:P4mm}Construction of the tetragonal space group $\mathbf{P4mm}$.}
 \end{figure}
 
@@ -757,7 +757,7 @@ The lines indicated by a dash-dot-dot pattern are double glide planes represente
 
 \begin{figure}[h!]
 \centering\leavevmode
-\includegraphics[width=0.9\textwidth]{\graphicspath I4mm.eps}
+\includegraphics[width=0.9\textwidth]{\graphicspath I4mm.pdf}
 \caption{\label{\chabbr:fig:I4mm}Construction of the tetragonal space group $\mathbf{I4mm}$.}
 \end{figure}
 
@@ -824,7 +824,7 @@ For each of the $73$ symmorphic space groups one can now ask the question: do we
 
 \begin{figure}[h!]
 \centering\leavevmode
-\includegraphics[width=0.9\textwidth]{\graphicspath P222.eps}
+\includegraphics[width=0.9\textwidth]{\graphicspath P222.pdf}
 \caption{\label{\chabbr:fig:P222}Construction of the orthorhombic space groups \spgr{16} and \spgr{17}.}
 \end{figure}
 
@@ -978,7 +978,7 @@ If we consider a right-handed Cartesian reference frame for which $\mathbf{e}_x\
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=0.9\textwidth]{\graphicspath mirrorframe.eps}
+\includegraphics[width=0.9\textwidth]{\graphicspath mirrorframe.pdf}
 \caption{\label{\chabbr:fig:mirrorframe}(a) Reflection of a right-handed reference frame in a mirror produces a left-handed frame, and the blue arrow should be pointing down. (b) Magnetic moment generated by a circular current; in the mirror image, the current has the opposite sense, so the moment vector should point down, not up.}
 \end{figure}
 
@@ -1006,7 +1006,7 @@ Using the polar transformation rule in eq.~(\ref{\chabbr:eq:polartrafo}) we find
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=0.8\textwidth]{\graphicspath mirrorpolaraxial.eps}
+\includegraphics[width=0.8\textwidth]{\graphicspath mirrorpolaraxial.pdf}
 \caption{\label{\chabbr:fig:mirrorpolaraxial}Effect of a mirror operation normal to the $\mathbf{e}_z$ axis on three polar (magenta) and three axial (orange) vectors. }
 \end{figure}
 
@@ -1172,7 +1172,7 @@ Using those conventions, we can now visualize the four point groups discussed in
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=0.8\textwidth]{\graphicspath mm2.eps}
+\includegraphics[width=0.8\textwidth]{\graphicspath mm2.pdf}
 \caption{\label{\chabbr:fig:mm2}3-D rendering of the magnetic point groups derived from CPG \pg{7} (top left). The color of each vector is determined from the parities according to Table~\protect\ref{\chabbr:tb:parities}.}
 \end{figure}
 
@@ -1183,7 +1183,7 @@ We will consider the standard primitive tetragonal Bravais lattice, $tP$, with l
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath tetraMPG.eps}
+\includegraphics[width=\textwidth]{\graphicspath tetraMPG.pdf}
 \caption{\label{\chabbr:fig:tetraMPG}3-D rendering of the magnetic Bravais lattices for the tetragonal crystal system (see text for details).}
 \end{figure}
 
@@ -1201,14 +1201,14 @@ There are eight orthorhombic magnetic Bravais lattices, represented graphically 
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath amMBL.eps}
+\includegraphics[width=\textwidth]{\graphicspath amMBL.pdf}
 \caption{\label{\chabbr:fig:amMBL}3-D renderings of the triclinic and monoclinic magnetic Bravais lattices.}
 \end{figure}
 
 
 \begin{figure}[hb!]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath oMBL.eps}
+\includegraphics[width=\textwidth]{\graphicspath oMBL.pdf}
 \caption{\label{\chabbr:fig:oMBL}3-D renderings of the orthorhombic magnetic Bravais lattices.}
 \end{figure}
 \clearpage
@@ -1220,7 +1220,7 @@ Finally, there is one rhombohedral magnetic Bravais lattice ($rP_I$), one hexago
 
 \begin{figure}[h!]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath rhcMBL.eps}
+\includegraphics[width=\textwidth]{\graphicspath rhcMBL.pdf}
 \caption{\label{\chabbr:fig:rhcMBL}3-D renderings of the rhombohedral, hexagonal, and cubic magnetic Bravais lattices.}
 \end{figure}
 
