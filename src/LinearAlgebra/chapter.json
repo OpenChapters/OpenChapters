@@ -14,5 +14,6 @@
   ],
   "entry_file": "LinearAlgebra.tex",
   "cover_image": "cover.png",
-  "keywords": []
+  "keywords": [],
+  "chapter_type": "foundational"
 }

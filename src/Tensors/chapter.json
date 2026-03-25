@@ -13,5 +13,6 @@
   ],
   "entry_file": "Tensors.tex",
   "cover_image": "cover.png",
-  "keywords": []
+  "keywords": [],
+  "chapter_type": "foundational"
 }
