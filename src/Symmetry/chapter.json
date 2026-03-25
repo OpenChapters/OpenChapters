@@ -16,5 +16,12 @@
   "entry_file": "Symmetry.tex",
   "cover_image": "cover.png",
   "keywords": [],
-  "chapter_type": "topical"
+  "chapter_type": "topical",
+  "chabbr": "CRYSYM",
+  "depends_on": [
+    "3DROTS",
+    "NUMSYS",
+    "PROJTS",
+    "TENSOR"
+  ]
 }

@@ -12,5 +12,9 @@
   "entry_file": "MaterialProperty.tex",
   "cover_image": "cover.png",
   "keywords": [],
-  "chapter_type": "topical"
+  "chapter_type": "topical",
+  "chabbr": "MATPRP",
+  "depends_on": [
+    "TENSOR"
+  ]
 }

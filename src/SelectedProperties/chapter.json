@@ -17,5 +17,7 @@
   "entry_file": "SelectedProperties.tex",
   "cover_image": "cover.png",
   "keywords": [],
-  "chapter_type": "topical"
+  "chapter_type": "topical",
+  "chabbr": "SELPRP",
+  "depends_on": []
 }

@@ -16,5 +16,11 @@
   "entry_file": "3Drotations.tex",
   "cover_image": "cover.png",
   "keywords": [],
-  "chapter_type": "foundational"
+  "chapter_type": "foundational",
+  "chabbr": "3DROTS",
+  "depends_on": [
+    "NUMSYS",
+    "PROJTS",
+    "TENSOR"
+  ]
 }

@@ -14,5 +14,9 @@
   "entry_file": "Tensors.tex",
   "cover_image": "cover.png",
   "keywords": [],
-  "chapter_type": "foundational"
+  "chapter_type": "foundational",
+  "chabbr": "TENSOR",
+  "depends_on": [
+    "NUMSYS"
+  ]
 }

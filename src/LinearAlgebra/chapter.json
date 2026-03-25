@@ -15,5 +15,7 @@
   "entry_file": "LinearAlgebra.tex",
   "cover_image": "cover.png",
   "keywords": [],
-  "chapter_type": "foundational"
+  "chapter_type": "foundational",
+  "chabbr": "LINALG",
+  "depends_on": []
 }

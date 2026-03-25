@@ -14,5 +14,9 @@
   "entry_file": "Projections.tex",
   "cover_image": "cover.png",
   "keywords": [],
-  "chapter_type": "foundational"
+  "chapter_type": "foundational",
+  "chabbr": "PROJTS",
+  "depends_on": [
+    "NUMSYS"
+  ]
 }

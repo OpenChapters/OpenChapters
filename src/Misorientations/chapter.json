@@ -8,5 +8,7 @@
   "entry_file": "Misorientations.tex",
   "cover_image": "cover.png",
   "keywords": [],
-  "chapter_type": "topical"
+  "chapter_type": "topical",
+  "chabbr": "",
+  "depends_on": []
 }

@@ -15,5 +15,9 @@
   "entry_file": "MicrostructureDescriptors.tex",
   "cover_image": "cover.png",
   "keywords": [],
-  "chapter_type": "topical"
+  "chapter_type": "topical",
+  "chabbr": "MICROD",
+  "depends_on": [
+    "LINALG"
+  ]
 }
