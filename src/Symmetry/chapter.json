@@ -1,0 +1,19 @@
+{
+  "title": "Crystallographic Symmetry",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [
+    "Symmetry Operations",
+    "Periodic Lattices and Allowed Rotations",
+    "Multiple Rotation Axes and the Crystal Systems",
+    "Crystallographic Point Groups",
+    "Lattice Planes in Bravais Lattices",
+    "Crystallographic Space Groups",
+    "Magnetic Symmetry"
+  ],
+  "entry_file": "Symmetry.tex",
+  "cover_image": "cover.png",
+  "keywords": []
+}

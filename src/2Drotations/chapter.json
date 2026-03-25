@@ -1,0 +1,16 @@
+{
+  "title": "2D Rotations",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [
+    "2D Rotation Matrices",
+    "Complex number representation",
+    "Composition of 2D rotations",
+    "2D rotations combined with translations"
+  ],
+  "entry_file": "2Drotations.tex",
+  "cover_image": "cover.png",
+  "keywords": []
+}

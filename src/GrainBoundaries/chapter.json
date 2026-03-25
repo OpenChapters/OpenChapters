@@ -1,0 +1,17 @@
+{
+  "title": "Grain Boundaries",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [
+    "Introductory Remarks",
+    "Geometrical Grain Boundary Descriptors",
+    "MacKenzie Misorientation/Disorientation Distributions",
+    "Misorientation Fundamental Zones",
+    "Boundaries between Different Crystallographic Phases"
+  ],
+  "entry_file": "GrainBoundaries.tex",
+  "cover_image": "cover.png",
+  "keywords": []
+}

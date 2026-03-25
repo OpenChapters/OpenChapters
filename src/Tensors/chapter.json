@@ -1,0 +1,17 @@
+{
+  "title": "Introduction to Tensors",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [
+    "A new Vector Product",
+    "Tensor Multiplication",
+    "Tensors and Coordinate Transformations",
+    "Example of a graphical interpretation of a second rank tensor",
+    "The Permutation Symbol and the Kronecker Delta"
+  ],
+  "entry_file": "Tensors.tex",
+  "cover_image": "cover.png",
+  "keywords": []
+}

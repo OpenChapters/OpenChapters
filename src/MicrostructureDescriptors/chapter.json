@@ -1,0 +1,18 @@
+{
+  "title": "Microstructure Descriptors",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [
+    "Introductory Remarks",
+    "Grain Size Measurements",
+    "Morphological Measures",
+    "Introduction to Stereology",
+    "Moment-based Shape Descriptors",
+    "Microstructure Distribution Functions"
+  ],
+  "entry_file": "MicrostructureDescriptors.tex",
+  "cover_image": "cover.png",
+  "keywords": []
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Texture Components",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [
+    "The Sample Reference  Frame",
+    "Pole Figures",
+    "Common Texture Components"
+  ],
+  "entry_file": "TextureComponents.tex",
+  "cover_image": "cover.png",
+  "keywords": []
+}

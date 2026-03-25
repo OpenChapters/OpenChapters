@@ -1,0 +1,17 @@
+{
+  "title": "Useful Projections",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [
+    "Hyperspheres and Hyperballs",
+    "Stereographic Projection",
+    "Lambert Projection",
+    "Gnomonic Projection",
+    "Other Useful Projections"
+  ],
+  "entry_file": "Projections.tex",
+  "cover_image": "cover.png",
+  "keywords": []
+}

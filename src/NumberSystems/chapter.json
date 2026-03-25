@@ -1,0 +1,17 @@
+{
+  "title": "Number Systems",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [
+    "Introductory Comments",
+    "Complex Numbers",
+    "Quaternions",
+    "Normed Division Algebras",
+    "Other Number Systems"
+  ],
+  "entry_file": "NumberSystems.tex",
+  "cover_image": "cover.png",
+  "keywords": []
+}

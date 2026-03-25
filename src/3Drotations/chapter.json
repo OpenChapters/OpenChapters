@@ -1,0 +1,19 @@
+{
+  "title": "3D Rotation Representations",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [
+    "Passive 3D Rotation Matrices",
+    "Euler Angles and their Properties",
+    "Neo-Eulerian Rotation Representations",
+    "Sampling of Orientations/Rotations",
+    "Orientation Averaging",
+    "The Clifford Torus",
+    "Evaluation of Sampling Uniformity"
+  ],
+  "entry_file": "3Drotations.tex",
+  "cover_image": "cover.png",
+  "keywords": []
+}

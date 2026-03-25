@@ -1,0 +1,20 @@
+{
+  "title": "Selected Anisotropic Material Properties",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [
+    "Introduction",
+    "Engineering Notation",
+    "Mechanical Properties",
+    "Electrical Properties",
+    "Magnetic properties",
+    "Optical Properties",
+    "Selected Non-Linear Properties",
+    "Can material tensor component values be predicted?"
+  ],
+  "entry_file": "SelectedProperties.tex",
+  "cover_image": "cover.png",
+  "keywords": []
+}

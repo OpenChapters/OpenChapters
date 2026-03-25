@@ -1,0 +1,16 @@
+{
+  "title": "Selected Transport Properties",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [
+    "Introduction",
+    "Transport Properties and Thermodynamic Symmetry",
+    "Principal and cross transport effects",
+    "Incorporation of Magnetic Fields"
+  ],
+  "entry_file": "TransportProperties.tex",
+  "cover_image": "cover.png",
+  "keywords": []
+}

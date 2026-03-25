@@ -1,0 +1,16 @@
+{
+  "title": "Orientations and Symmetry",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [
+    "Introductory Remarks",
+    "Rotations and Crystal Symmetry",
+    "Fundamental Zones",
+    "Orientation Sampling in the Presence of Fundamental Zones"
+  ],
+  "entry_file": "OrientationSymmetry.tex",
+  "cover_image": "cover.png",
+  "keywords": []
+}

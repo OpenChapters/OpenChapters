@@ -1,0 +1,15 @@
+{
+  "title": "What is a Material Property?",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [
+    "Introductory Remarks",
+    "Definition of a Material Property",
+    "About Coordinate Transformations and Tensors"
+  ],
+  "entry_file": "MaterialProperty.tex",
+  "cover_image": "cover.png",
+  "keywords": []
+}
