@@ -19,5 +19,6 @@
   "depends_on": [
     "LINALG",
     "TENSOR"
-  ]
+  ],
+  "published": true
 }

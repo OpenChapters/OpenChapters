@@ -16,5 +16,6 @@
   "chabbr": "MATPRP",
   "depends_on": [
     "TENSOR"
-  ]
+  ],
+  "published": true
 }

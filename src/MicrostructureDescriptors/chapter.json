@@ -19,5 +19,6 @@
   "chabbr": "MICROD",
   "depends_on": [
     "LINALG"
-  ]
+  ],
+  "published": true
 }

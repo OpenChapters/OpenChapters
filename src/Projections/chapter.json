@@ -18,5 +18,6 @@
   "chabbr": "PROJTS",
   "depends_on": [
     "NUMSYS"
-  ]
+  ],
+  "published": true
 }

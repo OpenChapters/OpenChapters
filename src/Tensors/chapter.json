@@ -18,5 +18,6 @@
   "chabbr": "TENSOR",
   "depends_on": [
     "NUMSYS"
-  ]
+  ],
+  "published": true
 }

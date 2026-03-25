@@ -17,5 +17,6 @@
   "chabbr": "2DROTS",
   "depends_on": [
     "NUMSYS"
-  ]
+  ],
+  "published": true
 }

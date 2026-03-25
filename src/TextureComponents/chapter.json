@@ -17,5 +17,6 @@
   "depends_on": [
     "3DROTS",
     "PROJTS"
-  ]
+  ],
+  "published": true
 }
