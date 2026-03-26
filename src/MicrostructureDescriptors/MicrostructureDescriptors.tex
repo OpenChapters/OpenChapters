@@ -39,7 +39,7 @@
 \chapterimage{\noheaderimage}
 
 % start the chapter and define the chapter label (outside of the \chapter command!)
-\chapter{Microstructure Descriptors}\label{\chabbr:MicrostructureDescriptors} % should be the same as the filename (without extension)
+\chapter{Microstructure Descriptors}\label{\chabbr:ch:MicrostructureDescriptors} % should be the same as the filename (without extension)
 
 % add the author information so that it will appear in the Author List at the start of the document
 % repeat this line for each author
@@ -97,7 +97,7 @@ The French naturalist and mathematician, the Comte de Buffon (1707-1788), propos
 \caption{\label{\chabbr:fig:buffon}(Microstructure length scales, the electromagnetic spectrum, and the resolution ranges of various experimental characterization techniques.)a) schematic of the Buffon needle experiment; (b) geometry of the problem; (c) integration area to obtain the probability $P$.}
 \end{figure}
 
-If we now carry out this experiment for a needle with length $L=D$, then the probability is precisely $P=2/\pi$. In practice, we would toss the needle a number of times, say $N$, and count how many times it intersects a line, say $C$, and then we would have $\pi=2N/C$, an estimate of $\pi$!  It is therefore possible to determine the value of $\pi$, by randomly tossing a needle onto a set of parallel lines.\footnote{Over a nine-year period, we had the students of the junior level class on Microstructure and Properties at Carnegie Mellon University carry out $100$ attempts each and count how many times an intersection occurred. The total number of attempts over that period was $N=27,600$ and the number of intersections was $C=17,478$, leading to an estimate for $\pi$ of $3.1583$, i.e. about $0.5\%$ too large.}  Table~\ref{tb:buffon} shows how closely we can approximate $\pi$ by repeating the experiment.  Obviously, these are numerical results, not from a real experiment!\footnote{There are several websites which have Java applets illustrating this problem;  a good one can be found at \href{http://mste.illinois.edu/activity/buffon/}{{\color{blue}here}}.}
+If we now carry out this experiment for a needle with length $L=D$, then the probability is precisely $P=2/\pi$. In practice, we would toss the needle a number of times, say $N$, and count how many times it intersects a line, say $C$, and then we would have $\pi=2N/C$, an estimate of $\pi$!  It is therefore possible to determine the value of $\pi$, by randomly tossing a needle onto a set of parallel lines.\footnote{Over a nine-year period, we had the students of the junior level class on Microstructure and Properties at Carnegie Mellon University carry out $100$ attempts each and count how many times an intersection occurred. The total number of attempts over that period was $N=27,600$ and the number of intersections was $C=17,478$, leading to an estimate for $\pi$ of $3.1583$, i.e. about $0.5\%$ too large.}  Table~\ref{\chabbr:tb:buffon} shows how closely we can approximate $\pi$ by repeating the experiment.  Obviously, these are numerical results, not from a real experiment!\footnote{There are several websites which have Java applets illustrating this problem;  a good one can be found at \href{http://mste.illinois.edu/activity/buffon/}{{\color{blue}here}}.}
 
 
 \begin{table}[t!]
@@ -117,7 +117,7 @@ $10^{8}$ & 63662298 & 3.14158&-0.0005\\
 Exact & $2/\pi=0.63661977$&3.1415926&---\\
 \hline
 \end{tabular}
-\caption{\label{tb:buffon}Results from simulations based on uniform random number generation of the Buffon needle problem.}
+\caption{\label{\chabbr:tb:buffon}Results from simulations based on uniform random number generation of the Buffon needle problem.}
 \end{table}
 
 It is not unusual to use \indexit{random sampling} approaches to determine or estimate quantities that would otherwise be difficult to measure and Buffon's needle problem serves as a particularly simple example of this approach. Random sampling lies at the core of a class of numerical techniques commonly known as \indexit{Monte Carlo simulations}.
@@ -729,7 +729,7 @@ Adding cube $3$ produces the same change values as cube $2$, so the MFs become $
 %specific integral of mean curvature  =      84.3045          83.7758       0.63
 %specific integral of total curvature =       4.1888   
 
-\section{Introduction to Stereology}\label{sec:stereology}
+\section{Introduction to Stereology}\label{\chabbr:sec:stereology}
 
 Stereology\index{stereology} is a branch of mathematics that connects quantities measured in 2D (i.e., quantities that are relatively easy to measure) to the corresponding quantities in 3D (quantities that are generally more difficult to measure), e.g., area fraction to volume fraction. Stereology is a well developed field that addresses many questions related to microstructure quantification, including:
 \begin{itemize}
@@ -832,7 +832,7 @@ In addition to the quantities described above, there are a few other parameters 
 \end{itemize}
 These are exact relationships provided that the measurements are made with statistical uniformity (i.e., randomly); one should always be aware that all experimental data is subject to measurement errors.
 
-Table~\ref{tb:relations} shows the same relationships in tabular form; quantities in blue are easily measured, quantities in red are very difficult to measure, so we make use of the stereological relationships listed above to derive them from the easy measurement results.  There are many additional stereological relationships of importance to materials characterization and we will introduce some of them in later chapters.
+Table~\ref{\chabbr:tb:relations} shows the same relationships in tabular form; quantities in blue are easily measured, quantities in red are very difficult to measure, so we make use of the stereological relationships listed above to derive them from the easy measurement results.  There are many additional stereological relationships of importance to materials characterization and we will introduce some of them in later chapters.
 
 \begin{table}[h!]
 \centering\leavevmode
@@ -849,7 +849,7 @@ Surfaces & {\color{blue}$A_A$} & {\color{red}$S_V$} && --- && --- \\
 Volumes & {\color{red}$V_V$} & ---& & ---& & --- \\
 \hline
 \end{tabular}
-\caption{\label{tb:relations}Stereological relationships of measured (blue) to calculated (red) quantities. The symbol $\ell$ stands for any length unit.}
+\caption{\label{\chabbr:tb:relations}Stereological relationships of measured (blue) to calculated (red) quantities. The symbol $\ell$ stands for any length unit.}
 \end{table}
 
 

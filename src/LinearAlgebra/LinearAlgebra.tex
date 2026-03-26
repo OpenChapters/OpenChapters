@@ -41,7 +41,7 @@
 %}{}%
 %
 
-\chapter{Concepts of Linear Algebra}\label{\chabbr:LinearAlgebra}
+\chapter{Concepts of Linear Algebra}\label{\chabbr:ch:LinearAlgebra}
 
 % add the author information so that it will appear in the Author List at the start of the document
 \writeauthor{LINALG:LinearAlgebra}{Concepts of Linear Algebra}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
@@ -57,12 +57,12 @@
 %\begin{multicols}{2}
 \begin{learningobjectives}
 {\begin{itemize}
-    \item[{\color{OCBurntOrange}\ref{\chabbr:matrices}:}] Learn about matrices and linear equations
-    \item[{\color{OCBurntOrange}\ref{\chabbr:matrixproperties}:}] Define general matrix terminology
-    \item[{\color{OCBurntOrange}\ref{\chabbr:determinant}:}] Learn how to compute a determinant
-    \item[{\color{OCBurntOrange}\ref{\chabbr:inverse}:}] Define the inverse of a matrix
-    \item[{\color{OCBurntOrange}\ref{\chabbr:GaussianElim}:}] Describe how Gaussian Elimination works
-    \item[{\color{OCBurntOrange}\ref{\chabbr:eigen}:}] Learn about eigenvectors and eigenvalues
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:matrices}:}] Learn about matrices and linear equations
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:matrixproperties}:}] Define general matrix terminology
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:determinant}:}] Learn how to compute a determinant
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:inverse}:}] Define the inverse of a matrix
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:GaussianElim}:}] Describe how Gaussian Elimination works
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:eigen}:}] Learn about eigenvectors and eigenvalues
 \end{itemize}}
 \end{learningobjectives}
 %\end{multicols}}}
@@ -71,7 +71,7 @@
 % ###################################################################
 
 
-\section{Matrices and Linear Equations}\label{\chabbr:matrices}
+\section{Matrices and Linear Equations}\label{\chabbr:sec:matrices}
 
 Consider the following equations~:
 \begin{align}
@@ -134,7 +134,7 @@ then the system of equations can be rewritten in short as~:
 An array of numbers which is obtained in this way is known as a \textit{matrix}.  
 In the following paragraphs we will explore some of the common properties of matrices.
 
-\section{General properties of matrices}\label{\chabbr:matrixproperties}
+\section{General properties of matrices}\label{\chabbr:sec:matrixproperties}
 \begin{enumerate}
 \item A matrix has, in general, $n$ \textit{rows}, and $m$ \textit{columns}.  The \textit{dimensions} of the matrix
 are thus $n\times m$.  If $n=m$ then the matrix is a \textit{square matrix}.  Note that the number of rows is always 
@@ -242,7 +242,7 @@ Here is an example with a $2\times 2$ matrix:
 If the determinant of an orthogonal matrix is equal to $+1$, then that matrix is said to be a \textit{special orthogonal} matrix. The set of all $n\times n$ special orthogonal matrices is represented by $SO(n)$.
 \end{enumerate} 
 
-\section{The Determinant of a matrix}\label{\chabbr:determinant}
+\section{The Determinant of a matrix}\label{\chabbr:sec:determinant}
 
 Before we look at the general definition of a \textit{determinant} it is instructive to consider a simple example.
 The following system of two equations in two unknowns can be solved analytically~:
@@ -342,7 +342,7 @@ As an exercise, compute the determinant of the following matrix (Answer=7)~:
 \]
 
 
-\section{The Inverse of a matrix}\label{\chabbr:inverse}
+\section{The Inverse of a matrix}\label{\chabbr:sec:inverse}
 
 We have seen that we can write a system of linear equations of dimension $n\times n$ in the form
 \[
@@ -413,7 +413,7 @@ found by multiplying the inverse of $\mathcal{A}$ with the right hand side vecto
 \noindent The inverse of higher order matrices can be computed in the same way, although it is a bit more complicated.
 
 
-\section{Solving Systems of Equations by Gaussian Elimination}\label{\chabbr:GaussianElim}
+\section{Solving Systems of Equations by Gaussian Elimination}\label{\chabbr:sec:GaussianElim}
 As shown above, we can use the inverse of a matrix, $\mathcal{A}^{-1}$, to solve the system of linear equations:
 \[
 	\mathcal{A}\,\mathbf{x} = \mathbf{b}\rightarrow \mathbf{x} = \mathcal{A}^{-1}\,\mathbf{b}\ .
@@ -457,7 +457,7 @@ This approach is known as \indexit{Gaussian elimination} and it can also be used
 Comparison with the inverse matrix in the previous section shows that the two are in full agreement.
 
 
-\section{Eigenvalues and Eigenvectors}\label{\chabbr:eigen}
+\section{Eigenvalues and Eigenvectors}\label{\chabbr:sec:eigen}
 Many scientific computations involving matrices require that the matrix be \indexit{diagonalized}, i.e., transformed into a new matrix that only has entries along the diagonal.  This can be accomplished by determining the \indexit{eigenvalues} and \indexit{eigenvectors}\footnote{The word \textit{eigen} has German roots and means ``own'' (as an adjective) or ``characteristic''.} of the matrix.  In this brief writeup, we will not go into the details of the underlying algebraic theory; we will just present an example based on a simple $2\times 2$ matrix with integer entries. For a more general description we refer the interested reader to the many on-line resources for linear algebra, in particular the excellent Linear Algebra YouTube playlist by {\color{OCblue}\href{https://www.3blue1brown.com/topics/linear-algebra}{3blue1brown}}.
 
 Consider the $2\times 2$ matrix $A$ with coefficients:
@@ -466,13 +466,13 @@ Consider the $2\times 2$ matrix $A$ with coefficients:
 \]
 We are tasked with finding a general expression for the $n$-th power of this matrix (with $n$ arbitrary and potentially large); i.e., we need the result of multiplying this matrix with itself $n-1$ times. There is a theorem in linear algebra that states that under certain conditions, there exists a matrix $P$, such that the following product will produce a diagonal matrix:
 \begin{equation}
-	P^{-1}\,A\,P = \begin{pmatrix}\lambda_1&0\\ 0&\lambda_2\end{pmatrix} \equiv \Lambda\ ,\label{\chabbr:PiAP}
+	P^{-1}\,A\,P = \begin{pmatrix}\lambda_1&0\\ 0&\lambda_2\end{pmatrix} \equiv \Lambda\ ,\label{\chabbr:eq:PiAP}
 \end{equation}
 where $\lambda_i$ are the eigenvalues of the matrix $A$ and $\Lambda$ is the diagonal matrix that contains them.  The columns of the matrix $P$ are the two eigenvectors corresponding to those eigenvalues.  An eigenvalue-eigenvector pair of the matrix $A$ satisfies the relation:
 \begin{equation}
-	A\,\mathbf{v}_i = \lambda_i\, \mathbf{v}_i\ ;\label{\chabbr:eigenequation}
+	A\,\mathbf{v}_i = \lambda_i\, \mathbf{v}_i\ ;\label{\chabbr:eq:eigenequation}
 \end{equation}
-in other words, operation of the matrix $A$ on one of its eigenvectors returns a multiple of that eigenvector.  The reason why we are interested in eigenvalues and eigenvectors is the fact that equation~(\ref{\chabbr:PiAP}) can be inverted to read:
+in other words, operation of the matrix $A$ on one of its eigenvectors returns a multiple of that eigenvector.  The reason why we are interested in eigenvalues and eigenvectors is the fact that equation~(\ref{\chabbr:eq:PiAP}) can be inverted to read:
 \[
 	A = P\, \Lambda\, P^{-1}\ .
 \]
@@ -495,7 +495,7 @@ We just need the eigenvalues $\lambda_i$ and eigenvectors $\mathbf{v}_i$.
 \subsection{The characteristic equation of a square matrix}
 The eigenvalues of a square matrix can be determined as the roots of its characteristic equation; this equation is obtained by the following expression:
 \begin{equation}
-	\det\left\vert A - x\,I\right\vert = 0\ ,\label{\chabbr:characteristic}
+	\det\left\vert A - x\,I\right\vert = 0\ ,\label{\chabbr:eq:characteristic}
 \end{equation}
 where $I$ represents the identity matrix.  For an $n\times n$ matrix, this determinant will expand into a order $n$ polynomial equation in $x$. In our example case we have:
 \[
@@ -511,7 +511,7 @@ so the eigenvalues are $\lambda_1=3$ and $\lambda_2=2$, leading to the following
 \]
 
 \subsection{Determination of the eigenvectors}
-Next we need to solve for the eigenvectors that make up the columns of the $P$ matrix.  From equation~(\ref{\chabbr:eigenequation}) we have:
+Next we need to solve for the eigenvectors that make up the columns of the $P$ matrix.  From equation~(\ref{\chabbr:eq:eigenequation}) we have:
 \[
 	(A-\lambda_i\, I)\,\mathbf{v}_i = \begin{pmatrix}0\\ 0\end{pmatrix}\ .
 \] 

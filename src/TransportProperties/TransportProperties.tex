@@ -35,7 +35,7 @@
 %\chapterimage{SELPRPheader.pdf}
 \chapterimage{\noheaderimage}
 
-\chapter{Selected Transport Properties}\label{\chabbr:TransportProperties}
+\chapter{Selected Transport Properties}\label{\chabbr:ch:TransportProperties}
 
 % add the author information so that it will appear in the Author List at the start of the document
 \writeauthor{TRAPRP:TransportProperties}{Selected Transport Properties}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
@@ -45,8 +45,8 @@
 % second column if LaTeX breaks the line at an awkward location.
 \begin{learningobjectives}
 {\begin{itemize}
-    \item[{\color{OCBurntOrange}\ref{\chabbr:intro}:}] Learn about 
-    \item[{\color{OCBurntOrange}\ref{\chabbr:matprop}:}] Formally 
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:intro}:}] Learn about 
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:matprop}:}] Formally 
     \item[{\color{OCBurntOrange}\ref{\chabbr:tensorproperties}:}] Introduce  
 %    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
 %    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
@@ -56,8 +56,8 @@
 % ###################################################################
 % ##################################################################
 
-\section{Introduction}\label{sec:TransportIntroduction}
-When we discussed equilibrium properties and thermodynamic symmetry in Chapter~\ref{chap:PropertySymmetry} we made use of the path independence of thermodynamic state functions to show that the property matrix $K_{ij}$ must have intrinsic symmetry.  Then we applied crystallographic symmetry to further reduce the number of independent material tensor components.  In the present chapter we will do the same for transport properties, i.e., those properties that have to do with the motion of electrical charges, vacancies and atoms, and heat.  We will find that many of the principles used for the equilibrium properties remain valid, but there are subtle differences, in particular in the presence of magnetic fields.  
+\section{Introduction}\label{\chabbr:sec:TransportIntroduction}
+When we discussed equilibrium properties and thermodynamic symmetry in Chapter~\ref{\chabbr:ch:PropertySymmetry} we made use of the path independence of thermodynamic state functions to show that the property matrix $K_{ij}$ must have intrinsic symmetry.  Then we applied crystallographic symmetry to further reduce the number of independent material tensor components.  In the present chapter we will do the same for transport properties, i.e., those properties that have to do with the motion of electrical charges, vacancies and atoms, and heat.  We will find that many of the principles used for the equilibrium properties remain valid, but there are subtle differences, in particular in the presence of magnetic fields.  
 
 In what follows, we will assume that the system is only slightly out of equilibrium; this will allow us to apply the \indexit{principle of microscopic reversibility} and Onsager's \indexit{reciprocity theorem}. This principle states that as long as the particles move over short distances in response to a gradient, a reversal of the sign of the gradient would make all particles reversibly return to their original positions; in other words, over short distances, i.e., microscopic distances, the system is reversible. Moreover, the system response in steady-state conditions, generally known as a \indexit{flux}, is considered to be linear in the gradients, which take the place of the forces from the previous chapter.  In other words, for small deviations from equilibrium and in steady-state, the terms (Force, Response) used for equilibrium properties are replaced by (Gradient, Flux); to first order, the relations between these two are once again linear, and we expect to find both principal and cross effects, as was the case for equilibrium properties.
 
@@ -76,7 +76,7 @@ In 1931, Onsager worked out the reciprocity theorem which was published in Physi
 \end{messagebox}
 
 
-\section{Transport Properties and Thermodynamic Symmetry}\label{sec:Lintrinsicsymmetry}
+\section{Transport Properties and Thermodynamic Symmetry}\label{\chabbr:sec:Lintrinsicsymmetry}
 
 We will assume that there is a small departure from equilibrium, and also that the material is in a steady-state condition, meaning that the departure from equilibrium does not depend on time.  A departure from equilibrium can in general be described by a gradient operation. For instance, when a concentration gradient is created from one side of a material to the other, there will be a flow of mass in response to the gradient.  When a gradient of electrical potential (i.e., an electric field) is applied, then there will be a flow of electrical charges, and so on.  In Table~\ref{tensors} on page~\pageref{tensors}, we introduced a number of gradients:
 \begin{itemize}
@@ -165,7 +165,7 @@ via Group Theory}, Cambridge University Press).}
 \end{table}
 
 
-\section{Principal and cross transport effects}\label{sec:Lprincipaleffects}
+\section{Principal and cross transport effects}\label{\chabbr:sec:Lprincipaleffects}
 
 As an example of the application of Onsager's reciprocity theorem, we consider here the combination of thermal and electrical transport properties \cite{nowick1995a}. The correct thermodynamic forces $\bm{X}$ can be shown to be given by:
 \begin{align}
@@ -212,7 +212,7 @@ Known thermoelectric materials fall into three categories depending upon their t
 The \indexit{Peltier effect} is the opposite of the thermoelectric power effect.  By reversing the polarity of the electric field, one can extract heat from a heat source and cool it down.  While it is possible to use the Peltier effect for refrigeration, the effect is not strong enough for widespread use in household refrigerators.
 
 
-\section{Incorporation of Magnetic Fields}\label{sec:galvano}
+\section{Incorporation of Magnetic Fields}\label{\chabbr:sec:galvano}
 
 The preceding sections have dealt with transport properties that do not contain magnetic field effects.  In this section, we will introduce various material properties that depend on an externally applied  magnetic field.  Transport properties which depend on a magnetic field are known as \indexit{galvanomagnetic} properties or effects.
 
@@ -223,7 +223,7 @@ We will again exclude mass transport from the discussion (even though it is poss
 \end{align}
 In other words, in the presence of a magnetic field, the four material tensors become functions of the applied field. In the case of thermoelectric effects, as discussed before, there is no magnetic field present.  If there is no temperature gradient, but a magnetic field is present, then the effects are known as \indexit{galvanomagnetic effects}.  If all forces are present, then we speak of \indexit{thermomagnetic effects}.
 
-It would take us too far to describe all possible galvanomagnetic and thermomagnetic effects.  Some of the properties and effects are: adiabatic and isothermal Hall effect, the Ettinghausen effect, electrical transverse and longitudinal magnetoresistivity, magnetothermal resistivity, the Righi-Leduc effect, and the adiabatic and isothermal Nernst effects.  As illustrated in Fig.~\ref{fig:galvanomagnetic}, the main differences between all those effects are the relative orientations of the electric and magnetic fields, and the directions along which the heat flow and temperature gradients are measured/applied.
+It would take us too far to describe all possible galvanomagnetic and thermomagnetic effects.  Some of the properties and effects are: adiabatic and isothermal Hall effect, the Ettinghausen effect, electrical transverse and longitudinal magnetoresistivity, magnetothermal resistivity, the Righi-Leduc effect, and the adiabatic and isothermal Nernst effects.  As illustrated in Fig.~\ref{\chabbr:fig:galvanomagnetic}, the main differences between all those effects are the relative orientations of the electric and magnetic fields, and the directions along which the heat flow and temperature gradients are measured/applied.
 
 
 The key aspect to understanding galvanomagnetic effects is the peculiar symmetry relations associated with magnetic fields.  The Onsager symmetry arguments that we referred to earlier have to do with the symmetry of the system when the sign of time is changed, i.e., from $t$ to $-t$, when we reverse the trajectories of all particles.  Consider the basic force equation of electrodynamics, the equation of motion for an electron with charge $-e$:
@@ -235,7 +235,7 @@ The key aspect to understanding galvanomagnetic effects is the peculiar symmetry
 \begin{figure}[t]
 %\centering\leavevmode\includegraphics{Figures/galvano}
 \caption{Illustration of galvanomagnetic and thermomagnetic effects for isotropic solids. [based on Fig.\ 20.1 in \protect\cite{newnham2005a}]}
-\label{fig:galvanomagnetic}
+\label{\chabbr:fig:galvanomagnetic}
 \end{figure}
 
 When we change the sign of time, essentially what we are doing is the following:  assume that we are following the motion of a particular electron or atom.  If we are not too far away from equilibrium, a condition which we stated at the beginning of this chapter, then we should be able to reverse the motion of this atom; in other words, close to equilibrium we are assuming that the motion is reversible.  This gives rise to Onsager's reciprocity condition $L_{ij}=L_{ji}$ that we used earlier on.  However, when we include magnetic effects, then the forces on a particle with a magnetic moment will include the second term in the expression above.  If we reverse time in this equation, we obtain:
@@ -252,7 +252,7 @@ Therefore, all galvanomagnetic and thermomagnetic properties must have this part
 \begin{figure}[t]
 %\centering\leavevmode\includegraphics[width=4in]{Figures/Hall}
 \caption{Illustration of the isothermal Hall effect.}
-\label{fig:Hall}
+\label{\chabbr:fig:Hall}
 \end{figure}
 
 As a single example, we will discuss the isothermal Hall effect.\index{isothermal Hall effect}  Isothermal means that there is no temperature gradient, so that the relevant equation is given by:
@@ -273,7 +273,7 @@ where $R$ is known as the Hall effect constant.  In component notation we have f
 	E_2 &= \rho_{22} j_2 + \rho_{2jk}j_jB_k;\\
 	E_3 &= \rho_{33} j_3 + \rho_{3jk}j_jB_k.
 \end{align*}
-Note that the final terms in each equation contain a double summation over $j$ and $k$. Consider, then, the following geometry, illustrated in Fig.~\ref{fig:Hall}:  a rectangular prism of dimensions $w$ (width), $t$ (thickness) and $L$ (length) is arranged so that a current $I$ runs along the length axis (parallel to the $x$ direction, so that $\mathbf{j}=(j_1,0,0)$).  A magnetic field is applied in the positive $z$ direction, and represented by $B_3$ (i.e., $k=3$).  Using the fact that $\rho_{ij} = \rho\delta_{ij}$ for cubic symmetry, we obtain for the electric field:
+Note that the final terms in each equation contain a double summation over $j$ and $k$. Consider, then, the following geometry, illustrated in Fig.~\ref{\chabbr:fig:Hall}:  a rectangular prism of dimensions $w$ (width), $t$ (thickness) and $L$ (length) is arranged so that a current $I$ runs along the length axis (parallel to the $x$ direction, so that $\mathbf{j}=(j_1,0,0)$).  A magnetic field is applied in the positive $z$ direction, and represented by $B_3$ (i.e., $k=3$).  Using the fact that $\rho_{ij} = \rho\delta_{ij}$ for cubic symmetry, we obtain for the electric field:
 \begin{align*}
 	E_1 &= \rho j_1;\\
 	E_2 &= \rho_{213}j_1B_3;\\

@@ -24,6 +24,7 @@
 %     for a core chapter a "Core" label will appear on the top left above the chapter title.
 
 \chapterauthor{Marc De Graef, Carnegie Mellon University}
+\renewcommand{\chabbr}{PRPSYM}
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/PropertySymmetry/eps folder and must be of the *.pdf type. 
@@ -33,7 +34,7 @@
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 % ###################################################################
 
-\chapter{Material Properties and Symmetry\label{chap:PropertySymmetry}}
+\chapter{Material Properties and Symmetry\label{\chabbr:ch:PropertySymmetry}}
 
 \section{Intrinsic Thermodynamic Symmetry}
 In this section, we take a look at material properties from the point of view of thermodynamics.  In thermodynamics, one defines the \textit{internal energy per unit volume},\index{internal energy} $\mathcal{U}$, as:
@@ -117,7 +118,7 @@ Similarly, we can write for the components of the responses $(\Delta S,\mathbf{D
 \end{equation}
 Since each of these ``vectors'' has $13$ components, the property matrix $K_{ij}$ connecting them must therefore be a $13\times 13$ matrix.  Note that $K_{ij}$ will become even larger if we add additional forces and responses.
 
-As an example of the use of intrinsic symmetry, consider those entries from Table~\ref{tensors} that are related to the $13$ forces and responses listed above.  The portion of this table that is relevant to our discussion is reproduced here as Table~\ref{tb:small}.  We have augmented this table to reflect all possible relations between fields and responses.
+As an example of the use of intrinsic symmetry, consider those entries from Table~\ref{tensors} that are related to the $13$ forces and responses listed above.  The portion of this table that is relevant to our discussion is reproduced here as Table~\ref{\chabbr:tb:small}.  We have augmented this table to reflect all possible relations between fields and responses.
 
 \begin{table}[h]
 \centering\leavevmode
@@ -159,7 +160,7 @@ Elasticity  &  $s_{ijkl}$  & $\sigma_{kl}$ & $\epsilon_{ij}$  & E21\\
 \hline
 \end{tabular}
 \caption{Selected entries from Table~\ref{tensors}.}
-\label{tb:small}
+\label{\chabbr:tb:small}
 \end{table}
 
 The material property matrix $K_{ij}$ can now be written explicitly as follows:

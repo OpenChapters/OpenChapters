@@ -34,7 +34,7 @@
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 \chapterimage{MATPRPheader.pdf}
 
-\chapter{What is a Material Property?}\label{\chabbr:MaterialProperty}
+\chapter{What is a Material Property?}\label{\chabbr:ch:MaterialProperty}
 
 % add the author information so that it will appear in the Author List at the start of the document
 \writeauthor{MATPRP:MaterialProperty}{What is a Material Property?}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
@@ -49,8 +49,8 @@
 {\color{OCalmostblack}\sffamily
 \begin{multicols}{2}
 \begin{itemize}
-    \item[{\color{OCBurntOrange}\ref{\chabbr:intro}:}] Learn about the Materials Tetrahedron
-    \item[{\color{OCBurntOrange}\ref{\chabbr:matprop}:}] Formally define what a material property is
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:intro}:}] Learn about the Materials Tetrahedron
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:matprop}:}] Formally define what a material property is
     \item[{\color{OCBurntOrange}\ref{\chabbr:tensorproperties}:}] Introduce many property tensors
 %    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
 %    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
@@ -84,18 +84,18 @@
 
 
 
-\section{Introductory Remarks}\label{\chabbr:intro}
+\section{Introductory Remarks}\label{\chabbr:sec:intro}
 
 \begin{floatingfigure}[r]{3.2in}
 \centering
 {\includegraphics[width=3.0in]{tetrahedron.pdf}}
-{\caption{\label{\chabbr:tetrahedron}\small Graphical representation of the materials paradigm as a tetrahedron.}}
+{\caption{\label{\chabbr:sec:tetrahedron}\small Graphical representation of the materials paradigm as a tetrahedron.}}
 \end{floatingfigure}
-\noindent It is not uncommon for the material scientist to describe their discipline in terms of a \indexit{tetrahedron}.  Each corner of the materials tetrahedron (Fig.~\ref{\chabbr:tetrahedron}) represents one of the four cornerstones of the field: \textit{Microstructure, Properties, Processing}, and \textit{Performance}. Many materials scientists/engineers believe that optimization of material properties and performance through judicious control of processing parameters to obtain the desired microstructure is the central paradigm of the discipline.  Blacksmiths represent the original (empirical) practitioners of this approach; they vary the microstructure of steels by varying their heat treatment in order to affect their mechanical properties.  In the present day, we control the doping of semiconductors to make quantum dots, resulting in highly efficient light emitting diodes; this is phase separation\index{phase separation} to make a two-phase structure in which the size of the approximately spherical particles of one phase is small enough that quantum effects become important.
+\noindent It is not uncommon for the material scientist to describe their discipline in terms of a \indexit{tetrahedron}.  Each corner of the materials tetrahedron (Fig.~\ref{\chabbr:sec:tetrahedron}) represents one of the four cornerstones of the field: \textit{Microstructure, Properties, Processing}, and \textit{Performance}. Many materials scientists/engineers believe that optimization of material properties and performance through judicious control of processing parameters to obtain the desired microstructure is the central paradigm of the discipline.  Blacksmiths represent the original (empirical) practitioners of this approach; they vary the microstructure of steels by varying their heat treatment in order to affect their mechanical properties.  In the present day, we control the doping of semiconductors to make quantum dots, resulting in highly efficient light emitting diodes; this is phase separation\index{phase separation} to make a two-phase structure in which the size of the approximately spherical particles of one phase is small enough that quantum effects become important.
 
-On the one hand, we have material properties, such as: strength, toughness, formability, conductivity, corrosion resistance, piezoelectricity, , magnetic permeability, $\ldots$ On the other hand we have microstructural features, such as: grain size, grain shape, phase structure, composite structure, chemical composition (alloying), crystal structure, defect structure (e.g., porosity), and many others. It is the primary goal of this collection of chapters to explicitly describe the links between properties and microstructure; in other words, this text focuses on the many connections between the red and blue spheres in Fig.~\ref{\chabbr:tetrahedron}.\\  
+On the one hand, we have material properties, such as: strength, toughness, formability, conductivity, corrosion resistance, piezoelectricity, , magnetic permeability, $\ldots$ On the other hand we have microstructural features, such as: grain size, grain shape, phase structure, composite structure, chemical composition (alloying), crystal structure, defect structure (e.g., porosity), and many others. It is the primary goal of this collection of chapters to explicitly describe the links between properties and microstructure; in other words, this text focuses on the many connections between the red and blue spheres in Fig.~\ref{\chabbr:sec:tetrahedron}.\\  
 
-\subsection{Microstructure\label{\chabbr:microstructures}}
+\subsection{Microstructure\label{\chabbr:ssec:microstructures}}
 \indexit{Microstructure} refers to the internal structure of a material, at various length scales.  Biology was revolutionized when \indexit{Leeuwenhoek} and others started to use optical microscopes to look at the internal structure of plants.  They were able to relate many characteristics of plants to their cell structure, for example.  Similarly, in what is now the materials field, \indexit{Sorby} was one of the first to make cross-sections of materials such as iron and examine them in the microscope, so that he could relate properties to structure.  Microstructure originally meant the structure inside a material that could be observed with the aid of an optical microscope; in the metric system, with its prefixes for units, the micrometer ($1$ $\mu$m $= 10^{-6}$ m) happens to correspond roughly to the wavelength of light.  Light obviously is used to form images in a light/optical microscope.  Thus, microstructure has come to be accepted to cover those elements of structure with a length scale on the order of $1$ $\mu$m.  Given microstructure at the $\mu$m scale, naturally some refer to \textit{nanostructure}\index{nanostructure} at the nm ($=10^{-9}$ m) scale.  Many important material properties are determined at the atomistic length scale. The continuum scale means, in the context of engineering, length scales large enough that materials can be treated as having homogeneous properties.
 
 Most observable elements of microstructure are discontinuities, or \indexit{defects}, in the material.  Some of the most important defects include:
@@ -119,9 +119,9 @@ It is essential to quantify microstructure in order to be able to predict proper
 \end{itemize}
 
 \subsection{Properties}
-\label{\chabbr:properties}
+\label{\chabbr:ssec:properties}
 
-A material's \indexit{properties} are those measurable characteristics that determine how the material responds to a variety of external stimuli; we will formalize this statement in section~\ref{\chabbr:matprop}. Broad property categories and specific examples in each category include:
+A material's \indexit{properties} are those measurable characteristics that determine how the material responds to a variety of external stimuli; we will formalize this statement in section~\ref{\chabbr:sec:matprop}. Broad property categories and specific examples in each category include:
 \begin{itemize}
 \item \indexit{mechanical properties}: strength, hardness, ductility, toughness, fatigue resistance;
 \item \indexit{thermal properties}: conductivity, heat capacity, thermal expansion;
@@ -133,7 +133,7 @@ A material's \indexit{properties} are those measurable characteristics that dete
 We distinguish between properties that are \indexit{intrinsic} and \indexit{extrinsic}. Intrinsic properties are generally determined by the crystal structure (i.e., the 3D arrangement and types of atoms) and in many cases they can be computed/predicted directly from the atomic arrangements using physics-based arguments, in particular quantum-mechanical models.  The electronic \indexit{band gap} of a material is  a typical example of an intrinsic property; it is fundamental to the particular crystal structure and represents the minimum energy needed to promote an electron from the valence band to the conduction band, thereby determining whether the material is an insulator, a conductor, or a semiconductor.  \textit{Ductility}\index{ductility} is an example of an extrinsic property since it depends in a very sensitive way on microstructural parameters, such as the grain size, or the rate at which the material is deformed (i.e., the \indexit{strain rate}).  In general, such extrinsic properties are much more difficult to predict since they depend on many factors that themselves may be difficult to quantify, and improving one extrinsic property, say strength, may have a negative effect on another property, in this case ductility.  The often complex and counter-acting dependencies between microstructure and (extrinsic) properties make it necessary to systematically approach material properties by starting from the single crystal state, and then gradually incorporating the actual microstructural aspects by means of appropriate averaging procedures, which represents a very active area of research.
 
 \subsection{Processing}
-\label{\chabbr:processing}
+\label{\chabbr:ssec:processing}
 
 Processing describes not only how we make a material (e.g., by solidification from a melt pool) but also how we subsequently modify the material's microstructure, for instance via thermal annealing or plastic deformation, both belonging to the category of \indexit{thermomechanical processing} techniques.    Each material class (metals, ceramics, polymers, $\ldots$) comes with its own set of specialized processing techniques, but the common goal of all material processing techniques is to achieve a microstructure that will satisfy all performance criteria or metrics (see next section).  
 
@@ -151,7 +151,7 @@ Processing describes not only how we make a material (e.g., by solidification fr
 
 
 \subsection{Performance}
-\label{\chabbr:performance}
+\label{\chabbr:ssec:performance}
 
 Performance takes the discussion out of the lab and into the real world. It asks the question: How does the material actually behave in service, under realistic conditions and over long time scales? A material may exhibit excellent tensile strength in a simple test, but if it corrodes rapidly in a marine environment, its performance as a structural material for ships will be poor. Similarly, a ceramic may have outstanding hardness, but if it is too brittle, it cannot perform well in an application involving repeated impact.
 
@@ -160,7 +160,7 @@ Performance thus integrates not just the intrinsic properties of the material bu
 In teaching, performance is often presented as the closing loop of the MSE framework. Microstructure is tailored by processing, which defines properties, which then dictate performance. This cycle emphasizes that materials are not just studied for their own sake but for their essential role in enabling technologies jet engines, medical implants, solar cells, bridges, and countless others.
 
 
-\section{Definition of a Material Property}\label{\chabbr:matprop}
+\section{Definition of a Material Property}\label{\chabbr:sec:matprop}
 
 %\begin{messagebox}{{\sffamily\bfseries Important Section}}{ocre}{\icattention}{OCwhite}
 %In this section you will learn a formal definition of what a material property is.  Later on in this chapter we will introduce many examples.
@@ -168,11 +168,11 @@ In teaching, performance is often presented as the closing loop of the MSE frame
 
 Although it is difficult to provide a general abstract description of a material property, valid for all possible properties, it is instructive to think of a material property as \textit{the link between an external influence and the material's response to that influence}.  If we denote the external influence by $\mathcal{F}$ ($\mathcal{F}$ stands for \underline{F}ield or \underline{F}orce) and the material \underline{R}esponse or \underline{R}eaction by $\mathcal{R}$, then in the most general sense the relation between the two is given by
 \begin{equation}
-	\mathcal{R}=\mathcal{R}(\mathcal{F}),\label{eq:rf}
+	\mathcal{R}=\mathcal{R}(\mathcal{F}),\label{\chabbr:eq:rf}
 \end{equation}
 or, put in words, the material response is a function of the externally applied field.  It is one of the tasks of a materials scientist to figure out and understand what that response function looks like.
 
-We know from calculus that, for ``well-behaved'' functions, we can always expand the function into powers of its argument. For equation~(\ref{eq:rf}) above, the \indexit{Taylor expansion} around $\mathcal{F}=0$, i.e., the \indexit{McLaurin series}, is given by:
+We know from calculus that, for ``well-behaved'' functions, we can always expand the function into powers of its argument. For equation~(\ref{\chabbr:eq:rf}) above, the \indexit{Taylor expansion} around $\mathcal{F}=0$, i.e., the \indexit{McLaurin series}, is given by:
 \begin{align}
 	\mathcal{R}&=\mathcal{R}_0 + 
 	\frac{1}{1!}\left.\frac{\partial\mathcal{R}}{\partial\mathcal{F}}\right 
@@ -184,7 +184,7 @@ We know from calculus that, for ``well-behaved'' functions, we can always expand
 	&= \mathcal{R}_0 +
 	\sum_{n=1}^{\infty}\frac{1}{n!}\left.\frac{\partial^n\mathcal{R}}{\partial\mathcal{F}^n}\right 
 	\vert_{\mathcal{F}=0}\!\!\!\!\mathcal{F}^n,
-	\label{eq:expansion}
+	\label{\chabbr:eq:expansion}
 \end{align}
 where $\mathcal{R}_0 = \mathcal{R}(0)=\mathcal{R}\vert_{\mathcal{F}=0}$ describes the ``state'' of the material at zero field.  There are two possibilities for $\mathcal{R}_0$:
 \begin{enumerate}
@@ -206,21 +206,21 @@ This is a \textit{linear} relation between the applied field and the response, a
 
 Since the external field $\mathcal{F}$ is often a vector quantity (e.g., the electric field $\mathcal{F}=\mathbf{E}$) and the response can also be a vector (e.g., the current density $\mathcal{R}=\mathbf{j}$) it is clear that the material property $\mathbf{P}$ is not always going to be described by a single number.  Instead, the material property can become a vector itself, or even a higher order mathematical quantity known as a \indexit{tensor}; nearly all of the interesting and useful material properties are represented by tensors, in particular for single crystals but also in polycrystalline materials.  For now, think of a tensor as an array of numbers with a set of special properties; in the Foundational Chapter~\ref{TENSOR:Tensors} the concept of a tensor is described in substantial detail.  Without going into the details at this time, we can state that, in general, a material property is represented by a \textit{matrix} of numbers; this can be a column vector, a $3\times 3$ matrix or even a higher dimensional array.  A combination of thermodynamic (or intrinsic) symmetry and the crystallographic symmetry of the material determines which of those numbers can be different from zero, and which \textit{must} be zero.  
 
-If the series expansion in equation~(\ref{eq:expansion}) is truncated after the third term, then it is said that the material behaves in a non-linear way.  The relation can then be written as:
+If the series expansion in equation~(\ref{\chabbr:eq:expansion}) is truncated after the third term, then it is said that the material behaves in a non-linear way.  The relation can then be written as:
 \begin{equation}
 	\mathcal{R}=\mathcal{R}_0 + \mathbf{P}\mathcal{F} + 
 	\mathbf{P}_2\mathcal{F}^2.
 \end{equation}
 $\mathbf{P}_2$ is a \textit{non-linear} material property.  Crystallography and symmetry theory can again be used to examine the relations between the components of $\mathbf{P}_2$.  
 	
-There are several material properties for which it is impossible to truncate the Taylor expansion of equation~(\ref{eq:expansion}) after just a few terms, and many or all terms must be used. For those properties, it is customary to use equation~(\ref{eq:rf}), with some appropriate mathematical function $\mathcal{R}$. In that case, equation~(\ref{eq:rf}) represents a so-called \indexit{constitutive law} or \indexit{constitutive relation}.  Sometimes, physical arguments can be used to find the precise form of the function, in other situations empirical or phenomenological relations may be needed.
+There are several material properties for which it is impossible to truncate the Taylor expansion of equation~(\ref{\chabbr:eq:expansion}) after just a few terms, and many or all terms must be used. For those properties, it is customary to use equation~(\ref{\chabbr:eq:rf}), with some appropriate mathematical function $\mathcal{R}$. In that case, equation~(\ref{\chabbr:eq:rf}) represents a so-called \indexit{constitutive law} or \indexit{constitutive relation}.  Sometimes, physical arguments can be used to find the precise form of the function, in other situations empirical or phenomenological relations may be needed.
 
 One can also express the \textit{energy content} of a material in terms of the externally applied field(s); \textit{thermodynamics}\index{thermodynamics} then provides the means and rules to determine how the energy of a solid/liquid/gas changes when the external conditions change.  Thermodynamics often assumes that a material system is \textit{homogeneous} and \textit{isotropic} (see below) and then makes quite general statements about its behavior in various external fields.  Symmetry becomes important whenever a thermodynamic function depends on the gradient of a property; in such cases, symmetry theory can determine the possible mathematical expressions that will correctly describe this property.  There is thus an intimate relation between the symmetry of a material and its thermodynamic properties.  Whereas symmetry theory determines which elements of a property matrix must be zero, thermodynamics can be used to derive additional restrictions on the non-zero elements (e.g., some elements can only be positive, or certain elements must always be smaller than others, etc.)  
 
 Every material property has a number of characteristics\footnote{We could call them \textit{properties} but it is a bit confusing to talk about the properties of a property.} which are of fundamental importance: \textit{homogeneity, anisotropy} and \textit{symmetry}; let us take a brief closer look at each of these concepts.
 
 \subsection{Homogeneity}
-\label{\chabbr:homogeneity}
+\label{\chabbr:ssec:homogeneity}
 
 There are several length scales at which we can make observations on a material.  Macroscopic measurements are considered to be those measurements that are performed over distances many times larger than the interatomic distance, e.g.\
 \begin{eqnarray}
@@ -239,7 +239,7 @@ where the points $\mathbf{r}$ and $\mathbf{r}^{\,\prime}$ are separated by a (ra
 % idea: add figure showing color gradations in tourmaline
 
 \subsection{Anisotropy}
-\label{\chabbr:anisotropy}
+\label{\chabbr:ssec:anisotropy}
 
 A homogeneous property can be either isotropic or anisotropic in a single crystal.  If a property is the same in every direction, then that property is said to be \textit{isotropic},\index{isotropic} otherwise it is \textit{anisotropic}.\index{anisotropic}  Every isotropic homogeneous quantity must necessarily be described by a \textit{scalar}.  The most interesting properties are usually those which are direction dependent.  In Foundational Chapter~\ref{TENSOR:Tensors} we describe in detail how a  that the mathematical quantity known as a tensor is perfectly suited for the description of anisotropic behavior.  Examples of properties which may depend upon direction include thermal conductivity, dielectric and magnetic susceptibilities, elastic moduli, and so on.  It is important to note that an anisotropic property in a single crystal can become isotropic in a poly-crystalline material, since all crystal orientations may be simultaneously present in the poly-crystal.
 
@@ -249,14 +249,14 @@ A homogeneous property can be either isotropic or anisotropic in a single crysta
 
 
 \subsection{Symmetry}
-\label{\chabbr:symmetry}
+\label{\chabbr:ssec:symmetry}
 
 Symmetry is one of the more fundamental properties of crystalline matter.  Apart from color, it is also in many cases the most ``eye-catching'' aspect of a natural crystal.  One can introduce the concept as follows: take an arbitrary object and determine if there is a way to ``move'' the object into another orientation in such a way that the initial and final configurations are indistinguishable.  The specific ways of ``moving'' an object into \textit{self-coincidence} represent the symmetries of that object.  Enumeration of the different symmetry properties of a crystal forms the subject of the ``group theory'' of crystallography.  All possible crystallographic symmetry operations and their combinations into point groups and space groups are described in detail in Chapter~\ref{CRYSYM:Symmetry}.
 
 % insert section on effect of symmetry on 
 
 \section{About Coordinate Transformations and Tensors}
-\label{sec:transformations1}
+\label{\chabbr:sec:transformations1}
 
 \subsection[Cartesian Coordinate Transformations]{Cartesian Coordinate Transformations}
 
@@ -268,7 +268,7 @@ general expressions, such as the relation between an applied electric
 field $\mathbf{E}$ and the resulting electrical current density 
 $\mathbf{j}$~:
 \begin{equation}
-	\mathbf{j}=\bm{\sigma}\mathbf{E},\label{eq:conductivity}
+	\mathbf{j}=\bm{\sigma}\mathbf{E},\label{\chabbr:eq:conductivity}
 \end{equation}
 where $\bm{\sigma}$ is the electrical conductivity.  The reason for 
 representing the conductivity with a bold symbol will become clear shortly.
@@ -314,7 +314,7 @@ six of them are independent of each other; we will determine why this
 is the case in section~\ref{sec:XXX}) fully describe the relation 
 between an applied electric field and the resulting electrical current 
 density for a particular material.  If we rewrite 
-equation~\ref{eq:conductivity} in a second (primed) reference frame, 
+equation~\ref{\chabbr:eq:conductivity} in a second (primed) reference frame, 
 then we must have an expression of the same mathematical form~:
 \begin{equation}
 	\mathbf{j}^{\,\prime}=\bm{\sigma}^{\,\prime}\mathbf{E}^{\,\prime}
@@ -328,7 +328,7 @@ precise mathematical formalism.  We shall see that the behavior of the
 conductivity ``matrix'' under coordinate transformations can actually 
 be used to \textit{define} the concept of a \textit{tensor}.
 
-We have already seen in section~\ref{ssec:vectortransformation} how the components of a vector change when transforming from one Cartesian reference frame to another. In the following section we will show how one can compute the components of a tensor in one reference frame when its components in another reference frame are known.  We will use the electrical conductivity equation~\ref{eq:conductivity} as an example.
+We have already seen in section~\ref{ssec:vectortransformation} how the components of a vector change when transforming from one Cartesian reference frame to another. In the following section we will show how one can compute the components of a tensor in one reference frame when its components in another reference frame are known.  We will use the electrical conductivity equation~\ref{\chabbr:eq:conductivity} as an example.
 
 \subsection{Transformation of the electrical conductivity tensor $\bm{\sigma}$.}
 In this section we will answer the question~: how does the set of nine numbers (the components of $\bm{\sigma}$) change when the reference frame is changed?  To illustrate the various equations which we will derive, it is useful to select a particular set of numbers for the components of $\bm{\sigma}$.  Let us assume that the components of the electrical conductivity for a hypothetical material are given by~:
@@ -390,13 +390,13 @@ those of $\mathbf{E}^{\,\prime}$, and since $\mathbf{j}^{\,\prime}=
 \begin{equation}
 \sigma^{\prime}_{pk}= 
 \alpha_{pi}\sigma_{ij}\widetilde{\alpha}_{jk}
-\label{eq:stuff6}
+\label{\chabbr:eq:stuff6}
 \end{equation}
 The inverse of this relation is readily shown to be~:
 \begin{equation}
 \sigma_{pk}= 
 \widetilde{\alpha}_{pi}\sigma^{\prime}_{ij}\alpha_{jk}
-\label{eq:stuff7}
+\label{\chabbr:eq:stuff7}
 \end{equation}
 We thus find that the components of $\bm{\sigma}$ in the two 
 reference frames are related to each other by an equation which 
@@ -405,19 +405,19 @@ $\alpha$.
 
 It is common practice to slightly rewrite these transformation relations,
 so that all the matrices $\alpha$ appear \textit{before} the tensor symbol.
-This can be achieved by using the transpose as follows for equation~\ref{eq:stuff6}:
+This can be achieved by using the transpose as follows for equation~\ref{\chabbr:eq:stuff6}:
 \begin{equation}
 	\sigma'_{pk} = \alpha_{pi}\alpha_{kj}\sigma_{ij},
 \end{equation}
-and for equation~\ref{eq:stuff7} we find
+and for equation~\ref{\chabbr:eq:stuff7} we find
 \begin{equation}
 	\sigma_{pk} = \tilde{\alpha}_{pi}\tilde{\alpha}_{kj}\sigma'_{ij}.
 \end{equation}
 
 
 \begin{example}
-Let us illustrate the meaning of equations~\ref{eq:stuff6} and 
-\ref{eq:stuff7} by means of an example.  If the two reference frames 
+Let us illustrate the meaning of equations~\ref{\chabbr:eq:stuff6} and 
+\ref{\chabbr:eq:stuff7} by means of an example.  If the two reference frames 
 are related to each other by a 45$^{\circ}$ clockwise rotation 
 around the common $\mathbf{e}_z$ axis, then the transformation matrix 
 $\alpha$ is given by~:
@@ -450,7 +450,7 @@ $0$ & $0$ & $1$ \\
 It is straightforward to show that 
 $\mathbf{j}^{\,\prime}\neq\bm{\sigma}\mathbf{E}^{\,\prime}$.  The 
 primed components of $\bm{\sigma}$ can be computed from 
-equation~\ref{eq:stuff6}~:
+equation~\ref{\chabbr:eq:stuff6}~:
 \begin{eqnarray}
 \sigma^{\prime}_{pk}&=& 
 \alpha_{pi}\sigma_{ij} 
@@ -493,7 +493,7 @@ $\sqrt{2}$ & $0$ & $0$ \\
 \]
 \end{example}
 
-By means of this example, we have shown that the relations~\ref{eq:stuff6} and \ref{eq:stuff7} \textit{guarantee} that the equation $\mathbf{j}=\bm{\sigma}\mathbf{E}$ remains valid in the new reference frame.  One can state in general terms that if a quantity $\sigma_{ij}$ satisfies relations~\ref{eq:stuff6} and \ref{eq:stuff7} for all reference frames, then that quantity is independent of the selected reference frame.  Such a quantity is called a second rank \textit{tensor}.\index{tensor!second rank}
+By means of this example, we have shown that the relations~\ref{\chabbr:eq:stuff6} and \ref{\chabbr:eq:stuff7} \textit{guarantee} that the equation $\mathbf{j}=\bm{\sigma}\mathbf{E}$ remains valid in the new reference frame.  One can state in general terms that if a quantity $\sigma_{ij}$ satisfies relations~\ref{\chabbr:eq:stuff6} and \ref{\chabbr:eq:stuff7} for all reference frames, then that quantity is independent of the selected reference frame.  Such a quantity is called a second rank \textit{tensor}.\index{tensor!second rank}
 
 The general transformation rule for a second rank tensor can be written as:
 \[
@@ -621,7 +621,7 @@ via Group Theory}, Cambridge University Press.}
 
 
 % the following section should move to the 3D rotations chapter
-\subsection{Determining the rotation matrix\label{ssec:rotationmatrixdetermination}}
+\subsection{Determining the rotation matrix\label{\chabbr:ssec:rotationmatrixdetermination}}
 
 %\begin{figure}[h]
 %\centering\leavevmode
@@ -760,7 +760,7 @@ The relevant material property relation is $\mathbf{E} = \bm{\rho}\mathbf{j}$.
 
 To answer these questions, we need to select a number of reference frames.  The first reference frame
 is the Bravais lattice of the crystal.  Since the cylinder axis is along $[101]$, we will draw the $\mathbf{a}$
-and $\mathbf{c}$ Bravais basis vectors in the appropriate orientation (see Fig.~\ref{fig:q1}).  The $\mathbf{b}$ vector
+and $\mathbf{c}$ Bravais basis vectors in the appropriate orientation (see Fig.~\ref{\chabbr:fig:q1}).  The $\mathbf{b}$ vector
 points into the plane of the drawing, so that the drawing is essentially two-dimensional.  Then we define
 a Cartesian reference frame with the same orientation as the Bravais frame, and with unit length basis vectors
 $\mathbf{e}_x$, $\mathbf{e}_y$ and $\mathbf{e}_z$.  Finally, we define another Cartesian frame, with 
@@ -771,7 +771,7 @@ cylinder axis.
 %\centering\leavevmode
 %\epsffile{q1}
 %\caption{Illustration of the three reference frames needed to solve the first example question.}
-%\label{fig:q1}
+%\label{\chabbr:fig:q1}
 %\end{figure}
 
 We know that the tensor components of the resistivity are defined in the Cartesian reference frame that is parallel
@@ -826,7 +826,7 @@ are the components $E_k$.   We can transform them into the other reference frame
 \end{align*}
 The angle $\theta$ between this vector $\mathbf{E}$ and the cylinder axis can be computed using standard trigonometry
 $(\tan^{-1}(\theta)=E_z/E_x = -3/4)$ 
-and is given by $36.87^{\circ}$.  The vector $\mathbf{E}$ has been indicated on Fig.~\ref{fig:q1}.
+and is given by $36.87^{\circ}$.  The vector $\mathbf{E}$ has been indicated on Fig.~\ref{\chabbr:fig:q1}.
 \end{example}
 
 % second example
@@ -850,13 +850,13 @@ The relevant material property relation is $\mathbf{h} = -\bm{K}\bm{\nabla}T$.
 \end{itemize}
 
 Again we start by defining the relevant reference frames.  The contact plane between the crystals and the heat source
-and sink is parallel to the $(101)$ plane, as shown in Fig.~\ref{fig:q2}.
+and sink is parallel to the $(101)$ plane, as shown in Fig.~\ref{\chabbr:fig:q2}.
 
 %\begin{figure}[h]
 %\centering\leavevmode
 %\epsffile{q2}
 %\caption{Illustration of the three reference frames needed to solve the second example question.}
-%\label{fig:q2}
+%\label{\chabbr:fig:q2}
 %\end{figure}
 
 The angle $\varphi$ between $\mathbf{e}'_x$ and $\mathbf{e}_x$ is this time determined from $\sin\varphi=

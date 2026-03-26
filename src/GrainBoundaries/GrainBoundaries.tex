@@ -33,7 +33,7 @@
 \chapterimage{\noheaderimage}
 
 %	Make sure to use the \label{\chabbr:} command everywhere instead of \label{} !
-\chapter{Grain Boundaries}\label{\chabbr:GB}
+\chapter{Grain Boundaries}\label{\chabbr:ch:GB}
 
 % add the author information so that it will appear in the Author List at the start of the document
 \writeauthor{GRAINB:GB}{Grain Boundaries}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
@@ -456,7 +456,7 @@ Fig.~\ref{\chabbr:fig:MK-cubic}(b) shows a comparison between an experimental da
 
 \section{Misorientation Fundamental Zones}\label{\chabbr:sec:MFZs}
 
-\subsection{Enumeration of the Misorientation Fundamental Zones}\label{\chabbr:ssewc:MFZenumeration}
+\subsection{Enumeration of the Misorientation Fundamental Zones}\label{\chabbr:ssec:MFZenumeration}
 In Chapter~\ref{ORISYM:OrSym}, we have restricted the discussion to the rotational point groups, which allowed us to define the Rodrigues Fundamental Zones. We have ignored the full point group symmetry, in other words, no mirror planes and/or inversion center.  This means that there are sets of points inside the RFZ that have rotation axes that are related to each other by the other, non-rotational, symmetry operators in the point group (if there are any).  As an example, consider the rotations $30^{\circ}@[123]$ and $30^{\circ}@[1\bar{2}3]$ in \pg{30}. Application of all $24$ rotational symmetry operators to each of these rotations shows that the lists of equivalent rotations have an empty intersection. In other words, there is no rotational symmetry operation in \pg{30} that relates $30^{\circ}@[123]$ to $30^{\circ}@[1\bar{2}3]$ and both rotations belong to the RFZ of \pg{30}.  If the crystal symmetry is \pg{32}, which contains the rotational group \pg{30} as a sub-group, then there is a mirror plane normal to the $y$ axis that transforms the $[123]$ rotation axis into the $[1\bar{2}3]$ axis. Therefore, from a symmetry point of view, there are $24$ equivalent rotations inside the RFZ that are related to each other by the $24$ \textit{non-rotational} symmetry operators of \pg{32}.  They all have the same rotation angle $\omega$.  There is thus a redundancy in the RFZ for the non-rotational point groups and we will need to reduce the RFZ to an even smaller polyhedron to ensure that only one equivalent rotation remains. This smaller polyhedron is known as the \indexit{misorientation fundamental zone}.  
 
 \begin{figure}[t!]
@@ -535,7 +535,7 @@ Using a similar approach for the $16$ remaining point groups we can derive their
 \end{figure}
 
 
-\subsection{Misorientation Fundamental Zones and CSL Boundaries}\label{\chabbr:ssewc:MFZCSL}
+\subsection{Misorientation Fundamental Zones and CSL Boundaries}\label{\chabbr:ssec:MFZCSL}
 In Table~\ref{\chabbr:tb:CSL} we listed $28$ CSL boundaries in the face-centered cubic lattice, and in the previous subsection we described the shape of the octahedral MFZ.  In this section we put these two together and provide a graphical illustration of the CSL points inside the MFZ.  It should be noted from Table~\ref{\chabbr:tb:CSL} that the majority of the rotation axes of the CSLs are special directions in the cubic system, namely the $[100]$, $[110]$ and $[111]$ directions which correspond to four-fold, two-fold, and three-fold rotation axes, respectively.  The axes are also the outer edges of the octahedral MFZ.   In addition, there are five other axes: $[210]$, $[211]$, $[221]$, $[311]$, and $[331]$, each with a few CSL points.  
 
 Working in Rodrigues space, we can represent each CSL boundary by a small colored sphere located at the appropriate distance from the origin along the proper rotation axis.  This is illustrated in Fig.~\ref{\chabbr:fig:MFZCSL}; all the rotation axes are represented as blue cylinders starting in the origin and each sphere is labeled with its CSL symbol, but with the symbol $\Sigma$ omitted.    
@@ -556,7 +556,7 @@ Working in Rodrigues space, we can represent each CSL boundary by a small colore
 %\newcommand{\mini}[1]{\begin{minipage}[c]{0.065in}#1\end{minipage}}
 %\begin{landscape}
 %\begin{table}
-%\caption{Rodrigues misorientation fundamental zone types for all pairs of crystallographic point groups; horizontal and vertical lines delineate the crystal systems. The shapes $a$ through $i$ are illustrated in Figs.~\protect\ref{fig:RFZs} and \protect\ref{fig:DFZs}. }\label{tb:mFZs}
+%\caption{Rodrigues misorientation fundamental zone types for all pairs of crystallographic point groups; horizontal and vertical lines delineate the crystal systems. The shapes $a$ through $i$ are illustrated in Figs.~\protect\ref{fig:RFZs} and \protect\ref{fig:DFZs}. }\label{\chabbr:tb:mFZs}
 %\begin{tabular}{cc|ccc|ccc|ccccccc|ccccc|ccccccc|ccccc|c}
 %  \mini{1}&  \mini{2}&  \mini{3}&  \mini{4}&  \mini{5}&  \mini{6}&  \mini{7}&  \mini{8}&  \mini{9}&\mini{10}&
 %\mini{11}&\mini{12}&\mini{13}&\mini{14}&\mini{15}&\mini{16}&\mini{17}&\mini{18}&\mini{19}&\mini{20}&

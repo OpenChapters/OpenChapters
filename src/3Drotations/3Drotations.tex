@@ -39,7 +39,7 @@
 %\HTMLPageTop{\begin{center}\fbox{\includegraphics{\graphicspath NUMSYSheader.pdf}}\end{center}}
 %}{}%
 
-\chapter{3D Rotation Representations}\label{\chabbr:3Drotations}
+\chapter{3D Rotation Representations}\label{\chabbr:ch:3Drotations}
 
 % add the author information so that it will appear in the Author List at the start of the document
 \writeauthor{3DROTS:3Drotations}{3D Rotation Representations}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
@@ -232,7 +232,7 @@ However, along the $\Phi$ axis, which has a range from $0$ to $\pi$, such a rela
 \]
 since $\cos(\Phi+\pi)=-\cos\Phi$ and $\sin(\Phi+\pi)=-\sin\Phi$.  Even though Euler space is drawn with a range of $[0,\pi]$ along $\Phi$, is is clear that the rotation matrix is invariant when we replace $\Phi$ by $\Phi+2\pi$; this means that the upper half of the periodic cell, i.e., the part for $\Phi\in[\pi,2\pi]$, is not simply related to the lower half by a translation.  In fact, it is easy to show that the following relation holds:
 \begin{equation}
-	\mathbf{g}_{ij}(\varphi_1,\Phi,\varphi_2) = \mathbf{g}_{ij}(\varphi_1+\pi,2\pi-\Phi,\varphi_2+\pi)\ .\label{eq:eulerglide}
+	\mathbf{g}_{ij}(\varphi_1,\Phi,\varphi_2) = \mathbf{g}_{ij}(\varphi_1+\pi,2\pi-\Phi,\varphi_2+\pi)\ .\label{\chabbr:eq:eulerglide}
 \end{equation}
 The translation of $(\pi,0,\pi)$ in the $(\varphi_1,\varphi_2)$ plane along with the mirror operation from $\Phi$ to $2\pi-\Phi$ indicates that the top half of the cell is related to the lower half by a mirror glide operation. The combination of the $2\pi$ periodicity along the three axes when considering a $[2\pi,2\pi,2\pi]$ cell and the glide plane at $\Phi=\pi$ means that the true symmetry of Euler space is given by the monoclinic space group $\mathbf{Pc}$.   This, in turn, indicates that the choice of a right angle between the $\varphi_1$ and $\varphi_2$ axes is one of convenience, and hides the true underlying symmetry of Euler space.\footnote{In a later section we will show that the true Euler unit cell is, in fact, a cell of size $[4\pi, 4\pi, 4\pi]$; in practice, however, one only makes use of a $[2\pi,\pi,2\pi]$ sub-cell.}
 
@@ -248,7 +248,7 @@ If we put $\Phi=0$ or $\pi$ in Eq.~(\ref{\chabbr:eq:eulermatrix}), then we obtai
 	\mathbf{g}_{ij}(\varphi_1,0,\varphi_2) &= \begin{pmatrix}c_1c_2-s_1s_2&s_1c_2+c_1s_2&0\\
 	-c_1s_2-s_1c_2&-s_1s_2+c_1c_2&0\\
 	0&0&1\end{pmatrix}\ ;\nonumber\\
-	&=  \begin{pmatrix}\cos(\varphi_1+\varphi_2)&\sin(\varphi_1+\varphi_2)&0\\ -\sin(\varphi_1+\varphi_2)&\cos(\varphi_1+\varphi_2)&0\\ 0&0&1\end{pmatrix}\ .\label{eq:eulermatrix2}
+	&=  \begin{pmatrix}\cos(\varphi_1+\varphi_2)&\sin(\varphi_1+\varphi_2)&0\\ -\sin(\varphi_1+\varphi_2)&\cos(\varphi_1+\varphi_2)&0\\ 0&0&1\end{pmatrix}\ .\label{\chabbr:eq:eulermatrix2}
 \end{align}
 In other words, when $\Phi=0$, the Euler angle triplet $(\varphi_1,0,\varphi_2)$ represents a rotation around the $\mathbf{e}_z$ axis by an angle $\varphi_1+\varphi_2$.  If we now select $\varphi_2=-\varphi_1$, then we obtain the identity rotation matrix $\delta_{ij}$; this is a bit of a disconcerting result since it means that \textit{all Euler triplets of the form $(\varphi_1,0,2\pi n-\varphi_1)$ with $n$ an arbitrary integer represent the identity orientation}.  Apart from the periodicity of Euler space, there is hence no unique Euler angle triplet inside the basic cell that represents the identity; we say that, in the Euler representation, the identity rotation is \textit{infinitely degenerate}.  Graphically, we represent the triplets of the form $(\varphi_1,0,2\pi n-\varphi_1)$ by the diagonal red lines with equation $\varphi_2=2\pi n-\varphi_1$ in the bottom $\Phi=0$ plane of the Euler cell (Fig.~\ref{\chabbr:fig:euleridentity})(b).  The degeneracy of the identity orientation is clearly not a desirable mathematical property of the Euler representation.  In fact, \textit{for any rotation by an angle $\varphi$ around the $\mathbf{e}_z$ axis, the Euler representation is infinitely degenerate} since we can write the Euler triplet as $(\varphi_1,0,\varphi-\varphi_1)$ or $(\varphi+\varphi_1,0,-\varphi_1)$ with $\varphi_1$ an arbitrary angle.  This means that one must be careful in numerical applications whenever $\Phi=0$ or $\Phi=\pi$.  The underlying reason for the infinite degeneracies if the fact that, as we will discus in the next section (section~\ref{\chabbr:sec:eulermetric}), the Euler volume element vanishes for $\Phi=n\pi$ for $n\in\mathbb{Z}$. 
 

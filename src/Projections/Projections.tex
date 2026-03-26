@@ -40,7 +40,7 @@
 %}{}%
 
 
-\chapter{Useful Projections}\label{\chabbr:Projections}
+\chapter{Useful Projections}\label{\chabbr:ch:Projections}
 
 % add the author information so that it will appear in the Author List at the start of the document
 \writeauthor{PROJTS:Projections}{Useful Projections}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
@@ -117,7 +117,7 @@ The most commonly used \indexit{stereographic projection} is a projection onto t
 
 \insertfigureh{SP.pdf}{fig:SP}{(a) schematic illustration of the determination of the stereographic projections of the normals to the faces of a randomly oriented cube; (b) resulting stereographic projection of (a).} 
 
-\subsection{Transformation Relations}\label{\chabbr:SPmath}
+\subsection{Transformation Relations}\label{\chabbr:ssec:SPmath}
 If we complete the reference frame in Fig.~\ref{\chabbr:fig:SP}(b) to have a $z$ axis perpendicular to the plane of the drawing pointing towards the reader, then we can readily determine the transformation relations from a point $(x,y,z)$ on the sphere to coordinates $(X,Y)$ in the equatorial plane.  Fig.~\ref{\chabbr:fig:SP2}(a) shows the end-point of the vector $\mathbf{p}$ in the $x$--$z$ plane on the surface of the sphere; the point has coordinates $(x,0,z)$ with $x^2+z^2=R^2$ and the green arrow makes an angle $\theta$ with respect to the $z$ axis.  It is a well known property of a circle that the angle of the connection line from the South pole to the point $P$ is equal to $\theta/2$, so that the SP lies at a distance $R\tan(\theta/2)$ from the origin and has coordinates $(R\tan(\theta/2),0)$.  For the general case shown in  Fig.~\ref{\chabbr:fig:SP2}(b), there is a second angle, $\varphi$, measured counterclockwise  from the $x$ axis to the projection of the vector $\mathbf{p}$ onto the equatorial plane. We can then express the coordinates of the projection point in polar coordinates as:
 \begin{equation}
 	(\rho,\varphi) = (R\tan(\theta/2),\varphi)\ .
@@ -207,7 +207,7 @@ If we represent the point by $(x,y)=(\cos\theta,\sin\theta)$, then the projectio
 \end{floatingfigure}
 \noindent The \indexit{Lambert azimuthal equal-area projection} takes a point $(x,y,z)$ with $x^2+y^2+z^2=R^2$ on the surface of the 2-sphere $\mathbb{S}^2_R$ and projects it onto a disc of radius $2R$ tangent to the South pole at $(0,0,-R)$ by rotating the original point in a plane normal to the tangent plane and containing the North-South axis.  This is shown schematically in Fig.~\ref{\chabbr:fig:LP1}. This means that the distance $d$ between the point $(x,y,z)$ and the South pole is maintained during the rotation in the vertical plane. It should be noted that the projection of the North pole is undefined since there is no way to define the vertical plane, so that the Lambert projection produces an open disc of radius $2R$, represented by a gray circle tangent to the South pole at $S$.  It is straightforward to determine the conversion relation between coordinates on the sphere and the Lambert coordinates in the disc, as we will show next.\\
 
-\subsection{Transformation Relations}\label{\chabbr:LPmath}
+\subsection{Transformation Relations}\label{\chabbr:ssec:LPmath}
 
 The distance $d$ from the point $(x,y,z)$ on the sphere with radius $R$ to the South pole is given by:
 \[
@@ -239,7 +239,7 @@ for the unit sphere this becomes:
 \end{equation}
 
 
-\subsection{Properties of the Lambert Equal-Area Projection}\label{\chabbr:LPprops}
+\subsection{Properties of the Lambert Equal-Area Projection}\label{\chabbr:ssec:LPprops}
 
 \begin{floatingfigure}[r]{3.2in}
 \centering
@@ -267,7 +267,7 @@ A \indexit{gnomonic projection} (GP) takes the center of the sphere of radius $R
 \insertfigurew{GP1.pdf}{fig:GP1}{(a) gnomonic projection of a great circle (in blue) going through the South pole; (b) gnomonic projection of a circle on the sphere.}{\textwidth} 
 
 
-\subsection{Transformation Relations}\label{\chabbr:GPmath}
+\subsection{Transformation Relations}\label{\chabbr:ssec:GPmath}
 
 The GP is a rather simple perspective projection; its mathematical form can be deduced easily using some geometric reasoning.  Consider a point on the Southern hemisphere with coordinates $(x,y,z)$ with $z<0$ and $x^2+y^2+z^2=R^2$.  The position of the point $(X,Y)$ corresponds to the end point of the vector $D\,\hat{\mathbf{e}}$, where the unit vector is given by:
 \begin{floatingfigure}[r]{3.4in}

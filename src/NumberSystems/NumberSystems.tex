@@ -45,7 +45,7 @@
 
 
 % start the chapter and define the chapter label (outside of the \chapter command!)
-\chapter{Number Systems}\label{\chabbr:NumberSystems}
+\chapter{Number Systems}\label{\chabbr:ch:NumberSystems}
 
 % add the author information so that it will appear in the Author List at the start of the document
 \writeauthor{NUMSYS:NumberSystems}{Number Systems}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
@@ -188,7 +188,7 @@ To conclude this section, it is useful to note some special values for the polar
 	\mathrm{e}^{\mathrm{i}0} = 1;\quad \mathrm{e}^{\mathrm{i}\frac{\pi}{2}} = \mathrm{i};\quad \mathrm{e}^{\mathrm{i}\pi} = -1.
 \end{equation}
 
-\subsection{2D Rotations and Unit Complex Numbers}\label{\chabbr:complexrot}
+\subsection{2D Rotations and Unit Complex Numbers}\label{\chabbr:ssec:complexrot}
 
 Unit complex numbers can be used as 2D rotation operators, as illustrated in Fig.~\ref{\chabbr:figcomplex}(b). The complex number $P=1+\mathrm{i}$ can be rotated counterclockwise by an angle $\omega=\pi/3$ by means of multiplication by the unit complex number (represented by a blue dot on the unit circle):
 \begin{equation}
@@ -295,10 +295,10 @@ Knowing the norm and the conjugate of the quaternion, we can readily define the 
 \end{equation}
 Quaternion division then becomes multiplication by the inverse quaternion.  Note, as always, that division by the null-quaternion is undefined.
 
-\subsection{Euler's Formula, unit quaternions and their relation to 3D rotations}\label{\chabbr:EulerFormula}
+\subsection{Euler's Formula, unit quaternions and their relation to 3D rotations}\label{\chabbr:ssec:EulerFormula}
 A unit quaternion $q$ is a quaternion with unit norm, i.e, $\vert q\vert=1$.  Just as unit complex numbers lie on a unit radius circle (known as $\mathbb{S}^1$) in the complex plane, the unit quaternions lie on a hyperspherical surface in $\mathbb{H}$, a space that is isomorphous with $\mathbb{R}^4$ if we consider quaternions as 4-vectors. This unit radius sphere is known as the three-sphere $\mathbb{S}^3$.  Hyperspheres in $n$-dimensions have been studied extensively by the math community, so a lot is known about $\mathbb{S}^3$.  For our purposes it is sufficient to state that the surface area of the unit hypersphere $\mathbb{S}^3$ is equal to $2\pi^2$.
 
-In section~\ref{\chabbr:complexrot}, 2D rotations in the complex plane are described in terms of multiplication by a unit complex number.  For 3D rotations, a similar process can be carried out by means of multiplication by unit quaternions.  However, the details are a little more complicated in that the quaternions are part of a 4D space. If we consider a 3D rotation by a counter-clockwise positive angle $\omega$ around a unit rotation axis $\hat{\mathbf{n}}$, then we can represent that rotation axis in terms of the imaginary units $(\mathrm{i}, \mathrm{j}, \mathrm{k})$ as $\hat{\mathbf{n}}=n_x\mathrm{i}+n_y \mathrm{j}+n_z \mathrm{k}$.  For regular complex numbers we can use the exponential notation for the 2D rotation, and we have a rotation by an angle $\theta$ around the normal to the complex plane; Euler's formula expresses this rotation as:
+In section~\ref{\chabbr:ssec:complexrot}, 2D rotations in the complex plane are described in terms of multiplication by a unit complex number.  For 3D rotations, a similar process can be carried out by means of multiplication by unit quaternions.  However, the details are a little more complicated in that the quaternions are part of a 4D space. If we consider a 3D rotation by a counter-clockwise positive angle $\omega$ around a unit rotation axis $\hat{\mathbf{n}}$, then we can represent that rotation axis in terms of the imaginary units $(\mathrm{i}, \mathrm{j}, \mathrm{k})$ as $\hat{\mathbf{n}}=n_x\mathrm{i}+n_y \mathrm{j}+n_z \mathrm{k}$.  For regular complex numbers we can use the exponential notation for the 2D rotation, and we have a rotation by an angle $\theta$ around the normal to the complex plane; Euler's formula expresses this rotation as:
 \[
 	\rho = \mathrm{e}^{\mathrm{i}\theta} = \cos\theta+\mathrm{i}\,\sin\theta.
 \]
@@ -350,7 +350,7 @@ The tilde above the vector $\mathbf{v}$ indicates that it must be considered as 
 
 Let's start by breaking down the section title into its individual words. An \indexit{algebra} over the real numbers is an $N$-dimensional  \indexit{vector space}, $V$, that is equipped with a \indexit{bilinear product}. The elements of $V$ are vectors in a generalized sense,\footnote{These ``vectors'' can be actual vectors with $N$ components, but they can also be square matrices of dimension $N\times N$.} and the operations of vector addition ($p+q=r$ with $p,q,r\in V$) and scalar multiplication ($p'=\alpha\, p$ with $\alpha\in\mathbb{R}$ and $p,p'\in V$) are defined; these operations satisfy a number of the usual properties, including commutativity, associativity, additive identity and additive inverse for  the vector addition, and multiplicative identity and distributivity for the scalar multiplication.  If, in addition, there is a \indexit{bilinear product} defined between pairs of ``vectors'' then that vector space becomes an algebra. As an example, in the vector space $\mathbb{R}^2$ of the complex numbers, the standard complex number product is an example of a bilinear product; in the vector space $\mathbb{R}^{n\times n}$ of square matrices, the standard matrix multiplication is a bilinear operation.
 
-In a \indexit{division algebra}, the operation of division by an element of the algebra is always possible by any element except for zero.  Another way of saying this is the following: if $a$ and $b$ belong to the algebra, and their product $a\,b=0$ then that means either $a=0$ or $b=0$. In some number systems, it is possible for the product of two non-zero numbers to be equal to zero (see section~\ref{\chabbr:splitnumbers} for an example); in that case we say that there are zero-divisors in the number system.  
+In a \indexit{division algebra}, the operation of division by an element of the algebra is always possible by any element except for zero.  Another way of saying this is the following: if $a$ and $b$ belong to the algebra, and their product $a\,b=0$ then that means either $a=0$ or $b=0$. In some number systems, it is possible for the product of two non-zero numbers to be equal to zero (see section~\ref{\chabbr:ssec:splitnumbers} for an example); in that case we say that there are zero-divisors in the number system.  
 
 Finally, the word ``normed'' refers to the fact that there exists a quadratic form $Q$, such that, for every pair $a,b$ in the algebra, we always have $Q(ab)=Q(a)Q(b)$. Such a function is generally known as a norm, and we have seen examples of norms for both the complex numbers and the quaternions.
 
@@ -518,7 +518,7 @@ and one can read the rotated coordinates $(-5,2)$ from the $\epsilon$ and $\math
 which is indeed the original rotated point shifted $4$ units in the vertical direction to location $(-5,6)$.  The process for dual quaternions is similar to the one shown here. 
 
 
-\subsection{Split Number Systems}\label{\chabbr:splitnumbers}
+\subsection{Split Number Systems}\label{\chabbr:ssec:splitnumbers}
 In previous sections we have described the complex numbers, of the form $a+\mathrm{i}b$ with $\mathrm{i}^2=-1$, and the dual numbers, of the form $a+b\epsilon$ with $\epsilon^2=0$. There is a third number system, known as the \indexit{split complex numbers} of the form $a+b\mathrm{j}$ with $\mathrm{j}^2=+1$.  It is easily verified that these numbers have some of the properties of complex numbers (for instance, multiplication is commutative and associative), but it is possible for two split complex numbers to multiply to zero when neither of the individual numbers are zero; a simple example would be:
 \[
 	(a+\mathrm{j}a)(a-\mathrm{j}a) = (a^2 - \mathrm{j}^2 a^2) = (a^2-a^2) = 0\ .

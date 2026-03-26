@@ -39,7 +39,7 @@
 \chapterimage{\noheaderimage}
 
 % start the chapter and define the chapter label (outside of the \chapter command!)
-\chapter{Texture Components}\label{\chabbr:TextureComponents} % should be the same as the filename (without extension)
+\chapter{Texture Components}\label{\chabbr:ch:TextureComponents} % should be the same as the filename (without extension)
 
 % add the author information so that it will appear in the Author List at the start of the document
 % repeat this line for each author
@@ -69,7 +69,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{The Sample Reference  Frame}\label{\chabbr:sampleref}
+\section{The Sample Reference  Frame}\label{\chabbr:sec:sampleref}
 In texture analysis one is generally interested in the distribution of grain orientations with respect to a suitably chosen external reference frame.  Typically, this reference frame is attached to the sample used for the orientation measurements. It makes sense for the basis vectors of the reference frame to be chosen to be parallel to important sample directions.  For instance, in samples that underwent plastic deformation in a rolling mill, it makes good sense for the \indexit{rolling direction} (RD) to be selected to be parallel to one of the basis vectors; the normal to the sample surface, the \indexit{normal direction} (ND), is another logical choice for a basis vector direction.  For samples deformed in torsion mode the torsion axis can be oriented along one of the basis directions, and in additively manufactured samples, the layer deposition direction represents a logical basis direction. For geological samples, the local structural elements will often suggest natural choices for the reference frame directions.  Once a choice is made that is appropriate for a given sample type, other reference frames can be used once the correct rotation between the frames is known.
 
 In this chapter, we will focus our attention on rolled microstructures, and we select the Cartesian basis vectors to be $\mathbf{e}_x$ parallel to the rolling direction RD, $\mathbf{e}_z$ parallel to the normal direction ND, and $\mathbf{e}_y$ parallel to the \indexit{transverse direction} TD, so that the reference frame is right-handed.  A grain orientation with respect to this reference frame can then be determined by specifying two pieces of information: the crystallographic direction $[uvw]$ parallel to RD, and the plane $(hkl)$ normal to ND.  In the following subsections we will describe how the rotation matrix can be determined from $[uvw]$ and $(hkl)$, first for the cubic crystal system, then for a general Bravais lattice.
