@@ -23,12 +23,12 @@
 \coordinate [below=11.4cm] (midpoint) at (current page.north);
 \node at (current page.north west)
 {\begin{tikzpicture}[remember picture,overlay]
-\node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{\chaptergraphicspath background.pdf}}; % Background image
+\node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{\chaptergraphicspath ##COVERIMAGE##}}; % Background image
 % the book title may become a user defined variable in a later version
-\draw[anchor=north] (midpoint) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=0.6cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering BOOKTITLE \\[10pt] % Book title
+\draw[anchor=north] (midpoint) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=0.6cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering ##BOOKTITLE## \\[10pt] % Book title
 % book subtitle
 {\Large An Open Source Chapter Collection}\\% Subtitle
-{\Large Configured by USERNAME on \today}\\[10pt] % Subtitle
+{\Large Configured by ##USERNAME## on \today}\\[10pt] % Subtitle
 % Editor names here
 {\Large The \OC\ project is maintained by the}\\[-5pt] {\Large Department of Materials Science and Engineering}\\[-5pt] {\Large Carnegie Mellon University}}};
 \end{tikzpicture}};
