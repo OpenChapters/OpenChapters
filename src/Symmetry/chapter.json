@@ -24,5 +24,6 @@
     "PROJTS",
     "TENSOR"
   ],
-  "published": true
+  "published": true,
+  "discipline": "mse"
 }

@@ -11,5 +11,6 @@
   "chapter_type": "topical",
   "chabbr": "MISORI",
   "depends_on": [],
-  "published": false
+  "published": false,
+  "discipline": "mse"
 }

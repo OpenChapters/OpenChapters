@@ -42,7 +42,7 @@
 \chapter{3D Rotation Representations}\label{\chabbr:ch:3Drotations}
 
 % add the author information so that it will appear in the Author List at the start of the document
-\writeauthor{3DROTS:3Drotations}{3D Rotation Representations}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+\writeauthor{3DROTS:ch:3Drotations}{3D Rotation Representations}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
 
 % Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
 % each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
@@ -338,7 +338,7 @@ While there is an infinite choice for the function $f(\omega)$, a handful of fun
 	\item \textcolor{OCSkiboRed}{$f(\omega) = \tan\frac{\omega}{2}$}: this function generates the \indexit{Rodrigues vector}, $\bm{\rho}= \tan\frac{\omega}{2}\,\hat{\mathbf{n}}$.  Since the domain of the angle $\omega$ is $[0,\pi]$ we see that the Rodrigues vectors occupy an infinite space; all rotations by an angle $\omega=\pi$ lie at infinity due to the divergence of the tangent function for argument $\pi/2$.  All rotations by an angle $\omega=\pi/2$ lie at unit distance from the origin since $\tan(\pi/4)=1$.  The mathematical space of the Rodrigues vectors is essentially $\mathbb{R}^3$, but, as described in section~\ref{\chabbr:ssec:neoEulerianmetric}, Rodrigues space does not have a Cartesian metric.  This representation is very important to the texture community because (1) there is a closed-form expression for the concatenation of multiple rotations (see section~\ref{\chabbr:ssec:neoEuleriancomposition}), and (2) the space allows for a particularly convenient description of the rotational symmetry of crystal structures.
 \end{itemize}
 
-\noindent The next three representations are related to the concept of \indexit{quaternions}, i.e., 4D complex numbers introduced in chapter~\ref{NUMSYS:NumberSystems} on Number Systems (see section~\ref{NUMSYS:sec:quaternions}). Eq.~(\ref{NUMSYS:eq:quatrot}) describes the relation between a unit quaternion and a 3D rotation:
+\noindent The next three representations are related to the concept of \indexit{quaternions}, i.e., 4D complex numbers introduced in chapter~\ref{NUMSYS:ch:NumberSystems} on Number Systems (see section~\ref{NUMSYS:sec:quaternions}). Eq.~(\ref{NUMSYS:eq:quatrot}) describes the relation between a unit quaternion and a 3D rotation:
 \begin{equation}
 	q = \left[\cos\frac{\omega}{2},\sin\frac{\omega}{2}\,\hat{\mathbf{n}}\right] = [q_0,\mathbf{q}].
 \end{equation}
@@ -349,7 +349,7 @@ Note that the Rodrigues vector introduced above is related to the quaternion as 
 
 \begin{itemize}
 	\item \textcolor{OCSkiboRed}{$f(\omega) = \sin\frac{\omega}{2}$}: We see that this function is present in the vector part of the quaternion, i.e., $\mathbf{q}=\sin\frac{\omega}{2}\,\hat{\mathbf{n}}$.  These vectors end in points that lie inside or on the surface of a unit ball $\mathbb{B}^3$, with the surface $\mathbb{S}^2$ once again representing  the rotations by an angle $\omega=\pi$.  
-	\item \textcolor{OCSkiboRed}{$f(\omega) = \tan\frac{\omega}{4}$}: Since all unit quaternions reside on the 3-sphere, $\mathbb{S}^3$, we can perform an angle-preserving \indexit{stereographic projection} to the unit 3-ball $\mathbb{B}^3$. As described in chapter~\ref{PROJTS:Projections} (section~\ref{PROJTS:sec:SPprops}) the mathematical description of the stereographic projection simply requires taking  $N-1$ components of the unit vector and dividing them by the remaining component.  For the unit quaternion above, we take the scalar part $q_0$ to represent that remaining component and we arrive at the \indexit{3D stereographic vector}
+	\item \textcolor{OCSkiboRed}{$f(\omega) = \tan\frac{\omega}{4}$}: Since all unit quaternions reside on the 3-sphere, $\mathbb{S}^3$, we can perform an angle-preserving \indexit{stereographic projection} to the unit 3-ball $\mathbb{B}^3$. As described in chapter~\ref{PROJTS:ch:Projections} (section~\ref{PROJTS:sec:SPprops}) the mathematical description of the stereographic projection simply requires taking  $N-1$ components of the unit vector and dividing them by the remaining component.  For the unit quaternion above, we take the scalar part $q_0$ to represent that remaining component and we arrive at the \indexit{3D stereographic vector}
 	\[
 		\mathbf{s} = \frac{\mathbf{q}}{1+q_0} = \frac{\sin\frac{\omega}{2}}{1+\cos\frac{\omega}{2}}\,\hat{\mathbf{n}} = \tan\frac{\omega}{4}\,\hat{\mathbf{n}}\ .
 	\]

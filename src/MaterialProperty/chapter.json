@@ -17,5 +17,6 @@
   "depends_on": [
     "TENSOR"
   ],
-  "published": true
+  "published": true,
+  "discipline": "mse"
 }

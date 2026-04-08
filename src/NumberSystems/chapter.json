@@ -17,5 +17,6 @@
   "chapter_type": "foundational",
   "chabbr": "NUMSYS",
   "depends_on": [],
-  "published": true
+  "published": true,
+  "discipline": "mse"
 }

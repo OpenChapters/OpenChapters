@@ -14,5 +14,6 @@
   "chapter_type": "topical",
   "chabbr": "PRPSYM",
   "depends_on": [],
-  "published": true
+  "published": true,
+  "discipline": "mse"
 }

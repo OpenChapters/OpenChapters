@@ -16,5 +16,6 @@
   "chapter_type": "topical",
   "chabbr": "TRAPRP",
   "depends_on": [],
-  "published": true
+  "published": true,
+  "discipline": "mse"
 }

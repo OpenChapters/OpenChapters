@@ -20,5 +20,6 @@
   "depends_on": [
     "LINALG"
   ],
-  "published": true
+  "published": true,
+  "discipline": "mse"
 }

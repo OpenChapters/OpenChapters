@@ -19,5 +19,6 @@
   "depends_on": [
     "NUMSYS"
   ],
-  "published": true
+  "published": true,
+  "discipline": "mse"
 }

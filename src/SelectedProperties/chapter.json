@@ -20,5 +20,6 @@
   "chapter_type": "topical",
   "chabbr": "SELPRP",
   "depends_on": [],
-  "published": true
+  "published": true,
+  "discipline": "mse"
 }

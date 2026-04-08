@@ -19,5 +19,6 @@
   "depends_on": [
     "3DROTS"
   ],
-  "published": true
+  "published": true,
+  "discipline": "mse"
 }

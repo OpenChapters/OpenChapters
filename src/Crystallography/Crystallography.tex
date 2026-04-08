@@ -38,7 +38,7 @@
 \chapter{Crystallographic Computations}\label{\chabbr:ch:Crystallography}
 
 % add the author information so that it will appear in the Author List at the start of the document
-\writeauthor{BASCRY:Crystallography}{Crystallographic Computations}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+\writeauthor{BASCRY:ch:Crystallography}{Crystallographic Computations}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
 
 % Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
 % each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
@@ -119,7 +119,7 @@ so that:
 	\mathbf{a}_3\cdot\mathbf{a}_1 & \mathbf{a}_3\cdot\mathbf{a}_2 & \mathbf{a}_3\cdot\mathbf{a}_3 \end{pmatrix}
 	\begin{pmatrix}q_1\\ q_2\\ q_3\end{pmatrix}\ . \label{\chabbr:eq:generaldp}
 \end{equation}
-The array of pairwise dot products of the basis vectors is of central importance to all crystallographic geometry computations and is known as the \indexit{direct metric tensor};\footnote{See the Foundational Chapter~\ref{TENSOR:Tensors} for a general definition of a tensor.}  we introduce the following short hand notation;
+The array of pairwise dot products of the basis vectors is of central importance to all crystallographic geometry computations and is known as the \indexit{direct metric tensor};\footnote{See the Foundational Chapter~\ref{TENSOR:ch:Tensors} for a general definition of a tensor.}  we introduce the following short hand notation;
 \begin{equation}
 	g_{ij}\equiv \mathbf{a}_i\cdot\mathbf{a}_j\ .\label{\chabbr:eq:metric}
 \end{equation}
@@ -129,7 +129,7 @@ As a consequence, the dot product can be written in compact form as:
 \end{equation}
 
 \begin{messagebox}{About matrix multiplications}{OCBlueThread}{\icinfo}{OCwhite}
-	Expressions of the form $p_i\, g_{ij}\, q_j$ will  appear frequently in crystallographic computations, so it behooves us to take a closer look at how one would go about computing this expression.  We know from linear algebra (see Foundational Chapter~\ref{LINALG:LinearAlgebra} for a refresher on matrices) that two matrices can only be multiplied together if they are \indexit{conformable}, i.e., if the number of columns in the first matrix equals the number of rows in the second matrix. Since the first index on $g_{ij}$ is the row index and varies from $1$ to $3$, this means that $p_i$ must have the same number of columns, in other words, $p_i$ must be written as a row matrix with $3$ columns.  Similarly, in $g_{ij}$, $j$ is the column index, so for $q_j$ to be conformable it must have $3$ rows which means we must write $q_j$ as a column vector.  
+	Expressions of the form $p_i\, g_{ij}\, q_j$ will  appear frequently in crystallographic computations, so it behooves us to take a closer look at how one would go about computing this expression.  We know from linear algebra (see Foundational Chapter~\ref{LINALG:ch:LinearAlgebra} for a refresher on matrices) that two matrices can only be multiplied together if they are \indexit{conformable}, i.e., if the number of columns in the first matrix equals the number of rows in the second matrix. Since the first index on $g_{ij}$ is the row index and varies from $1$ to $3$, this means that $p_i$ must have the same number of columns, in other words, $p_i$ must be written as a row matrix with $3$ columns.  Similarly, in $g_{ij}$, $j$ is the column index, so for $q_j$ to be conformable it must have $3$ rows which means we must write $q_j$ as a column vector.  
 \end{messagebox}
 
 
@@ -241,7 +241,7 @@ so that $V=48\sqrt{3}$ which equals $a^2c\sqrt{3}/2$ for the general hexagonal c
 \subsection{Geometry in Reciprocal Space}\label{\chabbr:sec:RS}
 
 \subsubsection{Introductory remarks}
-In the chapter on crystallographic symmetry (Chapter~\ref{CRYSYM:Symmetry}) we introduced two types of symbols: the direction symbol, $[uvw]$, and the Miller indices, $(hkl)$, which represent the inverse of the intercepts of a lattice plane with the basis vectors, reduced to relative primes.  The direction symbol corresponds to the lattice vectors $\mathbf{t}_{uvw}$ and they are translations from the origin to any one of the lattice nodes with coordinates $(u,v,w)$.  Since the integers $(hkl)$ are related to a particular set of lattice planes, we can ask the question: \textit{does the vector $h\mathbf{a}+k\mathbf{b}+l\mathbf{c}$ have any particular geometrical interpretation with  respect to the plane $(hkl)$?}  
+In the chapter on crystallographic symmetry (Chapter~\ref{CRYSYM:ch:Symmetry}) we introduced two types of symbols: the direction symbol, $[uvw]$, and the Miller indices, $(hkl)$, which represent the inverse of the intercepts of a lattice plane with the basis vectors, reduced to relative primes.  The direction symbol corresponds to the lattice vectors $\mathbf{t}_{uvw}$ and they are translations from the origin to any one of the lattice nodes with coordinates $(u,v,w)$.  Since the integers $(hkl)$ are related to a particular set of lattice planes, we can ask the question: \textit{does the vector $h\mathbf{a}+k\mathbf{b}+l\mathbf{c}$ have any particular geometrical interpretation with  respect to the plane $(hkl)$?}  
 
 In Fig.~\ref{\chabbr:fig:hkltetra} a tetragonal unit cell is shown with $c/a$ ratio equal to $2$. Both (a) and (b) show the same configuration from different viewing points.  The lattice plane $(011)$ is shown as a plane rendered in orange, and the vector $\mathbf{p}=0\mathbf{a}+1\mathbf{b}+1\mathbf{c}$ is shown in magenta; from the two views it is clear that the vector $\mathbf{p}$ is neither parallel nor normal to the plane $(011)$. 
 
