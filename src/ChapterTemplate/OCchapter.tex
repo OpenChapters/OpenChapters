@@ -39,11 +39,11 @@
 \chapterimage{\noheaderimage}
 
 % start the chapter and define the chapter label (outside of the \chapter command!)
-\chapter{Chapter Title}\label{\chabbr:ChapterTitle} % should be the same as the filename (without extension)
+\chapter{Chapter Title}\label{\chabbr:ch:ChapterTitle} % should be the same as the filename (without extension)
 
 % add the author information so that it will appear in the Author List at the start of the document
-% repeat this line for each author
-\writeauthor{AAAAAA:ChapterTitle}{Chapter Title}{Last Name}{First Name}{Department}{Institution}{email}{full homepage URL}
+% repeat this line for each author; the first entry must match the chapter label above.
+\writeauthor{\chabbr:ch:ChapterTitle}{Chapter Title}{Last Name}{First Name}{Department}{Institution}{email}{full homepage URL}
 
 % Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels.
 % Each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
@@ -52,10 +52,10 @@
 \begin{learningobjectives}
 % This itemized list should be formatted as follows and must be enclosed by { } 
 %{\begin{itemize}
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:complex}:}] Learn a formal description of complex numbers
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:quaternions}:}] Define the quaternion number system\\
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:complex}:}] Learn a formal description of complex numbers
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:quaternions}:}] Define the quaternion number system\\
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:algebras}:}] Learn about Normed Division Algebras
+%    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
 %\end{itemize}}
 \end{learningobjectives}
 % ###################################################################
@@ -69,9 +69,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{}\label{\chabbr:}
+\section{}\label{\chabbr:sec:}
 
-\subsection{}\label{\chabbr:}
+\subsection{}\label{\chabbr:ssec:}
 
 
 
