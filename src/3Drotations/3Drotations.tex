@@ -42,7 +42,7 @@
 \chapter{3D Rotation Representations}\label{\chabbr:ch:3Drotations}
 
 % add the author information so that it will appear in the Author List at the start of the document
-\writeauthor{3DROTS:ch:3Drotations}{3D Rotation Representations}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+\writeauthor{3DROTS:3Drotations}{3D Rotation Representations}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
 
 % Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
 % each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
@@ -338,7 +338,7 @@ While there is an infinite choice for the function $f(\omega)$, a handful of fun
 	\item \textcolor{OCSkiboRed}{$f(\omega) = \tan\frac{\omega}{2}$}: this function generates the \indexit{Rodrigues vector}, $\bm{\rho}= \tan\frac{\omega}{2}\,\hat{\mathbf{n}}$.  Since the domain of the angle $\omega$ is $[0,\pi]$ we see that the Rodrigues vectors occupy an infinite space; all rotations by an angle $\omega=\pi$ lie at infinity due to the divergence of the tangent function for argument $\pi/2$.  All rotations by an angle $\omega=\pi/2$ lie at unit distance from the origin since $\tan(\pi/4)=1$.  The mathematical space of the Rodrigues vectors is essentially $\mathbb{R}^3$, but, as described in section~\ref{\chabbr:ssec:neoEulerianmetric}, Rodrigues space does not have a Cartesian metric.  This representation is very important to the texture community because (1) there is a closed-form expression for the concatenation of multiple rotations (see section~\ref{\chabbr:ssec:neoEuleriancomposition}), and (2) the space allows for a particularly convenient description of the rotational symmetry of crystal structures.
 \end{itemize}
 
-\noindent The next three representations are related to the concept of \indexit{quaternions}, i.e., 4D complex numbers introduced in chapter~\ref{NUMSYS:ch:NumberSystems} on Number Systems (see section~\ref{NUMSYS:sec:quaternions}). Eq.~(\ref{NUMSYS:eq:quatrot}) describes the relation between a unit quaternion and a 3D rotation:
+\noindent The next three representations are related to the concept of \indexit{quaternions}, i.e., 4D complex numbers introduced in chapter~\ref{NUMSYS:NumberSystems} on Number Systems (see section~\ref{NUMSYS:sec:quaternions}). Eq.~(\ref{NUMSYS:eq:quatrot}) describes the relation between a unit quaternion and a 3D rotation:
 \begin{equation}
 	q = \left[\cos\frac{\omega}{2},\sin\frac{\omega}{2}\,\hat{\mathbf{n}}\right] = [q_0,\mathbf{q}].
 \end{equation}
@@ -349,7 +349,7 @@ Note that the Rodrigues vector introduced above is related to the quaternion as 
 
 \begin{itemize}
 	\item \textcolor{OCSkiboRed}{$f(\omega) = \sin\frac{\omega}{2}$}: We see that this function is present in the vector part of the quaternion, i.e., $\mathbf{q}=\sin\frac{\omega}{2}\,\hat{\mathbf{n}}$.  These vectors end in points that lie inside or on the surface of a unit ball $\mathbb{B}^3$, with the surface $\mathbb{S}^2$ once again representing  the rotations by an angle $\omega=\pi$.  
-	\item \textcolor{OCSkiboRed}{$f(\omega) = \tan\frac{\omega}{4}$}: Since all unit quaternions reside on the 3-sphere, $\mathbb{S}^3$, we can perform an angle-preserving \indexit{stereographic projection} to the unit 3-ball $\mathbb{B}^3$. As described in chapter~\ref{PROJTS:ch:Projections} (section~\ref{PROJTS:sec:SPprops}) the mathematical description of the stereographic projection simply requires taking  $N-1$ components of the unit vector and dividing them by the remaining component.  For the unit quaternion above, we take the scalar part $q_0$ to represent that remaining component and we arrive at the \indexit{3D stereographic vector}
+	\item \textcolor{OCSkiboRed}{$f(\omega) = \tan\frac{\omega}{4}$}: Since all unit quaternions reside on the 3-sphere, $\mathbb{S}^3$, we can perform an angle-preserving \indexit{stereographic projection} to the unit 3-ball $\mathbb{B}^3$. As described in chapter~\ref{PROJTS:Projections} (section~\ref{PROJTS:sec:SPprops}) the mathematical description of the stereographic projection simply requires taking  $N-1$ components of the unit vector and dividing them by the remaining component.  For the unit quaternion above, we take the scalar part $q_0$ to represent that remaining component and we arrive at the \indexit{3D stereographic vector}
 	\[
 		\mathbf{s} = \frac{\mathbf{q}}{1+q_0} = \frac{\sin\frac{\omega}{2}}{1+\cos\frac{\omega}{2}}\,\hat{\mathbf{n}} = \tan\frac{\omega}{4}\,\hat{\mathbf{n}}\ .
 	\]
@@ -460,6 +460,20 @@ The expressions for the homochoric representation are not particularly difficult
 It should be noted that in the literature on these representations, the metric tensors may have a scaling factor up front; this factor is used to guarantee that an integration over the whole space for a given representation has a specific value, often $1$, but not always.  The reader should be aware that there are several different potential scaling factors in use.
 
 While this section contains some more advanced math than the rest of this chapter, it is important for the reader to appreciate the fact that these rotation spaces do not generally have simple Cartesian metrics; as a consequence, whenever one performs integrations over orientation distributions expressed in these representations, one must follow the rules of differential geometry to properly carry out the computations.  The paper by Kumar and Dawson \cite{kumar1998a} represents a good starting point for the interested reader.
+
+\subsection{Summary of important orientation/rotation representations}\label{\chabbr:ssec:rotationmap}
+
+Fig.~\ref{\chabbr:fig:RotationMap} shows some of the relations between the various representations introduced in the preceding sections.  The simplest representation, the axis-angle representation, simply states the rotation angle, $\omega$, and the unit rotation axis, $\hat{\mathbf{n}}$ with respect to a suitably chosen cartesian reference frame. From $\omega@\hat{\mathbf{n}}$ we can construct the $3\times 3$ special orthogonal rotation matrix $R_{ij}$ by means of the relation:
+\[
+	R_{ij} = \delta_{ij}\cos\omega+(1-\cos\omega)n_in_j-\sin\omega\,\epsilon_{ijk} n_k\ ,
+\]
+where $\epsilon_{ijk}$ is the permutation symbol and $n_i$ are the components of $\hat{\mathbf{n}}$. From the axis-angle representation one can derive all the neo-Eulerian representations of the form $\hat{\mathbf{n}}\,f(\omega)$; they are shown in the light-blue oval. The quaternions are represented by a circle that is partially outside the blue oval; this is due to the fact that only the vector part, $\mathbf{q}$, of the quaternion has a neo-Eulerian form. The cubochoric representation, $\mathbf{c}$, introduced in section~\ref{\chabbr:ssec:cubochoric}, does not have a neo-Eulerian form and needs the homochoric representation as a starting point. The red arrows indicate frequently used transformations between the representations.  Of these transformations, quaternion$\leftrightarrow$stereographic is noteworthy because it is an equal-angle mapping; both quaternion$\leftrightarrow$homochoric and homochoric$\leftrightarrow$cubochoric are equal-volume mappings which makes them particularly well suited for orientation sampling, as described in the next section.
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath RotationMap}
+\caption{\label{\chabbr:fig:RotationMap}Schematic representation of the most frequently used orientation/rotation representations in Materials Science and Engineering.}
+\end{figure}
 
 
 
