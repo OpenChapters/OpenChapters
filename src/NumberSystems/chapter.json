@@ -18,5 +18,8 @@
   "chabbr": "NUMSYS",
   "depends_on": [],
   "published": true,
-  "discipline": "mse"
+  "discipline": "mse",
+  "author_urls": {
+    "Marc De Graef": "https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html"
+  }
 }
