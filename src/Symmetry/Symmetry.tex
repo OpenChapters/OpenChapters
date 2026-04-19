@@ -771,6 +771,9 @@ $1\times 2$ (triclinic) $+\, 2 \times 3$ (monoclinic) $+\, 4 \times 3$ (orthorho
 
 \begin{table}[h!]
 \centering\leavevmode
+\ifthenelse{\equal{\isHTML}{Yes}}{%we load a pdf version of the table since lwarp has issues with the actual table
+\includegraphics[width=0.9\textwidth]{\graphicspath SG1.pdf}
+}{%else we do the actual table
 {\small\begin{tabular}{lll||lll}
 \toprule
 S.G.\# & PG &Symbol & S.G.\# &PG &Symbol\\
@@ -815,7 +818,7 @@ S.G.\# & PG &Symbol & S.G.\# &PG &Symbol\\
 123&\pg{15}&\spgr{123}&229&&\spgr{229}\\
 139& &\spgr{139}&&&\\
 \bottomrule
-\end{tabular}} %%%\renewcommand{\arraystretch}{1.0}\
+\end{tabular}}} %%%\renewcommand{\arraystretch}{1.0}\
 \caption{\label{\chabbr:tb:symmorphic}The $73$ symmorphic space groups, with
 sequential number, International and Sch$\ddot{\rm o}$nflies symbols, and
 corresponding point group. Underlined space group numbers represent the $12$ extra groups obtained when the point group is oriented in two different ways with respect to the Bravais lattice.}
@@ -846,6 +849,9 @@ Space groups that have at least one screw axis or glide plane symbol in their sp
 
 \begin{table}[h!]
 \centering\leavevmode
+\ifthenelse{\equal{\isHTML}{Yes}}{%we load a pdf version of the table since lwarp has issues with the actual table
+\includegraphics[width=0.9\textwidth]{\graphicspath SG2.pdf}
+}{%else we do the actual table
 {\small\begin{tabular}{lll||lll}
 \toprule
 S.G.\# & PG &Symbol & S.G.\# &PG &Symbol\\
@@ -897,7 +903,7 @@ S.G.\# & PG &Symbol & S.G.\# &PG &Symbol\\
 63 & & \spgr{63}     & 127 & & \spgr{127}\\
 64 & & \spgr{64}      &128 & & \spgr{128}\\
 %%%\bottomrule
-\end{tabular}} 
+\end{tabular}}} 
 \caption{\label{\chabbr:tb:non-symmorphic}The non-symmorphic space groups, with sequential number and corresponding point group.}
 \end{table}
 \clearpage
@@ -905,6 +911,9 @@ S.G.\# & PG &Symbol & S.G.\# &PG &Symbol\\
 \addtocounter{table}{-1}
 \begin{table}[t]
 \centering\leavevmode
+\ifthenelse{\equal{\isHTML}{Yes}}{%we load a pdf version of the table since lwarp has issues with the actual table
+\includegraphics[width=0.9\textwidth]{\graphicspath SG3.pdf}
+}{%else we do the actual table
 {\small\begin{tabular}{lll||lll}
 \toprule
 S.G.\# & PG &Symbol & S.G.\# &PG &Symbol\\
@@ -943,7 +952,7 @@ S.G.\# & PG &Symbol & S.G.\# &PG &Symbol\\
 178 & \pg{24} & \spgr{178}           & 230 & & \spgr{230}\\
 179 & & \spgr{179}\\
 \bottomrule
-\end{tabular}} 
+\end{tabular}}} 
 \caption{\label{\chabbr:tb:non-symmorphic2}The non-symmorphic space groups, with sequential number and corresponding point group (contd.).}
 \end{table}
 
