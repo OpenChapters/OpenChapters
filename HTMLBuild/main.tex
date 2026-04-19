@@ -105,15 +105,20 @@
 % entire text, leave all lines commented
 %\includeonly{src/Crystallography/Crystallography}
 %\includeonly{src/Symmetry/Symmetry}
+%\includeonly{src/Symmetry/Symmetry,src/Crystallography/Crystallography}
 %\includeonly{src/2Drotations/2Drotations}
 %\includeonly{src/3Drotations/3Drotations}
-%\includeonly{src/RotationSymmetry/RotationSymmetry}
+%\includeonly{src/Symmetry/Symmetry,src/Crystallography/Crystallography,src/OrientationSymmetry/OrientationSymmetry,src/GrainBoundaries/GrainBoundaries,src/NumberSystems/NumberSystems,src/Projections/Projections,src/3Drotations/3Drotations}
+%\includeonly{src/OrientationSymmetry/OrientationSymmetry,src/TextureComponents/TextureComponents,src/GrainBoundaries/GrainBoundaries,src/3Drotations/3Drotations}
 %\includeonly{src/Misorientations/Misorientations}
-%\includeonly{src/MaterialProperty/MaterialProperty}
+%\includeonly{src/MaterialProperty/MaterialProperty,src/Tensors/Tensors}
 %\includeonly{src/PropertyTensors/PropertyTensors}
 %\includeonly{src/PropertySymmetry/PropertySymmetry}
-%\includeonly{src/ExampleProperties/ExampleProperties}
-%\includeonly{src/Projections/Projections,src/Tensors/Tensors}
+%\includeonly{src/SelectedProperties/SelectedProperties,src/TransportProperties/TransportProperties}
+%\includeonly{src/MicrostructureDescriptors/MicrostructureDescriptors}
+
+%\includeonly{src/LinearAlgebra/LinearAlgebra,src/Tensors/Tensors}
+
 
 
 \begin{document}
@@ -142,12 +147,12 @@
 %\include{src/PropertySymmetry/PropertySymmetry} % Properties and Symmetry
 %\include{src/ExampleProperties/ExampleProperties} % Example Anisotropic Material Properties
 
-\part{Foundational Chapters}
-\include{src/Projections/Projections} % Various useful projections
-\include{src/NumberSystems/NumberSystems} % tutorial on number systems
+%\part{Foundational Chapters}
+%\include{src/Projections/Projections} % Various useful projections
+%\include{src/NumberSystems/NumberSystems} % tutorial on number systems
 %\include{src/LinearAlgebra/LinearAlgebra} % Linear Algebra
 %\include{src/2Drotations/2Drotations} % 2D Rotations
-%\include{src/3Drotations/3Drotations} % 3D Rotation Representations 
+\include{src/3Drotations/3Drotations} % 3D Rotation Representations 
 %\include{src/Tensors/Tensors} % Introduction to Tensors 
 
 % ###################################################################

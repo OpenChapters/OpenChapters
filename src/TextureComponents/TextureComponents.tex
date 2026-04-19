@@ -49,15 +49,15 @@
 % Each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
 % second column if LaTeX breaks the line at an awkward location.  The label color (OCBurntOrange) should not be changed.
 % Within the itemize environment, hyphenation is temporarily turned off.
-%\begin{learningobjectives}
+\begin{learningobjectives}
 % This itemized list should be formatted as follows and must be enclosed by { } 
-%{\begin{itemize}
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:complex}:}] Learn a formal description of complex numbers
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:quaternions}:}] Define the quaternion number system\\
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
-%\end{itemize}}
-%\end{learningobjectives}
+{\begin{itemize}
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:sampleref}:}] Learn about important reference frames
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:quaternions}:}] .\\
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:algebras}:}] .
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:othernumbers}:}] .
+\end{itemize}}
+\end{learningobjectives}
 % ###################################################################
 % ###################################################################
 % ###################################################################
@@ -72,7 +72,7 @@
 \section{The Sample Reference  Frame}\label{\chabbr:sec:sampleref}
 In texture analysis one is generally interested in the distribution of grain orientations with respect to a suitably chosen external reference frame.  Typically, this reference frame is attached to the sample used for the orientation measurements. It makes sense for the basis vectors of the reference frame to be chosen to be parallel to important sample directions.  For instance, in samples that underwent plastic deformation in a rolling mill, it makes good sense for the \indexit{rolling direction} (RD) to be selected to be parallel to one of the basis vectors; the normal to the sample surface, the \indexit{normal direction} (ND), is another logical choice for a basis vector direction.  For samples deformed in torsion mode the torsion axis can be oriented along one of the basis directions, and in additively manufactured samples, the layer deposition direction represents a logical basis direction. For geological samples, the local structural elements will often suggest natural choices for the reference frame directions.  Once a choice is made that is appropriate for a given sample type, other reference frames can be used once the correct rotation between the frames is known.
 
-In this chapter, we will focus our attention on rolled microstructures, and we select the Cartesian basis vectors to be $\mathbf{e}_x$ parallel to the rolling direction RD, $\mathbf{e}_z$ parallel to the normal direction ND, and $\mathbf{e}_y$ parallel to the \indexit{transverse direction} TD, so that the reference frame is right-handed.  A grain orientation with respect to this reference frame can then be determined by specifying two pieces of information: the crystallographic direction $[uvw]$ parallel to RD, and the plane $(hkl)$ normal to ND.  In the following subsections we will describe how the rotation matrix can be determined from $[uvw]$ and $(hkl)$, first for the cubic crystal system, then for a general Bravais lattice.
+In this chapter, we will focus our attention on rolled microstructures, although our treatment will be sufficiently general to include other types of microstructures as well. We select the Cartesian basis vectors to be $\mathbf{e}_x$ parallel to the rolling direction RD, $\mathbf{e}_z$ parallel to the normal direction ND, and $\mathbf{e}_y$ parallel to the \indexit{transverse direction} TD, so that the reference frame is right-handed.  A grain orientation with respect to this reference frame can then be determined by specifying two pieces of information: the crystallographic direction $[uvw]$ parallel to RD, and the plane $(hkl)$ normal to ND.  In the following subsections we will describe how the rotation matrix can be determined from $[uvw]$ and $(hkl)$, first for the cubic crystal system, then for a general Bravais lattice.
 
 \subsection{Grain Orientation Matrix for Cubic Symmetry}\label{\chabbr:ssec:grainORmatcubic}
 From the knowledge of $[uvw]$ and $(hkl)$, we obtain the corresponding unit vectors as:
@@ -93,7 +93,7 @@ b_3 & t_3 & n_3
 \end{equation}
 As an example, consider a grain that has $[uvw]=[100]\parallel$RD and $(hkl)=(011)\parallel$ND; the unit vectors are:
 \[
-	\hat{\mathbf{n}}=\left(0,\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}\right), \hat{\mathbf{b}}=(1,0,0)\qquad\rightarrow \hat{\mathbf{t}}=\left(0,\frac{1}{\sqrt{2}},-\frac{1}{\sqrt{2}}\right)\ .
+	\hat{\mathbf{n}}=\left(0,\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}\right), \hat{\mathbf{b}}=(1,0,0)\quad\rightarrow \hat{\mathbf{t}}=\left(0,\frac{1}{\sqrt{2}},-\frac{1}{\sqrt{2}}\right)\ .
 \]
 The rotation matrix $g_{ij}$ then becomes:
 \[

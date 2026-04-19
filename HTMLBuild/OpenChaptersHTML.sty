@@ -148,6 +148,7 @@
 %----------------------------------------------------------------------------------------
 
 \usepackage{titletoc} % Required for manipulating the table of contents
+\@ifundefined{c@ttl@toc@default}{\newcounter{ttl@toc@default}}{}
 \contentsmargin{0cm} % Removes the default margin
 
 % Change color of chapter entries in ToC [defined with help from CIT's Nathan Snizaski]
@@ -203,6 +204,7 @@
 \renewcommand{\cftsubsecfont}{\color{OCIronGray}\sffamily\small}
 
 %% Chapter text styling
+\begin{warpprint}  
 \titlecontents{chapter}[1.25cm] % Indentation
 {\addvspace{12pt}\large\sffamily\bfseries} % Spacing and font options for chapters
 {\color{OCblue}\contentslabel[\Large\thecontentslabel]{1.25cm}\hspace*{-0.35cm}\color{OCBlack}} % Chapter number
@@ -233,7 +235,8 @@
 {}
 {}
 {}
-
+\end{warpprint}  
+  
 %----------------------------------------------------------------------------------------
 %	PAGE HEADERS
 %----------------------------------------------------------------------------------------

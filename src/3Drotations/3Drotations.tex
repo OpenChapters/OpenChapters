@@ -611,9 +611,46 @@ Given the homochoric vector, $\mathbf{h}$ with $\vert\mathbf{h}\vert\le (3\pi/4)
 \subsubsection{Example representation cases}
 As an example of different rotation representations we list in Table~\ref{\chabbr:tb:cubicsym} all $24$ symmetry operators of the cubic rotational point group \pg{30} in axis-angle notation, quaternion, homochoric, stereographic, and cubochoric representations.  The neo-Eulerian representations were computed using the relations in section~\ref{\chabbr:sec:neoEulerian}; the cubochoric representation uses the algorithm for the homochoric-to-cubochoric transformation listed above.  Fig.~\ref{\chabbr:fig:cubicsymops} shows (a) a 3D stereographic projection and (b) a cubochoric projection with the locations of all cubic symmetry operators represented as small spheres.   Note that all $180^{\circ}$ operations lie on the surface of the sphere or cube.
 
+% this table is duplicated because the HTML build does not recognize the \resizebox command and the PDF build requires it...
+
 \begin{table}[h!]
 \centering\leavevmode
-\resizebox{\textwidth}{!}{
+\begin{warpHTML}
+\begin{tabular}{ccccc}
+\hline
+$\omega@\hat{\mathbf{n}}$ & Quaternion $q$ & Homochoric $\mathbf{h}$ & Stereographic $\mathbf{s}$ & Cubochoric $\mathbf{c}$ \\
+\hline\hline
+$0@[001]$ &  1.0000, 0.0000, 0.0000, 0.0000 & 0.0000, 0.0000, 0.0000 & 0.0000, 0.0000, 0.0000 & 0.0000, 0.0000, 0.0000 \\
+$90@[100]$ &  0.7071, 0.7071, 0.0000, 0.0000 &  0.7537, 0.0000, 0.0000 &  0.4142, 0.0000, 0.0000 &  0.6075, 0.0000, 0.0000 \\ 
+$90@[010]$ &  0.7071, 0.0000, 0.7071, 0.0000 &  0.0000, 0.7537, 0.0000 &  0.0000, 0.4142, 0.0000 &  0.0000, 0.6075, 0.0000 \\
+$90@[001]$ &  0.7071, 0.0000, 0.0000, 0.7071 &  0.0000, 0.0000, 0.7537 &  0.0000, 0.0000, 0.4142 &  0.0000, 0.0000, 0.6075 \\
+$180@[100]$ &  0.0000, 1.0000, 0.0000, 0.0000 &  1.3307, 0.0000, 0.0000 &  1.0000, 0.0000, 0.0000 &  1.0725, 0.0000, 0.0000 \\
+$180@[010]$ &  0.0000, 0.0000, 1.0000, 0.0000 &  0.0000, 1.3307, 0.0000 &  0.0000, 1.0000, 0.0000 &  0.0000, 1.0725, 0.0000 \\ 
+$180@[001]$ &  0.0000, 0.0000, 0.0000, 1.0000 &  0.0000, 0.0000, 1.3307 &  0.0000, 0.0000, 1.0000 &  0.0000, 0.0000, 1.0725 \\ 
+$270@[100]$ &  0.7071,-0.7071, 0.0000, 0.0000 & -0.7537, 0.0000, 0.0000 & -0.4142, 0.0000, 0.0000 & -0.6075, 0.0000, 0.0000 \\
+$270@[010]$ &  0.7071, 0.0000,-0.7071, 0.0000 &  0.0000,-0.7537, 0.0000 &  0.0000,-0.4142, 0.0000 &  0.0000,-0.6075, 0.0000 \\
+$270@[001]$ &  0.7071, 0.0000, 0.0000,-0.7071 &  0.0000, 0.0000,-0.7537 &  0.0000, 0.0000,-0.4142 &  0.0000, 0.0000,-0.6075 \\
+\hline
+$180@[110]$ &  0.0000, 0.7071, 0.7071, 0.0000 &  0.9409, 0.9409, 0.0000 &  0.7071, 0.7071, 0.0000 &  1.0725, 1.0725, 0.0000 \\ 
+$180@[\bar{1}10]$ &  0.0000,-0.7071, 0.7071, 0.0000 & -0.9409, 0.9409, 0.0000 & -0.7071, 0.7071, 0.0000 & -1.0725, 1.0725, 0.0000 \\
+$180@[011]$ &  0.0000, 0.0000, 0.7071, 0.7071 &  0.0000, 0.9409, 0.9409 &  0.0000, 0.7071, 0.7071 &  0.0000, 1.0725, 1.0725 \\
+$180@[0\bar{1}1]$ &  0.0000, 0.0000,-0.7071, 0.7071 &  0.0000,-0.9409, 0.9409 &  0.0000,-0.7071, 0.7071 &  0.0000,-1.0725, 1.0725 \\
+$180@[101]$ &  0.0000, 0.7071, 0.0000, 0.7071 &  0.9409, 0.0000, 0.9409 &  0.7071, 0.0000, 0.7071 &  1.0725, 0.0000, 1.0725 \\
+$180@[\bar{1}01]$ &  0.0000,-0.7071, 0.0000, 0.7071 & -0.9409, 0.0000, 0.9409 & -0.7071, 0.0000, 0.7071 & -1.0725, 0.0000, 1.0725 \\
+\hline
+$120@[111]$ &  0.5000, 0.5000, 0.5000, 0.5000 &  0.5618, 0.5618, 0.5618 &  0.3333, 0.3333, 0.3333 &  0.7843, 0.7843, 0.7843 \\ 
+$120@[\bar{1}\bar{1}\bar{1}]$ &  0.5000,-0.5000,-0.5000,-0.5000 & -0.5618,-0.5618,-0.5618 & -0.3333,-0.3333,-0.3333 & -0.7843,-0.7843,-0.7843 \\ 
+$120@[1\bar{1}1]$ &  0.5000, 0.5000,-0.5000, 0.5000 &  0.5618,-0.5618, 0.5618 &  0.3333,-0.3333, 0.3333 &  0.7843,-0.7843, 0.7843 \\ 
+$120@[\bar{1}1\bar{1}]$ &  0.5000,-0.5000, 0.5000,-0.5000 & -0.5618, 0.5618,-0.5618 & -0.3333, 0.3333,-0.3333 & -0.7843, 0.7843,-0.7843 \\
+$120@[\bar{1}11]$ &  0.5000,-0.5000, 0.5000, 0.5000 & -0.5618, 0.5618, 0.5618 & -0.3333, 0.3333, 0.3333 & -0.7843, 0.7843, 0.7843 \\
+$120@[1\bar{1}\bar{1}]$ &  0.5000, 0.5000,-0.5000,-0.5000 &  0.5618,-0.5618,-0.5618 &  0.3333,-0.3333,-0.3333 &  0.7843,-0.7843,-0.7843 \\ 
+$120@[\bar{1}\bar{1}1]$ &  0.5000,-0.5000,-0.5000, 0.5000 & -0.5618,-0.5618, 0.5618 & -0.3333,-0.3333, 0.3333 & -0.7843,-0.7843, 0.7843 \\ 
+$120@[11\bar{1}]$ &  0.5000, 0.5000, 0.5000,-0.5000 &  0.5618, 0.5618,-0.5618 &  0.3333, 0.3333,-0.3333 &  0.7843, 0.7843,-0.7843 \\ 
+\hline
+\end{tabular}
+\end{warpHTML}
+\begin{warpprint}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{ccccc}
 \hline
 $\omega@\hat{\mathbf{n}}$ & Quaternion $q$ & Homochoric $\mathbf{h}$ & Stereographic $\mathbf{s}$ & Cubochoric $\mathbf{c}$ \\
@@ -646,6 +683,7 @@ $120@[\bar{1}\bar{1}1]$ &  0.5000,-0.5000,-0.5000, 0.5000 & -0.5618,-0.5618, 0.5
 $120@[11\bar{1}]$ &  0.5000, 0.5000, 0.5000,-0.5000 &  0.5618, 0.5618,-0.5618 &  0.3333, 0.3333,-0.3333 &  0.7843, 0.7843,-0.7843 \\ 
 \hline
 \end{tabular}}
+\end{warpprint}
 \caption{\label{\chabbr:tb:cubicsym}24 Cubic rotational symmetry operations in axis-angle (angle in degrees), quaternion, homochoric, stereographic, and cubochoric representations. The Rodrigues vector can be obtained by dividing the vector part of the quaternion by the scalar part.}
 \end{table}
 

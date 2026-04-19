@@ -598,7 +598,10 @@ In the International Tables for Crystallography, Volume A, the CPGs are grouped 
 
 \begin{table}[h]
 \centering\leavevmode
-{\small\begin{tabular}{|lll||lll|}
+\ifthenelse{\equal{\isHTML}{Yes}}{%we load a pdf version of the table since lwarp has issues with the actual table
+\includegraphics[width=0.9\textwidth]{\graphicspath pgtable.pdf}
+}{%else we do the actual table
+\small\begin{tabular}{|lll||lll|}
 \hline
 \# & H-M (S:order) & Full H-M & \# & H-M (S:order) & Full H-M \\
 \hline\hline
