@@ -221,29 +221,29 @@ In this section, we will analyze how crystal symmetry affects the properties of 
 
 Let us assume that we have a tetragonal single crystal with a symmetry corresponding to point group $\textbf{4}$, which has $4$ elements: $\textbf{4} = \{E,4,4^2,4^3\}$, i.e., it is a cyclic rotation group with the identity $E$, and powers of the fourfold rotation operator $4$. We know from Chapter~\ref{chap:Symmetry} that each point symmetry operator can be represented by a $3\times 3$ matrix.  In this particular case, we have the following four matrices:
 \begin{align}
-E &= \matrixtbt{1}{0}{0}{0}{1}{0}{0}{0}{1}; \qquad R_1 = 4 = \matrixtbt{0}{-1}{0}{1}{0}{0}{0}{0}{1};\nonumber\\
-R_2 &= 4^2= \matrixtbt{-1}{0}{0}{0}{-1}{0}{0}{0}{1}; \qquad R_3 = 4^3 = \matrixtbt{0}{1}{0}{-1}{0}{0}{0}{0}{1}\ .
+E &= \begin{pmatrix}1&0&0\\ 0&1&0\\ 0&0&1\end{pmatrix}; \qquad R_1 = 4 = \begin{pmatrix}0&-1&0\\ 1&0&0\\ 0&0&1\end{pmatrix};\nonumber\\
+R_2 &= 4^2= \begin{pmatrix}-1&0&0\\ 0&-1&0\\ 0&0&1\end{pmatrix}; \qquad R_3 = 4^3 = \begin{pmatrix}0&1&0\\ -1&0&0\\ 0&0&1\end{pmatrix}\ .
 \end{align}
-They can be derived quite easily by considering how each basis vector transforms under a rotation of $90^{\circ}$ around the $z$ axis, as described in section~\ref{ssec:vectortransformation}.
+They can be derived quite easily by considering how each basis vector transforms under a rotation of $90^{\circ}$ around the $z$ axis, as described in section~\ref{\chabbr:ssec:vectortransformation}.
 
 If we apply the operator $4$ to the tetragonal crystal, then we basically carry out a rotation of $90^{\circ}$, and the resulting crystal is indistinguishable from the original after the rotation.  This must also be true for all the properties of this crystal.  There is a famous theorem, attributed to Neumann, that says the following:  \textit{The symmetry elements of any physical property of a crystal \textbf{must} include the symmetry elements of the point group of the crystal.}  This is known as \textit{Neumann's principle}. \index{Neumann's principle}  This principle states that every material property tensor must inherit the crystallographic symmetry of the underlying crystal lattice.  Note the use of the words \textit{must include}; this means that a material property may have a higher symmetry than the crystallographic symmetry, but never a lower symmetry.
 
 We have seen in Chapter~\ref{chap:MaterialProperty} how the components of a tensor change under a coordinate transformation. Since a symmetry operation is a special case of a coordinate transformation, we can work out how each of the operators of the point group $\textbf{4}$ changes the components of the permeability tensor $\bm{\mu}$.  We take into account the fact that the permeability tensor itself is already a symmetric tensor, i.e., $\mu_{ij}=\mu_{ji}$ (intrinsic symmetry), so that there are only $6$ independent elements to start with.
 {\small\begin{align*}
-	R_1\bm{\mu}\tilde{R}_1 &= \matrixtbt{0}{-1}{0}{1}{0}{0}{0}{0}{1}
-	\matrixtbts{xx}{xy}{xz}{xy}{yy}{yz}{xz}{yz}{zz}\matrixtbt{0}{1}{0}{-1}{0}{0}{0}{0}{1} = 
+	R_1\bm{\mu}\tilde{R}_1 &= \begin{pmatrix}0&-1&0\\ 1&0&0\\ 0&0&1\end{pmatrix}
+	\begin{bmatrix}xx&xy&xz\\ xy&yy&yz\\ xz&yz&zz\end{bmatrix}\begin{pmatrix}0&1&0\\ -1&0&0\\ 0&0&1\end{pmatrix} = 
 	\left[\begin{array}{ccc} 
 	 \mu_{yy} & -\mu_{xy} & -\mu_{yz} \\ 
 	-\mu_{xy} &  \mu_{xx} & \mu_{xz} \\ 
 	-\mu_{yz} &  \mu_{xz} & \mu_{zz}\end{array}\right]\ ;\\
-	R_2\bm{\mu}\tilde{R}_2 &= \matrixtbt{-1}{0}{0}{0}{-1}{0}{0}{0}{1}
-	\matrixtbts{xx}{xy}{xz}{xy}{yy}{yz}{xz}{yz}{zz}\matrixtbt{-1}{0}{0}{0}{-1}{0}{0}{0}{1} = 
+	R_2\bm{\mu}\tilde{R}_2 &= \begin{pmatrix}-1&0&0\\ 0&-1&0\\ 0&0&1\end{pmatrix}
+	\begin{bmatrix}xx&xy&xz\\ xy&yy&yz\\ xz&yz&zz\end{bmatrix}\begin{pmatrix}-1&0&0\\ 0&-1&0\\ 0&0&1\end{pmatrix} = 
 	\left[\begin{array}{ccc} 
 	 \mu_{xx} & \mu_{xy} & -\mu_{xz} \\ 
 	\mu_{xy} &  \mu_{yy} & -\mu_{yz} \\ 
 	-\mu_{xz} &  -\mu_{yz} & \mu_{zz}\end{array}\right]\ ;\\
-	R_3\bm{\mu}\tilde{R}_3 &= \matrixtbt{0}{1}{0}{-1}{0}{0}{0}{0}{1}
-	\matrixtbts{xx}{xy}{xz}{xy}{yy}{yz}{xz}{yz}{zz}\matrixtbt{0}{-1}{0}{1}{0}{0}{0}{0}{1} = 
+	R_3\bm{\mu}\tilde{R}_3 &= \begin{pmatrix}0&1&0\\  -1&0&0\\ 0&0&1\end{pmatrix}
+	\begin{bmatrix}xx&xy&xz\\ xy&yy&yz\\ xz&yz&zz\end{bmatrix}\begin{pmatrix}0&-1&0\\ 1&0&0\\ 0&0&1\end{pmatrix} = 
 	\left[\begin{array}{ccc} 
 	 \mu_{yy} & -\mu_{xy} & \mu_{yz} \\ 
 	-\mu_{xy} &  \mu_{xx} & -\mu_{xz} \\ 
@@ -266,9 +266,9 @@ In other words, there are only two independent elements in the permeability tens
 
 Note that it is possible for the material property to have a \textit{higher} symmetry than the crystal point group.  While the crystal point group $\textbf{4}$ does not have inversion symmetry, $C_i$, the permeability tensor does:
 {\small\begin{equation}
-C_i\bm{\mu}\tilde{C}_i = \matrixtbt{-1}{0}{0}{0}{-1}{0}{0}{0}{-1}
-	\matrixtbts{xx}{xy}{xz}{xy}{yy}{yz}{xz}{yz}{zz}\matrixtbt{-1}{0}{0}{0}{-1}{0}{0}{0}{-1} = 
-	\matrixtbts{xx}{xy}{xz}{xy}{yy}{yz}{xz}{yz}{zz}.
+C_i\bm{\mu}\tilde{C}_i = \begin{pmatrix}-1&0&0\\ 0&-1&0\\ 0&0&-1\end{pmatrix}
+	\begin{bmatrix}xx&xy&xz\\ xy&yy&yz\\ xz&yz&zz\end{bmatrix}\begin{pmatrix}-1&0&0\\ 0&-1&0\\ 0&0&-1\end{pmatrix} = 
+	\begin{bmatrix}xx&xy&xz\\ xy&yy&yz\\ xz&yz&zz\end{bmatrix}.
 \end{equation}}
 This is true for every second rank material tensor.
 
