@@ -23,20 +23,30 @@
 %     uncomment this line only if this chapter is a core/foundational chapter;
 %     for a core chapter a "Core" label will appear on the top left above the chapter title.
 
-\chapterauthor{Marc De Graef, Carnegie Mellon University}
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University}
 \renewcommand{\chabbr}{PRPSYM}
 %     this will appear in a secondary header below the chapter title.
 
 % All figures are stored in the src/PropertySymmetry/eps folder and must be of the *.pdf type. 
 
-\chapterimage{PRPSYMheader.pdf}
+\chapterimage{\graphicspath PRPSYMheader.pdf}
 %     replace \noheaderimage by the chapter header image file name (without .pdf extension).
 %     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
 % ###################################################################
 
 \chapter{Material Properties and Symmetry\label{\chabbr:ch:PropertySymmetry}}
 
-\section{Intrinsic Thermodynamic Symmetry}
+% add the author information so that it will appear in the Author List at the start of the document
+\writeauthor{PRPSYM:ch:PropertySymmetry}{Material Properties and  Symmetry}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+
+\begin{learningobjectives}
+{\begin{itemize}
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:thermosym}:}] Learn 
+\end{itemize}}
+\end{learningobjectives}
+
+
+\section{Intrinsic Thermodynamic Symmetry}\label{\chabbr:sec:thermosym}
 In this section, we take a look at material properties from the point of view of thermodynamics.  In thermodynamics, one defines the \textit{internal energy per unit volume},\index{internal energy} $\mathcal{U}$, as:
 \begin{equation}
 	\mathrm{d}\mathcal{U} = -P\mathrm{d}V+T\mathrm{d}S\ ,
