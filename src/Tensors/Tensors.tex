@@ -375,11 +375,11 @@ Note that we use square brackets to represent a tensor as a matrix, and round br
 
 \subsection{Transformation rule for a rank-n tensor}
 
-In section~\ref{\chabbr:ssec:tensorproduct} we described how a rank-n tensor can be considered to be a tensor product of $n$ vectors; in the previous section we described how the transformation rule for a rank-2 tensor can be obtained by considering the transformations of the individual vectors that define the tensor. This then suggest how we should handle the general case of a rank-n tensor.  We will begin with a rank-3 tensor and then generalize to a rank-n tensor.
+In section~\ref{\chabbr:ssec:tensorproduct} we described how a rank-n tensor can be considered to be a tensor product of $n$ vectors; in the previous section we described how the transformation rule for a rank-2 tensor can be obtained by considering the transformations of the individual vectors that define the tensor. This then suggests how we should handle the general case of a rank-n tensor.  We will begin with a rank-3 tensor and then generalize to a rank-n tensor.
 
 We can define a rank-3 tensor $\delta_{ijk}$ as a tensor product of the three vectors $\mathbf{a}$, $\mathbf{b}$, and $\mathbf{c}$ as $\bm{\delta} = \mathbf{a}\otimes\mathbf{b}\otimes\mathbf{c}$, or, in component notation $\delta_{ijk}=a_i\,b_j\,c_k$. Using the same reasoning as above, we can immediately write down the transformation rule for the components of $\bm{\delta}$ in the primed reference frame:
 \begin{equation}
-	\delta'_{qrs} = \alpha_{qi}\alpha_{rj}\alpha_{sk}\delta{ijk}\ ,
+	\delta'_{qrs} = \alpha_{qi}\alpha_{rj}\alpha_{sk}\delta_{ijk}\ ,
 \end{equation}
 and the inverse transformation:
 \begin{equation}
@@ -441,7 +441,7 @@ such an object is known as an \indexit{ellipsoid}, provided all three coefficien
 where $a$, $b$, and $c$ are the three radii along the principal axes.  This means that the numbers $1/\sqrt{\beta_{ii}}$ (no summation over $i$) for a  diagonal second rank tensor $\beta_{ij}$ can be interpreted as the principal radii of an ellipsoid (if all are positive) or hyperboloid (if one or two are negative).  If two of the diagonal components are equal to each other, and all are positive, then the ellipsoid is an \indexit{ellipsoid of revolution} or \indexit{spheroid}. The ratio of the in-plane to the axial component would then determine whether the spheroid is prolate (i.e., pointy or elongated) or oblate (squashed).
 
 \begin{messagebox}{Symmetric Material Property Tensors}{OCblue}{icnote}{OCwhite}
-Diagonal second rank property tensors are usually found for the higher symmetry point groups (tetragonal, orthorhombic and cubic), which means that the corresponding ellipsoid is aligned with respect to the crystallographic axes (figures a-c below).  For lower symmetries, one can still define an ellipsoid.  It can be shown that there exists a coordinate transformation which will convert the tensor $\beta_{ij}$ to a diagonal tensor $\beta'_{ij}$.  The corresponding ellipsoid is no longer oriented along the main crystallographic directions, but is still described by the tensor elements (figure d).  One can think of it in the following way: three of the six tensor elements (along the diagonal) are used to describe the principal radii of the ellipsoid, the other three off-diagonal elements define the orientation of the main ellipsoid axis.  
+Diagonal second rank property tensors are usually found for the higher symmetry point groups (tetragonal, orthorhombic and cubic), which means that the corresponding ellipsoid is aligned with respect to the crystallographic axes (figures a-c below).  For lower symmetries, one can still define an ellipsoid.  It can be shown that there exists a coordinate transformation which will convert the tensor $\beta_{ij}$ to a diagonal tensor $\beta'_{ij}$.  The corresponding ellipsoid is no longer oriented along the main crystallographic directions, but is still described by the tensor elements (figure d).  One can think of it in the following way: three of the six tensor elements (along the diagonal) are used to describe the principal radii of the ellipsoid, the other three off-diagonal elements define the orientation of the main ellipsoid axes.  
 
 \includegraphics[width=0.98\textwidth]{\graphicspath tensorellipsoid.pdf}
 \end{messagebox}
@@ -460,7 +460,7 @@ In tensor calculations, the Kronecker delta can be used to change subscripts. Co
 \[
 	r_i\delta_{ij} = r_1\delta_{1j}+r_2\delta_{2j}+r_3\delta_{3j}+\ldots + r_N\delta_{Nj}\ ;
 \]
-The subscript $j$ must be equal to one on the numbers between $1$ and $N$, so that one of the terms on the right hand side will survive for each value of $j$. Therefore, the right hand side of the equation becomes $r_j$, or:
+The subscript $j$ must be equal to one of the numbers between $1$ and $N$, so that one of the terms on the right hand side will survive for each value of $j$. Therefore, the right hand side of the equation becomes $r_j$, or:
 \[
 	r_i\delta_{ij} = r_j\ .
 \]
