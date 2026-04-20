@@ -51,7 +51,7 @@
 \begin{itemize}
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:intro}:}] Learn about the Materials Tetrahedron
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:matprop}:}] Formally define what a material property is
-    \item[{\color{OCBurntOrange}\ref{\chabbr:tensorproperties}:}] Introduce many property tensors
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:transformations1}:}] Introduce many property tensors
 %    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
 %    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
 \end{itemize}
@@ -239,15 +239,13 @@ A homogeneous property can be either isotropic or anisotropic in a single crysta
 
 
 
-\subsection{Symmetry}
-\label{\chabbr:ssec:symmetry}
+\subsection{Symmetry}\label{\chabbr:ssec:symmetry}
 
 Symmetry is one of the more fundamental properties of crystalline matter.  Apart from color, it is also in many cases the most ``eye-catching'' aspect of a natural crystal.  One can introduce the concept as follows: take an arbitrary object and determine if there is a way to ``move'' the object into another orientation in such a way that the initial and final configurations are indistinguishable.  The specific ways of ``moving'' an object into \textit{self-coincidence} represent the symmetries of that object.  Enumeration of the different symmetry properties of a crystal forms the subject of the ``group theory'' of crystallography.  All possible crystallographic symmetry operations and their combinations into point groups and space groups are described in detail in Chapter~\ref{CRYSYM:ch:Symmetry}.
 
 % insert section on effect of symmetry on 
 
-\section{About Coordinate Transformations and Tensors}
-\label{\chabbr:sec:transformations1}
+\section{About Coordinate Transformations and Tensors}\label{\chabbr:sec:transformations1}
 
 \subsection[Cartesian Coordinate Transformations]{Cartesian Coordinate Transformations}
 In the Foundational Chapter~\ref{TENSOR:ch:Tensors} on tensors, the general notion of a tensor is described in a somewhat formal way.  A tensor is a mathematical object that transforms in a precisely defined way when going from one reference frame to another. In particular, a tensor transforms as the \indexit{direct product} (or \indexit{tensor product}) between two or more vectors.  Just as a vector has a length and a direction, both independent of any reference frame, a tensor also \textit{exists} as an object, independent of any reference frame.  When an actual reference frame is selected (we will call this the ``old'' reference frame), then the components of the vector or tensor can be determined from projections onto the basis vectors of that reference frame.  When a different reference frame is selected, the ``new'' reference frame, then the tensor components will transform in such a way that the tensor object itself does not change; we say that the tensor is \indexit{frame invariant}.  More formally, if the matrix $\alpha_{ij}$ represents the rotation that takes the old basis vectors $\mathbf{e}_j$ into the new vectors $\mathbf{e}'_i$ (using the summation convention):

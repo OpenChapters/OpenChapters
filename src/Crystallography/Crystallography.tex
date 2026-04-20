@@ -48,9 +48,9 @@
 %    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:nonCartesian}:}] Learn how to work with vectors in a non-Cartesian reference frame
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:worldviews}:}] Learn about two world views
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:crystalcomputations}:}] Perform non-Cartesian computations
-    \item[{\color{OCBurntOrange}\ref{\chabbr:transform}:}] Transform between direct and reciprocal space
-    \item[{\color{OCBurntOrange}\ref{\chabbr:Cartesian}:}] Connect back to the good old Cartesian reference frame    
-    \item[{\color{OCBurntOrange}\ref{\chabbr:usefulcomp}:}] Learn about other useful crystallographic computations
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:transform}:}] Transform between direct and reciprocal space
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:Cartesian}:}] Connect back to the good old Cartesian reference frame    
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:usefulcomp}:}] Learn about other useful crystallographic computations
 \end{itemize}}
 \end{learningobjectives}
 % ###################################################################
@@ -553,7 +553,7 @@ The structure matrices have a close relationship to each other and to the metric
 \end{equation}
 Note that the first relation can be used to determine the explicit form for $b_{ij}$ by taking the transpose of the matrix in equation~(\ref{\chabbr:eq:ainverse}). The other equations show that the structure matrices correspond to the so-called \indexit{LU decomposition}\footnote{A square matrix can be decomposed or factorized into the product of a lower-triangular (\textit{L}) and an upper-triangular (\textit{U}) matrix.} of the respective metric tensors.  
 
-\subsection{Example Applications}\label{\chabbr:sec:SMexamples}
+\subsection{Example Applications}\label{\chabbr:ssec:SMexamples}
 The structure matrices $a_{ij}$ and $b_{ij}$ provide a general way to transform crystal coordinates, both direct and reciprocal, into a common Cartesian reference frame in a way that is completely independent of the shape of the unit cell (i.e., independent of the crystal system).  While many different choices are possible, in this text we focus on the convention that $\mathbf{e}_x\parallel\mathbf{a}$ and $\mathbf{e}_z\parallel\mathbf{c}^{\ast}$ with $\mathbf{e}_y$ completing the right-handed orthonormal reference frame.  We will once gain use the monoclinic unit cell of Example~\ref{\chabbr:ex:exam2} to illustrate the use of these matrices.
 
 \begin{example}

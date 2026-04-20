@@ -41,7 +41,9 @@
 
 \begin{learningobjectives}
 {\begin{itemize}
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:thermosym}:}] Learn 
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:thermosym}:}] Learn about intrinsic symmetry
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:thermosym}:}] 
+     
 \end{itemize}}
 \end{learningobjectives}
 
@@ -175,7 +177,7 @@ Elasticity  &  $s_{ijkl}$  & $\sigma_{kl}$ & $\epsilon_{ij}$  & E21\\
 
 The material property matrix $K_{ij}$ can now be written explicitly as follows:
 \begin{equation}
-	\hspace*{-0.5in}\left(\begin{matrix}
+	{\small \left(\begin{matrix}
 	\Delta S\\\hline D_x\\ D_y\\ D_z\\\hline B_x\\ B_y\\ B_z\\\hline \epsilon_{xx}\\ \epsilon_{yy}\\ \epsilon_{zz}\\ \epsilon_{yz}\\ \epsilon_{xz}\\ \epsilon_{xy}\end{matrix}\right) = 
 	\left(\begin{array}{c|ccc|ccc|cccccc}
 	\frac{C}{T} & p_x & p_y & p_z & q_x & q_y & q_z & \alpha'_{xx} & \alpha'_{yy} & \alpha'_{zz} & \alpha'_{yz} & \alpha'_{xz} & \alpha'_{xy}\\
@@ -196,7 +198,8 @@ The material property matrix $K_{ij}$ can now be written explicitly as follows:
 	\alpha_{xy} & d'_{xyx} & d'_{xyy} & d'_{xyz} & Q'_{xyx} & Q'_{xyy} & Q'_{xyz} & s_{xyxx} & s_{xyyy} & s_{xyzz} & s_{xyyz} & s_{xyxz} & s_{xyxy}
 	\end{array}\right)
 	\left(\begin{matrix}
-	\Delta T\\\hline E_x\\ E_y\\ E_z\\\hline H_x\\ H_y\\ H_z\\\hline \sigma_{xx}\\ \sigma_{yy}\\ \sigma_{zz}\\ \sigma_{yz}\\ \sigma_{xz}\\ \sigma_{xy}\end{matrix}\right)\ .
+	\Delta T\\\hline E_x\\ E_y\\ E_z\\\hline H_x\\ H_y\\ H_z\\\hline \sigma_{xx}\\ \sigma_{yy}\\ \sigma_{zz}\\ \sigma_{yz}\\ \sigma_{xz}\\ \sigma_{xy}\end{matrix}\right)
+	}\ .
 \end{equation}
 When we take a closer look at this large property matrix, we see that individual material properties show up as blocks within the larger matrix.  For instance, the dielectric permittivity tensor, $\kappa_{ij}$, occupies a $3\times 3$ block inside $K_{ij}$.  Since the large $K_{ij}$ matrix must be symmetric, this imposes restrictions on the component matrices. Along the diagonal of $K_{ij}$ we have the \textit{principal effects},\index{principal effect} which relate a force to its conjugate response.  All those material tensors must be symmetric.  Away from the diagonal we relate a force to the other (non-conjugate) responses (\textit{cross-effects}),\index{cross effects} and there are pair-wise relations between the material tensors of seemingly unrelated force-response pairs.  The entire matrix relation can be expressed more compactly in the form:
 \begin{align}
@@ -282,7 +285,7 @@ Note also, that the derivation above is only valid if the material tensor is a s
 
 This procedure can be repeated for all material tensors of all ranks.  For ranks higher than 2, the procedure becomes somewhat tedious, because the number of matrix products to work out increases rapidly with increasing tensor rank, but it is not very difficult. Group theory offers several very powerful tools to simplify this task, in particular group representation theory and group character tables, but this approach is a bit beyond the level of the present chapter. If we repeat the procedure above for all material tensors that make up the matrix $K_{ij}$ of the previous section, then we obtain the effective property matrix for a crystal with point group $\textbf{4}$:
 {\small\begin{equation}
-	\hspace*{-0.7in}\left(\begin{matrix}
+	\left(\begin{matrix}
 	\Delta S\\\hline D_x\\ D_y\\ D_z\\\hline B_x\\ B_y\\ B_z\\\hline \epsilon_{xx}\\ \epsilon_{yy}\\ \epsilon_{zz}\\ \epsilon_{yz}\\ \epsilon_{xz}\\ \epsilon_{xy}\end{matrix}\right) = 
 	\left(\begin{array}{c|ccc|ccc|cccccc}
 	\frac{C}{T} & p_x & p_x & p_z & q_x & q_x & q_z & \alpha_{xx} & \alpha_{xx} & \alpha_{zz} & 0 & 0 &0\\\hline
