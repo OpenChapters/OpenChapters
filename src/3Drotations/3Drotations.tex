@@ -237,7 +237,7 @@ since $\cos(\Phi+\pi)=-\cos\Phi$ and $\sin(\Phi+\pi)=-\sin\Phi$.  Even though Eu
 \begin{equation}
 	\mathbf{g}_{ij}(\varphi_1,\Phi,\varphi_2) = \mathbf{g}_{ij}(\varphi_1+\pi,2\pi-\Phi,\varphi_2+\pi)\ .\label{\chabbr:eq:eulerglide}
 \end{equation}
-The translation of $(\pi,0,\pi)$ in the $(\varphi_1,\varphi_2)$ plane along with the mirror operation from $\Phi$ to $2\pi-\Phi$ indicates that the top half of the cell is related to the lower half by a mirror glide operation. The combination of the $2\pi$ periodicity along the three axes when considering a $[2\pi,2\pi,2\pi]$ cell and the glide plane at $\Phi=\pi$ means that the true symmetry of Euler space is given by the monoclinic space group $\mathbf{Pc}$.   This, in turn, indicates that the choice of a right angle between the $\varphi_1$ and $\varphi_2$ axes is one of convenience, and hides the true underlying symmetry of Euler space.\footnote{In a later section we will show that the true Euler unit cell is, in fact, a cell of size $[4\pi, 4\pi, 4\pi]$; in practice, however, one only makes use of a $[2\pi,\pi,2\pi]$ sub-cell.}
+The translation of $(\pi,0,\pi)$ in the $(\varphi_1,\varphi_2)$ plane along with the mirror operation from $\Phi$ to $2\pi-\Phi$ indicates that the top half of the cell is related to the lower half by a mirror glide operation. The combination of the $2\pi$ periodicity along the three axes when considering a $[2\pi,2\pi,2\pi]$ cell and the glide plane at $\Phi=\pi$ means that the true symmetry of Euler space is given by the monoclinic space group $\mathbf{Pc}$.   This, in turn, indicates that the choice of a right angle between the $\varphi_1$ and $\varphi_2$ axes is one of convenience, and hides the true underlying symmetry of Euler space.\footnote{In section~\ref{\chabbr:sec:quateuler} we will show that the true Euler unit cell is, in fact, a cell of size $[4\pi, 4\pi, 4\pi]$; in practice, however, one only makes use of a $[2\pi,\pi,2\pi]$ sub-cell.}
 
 \begin{figure}[ht]
 \centering\leavevmode
@@ -464,6 +464,23 @@ It should be noted that in the literature on these representations, the metric t
 
 While this section contains some more advanced math than the rest of this chapter, it is important for the reader to appreciate the fact that these rotation spaces do not generally have simple Cartesian metrics; as a consequence, whenever one performs integrations over orientation distributions expressed in these representations, one must follow the rules of differential geometry to properly carry out the computations.  The paper by Kumar and Dawson \cite{kumar1998a} represents a good starting point for the interested reader.
 
+\subsection{Quaternions and the Euler Angle Representation}\label{\chabbr:sec:quateuler}
+
+In section~\ref{\chabbr:sec:eulerangles} we defined the Bunge Euler angles as the triplet $(\varphi_1,\Phi,\varphi_2)$, and the ranges of the angles are $[0\ldots 2\pi]$ for the angles $\varphi_i$ and $[0\ldots \pi$ for $\Phi$.  In section~\ref{NUMSYS:ssec:EulerFormula} of the Number Systems Foundational chapter, it is shown that Euler's 2D exponential rotation formula can be generalized for quaternions to read:
+\begin{equation}
+	q = \mathrm{e}^{\hat{\mathbf{n}}\frac{\omega}{2}} = \left[\cos\frac{\omega}{2},(n_x\mathrm{i}+n_y \mathrm{j}+n_z \mathrm{k})\sin\frac{\omega}{2}\right]\ .\label{\chabbr:eq:quatrot}
+\end{equation}
+For the three Euler rotations, we can thus write down the explicit rotation quaternions in exponential notation as:
+\begin{equation}
+\begin{split}
+	q_1(\varphi_1) &= \mathrm{e}^{\mathrm{k}\frac{\varphi_1}{2}} = \cos\left(\frac{\varphi_1}{2}\right) + \mathrm{k} \sin\left(\frac{\varphi_1}{2}\right)\ ;\\
+	q_2(\Phi) &= \mathrm{e}^{\mathrm{i}\frac{\Phi}{2}} = \cos\left(\frac{\Phi}{2}\right) + \mathrm{i} \sin\left(\frac{\Phi}{2}\right)\ ;\\
+	q_3(\varphi_2) &= \mathrm{e}^{\mathrm{k}\frac{\varphi_2}{2}} = \cos\left(\frac{\varphi_2}{2}\right) + \mathrm{k} \sin\left(\frac{\varphi_2}{2}\right)\ .
+\end{split}
+\end{equation}
+It should be noted that the periodicity of each of these quaternions $q_i$ requires a rotation by a $4\pi$ angle in order to return to the original quaternion. This is due to the fact that a rotation by $2\pi$ simply changes the sign of the quaternion due to the double cover property (namely that $q$ and $-q$ represent the same rotation).  From the quaternion perspective, the Euler angles ``live'' in a space of dimension $[4\pi,4\pi,4\pi]$. Since, in practice, the texture community employs the standard ranges $[2\pi,\pi,2\pi[$ for the Euler angles, this larger quaternionic repeat unit will not be important, but care should be taken in conversions between quaternions and Euler angles to make sure that the angles end up in the proper sub-region of the larger cell.
+
+
 \subsection{Summary of important orientation/rotation representations}\label{\chabbr:ssec:rotationmap}
 
 Fig.~\ref{\chabbr:fig:RotationMap} shows some of the relations between the various representations introduced in the preceding sections.  The simplest representation, the axis-angle representation, simply states the rotation angle, $\omega$, and the unit rotation axis, $\hat{\mathbf{n}}$ with respect to a suitably chosen cartesian reference frame. From $\omega@\hat{\mathbf{n}}$ we can construct the $3\times 3$ special orthogonal rotation matrix $R_{ij}$ by means of the relation:
@@ -474,7 +491,7 @@ where $\epsilon_{ijk}$ is the permutation symbol and $n_i$ are the components of
 
 \begin{figure}[ht]
 \centering\leavevmode
-\includegraphics[width=\textwidth]{\graphicspath RotationMap}
+\includegraphics[width=0.75\textwidth]{\graphicspath RotationMap}
 \caption{\label{\chabbr:fig:RotationMap}Schematic representation of the most frequently used orientation/rotation representations in Materials Science and Engineering.}
 \end{figure}
 
@@ -618,7 +635,8 @@ As an example of different rotation representations we list in Table~\ref{\chabb
 
 \begin{table}[h!]
 \centering\leavevmode
-\begin{warpHTML}
+%\begin{warpHTML}
+\ifthenelse{\equal{isHTML}{Yes}}{
 \begin{tabular}{ccccc}
 \hline
 $\omega@\hat{\mathbf{n}}$ & Quaternion $q$ & Homochoric $\mathbf{h}$ & Stereographic $\mathbf{s}$ & Cubochoric $\mathbf{c}$ \\
@@ -650,9 +668,9 @@ $120@[1\bar{1}\bar{1}]$ &  0.5000, 0.5000,-0.5000,-0.5000 &  0.5618,-0.5618,-0.5
 $120@[\bar{1}\bar{1}1]$ &  0.5000,-0.5000,-0.5000, 0.5000 & -0.5618,-0.5618, 0.5618 & -0.3333,-0.3333, 0.3333 & -0.7843,-0.7843, 0.7843 \\ 
 $120@[11\bar{1}]$ &  0.5000, 0.5000, 0.5000,-0.5000 &  0.5618, 0.5618,-0.5618 &  0.3333, 0.3333,-0.3333 &  0.7843, 0.7843,-0.7843 \\ 
 \hline
-\end{tabular}
-\end{warpHTML}
-\begin{warpprint}
+\end{tabular}}
+%\end{warpHTML}
+{%\begin{warpprint}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{ccccc}
 \hline
@@ -686,7 +704,7 @@ $120@[\bar{1}\bar{1}1]$ &  0.5000,-0.5000,-0.5000, 0.5000 & -0.5618,-0.5618, 0.5
 $120@[11\bar{1}]$ &  0.5000, 0.5000, 0.5000,-0.5000 &  0.5618, 0.5618,-0.5618 &  0.3333, 0.3333,-0.3333 &  0.7843, 0.7843,-0.7843 \\ 
 \hline
 \end{tabular}}
-\end{warpprint}
+}%\end{warpprint}
 \caption{\label{\chabbr:tb:cubicsym}24 Cubic rotational symmetry operations in axis-angle (angle in degrees), quaternion, homochoric, stereographic, and cubochoric representations. The Rodrigues vector can be obtained by dividing the vector part of the quaternion by the scalar part.}
 \end{table}
 
