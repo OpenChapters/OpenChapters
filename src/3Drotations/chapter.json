@@ -8,10 +8,9 @@
     "Passive 3D Rotation Matrices",
     "Euler Angles and their Properties",
     "Neo-Eulerian Rotation Representations",
-    "Sampling of Orientations/Rotations",
-    "Orientation Averaging",
-    "The Clifford Torus",
-    "Evaluation of Sampling Uniformity"
+    "The Cubochoric Orientation Representation",
+    "Summary of important orientation/rotation representations",
+    "The Clifford Torus"
   ],
   "entry_file": "3Drotations.tex",
   "cover_image": "cover.png",

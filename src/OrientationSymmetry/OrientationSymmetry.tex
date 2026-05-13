@@ -44,8 +44,8 @@
 \begin{learningobjectives}
 {\begin{itemize}
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:rotsym}:}] Learn how rotational symmetry and orientations relate
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:FZs}:}] Define fundamental zones 
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:samplingRFZs}:}] Sample orientations in a fundamental zone 
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:FZs}:}] Define fundamental zones for neo-Eulerian representations
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:samplingRFZs}:}] Learn about fundamental zones in the Euler representation 
 \end{itemize}}
 \end{learningobjectives}
 
@@ -108,7 +108,7 @@ Converting the quaternion components to axis-angle pairs we have $q_2\,p\rightar
  the rotation $p$.  Note that these four rotations have different rotation angles of $90^{\circ}$, $120^{\circ}$ (two different rotation axes), and $180^{\circ}$. Given that these rotations are equivalent for this point group, we need to impose a convention for selecting one of them to be the ``representative'' rotation. It is standard practice to select the rotation with the smallest rotation angle $\omega$, so that $90^{\circ}@[100]$ is the representative rotation in this case. Since the rotational point groups have different combinations of symmetry operators, this means that the representative rotation equivalent to $p$ will in general be different for each point group. As an example, consider $p$ in the point group \pg{30}; since a rotation of $120^{\circ}$ around $[111]$ is a symmetry operation in this point group, the representative rotation becomes the identity operator with a $0^{\circ}$ rotation angle. In the next section we will introduce a standardized approach for the determination of the unique rotations for a given rotational point group.
  
 
-\section{Fundamental Zones}\label{\chabbr:sec:FZs}
+\section{Fundamental Zones in Neo-Eulerian Representations}\label{\chabbr:sec:FZs}
 A \indexit{Fundamental Zone} (FZ) or \indexit{asymmetric domain} for a given orientation representation and rotational point group $\mathcal{G}$ is defined as the compact region (i.e., a volume that is closed and bounded)  that contains the identity rotation as well as all representative rotations, i.e., all unique rotations that have the smallest rotation angle after application of the symmetry operators.  For the \pg{9} example above, this would mean that $q_4\, p$ lies in the FZ of this point group, and the other equivalent rotations, $p$, $q_2\,p$ and $q_3\,p$, lie outside the FZ.  The FZ has a different shape for each rotational point group and for each orientation representation.  
 
 Since we require the representative rotation to have the smallest possible rotation angle amongst all equivalent rotations, that means that in the quaternion representation, the scalar part of the quaternion must have the largest possible value since $q_0=\cos(\omega/2)$.   A simple example will help to clarify how the FZ is constructed.  Consider the point group \pg{3} which consists of the identity and a two-fold rotation along the crystallographic $\mathbf{b}$ axis (this is the convention for monoclinic symmetry).  Taking the $\mathbf{b}$ axis to be parallel to $\mathbf{e}_y$, the corresponding quaternion can be expressed as:
@@ -221,10 +221,9 @@ For the icosahedral point group \pg{34}, the bounding planes corresponding to th
 \caption{\label{\chabbr:fig:TOI3D}3D stereographic projections of the tetrahedral (a) and octahedral (b) Rodrigues Fundamental Zones.}
 \end{figure}
 
-\clearpage
-\subsection{Fundamental Zones in Euler Space}\label{\chabbr:ssec:EulerFZs}
+\section{Fundamental Zones in Euler Space}\label{\chabbr:sec:EulerFZs}
 
-\subsubsection{Rotational Symmetry Operators and Euler Space}\label{\chabbr:sssec:RotEuler}
+\subsection{Rotational Symmetry Operators and Euler Space}\label{\chabbr:ssec:RotEuler}
 In Euler space, fundamental zones can be defined in two ways: (1) by mapping the Rodrigues FZ onto Euler space, and (2) by subdividing Euler space itself based on the locations of the rotational symmetry operators.  In this section, we consider how the elements from all the rotational point groups are represented in Euler space.
 
 If we represent a rotational symmetry operator by a Rodrigues vector with components $\bm{\rho}=(\rho_x,\rho_y,\rho_z)$ then one can show that the corresponding Euler angles in the Bunge convention are given by the following relations:
@@ -261,7 +260,7 @@ Now that we know the locations of all rotational symmetry operators in Euler spa
 \caption{\label{\chabbr:fig:EulerPG}Euler representation of all non-trivial rotational point groups.}
 \end{figure}
 
-\subsubsection{Euler Representation of Rodrigues Fundamental Zones}\label{\chabbr:ssec:EulerRFZs}
+\subsection{Euler Representation of Rodrigues Fundamental Zones}\label{\chabbr:sec:EulerRFZs}
 Mapping the Rodrigues FZs (RFZs) into Euler space is achieved by means of the same equations (\ref{\chabbr:eq:r2e}). Since each RFZ contains the origin, which is the identity operator, at its center, and the identity in Euler space is the line $\varphi_2=2\pi-\varphi_1$, this means that the mapped RFZs will all contain the complete diagonal line.  For the cyclic rotation groups, the bounding planes of the RFZ are located at $\rho_z=\pm\tan(\pi/2n)$; substituting this into the third equation of (\ref{\chabbr:eq:r2e}) and simplifying using the rules for tangent and inverse tangent functions results in:
 \[
 	\varphi_2 = \mp \frac{\pi}{n}-\varphi_1\ ,
@@ -280,7 +279,7 @@ Finally, we have the T and O RFZs; their mappings into Euler space are shown on 
 
 
 
-\subsubsection{Standard Fundamental Zones in the Euler Representation}\label{\chabbr:ssec:EulerFZs}
+\subsection{Standard Fundamental Zones in the Euler Representation}\label{\chabbr:sec:EulerFZs}
 Traditionally, most texture publications use the Euler space representation with its own fundamental zones, which we will refer to as Euler FZs; they are unrelated to the now more commonly used Rodrigues fundamental zones.  Working in Bunge angles, $(\varphi_1,\Phi,\varphi_2)$, the Euler FZs can be defined by sub-dividing Euler space into (mostly) rectangular prisms with long axis along $\varphi_1$, i.e., using the full range $[0,2\pi]$. Recall that the identity operation is infinitely degenerate in this representation, and oriented along the diagonal of the space in the $\Phi=0$ plane; therefore, contrary to the RFZs introduced before, not every Euler FZ will contain the identity, and, because of its orientation along the $\varphi_1$ axis, it will at most contain a portion of the equivalent identity orientations. 
 
 \begin{figure}[b!]
@@ -316,23 +315,6 @@ The rectangular box along $\varphi_1$ with $0\le\Phi\le\pi/2$ and $0\le\varphi_2
 \end{figure}
 
 The Euler FZs for the non-cubic proper point groups are shown in Fig.~\ref{\chabbr:fig:EFZs}. Note that the order $n$ of the primary rotation axis reduces the range of the $\varphi_2$ angle to $2\pi/n$; in the presence of orthogonal two-fold axes, the range of $\Phi$ is cut in half.  
-
-
-
-\section{Orientation Sampling in the Presence of Fundamental Zones}\label{\chabbr:sec:samplingRFZs}
-In the Fundamental Chapter~\ref{3DROTS:ch:3Drotations}, section~\ref{3DROTS:ssec:randomsampling}, several approaches are described to generate random samples of orientations; Schoemake sampling and Super-Fibonacci sampling produce high quality (i.e., uniform) orientation sets, whereas others, like Marsaglia sampling, do not have perfect uniformity, but are still reasonably uniform.  A new orientation representation, the \indexit{cubochoric representation} was introduced in section~\ref{3DROTS:ssec:cubochoric}; this representation was developed with the intent of generating uniform samples of orientations in a numerically convenient way, by starting from a uniform cubical grid.  In the present section, we answer the question: how are these orientation sampling approaches affected by the introduction of Fundamental Zones?
-
-When the cubochoric representation is combined with the Rodrigues representation, one can generate uniform orientation samples that are restricted to a crystallographic Fundamental Zone.  Consider the following two examples: the point group symmetries are \pg{24} and \pg{30}, with $N=20$ in the first case and $N=50$ in the second. Without the application of symmetry the total number of points generated would be $(2N+1)^3$ or $68,921$ for $N=20$ and $1,030,301$ for $N=50$.  The application of symmetry is performed by a simple test: first convert each cubochoric point to a Rodrigues vector, then test whether or not the point lies inside the RFZ; keep the point if it lies inside the RFZ, discard it otherwise. Note that this is a form of \indexit{rejection sampling}, where the Rodrigues Fundamental Zone plays the role of the test ``function.''  The resulting lists of orientations have $n=5,367$ for \pg{24} and $n=41,625$ for \pg{30}.  The distributions of points along with the RFZ edges are shown as stereographic projections in Fig.~\ref{\chabbr:fig:samples}. Note in particular for \pg{30} that the sampling points lie on concentric spherical surfaces inside the RFZ due to the way they are sampled on concentric cubes in the cubochoric cell.
-
-\begin{figure}[h!]
-\centering\leavevmode
-\includegraphics[width=0.9\textwidth]{\graphicspath samples.pdf}
-\caption{\label{\chabbr:fig:samples}Stereographic projection of orientations uniformly sampled in cubochoric space and restricted to the Rodrigues Fundamental Zone for \pg{24} and \pg{30}.}
-\end{figure}
-
-When this type of orientation sampling is subjected to tests of uniformity, for instance through comparison of the Riesz energies with the theoretical optimal values, or an analysis of the dispersion of the set of orientations, it is found that, near the boundaries of the fundamental zone, the local uniformity depends strongly on the choice of the number $N$. With increasing $N$, the effect of this local non-uniformity decreases significantly but it never completely disappears.  Resolving this issue requires a symmetry-aware remapping of the orientation set using an approach that involves  Knothe--Rosenblatt (KR) rearrangements in spherical homochoric coordinates \cite{xxx}.
-
-
 
 
 
