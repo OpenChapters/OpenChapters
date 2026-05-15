@@ -369,14 +369,14 @@ For more information about discrete data sets on hyper-spheres we refer the inte
 
 One \textbf{word of caution} is needed at this point: the averaging procedure described above is valid for a general three-sphere $\mathbb{S}^3$ in $\mathbb{R}^4$. From a texture point of view, we use the three-sphere to represent 3D orientations using unit-quaternions, and in that case there is an equivalence between $q$ and $-q$, i.e., $\mathbb{S}^3$ is a double-cover of the rotation group. If we take a set of $n$ rotation quaternions $q_i$, and we replace half of them by $-q_i$, then this will clearly change the average defined in eq.~\ref{\chabbr:eq:regularaverage}.  In particular, if we included $q_i$ and $-q_i$ for all orientations, the average would always be zero.  It is therefore important to work only with orientations that lie in a hemisphere of $\mathbb{S}^3$, and it is customary to require that the scalar part of the quaternion be positive or zero; we can conveniently call this hemisphere the ``Northern hemisphere'' of $\mathbb{S}^3$ and denote it by $\mathbb{S}^3_+$.  In section~\ref{\chabbr:ssec:quatav} we will describe other procedures for rotation quaternion averaging.
 
-\subsubsection{Continuous distributions on hyper-spheres}
+\subsubsection{Continuous distributions on hyper-spheres}%verify the normalization parameters !!!
 The von Mises distribution on the circle can be generalized to (hyper-)spheres in which case we talk about \indexit{spherical data distributions}. In  $p$-dimensional space, the \indexit{von Mises-Fisher} (vMF) probability density is defined by:
 \begin{equation}
 	f(\mathbf{x};\bm{\mu},\kappa)\equiv \left(\frac{\kappa}{2}\right)^{\frac{p}{2}-1}\frac{1}{\Gamma(p/2)I_{\frac{p}{2}-1}(\kappa)}\mathrm{e}^{\kappa\bm{\mu}\cdot\mathbf{x}}\ ,
 \end{equation}
 where, as before, $\bm{\mu}$ is the mean direction and $\kappa$ the concentration parameter; $\mathbf{x}$ is a random vector in the $p$-dimensional space $\mathbb{R}^p$. In the denominator we have the Euler gamma function $\Gamma(x)$ and the modified Bessel function of the first kind and order $\frac{p}{2}-1$.  For quaternions, we have $p=4$, so the vMF probability density simplifies to:
 \begin{equation}
-	f(q;\mu,\kappa) \equiv \frac{\kappa}{2I_1(\kappa)}\mathrm{e}^{\kappa\mu\cdot q}\ ;
+	f(q;\mu,\kappa) \equiv \frac{\kappa}{2I_1(\kappa)}\mathrm{e}^{\kappa\mu\cdot q}\ ;\label{\chabbr:eq:vMFpdf}
 \end{equation}
 in this expression, the exponential contains the standard dot product between two quaternions, the mean direction $\mu$ and the random orientation $q$, as four-component vectors in $\mathbb{R}^4$.  One can show that this distribution if rotationally symmetric around $\mu$; if $\kappa=0$ then the distribution is uniform, if $\kappa>0$ then the orientations are clustered around $\mu$.  The expectation value $E[q]$ of this distribution is $\rho\mu$ with $\rho=I_2(\kappa)/I_1(\kappa)$, i.e., the expectation value is proportional to the mean direction.  Fig.~\ref{\chabbr:fig:vMFW}(a) shows the vMF probability density for several values of $\kappa$; the dot product $\mu\cdot q$ was replaced by $\cos\theta$ with $\theta\in[0,\pi]$.  As for the circle case, the vMF probability density can be considered as the spherical equivalent of the normal distribution.
 
@@ -547,8 +547,10 @@ The first column, when normalized, results in the quaternion
 \]
 which represents a rotation of $70.53^{\circ}$ around the $[101]$ axis, i.e, the bisector of the individual rotation axes. This is in full agreement with the standard geometric mean $q_{\text{av}}=\frac{1}{2}(q_1+q_2)$. 
 
-\subsubsection{The Expectation Maximization Algorithm}\label{\chabbr:ssec:EM}
-Before we describe averaging using the von Mises-Fisher and Watson distributions, we need to introduce the \indexit{Expectation Maximization} (EM) algorithm.  This approach employs the concept of the \indexit{likelihood function}. As a simple example, we start with a probability density function $f(x;\theta)$, where $x$ is a realization of a random variable $X$, and $\theta$ is a set of one or more parameters that the pdf depends on.  In the usual interpretation of a pdf, we think of the function as being evaluated for a fixed set of parameters $\theta$, and $x$ is varied by taking different samples from $X$. On the other hand, if we fix the sample $x$, and we let the parameter $\theta$ vary, then $f(x;\theta)$ is interpreted as the \indexit{likelihood function}, and by maximizing the likelihood with respect to the parameters, we can determine the value of $\theta$ that best matches the pdf for the selected sample $x$.
+
+\subsubsection{von Mises-Fisher and Watson averaging}\label{\chabbr:ssec:vMFWav}
+
+We start with a probability density function $f(x;\theta)$, where $x$ is a realization of a random variable $X$, and $\theta$ is a set of one or more parameters that the pdf depends on.  In the usual interpretation of a pdf, we think of the function as being evaluated for a fixed set of parameters $\theta$, and $x$ is varied by taking different samples from $X$. On the other hand, if we fix the sample $x$, and we let the parameter $\theta$ vary, then $f(x;\theta)$ is interpreted as the \indexit{likelihood function}, and by maximizing the likelihood with respect to the parameters, we can determine the value of $\theta$ that best matches the pdf for the selected sample $x$.
 
 Let us illustrate this concept by means of a simple 1-D example. Consider a set of $N=10$ temperature measurements, $T_i$, inside an annealing furnace using a thermocouple that has a stated accuracy of $\pm 0.1$K. The measurements are carried out at random times over a $24$-hour period, and the measurement conditions are identical for each measurement. The set-point of the furnace is the temperature $T_s=773.1$K (or $500^{\circ}$C), and the distribution of the measured values is expected to be normal with a narrow variance, $\sigma_T$.  A representative set of measurements is shown in Table~\ref{\chabbr:tb:thermal}.
 
@@ -604,30 +606,55 @@ For small sample sizes, the expression for the standard deviation is often multi
 \end{equation}
 for the example data we find $s_T^2= 24.9$ K$^2$ and $s_T=5.0$ K.  For more details on unbiased estimators we refer the interested reader to standard textbooks on statistics.
 
+The same log-likelihood procedure as described above can be carried out for the vMF and Watson pdfs to obtain expressions for the mean quaternion, $\mu$, and the concentration parameter, $\kappa$.  If all the observed orientations, $\{q_i\}$, are clustered into a single cluster, then this log-likelihood approach will produce the proper parameters $\mu$ and $\kappa$.  If, on the other hand, there are multiple clusters, then it may not always be clear a-priori to which cluster a given orientation quaternion belongs, then the problem becomes more involved.  Let us first address the problem of a single cluster with $N$ orientations.
 
-
-
-\subsubsection{von Mises-Fisher and Watson averaging}\label{\chabbr:ssec:vMFWav}
-
-Having illustrated the process of maximum log-likelihood estimation using a 1-D normal distribution, we can now apply these concepts to introduce the \indexit{Expectation Maximization} algorithm.  The same log-likelihood procedure as described above can be carried out for the vMF and Watson pdfs to obtain expressions for the mean quaternion, $\mu$, and the concentration parameter, $\kappa$.  If all the observed orientations are clustered into a single cluster, then this log-likelihood approach will produce the proper parameters $\mu$ and $\kappa$.  If, on the other hand, there are multiple clusters, then it may not always be clear a-priori to which cluster a given orientation quaternion belongs, then the problem becomes more involved.  Let us first address the problem of a single cluster with $N$ orientations.
-
-The vMF likelihood function for a sample $\{q_1,q_2,\ldots,q_N\}$ of $N$ orientation quaternions is given by:
+The vMF likelihood function for a sample $\{q_1,q_2,\ldots,q_N\}$ of $N$ independent and identically distributed (i.i.d.) orientation quaternions is given by:
 \[
-	\mathcal{L}(\mu,\kappa) = \prod_{i=1}^N \frac{\kappa}{2I_1(\kappa)}\mathrm{e}^{\kappa\,\mu\cdot q_i} = \left( \frac{\kappa}{2I_1(\kappa)}\right)^N
-	\mathrm{e}^{\kappa\,\mu\cdot \sum_{i=1}^N q_i} \ .
+	\mathcal{L}(\bm{\mu},\kappa) = \prod_{i=1}^N \frac{\kappa}{(2\pi)^2I_1(\kappa)}\mathrm{e}^{\kappa\,\bm{\mu}\cdot q_i} = \left( \frac{\kappa}{(2\pi)^2I_1(\kappa)}\right)^N
+	\mathrm{e}^{\kappa\,\bm{\mu}\cdot \sum_{i=1}^N q_i} \ .
 \]
-The sum in the exponent, by analogy with the analysis in section~\ref{\chabbr:ssec:circleaveraging}, is the \indexit{resultant vector} of the input quaternions, $\mathbf{Q}=\sum_{i=1}^N q_i$. The vMF likelihood function thus becomes:
+In this relation, we consider the quaternions in the exponential as vectors in $\mathbb{R}^4$.  The sum in the exponent, by analogy with the analysis in section~\ref{\chabbr:ssec:circleaveraging}, is the \indexit{resultant vector} of the input quaternions, $\mathbf{Q}=\sum_{i=1}^N q_i$. The vMF likelihood function thus becomes:
 \[
-	\mathcal{L}(\mu,\kappa) = \left(\frac{\kappa}{2I_1(\kappa)}\right)^N \mathrm{e}^{\kappa\,\mu\cdot\mathbf{Q}} \ .
+	\mathcal{L}(\bm{\mu},\kappa) = \left(\frac{\kappa}{(2\pi)^2I_1(\kappa)}\right)^N \mathrm{e}^{\kappa\,\bm{\mu}\cdot\mathbf{Q}} \ .
 \]
 The log-likelihood function is then readily shown to be:
 \[
-	\ln\left(\mathcal{L}(\mu,\kappa)\right) = N[\ln(\frac{\kappa}{2}) - \ln(I_1(\kappa))] + \kappa \mu\cdot \mathbf{Q}\ .
+	\ln\left(\mathcal{L}(\bm{\mu},\kappa)\right) = N[\ln\kappa -2\ln(2\pi)- \ln(I_1(\kappa))] + \kappa\, \bm{\mu}\cdot \mathbf{Q}\ .
+\]
+Next, we maximize this function with respect to $\bm{\mu}$ and $\kappa$. The parameter $\bm{\mu}$ only appears in the last term, so we need to maximize this term, subject to the constraint that $\vert \bm{\mu}\vert=1$.  The Cauchy-Schwarz inequality states:
+\[
+	\vert \bm{\mu}\cdot \mathbf{Q}\vert \le \vert\bm{\mu}\vert\,\vert\mathbf{Q}\vert = Q\ ,
+\]
+where $Q=\vert\mathbf{Q}\vert$. Equality only occurs when $\bm{\mu}= \mathbf{Q}/Q$, so that the estimate for the mean vMF orientation is given by:
+\[
+ 	\hat{\bm{\mu}} = \mathbf{Q}/Q = \frac{\sum_{i=1}^N q_i}{\vert \sum_{i=1}^N q_i\vert}\ .
+\]
+Note that we can substitute this estimate into the log-likelihood function to obtain:
+\[
+	\ln\left(\mathcal{L}(\bm{\mu},\kappa)\right) = N[\ln\kappa -2\ln(2\pi)- \ln(I_1(\kappa))] + \kappa\, Q\ .
+\]
+The second parameter, $\kappa$, occurs several times in the log-likelihood function, so we take the partial derivative with respect to $\kappa$ and set it equal to zero:
+\[
+	\frac{\partial\ln\left(\mathcal{L}(\bm{\mu},\kappa)\right)}{\partial\kappa} = N\left[\frac{1}{\kappa}-\frac{I'_1(\kappa)}{I_1(\kappa)}\right]+Q\ .
+\]
+Using a standard identity for modified Bessel functions we can eliminate the derivative $I'_1(\kappa)$ and obtain:
+\[
+	\frac{\partial\ln\left(\mathcal{L}(\bm{\mu},\kappa)\right)}{\partial\kappa} = N\left[\frac{1}{\kappa}-\left(\frac{I_2(\kappa)}{I_1(\kappa)}+\frac{1}{\kappa}\right)\right]+Q\ .
+\]
+Simplifying, and putting the derivative equal to zero, we obtain a transcendental equation for the estimated $\hat{\kappa}$:
+\[
+	\frac{I_2(\hat{\kappa})}{I_1(\hat{\kappa})} = \frac{Q}{N}\ .
+\]
+This equation must be solved numerically for the estimated concentration parameter $\hat{\kappa}$. The maximum likelihood estimate for the vMF distribution, given a set of i.i.d.\ orientations $\{q_i\}$, is thus given by:
+\[
+	f(q;\hat{\bm{\mu}},\hat{\kappa}) = \frac{\hat{\kappa}}{(2\pi)^2I_1(\hat{\kappa})}\mathrm{e}^{\hat{\kappa}\,\hat{\bm{\mu}}\cdot q}\ .
 \]
 
-% see vMF-MLE.tex document
 
-Next we take the partial derivatives with respect to $\mu$ and $\kappa$
+
+
+\subsubsection{The Expectation Maximization Algorithm}\label{\chabbr:ssec:EM}
+Before we describe averaging using the von Mises-Fisher and Watson distributions, we need to introduce the \indexit{Expectation Maximization} (EM) algorithm.  This approach employs the concept of the \indexit{likelihood function}. 
 
 
 
