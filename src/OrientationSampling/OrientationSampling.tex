@@ -263,11 +263,8 @@ As an example of this test, we list in Table~\ref{\chabbr:tb:Riesz} the ratios $
 
 
   
-
-
-
 \clearpage
-\section{Orientation Averaging}\label{\chabbr:sec:orientationaveraging}
+\section{Orientations and Directional Statistics}\label{\chabbr:sec:orientationaveraging}
 The topic of averaging data on a circle or on a sphere belongs to the branch of statistics that is known as \indexit{Directional Statistics} (DS); DS defines how data on a circle (i.e., data that is periodic) should be treated when averages or other statistical parameters are needed. Similarly, data on spheres and hyper-spheres requires special handling in the context of averaging.  Since 3D rotations and orientations can be represented on the hyper-sphere $\mathbb{S}^3$, it stands to reason that the techniques and concepts introduced in this section will be important for the study of material textures.  We begin with data that lives on a circle.
 
 \subsection{Averaging of Circular Data}\label{\chabbr:ssec:circleaveraging}
@@ -367,16 +364,16 @@ For $p=4$, this is a $4\times 4$ matrix; the nature of a distribution on a spher
 \end{itemize}
 For more information about discrete data sets on hyper-spheres we refer the interested reader to section 9.2 in \cite{mardia2009a}.  
 
-One \textbf{word of caution} is needed at this point: the averaging procedure described above is valid for a general three-sphere $\mathbb{S}^3$ in $\mathbb{R}^4$. From a texture point of view, we use the three-sphere to represent 3D orientations using unit-quaternions, and in that case there is an equivalence between $q$ and $-q$, i.e., $\mathbb{S}^3$ is a double-cover of the rotation group. If we take a set of $n$ rotation quaternions $q_i$, and we replace half of them by $-q_i$, then this will clearly change the average defined in eq.~\ref{\chabbr:eq:regularaverage}.  In particular, if we included $q_i$ and $-q_i$ for all orientations, the average would always be zero.  It is therefore important to work only with orientations that lie in a hemisphere of $\mathbb{S}^3$, and it is customary to require that the scalar part of the quaternion be positive or zero; we can conveniently call this hemisphere the ``Northern hemisphere'' of $\mathbb{S}^3$ and denote it by $\mathbb{S}^3_+$.  In section~\ref{\chabbr:ssec:quatav} we will describe other procedures for rotation quaternion averaging.
+One \textbf{word of caution} is needed at this point: the averaging procedure described above is valid for a general three-sphere $\mathbb{S}^3$ in $\mathbb{R}^4$. From a texture point of view, we use the three-sphere to represent 3D orientations using unit-quaternions, and in that case there is an equivalence between $q$ and $-q$, i.e., $\mathbb{S}^3$ is a double-cover of the rotation group. If we take a set of $n$ rotation quaternions $q_i$, and we replace half of them by $-q_i$, then this will clearly change the average defined in eq.~\ref{\chabbr:eq:regularaverage}.  In particular, if we included $q_i$ and $-q_i$ for all orientations, the average would always be zero.  It is therefore important to work only with orientations that lie in a hemisphere of $\mathbb{S}^3$, and it is customary to require that the scalar part of the quaternion be positive or zero; we can conveniently call this hemisphere the ``Northern hemisphere'' of $\mathbb{S}^3$ and denote it by $\mathbb{S}^3_+$.  In section~\ref{\chabbr:sec:oraverages3} we will describe other procedures for rotation quaternion averaging.
 
 \subsubsection{Continuous distributions on hyper-spheres}%verify the normalization parameters !!!
 The von Mises distribution on the circle can be generalized to (hyper-)spheres in which case we talk about \indexit{spherical data distributions}. In  $p$-dimensional space, the \indexit{von Mises-Fisher} (vMF) probability density is defined by:
 \begin{equation}
-	f(\mathbf{x};\bm{\mu},\kappa)\equiv \left(\frac{\kappa}{2}\right)^{\frac{p}{2}-1}\frac{1}{\Gamma(p/2)I_{\frac{p}{2}-1}(\kappa)}\mathrm{e}^{\kappa\bm{\mu}\cdot\mathbf{x}}\ ,
+	f(\mathbf{x};\bm{\mu},\kappa)\equiv \frac{\kappa^{\frac{p}{2}-1}}{(2\pi)^{p/2}I_{\frac{p}{2}-1}(\kappa)}\mathrm{e}^{\kappa\bm{\mu}\cdot\mathbf{x}}\ ,
 \end{equation}
 where, as before, $\bm{\mu}$ is the mean direction and $\kappa$ the concentration parameter; $\mathbf{x}$ is a random vector in the $p$-dimensional space $\mathbb{R}^p$. In the denominator we have the Euler gamma function $\Gamma(x)$ and the modified Bessel function of the first kind and order $\frac{p}{2}-1$.  For quaternions, we have $p=4$, so the vMF probability density simplifies to:
 \begin{equation}
-	f(q;\mu,\kappa) \equiv \frac{\kappa}{2I_1(\kappa)}\mathrm{e}^{\kappa\mu\cdot q}\ ;\label{\chabbr:eq:vMFpdf}
+	f(q;\mu,\kappa) \equiv \frac{\kappa}{4\pi^2 I_1(\kappa)}\mathrm{e}^{\kappa\mu\cdot q}\ ;\label{\chabbr:eq:vMFpdf}
 \end{equation}
 in this expression, the exponential contains the standard dot product between two quaternions, the mean direction $\mu$ and the random orientation $q$, as four-component vectors in $\mathbb{R}^4$.  One can show that this distribution if rotationally symmetric around $\mu$; if $\kappa=0$ then the distribution is uniform, if $\kappa>0$ then the orientations are clustered around $\mu$.  The expectation value $E[q]$ of this distribution is $\rho\mu$ with $\rho=I_2(\kappa)/I_1(\kappa)$, i.e., the expectation value is proportional to the mean direction.  Fig.~\ref{\chabbr:fig:vMFW}(a) shows the vMF probability density for several values of $\kappa$; the dot product $\mu\cdot q$ was replaced by $\cos\theta$ with $\theta\in[0,\pi]$.  As for the circle case, the vMF probability density can be considered as the spherical equivalent of the normal distribution.
 
@@ -394,11 +391,11 @@ Accurate computation of the prefactor becomes problematic when using the standar
 
 The \indexit{Watson probability density} explicitly takes into account the equivalence between the quaternions $q$ and $-q$ by squaring the argument of the exponential. For $p=4$, the Watson function is defined by:
 \begin{equation}
-	f_W(\pm q;\mu,\kappa) \equiv \frac{\mathrm{e}^{-\frac{\kappa}{2}}}{I_0(\frac{\kappa}{2})-I_1(\frac{\kappa}{2})}\mathrm{e}^{\kappa(\mu\cdot q)^2}\ ;
+	f_W(q;\mu,\kappa) \equiv \frac{\mathrm{e}^{-\frac{\kappa}{2}}}{I_0(\frac{\kappa}{2})-I_1(\frac{\kappa}{2})}\mathrm{e}^{\kappa(\mu\cdot q)^2}\ ;\label{\chabbr:eq:Watsonpdf}
 \end{equation}
 This function is shown in Fig.~\ref{\chabbr:fig:vMFW}(b) and has two peaks, one at $\theta=0$, corresponding to $\mu$, and one at $\theta=\pi$, corresponding to $-\mu$. This function also has rotational symmetry around the $(\mu,-\mu)$ axis and therefore represents axial data. As for the vMF density, the prefactor of the Watson density function becomes numerically problematic when $\kappa>30$; an accurate approximation for large $\kappa$ values is given by:
 \begin{equation}
-	f_W(\pm q;\mu,\kappa) \approx 128\sqrt{\pi}\frac{\mathrm{e}^{\kappa((\mu\cdot q)^2-1)}\kappa^{9/2}}{128\kappa^3+96\kappa^2+180\kappa+525}\ .	
+	f_W(q;\mu,\kappa) \approx 128\sqrt{\pi}\frac{\mathrm{e}^{\kappa((\mu\cdot q)^2-1)}\kappa^{9/2}}{128\kappa^3+96\kappa^2+180\kappa+525}\ .	
 \end{equation}
 For a given value of $\kappa$, the Watson pdf tends to give rise to a tighter orientation distribution than the von Mises-Fisher pdf.
 
@@ -498,7 +495,7 @@ The two distributions are shown as 3D stereographic projections in Fig.~\ref{\ch
 \end{figure}
 
 \subsection{Orientation averaging on $\mathbb{S}^3$}\label{\chabbr:sec:oraverages3}
-In the previous section we answered the question: given a mean orientation and a concentration parameter, generate a random orientation sample using either the vMF or Watson pdf.  In this section we turn the question around: given a set of orientations, what are the mean orientation and concentration parameter that best describe this set for either the vMF or the Watson pdf?  It is important to note that this section deals with the average orientation \textit{in the absence of crystallographic symmetry}; the averaging process becomes significantly more involved when fundamental zones are present.
+In the previous section we answered the question: given a mean orientation and a concentration parameter, generate a random orientation sample using either the vMF or Watson pdf.  In this section we turn the question around: given a set of orientations, what are the mean orientation and concentration parameter that best describe this set for either the vMF or the Watson pdf?  It is important to note that this section deals with the average orientation \textit{in the absence of crystallographic symmetry}; the averaging process becomes significantly more involved when fundamental zones are considered.
 
 \subsubsection{The quaternion logarithm average}\label{\chabbr:ssec:quatlogav}
 We have seen that, in the context of orientations, eq.~(\ref{\chabbr:eq:regularaverage}) does not necessarily provide the correct answer for the average orientation due to the double-cover nature of the unit quaternion sphere $\mathbb{S}^3$. In particular, if we double the size of the set $\{q_i\}$ by adding in the $\{-q_i\}$ rotations, then the simple arithmetic mean of eq.~(\ref{\chabbr:eq:regularaverage}) will produce a mean resultant length of $\bar{R}=0$, and the mean unit quaternion $\bm{\mu}$ is undefined.  Instead of the conventional mean defined in eq.~(\ref{\chabbr:eq:regularaverage}), we can use the quaternion logarithm and exponential operations to obtain an average. Euler's formula for 2D rotations, $\mathrm{e}^{\mathrm{i}\theta}=\cos\theta+\mathrm{i}\sin\theta$, has a quaternion equivalent of the form:
@@ -606,7 +603,7 @@ For small sample sizes, the expression for the standard deviation is often multi
 \end{equation}
 for the example data we find $s_T^2= 24.9$ K$^2$ and $s_T=5.0$ K.  For more details on unbiased estimators we refer the interested reader to standard textbooks on statistics.
 
-The same log-likelihood procedure as described above can be carried out for the vMF and Watson pdfs to obtain expressions for the mean quaternion, $\mu$, and the concentration parameter, $\kappa$.  If all the observed orientations, $\{q_i\}$, are clustered into a single cluster, then this log-likelihood approach will produce the proper parameters $\mu$ and $\kappa$.  If, on the other hand, there are multiple clusters, then it may not always be clear a-priori to which cluster a given orientation quaternion belongs, then the problem becomes more involved.  Let us first address the problem of a single cluster with $N$ orientations.
+The same log-likelihood procedure as described above can be carried out for the vMF and Watson pdfs to obtain expressions for the mean quaternion, $\bm{\mu}$, and the concentration parameter, $\kappa$.  If all the observed orientations, $\{q_i\}$, are clustered into a single cluster, then this log-likelihood approach will produce the proper parameters $\bm{\mu}$ and $\kappa$.  If, on the other hand, there are multiple clusters, then it may not always be clear a-priori to which cluster a given orientation quaternion belongs, then the problem becomes more involved.  Let us first address the problem of a single cluster with $N$ orientations.
 
 The vMF likelihood function for a sample $\{q_1,q_2,\ldots,q_N\}$ of $N$ independent and identically distributed (i.i.d.) orientation quaternions is given by:
 \[
@@ -631,15 +628,15 @@ where $Q=\vert\mathbf{Q}\vert$. Equality only occurs when $\bm{\mu}= \mathbf{Q}/
 \]
 Note that we can substitute this estimate into the log-likelihood function to obtain:
 \[
-	\ln\left(\mathcal{L}(\bm{\mu},\kappa)\right) = N[\ln\kappa -2\ln(2\pi)- \ln(I_1(\kappa))] + \kappa\, Q\ .
+	\ln\left(\mathcal{L}(\hat{\bm{\mu}},\kappa)\right) = N[\ln\kappa -2\ln(2\pi)- \ln(I_1(\kappa))] + \kappa\, Q\ .
 \]
 The second parameter, $\kappa$, occurs several times in the log-likelihood function, so we take the partial derivative with respect to $\kappa$ and set it equal to zero:
 \[
-	\frac{\partial\ln\left(\mathcal{L}(\bm{\mu},\kappa)\right)}{\partial\kappa} = N\left[\frac{1}{\kappa}-\frac{I'_1(\kappa)}{I_1(\kappa)}\right]+Q\ .
+	\frac{\partial\ln\left(\mathcal{L}(\hat{\bm{\mu}},\kappa)\right)}{\partial\kappa} = N\left[\frac{1}{\kappa}-\frac{I'_1(\kappa)}{I_1(\kappa)}\right]+Q\ .
 \]
 Using a standard identity for modified Bessel functions we can eliminate the derivative $I'_1(\kappa)$ and obtain:
 \[
-	\frac{\partial\ln\left(\mathcal{L}(\bm{\mu},\kappa)\right)}{\partial\kappa} = N\left[\frac{1}{\kappa}-\left(\frac{I_2(\kappa)}{I_1(\kappa)}+\frac{1}{\kappa}\right)\right]+Q\ .
+	\frac{\partial\ln\left(\mathcal{L}(\hat{\bm{\mu}},\kappa)\right)}{\partial\kappa} = N\left[\frac{1}{\kappa}-\left(\frac{I_2(\kappa)}{I_1(\kappa)}+\frac{1}{\kappa}\right)\right]+Q\ .
 \]
 Simplifying, and putting the derivative equal to zero, we obtain a transcendental equation for the estimated $\hat{\kappa}$:
 \[
@@ -650,35 +647,82 @@ This equation must be solved numerically for the estimated concentration paramet
 	f(q;\hat{\bm{\mu}},\hat{\kappa}) = \frac{\hat{\kappa}}{(2\pi)^2I_1(\hat{\kappa})}\mathrm{e}^{\hat{\kappa}\,\hat{\bm{\mu}}\cdot q}\ .
 \]
 
+A similar process can be followed for the Watson distribution, but the derivation is slightly more complex due to the quadratic nature of the argument of the exponential (eq.~\ref{\chabbr:eq:Watsonpdf}): 
+\[
+	f_W(q;\bm{\mu},\kappa) = \frac{\mathrm{e}^{\kappa(\bm{\mu}\cdot q)^2}}{{_1}F_1[\frac{1}{2},2,\kappa]}=\frac{\mathrm{e}^{-\frac{\kappa}{2}}}{I_0(\frac{\kappa}{2})-I_1(\frac{\kappa}{2})}\mathrm{e}^{\kappa(\bm{\mu}\cdot q)^2}
+\]
+The denominator in the first equality is the \indexit{Kummer confluent hypergeometric function}, which can be expanded in terms of modified Bessel functions.  For an i.i.d.\ set of $N$ orientations $\{q_i\}$, the likelihood function is given by:
+\[
+	\mathcal{L}(\bm{\mu},\kappa) = \prod_{i=1}^N f_W(q;\bm{\mu},\kappa) = \left(\frac{1}{{_1}F_1[\frac{1}{2},2,\kappa]}\right)^N \mathrm{e}^{\kappa\sum_{i=1}^N(\bm{\mu}\cdot q_i)^2}\ ,
+\] 
+which results in the following log-likelihood function:
+\[
+	\ln(\mathcal{L}(\bm{\mu},\kappa)) = -N\ln\left[ {_1}F_1[\frac{1}{2},2,\kappa] \right] + \kappa\sum_{i=1}^N(\bm{\mu}\cdot q_i)^2\ .
+\] 
+Since we have
+\[
+	\sum_{i=1}^N(\bm{\mu}\cdot q_i)^2 = \sum_{i=1}^N (\bm{\mu}\cdot q_i)\otimes(q_i \cdot \bm{\mu}) = \bm{\mu}\cdot \left(\sum_{i=1}^N q_i\otimes q_i\right) \cdot \bm{\mu}\ ,
+\]
+we see that the right-hand side involves the scatter matrix, $\mathbf{T}$, introduced in section~\ref{\chabbr:ssec:scatav}:
+\[
+	\sum_{i=1}^N(\bm{\mu}\cdot q_i)^2 = \bm{\mu}^T\mathbf{T}\bm{\mu}\ ,
+\]
+where the transpose symbol indicates the vector is written as a row instead of a column. The log-likelihood function can thus be written as:
+\[
+	\ln(\mathcal{L}(\bm{\mu},\kappa)) = -N\ln\left[ {_1}F_1[\frac{1}{2},2,\kappa] \right] + \kappa\,\bm{\mu}^T\mathbf{T}\bm{\mu}\ .
+\] 
+As for the vMF case, the mean direction, $\bm{\mu}$, is constrained to be a unit quaternion, $\vert\bm{\mu}\vert=1$.  
+
+Next we must maximize the log-likelihood function with respect to the two parameters.  The parameter $\bm{\mu}$ only occurs in the last term, so we must maximize this term. Since there is a constraint on the magnitude of $\bm{\mu}$, we can use the method of \indexit{Lagrange multipliers}:
+\[
+	L = \kappa\,\bm{\mu}^T\mathbf{T}\bm{\mu} - \lambda(\bm{\mu}^T\bm{\mu}-1)\ .
+\]
+Setting the derivative with respect to $\bm{\mu}$ equal to zero we have
+\[
+	\frac{\mathrm{d}L}{\mathrm{d}\bm{\mu}} = 2\kappa \mathbf{T}\bm{\mu}-2\lambda \bm{\mu} = 0\ ,
+\]
+where the factors of $2$ stem from the quadratic nature of both terms.  We find that:
+\[
+	\mathbf{T}\bm{\mu} = \frac{\lambda}{\kappa}\bm{\mu}\ ,
+\]
+which indicates that $\bm{\mu}$ must be an eigenvector of the scatter matrix $\mathbf{T}$.  Which of the four eigenvectors we select depends on the sign of $\kappa$; if $\kappa>0$, then we select the eigenvector corresponding to the largest eigenvalue, and we have an axial distribution. If $\kappa<0$, then we select the eigenvector with the smallest eigenvalue, and we have a so-called \indexit{girdle distribution}. The mean direction estimate $\hat{\bm{\mu}}$ is therefore either the principal eigenvector of $\mathbf{T}$ or the minor eigenvector, depending on the sign of $\kappa$. We introduce the parameter $\Lambda$, defined as:
+\[
+	\Lambda = \hat{\bm{\mu}}^T\mathbf{T}\hat{\bm{\mu}}\ ;
+\]
+the log-likelihood function now becomes:
+\[
+	\ln(\mathcal{L}(\hat{\bm{\mu}},\kappa)) = -N\ln\left[ {_1}F_1[\frac{1}{2},2,\kappa] \right] + \kappa\Lambda\ ,
+\] 
+and we need to maximize this function with respect to the concentration parameter, $\kappa$, to complete the MLE computation.  The derivative with respect the $\kappa$ is given by:
+\[
+	\frac{\partial \ln(\mathcal{L}(\hat{\bm{\mu}},\kappa)) }{\partial\kappa} = -N\frac{ {_1}F'_1[\frac{1}{2},2,\kappa] }{ {_1}F_1[\frac{1}{2},2,\kappa] }+\Lambda = 0\ ,
+\]
+so that:
+\[
+	\frac{ {_1}F'_1[\frac{1}{2},2,\kappa] }{ {_1}F_1[\frac{1}{2},2,\kappa] } = \frac{\Lambda}{N}\ .
+\]
+This is another transcendental equation that must be solved numerically for $\kappa$.  The left-hand side of this equation can be expressed in terms of modified Bessel functions and we obtain:
+\[
+	\frac{I_1(\frac{\kappa}{2})}{I_1(\frac{\kappa}{2})+I_0(\frac{\kappa}{2})} = -\frac{\kappa\Lambda}{N}\ .
+\]
+This completes the MLE treatment for the Watson distribution.  We should re-emphasize that the above derivations are only valid for orientation data sets in the absence of crystallographic symmetry; when rotational symmetry, and thus fundamental zones, are included, the statistical averaging procedure becomes more involved, as will be described in the next section.
 
 
 
-\subsubsection{The Expectation Maximization Algorithm}\label{\chabbr:ssec:EM}
-Before we describe averaging using the von Mises-Fisher and Watson distributions, we need to introduce the \indexit{Expectation Maximization} (EM) algorithm.  This approach employs the concept of the \indexit{likelihood function}. 
 
-
-
-
-% check the DS book for additional information...
-
-
-
-
-
-
-
-%  https://medium.com/@clarice.wang/understanding-the-em-algorithm-by-examples-with-code-and-visualization-dc93657adc84
-
-
-
+%
+%\subsubsection{The Expectation Maximization Algorithm}\label{\chabbr:ssec:EM}
+%Before we describe averaging using the von Mises-Fisher and Watson distributions, we need to introduce the \indexit{Expectation Maximization} (EM) algorithm.  This approach employs the concept of the \indexit{likelihood function}. 
+%
 
 
 
 
 \section{Orientation Sampling and Averaging in the Presence of Fundamental Zones}\label{\chabbr:sec:samplingRFZs}
-In the Fundamental Chapter~\ref{3DROTS:ch:3Drotations}, section~\ref{3DROTS:ssec:randomsampling}, several approaches are described to generate random samples of orientations; Schoemake sampling and Super-Fibonacci sampling produce high quality (i.e., uniform) orientation sets, whereas others, like Marsaglia sampling, do not have perfect uniformity, but are still reasonably uniform.  A new orientation representation, the \indexit{cubochoric representation} was introduced in section~\ref{3DROTS:ssec:cubochoric}; this representation was developed with the intent of generating uniform samples of orientations in a numerically convenient way, by starting from a uniform cubical grid.  In the present section, we answer the question: how are these orientation sampling approaches affected by the introduction of Fundamental Zones?
+In section~\ref{\chabbr:ssec:randomsampling}, several approaches are described to generate random samples of orientations; Schoemake sampling and Super-Fibonacci sampling produce high quality (i.e., uniform) orientation sets, whereas others, like Marsaglia sampling, do not have perfect uniformity, but are still reasonably uniform.  A new orientation representation, the \indexit{cubochoric representation} is introduced in section~\ref{3DROTS:sec:cubochoric}; this representation was developed with the intent of generating uniform samples of orientations in a numerically convenient way, by starting from a uniform cubical grid.  In the present section, we answer two questions: how are these orientation sampling approaches affected by the introduction of Fundamental Zones? And, how do we average orientations in the presence of crystallographic symmetry?
 
-When the cubochoric representation is combined with the Rodrigues representation, one can generate uniform orientation samples that are restricted to a crystallographic Fundamental Zone.  Consider the following two examples: the point group symmetries are \pg{24} and \pg{30}, with $N=20$ in the first case and $N=50$ in the second. Without the application of symmetry the total number of points generated would be $(2N+1)^3$ or $68,921$ for $N=20$ and $1,030,301$ for $N=50$.  The application of symmetry is performed by a simple test: first convert each cubochoric point to a Rodrigues vector, then test whether or not the point lies inside the RFZ; keep the point if it lies inside the RFZ, discard it otherwise. Note that this is a form of \indexit{rejection sampling}, where the Rodrigues Fundamental Zone plays the role of the test ``function.''  The resulting lists of orientations have $n=5,367$ for \pg{24} and $n=41,625$ for \pg{30}.  The distributions of points along with the RFZ edges are shown as stereographic projections in Fig.~\ref{\chabbr:fig:samples}. Note in particular for \pg{30} that the sampling points lie on concentric spherical surfaces inside the RFZ due to the way they are sampled on concentric cubes in the cubochoric cell.
+\subsection{Orientation sampling and crystallographic symmetry}\label{\chabbr:ssec:RFZsampling}
+When the cubochoric representation is combined with the Rodrigues representation, one can generate uniform orientation samples that are restricted to a crystallographic Fundamental Zone, i.e., perform \indexit{rejection sampling} for which being inside or outside of the relevant FZ is the deciding factor.  Consider the following two examples: the point group symmetries are \pg{24} and \pg{30}, with $N=20$ in the first case and $N=50$ in the second. Without the application of symmetry the total number of points generated would be $(2N+1)^3$ or $68,921$ for $N=20$ and $1,030,301$ for $N=50$.  The application of symmetry is performed by a simple test: first convert each cubochoric point to a Rodrigues vector, then test whether or not the point lies inside the RFZ; keep the point if it lies inside the RFZ, discard it otherwise. The resulting lists of orientations have $n=5,367$ for \pg{24} and $n=41,625$ for \pg{30}.  The distributions of points along with the RFZ edges are shown as stereographic projections in Fig.~\ref{\chabbr:fig:samples}. Note in particular for \pg{30} that the sampling points lie on concentric spherical surfaces inside the RFZ due to the way they are sampled on concentric cubes in the cubochoric cell.
 
 \begin{figure}[h!]
 \centering\leavevmode
@@ -688,10 +732,17 @@ When the cubochoric representation is combined with the Rodrigues representation
 
 When this type of orientation sampling is subjected to tests of uniformity, for instance through comparison of the Riesz energies with the theoretical optimal values, or an analysis of the dispersion of the set of orientations, it is found that, near the boundaries of the fundamental zone, the local uniformity depends strongly on the choice of the number $N$. With increasing $N$, the effect of this local non-uniformity decreases significantly but it never completely disappears.  Resolving this issue requires a symmetry-aware remapping of the orientation set using an approach that involves  Knothe--Rosenblatt (KR) rearrangements in spherical homochoric coordinates \cite{xxx}.
 
+\subsection{Orientation averaging in the presence of crystallographic symmetry}\label{\chabbr:ssec:RFZaveraging}
 
+Before we describe von Mises-Fisher and Watson averaging in the presence of rotational symmetry, let us first illustrate by means of an example why fundamental zones complicate the process.  We begin by creating an orientation sample with $1,000$ orientations around the rotation $45^{\circ}@[010]$ in a cubic (octahedral) material.  We generate the sample using the von Mises-Fisher sampling approach for a concentration parameter value of $\kappa=250$ (corresponding to a misorientation angle spread of about $5^{\circ}$) without application of the fundamental zone. The resulting cluster is shown in the stereographic representation in Fig.~\ref{\chabbr:fig:Goss}(a).  Application of the scatter matrix averaging procedure to this data set results in a mean rotation quaternion of $\hat{\bm{\mu}}=[0.9243245, 0.0001555,  0.3815980,-0.0026589]$, which is a rotation by $\omega=44.87^{\circ}$ around the axis $[0.00041,0.99997,-0.00696]$, different from $[0.0,1.0,0.0]$ by only $0.399^{\circ}$.  
 
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.75\textwidth]{\graphicspath Goss.pdf}
+\caption{\label{\chabbr:fig:Goss}Stereographic projection of $1,000$ orientations sampled using a von Mises-Fisher distribution with $\bm{\mu}=[0,1,0]$ and $\kappa=250$; in (a) no symmetry is applied whereas (b) shows a split cluster due to the octahedral fundamental zone.}
+\end{figure}
 
-
+Next we apply the octahedral fundamental zone and we find that the orientation cluster is now split into two parts by the RFZ boundary. If we once again use the scatter matrix approach to average the orientations we obtain that the mean rotation is very close to $\hat{\bm{\mu}}=[1,0,0,0]$, which is the identity rotation. This makes sense since the two halves of the original cluster are now symmetrically located in opposite parts of the fundamental zone so that their average is a point near the center of the RFZ.  This example clearly shows that averaging in the presence of rotational crystallographic symmetry will require a more advanced method.  
 
 
 
