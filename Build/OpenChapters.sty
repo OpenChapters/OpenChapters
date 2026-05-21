@@ -92,6 +92,15 @@
 
 \usepackage{url} 
 \usepackage{multirow,array}
+
+% --- HTML/print conditional content (mirror of the web-platform .sty) ---
+% Chapters may use \begin{warpHTML}...\end{warpHTML} (HTML-only content) and
+% \begin{warpprint}...\end{warpprint} (print-only content). lwarp defines these
+% for the HTML build; stub them here so the (non-lwarp) PDF build accepts them.
+\usepackage{comment}
+\excludecomment{warpHTML}% drop HTML-only blocks in the PDF
+\includecomment{warpprint}% keep print-only blocks in the PDF
+
 \usepackage{arydshln}
 
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 

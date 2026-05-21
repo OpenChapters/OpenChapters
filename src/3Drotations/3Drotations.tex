@@ -574,7 +574,7 @@ As an example of different rotation representations we list in Table~\ref{\chabb
 
 \begin{table}[h!]
 \centering\leavevmode
-\ifthenelse{\equal{\isHTML}{Yes}}{
+\begin{warpHTML}
 \begin{tabular}{ccccc}
 \hline
 $\omega@\hat{\mathbf{n}}$ & Quaternion $q$ & Homochoric $\mathbf{h}$ & Stereographic $\mathbf{s}$ & Cubochoric $\mathbf{c}$ \\
@@ -606,7 +606,9 @@ $120@[1\bar{1}\bar{1}]$ &  0.5000, 0.5000,-0.5000,-0.5000 &  0.5618,-0.5618,-0.5
 $120@[\bar{1}\bar{1}1]$ &  0.5000,-0.5000,-0.5000, 0.5000 & -0.5618,-0.5618, 0.5618 & -0.3333,-0.3333, 0.3333 & -0.7843,-0.7843, 0.7843 \\ 
 $120@[11\bar{1}]$ &  0.5000, 0.5000, 0.5000,-0.5000 &  0.5618, 0.5618,-0.5618 &  0.3333, 0.3333,-0.3333 &  0.7843, 0.7843,-0.7843 \\ 
 \hline
-\end{tabular}}{%
+\end{tabular}
+\end{warpHTML}
+\begin{warpprint}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{ccccc}
 \hline
@@ -639,7 +641,8 @@ $120@[1\bar{1}\bar{1}]$ &  0.5000, 0.5000,-0.5000,-0.5000 &  0.5618,-0.5618,-0.5
 $120@[\bar{1}\bar{1}1]$ &  0.5000,-0.5000,-0.5000, 0.5000 & -0.5618,-0.5618, 0.5618 & -0.3333,-0.3333, 0.3333 & -0.7843,-0.7843, 0.7843 \\ 
 $120@[11\bar{1}]$ &  0.5000, 0.5000, 0.5000,-0.5000 &  0.5618, 0.5618,-0.5618 &  0.3333, 0.3333,-0.3333 &  0.7843, 0.7843,-0.7843 \\ 
 \hline
-\end{tabular}}}
+\end{tabular}}
+\end{warpprint}
 \caption{\label{\chabbr:tb:cubicsym}24 Cubic rotational symmetry operations in axis-angle (angle in degrees), quaternion, homochoric, stereographic, and cubochoric representations. The Rodrigues vector can be obtained by dividing the vector part of the quaternion by the scalar part.}
 \end{table}
 
