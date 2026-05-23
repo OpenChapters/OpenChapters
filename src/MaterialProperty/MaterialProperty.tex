@@ -50,7 +50,7 @@
 \begin{multicols}{2}
 \begin{itemize}
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:intro}:}] Learn about the Materials Tetrahedron
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:matprop}:}] Formally define what a material property is
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:matprop}:}] Define what a material property is\\
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:transformations1}:}] Introduce many property tensors
 %    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
 %    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
@@ -93,17 +93,17 @@
 \end{floatingfigure}
 \noindent It is not uncommon for the material scientist to describe their discipline in terms of a \indexit{tetrahedron}.  Each corner of the materials tetrahedron (Fig.~\ref{\chabbr:sec:tetrahedron}) represents one of the four cornerstones of the field: \textit{Microstructure, Properties, Processing}, and \textit{Performance}. Many materials scientists/engineers believe that optimization of material properties and performance through judicious control of processing parameters to obtain the desired microstructure is the central paradigm of the discipline.  Blacksmiths represent the original (empirical) practitioners of this approach; they vary the microstructure of steels by varying their heat treatment in order to affect their mechanical properties.  In the present day, we control the doping of semiconductors to make quantum dots, resulting in highly efficient light emitting diodes; this is phase separation\index{phase separation} to make a two-phase structure in which the size of the approximately spherical particles of one phase is small enough that quantum effects become important.
 
-On the one hand, we have material properties, such as: strength, toughness, formability, conductivity, corrosion resistance, piezoelectricity, magnetic permeability, $\ldots$ On the other hand we have microstructural features, such as: grain size, grain shape, phase structure, composite structure, chemical composition (alloying), crystal structure, defect structure (e.g., porosity), and many others. It is the primary goal of this collection of chapters to explicitly describe the links between properties and microstructure; in other words, this text focuses on the many connections between the red and blue spheres in Fig.~\ref{\chabbr:sec:tetrahedron}.\\  
+On the one hand, we have material properties, such as: strength, toughness, formability, conductivity, corrosion resistance, piezoelectricity, magnetic permeability, $\ldots$ On the other hand we have microstructural features, such as: grain size, grain shape, phase structure, composite structure, chemical composition (alloying), crystal structure, defect structure (e.g., porosity), and many others. It is one of the primary goals of the field of materials science and engineering to explicitly describe the links between properties and microstructure and to exploit them to optimize the performance of materials in real-life applications.\\  
 
 \subsection{Microstructure\label{\chabbr:ssec:microstructures}}
 \indexit{Microstructure} refers to the internal structure of a material, at various length scales.  Biology was revolutionized when \indexit{Leeuwenhoek} and others started to use optical microscopes to look at the internal structure of plants.  They were able to relate many characteristics of plants to their cell structure, for example.  Similarly, in what is now the materials field, \indexit{Sorby} was one of the first to make cross-sections of materials such as iron and examine them in the microscope, so that he could relate properties to structure.  Microstructure originally meant the structure inside a material that could be observed with the aid of an optical microscope; in the metric system, with its prefixes for units, the micrometer ($1$ $\mu$m $= 10^{-6}$ m) happens to correspond roughly to the wavelength of light.  Light obviously is used to form images in a light/optical microscope.  Thus, microstructure has come to be accepted to cover those elements of structure with a length scale on the order of $1$ $\mu$m.  Given microstructure at the $\mu$m scale, naturally some refer to \textit{nanostructure}\index{nanostructure} at the nm ($=10^{-9}$ m) scale.  Many important material properties are determined at the atomistic length scale. The continuum scale means, in the context of engineering, length scales large enough that materials can be treated as having homogeneous properties.
 
 Most observable elements of microstructure are discontinuities, or \indexit{defects}, in the material.  Some of the most important defects include:
 \begin{itemize}
-	\item \indexit{grain boundaries}  are discontinuities in the crystal lattice and correspond to abrupt changes in the orientation of the crystal lattice;
-	\item \indexit{phase boundaries}  are discontinuities in composition and, commonly, in crystal structure;
-	\item \indexit{dislocations}  are local discontinuities in the lattice translational periodicity; they require observations in the nanoscale regime but their combined effect becomes noticeable at the microstructure level;
-	\item \indexit{point defects} (very difficult to observe directly!)  are missing atoms (vacancies)\index{vacancy} or extra (interstitial)\index{interstitial} atoms; they require specialized equipment to detect their presence but their effect can also be felt at the microstructure level.
+	\item \indexit{grain boundaries}: discontinuities in the crystal lattice and correspond to abrupt changes in the orientation of the crystal lattice;
+	\item \indexit{phase boundaries}:  discontinuities in composition and, commonly, in crystal structure;
+	\item \indexit{dislocations}:  local discontinuities in the lattice translational periodicity; they require observations in the nanoscale regime but their combined effect becomes noticeable at the microstructure level;
+	\item \indexit{point defects}: missing atoms (vacancies)\index{vacancy} or extra (interstitial)\index{interstitial} atoms; they require specialized equipment to detect their presence but their effect can also be felt at the microstructure level.
 \end{itemize}
 
 Direct observation of microstructures requires us to make \textit{images}. In order of increasing effort, the standard methods are (1) \indexit{optical microscopy} (OM), (2) \indexit{scanning electron microscopy} (SEM),  (3) \indexit{scanning probe microscopy} (SPM), and (4) \indexit{transmission electron microscopy} (TEM).  Microscopies that rely on topographic contrast require specimen preparation in order to reveal the microstructure.  Metallography/ceramography\index{metallography}\index{ceramography} is the art of specimen preparation for microscopy.  The aim in specimen preparation is always to maximize contrast for the microstructural elements of interest while minimizing image artifacts.\footnote{Reminder: not all imaging methods require topographic relief.  Channeling contrast in the SEM uses variations in crystallographic orientation to affect image brightness giving a gray-scale image of grain structure, for example.}
@@ -199,7 +199,7 @@ Since the external field $\mathcal{F}$ is often a vector quantity (e.g., the ele
 If the series expansion in equation~(\ref{\chabbr:eq:expansion}) is truncated after the third term, then it is said that the material behaves in a non-linear way.  The relation can then be written as:
 \begin{equation}
 	\mathcal{R}=\mathcal{R}_0 + \mathbf{P}\mathcal{F} + 
-	\mathbf{P}_2\mathcal{F}^2\quad\mbox{ with }\quad \mathbf{P}_2\equiv\frac{1}{3!}\left.\frac{\partial^3\mathcal{R}}{\partial\mathcal{F}^3}\right 
+	\mathbf{P}_2\mathcal{F}^2\quad\mbox{ with }\quad \mathbf{P}_2\equiv\frac{1}{2!}\left.\frac{\partial^2\mathcal{R}}{\partial\mathcal{F}^2}\right 
 	\vert_{\mathcal{F}=0}
 \end{equation}
 $\mathbf{P}_2$ is a \textit{non-linear} material property.  Crystallography and symmetry theory can again be used to examine the relations between the components of $\mathbf{P}_2$.  
@@ -232,27 +232,29 @@ where the points $\mathbf{r}$ and $\mathbf{r}^{\,\prime}$ are separated by a (ra
 \subsection{Anisotropy}
 \label{\chabbr:ssec:anisotropy}
 
-A homogeneous property can be either isotropic or anisotropic in a single crystal.  If a property is the same in every direction, then that property is said to be \textit{isotropic},\index{isotropic} otherwise it is \textit{anisotropic}.\index{anisotropic}  Every isotropic homogeneous quantity must necessarily be described by a \textit{scalar}.  The most interesting properties are usually those which are direction dependent.  In Foundational Chapter~\ref{TENSOR:ch:Tensors} we describe in detail how the mathematical quantity known as a tensor is perfectly suited for the description of anisotropic behavior.  Examples of properties which may depend upon direction include thermal conductivity, dielectric and magnetic susceptibilities, elastic moduli, and so on.  It is important to note that an anisotropic property in a single crystal can become isotropic in a poly-crystalline material, since all crystal orientations may be simultaneously present in the poly-crystal.
-
-% move electrical conductivity example here
-
-
-
+A homogeneous property can be either isotropic or anisotropic in a single crystal.  If a property is the same in every direction, then that property is said to be \textit{isotropic},\index{isotropic} otherwise it is \textit{anisotropic}.\index{anisotropic}  Every isotropic homogeneous quantity must necessarily be described by a \textit{scalar}.  The most interesting properties are often those which are direction dependent.  In Foundational Chapter~\ref{TENSOR:ch:Tensors} we describe in detail how the mathematical quantity known as a tensor is perfectly suited for the description of anisotropic behavior.  Examples of properties which may depend upon direction include thermal conductivity, dielectric and magnetic susceptibilities, elastic moduli, and so on.  It is important to note that an anisotropic property in a single crystal can become isotropic in a poly-crystalline material, since all crystal orientations may be simultaneously present in the poly-crystal.
 
 \subsection{Symmetry}\label{\chabbr:ssec:symmetry}
 
 Symmetry is one of the more fundamental properties of crystalline matter.  Apart from color, it is also in many cases the most ``eye-catching'' aspect of a natural crystal.  One can introduce the concept as follows: take an arbitrary object and determine if there is a way to ``move'' the object into another orientation in such a way that the initial and final configurations are indistinguishable.  The specific ways of ``moving'' an object into \textit{self-coincidence} represent the symmetries of that object.  Enumeration of the different symmetry properties of a crystal forms the subject of the ``group theory'' of crystallography.  All possible crystallographic symmetry operations and their combinations into point groups and space groups are described in detail in Chapter~\ref{CRYSYM:ch:Symmetry}.
 
-% insert section on effect of symmetry on 
 
-\section{About Coordinate Transformations and Tensors}\label{\chabbr:sec:transformations1}
+\section{Representation of a Material Property by a Tensor}\label{\chabbr:sec:proptensor}
 
-\subsection[Cartesian Coordinate Transformations]{Cartesian Coordinate Transformations}
-In the Foundational Chapter~\ref{TENSOR:ch:Tensors} on tensors, the general notion of a tensor is described in a somewhat formal way.  A tensor is a mathematical object that transforms in a precisely defined way when going from one reference frame to another. In particular, a tensor transforms as the \indexit{direct product} (or \indexit{tensor product}) between two or more vectors.  Just as a vector has a length and a direction, both independent of any reference frame, a tensor also \textit{exists} as an object, independent of any reference frame.  When an actual reference frame is selected (we will call this the ``old'' reference frame), then the components of the vector or tensor can be determined from projections onto the basis vectors of that reference frame.  When a different reference frame is selected, the ``new'' reference frame, then the tensor components will transform in such a way that the tensor object itself does not change; we say that the tensor is \indexit{frame invariant}.  More formally, if the matrix $\alpha_{ij}$ represents the rotation that takes the old basis vectors $\mathbf{e}_j$ into the new vectors $\mathbf{e}'_i$ (using the summation convention):
+\subsection{Why do we use tensors?}\label{\chabbr:ssec:whytensors}
+In the Foundational Chapter~\ref{TENSOR:ch:Tensors} on tensors, the general notion of a tensor is described in a somewhat formal way.  A tensor is \textit{a mathematical object that transforms in a precisely defined way when going from one reference frame to another}. In particular, a tensor transforms as the \indexit{direct product} (or \indexit{tensor product}) between two or more vectors.  Just as a vector has a length and a direction, both independent of any reference frame, a tensor also \textit{exists} as an object, independent of any reference frame.  As illustrated in Fig.~\ref{\chabbr:fig:frames}(a), when an actual reference frame is selected (we will call this the ``old'' reference frame $\{\mathbf{e}_i\}$), then the components of the vector $\mathbf{p}$ can be determined from orthogonal projections onto the basis vectors of that reference frame (represented by the small blue circles).  When a different reference frame is selected (Fig.~\ref{\chabbr:fig:frames}(b) and (c)), the ``new'' reference frames $\{\mathbf{e}^{\prime}_i\}$ and $\{\mathbf{e}^{\prime\prime}_i\}$, then the vector components will transform in such a way that the vector itself does not change; we say that the vector is \indexit{frame invariant}.  The same is true for the 3D case, but there are many more possible orientations for the reference frame since there are three degrees of freedom for the rotations instead of just one for the 2D case.
+
+\begin{figure}[h]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath frames.pdf}
+\caption{\label{\chabbr:fig:frames}Three different reference frames to describe the same 2D vector. The vector components are different in each frame, but they all describe the same vector.}
+\end{figure}
+
+More formally, if the matrix $\alpha_{ij}$ represents the rotation that takes the old basis vectors $\{\mathbf{e}_j\}$ (Fig.~\ref{\chabbr:fig:frames}(a)) into the new vectors $\{\mathbf{e}'_i\}$ (Fig.~\ref{\chabbr:fig:frames}(b)), then we can write, using the summation convention:
 \[
-	\mathbf{e}'_i = \alpha_{ij}\mathbf{e}_j\ ,
+	\mathbf{e}'_i = \alpha_{ij}\mathbf{e}_j\ .
 \]
-then the following expressions represent the transformation rules for vector and tensor components (tensor ranks two and three are shown here as illustrations):
+As explained in detail in chapter~\ref{TENSOR:ch:Tensors}, this relation leads to the following transformation rules for vector and tensor components (tensor ranks $1$, $2$, and $3$ are shown here as illustrations):
 \begin{equation*}
 \begin{split}
 	v'_i &= \alpha_{ij}v_j\ ;\\
@@ -260,14 +262,16 @@ then the following expressions represent the transformation rules for vector and
 	\tau'_{ijk} &= \alpha_{il}\alpha_{jm}\alpha_{kn}\tau_{lmn}\ .
 \end{split}
 \end{equation*}
-For more examples we refer to Foundational Chapter~\ref{TENSOR:ch:Tensors}.
+It is a general rule in physics that all equations must be frame-invariant, i.e., they must  have the same form for all observers. In other words, Newton's first law, $\mathbf{F}=m\mathbf{a}$, has the same form for all observers, but the components of the vectors will depend on the particular reference frame selected to describe the problem.  The same is true for the materials field; when we describe a particular property tensor, for instance the \indexit{photoelasticity} tensor $\gamma_{ijkl}$, a tensor of rank $4$, then we must also explicitly specify which reference frame was used to express the tensor coefficients. Since, in many cases, properties are described for crystalline solids, it stands to reason that the reference frame selected to describe the components of $\gamma_{ijkl}$ will be related to the crystal structure itself.  In section~\ref{BASCRY:sec:Cartesian}, we defined a standard Cartesian reference frame that is valid for all crystal systems; this reference frame is what most researchers will use when expressing the components of material property tensors.
+
+\subsection{Example Tensor Property: the Electrical Conductivity Tensor}\label{\chabbr:ssec:sigma}
 
 The properties of a material must be independent of the reference frame we select to describe them.  Frame-independence allows us to write general expressions, such as the relation between an applied electric field $\mathbf{E}$ and the resulting electrical current density $\mathbf{j}$~:
 \begin{equation}
 	\mathbf{j}=\bm{\sigma}\mathbf{E}\ ,\label{\chabbr:eq:conductivity}
 \end{equation}
 where $\bm{\sigma}$ is the electrical conductivity tensor.  
-The form of this equation does not depend on a specific reference frame; it is the same in all reference  frames. The equation describes a relation between two vectors and those vectors exist, regardless of the presence or absence of a reference frame.  It is a general characteristic of all laws of physics that they must be formulated in terms of frame-invariant quantities.
+The form of this equation does not depend on a specific reference frame; it is the same in all reference  frames. The equation describes a relation between two vectors and those vectors exist, regardless of the presence or absence of a reference frame.  \
 
 If a single crystal is isotropic, then the electrical conductivity $\sigma$ is the same in all directions and we have:
 \[
@@ -279,20 +283,20 @@ j_x &=& \sigma_{xx} E_x + \sigma_{xy} E_y + \sigma_{xz} E_z\nonumber\\
 j_y &=& \sigma_{yx} E_x + \sigma_{yy} E_y + \sigma_{yz} E_z\\
 j_z &=& \sigma_{zx} E_x + \sigma_{zy} E_y + \sigma_{zz} E_z\nonumber
 \end{eqnarray}
-For the anisotropic material we thus need 9 numbers to describe the electrical conductivity instead of a single number for the isotropic material (actually, only six of these components are independent of each other; we will determine why this is the case in section~\ref{sec:XXX}).  We can introduce a $3\times 3$ matrix with elements $\sigma_{ij}$ to describe these nine numbers.  If we denote that matrix by $\bm{\sigma}$, then the frame-invariance requires $\bm{\sigma}$ to be a tensor, in this case a second rank tensor, and the relations above can be written in index notation as:
+For the anisotropic material we thus need 9 numbers to describe the electrical conductivity instead of a single number for the isotropic material (actually, we will see later that only six of these components are independent of each other).  We can introduce a $3\times 3$ matrix with elements $\sigma_{ij}$ to describe these nine numbers.  If we denote that matrix by $\bm{\sigma}$, then the frame-invariance requires $\bm{\sigma}$ to be a tensor, in this case a second rank tensor, and the relations above can be written in index notation as:
 \[
 	j_i = \sigma_{ij} E_j\ ,
 \]
-where the vector and tensor components refer to the old reference frame $\mathbf{e}_j$.  In a new reference frame, the relation will read:
+where the vector and tensor components refer to the (old) reference frame $\mathbf{e}_j$.  In a new reference frame, the relation must read:
 \[
 	j'_i = \sigma'_{ij} E'_j\ ,
 \]
-and we have the transformation relations $j'_i=\alpha_{ik}j_k$, $E'_j=\alpha_{jk}E_k$, and $\sigma'_{ij}=\alpha_{ik}\alpha_{jl}\sigma_{kl}$ because of frame-invariance.
+and we have the transformation relations $j'_i=\alpha_{ik}j_k$, $E'_j=\alpha_{jk}E_k$, for the vector quantities and $\sigma'_{ij}=\alpha_{ik}\alpha_{jl}\sigma_{kl}$ for the second-rank tensor because of the requirement for frame-invariance.
 
 
 
-\subsection{Transformation of the electrical conductivity tensor}
-In this section we provide an example of a tensor transformation using the electrical conductivity tensor $\bm{\sigma}$. Let us assume that the components of the electrical conductivity tensor for a hypothetical material are given by~:
+\subsection{Example Tensor Transformation for the Electrical Conductivity Tensor}
+In this section we provide an example of a tensor transformation using the electrical conductivity tensor $\bm{\sigma}$. Let us assume that, in the old reference frame $\{\mathbf{e}_i\}$, the components of the electrical conductivity tensor for a hypothetical material are given by~:
 \[
 \sigma_{ij}=\begin{bmatrix}\sigma_1 & 0 & \sigma_3\\
 0 & \sigma_1 & 0\\
@@ -306,9 +310,9 @@ then we can compute the resulting electrical current density $\mathbf{j}$ as~:
 \[
 \begin{bmatrix}\sigma_1 & 0 & \sigma_3\\
 0 & \sigma_1 & 0\\
-\sigma_3 & 0 & \sigma_2\end{bmatrix} \begin{bmatrix} 2\\ 1\\ 0\end{bmatrix}  = \begin{bmatrix} 2\sigma_1\\ \sigma_1\\ 2\sigma_3\end{bmatrix} =\mathbf{j}
+\sigma_3 & 0 & \sigma_2\end{bmatrix} \begin{bmatrix} 2\\ 1\\ 0\end{bmatrix}  = \begin{bmatrix} 2\sigma_1\\ \sigma_1\\ 2\sigma_3\end{bmatrix} =\mathbf{j}\ .
 \]
-If the new reference frame is related to the old one by a 45$^{\circ}$ clockwise rotation around the common $\mathbf{e}_z$ axis, then the transformation matrix $\alpha$ is given by~:
+Note that this vector is clearly not parallel to $\mathbf{E}$. If the new reference frame, $\{\mathbf{e}^{\prime}_j\}$, is related to the old one by a 45$^{\circ}$ clockwise rotation around the common $\mathbf{e}_z$ axis, then the transformation matrix $\alpha$ will be given by~:
 \[
 	\alpha_{ij}=\begin{pmatrix}c & s & 0\\ -s & c & 0\\ 0 & 0 & 1\end{pmatrix}\text{ with } c=s=\frac{1}{\sqrt{2}}.
 \] 
@@ -321,7 +325,7 @@ and
 \[
 	E'_j = \begin{pmatrix}c & s & 0\\ -s & c & 0\\ 0 & 0 & 1\end{pmatrix} \begin{bmatrix} 2\\ 1\\ 0\end{bmatrix} = \begin{bmatrix} 2c+s\\ c-2s\\ 0\end{bmatrix}\ .
 \]
-For the conductivity tensor, the transformation rule is given by:
+For the conductivity tensor, the transformation rule is given by the double matrix product:
 \[
 	\sigma^{\prime}_{pk}= \alpha_{pi}\sigma_{ij} \widetilde{\alpha}_{jk}\ ,
 \]
@@ -392,9 +396,20 @@ For a tensor we use square brackets when we write it in matrix form:\index{tenso
 
 
 
-\subsection{Examples of Material Tensors}
+\subsection{Examples of Material Property Tensors}\label{\chabbr:sec:propertylist}
  
-Table~\ref{\chabbr:tb:tensors} shows a series of tensors that are of importance for material science and physics. The tensors are grouped by rank, and are also labeled (in the last column) by $E$ (equilibrium property) or $T$ (transport property).  The number following this letter indicates the maximum number of independent, non-zero elements in the tensor, taking into account symmetries imposed by thermodynamics.  The Field and Response columns contain the following symbols: $\Delta T$ = temperature difference, $\Delta S$ = entropy change, $E_i$ = electric field components, $H_i$ = magnetic field components, $\epsilon_{ij}$ = mechanical strain, $D_i$ = electric displacement, $B_i$ = magnetic induction, $\sigma_{ij}$ = mechanical stress, $\Delta\beta_{ij}$ = change of the impermeability tensor, $j_i$ = electrical current density, $\nabla_j T$ = temperature gradient,  $h_i$ = heat flux,  $\nabla_j c$ = concentration gradient, $m_i$ = mass flux, $\rho^a_i$ = anti-symmetric part of resistivity tensor, $\rho^s_i$ = symmetric part of resistivity tensor, $\Delta \rho_{ij}$ = change in the component $ij$ of the resistivity tensor, $l_i$ = direction cosines of wave direction in crystal, $G$ = gyration constant.
+ In this section, we will introduce a number of property tensors that are important in materials applications.  We list the properties in order of increasing tensor rank starting with scalar properties.  For the applied fields we use the following notations: $\Delta T$ = temperature difference; $E_i$ = electric field components; $H_i$ = magnetic field components; $\sigma_{ij}$ = mechanical stress; $\nabla_j T$ = temperature gradient; and  $\nabla_j c$ = concentration gradient. For the material responses we have: $\Delta S$ = entropy change; $D_i$ = electric displacement; $B_i$ = magnetic induction; $\epsilon_{ij}$ = mechanical strain; $j_i$ = electrical current density; $h_i$ = heat flux, and $m_i$ = mass flux.  One should note that in some cases the roles of field and response can be exchanged. For instance, we have the relation $\mathbf{j}=\bm{\sigma}\mathbf{E}$ where $\bm{\sigma}$ is the electrical conductivity, and its inverse form, $\mathbf{E}=\bm{\rho}\mathbf{j}$, where $\bm{\rho}$ is the \indexit{electrical resistivity}. In principle, every property tensor has an inverse tensor which represents the proportionality factor when field and response are interchanged from the original definition.
+
+ \subsubsection{Property Tensors of Rank 0 (Scalars)}
+
+
+
+
+
+
+ 
+ 
+Table~\ref{\chabbr:tb:tensors} shows a series of tensors that are of importance for material science and physics. The tensors are grouped by rank, and are also labeled (in the last column) by $E$ (equilibrium property) or $T$ (transport property).  The number following this letter indicates the maximum number of independent, non-zero elements in the tensor, taking into account symmetries imposed by thermodynamics.  The Field and Response columns contain the following symbols: , , , , , , , $\Delta\beta_{ij}$ = change of the impermeability tensor, , ,  , $\rho^a_i$ = anti-symmetric part of resistivity tensor, $\rho^s_i$ = symmetric part of resistivity tensor, $\Delta \rho_{ij}$ = change in the component $ij$ of the resistivity tensor, $l_i$ = direction cosines of wave direction in crystal, $G$ = gyration constant.
 
 \begin{table}
 \centering\leavevmode
