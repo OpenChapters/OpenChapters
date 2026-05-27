@@ -46,11 +46,8 @@
 \begin{learningobjectives}
 {\begin{itemize}
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:TransportIntroduction}:}] Learn about the nature of transport properties
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:Lintrinsicsymmetry}:}] Formally describe their symmetry
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:Lprincipaleffects}:}] Introduce  principal and cross effects
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:galvano}:}] Discuss transport in a magnetic field
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:PCtransport}:}]  Describe cross effect transport properties
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:galvano}:}]  Learn how to include magnetic field effects
 \end{itemize}}
 \end{learningobjectives}
 % ###################################################################
@@ -58,147 +55,12 @@
 % ##################################################################
 
 \section{Introduction}\label{\chabbr:sec:TransportIntroduction}
-When we discussed equilibrium properties and thermodynamic symmetry in Chapter~\ref{\chabbr:ch:PropertySymmetry} we made use of the path independence of thermodynamic state functions to show that the property matrix $K_{ij}$ must have intrinsic symmetry.  Then we applied crystallographic symmetry to further reduce the number of independent material tensor components.  In the present chapter we will do the same for transport properties, i.e., those properties that have to do with the motion of electrical charges, vacancies and atoms, and heat.  We will find that many of the principles used for the equilibrium properties remain valid, but there are subtle differences, in particular in the presence of magnetic fields.  
 
-In what follows, we will assume that the system is only slightly out of equilibrium; this will allow us to apply the \indexit{principle of microscopic reversibility} and Onsager's \indexit{reciprocity theorem}. This principle states that as long as the particles move over short distances in response to a gradient, a reversal of the sign of the gradient would make all particles reversibly return to their original positions; in other words, over short distances, i.e., microscopic distances, the system is reversible. Moreover, the system response in steady-state conditions, generally known as a \indexit{flux}, is considered to be linear in the gradients, which take the place of the forces from the previous chapter.  In other words, for small deviations from equilibrium and in steady-state, the terms (Force, Response) used for equilibrium properties are replaced by (Gradient, Flux); to first order, the relations between these two are once again linear, and we expect to find both principal and cross effects, as was the case for equilibrium properties.
+When we discussed equilibrium and transport properties in relation to thermodynamic (intrinsic) and crystallographic symmetry in Chapter~\ref{\chabbr:ch:MaterialProperty} we made use of the path independence of thermodynamic state functions to show that the equilibrium property matrix $K_{ij}$ must have intrinsic symmetry.  \indexit{principle of microscopic reversibility} and Onsager's \indexit{reciprocity theorem} then led to a similar intrinsic symmetry for the principal transport properties in the $L_{ij}$ matrix. Crystallographic symmetry further reduced the number of independent tensor components.  In the present chapter we discuss the principal and cross-effect transport properties in more detail, introducing example material systems that exhibit these properties; along the way we will introduce engineering applications that rely on the tensor nature of these properties.  In the second half of the chapter we introduce magnetic fields; they turn out to have important and non-intuitive effects on transport behavior.
 
-\begin{messagebox}{Lars Onsager and the Reciprocity Theorem}{olive}{\icinfo}{white}
-\begin{minipage}{0.45\textwidth}
-\vspace{.8em}
-{\centering\includegraphics[angle=0,origin=c,width=2.25in]{\graphicspath Onsager.pdf}\par}
+\section{Cross-effect Transport Properties}\label{\chabbr:sec:PCtransport}
 
-\vspace{.7em}
-
-\em Bas-relief of Lars Onsager\index{Lars Onsager} at the Norwegian University of Science and Technology (NTNU, Trondheim, Norway); photo taken by the author in June 2019. \label{pageonsager}
-\end{minipage}\hspace{1em}
-\begin{minipage}{0.53\textwidth}
-In 1931, Onsager worked out the reciprocity theorem which was published in Physical Review \cite{onsager1931a}.  He was Norwegian-born but worked in the USA at Brown University when he proved the equality $L_{ij}=L_{ji}$ that is engraved in a bas-relief at NTNU in Trondheim, Norway. His work brought insight and structure into how various transport properties are related to each other. Other researchers had already found evidence of this equality (e.g., W.\ Thomson regarding the Peltier and Seebeck effects), but Onsager was the first to prove the equality within the context of non-equilibrium thermodynamics. He received the Noble prize in Chemistry for his work in 1968.  About a decade after Onsager's work, Ilya Prigogine and others extended his work and derived a thermodynamic theory for systems that are far out of equilibrium; Prigogine received the Noble prize in Chemistry for his ``theory of dissipative structures'' in 1977. 
-\end{minipage}
-\end{messagebox}
-
-
-\section{Transport Properties and Thermodynamic Symmetry}\label{\chabbr:sec:Lintrinsicsymmetry}
-
-We will assume that there is a small departure from equilibrium, and also that the material is in a steady-state condition, meaning that the departure from equilibrium does not depend on time.  A departure from equilibrium can in general be described by a gradient operation. For instance, when a concentration gradient is created from one side of a material to the other, there will be a flow of mass in response to the gradient.  When a gradient of electrical potential (i.e., an electric field) is applied, then there will be a flow of electrical charges, and so on.  In Table~\ref{tensors} on page~\pageref{tensors}, we introduced a number of gradients:
-\begin{itemize}
-	\item Temperature gradient: $\bm{\nabla} T$ is the temperature gradient 
-	at a given point 
-	in a material.  It is a vector quantity (tensor of rank 1), defined by:
-		\[
-		\bm{\nabla} T = \frac{\partial T}{\partial x_1}\mathbf{e}_1+
-		\frac{\partial T}{\partial x_2}\mathbf{e}_2+
-		\frac{\partial T}{\partial x_3}\mathbf{e}_3 = \nabla_j T\mathbf{e}_j,
-		\]
-	where $T=T(\mathbf{r})$ is the temperature field, and $\nabla_j=\partial/\partial x_j$.  The material response to this gradient is a \indexit{heat flow}, represented by a vector $\mathbf{h}$.  The relation between heat flow and temperature gradient is given by Fourier's Law of Heat Conduction:\index{Fourier's Law of heat conduction}
-	\[
-		\mathbf{h} = -\bm{K}\bm{\nabla} T,
-	\]
-	or, in component notation:
-	\[
-		h_i = -K_{ij}\nabla_j T.
-	\]
-	The gradient can be regarded as a ``force,'' and the heat flow as the ``response'' of the material.  The minus sign indicates that heat flows downhill (the gradient operator always produces a vector that points uphill).  
-	
-	The tensor $\bm{K}$ is known as the \indexit{thermal conductivity} tensor. If the temperature gradient is measured in units of $[K/m]$, and the heat flow as $[J/m^2/s]$, then the thermal conductivity is measured in units of $[W/m/K]$ (Watts per meter per Kelvin).
-	
-	\item Electrical potential gradient: $\bm{\nabla} \phi_e$ is the electrical potential gradient at a point in the material.  It is a vector quantity (tensor of rank 1), and is usually written as the electric field vector 
-	\[
-		\mathbf{E}(\mathbf{r}) = -\bm{\nabla} \phi_e(\mathbf{r}).
-	\]
-	The material response to this gradient is an \indexit{electrical current flow}, represented by a vector $\mathbf{j}$.  The relation between current flow and potential gradient is given by 
-	\[
-		\mathbf{j} = -\bm{\sigma}\bm{\nabla} \phi_e = \bm{\sigma}\mathbf{E},
-	\]
-	or, in component notation:
-	\[
-		j_i = \sigma_{ij}E_j=-\sigma_{ij}\nabla_j\phi_e.
-	\]
-	The tensor $\bm{\sigma}$ is known as the \indexit{electrical conductivity} tensor. If the potential gradient is measured in units of $[V/m]$, and the current flow as $[C/m^2/s]$, then the electrical conductivity is measured in units of $[1/m \Omega]$ (per meter per Ohm, $\Omega = V/A$).
-	
-	\item Concentration gradient: $\bm{\nabla} c$ is the concentration gradient at a point in the material.  It is a vector quantity (tensor of rank 1). The material response to this gradient is a \indexit{mass flux}, represented by a vector $\mathbf{m}$.  The relation between mass flow and concentration gradient is given by 
-	\[
-		\mathbf{m} = -\bm{D}\bm{\nabla} c,
-	\]
-	(known as Fick's first law) or, in component notation:
-	\[
-		m_i = -D_{ij}\nabla_j c.
-	\]
-	The tensor $\bm{D}$ is known as the \indexit{diffusivity} tensor. If the concentration gradient is measured in units of $[atoms/m^3/m]$, and the mass flow as $[atoms/m^2/s]$, then the diffusivity is measured in units of $[m^2/s]$ (meter squared per second).\\
-\end{itemize}
-
-Note that the magnetic induction, $\mathbf{B}$, which we also used as a ``force'' in Table~\ref{tensors}, has not yet been discussed.  It, too, can be considered as the gradient of a potential, in this case the (scalar) magnetic potential $\phi_m$.\footnote{We call it a scalar potential, to distinguish it from the magnetic vector potential, which can also be used to describe the magnetic induction in the presence of currents.} We will return to magnetic fields later on, because their effect is significantly more complex than that of the other three gradients we have discussed so far.
-
-Note that the three material tensors that we have introduced, $\bm{K}, \bm{\sigma}$, and $\bm{D}$, relate a gradient of a particular type to the corresponding flux \indexit{of the same type} (i.e, thermal gradient to thermal flux, electrical gradient to electrical flux, ...).  This means that those tensors represent \indexit{principal effects}. We should also allow for \indexit{cross effects} to occur, for instance, an electrical current induced by a temperature gradient. For equilibrium properties, we required that the product of a force and its conjugate response have the dimensions of energy density.  For transport properties, one can show that this product must be equal to $T\dot{S}$, with $\dot{S}=\mathrm{d}S/\mathrm{d}t$, the rate of entropy density production in the system in units of J/sKm$^3$.  It is easy to verify, for instance, that the product of $\mathbf{m}$ and $\bm{\nabla} c$ does not have the required dimensions which indicates that the gradients as listed above are not the actual thermodynamic forces that are needed to obtain conjugate pairs with the correct dimensions.
-
-Let us denote a flux by the general symbol $J$, and the conjugate thermodynamic force by the symbol $X$.  If the departure from equilibrium is small, we can once again write down a linear relation between forces and fluxes of the form:
-\[
-	J_{i}  = L_{ij} X_j,
-\]
-where $L_{ij}$ is written instead of $K_{ij}$, to distinguish between equilibrium and transport properties.  The arguments of Onsager's theory are both subtle and complex and belong to the domain of irreversible thermodynamics. For our purposes, it will be sufficient to state that, if the correct thermodynamic forces $X_j$ and fluxes $J_i$ are used, then the matrix $L_{ij}$ must be symmetric,  i.e., $L_{ij}=L_{ji}$; in particular,  this means that the principal transport property tensors, $\bm{K}, \bm{\sigma}$, and $\bm{D}$, must be symmetric tensors.
-
-\begin{table}
-\centering\leavevmode
-\begin{tabular}{|l|c|c|c|l|}
-\hline
-Property   &  Symbol   &  Field & Response & Type\#  \\
-\hline
-\hline
-\multicolumn{5}{|c|}{Tensors of Rank 2}\\
-\hline
-\indexit{electrical conductivity} (\indexit{resistivity}) & $\sigma_{ij}$ ($\rho_{ij}$)  & $E_j$ ($j_j$) & $j_i$ ($E_i$) & T6\\
-\indexit{thermal conductivity} & $K_{ij}$  & $\nabla_j T$ & $h_i$ & T6\\
-\indexit{diffusivity}  &  $D_{ij}$  &$\nabla_j c$ & $m_i$ & T6\\
-\indexit{thermoelectric power}  &  $\Sigma_{ij}$ & $\nabla_j T$ & $E_i$ & T9\\
-\indexit{Peltier effect} & $\pi_{ij}$ & $Tj_j$  &  $h_i$  & T9\\
-\hline
-\multicolumn{5}{|c|}{Tensors of Rank 3}\\
-\hline
-\indexit{Nernst tensor} & $\Sigma_{ijk}$ & $\nabla_j T B_k$ & $E_i$ & T27\\
-\hline
-\multicolumn{5}{|c|}{Tensors of Rank 4}\\
-\hline
-\indexit{magnetothermoelectric power} & $\Sigma_{ijkl}$ & $\nabla_j T B_k B_l$ & $E_i$ & T54\\
-\hline
-\end{tabular}
-\caption{Materials transport tensors (adapted from Nowick (1995) \textit{Crystal Properties 
-via Group Theory}, Cambridge University Press).}
-\label{tensors}
-\end{table}
-
-
-\section{Principal and cross transport effects}\label{\chabbr:sec:Lprincipaleffects}
-
-As an example of the application of Onsager's reciprocity theorem, we consider here the combination of thermal and electrical transport properties \cite{nowick1995a}. The correct thermodynamic forces $\bm{X}$ can be shown to be given by:
-\begin{align}
-	\bm{X}^t &= -\frac{1}{T}\bm{\nabla}T;\\
-	\bm{X}^e &= -\bm{\nabla}\bar{\phi},
-\end{align}
-where $\bar{\phi} = \phi_e - \mu/e$ with $\mu$ the electrochemical potential and $\phi_e$ the electrical potential. The resulting flux equations are then written as
-\begin{align}
-	j_i &= \sigma_{ij} X^e_j - \beta_{ij} X^t_j;\\
-	h_i &= -\beta'_{ij}X^e_j +\gamma_{ij} X^t_j.
-\end{align}
-The $L_{ij}$ matrix is thus given by:
-\begin{equation}
-	L = \left(\begin{array}{cc} \bm{\sigma} & -\bm{\beta}\\ 
-	-\bm{\beta}' & \bm{\gamma}\end{array}\right).
-\end{equation}
-Application of $L_{ij}=L_{ji}$ indicates that $\sigma_{ij}=\sigma_{ji}$, $\gamma_{ij}=\gamma_{ji}$ and $\beta_{ij} = \beta'_{ji}$; in other words, $\bm{\sigma}$ and $\bm{\gamma}$ must be symmetric tensors, and $\bm{\beta}$ and $\bm{\beta}'$ must be each other's transpose (but not necessarily symmetric).  In the absence of a thermal gradient, $\bm{\sigma}$ is the electrical conductivity tensor;  $\bm{\gamma}$ is related to the thermal conductivity tensor, as we will now show.
-
-It is customary to rewrite the equations in terms of the current density $\mathbf{j}$ and the temperature gradient $\bm{\nabla}T$ as the independent variables:
-\begin{align}
-	\mathbf{E} &= \bm{\rho}\mathbf{j} - \bm{\Sigma}\bm{\nabla} T;\\
-	\mathbf{h} &= -T\bm{\Sigma}'\mathbf{j} - \bm{K}\bm{\nabla} T.
-\end{align}
-In these equations, $\bm{\rho} = \bm{\sigma}^{-1}$ is the \indexit{resistivity tensor}. The tensor $\bm{\Sigma}$ is defined by:
-\begin{equation}
-	\bm{\Sigma} = \frac{\bm{\rho}\bm{\beta}}{T},
-\end{equation}
-and is known as the \indexit{thermoelectric power} tensor; $T\bm{\Sigma}'$ is often replaced by the \indexit{Peltier effect tensor}, $\bm{\pi}$.  We also have that $\bm{\Sigma}'$ is the transpose of $\bm{\Sigma}$, and for the thermal conductivity tensor we find:
-\begin{equation}
-	\bm{K} = \frac{1}{T}\left(\bm{\gamma} - \bm{\beta}'\bm{\rho}\,\bm{\beta}\right).
-\end{equation}
-It is thus clear that the Onsager reciprocity theorem results in relations between the various material transport property tensors.  We already know what the resistivity and thermal conductivity are, so let's take a closer look at these two new material properties, the thermoelectric effect and the Peltier effect. The units of both thermoelectric power and Peltier effect are $[V/K]$, and for the resistivity tensor we have $[\Omega m]$.
+We are generally familiar with the concepts of electrical resistivity, thermal conductivity and diffusivity, so let's take a closer look at two new cross-effect transport properties, the \indexit{thermoelectric effect} and the \indexit{Peltier effect}. 
 
 The \indexit{thermoelectric effect} occurs when a temperature gradient creates an electric field. Since this tensor represents a cross effect, it is not a symmetric tensor. Thermoelectricity was discovered in 1823 by the German physicist \textbf{Seebeck}, who discovered that a voltage was developed in an open circuit containing two dissimilar metals, provided the two junctions were kept at different temperatures. A decade later, the French scientist \textbf{Peltier} found that electrons moving through a solid can carry heat from one side of the material to the other side.  The first application of thermoelectric materials was  as a thermocouple, which is simply a junction of two dissimilar metals.  Typical thermoelectric coefficients for metals are in the range of 10 mV/K.  This means that a temperature difference of 10 K will create a 100 mV potential drop across a thermocouple.  This voltage drop can be measured quite accurately, and hence the thermoelectric effect can be used to measure temperature. Thermocouples are present in many home appliances, such as refrigerators and heating systems and in car engines.
 

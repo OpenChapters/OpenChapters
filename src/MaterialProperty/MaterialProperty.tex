@@ -50,10 +50,12 @@
 \begin{multicols}{2}
 \begin{itemize}
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:intro}:}] Learn about the Materials Tetrahedron
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:matprop}:}] Define what a material property is\\
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:transformations1}:}] Introduce many property tensors
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:algebras}:}] Learn about Normed Division Algebras
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:matprop}:}] Define what a material property is
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:proptensor}:}] Introduce many property tensors
+    \item[{\color{OCBurntOrange}\ref{\chabbr:ssec:engnot}:}] Learn to use Engineering Notation\\
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:thermosym}:}] Discover intrinsic thermodynamic symmetry
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:CrySymK}:}] Learn how crystallographic symmetry effects equilibrium properties
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:CrySymL}:}] Cover intrinsic and crystallographic symmetry for transport properties
 \end{itemize}
 \end{multicols}}}
 % ###################################################################
@@ -68,14 +70,14 @@
 %  - characteristics of a property
 %- representation of a property by tensors
 %  - example electrical conductivity
+%  - crystallographic symmetry
+%  - Neumann's theorem
 %  - properties by tensor rank
 %- intrinsic thermodynamic symmetry
 %  - equilibrium properties
 %    - 13x13 K matrix
 %  - transport properties
 %    - 9x9 L matrix
-%- crystallographic symmetry
-%  - Neumann's theorem
 %  - example for low order point group
 %
 %
@@ -293,8 +295,6 @@ where the vector and tensor components refer to the (old) reference frame $\math
 \]
 and we have the transformation relations $j'_i=\alpha_{ik}j_k$, $E'_j=\alpha_{jk}E_k$, for the vector quantities and $\sigma'_{ij}=\alpha_{ik}\alpha_{jl}\sigma_{kl}$ for the second-rank tensor because of the requirement for frame-invariance.
 
-
-
 \subsection{Example Tensor Transformation for the Electrical Conductivity Tensor}
 In this section we provide an example of a tensor transformation using the electrical conductivity tensor $\bm{\sigma}$. Let us assume that, in the old reference frame $\{\mathbf{e}_i\}$, the components of the electrical conductivity tensor for a hypothetical material are given by~:
 \[
@@ -353,22 +353,22 @@ c\sigma_3 & -s\sigma_3 & \sigma_2\end{bmatrix}\begin{bmatrix} 2c+s\\ c-2s\\ 0\en
 \]
 as it should be.  By means of this example, we have shown that the tensor transformation relations applied to all factors of the equation $\mathbf{j}=\bm{\sigma}\mathbf{E}$  \textit{guarantee} that this equation remains valid in the new reference frame.  
 
-As a more complex example, consider \indexit{Hooke's Law}:
+As a more complex example, consider \indexit{Hooke's Law}, which states that stress is proportional to strain:
 \[
 	\sigma_{ij}=c_{ijkl}\epsilon_{kl},
 \]
-where $\sigma$ is the stress tensor, $\epsilon$ the strain tensor, and $c$ the elastic moduli tensor (a material property).  This law must be independent of the reference frame, so in the primed referenceframe we must have:
+where $\bm{\sigma}$ is the stress tensor, $\bm{\epsilon}$ the strain tensor, and $\mathbf{c}$ the elastic moduli tensor (a material property).  This law must be independent of the reference frame, so in the primed reference frame we must have:
 \[
 	\sigma'_{pq}=c'_{pqrs}\epsilon'_{rs}.
 \]
-For each quantity we have to apply the standard tensor transformation relation to move between reference frames:
+For each individual quantity, we have to apply the standard tensor transformation relation to move between reference frames; if the transformation is defined by $\mathbf{e}'_i = \alpha_{ij}\mathbf{e}_j$, then we have for the second rank tensors:
 \[
 	\sigma'_{pq} = \alpha_{pi}\alpha_{qj}\sigma_{ij};
 \] 
 \[
 	\epsilon'_{rs} = \alpha_{rk}\alpha_{sl}\epsilon_{kl};
 \] 
-and
+and for the fourth rank elastic moduli tensor
 \[
 	c'_{pqrs} = \alpha_{pi}\alpha_{qj}\alpha_{rk}\alpha_{sl} c_{ijkl}
 \]
@@ -377,41 +377,505 @@ expression is equivalent to
 \[
 	c'_{pqrs}=\sum_{i=1}^{3}\sum_{j=1}^{3}\sum_{k=1}^{3}\sum_{l=1}^{3}\alpha_{pi}\alpha_{qj}\alpha_{rk}\alpha_{sl} c_{ijkl}
 \]
-Although the indices $p$, $q$, $r$ and $s$ also appear twice, they do so on opposite sides of the equality sign, hence no summation is implied.
+Although the indices $p$, $q$, $r$ and $s$ also appear twice, they do so on opposite sides of the equality sign, hence no summation is implied.  Note also that for tensors of rank higher than $2$, it is no longer possible to write the transformation in terms of matrix products; one must carry out the explicit summations for each tensor component.
 
-Note that in this section we have also introduced a difference in the notation for a matrix and a tensor; for a regular transformation matrix $\alpha_{ij}$, we use parenthesis when we refer to its components, i.e., we  write:
-\[
-	\alpha_{ij} =\begin{pmatrix}
-	\alpha_{xx} & 	\alpha_{xy} & 	\alpha_{xz} \\
-	\alpha_{yx} & 	\alpha_{yy} & 	\alpha_{yz} \\
-	\alpha_{zx} & 	\alpha_{zy} & 	\alpha_{zz} \end{pmatrix}\ .
-\]
-For a tensor we use square brackets when we write it in matrix form:\index{tensor!matrix notation}
-\[
-	\sigma_{ij} = \begin{bmatrix}
-	\sigma_{xx} & 	\sigma_{xy} & 	\sigma_{xz} \\
-	\sigma_{yx} & 	\sigma_{yy} & 	\sigma_{yz} \\
-	\sigma_{zx} & 	\sigma_{zy} & 	\sigma_{zz} \end{bmatrix}\ .
-\]
 
+\subsection{Crystallographic Symmetry and Material Property Tensors}\label{\chabbr:ssec:propsym}
+
+In this section, we will analyze how crystallographic symmetry affects the properties of a material.  To make the treatment concrete, we will consider a simple second rank tensor, namely the \indexit{magnetic permeability tensor} $\bm{\mu}$, measured in units of Wb/(Am) or Henries per meter (H/m), which is the proportionality factor between an external applied magnetic field $\mathbf{H}$ and the material's resulting magnetic induction $\mathbf{B}$, i.e., $B_i=\mu_{ij}H_j$.  The procedure outlined below is valid for tensors of arbitrary rank, but becomes rather tedious for higher rank tensors. Group theory has very powerful theorems and techniques to make this task considerably easier, but the mathematics is beyond the level of the present chapter.
+
+Let us assume that we have a tetragonal single crystal with a symmetry corresponding to point group \pg{9}, which has $4$ elements: $\textbf{4} = \{E,4,4^2,4^3\}$, i.e., it is a cyclic rotation group with the identity $E$, and powers of the fourfold rotation operator $4$. We know from Chapter~\ref{CRYSYM:ch:Symmetry} that each point symmetry operator can be represented by a $3\times 3$ matrix.  In this particular case, we have the following four matrices:
+\begin{align}
+E &= \begin{pmatrix}1&0&0\\ 0&1&0\\ 0&0&1\end{pmatrix}; \qquad R_1 = 4 = \begin{pmatrix}0&-1&0\\ 1&0&0\\ 0&0&1\end{pmatrix};\nonumber\\
+R_2 &= 4^2= \begin{pmatrix}-1&0&0\\ 0&-1&0\\ 0&0&1\end{pmatrix}; \qquad R_3 = 4^3 = \begin{pmatrix}0&1&0\\ -1&0&0\\ 0&0&1\end{pmatrix}\ .
+\end{align}
+They can be derived quite easily by considering how each basis vector transforms under a rotation of $90^{\circ}$ around the $z$ axis.
+
+If we apply the operator $4$ to the tetragonal crystal, then we basically carry out a rotation of $90^{\circ}$, and the resulting crystal is indistinguishable from the original after the rotation.  This must also be true for all the properties of this crystal.  There is a famous theorem, attributed to Neumann, that says the following:  \textit{The symmetry elements of any physical property of a crystal \textbf{must} include the symmetry elements of the point group of the crystal.}  This is known as \indexit{Neumann's principle}.  This principle states that every material property tensor must inherit the crystallographic symmetry of the underlying crystal lattice.  Note the use of the words \textit{must include}; this means that a material property may have a higher symmetry than the crystallographic symmetry, but never a lower symmetry.
+
+We described in previous sections how the components of a tensor change under a coordinate transformation. Since a symmetry operation is a special case of a coordinate transformation, we can work out how each of the operators of the point group \pg{9} changes the components of the permeability tensor $\bm{\mu}$.  We take into account the fact that the permeability tensor itself is a symmetric tensor, i.e., $\mu_{ij}=\mu_{ji}$ (due to intrinsic thermodynamic symmetry, which we will introduce in section~\ref{\chabbr:sec:thermosym}), so that there are only $6$ independent elements to start with.
+{\small\begin{align*}
+	R_1\bm{\mu}\tilde{R}_1 &= \begin{pmatrix}0&-1&0\\ 1&0&0\\ 0&0&1\end{pmatrix}
+	\begin{bmatrix}\mu_{xx}&\mu_{xy}&\mu_{xz}\\ \mu_{xy}&\mu_{yy}&\mu_{yz}\\ \mu_{xz}&\mu_{yz}&\mu_{zz}\end{bmatrix}\begin{pmatrix}0&1&0\\ -1&0&0\\ 0&0&1\end{pmatrix} = 
+	\left[\begin{array}{ccc} 
+	 \mu_{yy} & -\mu_{xy} & -\mu_{yz} \\ 
+	-\mu_{xy} &  \mu_{xx} & \mu_{xz} \\ 
+	-\mu_{yz} &  \mu_{xz} & \mu_{zz}\end{array}\right]\ ;\\
+	R_2\bm{\mu}\tilde{R}_2 &= \begin{pmatrix}-1&0&0\\ 0&-1&0\\ 0&0&1\end{pmatrix}
+	\begin{bmatrix}\mu_{xx}&\mu_{xy}&\mu_{xz}\\ \mu_{xy}&\mu_{yy}&\mu_{yz}\\ \mu_{xz}&\mu_{yz}&\mu_{zz}\end{bmatrix}\begin{pmatrix}-1&0&0\\ 0&-1&0\\ 0&0&1\end{pmatrix} = 
+	\left[\begin{array}{ccc} 
+	 \mu_{xx} & \mu_{xy} & -\mu_{xz} \\ 
+	\mu_{xy} &  \mu_{yy} & -\mu_{yz} \\ 
+	-\mu_{xz} &  -\mu_{yz} & \mu_{zz}\end{array}\right]\ ;\\
+	R_3\bm{\mu}\tilde{R}_3 &= \begin{pmatrix}0&1&0\\  -1&0&0\\ 0&0&1\end{pmatrix}
+	\begin{bmatrix}\mu_{xx}&\mu_{xy}&\mu_{xz}\\ \mu_{xy}&\mu_{yy}&\mu_{yz}\\ \mu_{xz}&\mu_{yz}&\mu_{zz}\end{bmatrix}\begin{pmatrix}0&-1&0\\ 1&0&0\\ 0&0&1\end{pmatrix} = 
+	\left[\begin{array}{ccc} 
+	 \mu_{yy} & -\mu_{xy} & \mu_{yz} \\ 
+	-\mu_{xy} &  \mu_{xx} & -\mu_{xz} \\ 
+	\mu_{yz} &  -\mu_{xz} & \mu_{zz}\end{array}\right]\ .
+\end{align*}}
+Each of the tensors on the right-hand side of these equations must now be equal to the original tensor $\bm{\mu}$.  If we
+compare components we find that $\mu_{xx}=\mu_{yy}$, and $\mu_{xy}=-\mu_{xy}$ which means that 
+$\mu_{xy}=0$.  Repeating this analysis for all components, we find that the permeability tensor in a crystal with point
+group $\textbf{4}$ \textit{must} have the following form:
+\begin{equation}
+	\mu_{ij} =  \left[\begin{array}{ccc} 
+	\mu_{xx} & 0 & 0 \\ 
+	0 &  \mu_{xx} & 0 \\ 
+	0 & 0 & \mu_{zz}\end{array}\right] = \left[\begin{array}{ccc} 
+	\mu_{1} & 0 & 0 \\ 
+	0 &  \mu_{1} & 0 \\ 
+	0 & 0 & \mu_{2}\end{array}\right]\ .
+\end{equation}
+In other words, there are only two independent elements in the permeability tensor.  The second notation is often used instead of the tensor subscript notation.
+
+This simple derivation shows that crystallographic symmetry causes some tensor components to vanish; in a material with point group symmetry \pg{9}, the magnetic permeability coefficient $\mu_{xy}$ \textit{must} be zero, and $\mu_{xx}$ \textit{must} be equal to $\mu_{yy}$.  Note that it is possible for the material property to have a \textit{higher} symmetry than the crystal point group.  While the crystal point group \pg{9} does not contain the inversion operator, $C_i$, the permeability tensor is invariant under the inversion operation:
+{\small\begin{equation}
+C_i\bm{\mu}\tilde{C}_i = \begin{pmatrix}-1&0&0\\ 0&-1&0\\ 0&0&-1\end{pmatrix}
+	\begin{bmatrix}\mu_{xx}&\mu_{xy}&\mu_{xz}\\ \mu_{xy}&\mu_{yy}&\mu_{yz}\\ \mu_{xz}&\mu_{yz}&\mu_{zz}\end{bmatrix}\begin{pmatrix}-1&0&0\\ 0&-1&0\\ 0&0&-1\end{pmatrix} = 
+	\begin{bmatrix}\mu_{xx}&\mu_{xy}&\mu_{xz}\\ \mu_{xy}&\mu_{yy}&\mu_{yz}\\ \mu_{xz}&\mu_{yz}&\mu_{zz}\end{bmatrix}.
+\end{equation}}
+This is true for every second rank material tensor and for all point group symmetries.  This type of derivation can be repeated for all material property tensors of different ranks and all crystallographic point groups, and would be quite tedious if carried out by hand.  Fortunately, group theory has some advanced theorems that make this process substantially easier; the interested reader should consult dedicated group theory books, e.g., \cite{kiral90a,tinkham64a,mcweeny2002a,rose2003a}. 
+
+The derivation above for point group \pg{9} reduced the number of independent components of the magnetic permeability tensor from $6$ to just $2$.  It is easy to show that for this symmetry, the permeability is isotropic in the plane normal to the $4$-fold rotation axis. If we take a rotation around the $z$ axis by an arbitrary clockwise angle $\alpha$, then the transformed tensor is given by:
+\[
+	\begin{pmatrix}\cos\alpha &\sin\alpha&0\\ -\sin\alpha&\cos\alpha&0\\ 0&0&1\end{pmatrix}
+	\begin{bmatrix}	\mu_{1} & 0 & 0 \\ 
+	0 &  \mu_{1} & 0 \\ 
+	0 & 0 & \mu_{2}\end{bmatrix}\begin{pmatrix}\cos\alpha &-\sin\alpha&0\\ \sin\alpha&\cos\alpha&0\\ 0&0&1\end{pmatrix}=
+	\begin{bmatrix}	\mu_{1} & 0 & 0 \\ 
+	0 &  \mu_{1} & 0 \\ 
+	0 & 0 & \mu_{2}\end{bmatrix}\ ;
+\]
+in other words, the rotated tensor is identical to the original tensor, which means that the permeability is the same in any direction in the $(001)$ plane.  This is an example of a more general rule which states that, \textit{for a rotation axis of order $n$, any material tensor of order less than $n$ will be isotropic in the plane perpendicular to that axis}.  As a consequence of this rule, for cubic symmetry, with its multiple three-fold rotation axes, all second rank tensors must be fully isotropic, i.e., they can all be written as:
+\[
+	t_{ij} = t\delta_{ij}\ ,
+\]
+where the symbol $t_{ij}$ denotes an arbitrary rank-2 tensor.  In fact, for a material with point group symmetry \pg{32}, all property tensors of rank less than $4$ are reduced to scalars; tensors of rank $4$ and higher are the only tensors than can be anisotropic for this symmetry.
 
 
 \subsection{Examples of Material Property Tensors}\label{\chabbr:sec:propertylist}
  
- In this section, we will introduce a number of property tensors that are important in materials applications.  We list the properties in order of increasing tensor rank starting with scalar properties.  For the applied fields we use the following notations: $\Delta T$ = temperature difference; $E_i$ = electric field components; $H_i$ = magnetic field components; $\sigma_{ij}$ = mechanical stress; $\nabla_j T$ = temperature gradient; and  $\nabla_j c$ = concentration gradient. For the material responses we have: $\Delta S$ = entropy change; $D_i$ = electric displacement; $B_i$ = magnetic induction; $\epsilon_{ij}$ = mechanical strain; $j_i$ = electrical current density; $h_i$ = heat flux, and $m_i$ = mass flux.  One should note that in some cases the roles of field and response can be exchanged. For instance, we have the relation $\mathbf{j}=\bm{\sigma}\mathbf{E}$ where $\bm{\sigma}$ is the electrical conductivity, and its inverse form, $\mathbf{E}=\bm{\rho}\mathbf{j}$, where $\bm{\rho}$ is the \indexit{electrical resistivity}. In principle, every property tensor has an inverse tensor which represents the proportionality factor when field and response are interchanged from the original definition.
-
- \subsubsection{Property Tensors of Rank 0 (Scalars)}
-
-
-
-
-
-
+In this section, we will introduce a number of property tensors that are important for engineering materials applications.  We list the properties in order of increasing tensor rank starting with scalar properties.  For the applied fields we use the following notations [the SI units for each quantity are shown between square brackets]: 
+ \begin{itemize}
+ \item $\Delta T$ = temperature difference [K]; 
+ \item $E_i$ = electric field components [V/m]; 
+ \item $H_i$ = magnetic field components [A/m]; 
+ \item $\sigma_{ij}$ = mechanical stress [Pa=N/m$^2$]; 
+ \item $\nabla_j T$ = temperature gradient [K/m];
+ \item $\nabla_j c$ = concentration gradient [kg/m$^4$]. 
+ \end{itemize}
  
- 
-Table~\ref{\chabbr:tb:tensors} shows a series of tensors that are of importance for material science and physics. The tensors are grouped by rank, and are also labeled (in the last column) by $E$ (equilibrium property) or $T$ (transport property).  The number following this letter indicates the maximum number of independent, non-zero elements in the tensor, taking into account symmetries imposed by thermodynamics.  The Field and Response columns contain the following symbols: , , , , , , , $\Delta\beta_{ij}$ = change of the impermeability tensor, , ,  , $\rho^a_i$ = anti-symmetric part of resistivity tensor, $\rho^s_i$ = symmetric part of resistivity tensor, $\Delta \rho_{ij}$ = change in the component $ij$ of the resistivity tensor, $l_i$ = direction cosines of wave direction in crystal, $G$ = gyration constant.
+\noindent For the material responses we have: 
+ \begin{itemize}
+ \item $\Delta S$ = entropy change per unit mass [J/(K\,kg)]; 
+ \item $D_i$ = electric displacement [C/m$^2$]; 
+ \item $B_i$ = magnetic induction [T$=$Wb/m$^2$]; 
+ \item $\epsilon_{ij}$ = mechanical strain [dimensionless]; 
+ \item $j_i$ = electrical current density [A/m$^2$]; 
+ \item $h_i$ = heat flux [W/m$^2$]; 
+ \item $m_i$ = mass flux [kg/(m$^2$s)].  
+ \end{itemize}
+One should note that in some cases the roles of field and response can be exchanged. For instance, we have the relation $\mathbf{j}=\bm{\sigma}\mathbf{E}$ where $\bm{\sigma}$ is the electrical conductivity tensor, and its inverse form, $\mathbf{E}=\bm{\rho}\mathbf{j}$, where $\bm{\rho}$ is the \indexit{electrical resistivity} tensor. In principle, every property tensor has an inverse tensor which represents the proportionality factor when field and response are interchanged from the original definition.
 
-\begin{table}
+Note also that three of the quantities defined above are gradient quantities: the electric field $\mathbf{E}=-\nabla\varphi$ is the gradient of the electrical potential, $\varphi(\mathbf{r})$, the temperature gradient  $\nabla_j T$ , and the thermal gradient $\nabla_j c$.  The responses to these gradients are flows: current flow $\mathbf{j}$, heat flow $\mathbf{h}$, and mass flow $\mathbf{m}$, respectively.  Collectively, we refer to the proportionality factors between these quantities as \indexit{transport properties}. The material properties that do not involve a flow or motion of particles are known as \indexit{equilibrium properties}.
+
+The subsections below list the most important material property tensors in terms of the Field and Response that they connect. More details regarding the underlying physics as well as examples of engineering applications of these material properties can be found in other chapters.
+
+\subsubsection{Property Tensors of Rank 0 (Scalars)}
+
+Among the fields and responses listed above, only the temperature change, $\Delta T$, and the entropy change, $\Delta S$, are scalar quantities, so the proportionality factor is also a scalar quantity or a tensor of rank zero.  This is the \indexit{specific heat capacity} $C$ [J/(kg\,K)], which is defined as the amount of thermal energy required to raise the temperature of a unit mass $m$ of that material by exactly $1$ K; the resulting entropy change is then given by:
+\begin{equation}
+	\Delta S = C\,\frac{\Delta T}{T}\ .\label{\chabbr:eq:specificheat}
+\end{equation}
+Here and in the remainder of this chapter, $\Delta S$ refers to the entropy change per unit mass and has units [J/(K\,kg)].  Note that this relation is really only valid for small temperature changes; for large changes it must be replaced by an integration between the initial and final temperatures. The entropy change also depends on whether the measurement is made at constant pressure or in a constant volume closed system.  
+
+As stated before, many higher order property tensors reduce to a scalar in high symmetry materials; those properties are not intrinsically scalar, but become scalar (i.e., isotropic) due to the crystallographic symmetry. Despite having only one value, those tensors should still be considered as higher rank tensors, meaning that they retain their subscripts, regardless of the crystal symmetry.
+
+
+\begin{table}[h]
+\centering\leavevmode
+\begin{tabular}{|l|c|c|c|l|}
+\hline
+Property   &  Symbol  [SI units] &  Field & Response & Type\#  \\
+\hline
+\hline
+\indexit{Electrocaloric}  &  $p_i$ [J\,m/(kg\,K\,V)] & $E_i$ & $\Delta S$ & E3\\
+\indexit{Magnetocaloric} & $q_i$ [J/(kg\,K\,T)] &  $H_i$ & $\Delta S$ & E3\\
+\indexit{Pyroelectric}  &  $p'_i$ [C/(m$^2$\,K)] & $\Delta T$ & $D_i$ & E3\\
+\indexit{Pyromagnetic} & $q'_i$ [T/K] &  $\Delta T$ & $B_i$ & E3\\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:tensors1}Material properties represented by rank-1 tensors.}
+\end{table}
+
+
+\subsubsection{Property Tensors of Rank 1 (Vectors)}
+
+When the applied field is a vector and the response a scalar quantity, or the other way around, the proportionality factor must itself be a vector or a rank-1 tensor. The most important rank-1 material property tensors are shown in Table~\ref{\chabbr:tb:tensors1}; the table lists the property name, the symbol and SI units, the Field and Response quantities and finally whether this is an equilibrium (E) or transport (T) property. The final number shows the maximum number of independent components of the property tensor.
+
+It is not uncommon in the literature to find alternative definitions of these quantities. For instance, the \indexit{electrocaloric vector} can also be interpreted as the proportionality factor between an applied electric field $\mathbf{E}$ and the resulting temperature change $\Delta T$. This relation can be obtained by combining eq.~(\ref{\chabbr:eq:specificheat}) with the relation $\Delta S=p_i\,E_i=\mathbf{p}\cdot\mathbf{E}$, resulting in:
+\begin{equation}
+	\Delta T = \left[\frac{T}{C}p_i\right]E_i\ .
+\end{equation}
+The quantity in square brackets is also known as the electrocaloric vector, and it has SI units of $[m\,K/V]$. Similar alternative definitions can be found for the other rank-1 property tensors, so the reader should exercise caution when comparing different sources.
+
+\begin{table}[h]
+\centering\leavevmode
+\begin{tabular}{|l|c|c|c|l|}
+\hline
+Property   &  Symbol  [SI units] &  Field & Response & Type\#  \\
+\hline
+\hline
+\indexit{Thermal expansion}  & $\alpha_{ij}$ [T$^{-1}$] & $\Delta T$ & $\epsilon_{ij}$ & E6\\
+\indexit{Piezocaloric effect}  & $\alpha'_{ij}$ [J/(K\, Pa)] & $\sigma_{ij}$ & $\Delta S$ & E6\\
+\indexit{Dielectric permittivity} & $\kappa_{ij}$ [F/m] & $E_j$ & $D_i$ &  E6\\
+\indexit{Magnetic permeability} & $\mu_{ij}$ [H/m] & $H_j$ & $B_i$ & E6\\
+\indexit{Optical activity}  &  $g_{ij}$ [---] & $l_il_j$ & $G$ &  E6\\
+\indexit{Magnetoelectric polarization} & $\lambda_{ij}$ [s/m] & $H_j$ & $D_i$  & E9\\
+\indexit{Converse magnetoelectric polarization} & $\lambda'_{ij}$ [T\,m/V] & $E_j$ & $B_i$  & E9\\
+\hline
+\indexit{Electrical conductivity} & $\sigma_{ij}$ [S/m] & $E_j$  & $j_i$  & T6\\
+\indexit{Electrical resistivity} & $\rho_{ij}$ [$\Omega$\,m] & $j_j$ & $E_i$ & T6\\
+\indexit{Thermal conductivity} & $K_{ij}$ [W/(m\,K)] & $\nabla_j T$ & $h_i$ & T6\\
+\indexit{Diffusivity}  &  $D_{ij}$ [m$^2$/s] &$\nabla_j c$ & $m_i$ & T6\\
+\indexit{Thermoelectric power}  &  $\Sigma_{ij}$ [V/K] & $\nabla_j T$ & $E_i$ & T9\\
+\indexit{Hall effect}  & $R_{ij}$ [$\Omega$\,m/T] & $B_j$ & $\rho^a_{i}$ & T9\\
+\indexit{Peltier effect} & $\pi_{ij}$ [V] & $Tj_j$  &  $h_i$  & T9\\
+
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:tensors2}Material properties represented by rank-2 tensors.}
+\end{table}
+
+\subsubsection{Property Tensors of Rank 2}
+
+There are many material properties that are represented by rank-2 tensors; some of the more important ones are listed in Table~\ref{\chabbr:tb:tensors2}.  For the SI units, the symbols F, H, and S refer to Farad, Henry, and Siemens, respectively;  $l_i$ are the direction cosines of the wave direction in a crystal, $G$ is the (dimensionless) \indexit{optical gyration constant}, and $\rho^a_i$ is the anti-symmetric part of the resistivity tensor (which can be written as a vector quantity, hence the single index).  As for the rank-1 tensor case, these relations can all be combined in many different ways, leading to additional material property descriptors.  The \indexit{thermoelectric power tensor} $\Sigma_{ij}$ is also known as the \indexit{Seebeck tensor}.
+
+Rank-2 tensors with $6$ independent entries (labeled E6 in the last column of Table~\ref{\chabbr:tb:tensors2}) are symmetric tensors, i.e., $\kappa_{ij}=\kappa_{ji}$. There are several potential reasons why a tensor is symmetric: in the case of the thermal expansion tensor, the symmetry of $\alpha_{ij}$  and $\alpha^{\prime}_{ij}$ is inherited from the symmetry of the strain and stress tensors, $\epsilon_{ij}$ and $\sigma_{ij}$. For the dielectric permittivity tensor $\kappa_{ij}$ and the magnetic permeability tensor $\mu_{ij}$, thermodynamic principles must be used to show that these tensors must be symmetric and we defer these arguments to section~\ref{\chabbr:sec:thermosymmetry}.  Similar thermodynamic arguments can be used to shows that several of the transport property tensors must be symmetric.
+
+\begin{table}[h]
+\centering\leavevmode
+\begin{tabular}{|l|c|c|c|l|}
+\hline
+Property   &  Symbol  [SI units] &  Field & Response & Type\#  \\
+\hline
+\hline
+\indexit{Piezoelectricity}  &  $d_{ijk}$ [C/N]  & $\sigma_{jk}$ & $D_i$ &  E18\\
+\indexit{Converse piezoelectricity}  &  $d'_{ijk}$ [m/V] & $E_k$ & $\epsilon_{ij}$ &  E18\\
+\indexit{Piezomagnetism} &  $Q_{ijk}$ [A\,m/N] & $\sigma_{jk}$ & $B_i$ & E18\\
+\indexit{Converse piezomagnetism} &  $Q'_{ijk}$ [m/A] & $H_{k}$ & $\epsilon_{ij}$ & E18\\
+\indexit{Electro-optic effect} & $r_{ijk}$ [m/V] & $E_k$ & $\Delta\beta_{ij}$&  E18\\
+\hline
+\indexit{Nernst tensor} & $\Sigma_{ijk}$ [V/(K\,T)] & $\nabla_j T B_k$ & $E_i$ & T27\\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:tensors3}Material properties represented by rank-3 tensors.}
+\end{table}
+
+\subsubsection{Property Tensors of Rank 3}
+
+Table~\ref{\chabbr:tb:tensors3} lists several important rank-3 tensors; in this table, $\Delta\beta_{ij}$ represents the change of impermeability tensor, which is essentially a change in the refractive indices of the material, in this case under an applied electric field.  The last row in the table, the Nernst tensor, represents an example of a material property that requires two parallel or crossed external fields:
+\[
+	E_i = \Sigma_{ijk}\,\frac{\partial T}{\partial x_j}\,B_k\ ;
+\]
+the tensor $\Sigma_{ijk}$ is also known as the \indexit{thermomagnetic power tensor}.
+
+A rank-3 tensor, $t_{ijk}$, has $3^3=27$ components in the most general case.  When either the Field or the Response tensor is symmetric, then $t_{ijk}$ inherits that symmetry and we have either $t_{ijk}=t_{jik}$ or $t_{ijk}=t_{ikj}$, depending on whether the Field or Response tensor is symmetric.  It is not difficult to show that this leads to a rank-3 tensor with $18$ independent components; when we introduce \indexit{engineering notation} in section~\ref{\chabbr:ssec:engnot} we will see that such a tensor can be represented by a $6\times 3$ or $3\times 6$ matrix.  
+
+\begin{table}[h]
+\centering\leavevmode
+\begin{tabular}{|l|c|c|c|l|}
+\hline
+Property   &  Symbol  [SI units] &  Field & Response & Type\#  \\
+\hline
+\hline
+\indexit{Elastic Moduli}  &  $c_{ijkl}$ [N/m$^2$] & $\epsilon_{kl}$ & $\sigma_{ij}$ & E21\\
+\indexit{Elastic Compliances}  &  $s_{ijkl}$ [m$^2$/N] & $\sigma_{kl}$  & $\epsilon_{ij}$  & E21\\
+\indexit{Electrostriction} & $\gamma_{ijkl}$ [m$^2$/V$^2$] & $E_kE_l$ & $\epsilon_{ij}$ & E36\\
+\indexit{Photoelasticity} & $\pi_{ijkl}$ [m$^2$/N] & $\sigma_{kl}$ & $\Delta\beta_{ij}$ & E36\\
+\indexit{Kerr effect} & $p_{ijkl}$ [m$^2$/V$^2$] & $E_kE_l$ & $\Delta\beta_{ij}$& E36\\
+\hline
+\indexit{Magnetoresistance} & $\xi_{ijkl}$ [$\Omega$\,m/T$^2$] & $B_kB_l$ & $\rho^s_{ij}$ & T36\\
+\indexit{Piezoresistance} & $\Pi_{ijkl}$ [m$^2$/N] & $\sigma_{kl}$ & $\Delta \rho_{ij}$ & T36\\
+\indexit{Magnetothermoelectric power} & $\Sigma_{ijkl}$ [V/(K\,T$^2$)] & $\nabla_j T B_k B_l$ & $E_i$ & T54\\
+\indexit{Second order Hall effect} & $\rho_{ijkl}$ [$\Omega$\,m/T$^3$] & $B_jB_kB_l$ & $\rho^s_i$ & T30\\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:tensors4}Material properties represented by rank-4 tensors.}
+\end{table}
+
+\subsubsection{Property Tensors of Rank 4}
+
+Table~\ref{\chabbr:tb:tensors4} lists several rank-4 tensors that have important engineering applications.  In this table, $\rho^s_i$ represents the  symmetric part of the resistivity tensor, and $\Delta \rho_{ij}$ is the change in the component $ij$ of the resistivity tensor due to an applied stress.  A general rank-4 tensor $t_{ijkl}$ has $3^4=81$ components. There are several ways in which pairs or triplets of indices can be symmetric:
+\begin{itemize}
+	\item the applied field is symmetric in a pair of indices: this is the case for the \indexit{magnetothermoelectric power tensor} $\Sigma_{ijkl}=\Sigma_{ijlk}$, resulting in $54$ independent components;
+	\item both field and response are symmetric: this is the case for all the tensors with $36$ independent components:  $t_{ijkl}=t_{jikl}=t_{ijlk}=t_{jilk}$;
+	\item the applied field is of third-order (second order Hall effect), in which case we have $t_{ijkl}=t_{iklj}=t_{iljk}=t_{ikjl}=t_{ilkj}=t_{ijlk}$, which leads to $30$ independent components. 
+\end{itemize}
+For the elastic moduli and compliance tensors, there is an additional thermodynamic symmetry that further reduces the number of independent components from $36$ to $21$; we will describe this so-called \indexit{intrinsic symmetry} in section~\ref{\chabbr:sec:thermosym}.
+
+\begin{table}[h]
+\centering\leavevmode
+\begin{tabular}{|l|c|c|c|l|}
+\hline
+Property   &  Symbol  [SI units] &  Field & Response & Type\#  \\
+\hline
+\hline
+\indexit{Second-order piezoelectric} & $B_{ijkmn}$ [ C\,m$^2$/N$^2$] & $\sigma_{jk}\sigma_{mn}$ & $D_i$ & E63 \\
+\indexit{Piezophotovoltaic effect}&  $\alpha_{ijklm}$ [A\, m$^3$/(V$^2$\,N)] & $E_jE_k\sigma_{lm}$ & $\Delta j_i$ & T90 \\
+\hline
+\indexit{Third order elastic moduli} & $c_{ijklmn}$ [N/m$^2$] & $\epsilon_{kl}\epsilon_{mn}$ & $\sigma_{ij}$ & E56\\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:tensorshigher}Selected material properties represented by tensors of rank higher than 4.}
+\end{table}
+
+\subsubsection{Property Tensors of Rank higher than 4}
+
+Property tensors of rank higher than $4$ in general represent non-linear effects; a few examples are listed in Table~\ref{\chabbr:tb:tensorshigher}. Note that in each case, the applied field is quadratic in either the electric field, or the stress/strain.  This leads to a large number of potential components, $3^5=243$ for the rank-5 tensors and $3^6=729$ for rank-6 tensors; the symmetry of the field and/or response quantities reduces those numbers, as shown in the last column of the table.  They are further reduced in the presence of crystallographic symmetry.  
+
+In section~\ref{\chabbr:sec:matprop} we defined a general material property in terms of a Taylor expansion of the response $\mathcal{R}$ with respect to the applied field $\mathcal{F}$, and we introduced the linear approximation, i.e., the response is directly proportional to the field.  The higher rank tensors (rank $3$ and higher) come into play when we allow quadratic (and higher) field terms to contribute to the response.  As an illustration, let us consider strain to be the applied field and stress the response; the corresponding Taylor expansion up to terms quadratic in the field is then given by:
+\begin{equation}
+	\sigma_{ij} = c_{ijkl}\epsilon_{kl} + c_{ijklmn}\epsilon_{kl}\epsilon_{mn}\ ,
+\end{equation}
+where the tensor components are defined in terms of partial derivatives of the stress with respect to the strain, evaluated at zero strain:
+\begin{equation*}
+\begin{split}
+	c_{ijkl} &= \left.\frac{\partial\sigma_{ij}}{\partial\epsilon_{kl}}\right \vert_{\bm{\epsilon}=\bm{0}}\ ;\\ 
+	c_{ijklmn} &= \frac{1}{2!}\left.\frac{\partial^2\sigma_{ij}}{\partial\epsilon_{kl}\partial\epsilon_{mn}}\right \vert_{\bm{\epsilon}=\bm{0}}\ . 	
+\end{split}
+\end{equation*}
+Similar expressions can be obtained for other non-linear (quadratic) property tensors, including electrostriction, the Kerr effect, and magnetoresistance (see Table~\ref{\chabbr:tb:tensors4}).  In the presence of multiple fields, the Taylor expansion will contain mixed partial derivatives.
+
+
+\subsection{Engineering Notation for Tensors}\label{\chabbr:ssec:engnot}
+
+
+% The attentive reader may have noticed that in the $K_{ij}$ matrix of eq.~\ref{PRPSYM:eq:Kmatrix} on page~\pageref{PRPSYM:eq:Kmatrix}, there are $36$ entries for the fourth rank elastic compliance tensor $s_{ijkl}$; they form a $6\times 6$ block along the diagonal of the matrix $K_{ij}$. But we know that a tensor of rank $n$ has $3^n$ components, which means that there are $3^4=81$ compliance components.  Similarly, for the stress and strain tensors, $\sigma_{ij}$ and $\epsilon_{ij}$, only six components are listed in the force and response vectors.  In section~\ref{\chabbr:sec:mechprop} we will see that both of these tensors are symmetric tensors, i.e., $\sigma_{ij}=\sigma_{ji}$ and $\epsilon_{ij}=\epsilon_{ji}$, so that effectively they have only six independent components, but it is unclear at this point why, for instance, the component $s_{zyzx}$ of the compliance tensor does not appear in the $K_{ij}$ matrix.
+
+
+
+
+Since there are only $6$ independent components for both the stress and strain tensors, we may, instead of using $2$ indices that each run from $1$ to $3$, use a single index that runs from $1$ to $6$.  The only thing we need to do is define the correspondence between the double and single indices.  We define the \indexit{engineering notation} or \indexit{Voigt notation} by means of the following relation for the stress tensor:
+\begin{equation}
+	\sigma_{\left(\begin{matrix}
+	xx  &  xy  &  xz \\
+	yx  &  yy  &  yz \\
+	zx  &  zy  &  zz \end{matrix}\right)}
+	\leftrightarrow
+	\sigma^e_{\left(\begin{matrix}
+	1  &  6  &  5 \\
+	6  &  2  &  4 \\
+	5  &  4  &  3 \end{matrix}\right)}\rightarrow \sigma^e_J = \left(\begin{matrix}
+	\sigma_{1}\\ \sigma_{2}\\ \sigma_{3}\\ \sigma_{4}\\ \sigma_{5}\\ \sigma_{6}\end{matrix}\right) 
+	= \left(\begin{matrix}
+	\sigma_{xx}\\ \sigma_{yy}\\ \sigma_{zz}\\ \sigma_{yz}=\sigma_{zy}\\ \sigma_{xz}=\sigma_{zx}\\ \sigma_{xy}=\sigma_{yx}\end{matrix}\right). 
+\end{equation}	
+The numbers $1$ through $3$ along the diagonal represent the normal stresses, while the numbers $4$ to $6$ represent the shear stresses.  We will always denote the single index description with a superscript $^e$, to indicate that the engineering notation is being used, i.e., $\sigma_{xz} = \sigma^e_5$ and $\sigma_{yy} = \sigma^e_2\ldots$. Furthermore, we will use capital subscripts to indicate that the index goes from $1$ to $6$, e.g. $\sigma^e_J$.
+
+The same indexing scheme can be applied to the strain tensor, with the exception that the engineering shear strains are equal to twice the original shear strains: 
+\begin{subequations}
+\begin{align}
+	\epsilon^e_I&= \epsilon_{ii}\qquad\mbox{for $i=I=1,2,3$};\nonumber\\
+	\epsilon^e_4 &= 2\epsilon_{yz};\\
+	\epsilon^e_5 &= 2\epsilon_{xz};\\
+	\epsilon^e_6 &= 2\epsilon_{xy}.
+\end{align}
+\end{subequations}
+The reason for the factor of two in the shear strain components is not difficult to understand.  We want the relation between strain and stress, in engineering notation, to read:
+\begin{equation}
+	\epsilon^e_I= s^e_{IJ} \sigma^e_J \qquad\left(= \sum_{J=1}^6 s^e_{IJ} \sigma^e_J\right).\label{\chabbr:eq:seIJ}
+\end{equation}
+Note that the compliances $s^e_{IJ}$ are represented by a $6\times 6$ matrix; intrinsic thermodynamic symmetry, which we will discuss in section~\ref{\chabbr:sec:thermosym}) requires that $s^e_{IJ}=s^e_{JI}$, in other words, the matrix $s^e_{IJ}$ must be a symmetric matrix.  Since $I$ and $J$ each stand for a pair of subscripts, we find that the compliance tensor itself must have the following symmetry:
+\begin{equation}
+	s_{ijkl} = s_{klij}.
+\end{equation}
+Furthermore, we know that both stress and strain tensors are symmetric, i.e., $\epsilon_{ij}=\epsilon_{ji}$ and $\sigma_{kl} = \sigma_{lk}$.  Hence we have:
+\[
+	s_{ijkl} = s_{jikl} = s_{ijlk} = s_{jilk}.
+\]
+These symmetries reduce the number of independent components from $81$ to $21$ which agrees with the number of independent components in the symmetric $s^e_{IJ}$ matrix, which is given by $(36-6)/2+6$.  
+
+Using eq.~\ref{\chabbr:eq:seIJ}, we have in particular that:
+\begin{eqnarray}
+	\epsilon^e_1 &=& s^e_{11}\sigma^e_1+s^e_{12}\sigma^e_2+s^e_{13}\sigma^e_3+s^e_{14}\sigma^e_4+s^e_{15}\sigma^e_5+s^e_{16}\sigma^e_6;\label{\chabbr:eq:se1}\\
+	\epsilon^e_4 &=& s^e_{41}\sigma^e_1+s^e_{42}\sigma^e_2+s^e_{43}\sigma^e_3+s^e_{44}\sigma^e_4+s^e_{45}\sigma^e_5+s^e_{46}\sigma^e_6\label{\chabbr:eq:se4}.
+\end{eqnarray}
+Starting with $\epsilon^e_1$, we also have (switching to numerical subscripts):
+\begin{eqnarray*}
+	\epsilon_{11} &=& s_{1111}\sigma_{11} + s_{1122}\sigma_{22} + s_{1133}\sigma_{33} +  s_{1112}\sigma_{12} +  s_{1121}\sigma_{21}  + \\ 
+	&& s_{1113}\sigma_{13}+ s_{1131}\sigma_{31} + s_{1123}\sigma_{23} + s_{1132}\sigma_{32}. 
+\end{eqnarray*}
+Applying the symmetry of the compliance and stress tensors we can group a few terms:
+\[	
+	\epsilon_{11} = s_{1111}\sigma_{11} + s_{1122}\sigma_{22} + s_{1133}\sigma_{33} + 2 s_{1112}\sigma_{12} +2 s_{1113}\sigma_{13} +2 s_{1123}\sigma_{23}. 
+\]
+Since $\epsilon_{11}=\epsilon^e_1$, this expression must be equal to eq.~(\ref{\chabbr:eq:se1}); thus we must also have $2s_{1112} = s^e_{16}$, $2s_{1113}=s^e_{15}$ and $2s_{1123} = s^e_{14}$.
+
+For $\epsilon^e_4$ we have two possibilities, since the Voigt index $4$ can stand for both index pairs $23$ and $32$;  we can deal with this by adding the expressions for $\epsilon_{23}$ and $\epsilon_{32}$ together:
+\begin{eqnarray}
+	\epsilon_{23} &=& s_{2311}\sigma_{11} + s_{2322}\sigma_{22} + s_{2333}\sigma_{33} + 2 s_{2312}\sigma_{12} +2 s_{2313}\sigma_{13} +2 s_{2323}\sigma_{23};\\
+	\epsilon_{32} &=& s_{3211}\sigma_{11} + s_{3222}\sigma_{22} + s_{3233}\sigma_{33} + 2 s_{3212}\sigma_{12} +2 s_{3213}\sigma_{13} +2 s_{3223}\sigma_{23}.
+\end{eqnarray}
+The sum of these two equals (using the symmetry properties of the compliance tensor $s_{ijkl}$ and the strain tensor $\epsilon_{ij}$):
+\[
+	2\epsilon_{23} = 2s_{2311}\sigma_{11}+2s_{2322}\sigma_{22} + 2s_{2333}\sigma_{33} + 4 s_{2312}\sigma_{12} +4 s_{2313}\sigma_{13} +4 s_{2323}\sigma_{23}.
+\]
+Comparing this with the engineering notation in eq.~\ref{\chabbr:eq:se4}, we have $\epsilon_4^e=2\epsilon_{23}$, $s^e_{41}=2s_{2311}$, $s^e_{44}=4s_{2323}$ and so on.  Summarizing, we find the definition of the Voigt notation for the strain tensor shown earlier, as well as new relations for the compliance tensor:
+\begin{subequations}\begin{align}
+	s_{ijkl} &= s^e_{MN} \qquad\mbox{when $M$ and $N$ are $1,2$ or $3$};\\
+	2s_{ijkl} &= s^e_{MN} \qquad\mbox{when either $M$ or $N$ is $4,5$ or $6$};\\
+	4s_{ijkl} &= s^e_{MN} \qquad\mbox{when both $M$ and $N$ are $4,5$ or $6$}.
+\end{align}\end{subequations}
+These conversions allow for a single index notation to be used for stress and strain, and all material tensors related to them.  The disadvantage of using this notation is that the resulting quantities are no longer tensors and do not satisfy the tensor transformation equations.  To transform a material tensor from one reference frame to another requires the full tensor notation with all indices, not the engineering notation.  In other words, the relation
+\[
+	\epsilon_{ij} = s_{ijkl}\sigma_{kl}
+\]
+is a relation between tensors, but the relation
+\[
+	\epsilon^e_{I} = s^e_{IJ}\sigma^e_J
+\]
+is not.  However, as we will show in the following section, we can replace the usual $3\times 3$ transformation matrix $\alpha_{ij}$ by a $6\times 6$ matrix to perform the transformation using Voigt notation.
+
+The same reasoning can be used to derive the engineering notation expressions for the other material property tensors in the $K_{ij}$ matrix that relate a response to the stress tensor; examples include thermal expansion and the piezoelectric effect:
+\begin{subequations}\begin{align}
+	\alpha_{ij} &= \alpha^e_K \qquad\mbox{when $K$ is $1,2$ or $3$};\\
+	2\alpha_{ij} &= \alpha^e_K \qquad\mbox{when $K$ is $4,5$ or $6$};\\
+	d_{ijk} &= d^e_{iL} \qquad\mbox{when $L$ is $1,2$ or $3$};\\
+	2d_{ijk} &= d^e_{iL}\qquad\mbox{when $L$ is $4,5$ or $6$}.
+\end{align}\end{subequations}
+
+
+\subsection{Coordinate Transformations using Voigt notation}\label{\chabbr:sec:Voigttrafos}
+
+Despite the fact that the engineering notation results in relations between quantities that are not tensors, it is possible to write down the transformation rules directly in engineering notation and obtain expressions that are similar to the regular tensor transformations. The relevant transformation matrix, $a_{IJ}$, is a $6\times 6$ matrix and its components can be derived quite easily by applying the standard tensor transformation to a symmetric rank-2 tensor, say $t_{ij}$, and then replacing the subscripts by engineering subscripts to obtain $t^e_I$.  We start from the relation:
+\[
+	t'_{ij} = \alpha_{ik}\alpha_{jl}t_{kl}
+\]
+and explicitly work out the matrix multiplication for a general transformation matrix $\alpha_{ij}$. For the transformed component $t'_{11}$ we obtain:
+\[
+	t'_{11} = \alpha^2_{11}t_{11}+\alpha^2_{12}t_{22}+\alpha^2_{13}t_{33}+2\alpha_{12}\alpha_{13}t_{23}+2\alpha_{11}\alpha_{13}t_{13}+2\alpha_{11}\alpha_{12}t_{12}\ .
+\]
+Switching to engineering notation, we obtain:
+\[
+	t^{e\prime}_{1} = \alpha^2_{11}t^e_{1}+\alpha^2_{12}t^e_{2}+\alpha^2_{13}t^e_{3}+2\alpha_{12}\alpha_{13}t^e_{4}+2\alpha_{11}\alpha_{13}t^e_{5}+2\alpha_{11}\alpha_{12}t^e_{6}\ .
+\]
+This means that the first row of the matrix $a_{IJ}$ contains the following terms:
+\[
+	a_{1J} = \begin{pmatrix} \alpha^2_{11}&\alpha^2_{12}&\alpha^2_{13}&2\alpha_{12}\alpha_{13}&2\alpha_{11}\alpha_{13}&2\alpha_{11}\alpha_{12}\end{pmatrix}\ .
+\]
+A similar derivation for the other components of $t^{e\prime}_{I}$ results in the following expression  for the full transformation matrix $a_{IJ}$:
+{\small\begin{equation}
+a_{IJ} = \left(\begin{array}{cccccc}
+		\alpha^2_{11}&\alpha^2_{12}&\alpha^2_{13} &2\alpha_{12}\alpha_{13} &2\alpha_{13}\alpha_{11} &2\alpha_{11}\alpha_{12} \\
+		\alpha^2_{21}&\alpha^2_{22}&\alpha^2_{23} &2\alpha_{22}\alpha_{23} &2\alpha_{23}\alpha_{21} &2\alpha_{21}\alpha_{22} \\
+		\alpha^2_{31}&\alpha^2_{32}&\alpha^2_{33} &2\alpha_{32}\alpha_{33} &2\alpha_{33}\alpha_{31} &2\alpha_{31}\alpha_{32} \\
+		\alpha_{21}\alpha_{31}&\alpha_{22}\alpha_{32} &\alpha_{23}\alpha_{33} &\alpha_{22}\alpha_{33}+\alpha_{23}\alpha_{32} &\alpha_{21}\alpha_{33}+\alpha_{23}\alpha_{31} &\alpha_{22}\alpha_{31}+\alpha_{21}\alpha_{32} \\
+		\alpha_{31}\alpha_{11}&\alpha_{32}\alpha_{12} &\alpha_{33}\alpha_{13} &\alpha_{12}\alpha_{33}+\alpha_{13}\alpha_{32} &\alpha_{13}\alpha_{31}+\alpha_{11}\alpha_{33} &\alpha_{11}\alpha_{32}+\alpha_{12}\alpha_{31} \\
+		\alpha_{11}\alpha_{21}&\alpha_{12}\alpha_{22} &\alpha_{13}\alpha_{23} &\alpha_{12}\alpha_{23}+\alpha_{13}\alpha_{22} &\alpha_{13}\alpha_{21}+\alpha_{11}\alpha_{23} &\alpha_{11}\alpha_{22}+\alpha_{12}\alpha_{21} \\
+		\end{array}\right)\label{\chabbr:eq:aIJ}
+\end{equation}}
+The transformation rule for this rank-2 tensor then becomes:
+\[
+	t^{e\prime}_I = a_{IJ}t^e_J\qquad\text{($J$ runs from $1$ to $6$)}\ .
+\]
+As a second example we consider the elastic compliance tensor in Voigt notation, $s^e_{IJ}$.  If we transform the original tensor $s_{ijkl}$ using the standard relation for a rotation matrix $\alpha_{ij}$ we have:
+\[
+	s'_{ijkl} = \alpha_{io}\alpha_{jp}\alpha_{kq}\alpha_{lr} s_{opqr}\ .
+\]
+We would like for the transformation of the engineering matrix $s^e_{IJ}$ to have a similar mathematical form:
+\[
+	s^{\prime e}_{IJ} = a_{IK}s^e_{KL}\tilde{a}_{JL} ,\qquad\text{(all subscripts run from $1$ to $6$)}\ ;
+\]
+it is not difficult, but somewhat tedious, to show that the matrix $a_{IJ}$ in equation~(\ref{\chabbr:eq:aIJ}) is also valid in this case.
+
+
+\section{Intrinsic Thermodynamic Symmetry}\label{\chabbr:sec:thermosym}
+In this section, we take a look at material properties from the point of view of thermodynamics.  In thermodynamics, one represents the change in \textit{internal energy per unit volume},\index{internal energy} $\mathcal{U}$, as:
+\begin{equation}
+	\mathrm{d}\mathcal{U} = -P\mathrm{d}V+T\mathrm{d}S\ ,
+\end{equation}
+with $P$ = pressure,\index{pressure} $V$ = volume,\index{volume} $T$ = absolute temperature, and $S$ = entropy.\index{entropy}  The pairs $(P,V)$ and  $(T,S)$ are so-called \textit{conjugate pairs},\index{conjkugate pairs} and their product has the dimensions of an energy density. We can regard $(P,T)$ as ``forces'' and $(V,S)$ as ``responses.''  When the pressure increases, the system responds with a volume change, and when the temperature changes, the system adjusts its entropy.  In more general terms, the internal energy consists of two contributions, the heat absorbed by the system, $\mathrm{d}Q$,  and the work done by the system, $\mathrm{d}W$, so that
+\begin{equation}
+	\mathrm{d}\mathcal{U} = \mathrm{d}Q-\mathrm{d}W\ .
+\end{equation}
+Work done \textit{by} the system has a \textit{positive} sign, whereas work done \textit{on} the system is \textit{negative}.
+
+Pressure and temperature are not the only ``forces'' that we can define for a material system.  We can apply an external electric or magnetic field, we can exert a stress onto the system, and so on.  For each of those external fields, we can define an additional work term.  As described in detail in the example below, the magnetic field $H$ and the magnetic induction $B$ form a conjugate pair, with $H$ the ``force'' and $B$ the response.
+
+\begin{example}
+Let us consider a simple example: the work done by a magnetic solenoid.  A solenoid is essentially a wire which is wound in $N$ circular turns, so that the total length of the solenoid equals $L$.   The number of turns per unit length is defined as $n=N/L$.  If the solenoid is placed in a magnetic field which varies in time, then, according to electrodynamics, there will be a voltage induced across the two ends of the wire.  If we denote this electric voltage by $V_e$, to distinguish it from the volume $V$, then Faraday's \textit{Law of Induction}\index{Farady Induction Law} states that the voltage is equal to:
+\begin{equation}
+	V_e = N\frac{\mathrm{d}\Phi}{\mathrm{d}t}\ ,
+\end{equation}
+where $\Phi$ is the magnetic flux,\index{magnetic flux} i.e, the number of magnetic field lines through the cross sectional area of the solenoid: $\Phi = BA$, with $A$ the area and $B$ the magnetic induction.\index{magnetic induction}  The voltage can then be rewritten as:
+\begin{equation}
+	V_e = n V \frac{\mathrm{d}B}{\mathrm{d}t}\ .
+\end{equation}
+The energy associated with this system can be written as $\mathrm{d}E=V_e\mathrm{d}q$, where $q$ is the electrical charge. It is easy to see that this expression has the dimensions of energy, since $V_e$ is measured in Volts, and $q$ in  Coulomb: $[VC = VAs = Ws = J]$.  Note that $q$ and $V_e$ are not conjugate variables, since their product does not have the dimensions of an energy density.  Introducing the electrical current $I=\mathrm{d}q/\mathrm{d}t$, we find
+\begin{equation}
+	\mathrm{d}E = V_e\mathrm{d}q = nV\frac{\mathrm{d}B}{\mathrm{d}t} I\mathrm{d}t = nVI\mathrm{d}B\ .
+\end{equation}
+Since the magnetic field, $H$, produced by a solenoid is equal to $4\pi nI$, we have
+\begin{equation}
+	\mathrm{d}E = \frac{V}{4\pi} H\mathrm{d}B\ .
+\end{equation}
+This can be converted to an energy density by dividing by the volume $V$:
+\begin{equation}
+	\mathrm{d}W = \frac{H\mathrm{d}B}{4\pi}\ ;
+\end{equation}
+we conclude that $(H,B)$ is a pair of conjugate variables, with $H$ the ``force'' and $B$ the ``response.''
+\end{example}
+
+In a similar way, it can be shown that the pair $(E,P)$, with $E$ the electric field,\index{electric field} and $P$ the polarization,\index{polarization} form a  conjugate pair with associated work term:
+\begin{equation}
+	\mathrm{d}W = \frac{E\mathrm{d}P}{4\pi}\ .
+\end{equation}
+Mechanical stress,\index{stress} $\sigma$, and strain,\index{strain} $\epsilon$, also form a conjugate pair with work term:
+\begin{equation}
+	\mathrm{d}W = \frac{1}{2}\sigma\mathrm{d}\epsilon\ ;
+\end{equation}
+the dimensions of stress are Pa(scal), and strain is dimensionless.  It is easy to see that Pa is an energy density: Pa = N/m$^2$ = Nm/m$^3$ = J/m$^3$.  The stress is a ``force'', and strain is the system's ``response.''
+
+Let us now consider a general force $\mathcal{F}_j$ and its conjugate response $\mathcal{R}_i$.  According to the Taylor expansion derivation in section~\ref{\chabbr:sec:matprop}, there must be linear relations between forces and responses, so that we can define a general property, $K_{ij}$, for which
+\begin{equation}
+	\mathcal{R}_i = K_{ij}\mathcal{F}_j\ .
+\end{equation}
+First of all, we can say something about the symmetry of $K_{ij}$.  We know that $\mathcal{U}$ is a \indexit{state function} of the forces $\mathcal{F}_i$.  That means that the following function (known as the \indexit{Helmholtz free energy}), 
+\begin{equation}
+	\Phi = \mathcal{U} - \mathcal{R}_i\mathcal{F}_i\ ,
+\end{equation}
+(summation over $i$) is also a state function.  We can then write, using the chain rule:
+\begin{equation}
+	\mathrm{d}\Phi = \mathrm{d}\mathcal{U}-\mathcal{F}_i\mathrm{d}\mathcal{R}_i-\mathcal{R}_i\mathrm{d}\mathcal{F}_i\ .
+\end{equation}
+Using $\mathrm{d}\mathcal{U} = -P\mathrm{d}V+T\mathrm{d}S+\mathcal{F}_i\mathrm{d}\mathcal{R}_i$, we find
+\begin{equation}
+	\mathrm{d}\Phi = -P\mathrm{d}V+T\mathrm{d}S-\mathcal{R}_i\mathrm{d}\mathcal{F}_i\ .
+\end{equation}
+Since $\Phi$ is a state function, $\mathrm{d}\Phi$ is a total (or exact) differential,\index{total differential} and hence:
+\begin{equation}
+	\frac{\partial \mathcal{R}_i}{\partial\mathcal{F}_j} = \frac{\partial \mathcal{R}_j}{\partial\mathcal{F}_i}\ .
+\end{equation}
+We also have $\mathcal{R}_i = K_{ij}\mathcal{F}_j$, so that we find $K_{ij} = K_{ji}$, i.e., the material property matrix $K_{ij}$ is a symmetric matrix.  This symmetry follows from thermodynamical considerations only and is hence an \indexit{intrinsic symmetry}.  It must be valid for all materials.
+
+\subsection{Consequences of intrinsic symmetry}
+Let us now consider the following forces $(\Delta T,\mathbf{E},\mathbf{H},\sigma_{ij})$. We can combine them into a single force vector with $13$ components:
+\begin{equation}
+	\mathcal{F}_j = (\Delta T, E_x, E_y, E_z, H_x, H_y, H_z, \sigma_{xx},\sigma_{yy},\sigma_{zz},\sigma_{xy},\sigma_{xz},
+	\sigma_{yz})\ .
+\end{equation}
+Similarly, we can write for the components of the conjugate responses $(\Delta S,\mathbf{D},\mathbf{B},\epsilon_{ij})$:
+\begin{equation}
+	\mathcal{R}_i = (\Delta S,D_x,D_y,D_z,B_x,B_y,B_z,\epsilon_{xx},\epsilon_{yy},\epsilon_{zz},\epsilon_{xy},\epsilon_{xz},
+	\epsilon_{yz})\ .
+\end{equation}
+Since each of these ``vectors'' has $13$ components, the property matrix $K_{ij}$ connecting them must therefore be a $13\times 13$ matrix.  Note that $K_{ij}$ will become even larger if we add additional forces and responses.
+
+As an example of the use of intrinsic symmetry, consider the entries from Tables~\ref{\chabbr:tb:tensors1}-\ref{\chabbr:tb:tensors4} that are related to the $13$ forces and responses listed above; Table~\ref{\chabbr:tb:small} collects this information into a single table.  
+
+\begin{table}[h]
 \centering\leavevmode
 \begin{tabular}{|l|c|c|c|l|}
 \hline
@@ -425,8 +889,8 @@ Specific Heat   &   $C$   & $\Delta T$ & $T\Delta S$ &   E1\\
 \multicolumn{5}{|c|}{Tensors of Rank 1 (Vectors)}\\
 \hline
 Electrocaloric  &  $p_i$  & $E_i$ & $\Delta S$ & E3\\
-Magnetocaloric & $q_i$  &  $H_i$ & $\Delta S$ & E3\\
 Pyroelectric  &  $p'_i$  & $\Delta T$ & $D_i$ & E3\\
+Magnetocaloric & $q_i$  &  $H_i$ & $\Delta S$ & E3\\
 Pyromagnetic & $q'_i$  &  $\Delta T$ & $B_i$ & E3\\
 \hline
 \multicolumn{5}{|c|}{Tensors of Rank 2}\\
@@ -435,14 +899,8 @@ Thermal expansion  & $\alpha_{ij}$  & $\Delta T$ & $\epsilon_{ij}$ & E6\\
 Piezocaloric effect  & $\alpha'_{ij}$  & $\sigma_{ij}$ & $\Delta S$ & E6\\
 Dielectric permittivity & $\kappa_{ij}$  & $E_j$ & $D_i$ &  E6\\
 Magnetic permeability & $\mu_{ij}$ & $H_j$ & $B_i$ & E6\\
-Optical activity  &  $g_{ij}$  & $l_il_j$ & $G$ &  E6\\
 Magnetoelectric polarization & $\lambda_{ij}$ & $H_j$ & $D_i$  & E9\\
 Converse magnetoelectric polarization & $\lambda'_{ij}$ & $E_j$ & $B_i$  & E9\\
-Electrical conductivity (resistivity) & $\sigma_{ij}$ ($\rho_{ij}$)  & $E_j$ ($j_j$) & $j_i$ ($E_i$) & T6\\
-Thermal conductivity & $K_{ij}$  & $\nabla_j T$ & $h_i$ & T6\\
-Diffusivity  &  $D_{ij}$  &$\nabla_j c$ & $m_i$ & T6\\
-Thermoelectric power  &  $\Sigma_{ij}$ & $\nabla_j T$ & $E_i$ & T9\\
-Hall effect  & $R_{ij}$  & $B_j$ & $\rho^a_{i}$ & T9\\
 \hline
 \multicolumn{5}{|c|}{Tensors of Rank 3}\\
 \hline
@@ -450,308 +908,452 @@ Piezoelectricity  &  $d_{ijk}$  & $\sigma_{jk}$ & $D_i$ &  E18\\
 Converse piezoelectricity  &  $d'_{ijk}$  & $E_k$ & $\epsilon_{ij}$ &  E18\\
 Piezomagnetism &  $Q_{ijk}$  & $\sigma_{jk}$ & $B_i$ & E18\\
 Converse piezomagnetism &  $Q'_{ijk}$  & $H_{k}$ & $\epsilon_{ij}$ & E18\\
-Electro-optic effect & $r_{ijk}$  & $E_k$ & $\Delta\beta_{ij}$&  E18\\
-Nernst tensor & $\Sigma_{ijk}$ & $\nabla_j T B_k$ & $E_i$ & T27\\
 \hline
 \multicolumn{5}{|c|}{Tensors of Rank 4}\\
 \hline
-Elasticity  &  $s_{ijkl}$ ($c_{ijkl}$) & $\sigma_{kl}$ ($\epsilon_{kl}$) & $\epsilon_{ij}$ ($\sigma_{ij}$) & E21\\
-Electrostriction & $\gamma_{ijkl}$  & $E_kE_l$ & $\epsilon_{ij}$ & E36\\
-Photoelasticity & $q_{ijkl}$  & $\sigma_{kl}$ & $\Delta\beta_{ij}$ & E36\\
-Kerr effect & $p_{ijkl}$ & $E_kE_l$ & $\Delta\beta_{ij}$& E36\\
-Magnetoresistance & $\xi_{ijkl}$ & $B_kB_l$ & $\rho^s_{ij}$ & T36\\
-Piezoresistance & $\Pi_{ijkl}$ & $\sigma_{kl}$ & $\Delta \rho_{ij}$ & T36\\
-Magnetothermoelectric power & $\Sigma_{ijkl}$ & $\nabla_j T B_k B_l$ & $E_i$ & T54\\
-Second order Hall effect & $\rho_{ijkl}$ & $B_jB_kB_l$ & $\rho^2_i$ & T30\\
-\hline
-\multicolumn{5}{|c|}{Tensors of Rank 6}\\
-\hline
-Third order elasticity & $c_{ijklmn}$  & $\epsilon_{kl}\epsilon_{mn}$ & $\sigma_{ij}$ & E56\\
+Elasticity  &  $s_{ijkl}$  & $\sigma_{kl}$ & $\epsilon_{ij}$  & E21\\
 \hline
 \end{tabular}
-\caption{Materials property and transport tensors (adapted from Nowick (1995) \textit{Crystal Properties 
-via Group Theory}, Cambridge University Press.}
-\label{tensors}
+\caption{Selected entries from Tables~\ref{\chabbr:tb:tensors1}-\ref{\chabbr:tb:tensors4}.}
+\label{\chabbr:tb:small}
 \end{table}
 
-
-% the following section should move to the 3D rotations chapter
-\subsection{Determining the rotation matrix\label{\chabbr:ssec:rotationmatrixdetermination}}
-
-%\begin{figure}[h]
-%\centering\leavevmode
-%\epsffile{frames.pdf}
-%\end{figure}
-
-Consider two cartesian reference frames, as shown in (a) above.  The ``old'' reference frame has the basis vectors $\mathbf{e}_{i}$,
-the ``new'' reference frame has basis vectors $\mathbf{e}'_{j}$.  Consider also 
+The material property matrix $K_{ij}$ can now be written explicitly as follows:
+\begin{equation}
+	{\footnotesize \left(\begin{matrix}
+	\Delta S\\\hline D_x\\ D_y\\ D_z\\\hline B_x\\ B_y\\ B_z\\\hline \epsilon_{xx}\\ \epsilon_{yy}\\ \epsilon_{zz}\\ \epsilon_{yz}\\ \epsilon_{xz}\\ \epsilon_{xy}\end{matrix}\right) = 
+	\left(\begin{array}{c|ccc|ccc|cccccc}
+	\frac{C}{T} & p_x & p_y & p_z & q_x & q_y & q_z & \alpha'_{xx} & \alpha'_{yy} & \alpha'_{zz} & \alpha'_{yz} & \alpha'_{xz} & \alpha'_{xy}\\
+	\hline
+	p'_x & \kappa_{xx} & \kappa_{xy} & \kappa_{xz} & \lambda_{xx} & \lambda_{xy} & \lambda_{xz} & d_{xxx} & d_{xyy} & d_{xzz} & d_{xyz} & d_{xxz} & d_{xxy}\\
+	p'_y & \kappa_{yx} & \kappa_{yy} & \kappa_{yz} & \lambda_{yx} & \lambda_{yy} & \lambda_{yz} & d_{yxx} & d_{yyy} & d_{yzz} & d_{yyz} & d_{yxz} & d_{yxy}\\
+	p'_z & \kappa_{zx} & \kappa_{zy} & \kappa_{zz} & \lambda_{zx} & \lambda_{zy} & \lambda_{zz} & d_{zxx} & d_{zyy} & d_{zzz} & d_{zyz} & d_{zxz} & d_{zxy}\\
+	\hline
+	q'_x & \lambda'_{xx} & \lambda'_{xy} & \lambda'_{xz} & \mu_{xx} & \mu_{xy} & \mu_{xz} &Q_{xxx} & Q_{xyy} & Q_{xzz} & Q_{xyz} & Q_{xxz} & Q_{xxy}\\
+	q'_y & \lambda'_{yx} & \lambda'_{yy} & \lambda'_{yz} & \mu_{yx} & \mu_{yy} & \mu_{yz} &Q_{yxx} & Q_{yyy} & Q_{yzz} & Q_{yyz} & Q_{yxz} & Q_{yxy}\\
+	q'_z & \lambda'_{zx} & \lambda'_{zy} & \lambda'_{zz} & \mu_{zx} & \mu_{zy} & \mu_{zz} &Q_{zxx} & Q_{zyy} & Q_{zzz} & Q_{zyz} & Q_{zxz} & Q_{zxy}\\
+	\hline
+	\alpha_{xx} & d'_{xxx} & d'_{xxy} & d'_{xxz} & Q'_{xxx} & Q'_{xxy} & Q'_{xxz} & s_{xxxx} & s_{xxyy} & s_{xxzz} & s_{xxyz} & s_{xxxz} & s_{xxxy}\\
+	\alpha_{yy} & d'_{yyx} & d'_{yyy} & d'_{yyz} & Q'_{yyx} & Q'_{yyy} & Q'_{yyz} & s_{yyxx} & s_{yyyy} & s_{yyzz} & s_{yyyz} & s_{yyxz} & s_{yyxy}\\
+	\alpha_{zz} & d'_{zzx} & d'_{zzy} & d'_{zzz} & Q'_{zzx} & Q'_{zzy} & Q'_{zzz} & s_{zzxx} & s_{zzyy} & s_{zzzz} & s_{zzyz} & s_{zzxz} & s_{zzxy}\\
+	\alpha_{yz} & d'_{yzx} & d'_{yzy} & d'_{yzz} & Q'_{yzx} & Q'_{yzy} & Q'_{yzz} & s_{yzxx} & s_{yzyy} & s_{yzzz} & s_{yzyz} & s_{yzxz} & s_{yzxy}\\
+	\alpha_{xz} & d'_{xzx} & d'_{xzy} & d'_{xzz} & Q'_{xzx} & Q'_{xzy} & Q'_{xzz} & s_{xzxx} & s_{xzyy} & s_{xzzz} & s_{xzyz} & s_{xzxz} & s_{xzxy}\\
+	\alpha_{xy} & d'_{xyx} & d'_{xyy} & d'_{xyz} & Q'_{xyx} & Q'_{xyy} & Q'_{xyz} & s_{xyxx} & s_{xyyy} & s_{xyzz} & s_{xyyz} & s_{xyxz} & s_{xyxy}
+	\end{array}\right)
+	\left(\begin{matrix}
+	\Delta T\\\hline E_x\\ E_y\\ E_z\\\hline H_x\\ H_y\\ H_z\\\hline \sigma_{xx}\\ \sigma_{yy}\\ \sigma_{zz}\\ \sigma_{yz}\\ \sigma_{xz}\\ \sigma_{xy}\end{matrix}\right)
+	}\ .
+\end{equation}
+When we take a closer look at this large property matrix, we see that individual material properties show up as blocks within the larger matrix.  For instance, the dielectric permittivity tensor, $\kappa_{ij}$, occupies a $3\times 3$ block inside $K_{ij}$.  Since the large $K_{ij}$ matrix must be symmetric, this imposes restrictions on the component matrices. Along the diagonal of $K_{ij}$ we have the \textit{principal effects},\index{principal effect} which relate a force to its conjugate response.  All those material tensors must be symmetric.  Away from the diagonal we relate a force to the other (non-conjugate) responses (\textit{cross-effects}),\index{cross effects} and there are pair-wise relations between the material tensors of seemingly unrelated force-response pairs.  The entire matrix relation can be expressed more compactly in the following form:
+\begin{align}
+	\Delta S &= \frac{C}{T}\Delta T +p_iE_i + q_iH_i + \alpha'_{ij}\sigma_{ij}\ ;\\
+	D_i &= p'_i\Delta T + \kappa_{ij}E_j + \lambda_{ij} H_j + d_{ijk}\sigma_{jk}\ ;\\
+	B_i &= q'_i\Delta T + \lambda'_{ij}E_j + \mu_{ij} H_j + Q_{ijk}\sigma_{jk}\ ;\\
+	\epsilon_{ij} &= \alpha_{ij}\Delta T +d'_{ijk}E_k + Q'_{ijk} H_k + s_{ijkl}\sigma_{kl}\ .
+\end{align}
+We make in particular the following observations:
 \begin{itemize}
-\item a vector $\mathbf{p}$, with components $p_{i}$
-in the old reference frame and $p'_{j}$ in the new reference frame (see (b) in figure);
-
-\item and a second rank tensor $\bm{\rho}$, with components $\rho_{ij}$ in the old frame and $\rho'_{ij}$ in the new frame.
+	\item The material tensors along the diagonal, $\kappa_{ij}$, $\mu_{ij}$, and $s_{ijkl}$ are symmetric tensors because $K_{ij}$ is symmetric.  This means that $\kappa_{ij}=\kappa_{ji}$, $\mu_{ij}=\mu_{ji}$, and also $s_{ijkl} = s_{klij}$.  These are intrinsic (thermodynamic) symmetries for the principal property tensors.
+	
+	\item The material tensors away from the diagonal are related to each other in the following way:  we have $D_i = \ldots + d_{ijk}\sigma_{jk}$ and $\epsilon_{jk} = \ldots +d'_{jki}E_i+\ldots$.  Since the matrix $K_{ij}$ is symmetric, we must also have $d_{ijk} = d'_{jki}$, or, in words, the components of the piezoelectric tensor $d_{ijk}$ are identical to the components of the converse piezoelectric tensor $d'_{jki}$ (although the units used for each are different).  Note the different order of the indices!  Similar relations can be found for $Q'_{pqr} = Q_{rpq}$ (piezomagnetic and converse piezomagnetic tensors), and $\lambda'_{ij} = \lambda_{ji}$ (direct and converse magnetoelectric polarizabilities).  
+	
+	\item For the entries on the first row or column, we have $\alpha'_{ij} = \alpha_{ij}$, and since there are only $6$ components for this $3\times 3$ matrix, it must be symmetric, i.e., $\alpha_{ij}=\alpha_{ji}$.  This means that the thermal expansion coefficients and the piezocaloric coefficients are identical and symmetric.  The same can be said for the electrocaloric and pyroelectric coefficients, $p'_i = p_i$, and the magnetocaloric and pyromagnetic coefficients, $q'_i=q_i$.  
 \end{itemize}
-The vector $\mathbf{p}$ has also been drawn onto the drawing above.   Note that a second rank tensor does not usually have a simple graphical representation.
-
-First of all, we express the new basis vectors as linear combinations of the old basis vectors:
-\begin{equation}
-	\mathbf{e}'_{i} = \alpha_{ij}\mathbf{e}_{j},
-\end{equation}
-where $\alpha_{ij}$ is the transformation matrix.  For most rotations to be used in this course, the rotation axis will always be parallel to one of the basis vectors, in this case $\mathbf{e}_{z}\parallel\mathbf{e}'_{z}$ (normal to the plane of the drawing).
+The nature of the thermodynamic energy functions, in particular the fact that they are state functions, has far-reaching consequences for the intrinsic symmetry of material properties. Thermodynamic path independence requires that the dielectric permittivity tensor $\kappa_{ij}$ (often also denoted as $\epsilon_{ij}$) be a symmetric tensor.  The same is true for the magnetic permeability and the elastic compliances.  This symmetry requirement is a nice illustration of the importance of symmetry in the context of material properties.  In the following section, we will consider the effect of crystallographic symmetry on the material property tensors that make up the larger $K_{ij}$ matrix.
 
 
-The first step is to determine the components of the transformation matrix $\alpha_{ij}$.  If we label the angle between $\mathbf{e}_{x}$
-and $\mathbf{e}'_{x}$ as $\varphi$, then it is easy to see from the figure that the following relations hold:
-\begin{align*}
-	\mathbf{e}'_{x} &= \cos\varphi\,\mathbf{e}_{x} + \sin\varphi\,\mathbf{e}_{y} + 0\mathbf{e}_{z};\\
-	\mathbf{e}'_{y} &= -\sin\varphi\,\mathbf{e}_{x} + \cos\varphi\,\mathbf{e}_{y} + 0\mathbf{e}_{z};\\
-	\mathbf{e}'_{z} &= 0\mathbf{e}_{x} + 0\mathbf{e}_{y} + 1\mathbf{e}_{z}.
-\end{align*}
-If we write this in matrix form, we obtain:
+\section{Crystallographic Symmetry and the Equilibrium Property Matrix $K_{ij}$}\label{\chabbr:sec:CrySymK}
+
+In this section, we will analyze how crystal symmetry affects the overall property matrix $K_{ij}$. We have already seen in section~\ref{\chabbr:ssec:propsym} how we can apply symmetry operators to tensors: we simply use the standard transformation rule for the tensor and replace the matrix $\alpha_{ij}$ by the relevant symmetry operator matrices. The example in section~\ref{\chabbr:ssec:propsym} used the symmetric magnetic permeability tensor, $\mu_{ij}$, which is a principal effect, to illustrate the process of determining the independent tensor components.  For the off-diagonal or cross-effect material tensors in $K_{ij}$, such as the magnetoelectric polarizability tensor $\lambda_{ij}$, which is \textit{not} symmetric, we find (exercise) using the same procedure for point group \pg{9}:
 \begin{equation}
-	\left(\begin{array}{c}\mathbf{e}'_{x}\\ \mathbf{e}'_{y}\\ \mathbf{e}'_{z}\end{array}\right) = 
-	\left(\begin{array}{ccc}\cos\varphi & \sin\varphi & 0\\
-	-\sin\varphi&\cos\varphi&0\\
-	0&0&1\end{array}\right)\left(\begin{array}{c}\mathbf{e}_{x}\\ \mathbf{e}_{y}\\ \mathbf{e}_{z}\end{array}\right).
+	\lambda_{ij} =  \left[\begin{array}{ccc} 
+	\lambda_{xx} & \lambda_{xy} & 0 \\ 
+	-\lambda_{xy} &  \lambda_{xx} & 0 \\ 
+	0 & 0 & \lambda_{zz}\end{array}\right].
 \end{equation}
-Therefore, we have 
-\begin{equation}
-	\alpha_{ij} = \left(\begin{array}{ccc}\cos\varphi & \sin\varphi & 0\\
-	-\sin\varphi&\cos\varphi&0\\
-	0&0&1\end{array}\right)
-\end{equation}
-We should point out a few things:
+
+This procedure can be repeated for all material tensors of all ranks.  For ranks higher than 2, the procedure becomes somewhat tedious, because the number of matrix products to work out increases rapidly with increasing tensor rank, but it is not very difficult. Group theory offers several very powerful tools to simplify this task, in particular group representation theory and group character tables, but this approach is a bit beyond the level of the present chapter. If we repeat the procedure above for all material tensors that make up the matrix $K_{ij}$ of the previous section, then we obtain the effective property matrix for a crystal with point group \pg{9}:
+
+{\footnotesize\begin{equation}
+	\hspace*{-0.75in}\left(\begin{matrix}
+	\Delta S\\\hline D_x\\ D_y\\ D_z\\\hline B_x\\ B_y\\ B_z\\\hline \epsilon_{xx}\\ \epsilon_{yy}\\ \epsilon_{zz}\\ \epsilon_{yz}\\ \epsilon_{xz}\\ \epsilon_{xy}\end{matrix}\right) = 
+	\left(\begin{array}{c|ccc|ccc|cccccc}
+	\frac{C}{T} & p_x & p_x & p_z & q_x & q_x & q_z & \alpha_{xx} & \alpha_{xx} & \alpha_{zz} & 0 & 0 &0\\\hline
+	p_x & \kappa_{xx} & 0 & 0 & \lambda_{xx} & \lambda_{xy} & 0  & 0 & 0 & 0 & d_{xyz} & d_{xxz} & 0\\
+	p_x & 0 & \kappa_{xx} & 0 & -\lambda_{xy} & \lambda_{xx} & 0 & 0 & 0 & 0 & -d_{xxz} & d_{xyz} & 0\\
+	p_z & 0 & 0 & \kappa_{zz} & 0 & 0 & \lambda_{zz}                   & d_{zxx} & d_{zxx} & d_{zzz} & 0 & 0 & 0\\\hline
+	q_x & \lambda_{xx} & -\lambda_{xy}   & 0 & \mu_{xx} & 0 & 0  &0 & 0 & 0 & Q_{xyz} & Q_{xxz} & 0\\
+	q_x & \lambda_{xy} & \lambda_{xx}    & 0 & 0 & \mu_{xx} & 0  &0 &0 & 0 & -Q_{xxz} & Q_{xyz} & 0\\
+	q_z & 0 & 0 & \lambda_{zz}                      & 0 & 0 & \mu_{zz} &Q_{zxx} & Q_{zxx} & Q_{zzz} & 0 & 0 & 0\\\hline
+	\alpha_{xx} & 0 & 0 & d_{zxx}     & 0 & 0 & Q_{zxx}                        & s_{xxxx} & s_{xxyy} & s_{xxzz} &  0 & 0 & s_{xxxy}\\
+	\alpha_{xx} & 0 & 0 & d_{zxx}    & 0 & 0 & Q_{zyy}                        & s_{xxyy} & s_{xxxx} & s_{xxzz} &  0 & 0 & -s_{xxxy}\\
+	\alpha_{zz} & 0 & 0 & d_{zzz}    & 0 & 0 & Q_{zzz}                       & s_{xxzz} & s_{xxzz} & s_{zzzz} & 0 & 0 & 0\\
+	0 & d_{xyz} & -d_{xxz} & 0 & Q_{xyz} & -Q_{xxz} & 0      & 0 & 0 & 0                       & s_{xzxz} & -s_{xzyz} & 0\\
+	0 & d_{xxz} & d_{xyz} & 0 & Q_{xxz} & Q_{xyz} & 0         & 0 & 0 & 0                       & s_{xzyz} & s_{xzxz} & 0\\
+	0 & 0 & 0 & 0               & 0 & 0 & 0                                & s_{xxxy} & -s_{xxxy} & 0 & 0 & 0 & s_{xyxy}
+	\end{array}\right)
+	\left(\begin{matrix}
+	\Delta T\\\hline E_x\\ E_y\\ E_z\\\hline H_x\\ H_y\\ H_z\\\hline \sigma_{xx}\\ \sigma_{yy}\\ \sigma_{zz}\\ \sigma_{yz}\\ \sigma_{xz}\\ \sigma_{xy}\end{matrix}\right)  
+\end{equation}}
+
+Note that there are many zeroes in this matrix; since $K_{ij}$ has $13\times 13=169$ components, and $K_{ij}=K_{ji}$, we have, due to intrinsic symmetry, only $91$ independent components for the most general (triclinic) case.  For point group \pg{9}, the number of independent components is further reduced to $91-62=29$.  In other words, to fully describe the response of a material with point symmetry \pg{9} to an external set of forces consisting of $(\Delta T, \mathbf{E}, \mathbf{H}, \sigma_{ij})$, we need to know $29$ independent constants, which are grouped in various material tensors.  The higher the symmetry, the smaller the number of independent constants.  For the cubic case (highest symmetry, point group $\mathbf{m\bar{3}m}$), the corresponding matrix has only $8$ independent constants:
+
+{\small\begin{equation}
+	\left(\begin{matrix}
+	\Delta S\\\hline D_x\\ D_y\\ D_z\\\hline B_x\\ B_y\\ B_z\\\hline \epsilon_{xx}\\ \epsilon_{yy}\\ \epsilon_{zz}\\ \epsilon_{yz}\\ \epsilon_{xz}\\ \epsilon_{xy}\end{matrix}\right) = 
+	\left(\begin{array}{c|ccc|ccc|cccccc}
+	\frac{C}{T} & 0 & 0 & 0 & 0 & 0 & 0 & \alpha & \alpha & \alpha & 0 & 0 &0\\\hline
+	0 & \kappa & 0 & 0 & \lambda & 0 & 0  & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & \kappa & 0 & 0 & \lambda & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & \kappa & 0 & 0 & \lambda                   & 0 & 0 & 0 & 0 & 0 & 0\\\hline
+	0 & \lambda & 0   & 0 & \mu & 0 & 0  &0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & \lambda    & 0 & 0 & \mu & 0  &0 &0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & \lambda                      & 0 & 0 & \mu &0 & 0 & 0 & 0 & 0 & 0\\\hline
+	\alpha & 0 & 0 & 0     & 0 & 0 & 0                      & s_{xxxx} & s_{xxyy} & s_{xxyy} & 0 & 0 & 0\\
+	\alpha & 0 & 0 & 0    & 0 & 0 & 0                       & s_{xxyy} & s_{xxxx} & s_{xxyy} & 0 & 0 & 0\\
+	\alpha & 0 & 0 & 0    & 0 & 0 & 0                       & s_{xxyy} & s_{xxyy} & s_{xxxx} & 0 & 0 & 0\\
+	0 & 0 & 0 & 0               & 0 & 0 & 0                                & 0 & 0 & 0 & s_{yzyz} & 0 & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0      & 0 & 0 & 0                                         & 0 & s_{yzyz} & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0      & 0 & 0 & 0                                         & 0 & 0 & s_{yzyz}
+	\end{array}\right)
+	\left(\begin{matrix}
+	\Delta T\\\hline E_x\\ E_y\\ E_z\\\hline H_x\\ H_y\\ H_z\\\hline \sigma_{xx}\\ \sigma_{yy}\\ \sigma_{zz}\\ \sigma_{yz}\\ \sigma_{xz}\\ \sigma_{xy}\end{matrix}\right)  
+\end{equation}}
+Note that for the cubic symmetry, all material tensors of rank less than $4$ either vanish completely or are equal to a scalar; only the elastic compliance tensor $s_{ijkl}$, of rank $4$, does not reduce to a scalar.  We learn from this matrix that cubic materials can not exhibit the following equilibrium properties: electrocaloric, magnetocaloric, pyroelectric, pyromagnetic, direct and converse piezoelectricity and piezomagnetism; crystallographic symmetry simply does not allow them. It is also clear that the principal effects can never vanish; all materials have a specific heat constant, a dielectric tensor, a magnetic permeability tensor, and a compliance tensor.  
+
+It is important to realize that the form of $K_{ij}$ for a given crystallographic symmetry directly determines how many property measurements need to be carried out to fully determine the relations between the fields $[\Delta T, \mathbf{E}, \mathbf{H}, \bm{\sigma}]$ and the corresponding responses $[\Delta S, \mathbf{D}, \mathbf{B}, \bm{\epsilon}]$. Only $8$ measurements need to be carried out for symmetry \pg{32}: specific heat, thermal expansion, dielectric constant, magnetic permeability, magnetoelectric polarizability (all of which are scalars), and three elastic compliances.  We can therefore summarize these relations for \pg{32} as:
+\begin{align}
+	\Delta S &= \frac{C}{T}\Delta T + \alpha \text{Tr}(\bm{\sigma})\ ;\\
+	D_i &=  \kappa E_i + \lambda H_i\ ;\\
+	B_i &=  \lambda E_i + \mu H_i\ ;\\
+	\epsilon_{ij} &= \alpha\Delta T\delta_{ij} + s_{ijkl}\sigma_{kl}\ .
+\end{align}
+This symmetry analysis thus directly tells us which measurements to carry out.
+
+\vfill
+\newpage
+For (upper) hexagonal symmetry, with point group \pg{27}, another very common symmetry in the materials field, the property matrix $K_{ij}$ becomes:
+{\small\begin{equation}
+	K_{ij} = 
+	\left(\begin{array}{c|ccc|ccc|cccccc}
+	\frac{C}{T} & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{1} & \alpha_{1} & \alpha_{2} & 0 & 0 &0\\\hline
+	0 & \kappa_{1} & 0 & 0 & \lambda_{1} & 0 & 0  & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & \kappa_{1} & 0 & 0 & \lambda_{1} & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & \kappa_{2} & 0 & 0 & \lambda_{2}                   & 0 & 0 & 0 & 0 & 0 & 0\\\hline
+	0 & \lambda_{1} & 0   & 0 & \mu_{1} & 0 & 0  &0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & \lambda_{1}    & 0 & 0 & \mu_{1} & 0  &0 &0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & \lambda_{2}                      & 0 & 0 & \mu_{2} &0 & 0 & 0 & 0 & 0 & 0\\\hline
+	\alpha_{1} & 0 & 0 & 0     & 0 & 0 & 0                      & s_{xxxx} & s_{xxyy} & s_{xxzz} & 0 & 0 & 0\\
+	\alpha_{1} & 0 & 0 & 0    & 0 & 0 & 0                       & s_{xxyy} & s_{xxxx} & s_{xxzz} & 0 & 0 & 0\\
+	\alpha_{2} & 0 & 0 & 0    & 0 & 0 & 0                       & s_{xxzz} & s_{xxzz} & s_{zzzz} & 0 & 0 & 0\\
+	0 & 0 & 0 & 0               & 0 & 0 & 0                                & 0 & 0 & 0 & s_{yzyz} & 0 & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0      & 0 & 0 & 0                                         & 0 & s_{yzyz} & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0      & 0 & 0 & 0                                         & 0 & 0 & s_{xxxx}-s_{xxyy}
+	\end{array}\right)\ ,
+\end{equation}}
+which has $14$ independent material property constants.  Note that it is common practice for hexagonal and tetragonal systems to use a single index notation for the tensor elements, e.g. $\kappa_1=\kappa_{xx}$ and $\kappa_2=\kappa_{zz}$ for the dielectric tensor.
+
+Note also that symmetry does not tell us anything about the \textit{magnitude} of the tensor components; it only tells us which components are allowed to be non-zero. Hence, it is entirely possible for some of these properties, such as the magnetoelectric effect, to be very weak in certain materials, even when symmetry would allow for the property to exist.
+
+\section{Crystallographic Symmetry and the Transport Property Matrix $L_{ij}$}\label{\chabbr:sec:CrySymL}
+
+When we discussed equilibrium properties and thermodynamic symmetry earlier in this chapter, we made use of the path independence of thermodynamic state functions to show that the property matrix $K_{ij}$ must have intrinsic symmetry.  Then we applied crystallographic symmetry to further reduce the number of independent material tensor components.  In the present section we will do the same for transport properties, i.e., those properties that have to do with the motion of electrical charges, vacancies and atoms, and heat.  We will find that many of the principles used for the equilibrium properties remain valid, but there are subtle differences, in particular in the presence of magnetic fields.  
+
+In what follows, we will assume that the system is only slightly out of equilibrium; this will allow us to apply the \indexit{principle of microscopic reversibility} and Onsager's \indexit{reciprocity theorem}. This principle states that as long as the particles move over short distances in response to a gradient, a reversal of the sign of the gradient would make all particles reversibly return to their original positions; in other words, over short distances, i.e., microscopic distances, the system is reversible. Moreover, the system response in steady-state conditions, generally known as a \indexit{flux}, is considered to be linear in the gradients, which take the place of the forces from the equilibrium properties.  In other words, for small deviations from equilibrium and in steady-state, the terms (Force, Response) used for equilibrium properties are replaced by (Gradient, Flux) for transport properties; to first order, the relations between these two are once again linear, and we expect to find both principal and cross effects, as was the case for equilibrium properties.
+
+\begin{messagebox}{Lars Onsager and the Reciprocity Theorem}{olive}{\icinfo}{white}
+\begin{minipage}{0.45\textwidth}
+\vspace{.8em}
+{\centering\includegraphics[angle=0,origin=c,width=2.25in]{\graphicspath Onsager.pdf}\par}
+
+\vspace{.7em}
+
+\em Bas-relief of Lars Onsager\index{Lars Onsager} at the Norwegian University of Science and Technology (NTNU, Trondheim, Norway); photo taken by the author in June 2019. \label{pageonsager}
+\end{minipage}\hspace{1em}
+\begin{minipage}{0.53\textwidth}
+In 1931, Onsager worked out the reciprocity theorem which was published in Physical Review \cite{onsager1931a}.  He was Norwegian-born but worked in the USA at Brown University when he proved the equality $L_{ij}=L_{ji}$ that is engraved in a bas-relief at NTNU in Trondheim, Norway. His work brought insight and structure into how various transport properties are related to each other. Other researchers had already found evidence of this equality (e.g., W.\ Thomson regarding the Peltier and Seebeck effects), but Onsager was the first to prove the equality within the context of non-equilibrium thermodynamics. He received the Noble prize in Chemistry for his work in 1968.  About a decade after Onsager's work, Ilya Prigogine and others extended his work and derived a thermodynamic theory for systems that are far out of equilibrium; Prigogine received the Noble prize in Chemistry for his ``theory of dissipative structures'' in 1977. 
+\end{minipage}
+\end{messagebox}
+
+\subsection{Transport Properties and Thermodynamic Symmetry}\label{\chabbr:ssec:Lintrinsicsymmetry}
+
+We will assume that there is a small departure from equilibrium, and also that the material is in a steady-state condition, meaning that the departure from equilibrium does not depend on time.  A departure from equilibrium can in general be described by a gradient operation. For instance, when a concentration gradient is created from one side of a material to the other, there will be a flow of mass in response to the gradient.  When a gradient of electrical potential (i.e., an electric field) is applied, then there will be a flow of electrical charges, and so on.  In Tables~\ref{\chabbr:tb:tensors1}--\ref{\chabbr:tb:tensors4}, we introduced a number of gradients:
 \begin{itemize}
-\item If we look at the columns of this matrix, we see that they are the projections of the unprimed (old) basis vectors onto
-the primed (new) basis vectors (shown in Fig. (c)).  The rows of this matrix are the projections of the primed (new) basis vectors 
-onto the unprimed (old) basis vectors (shown in Fig. (d)).  
-\item  The rotation from $\mathbf{e}_{i}$ to $\mathbf{e}'_{j}$ is a counterclockwise rotation.  We could also rotate the $\mathbf{e}_{i}$ clockwise by
-an angle $2\pi-\varphi$.  This would lead to the same $\mathbf{e}'_{j}$.  Since $\cos(2\pi-\varphi)=\cos\varphi$, and $\sin(2\pi-\varphi)=-\sin\varphi$,
-the difference between a clockwise and counterclockwise rotation matrix is just in the sign of $\varphi$.  
-\item A rotation matrix has the property that the transpose of the matrix is equal to the inverse.  So, in other words, if we rotate by $-\varphi$ (which is 
-the inverse rotation), we can simply take the transpose of the matrix instead of computing the inverse explicitly.
-\item The inverse coordinate transformation (to go from new to old) of the basis vectors is given by the matrix $\beta_{ij}=(\alpha^{-1})_{ij}$:
-\begin{equation}
-	\mathbf{e}_{i} = \beta_{ij}\mathbf{e}'_{j}.
-\end{equation}
-To keep the notation clear, we will continue to use $\beta$ instead of $\alpha^{-1}$.
+	\item Temperature gradient: $\bm{\nabla} T$ is the temperature gradient at a given point in a material.  It is a vector quantity (tensor of rank 1), defined by:
+		\[
+		\bm{\nabla} T = \frac{\partial T}{\partial x_1}\mathbf{e}_1+
+		\frac{\partial T}{\partial x_2}\mathbf{e}_2+
+		\frac{\partial T}{\partial x_3}\mathbf{e}_3 = \nabla_j T\mathbf{e}_j\ ,
+		\]
+		where $T=T(\mathbf{r})$ is the temperature field, and $\nabla_j=\partial/\partial x_j$.  The material response to this gradient is a \indexit{heat flow}, represented by a vector $\mathbf{h}$.  The relation between heat flow and temperature gradient is given by indexit{Fourier's Law of heat conduction}:
+	\begin{equation}
+		\mathbf{h} = -\bm{K}\bm{\nabla} T\ ,\label{\chabbr:eq:FouriersLaw}
+	\end{equation}
+	or, in component notation:
+	\[
+		h_i = -K_{ij}\nabla_j T\ .
+	\]
+	The gradient can be regarded as a ``force,'' and the heat flow as the ``response'' of the material.  The minus sign indicates that heat flows downhill (the gradient operator always produces a vector that points uphill).  The tensor $\bm{K}$ is known as the \indexit{thermal conductivity tensor}.  If the temperature gradient is measured in units of $[K/m]$, and the heat flow as $[J/m^2/s]$, then the thermal conductivity is measured in units of $[W/m/K]$ (Watts per meter per Kelvin).
+		
+	\item Electrical potential gradient: $\bm{\nabla} \phi_e$ is the electrical potential gradient at a point in the material.  It is a vector quantity (tensor of rank 1), and is usually written as the electric field vector 
+	\[
+		\mathbf{E}(\mathbf{r}) = -\bm{\nabla} \phi_e(\mathbf{r})\ .
+	\]
+	The material response to this gradient is an \indexit{electrical current flow}, represented by a vector $\mathbf{j}$.  The relation between current flow and potential gradient is given by \indexit{Ohm's Law}:
+	\begin{equation}
+		\mathbf{j} = -\bm{\sigma}\bm{\nabla} \phi_e = \bm{\sigma}\mathbf{E}\ ,\label{\chabbr:eq:OhmsLaw}
+	\end{equation}
+	or, in component notation:
+	\[
+		j_i = \sigma_{ij}E_j=-\sigma_{ij}\nabla_j\phi_e\ .
+	\]
+	The tensor $\bm{\sigma}$ is known as the \indexit{electrical conductivity} tensor.  If the potential gradient is measured in units of $[V/m]$, and the current flow as $[C/m^2/s]$, then the electrical conductivity is measured in units of $[1/m \Omega]$ (per meter per Ohm, $\Omega = V/A$).
+	
+	\item Concentration gradient: $\bm{\nabla} c$ is the concentration gradient at a point in the material.  It is a vector quantity (tensor of rank 1). The material response to this gradient is a \indexit{mass flux}, represented by a vector $\mathbf{m}$.  The relation between mass flow and concentration gradient is given by 
+	\begin{equation}
+		\mathbf{m} = -\bm{D}\bm{\nabla} c\ ,\label{\chabbr:eq:FicksFirstLaw}
+	\end{equation}
+	(known as \indexit{Fick's first law}) or, in component notation:
+	\[
+		m_i = -D_{ij}\nabla_j c\ .
+	\]
+	The tensor $\bm{D}$ is known as the \indexit{diffusivity} tensor.  If the concentration gradient is measured in units of $[atoms/m^3/m]$, and the mass flow as $[atoms/m^2/s]$, then the diffusivity is measured in units of $[m^2/s]$ (meter squared per second).
 \end{itemize}
+For convenience, the relevant entries from Tables~\ref{\chabbr:tb:tensors1}--\ref{\chabbr:tb:tensors4} are collected in Table~\ref{\chabbr:tb:transport}.
 
-Now that we have determined the rotation matrix $\alpha_{ij}$, we can apply it to the transformation of the vector $\mathbf{p}$.  Since a vector does not depend
-on the reference frame, we must have:
+
+\begin{table}
+\centering\leavevmode
+\begin{tabular}{|l|c|c|c|l|}
+\hline
+Property   &  Symbol   &  Field & Response & Type\#  \\
+\hline
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 2}\\
+\hline
+\indexit{Electrical conductivity} & $\sigma_{ij}$ [S/m] & $E_j$  & $j_i$  & T6\\
+\indexit{Electrical resistivity} & $\rho_{ij}$ [$\Omega$\,m] & $j_j$ & $E_i$ & T6\\
+\indexit{Thermal conductivity} & $K_{ij}$ [W/(m\,K)]  & $\nabla_j T$ & $h_i$ & T6\\
+\indexit{Diffusivity}  &  $D_{ij}$ [m$^2$/s]  &$\nabla_j c$ & $m_i$ & T6\\
+\indexit{Thermoelectric power}  &  $\Sigma_{ij}$ [V/K] & $\nabla_j T$ & $E_i$ & T9\\
+\indexit{Peltier effect} & $\pi_{ij}$ [V]& $Tj_j$  &  $h_i$  & T9\\
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 3}\\
+\hline
+\indexit{Nernst tensor} & $\Sigma_{ijk}$ [V/(K\,T)] & $\nabla_j T B_k$ & $E_i$ & T27\\
+\hline
+\multicolumn{5}{|c|}{Tensors of Rank 4}\\
+\hline
+\indexit{Magnetothermoelectric power} & $\Sigma_{ijkl}$ [V/(K\,T$^2$)] & $\nabla_j T B_k B_l$ & $E_i$ & T54\\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:transport}List of material transport tensors.}
+\end{table}
+
+% we leave magnetic effects for the actual TransportProperties chapter ... 
+% Note that the magnetic induction, $\mathbf{B}$, which we also used as a ``force'' in Table~\ref{tensors}, has not yet been discussed.  It, too, can be considered as the gradient of a potential, in this case the (scalar) magnetic potential $\phi_m$.\footnote{We call it a scalar potential, to distinguish it from the magnetic vector potential, which can also be used to describe the magnetic induction in the presence of currents.} We will return to magnetic fields later on, because their effect is significantly more complex than that of the other three gradients we have discussed so far.
+
+Note that the three material tensors that we have introduced, $\bm{K}, \bm{\sigma}$, and $\bm{D}$, relate a gradient of a particular type to the corresponding flux \indexit{of the same type} (i.e, thermal gradient to thermal flux, electrical gradient to electrical flux, ...).  This means that those tensors represent \indexit{principal effects}. We should also allow for \indexit{cross effects} to occur, for instance, an electrical current induced by a temperature gradient. For equilibrium properties, we required that the product of a force and its conjugate response have the dimensions of energy density.  For transport properties, one can show that this product must be equal to $T\dot{S}$, with $\dot{S}=\mathrm{d}S/\mathrm{d}t$, the rate of entropy density production in the system in units of J/sKm$^3$.  It is easy to verify, for instance, that the product of $\mathbf{m}$ and $\bm{\nabla} c$ does not have the required dimensions which indicates that the gradients as listed above are not the actual thermodynamic forces that are needed to obtain conjugate pairs with the correct dimensions.
+
+Let us denote a flux by the general symbol $J$, and the conjugate thermodynamic force by the symbol $X$.  If the departure from equilibrium is small, we can once again write down a linear relation between forces and fluxes of the form:
+\[
+	J_{i}  = L_{ij} X_j,
+\]
+where $L_{ij}$ is written instead of $K_{ij}$, to distinguish between equilibrium and transport properties.  The arguments of Onsager's theory are both subtle and complex and belong to the domain of irreversible thermodynamics. For our purposes, it will be sufficient to state that, if the correct thermodynamic forces $X_j$ and fluxes $J_i$ are used, then the matrix $L_{ij}$ must be symmetric,  i.e., $L_{ij}=L_{ji}$; in particular,  this means that the principal transport property tensors, $\bm{K}, \bm{\sigma}$, and $\bm{D}$, must be symmetric tensors.
+
+\subsection{Principal and cross transport effects}\label{\chabbr:ssec:Lprincipaleffects}
+
+As an example of the application of Onsager's reciprocity theorem, we consider here the combination of thermal and electrical transport properties. The correct thermodynamic forces $\bm{X}$ can be shown to be given by:
+\begin{align}
+	\bm{X}^t &= -\frac{1}{T}\bm{\nabla}T;\\
+	\bm{X}^e &= -\bm{\nabla}\bar{\phi},
+\end{align}
+where $\bar{\phi} = \phi_e - \mu/e$ with $\mu$ the electrochemical potential and $\phi_e$ the electrical potential. The resulting flux equations are then written as
+\begin{align}
+	j_i &= \sigma_{ij} X^e_j - \beta_{ij} X^t_j;\\
+	h_i &= -\beta'_{ij}X^e_j +\gamma_{ij} X^t_j.
+\end{align}
+The $L_{ij}$ matrix is thus given by:
 \begin{equation}
-	\mathbf{p}=p'_{i}\mathbf{e}'_{i} = p_{j}\mathbf{e}_{j}.
+	L = \left(\begin{array}{cc} \bm{\sigma} & -\bm{\beta}\\ 
+	-\bm{\beta}' & \bm{\gamma}\end{array}\right).
 \end{equation}
-If we want to determine the new components $p'_{i}$, the must first replace the old basis vectors $\mathbf{e}_{i}$ by the new ones:
+Application of $L_{ij}=L_{ji}$ indicates that $\sigma_{ij}=\sigma_{ji}$, $\gamma_{ij}=\gamma_{ji}$ and $\beta_{ij} = \beta'_{ji}$; in other words, $\bm{\sigma}$ and $\bm{\gamma}$ must be symmetric tensors, and $\bm{\beta}$ and $\bm{\beta}'$ must be each other's transpose (but not necessarily symmetric).  In the absence of a thermal gradient, $\bm{\sigma}$ is the electrical conductivity tensor;  $\bm{\gamma}$ is related to the thermal conductivity tensor, as we will now show.
+
+It is customary to rewrite the equations in terms of the current density $\mathbf{j}$ and the temperature gradient $\bm{\nabla}T$ as the independent variables:
+\begin{align}
+	\mathbf{E} &= \bm{\rho}\mathbf{j} - \bm{\Sigma}\bm{\nabla} T;\\
+	\mathbf{h} &= -T\bm{\Sigma}'\mathbf{j} - \bm{K}\bm{\nabla} T.
+\end{align}
+In these equations, $\bm{\rho} = \bm{\sigma}^{-1}$ is the \indexit{resistivity tensor}. The tensor $\bm{\Sigma}$ is defined by:
 \begin{equation}
-	p'_{i}\mathbf{e}'_{i} = p_{j}\mathbf{e}_{j}=p_{j}\beta_{ji}\mathbf{e}'_{i}.
+	\bm{\Sigma} = \frac{\bm{\rho}\bm{\beta}}{T},
 \end{equation}
-Using this relation, we have
+and is known as the \indexit{thermoelectric power} tensor; $T\bm{\Sigma}'$ is often replaced by the \indexit{Peltier effect tensor}, $\bm{\pi}$.  We also have that $\bm{\Sigma}'$ is the transpose of $\bm{\Sigma}$, and for the thermal conductivity tensor we find:
 \begin{equation}
-	p'_{i} = p_{j}\beta_{ji}.
+	\bm{K} = \frac{1}{T}\left(\bm{\gamma} - \bm{\beta}'\bm{\rho}\,\bm{\beta}\right).
 \end{equation}
-Explicitly, this equation reads (making use of the fact that $\beta$ is the transpose of $\alpha$):
-\begin{equation}
-	\left(\begin{array}{ccc}p'_{x}&p'_{y}&p'_{z}\end{array}\right) = 
-	\left(\begin{array}{ccc}p_{x}&p_{y}&p_{z}\end{array}\right)  \left(\begin{array}{ccc}\cos\varphi & -\sin\varphi & 0\\
-	\sin\varphi&\cos\varphi&0\\
-	0&0&1\end{array}\right)
-\end{equation}
-We can convert this into a notation with column vectors instead of row vectors, by transposing the entire equation.  The basic rule for transposition
-is that the transpose of a product is the product of the transposes in reverse order.  So, we find:
-\begin{equation}
-	\left(\begin{array}{c}p'_{x}\\ p'_{y}\\ p'_{z}\end{array}\right) = 
-	\left(\begin{array}{ccc}\cos\varphi & \sin\varphi & 0\\
-	-\sin\varphi&\cos\varphi&0\\
-	0&0&1\end{array}\right)
-	\left(\begin{array}{c}p_{x}\\ p_{y}\\ p_{z}\end{array}\right),
-\end{equation}
-or, in index notation:
-\begin{equation}
-	p'_{i} = \alpha_{ij}p_{j}.
-\end{equation}
-This is the transformation equation for the components of a vector, from old to new.
-
-In exactly the same way, we can prove that the transformation for a second rank tensor is given by:
-\begin{equation}
-	\rho'_{ij}	= \alpha_{ik}\alpha_{jl}\rho_{kl}.
-\end{equation}
-When this is written in matrix notation, we have:
-\begin{equation}
-	\left(\begin{array}{ccc}\rho'_{xx} & \rho'_{xy} & \rho'_{xz}\\
-	\rho'_{yx}&\rho'_{yy}&\rho'_{yz}\\
-	\rho'_{zx}&\rho'_{zy}&\rho'_{zz}\end{array}\right) =
-	\left(\begin{array}{ccc}\cos\varphi & \sin\varphi & 0\\
-	-\sin\varphi&\cos\varphi&0\\
-	0&0&1\end{array}\right)
-	\left(\begin{array}{ccc}\rho_{xx} & \rho_{xy} & \rho_{xz}\\
-	\rho_{yx}&\rho_{yy}&\rho_{yz}\\
-	\rho_{zx}&\rho_{zy}&\rho_{zz}\end{array}\right)
-	\left(\begin{array}{ccc}\cos\varphi & -\sin\varphi & 0\\
-	\sin\varphi&\cos\varphi&0\\
-	0&0&1\end{array}\right)
-\end{equation}
-Note that the order of these matrices is important!  
+It is thus clear that the Onsager reciprocity theorem results in relations between the various material transport property tensors.  We already know what the resistivity and thermal conductivity are, so let's take a closer look at these two new material properties, the thermoelectric effect and the Peltier effect. The units of both thermoelectric power and Peltier effect are $[V/K]$, and for the resistivity tensor we have $[\Omega m]$.
 
 
-\subsection{Tensor Transformation Examples}
-
-\begin{example}
-Consider a long cylindrical single crystal with a uniform circular cross section, cut in such a way that 
-the $[101]$ direction lies along its length.  The crystal has a tetragonal structure with $c=2a$, and has
-the following resistivity tensor (referred to a Cartesian basis parallel to the crystal basis):
-\[
-	\rho_{ij} = \left[\begin{matrix}
-	16&0&0\\
-	0&16&0\\
-	0&0&4\end{matrix}\right]\,\text{$\Omega$ m}.
-\]
-The relevant material property relation is $\mathbf{E} = \bm{\rho}\mathbf{j}$.
-\begin{itemize}
-	\item What is the resistivity along the axis of the cylinder?
-	\item What is the angle between the electric field needed to produce an electrical current density
-	along the cylinder axis, and the cylinder axis?
-\end{itemize}
-
-To answer these questions, we need to select a number of reference frames.  The first reference frame
-is the Bravais lattice of the crystal.  Since the cylinder axis is along $[101]$, we will draw the $\mathbf{a}$
-and $\mathbf{c}$ Bravais basis vectors in the appropriate orientation (see Fig.~\ref{\chabbr:fig:q1}).  The $\mathbf{b}$ vector
-points into the plane of the drawing, so that the drawing is essentially two-dimensional.  Then we define
-a Cartesian reference frame with the same orientation as the Bravais frame, and with unit length basis vectors
-$\mathbf{e}_x$, $\mathbf{e}_y$ and $\mathbf{e}_z$.  Finally, we define another Cartesian frame, with 
-$\mathbf{e}'_x$ along the cylinder axis, $\mathbf{e}'_y$ parallel to $\mathbf{e}_y$, and $\mathbf{e}'_z$ normal to the 
-cylinder axis.
-
-%\begin{figure}[h]
-%\centering\leavevmode
-%\epsffile{q1}
-%\caption{Illustration of the three reference frames needed to solve the first example question.}
-%\label{\chabbr:fig:q1}
-%\end{figure}
-
-We know that the tensor components of the resistivity are defined in the Cartesian reference frame that is parallel
-to the Bravais basis vectors, i.e., in the $\mathbf{e}_i$ reference frame.
-
-The angle between $\mathbf{e}_x$ and $\mathbf{e}'_x$ is equal to $\varphi$.  It is easy to see that 
-$\sin\varphi=\frac{2}{\sqrt{5}}$ and $\cos\varphi=\frac{1}{\sqrt{5}}$.
-
-The transformation matrix $\alpha_{ij}$ which expresses the vectors $\mathbf{e}'_i$ in terms of the vectors 
-$\mathbf{e}_j$ represents a counterclockwise rotation by $\varphi$ around the $y$ direction.  The matrix can 
-be written as:
-\[
-	\alpha_{ij} = \left(\begin{matrix}
-	\cos\varphi & 0 & \sin\varphi\\
-	0 & 1 & 0 \\
-	-\sin\varphi & 0 & \cos\varphi\end{matrix}\right)
-\]
-
-First we will transform the resistivity tensor.  The standard transformation formula states:
-\[
-	\rho'_{ij} = \alpha_{ik}\alpha_{jl}\rho_{kl}.
-\]
-We need only the component of the resistivity along the $x'$ direction, which is $\rho'_{xx}$:
-\begin{align*}
-	\rho'_{xx} &= \alpha_{xk}\alpha_{xl}\rho_{kl};\\
-	&= \alpha^2_{xk}\rho_{kk}\qquad\text{(sum over k)};\\
-	&= \cos^2\varphi \rho_{xx}+\sin^2\varphi \rho_{zz};\\
-	&= \frac{16}{5}+4\times \frac{4}{5} = 6.4\,\,\Omega\text{m}.
-\end{align*}
-
-For the second question, we need to determine the components of the electric field vector $\mathbf{E}$.  We know
-that 
-\[
-	E'_k = \alpha_{kl}E_{l}.
-\]
-We also know that 
-\[
-	E_l = \rho_{lk}j_k.
-\]
-So, if we can find $j_k$, then the problem is basically solved.  Since the current direction is $[101]$ in the 
-Bravais frame, and the $\mathbf{c}$ basis vector is twice as long as $\mathbf{a}$, the components of $\mathbf{j}$
-are 
-\[
-	\mathbf{j} = j[102]
-\]
-with $j$ the magnitude of the current density.  The product $\rho_{lk}j_k$ is then equal to $j[16\,0\,8]$, and these
-are the components $E_k$.   We can transform them into the other reference frame:
-\begin{align*}
-	E'_x &={\alpha}_{xx}E_x+{\alpha}_{xz}E_z = 16j\cos\varphi + 8j\sin\varphi = \frac{32j}{\sqrt{5}};\\
-	E'_y  &= 0;\\
-	E'_z &={\alpha}_{zx}E_x+{\alpha}_{zz}E_z = -16j\sin\varphi+8j\cos\varphi = -\frac{24j}{\sqrt{5}}
-\end{align*}
-The angle $\theta$ between this vector $\mathbf{E}$ and the cylinder axis can be computed using standard trigonometry
-$(\tan^{-1}(\theta)=E_z/E_x = -3/4)$ 
-and is given by $36.87^{\circ}$.  The vector $\mathbf{E}$ has been indicated on Fig.~\ref{\chabbr:fig:q1}.
-\end{example}
-
-% second example
-\begin{example}
-Two crystals are cut from a tetragonal single crystal with $c=a\sqrt{2}$.  The top and bottom plane of each crystal
-is parallel to the $(101)$ plane.  The thermal conductivity tensor expressed in a Cartesian reference frame aligned 
-with the Bravais reference frame is given by:
-\[
-	K_{ij} = \left[\begin{matrix}
-	15&0&0\\
-	0&15&0\\
-	0&0&10\end{matrix}\right]\,\text{Wm$^{-1}$K$^{-1}$}.
-\]
-The relevant material property relation is $\mathbf{h} = -\bm{K}\bm{\nabla}T$.
-\begin{itemize}
-	\item the first crystal is $0.4$ cm thick, with circular faces of surface area $10$ cm$^2$.  If the temperature
-	gradient along the normal to the faces is $50^{\circ}$ C per meter, what is the heat flow between source
-	and sink?
-	\item the second crystal is $10$ cm long, and has a cross sectional area of $1$ cm$^2$.  The heat flow is $1$ Watt 
-	per meter squared.  What is the temperature difference $\Delta T$ between source and sink?
-\end{itemize}
-
-Again we start by defining the relevant reference frames.  The contact plane between the crystals and the heat source
-and sink is parallel to the $(101)$ plane, as shown in Fig.~\ref{\chabbr:fig:q2}.
-
-%\begin{figure}[h]
-%\centering\leavevmode
-%\epsffile{q2}
-%\caption{Illustration of the three reference frames needed to solve the second example question.}
-%\label{\chabbr:fig:q2}
-%\end{figure}
-
-The angle $\varphi$ between $\mathbf{e}'_x$ and $\mathbf{e}_x$ is this time determined from $\sin\varphi=
-\sqrt{3/8}$ and $\cos\varphi=\sqrt{5/8}$.
-
-The transformation matrix ${\alpha}_{ij}$ is the same as the one in the first example.  This means that the thermal 
-conductivity along the direction normal to the $(101)$ planes is equal to:
-\[
-	K'_{xx} ={\alpha}_{xk}{\alpha}_{xl}K_{kl} ={\alpha}^2_{xk}K_{kk}\qquad\text{sum over k},
-\]
-and therefore
-\[
-	K'_{xx} = \cos^2\varphi K_{xx} + \sin^2\varphi K_{zz}= \frac{5}{8}\times 15 + \frac{3}{8}\times 10 =  
-	\frac{105}{8} = 13.125\,\,\text{W/m/K}.
-\]
-The thermal flux in the direction normal to $(101)$ is then given by:
-\[
-	h'_x = -K'_{xx} \frac{\partial T}{\partial x'} = -13.125 \times 50 = -656.25\,\,\text{W/m$^2$}.
-\]
-The minus sign can be dropped, since only the magnitude is important.
-This can be converted into a heat flow by multiplying with the cross sectional area of the crystal:
-\[
-	\text{heat flow} = h'_x \times 10\times 10^{-4} = 656.25\,\,\text{mW}.
-\]
-
-For the second crystal, we know that the heat flow is $1$ Watt, so we must invert the material relation to
-\[
-	\frac{\partial T}{\partial x'} = -\frac{1}{K'_{xx}} h'_x 
-\]
-The thermal flux is equal to 
-\[
-	h'_x = \frac{1\,\text{Watt}}{10^{-4}\,\text{m$^2$}} = 10^4\,\,\text{W/m$^2$}.
-\]
-Therefore, the temperature difference $\Delta T$ is given by (again, only the magnitude is important):
-\[
-	\Delta T = \frac{\Delta x'}{K'_{xx}} h'_x =  \frac{0.1}{13.125}10^4 = 76.2^{\circ}\text{C}.
-\]
-\end{example}
-
-
+%\subsection{Tensor Transformation Examples}
+%
+%\begin{example}
+%Consider a long cylindrical single crystal with a uniform circular cross section, cut in such a way that 
+%the $[101]$ direction lies along its length.  The crystal has a tetragonal structure with $c=2a$, and has
+%the following resistivity tensor (referred to a Cartesian basis parallel to the crystal basis):
+%\[
+%	\rho_{ij} = \left[\begin{matrix}
+%	16&0&0\\
+%	0&16&0\\
+%	0&0&4\end{matrix}\right]\,\text{$\Omega$ m}.
+%\]
+%The relevant material property relation is $\mathbf{E} = \bm{\rho}\mathbf{j}$.
+%\begin{itemize}
+%	\item What is the resistivity along the axis of the cylinder?
+%	\item What is the angle between the electric field needed to produce an electrical current density
+%	along the cylinder axis, and the cylinder axis?
+%\end{itemize}
+%
+%To answer these questions, we need to select a number of reference frames.  The first reference frame
+%is the Bravais lattice of the crystal.  Since the cylinder axis is along $[101]$, we will draw the $\mathbf{a}$
+%and $\mathbf{c}$ Bravais basis vectors in the appropriate orientation (see Fig.~\ref{\chabbr:fig:q1}).  The $\mathbf{b}$ vector
+%points into the plane of the drawing, so that the drawing is essentially two-dimensional.  Then we define
+%a Cartesian reference frame with the same orientation as the Bravais frame, and with unit length basis vectors
+%$\mathbf{e}_x$, $\mathbf{e}_y$ and $\mathbf{e}_z$.  Finally, we define another Cartesian frame, with 
+%$\mathbf{e}'_x$ along the cylinder axis, $\mathbf{e}'_y$ parallel to $\mathbf{e}_y$, and $\mathbf{e}'_z$ normal to the 
+%cylinder axis.
+%
+%%\begin{figure}[h]
+%%\centering\leavevmode
+%%\epsffile{q1}
+%%\caption{Illustration of the three reference frames needed to solve the first example question.}
+%%\label{\chabbr:fig:q1}
+%%\end{figure}
+%
+%We know that the tensor components of the resistivity are defined in the Cartesian reference frame that is parallel
+%to the Bravais basis vectors, i.e., in the $\mathbf{e}_i$ reference frame.
+%
+%The angle between $\mathbf{e}_x$ and $\mathbf{e}'_x$ is equal to $\varphi$.  It is easy to see that 
+%$\sin\varphi=\frac{2}{\sqrt{5}}$ and $\cos\varphi=\frac{1}{\sqrt{5}}$.
+%
+%The transformation matrix $\alpha_{ij}$ which expresses the vectors $\mathbf{e}'_i$ in terms of the vectors 
+%$\mathbf{e}_j$ represents a counterclockwise rotation by $\varphi$ around the $y$ direction.  The matrix can 
+%be written as:
+%\[
+%	\alpha_{ij} = \left(\begin{matrix}
+%	\cos\varphi & 0 & \sin\varphi\\
+%	0 & 1 & 0 \\
+%	-\sin\varphi & 0 & \cos\varphi\end{matrix}\right)
+%\]
+%
+%First we will transform the resistivity tensor.  The standard transformation formula states:
+%\[
+%	\rho'_{ij} = \alpha_{ik}\alpha_{jl}\rho_{kl}.
+%\]
+%We need only the component of the resistivity along the $x'$ direction, which is $\rho'_{xx}$:
+%\begin{align*}
+%	\rho'_{xx} &= \alpha_{xk}\alpha_{xl}\rho_{kl};\\
+%	&= \alpha^2_{xk}\rho_{kk}\qquad\text{(sum over k)};\\
+%	&= \cos^2\varphi \rho_{xx}+\sin^2\varphi \rho_{zz};\\
+%	&= \frac{16}{5}+4\times \frac{4}{5} = 6.4\,\,\Omega\text{m}.
+%\end{align*}
+%
+%For the second question, we need to determine the components of the electric field vector $\mathbf{E}$.  We know
+%that 
+%\[
+%	E'_k = \alpha_{kl}E_{l}.
+%\]
+%We also know that 
+%\[
+%	E_l = \rho_{lk}j_k.
+%\]
+%So, if we can find $j_k$, then the problem is basically solved.  Since the current direction is $[101]$ in the 
+%Bravais frame, and the $\mathbf{c}$ basis vector is twice as long as $\mathbf{a}$, the components of $\mathbf{j}$
+%are 
+%\[
+%	\mathbf{j} = j[102]
+%\]
+%with $j$ the magnitude of the current density.  The product $\rho_{lk}j_k$ is then equal to $j[16\,0\,8]$, and these
+%are the components $E_k$.   We can transform them into the other reference frame:
+%\begin{align*}
+%	E'_x &={\alpha}_{xx}E_x+{\alpha}_{xz}E_z = 16j\cos\varphi + 8j\sin\varphi = \frac{32j}{\sqrt{5}};\\
+%	E'_y  &= 0;\\
+%	E'_z &={\alpha}_{zx}E_x+{\alpha}_{zz}E_z = -16j\sin\varphi+8j\cos\varphi = -\frac{24j}{\sqrt{5}}
+%\end{align*}
+%The angle $\theta$ between this vector $\mathbf{E}$ and the cylinder axis can be computed using standard trigonometry
+%$(\tan^{-1}(\theta)=E_z/E_x = -3/4)$ 
+%and is given by $36.87^{\circ}$.  The vector $\mathbf{E}$ has been indicated on Fig.~\ref{\chabbr:fig:q1}.
+%\end{example}
+%
+%% second example
+%\begin{example}
+%Two crystals are cut from a tetragonal single crystal with $c=a\sqrt{2}$.  The top and bottom plane of each crystal
+%is parallel to the $(101)$ plane.  The thermal conductivity tensor expressed in a Cartesian reference frame aligned 
+%with the Bravais reference frame is given by:
+%\[
+%	K_{ij} = \left[\begin{matrix}
+%	15&0&0\\
+%	0&15&0\\
+%	0&0&10\end{matrix}\right]\,\text{Wm$^{-1}$K$^{-1}$}.
+%\]
+%The relevant material property relation is $\mathbf{h} = -\bm{K}\bm{\nabla}T$.
+%\begin{itemize}
+%	\item the first crystal is $0.4$ cm thick, with circular faces of surface area $10$ cm$^2$.  If the temperature
+%	gradient along the normal to the faces is $50^{\circ}$ C per meter, what is the heat flow between source
+%	and sink?
+%	\item the second crystal is $10$ cm long, and has a cross sectional area of $1$ cm$^2$.  The heat flow is $1$ Watt 
+%	per meter squared.  What is the temperature difference $\Delta T$ between source and sink?
+%\end{itemize}
+%
+%Again we start by defining the relevant reference frames.  The contact plane between the crystals and the heat source
+%and sink is parallel to the $(101)$ plane, as shown in Fig.~\ref{\chabbr:fig:q2}.
+%
+%%\begin{figure}[h]
+%%\centering\leavevmode
+%%\epsffile{q2}
+%%\caption{Illustration of the three reference frames needed to solve the second example question.}
+%%\label{\chabbr:fig:q2}
+%%\end{figure}
+%
+%The angle $\varphi$ between $\mathbf{e}'_x$ and $\mathbf{e}_x$ is this time determined from $\sin\varphi=
+%\sqrt{3/8}$ and $\cos\varphi=\sqrt{5/8}$.
+%
+%The transformation matrix ${\alpha}_{ij}$ is the same as the one in the first example.  This means that the thermal 
+%conductivity along the direction normal to the $(101)$ planes is equal to:
+%\[
+%	K'_{xx} ={\alpha}_{xk}{\alpha}_{xl}K_{kl} ={\alpha}^2_{xk}K_{kk}\qquad\text{sum over k},
+%\]
+%and therefore
+%\[
+%	K'_{xx} = \cos^2\varphi K_{xx} + \sin^2\varphi K_{zz}= \frac{5}{8}\times 15 + \frac{3}{8}\times 10 =  
+%	\frac{105}{8} = 13.125\,\,\text{W/m/K}.
+%\]
+%The thermal flux in the direction normal to $(101)$ is then given by:
+%\[
+%	h'_x = -K'_{xx} \frac{\partial T}{\partial x'} = -13.125 \times 50 = -656.25\,\,\text{W/m$^2$}.
+%\]
+%The minus sign can be dropped, since only the magnitude is important.
+%This can be converted into a heat flow by multiplying with the cross sectional area of the crystal:
+%\[
+%	\text{heat flow} = h'_x \times 10\times 10^{-4} = 656.25\,\,\text{mW}.
+%\]
+%
+%For the second crystal, we know that the heat flow is $1$ Watt, so we must invert the material relation to
+%\[
+%	\frac{\partial T}{\partial x'} = -\frac{1}{K'_{xx}} h'_x 
+%\]
+%The thermal flux is equal to 
+%\[
+%	h'_x = \frac{1\,\text{Watt}}{10^{-4}\,\text{m$^2$}} = 10^4\,\,\text{W/m$^2$}.
+%\]
+%Therefore, the temperature difference $\Delta T$ is given by (again, only the magnitude is important):
+%\[
+%	\Delta T = \frac{\Delta x'}{K'_{xx}} h'_x =  \frac{0.1}{13.125}10^4 = 76.2^{\circ}\text{C}.
+%\]
+%\end{example}
+%
+%
 
 
 
