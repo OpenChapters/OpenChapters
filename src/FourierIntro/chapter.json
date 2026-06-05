@@ -1,0 +1,22 @@
+{
+  "title": "Fourier Transforms and Series",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "A brief review of Fourier series and transforms in the context of diffraction",
+  "toc": [
+    "Introduction"
+  ],
+  "entry_file": "FourierIntro.tex",
+  "cover_image": "cover.png",
+  "keywords": [],
+  "chapter_type": "foundational",
+  "chabbr": "FOURIE",
+  "depends_on": [],
+  "related_to": [],
+  "author_urls": {
+    "Marc De Graef": "https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html"
+  },
+  "discipline": "mse",
+  "published": false
+}
