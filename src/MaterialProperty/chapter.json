@@ -9,8 +9,8 @@
     "Definition of a Material Property",
     "Representation of a Material Property by a Tensor",
     "Intrinsic Thermodynamic Symmetry",
-    "Crystallographic Symmetry and the Equilibrium Property Matrix K",
-    "Crystallographic Symmetry and the Transport Property Matrix L"
+    "Crystallographic Symmetry and the Equilibrium Property Matrix Kij",
+    "Crystallographic Symmetry and the Transport Property Matrix Lij"
   ],
   "entry_file": "MaterialProperty.tex",
   "cover_image": "cover.png",

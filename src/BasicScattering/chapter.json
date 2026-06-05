@@ -1,20 +1,25 @@
 {
-  "title": "The Geometry of Diffraction Processes",
+  "title": "Particle Scattering",
   "authors": [
     "Marc De Graef"
   ],
-  "description": "Bragg's Law in direct and reciprocal space",
+  "description": "Review of basic scattering process for x-rays, electrons, and neutrons",
   "toc": [
-    "Introduction"
+    "Introduction",
+    "Particles and Waves",
+    "Wave Interference",
+    "Scattering of Photons by a Single Electron",
+    "Scattering of Photons by a Single Atom",
+    "Scattering of Electrons and Neutrons",
+    "X-ray and Neutron Scattering by a Collection of Atoms",
+    "Orientation Averaging for the Debye Scattering Equation"
   ],
-  "entry_file": "DiffractionGeometry.tex",
+  "entry_file": "BasicScattering.tex",
   "cover_image": "cover.png",
   "keywords": [],
   "chapter_type": "topical",
-  "chabbr": "DIFGEO",
-  "depends_on": [
-    "NUMSYS"
-  ],
+  "chabbr": "SCATTR",
+  "depends_on": [],
   "related_to": [],
   "discipline": "mse",
   "published": false,

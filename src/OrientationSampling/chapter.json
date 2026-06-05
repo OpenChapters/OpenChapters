@@ -5,10 +5,9 @@
   ],
   "description": "",
   "toc": [
-    "Introductory Remarks",
     "Sampling of Orientations/Rotations",
-    "Evaluation of Sampling Uniformity",
-    "Orientation Averaging",
+    "Evaluation of Sampling Uniformity by Means of Riesz Kernels",
+    "Orientations and Directional Statistics",
     "Orientation Sampling and Averaging in the Presence of Fundamental Zones"
   ],
   "entry_file": "OrientationSampling.tex",
