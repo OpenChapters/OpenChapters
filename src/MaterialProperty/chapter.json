@@ -22,7 +22,7 @@
     "BASCRY",
     "CRYSYM"
   ],
-  "published": false,
+  "published": true,
   "discipline": "mse",
   "author_urls": {
     "Marc De Graef": "https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html"
