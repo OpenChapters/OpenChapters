@@ -1,0 +1,23 @@
+{
+  "title": "The Geometry of Diffraction Processes",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "Bragg's Law in direct and reciprocal space",
+  "toc": [
+    "Introduction"
+  ],
+  "entry_file": "DiffractionGeometry.tex",
+  "cover_image": "cover.png",
+  "keywords": [],
+  "chapter_type": "topical",
+  "chabbr": "DIFGEO",
+  "depends_on": [
+    "NUMSYS"
+  ],
+  "discipline": "mse",
+  "published": false,
+  "author_urls": [
+    "Marc De Graef": "https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html"
+  ]
+}

@@ -1,0 +1,513 @@
+%
+% ###################################################################
+%  Copyright (c) 2026, REPLACE: Your Name
+%  Editors: A.D. Rollett & M. De Graef
+%  All rights reserved.
+%
+% Licensed under the Creative Commons CC BY-NC-SA 4.0 License,
+% hereafter referred to as the "License"; you may not use this
+% document except in compliance with the License. You may obtain
+% a copy of the License at
+%     https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+% Unless required by applicable law or agreed to in writing, all
+% material distributed under the License is distributed on an
+% "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+% either express or implied. See the License for the specific
+% language governing permissions and limitations under the License.
+% ###################################################################
+
+% ###################################################################
+% AUTHOR SETUP — Edit the lines below
+% ###################################################################
+
+% Uncomment the next line ONLY if this is a foundational chapter:
+%\corechapter{Yes}
+
+% Your name and affiliation (appears below the chapter title):
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University}
+
+% Chapter abbreviation: choose a UNIQUE 6-character uppercase code.
+% This is used as a prefix for all labels in this chapter.
+% Examples: LINALG, TENSOR, NUMSYS, PROJTS
+\renewcommand{\chabbr}{SCATTR}
+
+% Chapter header image (2480 x 1240 pixels, 300 dpi, RGB format).
+% Replace \noheaderimage with your header filename (e.g., MYCHAPheader.pdf).
+% The file should be placed in chapter/pdf/.
+% Note that \graphicspath is defined in the main.tex file.
+%\chapterimage{\graphicspath MYCHAPheader.pdf}
+\chapterimage{\noheaderimage}
+
+% ###################################################################
+% CHAPTER TITLE — Edit the title below
+% ###################################################################
+\chapter{Particle Scattering}\label{\chabbr:ch:ParticleScattering}
+
+% Register author information (repeat for each co-author)
+\writeauthor{\chabbr:ch:ParticleScattering}{Particle Scattering}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+
+% ###################################################################
+% LEARNING OBJECTIVES
+% ###################################################################
+% Each chapter begins with Learning Objectives.  Each objective should:
+% - Contain an active verb (Learn, Understand, Derive, Apply, etc.)
+% - Link to the relevant section using the \chabbr:sec:label format
+% - Use the OCBurntOrange color for the reference
+\begin{learningobjectives}
+{\begin{itemize}
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:introduction}:}] Understand the basic concepts presented in this chapter
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:methods}:}] Learn the methods used for analysis
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:examples}:}] Apply the concepts to worked examples
+\end{itemize}}
+\end{learningobjectives}
+
+% ###################################################################
+% CHAPTER CONTENT STARTS HERE
+% ###################################################################
+
+%Chapter structure
+%    \item Wave Properties
+%    \item Wave-particle duality
+%    \item Generation and wavelength of X-ray Photons, Electrons, and Neutrons
+%    \item Scattering of photons by a single electron (Thomson equation)
+%    \item Scattering of photons by a single atom
+%    \item Scattering of electrons/neutrons
+%    \item Scattering by a collection of atoms
+%    \item Scattering in gasses and liquids
+%    \item The Debye scattering equation
+%    \item Examples
+% 
+% 
+
+
+\section{Introduction}\label{\chabbr:sec:introduction}
+
+In this chapter, we describe how one or more atoms scatter an incident beam of x-rays, electrons, or neutrons.  We begin by introducing the concept of the \indexit{wave vector}, which relates the wavelength of the incident beam to the reciprocal space description of the crystal structure. This involves the \indexit{particle-wave duality} which is fundamental to the field of quantum mechanics. Then we describe how the three primary beam types are generated.  We build up a description of x-ray scattering by first looking at scattering of an x-ray photon by a single electron (the \indexit{Thomson equation}), and then by an atom, and finally by a random collection of atoms, representing a gas or a liquid.  The end product of this description will be the \indexit{Debye Scattering Equation} (DSE), which is of fundamental importance to all diffraction experiments performed on non-periodic samples. We end the chapter with a number of example applications of the DSE.  Scattering by periodic samples (i.e., crystal structures) can in principle be described by this equation, but there is a much more powerful tool in the form of the \indexit{Structure Factor}, and we devote an entire chapter to this concept.
+
+\section{Particles and Waves}\label{\chabbr:sec:particlewaves}
+
+\subsection{Electromagnetic waves}\label{\chabbr:ssec:EMwaves}
+In 1923, the French physicist \indexit{Louis de Broglie} introduced the notion that all matter particles can behave as waves, depending on the experiment, and he associated a \indexit{wavelength}, $\lambda$, to a particle with momentum $p$:
+\begin{equation}
+	\lambda = \frac{h}{p}\ .\label{\chabbr:eq:debroglie}
+\end{equation}
+In this equation, $h$ is \indexit{Plank's constant}, with a numerical value of $6.62607\times 10^{-34}$ J\,s.  De Broglie's work was the culmination of earlier work by Max Planck, who introduced discrete \indexit{energy quanta} in order to explain black-body radiation, and Albert Einstein, who was the first to explain the photoelectric effect, also in terms of discrete energy quanta, and it led to the development of quantum mechanics in the 1930s.  
+
+\begin{figure}[h]
+\centering\leavevmode
+\includegraphics[width=4.in]{\graphicspath EMwave.pdf}
+\caption{Schematic illustration of an electromagnetic wave with wave vector $\mathbf{k}$.}
+\label{\chabbr:fig:EMwave}
+\end{figure}
+
+We know from the theory of electromagnetism that a photon can be regarded as a combination of orthogonal oscillating electric and magnetic fields, $\mathbf{E}(\mathbf{r},t)$ and $\mathbf{B}(\mathbf{r},t)$, propagating in the direction $\mathbf{E}\times\mathbf{B}$ with a velocity $c=299,792,458$ m/s (Fig.~\ref{\chabbr:fig:EMwave}).  The individual fields are usually represented as the real part of complex exponentials:
+\begin{equation*}
+\begin{split}
+	\mathbf{E}(\mathbf{r},t) &= \Re \left\{ \mathbf{E}_0\,\mathrm{e}^{2\pi\mathrm{i}(\mathbf{k}\cdot\mathbf{r}-\nu t)}\right\}\ ;\\
+	\mathbf{B}(\mathbf{r},t) &= \Re \left\{ \mathbf{B}_0\,\mathrm{e}^{2\pi\mathrm{i}(\mathbf{k}\cdot\mathbf{r}-\nu t)}\right\}\ .
+\end{split}
+\end{equation*}
+$\nu$ is the frequency of oscillation, and $\mathbf{k}$ is the \indexit{wave vector}, with $\mathbf{k}\parallel \mathbf{E}\times\mathbf{B}$, and $\vert\mathbf{k}\vert=1/\lambda$.\footnote{Note that the factor of $2\pi$ is sometimes included in the definition of the wave vector, i.e., $\vert\mathbf{k}\vert=2\pi/\lambda$, in which case the argument of the exponential becomes $\mathrm{i}(\mathbf{k}\cdot\mathbf{r}-\omega t)$ with $\omega=2\pi\nu$ the angular frequency.}  The vectors $\mathbf{E}_0$ and $\mathbf{B}_0$ are constants and satisfy the relation that $\mathbf{E}_0\cdot\mathbf{B}_0=0$ along with $\vert\mathbf{E}_0\vert=c\vert\mathbf{B}_0\vert$.  The wave vector of an electromagnetic wave can therefore be written as:
+\[
+	\mathbf{k} = \frac{1}{\lambda}\frac{\mathbf{E}_0\times\mathbf{B}_0}{\vert \mathbf{E}_0\times\mathbf{B}_0\vert} \equiv \frac{1}{\lambda} \mathbf{e}_{k}\ .
+\]
+The plane in which the electric field vector oscillates is known as the \indexit{plane of polarization}.
+
+\noindent The following relations express the photon energy and momentum in different ways:
+\begin{equation*}
+\begin{split}
+	E&=h\nu=\hbar\omega=\frac{hc}{\lambda}\ ;\\
+	p&=\frac{E}{c}=\frac{h\nu}{c}=\frac{h}{\lambda}\ .
+\end{split}
+\end{equation*}
+Since diffraction experiments usually integrate over time, we ignore the time dependence of the oscillating fields, so we have 
+\[
+	\mathbf{E}(\mathbf{r},t)\rightarrow \mathbf{E}(\mathbf{r})=\Re\left\{ \mathbf{E}_0\mathrm{e}^{2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\right\}\ ,
+\]
+and similar for the magnetic field component. 
+
+If we introduce vectors into the de Broglie relation:
+\[
+	p = \frac{h}{\lambda}\rightarrow \mathbf{p} = h\mathbf{k}\ ,
+\]
+we see that the momentum vector is simply a scaled version of the wave vector. The wave vector ``lives'' in reciprocal space, so we conclude that reciprocal space and momentum space are identical, apart from a scale factor; this will become important when we discuss diffraction from crystal lattices.
+
+
+\subsection{Plane waves}\label{\chabbr:ssec:planewaves}
+
+The units of the wave vector are inverse length, which means that the wave vector is a vector in reciprocal space.  Therefore we can write $\mathbf{k}$ with components with respect to the reciprocal basis vectors:
+\[
+	\mathbf{k}=k_1\mathbf{a}^{\ast}+k_2\mathbf{b}^{\ast}+k_3\mathbf{c}^{\ast}=k_i\mathbf{a}^{\ast}_i\ .
+\]
+It is most convenient to work with respect to the standard Cartesian reference frame, so that the factor $\mathbf{k}\cdot\mathbf{r}$ in the complex exponential for the fields can be written as:
+\[
+	\mathbf{k}\cdot\mathbf{r}=k_1x+k_2y+k_3z\ .
+\]
+Note that, if we put $\mathbf{k}\cdot\mathbf{r}=C$, with $C$ a constant, then we obtain the equation of a plane with normal $\mathbf{k}$:
+\[
+	k_1x+k_2y+k_3z = C\ ;
+\]
+this should come as no surprise, since vectors in reciprocal space generally represent normals.  As a consequence we have:
+\[
+	\mathrm{e}^{2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\rightarrow \mathrm{e}^{2\pi\mathrm{i}C}\ ,
+\]
+and we find that the wave has a constant amplitude in planes normal to the wave vector; we call such a wave a \indexit{plane wave}.  Plane waves are of fundamental importance for the description of scattering processes; since electromagnetism is a linear theory, we can describe any arbitrary wave as a linear superposition of plane waves (this is essentially a Fourier decomposition of the wave front).  
+
+Plane waves are used for the description of particle waves in general, regardless of the nature of the particles.  Therefore, we use the same function to describe x-ray photons, electrons, and neutrons, the three most commonly used particles in diffraction experiments. In the following sections we describe how each of these particles are generated and detected, and we discuss their typical wavelength range.
+
+
+\subsection{X-ray beam generation and detection}\label{\chabbr:ssec:xrayprod}
+
+\subsubsection{The standard x-ray tube}\label{\chabbr:ssec:xraytube}
+
+From the theory of electromagnetism we know that an electrical charge will emit radiation when it undergoes acceleration or deceleration. The faster the change in velocity, the higher the energy of the emitted photons.  This principle is implemented in the \indexit{x-ray tube}, shown schematically in cross-section in Fig.~\ref{\chabbr:fig:xraytube}(a). A glass tube under vacuum contains an anode, in red marked A, made from an elemental metal (e.g., Cu, Mo, Co, $\ldots$) with atomic number $Z$; the anode is cooled using water flow on the outside of the tube. Opposite the anode surface is a cathode, marked C, with a filament, F, that is heated by an electrical current (Ohmic heating). Between the cathode and anode, a voltage $V$ is applied. Electrons are emitted from the filament wire via a thermal emission process and are subsequently accelerated towards the anode.  The voltage and heating current are supplied via an insulated cable inserted into the glass tube (yellow rectangle).  
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath xraytube.pdf}
+\caption{(a) Schematic cross section of a traditional x-ray tube (details in the text); (b) braking radiation plots for a copper tube at different accelerating voltages; the dashed vertical lines indicate the positions of the $K\alpha$ and $K\beta$ characteristic peaks.}
+\label{\chabbr:fig:xraytube}
+\end{figure}
+
+As the electron leaves the filament it has a high potential energy $E_P$ given by $E_P = e\,V$; typical voltages used are in the range $20$--$50$ kV. As the electron reaches the anode, all potential energy has been converted into kinetic energy $E_K=\frac{1}{2}m_e v^2$. When the electron hits the anode, it rapidly slows down, emitting a continuous spectrum of x-rays and dumps most of its energy into the anode in the form of lattice vibrations (i.e., heat); a small fraction of the electron's energy excites the atoms of the anode into higher energy states. Upon returning to the lower energy state, those atoms then emit characteristic X-rays which are superimposed on the braking radiation background.  A fraction of all the generated x-ray photons then leave the tube through thin beryllium windows.
+
+The intensity profile of the braking radiation as a function of the x-ray wavelength is given by \indexit{Kramer's Law}:
+\begin{equation}
+	I(\lambda) = K\,Z\,\left(\frac{\lambda}{\lambda_m}-1\right)\frac{1}{\lambda^2}\ ,\label{\chabbr:eq:KramersLaw}
+\end{equation}
+where $Z$ is the atomic number of the target, $K$ is a proportionality factor that depends on the details of the x-ray tube, and $\lambda_m$ is the shortest possible wavelength the x-ray tube can produce for a given applied voltage $V$. For those x-ray photons, \textit{all} the kinetic energy is converted into a single x-ray photon with wavelength $\lambda_m$:
+\[
+	\lambda_m = \frac{h\,c}{e\,V} = \frac{1,239.8}{V}\ ,
+\]
+where the physical constants have been replaced by a their numerical value; if $V$ is expressed in Volts, then $\lambda_m$ has units of nanometers.
+
+Fig.~\ref{\chabbr:fig:xraytube}(b) shows the result of applying Kramer's Law for five different accelerating voltages for copper ($Z=29$, $K$ has been set to $1$); for the $V=25$ kV curve, the minimum wavelength is indicated.  It is not difficult to show that the maximum of the curve occurs for $\lambda=2\lambda_m$.  The wavelengths for the $K\alpha$ and $K\beta$ characteristic lines of Cu are also superimposed.  It is clear from this plot that a minimum voltage will be needed to generate characteristic peaks with a useful intensity.  
+
+\subsubsection{Characteristic wavelengths}\label{\chabbr:ssec:charWL}
+
+The characteristic wavelengths of x-rays are a direct consequence of the discrete (quantized) energy levels of atoms. The National Institute for Standards and Technology (NIST) maintains a carefully curated database of x-ray transition energies for most elements and transition types. Table~\ref{\chabbr:tb:NIST} shows the most important wavelengths for commonly used targets in X-ray tubes.  The column labeled $K\alpha$ is the weighted average of the values in the next two columns according to the relation:
+\[
+	\lambda_{K\alpha} = \frac{1}{3}\left(2\lambda_{K\alpha_1}+\lambda_{K\alpha_2}\right)\ .
+\]
+
+\begin{table}[h!]
+\centering\leavevmode
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Target & $Z$ & $K\alpha$ & $K\alpha_1$ & $K\alpha_2$ & $K\beta_1$ \\
+\hline\hline
+Cr & 24 & 0.229100 & 0.228970 & 0.229361 & 0.208487 \\
+Fe & 26 & 0.193735 & 0.193604 & 0.193998 & 0.175654 \\
+Co & 27 & 0.179030 & 0.178901 & 0.179289 & 0.162083 \\
+Cu & 29 & 0.154187 & 0.154059 & 0.154443 & 0.139222 \\
+Mo & 42 & 0.071075 & 0.070932 & 0.071361 & 0.063229 \\
+\hline 
+\end{tabular}
+\caption{\label{\chabbr:tb:NIST}Wavelengths (in nm) for the most important transitions in commonly used x-ray tube anodes (data extracted from \href{https://physics.nist.gov/PhysRefData/XrayTrans/Html/search.html}{NIST X-Ray Transition Energies Database)}.}
+\end{table}
+
+\subsubsection{X-ray filtering and collimation}\label{\chabbr:ssec:Xfilter}
+
+The beam that leaves the x-ray tube has a continuous range of wavelengths (the braking radiation) with superimposed characteristic lines if the applied voltage is sufficiently high; the beam is also slightly divergent.   Before interacting with a sample, the beam profile must be collimated into a parallel beam, and the $K\beta$ wavelength needs to be suppressed. Fortunately, nature provides the ideal filter for the $K\beta$ peak: a thin foil of element $Z-1$ (if the anode has atomic number $Z$).  If we consider a Cu target as an example, the ideal filtering element is Nickel ($Z=28$) because the energy needed to excite an electron from the $1s$ shell must be larger than $8.33$ keV (\href{https://physics.nist.gov/PhysRefData/XrayTrans/Html/search.html}{NIST X-Ray Transition Energies Database)} which corresponds to a wavelength of $0.1488$ nm, precisely between the $K\alpha$ and $K\beta$ wavelengths of Cu. Therefore, photons that leave the Cu target with an energy larger than $8.33$ keV (wavelength shorter than $0.1488$ nm) have the ability to excite electrons out of the $1s$ shell of Ni, and therefore those photons will be absorbed by the Ni filter and removed from the x-ray beam. 
+
+The necessary thickness of the filter can be computed using a form of \indexit{Beer's Absorption Law}; given a foil of thickness $x$ and mass density $\rho$, for an incident beam with intensity $I_0$, the transmitted intensity can be expressed by simple exponential attenuation as:
+\[
+	I(x) = I_0\,\mathrm{e}^{-\mu x} = I_0\,\mathrm{e}^{-\left(\frac{\mu}{\rho}\right) \rho x}\ ,
+\]
+where $\mu$ is the wavelength-dependent absorption coefficient and the ratio $\mu/\rho$ is known as the \indexit{mass absorption coefficient}, typically expressed in units of cm$^2$/g. From the \href{https://physics.nist.gov/PhysRefData/XrayMassCoef/ElemTab/z28.html}{NIST Database 126}  we extract the mass absorption coefficient for Ni for the $K\beta$ energy of $8.91$ keV (corresponding to $\lambda=0.139222$ nm) to be about $m_{\beta}=280$ cm$^2$/g; for Cu $K\alpha$, the photon energy is $8.04$ keV, leading to a mass absorption coefficient of $m_{\alpha}=49$ cm$^2$/g.  The ratio of the intensities $I(K\beta)/I(K\alpha)$ before filtering is about $0.148$ \cite{ito2023a}.  To bring this ratio down to a much smaller number, say $10^{-3}$, we can use Beer's Law to compute the required filter thickness (using a density for Ni of $8.9$ g/cm$^3$):
+\begin{equation*}
+\begin{split}
+	\frac{I_{\beta}(x)}{I_{\alpha}(x)} &= 0.148\times \mathrm{e}^{-(m_{\beta}-m_{\alpha})\rho x}\ ;\\
+	\ln\frac{0.001}{0.148} &= -4.997 = -(282-49)\times 8.9\times x\rightarrow x=24\, \mu\text{m}\ .
+\end{split}
+\end{equation*}
+In other words, a Ni filter foil with a thickness of $24$ $\mu$m will reduce the $I(K\beta)/I(K\alpha)$ ratio from $0.148$ to $0.001$, effectively removing the $K\beta$ peak (and all the shorter wavelengths in the braking radiation spectrum). For this filter thickness, the Cu $K\alpha$ peak will be attenuated to $35\%$ of its original intensity whereas the $K\beta$ peak will have about $0.2\%$ of its original intensity.  
+
+It is important to  realize that there are no traditional lenses for x-rays; the energy of x-ray photons is so much higher than for photons in the optical wavelength range, that the refractive index is essentially equal to $1$ for glass, in other words, glass can not deflect/refract x-rays and therefore one can not create glass lenses to focus and shape an x-ray beam.  There are many other options to shape and control the beam.  The x-ray beam that leaves the tube through a Be window is generally a divergent beam; it can be made into a parallel straight beam by means of a beam limiting device, known as a \indexit{collimator}. The most commonly used collimator, the \indexit{Soller slits}, consists of a stack of parallel thin plates coated with an x-ray absorbing material; only x-ray photons that travel parallel to the plates will emerge on the other side, and this produces a parallel beam.  Other techniques for focusing x-ray beams rely on diffraction processes, such as \indexit{curved diffraction gratings} and \indexit{Fresnel zone plates}.
+
+\subsubsection{X-ray photon detection}\label{\chabbr:ssec:Xdetection}
+
+To detect an x-ray photon, its energy needs to be converted into a measurable signal. In older detector systems, the photon would hit a \indexit{scintillator} layer which would give rise to a light pulse that is then detected using a \indexit{photomultiplier tube}.  Modern x-ray detectors are solid state devices, generally based on a doped Si crystal.  Fig.~\ref{\chabbr:fig:Xdetector} shows a schematic cross section diagram of such a device.  The active area of the Si crystal is doped with Li. The crystal has two thin ($20$ nm) electrodes on opposite ends; one is grounded, the other is kept at a bias voltage of around $1$ kV. When an x-ray photon enters the active region, after going through a thin (a few nm) protective window made from Be, BN, or a polymer, the photon energy is converted into electron-hole pairs. The potential separates the charges and they are accumulated and counted by dedicated electronic circuits. Depending on the measurement being made, only the number of X-ray photons is determined, in other cases the number of electron-hole pairs is counted (and thus the photon  energy); this latter mode lies at the heart of \indexit{Energy Dispersive Spectroscopy} or EDS.
+
+\begin{figure}[ht]
+\centering\leavevmode
+\includegraphics[width=0.75\textwidth]{\graphicspath Xdetector.pdf}
+\caption{Schematic cross section of a solid state x-ray detector.}
+\label{\chabbr:fig:Xdetector}
+\end{figure}
+
+The fields of astronomy and elementary particle physics are the leading producers of new x-ray detector technologies, including direct detectors (no conversion to other signals). This is a very active field of research and development.
+
+\subsection{Electron beam generation and detection}\label{\chabbr:ssec:eprod}
+
+
+
+
+%%%%% Gemini 3 prompt %%%%%% 
+% Please create a 3D rendering of a thermionic/field emission gun as it is used in a transmission electron microscope. 
+% This should be a single image using a metallic color palette, and it should be editable, so use .eps or .svg as the file format. 
+% There is no need to show anything below the anode plate. 
+% Also insert a cutout into all the components so that the interior becomes visible.
+%%%%% End Gemini prompt %%%%%% 
+
+
+
+\subsection{Neutron beam generation and detection}\label{\chabbr:ssec:nprod}
+
+
+
+
+
+\section{Wave Interference}\label{\chabbr:sec:interference}
+
+In section~\ref{\chabbr:ssec:planewaves} we introduced the concept of the plane wave, a wave with wave vector $\mathbf{k}$ with constant amplitude in planes normal to the wave vector.  The mathematical form of the wave, ignoring time dependence, is given by:
+\[
+	\varphi(\mathbf{r}) = A\,\mathrm{e}^{2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\ ,
+\]
+where $A$ is a constant amplitude.  The intensity of the wave \index{wave intensity} is then the modulus-squared of the wave function:
+\[
+	I(\mathbf{r}) = \varphi(\mathbf{r}) \varphi^{\ast}(\mathbf{r}) = \vert\varphi(\mathbf{r}) \vert^2=A^2\ .
+\] 
+There is a second wave type that is frequently encountered in scattering problems, the \indexit{spherical wave}.  Its expression is given by:
+\begin{equation}
+	\varphi(\mathbf{r}) = \frac{B}{r}\,\mathrm{e}^{2\pi\mathrm{i}k\,r}\ ,
+\end{equation}
+where $k$ is the \indexit{wave number} (inverse of the wavelength), and $r$ is the distance to the scattering center.  The corresponding intensity is given by:
+\[
+	I(r) = \frac{B^2}{r^2}\ ,
+\]
+and we find that the intensity of a spherical wave follows the \indexit{inverse-square law}.  Since a sphere has surface area $4\pi r^2$, the total intensity integrated over a spherical surface remains constant, as it should for a conserved quantity.
+
+When multiple sources of plane and/or spherical waves are present, then the wave amplitudes will add up since the equations describing the waves (Maxwell's equations for photons, the Sch\"odinger equation for electrons and neutrons) are linear equations. This means that the \indexit{linear superposition principle} holds.  It is then straightforward to illustrate the concepts of \textit{constructive} and \indexit{destructive interference}\index{constructive interference}.  Fig.~\ref{\chabbr:fig:interference}(a) depicts the circular waves generated in a body of water when a single object periodically moves up and down normal to the plane of the figure. The figure represents a snap shot at a particular time when the system is in steady state. For an observer far from the source, the wave pattern will be a simple sinusoidal oscillation; if the observer were to move along a circle around the source, keeping a constant distance to the source, then they would find that the oscillation amplitude is the same all along the circle.  When a second source is introduced at some distance from the first, Fig.~\ref{\chabbr:fig:interference}(b), the waves, which are perfectly in-phase, will interfere with each other, reinforcing along certain directions, and destructively interfering along others. The same observer will now find that the oscillation amplitude varies along a circle surrounding the sources.
+
+
+\begin{figure}[h]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath interference.pdf}
+\caption{Simulated interference patterns for identical, in-phase sources causing ripples in a surface.}
+\label{\chabbr:fig:interference}
+\end{figure}
+
+When the distance between the sources is increased, the pattern of destructive and constructive interference changes (Fig.~\ref{\chabbr:fig:interference}(c)). Note that the wave pattern has the same symmetry as the arrangement of the sources; the source symmetry with respect to the center of the image can be represented by the point group $2mm$, i.e., a two-fold rotation axis and two perpendicular mirror planes. The wave pattern inherits this symmetry.  This is further illustrated in Fig.~\ref{\chabbr:fig:interference}(d) and (e), which show patterns for five identical sources at two different spacings.  Finally, Fig.~\ref{\chabbr:fig:interference}(f) shows a more complex pattern for a square arrangement of $9$ identical sources; note that the pattern has symmetry $4mm$, identical to the symmetry of the arrangement of the sources. Note also that far away from the sources, the interference pattern will locally resemble a plane wave.
+
+The simple analysis in the preceding paragraphs points to an important observation, namely that the details of the interference pattern far away from the sources contain information about the arrangement of the sources, i.e., their relative positions.  In a diffraction experiment, we replace the sources by atoms, and we add an incident beam to the picture; this incident beam is usually represented by a plane wave with a given wave vector (and thus direction) $\mathbf{k}$. The incident beam interacts with the atoms and causes each atom to become the source of a scattered spherical wave, this time in the 3D crystal lattice.  These scattered spherical waves will interfere with each other and, far from the crystal, we will find a series of scattered plane waves traveling in directions that are determined by the atomic arrangement, including its symmetry.  In a typical diffraction experiment we will then vary the direction of the incident beam and measure the changes in the pattern of constructive and destructive interference; we will refer to this pattern as a \indexit{diffraction pattern}.  In simple terms, the determination of a crystal structure essentially requires the quantitative interpretation of an interference pattern; the relative positions of intensity maxima and minima provides information about the relative positions of the atoms that make up the crystal lattice.
+
+
+\section{Scattering of Photons by a Single Electron}\label{\chabbr:sec:ThomsonEq}
+
+We begin with the scattering of an x-ray photon by a single electron which leads to the \indexit{Thomson equation}.  Consider an electron at rest in the origin of a Cartesian reference frame, as depicted in Fig.~\ref{\chabbr:fig:Thomson}.  The electric field of an incident photon will exert a force on the electron; without loss of generality we assume  that the photon is incident from the $-x$ direction and travels along the positive $x$ axis.  The electric field vector lies in the $y$--$z$ plane, and will give rise to an oscillating electron moving parallel to the electric field vector in the vertical (a) or horizontal (b) direction.  We assume that an observer is present in the $x$--$z$ plane (we can always rotate the reference frame to accomplish this) at the location $P$.  
+
+\begin{figure}[h]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath Thomson.pdf}
+\caption{Illustrations for the scattering by an electron of a vertically (a) and horizontally (b) polarized incident x-ray photon.}
+\label{\chabbr:fig:Thomson}
+\end{figure}
+
+The Thomson equation then states that the intensity measured at point $P$ at a distance $r$ from the origin for an incident intensity $I_0$ is given by:
+\begin{equation}
+	I(\alpha) = I_0\,\frac{r_e^2}{r^2}\,\sin^2\alpha\, 
+\end{equation}
+where $\alpha$ is the angle between the scattering direction $OP$ and the polarization direction of the photon, i.e., the acceleration direction of the electron.  The constant $r_e$ is defined as:
+\[
+	r_e = \frac{e^2}{mc^2} = 2.817938\times 10^{-15}\text{ m}\ ;
+\]
+$r_e$ is known as the \indexit{classical electron radius}.  Since the observer is always far away from the scattering center, the distance $r$ will be on the order of $1$ meter, so that the prefactor is of order $10^{-30}$. This means that a single electron is an exceedingly weak scatterer for incident x-ray photons; in order to have an appreciable measured intensity, we either need a large number of electrons (i.e., a macroscopic sample) or a very high incident beam intensity $I_0$, which is only attainable at an \indexit{x-ray synchroton accelerator}. 
+
+In most routine x-ray diffraction experiments, the incident photon stream is not polarized, i.e., the electric field vector can lie along any direction in the $y$--$z$ plane. For horizontal polarization (Fig.~\ref{\chabbr:fig:Thomson}(b)), the angle $\alpha$ is equal to $\pi/2$, whereas for vertical polarization we have $\alpha=\pi/2-2\theta$; for unpolarized radiation, we average those two cases and we obtain:
+\begin{equation}
+	I_P(\theta) =  I_0\,\frac{r_e^2}{r^2}\,\left(\frac{1+\cos^2(2\theta)}{2}\right)\ ;\label{\chabbr:eq:ThomsonUP}
+\end{equation}
+the factor between parentheses is known as the \indexit{polarization factor}; it corrects the scattered intensity for the fact that the incident photons are unpolarized.  The prefactor $r_e^2/r^2$ is often unimportant in actual measurements because it is common practice to divide measured intensities by the largest measured intensity, cancelling out this $r$-dependence.  
+
+
+\section{Scattering of Photons by a Single Atom}\label{\chabbr:sec:atomscat}
+
+Let us consider next the scattering of unpolarized x-rays by an individual atom with atomic number $Z$.  Equation~\ref{\chabbr:eq:ThomsonUP} shows that in the forward direction ($\theta=0$), the normalized\footnote{We will work in units of $I_0\,r_e^2/r^2$ so that the scattered intensity is simply given by the polarization factor $(1+\cos^2(2\theta))/2$.} scattered intensity is equal to $1$ for a single electron and thus equal to $Z$ for the whole atom.  For any other scattering direction, the scattered waves from individual electrons will interfere destructively, increasingly so when the angle $\theta$ increases.  A full description of this process requires a quantum mechanical approach since the electron distribution around the nucleus is needed; this is beyond the scope of this chapter, and we refer the interested reader to Chapter 6 in Volume C of the International Tables for Crystallography \cite{prince2004a} for the details.  For heavier atoms and ions, the computations require the use of relativistic quantum mechanics.  Note that the contributions of the nucleus are usually ignored, since it is much heavier than the electron cloud.
+
+The result of the computations can be expressed for each element as a function $f(s)$ known as the \indexit{atomic scattering factor}; the parameter $s$ is defined as $s=\sin(\theta)/\lambda$.  The atomic scattering factors for all atoms and ions are available in tabulated form in \cite{prince2004a}, and are usually parameterized in terms of a small number of exponential functions:
+\begin{equation}
+	f(s) = Z - \frac{m_e\,e^2}{4\pi\,h^2\epsilon_0}\times s^2\times \sum_{i=1}^N a_i\,\mathrm{e}^{-b_i s^2}\ ,
+\end{equation}
+The numerical value of the prefactor of the second term is $41.78214$ nm$^2$  {\color{red}check these units !!! Check Kirkland's book} when $s$ is expressed in nm$^{-1}$.  The numbers $a_i$ and $b_i$ are tabulated with $i\in[1\ldots N]$ and $N=3$ or $4$, depending on the fitting protocol.  Table~\ref{\chabbr:tb:DTSB} lists the parameters $a_i$ and $b_i$ for a few important elements, the others can be found in \cite{doyle1968a,smith1962a}.
+
+\begin{table}[h!]
+\centering\leavevmode
+\begin{tabular}{|l|c|cccccccc|}
+\hline
+Name&Z &$a_1$&$b_1$&$a_2$&$b_2$&$a_3$&$b_3$&$a_4$&$b_4$\\
+\hline\hline
+Ag &+47&2.036& 61.497 &3.272 &11.824 &2.511 &2.846 &0.837&0.327\\
+Al &+13&2.276& 72.322 &2.428 &19.773 &0.858 &3.080 &0.317&0.408\\
+Au &+79&2.388& 42.866 &4.226 & 9.743 &2.689 &2.264 &1.255&0.307\\
+C &+06&0.731& 36.995 &1.195 &11.297 &0.456 &2.814 &0.125 &0.346\\
+Cl &+17&1.452& 30.935 &2.292 & 9.980 &0.787 &2.234 &0.322&0.323\\
+\hline
+Co &+27&2.367& 61.431 &2.236 &14.180 &1.724 &2.725 &0.515&0.344\\
+Cu &+29&1.579& 62.940 &1.820 &12.453 &1.658 &2.504 &0.532&0.333\\
+Fe &+26&2.544& 64.424 &2.343 &14.880 &1.759 &2.854 &0.506&0.350\\
+Ge &+32&2.447& 55.893 &2.702 &14.393 &1.616 &2.446 &0.601&0.342\\
+Mg &+12&2.268& 73.670 &1.803 &20.175 &0.839 &3.013 &0.289&0.405\\
+\hline
+Ni &+28&2.210& 58.727 &2.134 &13.553 &1.689 &2.609 &0.524&0.339\\
+O &+08&0.455& 23.780 &0.917 & 7.622 &0.472 &2.144 &0.138 &0.296\\
+Pt & 78&5.803& 29.016 &4.870 & 5.150 &2.127 &0.572 &--- &---\\
+S &+16&1.659& 36.650 &2.386 &11.488 &0.790 &2.469 &0.321 &0.340\\
+Si &+14&2.129& 57.775 &2.533 &16.476 &0.835 &2.880 &0.322&0.386\\
+\hline
+Ta & 73&5.659& 28.807 &4.630 & 5.114 &2.014 &0.578 &--- &---\\
+Ti &+22&3.565& 81.982 &2.818 &19.049 &1.893 &3.590 &0.483&0.386\\
+W & 74&5.709& 28.782 &4.677 & 5.084 &2.019 &0.572 &--- &---\\
+Zn &+30&1.942& 54.162 &1.950 &12.518 &1.619 &2.416 &0.543&0.330\\
+Zr & 40&4.105& 28.492 &3.144 & 5.277 &1.229 &0.601 &--- &---\\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:DTSB}Atomic scattering parameters for selected elements:
+Doyle \& Turner parameters have a $+$ in front of the atomic number,
+the others are Smith \& Burge parameters. This table assumes that
+$s$ is expressed in \AA$^{-1}$; if $s$ is expressed in nm$^{-1}$,
+then all entries must be multiplied by $0.01$.}
+\end{table}
+
+% insert figure of the curves for all elements in the table ...
+
+
+
+\section{Scattering by Electrons and Neutrons}\label{\chabbr:sec:elecneutron}
+
+% figure for scattering probability + bra-ket notation
+
+\section{X-ray and Neutron Scattering by a Collection of Atoms}\label{\chabbr:sec:scatatoms}
+
+The atomic scattering factors for x-rays described in section~\ref{\chabbr:sec:atomscat} were determined by taking into account destructive interference between waves scattered by different electrons in the electron cloud. If we want to determine the scattered intensity in a given direction by an assembly of atoms, we will need to take into account a similar interference between waves scattered by individual atoms, and this requires knowing the relative positions of all atoms.  As illustrated in Fig.~\ref{\chabbr:fig:interference}, the strongest interference occurs when the sources are close together; when they are spaced far apart, the overall intensity pattern consists of clearly identifiable spherical scattering sources.  Such an atomic arrangement is achieved in a dilute monatomic gas, where the individual atoms are relatively far apart from each other. For such a sample we expect the scattered intensity to be directly proportional to $f^2(s)$, with $s=\sin(\theta)/\lambda$ as before.  In fact, the earliest measurements of $f(s)$ were carried out in the 1920s on XXXXXX.
+
+For diatomic and more complex molecules, the atoms are much closer together and therefore we must take into account their relative position as well as the orientation of the molecule in order to determine the interference pattern for a given incident x-ray beam.  When we defined the electron scattering factor in section~\ref{\chabbr:sec:elecneutron}, we found a convenient expression for the scattering probability when the incident beam is represented by $\mathbf{k}$ and the outgoing/scattered beam by $\mathbf{k}'$:
+\[
+	P_{\mathbf{k}\rightarrow\mathbf{k}'}(\mathbf{r}) = f(s)\,\mathrm{e}^{2\pi\mathrm{i}\,\Delta\mathbf{k}\cdot\mathbf{r}}\ ,
+\]
+where $f(s)$ represents the atomic scattering factor for x-ray photons, electrons or neutrons, and $\Delta\mathbf{k}=\mathbf{k}'-\mathbf{k}$.  Note that this difference vector represents the moment transfer $\Delta\mathbf{p}$ during the scattering process, since $\mathbf{p}=h\,\mathbf{k}$.
+
+If we have an assembly of $N$ atoms with possibly different atomic numbers at random positions, potentially distributed over many molecules, then the total probability of scattering by an angle $2\theta$ is given by the linear superposition:
+\[
+	P_{\mathbf{k}\rightarrow\mathbf{k}'}(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_N) = \sum_{j=1}^N  f_j\left(\frac{\sin\theta}{\lambda}\right)\,\mathrm{e}^{2\pi\mathrm{i}\,\Delta\mathbf{k}\cdot\mathbf{r}_j}\ .
+\]
+The scattered intensity is then given by:
+\[
+	I_{\mathbf{k}\rightarrow\mathbf{k}'}(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_N) = \vert P_{\mathbf{k}\rightarrow\mathbf{k}'}(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_N)\vert^2\ ,
+\]
+and we will next set out to compute this intensity more explicitly.
+
+\subsection{Derivation of the Debye Scattering Equation}\label{\chabbr:ssec:DSEderivation}
+
+We will replace $\Delta\mathbf{k}$ by $2\mathbf{s}$ and use the summation subscripts $m$ and $n$ in this derivation.  The scattering probability then becomes:
+\[
+	P(\mathbf{s}) = \sum_{m=1}^N  f_m(s)\,\mathrm{e}^{4\pi\mathrm{i}\,\mathbf{s}\cdot\mathbf{r}_m}\ ;
+\]
+For the scattered intensity we find:
+\[
+	I(\mathbf{s}) = P(\mathbf{s})P^{\ast}(\mathbf{s}) = 
+	\sum_{m=1}^N \sum_{n=1}^N  f_m(s)f_n(s)\,\mathrm{e}^{4\pi\mathrm{i}\,\mathbf{s}\cdot(\mathbf{r}_m-\mathbf{r}_n)}\ .
+\]
+We define $\mathbf{r}_{mn}=\mathbf{r}_m-\mathbf{r}_n$ as the relative position vector of atoms $m$ and $n$.  To keep things simple, we will assume that all atoms are identical, and we can separate out the terms of the sum for which $m=n$ (and thus $\mathbf{r}_{mm}=\mathbf{0}$ so that the exponential becomes $1$):
+\begin{equation}
+		I(\mathbf{s}) = Nf^2(s) + f^2(s)\mathop{\sum_m^N\sum_n^N}_{\substack{m\ne n}} \mathrm{e}^{4\pi\mathrm{i}\,\mathbf{s}\cdot\mathbf{r}_{mn}}\ .\label{\chabbr:eq:DSE1}
+\end{equation}
+Note that the whole interference process is now described by a sum of unit complex numbers; for each pair of subscripts, both $\mathbf{r}_{mn}$ and $\mathbf{r}_{nm}=-\mathbf{r}_{mn}$ are present in the double sum, so that the end result is a real number, as expected for an intensity.
+
+In an amorphous material, the relative position vectors are randomly distributed so that we can average over all possible orientations of this vector.  This averaging process is carried out explicitly in section~\ref{\chabbr:sec:average} at the end of this chapter.  The result can be written as (using $k=4\pi s$ with $s=\vert\mathbf{s}\vert$):
+\begin{equation}
+		I(k) = Nf^2(s) + f^2(s)\mathop{\sum_m^N\sum_n^N}_{\substack{m\ne n}} \frac{\sin(k\,r_{mn})}{k\,r_{mn}}\ .\label{\chabbr:eq:DSE2}
+\end{equation}
+It is standard practice to normalize this expression by the first term so that we have:
+\begin{equation}
+		\bar{I}(k)\equiv\frac{I(k)}{Nf^2(s)} = 1  + \frac{1}{N}\mathop{\sum_m^N\sum_n^N}_{\substack{m\ne n}} \frac{\sin(k\,r_{mn})}{k\,r_{mn}}\ .\label{\chabbr:eq:DSE3}
+\end{equation}
+This the normalized form of the \indexit{Debye scattering equation}.  
+
+
+\subsection{Example Applications of the Debye Scattering Equation}\label{\chabbr:ssec:DSEexample}
+
+\subsubsection{Icosahedral cluster}\label{\chabbr:ssec:ico}
+
+As a first example, we consider a hypothetical molecule in which the $12$ vertices of an icosahedron are occupied by identical atoms;  the atom type does not matter since we will compute the normalized intensity.  The cartesian atom coordinates are given in the table below, and the distance between nearest neighbor atoms, the bond length, equals $a=0.2875$ nm.  What does the normalized intensity profile look like for this atom cluster?
+
+	\begin{table}[h]
+	\centering\leavevmode
+	\begin{tabular}{l|rrr}
+	Atom \# & $x$ & $y$ & $z$ \\
+	\hline
+1&0.000000&0.000000&2.000000\\
+2&1.788854&0.000000&0.894427\\
+3&0.552786&1.701302&0.894427\\
+4&-1.447214&1.051462&0.894427\\
+5&-1.447214&-1.051462&0.894427\\
+6&0.552786&-1.701302&0.894427\\
+7&1.447214&1.051462&-0.894427\\
+8&-0.552786&1.701302&-0.894427\\
+9&-1.788854&0.000000&-0.894427\\
+10&-0.552786&-1.701302&-0.894427\\
+11&1.447214&-1.051462&-0.894427\\
+12&0.000000&0.000000&-2.000000
+	\end{tabular}
+	\end{table}
+
+For a structure with a single atom type, the Debye Scattering Equation reads:
+\[
+	\bar{I}(k) = 1 + \frac{1}{N}\mathop{\sum_m^{12}\sum_n^{12}}_{\substack{m\ne n}} \frac{\sin(k\,r_{mn})}{k\,r_{mn}}
+\]
+The factors $f(s)$ do not appear in the equation when there is only one atom type.  The distances $r_{ij}$ are the pairwise distances between all atom pairs, excluding the cases where $i=j$.  From the atom coordinates in the table, which are Cartesian coordinates, we derive that the distance between atoms $11$ and $12$ equals $r_{11-12}=2.102925$ so that we need to scale the coordinates by the factor $0.2875/2.102925=0.136714$ before performing the computation of the double sum.  The sums are easily implemented in any programming language.  Each atom has five nearest neighbors at a distance $0.2875$ for a total of $60$ pairs, five second-nearest neighbors at at a distance $0.465185$ for a total of $60$ pairs, and one third-nearest neighbor at $0.546857$ for a total of $12$ pairs.  The explicit expression for $\bar{I}(k)$ is then given by:
+\[
+	\bar{I}(k) = 1 + \frac{60}{12}\frac{\sin( k\, 0.287500)}{k\, 0.287500} + \frac{60}{12}\frac{\sin( k\, 0.465185)}{k\, 0.465185}+ \frac{12}{12}\frac{\sin( k\, 0.546857)}{k\, 0.546857}\ .
+\]
+If we let $k$ cover the range $[0\ldots 100]$ nm$^{-1}$, then the result of the computation is the intensity plot shown in Fig.~\ref{\chabbr:fig:ico}.  If we were to add an identical atom at the center of the cluster, then we would add $24$ pairs at a distance $0.27343$, this time with $N=13$; the resulting $\bar{I}(k)$ curve is shown in red in Fig.~\ref{\chabbr:fig:ico}. Note that, since $\lim_{x\rightarrow 0}\sin(x)/x = 1$, the normalized curves reach the value $N$ for $k\rightarrow 0$; the prefactors of the $\sin$ terms always add up to $N-1$.
+
+\begin{figure}[h]
+\centering\leavevmode
+\includegraphics[width=0.5\textwidth]{\graphicspath ico.pdf}
+\caption{Normalized intensity $\bar{I}(k)$ for an icosahedral cluster with $12$ atoms (black) and a centered icosahedral cluster with $13$ atoms (red).}
+\label{\chabbr:fig:ico}
+\end{figure}
+
+\subsubsection{Cubic clusters}\label{\chabbr:ssec:cubes}
+
+As a second example, we consider two cubic cells, one a primitive cell (simple cubic or ``sc'') with $8$ atoms at the corner of a cube with edge length $a$, the other a body centered cubic cell (``bcc'') with $9$ atoms.  It is straightforward to determine the pairwise distances for both cells, and to count the number of pairs for each distance; we find:
+\begin{equation*}
+\begin{split}
+\bar{I}_{\text{sc}}(k) & = 1 + \frac{24}{8}\frac{\sin (ka)}{ka} + \frac{24}{8}\frac{\sin( k a \sqrt{2})}{ka\sqrt{2}}+\frac{8}{8}\frac{\sin(ka\sqrt{3})}{ka\sqrt{3}}\ ;\\
+\bar{I}_{\text{bcc}}(k) &=1+\frac{16}{9}\frac{\sin(ka\sqrt{3}/2)}{ka\sqrt{3}/2}+\frac{24}{9}\frac{\sin(ka)}{ka}+\frac{24}{9}\frac{\sin(ka\sqrt{2})}{ka\sqrt{2}}+\frac{8}{9}\frac{\sin(ka\sqrt{3})}{ka\sqrt{3}}\ .
+\end{split}
+\end{equation*}
+The resulting curves are shown in Fig.~\ref{\chabbr:fig:cube}(a) and (b) as the black curves.  When the number of unit cells is increased to $3\times 3\times 3$ (orange curves) and $5\times 5\times 5$ (blue curves), several observations can be made: (1) the peaks have a higher intensity with increasing number of atoms $N$; (2) the peaks become narrower because there is more interference with an increased number of atoms; (3) the sc and bcc curves show peaks at different values of $k\,a$.  
+
+\begin{figure}[h]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath cube.pdf}
+\caption{Normalized intensity $\bar{I}(k)$ for a single sc (a) and bcc (b) cell (black curves), $3\times 3\times 3$ (orange curves) and $5\times 5\times 5$ (blue curves); the number of atoms in each set is indicated in the corresponding colors.}
+\label{\chabbr:fig:cube}
+\end{figure}
+
+The vertical dashed lines correspond to the locations of lattice planes, and the Miller indices of each line are also indicated; note that for the bcc structure, there are fewer lines than for the simple cubic structure, which shows a peak for all possible lattice planes.  When we introduce the \indexit{structure factor} in the chapter on Diffraction Intensities, we will discuss the importance of the fact that there are fewer lines for bcc than for sc; the computation using the DSE is not well suited for the determination of diffraction patterns of crystalline materials, but it is the only approach that works for \textit{any} atom configuration, including for amorphous materials, polymers, nanoparticles, etc.  The structure factor, on the other hand, makes explicit use of the periodicity of the crystal lattice.
+
+
+
+\newpage
+
+\section{Orientation Averaging for the Debye Scattering Equation}\label{\chabbr:sec:average}
+
+In this section we compute the orientation average for the exponential in the double sum of equation~\ref{\chabbr:eq:DSE1}. To keep the notation compact, we introduce the vector $\mathbf{q}=4\pi\mathbf{s}$ and we consider the problem in spherical coordinates $\mathbf{q}=(q,\theta',\varphi')$.  The orientation average of the exponential can then be written as:  
+\[
+\langle\mathrm{e}^{\mathrm{i}\mathbf{q}\cdot\mathbf{r}}\rangle_{(\theta',\varphi')} = \frac{\int_0^{2\pi}\mathrm{d}\varphi'\,\int_0^{\pi}\sin\theta'\,\mathrm{d}\theta'\,\mathrm{e}^{\mathrm{i}\mathbf{q}\cdot\mathbf{r}}}{\int_0^{2\pi}\mathrm{d}\varphi'\,\int_0^{\pi}\sin\theta'\,\mathrm{d}\theta'}\ .
+\]
+The integral in the denominator is equal to the total solid angle $4\pi$. For the numerator we expand the exponential into the standard double sum (setting $\mathbf{r}=(r,\theta,\varphi)$):
+\[
+\mathrm{e}^{\mathrm{i}\mathbf{q}\cdot\mathbf{r}}=4\pi\sum_{\ell=0}^{\infty}\mathrm{i}^{\ell}\,j_{\ell}(q\,r)\sum_{m=-\ell}^{+\ell}Y^{\ast}_{lm}(\theta',\varphi')\,Y_{lm}(\theta,\varphi)\ ,
+\]
+where $j_\ell(x)$ is a spherical Bessel function of the first kind, and $Y_{lm}(\theta,\varphi)$ are the spherical harmonic functions.  Substituting in the integral over $\theta'$ and $\varphi'$ we can show that:
+\[
+	\int_0^{2\pi}\mathrm{d}\varphi'\,\int_0^{\pi}\sin\theta'\,\mathrm{d}\theta'\,Y^{\ast}_{lm}(\theta',\varphi')=2\sqrt{\pi}\delta_{\ell 0}\delta_{m 0}
+\]
+so that the average over all possible orientations can be computed as:
+\[
+\langle\mathrm{e}^{\mathrm{i}\mathbf{q}\cdot\mathbf{r}}\rangle_{(\theta',\varphi')} = \frac{1}{4\pi}\int_0^{2\pi}\mathrm{d}\varphi'\,\int_0^{\pi}\sin\theta'\,\mathrm{d}\theta'\,\mathrm{e}^{\mathrm{i}\mathbf{q}\cdot\mathbf{r}}=2\sqrt{\pi}\,j_0(q r)Y_{00}(\theta,\varphi)=j_0(q r)=\frac{\sin(q\,r)}{q\,r}\ .
+\]
+

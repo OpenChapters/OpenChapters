@@ -6,8 +6,7 @@
   "description": "",
   "toc": [
     "Introduction",
-    "Transport Properties and Thermodynamic Symmetry",
-    "Principal and cross transport effects",
+    "Cross-effect Transport Properties",
     "Incorporation of Magnetic Fields"
   ],
   "entry_file": "TransportProperties.tex",
@@ -16,7 +15,7 @@
   "chapter_type": "topical",
   "chabbr": "TRAPRP",
   "depends_on": [],
-  "published": true,
+  "published": false,
   "discipline": "mse",
   "author_urls": {
     "Marc De Graef": "https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html"

@@ -42,13 +42,8 @@
 % Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels
 % each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
 % second column if LaTeX breaks the line at an awkward location.
-\lightgraybox{\begin{center}
-    {\LARGE\sffamily\bfseries {\color{OCBurntOrange}\textbf{Learning Objectives}}}\\[1em]
-\end{center}
-
-{\color{OCalmostblack}\sffamily
-\begin{multicols}{2}
-\begin{itemize}
+\begin{learningobjectives}
+{\begin{itemize}
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:intro}:}] Learn about the Materials Tetrahedron
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:matprop}:}] Define what a material property is
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:proptensor}:}] Introduce many property tensors
@@ -56,8 +51,8 @@
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:thermosym}:}] Discover intrinsic thermodynamic symmetry
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:CrySymK}:}] Learn how crystallographic symmetry effects equilibrium properties
     \item[{\color{OCBurntOrange}\ref{\chabbr:sec:CrySymL}:}] Cover intrinsic and crystallographic symmetry for transport properties
-\end{itemize}
-\end{multicols}}}
+\end{itemize}}
+\end{learningobjectives}
 % ###################################################################
 % ###################################################################
 % ###################################################################
@@ -158,7 +153,7 @@ In teaching, performance is often presented as the close-the-loop element of the
 %In this section you will learn a formal definition of what a material property is.  Later on in this chapter we will introduce many examples.
 %\end{messagebox}
 
-Although it is difficult to provide a general abstract description of a material property, valid for all possible properties, it is instructive to think of a material property as \textit{the link between an external influence and the material's response to that influence}.  If we denote the external influence by $\mathcal{F}$ ($\mathcal{F}$ stands for \underline{F}ield or \underline{F}orce) and the material \underline{R}esponse or \underline{R}eaction by $\mathcal{R}$, then in the most general sense the relation between the two is given by
+Although it is difficult to provide a general abstract description of a material property,\footnote{The content of this chapter is based on a number of books dedicated to the tensor properties of solids; the most important references used are \cite{kiral1990a,nowick1995a,white1999a,newnham2004a,tinder2007a}.} valid for all possible properties, it is instructive to think of a material property as \textit{the link between an external influence and the material's response to that influence}.  If we denote the external influence by $\mathcal{F}$ ($\mathcal{F}$ stands for \underline{F}ield or \underline{F}orce) and the material \underline{R}esponse or \underline{R}eaction by $\mathcal{R}$, then in the most general sense the relation between the two is given by
 \begin{equation}
 	\mathcal{R}=\mathcal{R}(\mathcal{F}),\label{\chabbr:eq:rf}
 \end{equation}
@@ -776,7 +771,7 @@ a_{IJ} = \left(\begin{array}{cccccc}
 		\alpha_{11}\alpha_{21}&\alpha_{12}\alpha_{22} &\alpha_{13}\alpha_{23} &\alpha_{12}\alpha_{23}+\alpha_{13}\alpha_{22} &\alpha_{13}\alpha_{21}+\alpha_{11}\alpha_{23} &\alpha_{11}\alpha_{22}+\alpha_{12}\alpha_{21} \\
 		\end{array}\right)\label{\chabbr:eq:aIJ}
 \end{equation}}
-The transformation rule for this rank-2 tensor then becomes:
+This matrix is sometimes referred to as the \indexit{quadratic transformation matrix}.  The transformation rule for this rank-2 tensor then becomes:
 \[
 	t^{e\prime}_I = a_{IJ}t^e_J\qquad\text{($J$ runs from $1$ to $6$)}\ .
 \]
@@ -786,9 +781,27 @@ As a second example we consider the elastic compliance tensor in Voigt notation,
 \]
 We would like for the transformation of the engineering matrix $s^e_{IJ}$ to have a similar mathematical form:
 \[
-	s^{\prime e}_{IJ} = a_{IK}s^e_{KL}\tilde{a}_{JL} ,\qquad\text{(all subscripts run from $1$ to $6$)}\ ;
+	s^{\prime e}_{IJ} = a_{IK}s^e_{KL}a^{-1}_{JL} ,\qquad\text{(all subscripts run from $1$ to $6$)}\ ;
 \]
 it is not difficult, but somewhat tedious, to show that the matrix $a_{IJ}$ in equation~(\ref{\chabbr:eq:aIJ}) is also valid in this case.
+
+The transformation of a rank-3 tensor that is symmetric in two of its indices represents an interesting case where both the $\alpha_{ij}$ and $a_{IJ}$ transformation matrices must be used.  Consider the piezoelectric effect, represented by the rank-3 tensor $d_{ijk}$; this tensor represents the proportionality between an applied stress $\sigma_{jk}$ and the resulting electric displacement $D_i$:
+\[
+	D_i = d_{ijk}\sigma_{jk}\ .
+\]
+Because the stress tensor is a symmetric tensor we must also have $d_{ijk}=d_{ikj}$, so that there are $18$ independent components instead of the usual $27$ for a rank-3 tensor.  We know that the vector $\mathbf{D}$ transforms using the $\alpha_{ij}$ matrix, and the symmetric stress tensor in engineering notation by means of the $a_{IJ}$ matrix, so that (omitting the subscripts and the superscript $^e$):
+\[
+	D' = \alpha\, D\text{ and } \bm{\sigma}^{\prime} = a\,\bm{\sigma}\, 
+\]
+In the primed reference frame we must have that $D' = d'\,\bm{\sigma}^{\prime}$, so that:
+\[
+	D' = \alpha\,D = \alpha\, d\,\bm{\sigma} = \alpha\, d\, a^{-1}\bm{\sigma}'\ .
+\]
+The result is the (mixed) transformation rule for the piezoelectric tensor:
+\[
+	d'_{iK} = \alpha_{ik}\,d_{kJ}\,(a^{-1})_{JK}\ .
+\]
+Note that the summations cover the range $1\ldots 3$ for $k$ and $1\ldots 6$ for $J$.
 
 
 \section{Intrinsic Thermodynamic Symmetry}\label{\chabbr:sec:thermosym}
@@ -1193,7 +1206,9 @@ and is known as the \indexit{thermoelectric power} tensor; $T\bm{\Sigma}'$ is of
 \begin{equation}
 	\bm{K} = \frac{1}{T}\left(\bm{\gamma} - \bm{\beta}'\bm{\rho}\,\bm{\beta}\right).
 \end{equation}
-It is thus clear that the Onsager reciprocity theorem results in relations between the various material transport property tensors.  We already know what the resistivity and thermal conductivity are, so let's take a closer look at these two new material properties, the thermoelectric effect and the Peltier effect. The units of both thermoelectric power and Peltier effect are $[V/K]$, and for the resistivity tensor we have $[\Omega m]$.
+It is thus clear that the Onsager reciprocity theorem results in relations between the various material transport property tensors.  
+
+
 
 
 %\subsection{Tensor Transformation Examples}
