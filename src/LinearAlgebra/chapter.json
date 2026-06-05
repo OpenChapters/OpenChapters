@@ -18,6 +18,7 @@
   "chapter_type": "foundational",
   "chabbr": "LINALG",
   "depends_on": [],
+  "related_to": [],
   "published": true,
   "discipline": "mse",
   "author_urls": {
