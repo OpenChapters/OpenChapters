@@ -51,9 +51,9 @@
 % Within the itemize environment, hyphenation is temporarily turned off.
 \begin{learningobjectives}
 % This itemized list should be formatted as follows and must be enclosed by { } 
-%{\begin{itemize}
-%    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:complex}:}] Learn a formal description of
-%\end{itemize}}
+{\begin{itemize}
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:complex}:}] Learn a formal description of
+\end{itemize}}
 \end{learningobjectives}
 % ###################################################################
 % ###################################################################
@@ -65,34 +65,407 @@
 % This where the actual chapter content starts   %
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Sha}{\textls[0]{III}}
 
 \section{Introduction}\label{\chabbr:sec:introduction}
 
+In this chapter we briefly cover the most important aspects of 1D, 2D and 3D Fourier transforms as well as Fourier series.  We also introduce a few important functions, including the Dirac delta function, along with operations on pairs of functions (convolutions and correlations).  The emphasis is on clear coverage of the concepts, not on mathematical rigor.  
 
-\subsection{}\label{\chabbr:ssec:}
+\section{Special Functions and Orthogonality of Functions}\label{\chabbr:sec:SpecFunc}
+
+\subsection{Special functions}\label{\chabbr:ssec:special}
+
+\subsubsection{The Dirac $\delta$-function}
+
+The Dirac $\delta$-function is defined by:
+\begin{equation}
+	\delta(\mathbf{r}-\mathbf{a})=\left\{
+	\begin{array}{ll}
+		0      & \mathbf{r}\ne\mathbf{a}; \\
+		\infty & \mathbf{r}=\mathbf{a}.
+	\end{array}\right.
+\end{equation}
+It is represented by an infinitely narrow peak of infinite height at the position $\mathbf{r}=\mathbf{a}$, with the additional property that the area under the peak is equal to one:
+\begin{equation}
+	\iiint\delta(\mathbf{r}-\mathbf{a})
+	\,\mathrm{d}\mathbf{r}=1.
+\end{equation}
+If we multiply the $\delta$-function by a constant $c$, then the function $c\delta(\mathbf{r}-\mathbf{a})$ is a delta-function of \textit{weight} $c$.  
+
+We can regard the $\delta$-function as the limiting case of the Gaussian distribution, when the width of the distribution goes to zero and the amplitude to infinity, keeping the area under the curve normalized;  in the 1-D case this is described by:
+\begin{equation}
+	\delta(x)=\lim_{a\rightarrow\infty}\left[\frac{a}{\sqrt{\pi}} 
+	e^{-a^{2}x^{2}}\right].
+\end{equation}
+The delta function is particularly useful in crystallography and diffraction because it can be used to create a mathematical description of a 3-D lattice.  If we have basis vectors $\mathbf{a}$, $\mathbf{b}$, and $\mathbf{c}$ (not necessarily orthonormal), then we can reach any arbitrary node of the lattice by an integer linear combination of these three vectors; setting 
+\[
+	\mathbf{t}_{uvw}= u\,\mathbf{a} +v\,\mathbf{b} +w\,\mathbf{c}\ ,
+\]
+we can define the 3D lattice in terms of the delta function as:
+\[
+	\mathcal{T}(\mathbf{r}) = \sum_{u,v,w=-\infty}^{\infty}\, \delta(\mathbf{r}-\mathbf{t}_{uvw})\ .
+\]
+
+\subsubsection{The Heaviside Pi and unit step functions}
+
+In science, one often encounters physical quantities that are expressed as integrals over the volume or the surface of an object.  In other words, the physical quantities are represented by integrals of the type:
+\begin{equation}
+	\iiint_{V}\mathrm{d}^3\mathbf{r}\, f(\mathbf{r})\quad\text{or}\quad \iint_S\mathrm{d}^2S\,f(\mathbf{r})\ ,
+\end{equation}
+where $V$ is the volume of the object, $S$ its surface, and $f$ is some appropriate function. In practice, this means that the integration bounds typically contain the equations representing the volume or surface of the object. A simple example would be the computation of the volume of a cube with edge length $2a$, centered in the origin;  in that case, the function $f(\mathbf{r})$ takes on the value $1$, and the integration can be written as:
+\begin{equation}
+	V_{\text{cube}} = \int_{-a}^{+a}\!\!\!\!\!\mathrm{d}{x}\int_{-a}^{+a}\!\!\!\!\!\mathrm{d}{y}\int_{-a}^{+a}\!\!\!\!\!\mathrm{d}{z}\,1 = 8a^3\ .\label{\chabbr:eq:vcube1}
+\end{equation}
+The integration bounds of the $x$-integral, for instance, contain the equations $x=-a$ and $x=+a$ of the bounding surfaces of the cube.  It is often useful to replace the integration bounds by the entire interval $[-\infty,+\infty]$.  If we attempt to do this for the $x$-integral above, then we must introduce a function equal to $1$ inside the integration interval $[-a,+a]$, and zero elsewhere.  This function is commonly known as the \indexit{rectangle function}, $\Pi(x)$, and is defined as:
+\begin{equation}
+\Pi(x) \equiv \left\{\begin{array}{lcl}
+0 & \, & \vert x\vert>\frac{1}{2};\\[3pt]
+\frac{1}{2} && \vert x\vert = \frac{1}{2};\\[3pt]
+1 && \vert x\vert<\frac{1}{2}.
+\end{array}\right.\ .\label{\chabbr:eq:defrectfunct}
+\end{equation}
+The rectangle function is shown in Fig.~\ref{\chabbr:fig:rectfunct}(a);  if the function is needed on the interval $[-a,a]$ instead of $[-1/2,1/2]$, then one can write $\Pi(x/2a)$, as is verified easily.  The value of the rectangle function at the points $x=\pm1/2$ is usually defined to be $1/2$; in integrals involving this function, these points do not contribute at all, since they have zero measure.
+
+The rectangle function is also known as the \indexit{Heaviside Pi function}. This name is based on the fact that the rectangle function can be regarded as the difference of two Heaviside unit step functions.  The \indexit{Heaviside step function}, $H(x)$, is shown in Fig.~\ref{\chabbr:fig:rectfunct}(b), and is defined as 
+\begin{equation}
+H(x) \equiv \left\{\begin{array}{lcl}
+0 & \, & x<0;\\
+\frac{1}{2} && x=0;\\
+1 && x>0.
+\end{array}\right.\ .\label{\chabbr:eq:defheaviside}
+\end{equation}
+It is easy to show that the rectangle function can be written as:
+\begin{equation}
+	\Pi(x) = H(x+\frac{1}{2}) - H(x-\frac{1}{2}) = H(\frac{1}{4}-x^2)\ .\label{\chabbr:eq:piash}
+\end{equation}
+
+\begin{figure}[h]
+\centering\leavevmode
+\includegraphics[width=4.in]{\graphicspath rectfunct.pdf}
+\caption{Plots of the Heaviside Pi function $\Pi(x)$ (a) and the Heaviside unit step function $H(x)$ (b).}
+\label{\chabbr:fig:rectfunct}
+\end{figure}
+
+\noindent Returning to the $x$-integral in equation~\ref{\chabbr:eq:vcube1}, we can rewrite it using the rectangle function as
+\[
+	 \int_{-a}^{+a}\!\!\!\!\!\mathrm{d}{x}\, 1  =   \int_{-\infty}^{+\infty}\!\!\!\!\!\mathrm{d}{x}\, \Pi\left(\frac{x}{2a}\right) = 2a\ .
+\]
+For the cube, we can simply multiply three rectangle functions, one along each coordinate axis, to obtain:
+\begin{equation}
+	V_{\text{cube}} = \int_{-\infty}^{+\infty}\!\!\!\!\!\mathrm{d}x \int_{-\infty}^{+\infty}\!\!\!\!\!\mathrm{d}y \int_{-\infty}^{+\infty}\!\!\!\!\!\mathrm{d}z
+	\, \Pi\left(\frac{x}{2a}\right)\Pi\left(\frac{y}{2a}\right)\Pi\left(\frac{z}{2a}\right) = 8a^3\ .
+\end{equation}
+It is common practice to group the rectangle functions together into a single function known as the \indexit{shape function} or \indexit{characteristic function}:
+\begin{equation}
+	D(\mathbf{r}) = \Pi\left(\frac{x}{2a}\right)\Pi\left(\frac{y}{2a}\right)\Pi\left(\frac{z}{2a}\right)\ ,
+\end{equation}
+so that 
+\[
+	V_{\text{cube}} = \iiint_{V}\mathrm{d}^3\mathbf{r}\,D(\mathbf{r})\ .
+\]
+For a general shape, the shape function is defined by:
+\begin{equation}
+D(\mathbf{r}) \equiv \left\{\begin{array}{lcl}
+0 & \, & \mathbf{r}\text{ outside the object};\\[3pt]
+\frac{1}{2} && \mathbf{r}\text{ on the surface of the object};\\[3pt]
+1 && \mathbf{r}\text{ inside the object}.
+\end{array}\right.\ .\label{\chabbr:eq:shapefunction}
+\end{equation}
+Shape functions are extremely useful for a wide array of computations.  Since $D(\mathbf{r})$ is a linear function, we can combine multiple functions to make more complex shapes. As one example, consider a cylinder of height $h$ and radius $R$; working in cylindrical coordinates $\mathbf{r}=(r,\varphi,z)$, its shape function is equal to $1$ when $r<R$ and $\vert z\vert<h$. If we take a second cylinder with identical height but radius $R'<R$, then we can combine them and form a hollow tube with wall thickness $R-R'$ by subtracting their shape functions from each other:
+\[
+	D_{\text{tube}}(\mathbf{r}) = D_R(\mathbf{r}) - D_{R'}(\mathbf{r})\ .
+\]
+Using $D_{\text{tube}}(\mathbf{r})$ in the argument of a 3D integral then allows for the integration of an arbitrary function over the interior volume of the tube.
 
 
+\subsection{Orthogonality of functions}\label{\chabbr:ssec:orthofunc}
 
-\section{Special Functions}\label{\chabbr:sec:SpecFunc}
 
 
 
 \section{Fourier Series}\label{\chabbr:sec:FourierSeries}
 
+Consider a periodic 1-D function $f(x)$ with repeat interval $[-L,L]$; the function need not be differentiable. Its Fourier series is then defined as:
+\begin{equation}
+	f(x)= a_0+\sum_{n=1}^{\infty}a_n\cos\left(\frac{n\pi x}{L}\right)+\sum_{n=1}^{\infty}b_n\sin\left(\frac{n\pi x}{L}\right)\ ,
+\end{equation}
+To determine the coefficients $a_n$, we multiply both sides of the equation by $\cos\left(\frac{m\pi x}{L}\right)$ and integrate over the interval $[-L,L]$:
+\[
+	\int_{-L}^{+L}f(x)\,\cos\left(\frac{m\pi x}{L}\right)\,\mathrm{d}x = \sum_{n=0}^{\infty}a_n \int_{-L}^{+L}\cos\left(\frac{n\pi x}{L}\right)\cos\left(\frac{m\pi x}{L}\right)\,\mathrm{d}x\ ,
+\]	
+where the integrals containing $b_n$ vanish due to orthogonality of cosine and sine functions.  As demonstrated in the previous section, the integral over the product of two cosine functions vanishes whenever $m\ne n$, is equal to $2L$ when $m=n=0$, and $L$ when $m=n>0$. A similar analysis leads to the $b_n$ coefficients, and the resulting expressions are:
+\begin{equation*}
+\begin{split}
+	a_0&=\frac{1}{2L}\int_{-L}^{+L}f(x)\,\mathrm{d}x\ ;\\
+	a_n&=\frac{1}{L}\int_{-L}^{+L}f(x)\,\cos\left(\frac{n\pi x}{L}\right)\,\mathrm{d}x\ ;\\
+	b_n&=\frac{1}{L}\int_{-L}^{+L}f(x)\,\sin\left(\frac{n\pi x}{L}\right)\,\mathrm{d}x\ .
+\end{split}
+\end{equation*}
+Note that the ratio $\pi x/L$ in the trigonometric functions varies from $-\pi$ to $+\pi$.  The expression for $a_0$ does not contain any trigonometric function and is equal to the average of the function $f(x)$ over the interval $[-L,L]$.
+
+\begin{figure}[h]
+\centering\leavevmode
+\includegraphics[width=4.in]{\graphicspath parabola.pdf}
+\caption{Schematic illustration of Fourier partial sums for $N=1$, $5$, and $10$ for the function $f(x)=1-x^2$ on the interval $[-1,1]$.}
+\label{\chabbr:fig:parabola}
+\end{figure}
+
+As an example, consider the parabolic function $f(x)=1-x^2$ with $L=1$, i.e., on the interval $[-1,1]$. Since this function is even over the interval $[-1,1]$, all the $b_n$ integrals will vanish; it is not too difficult to show, e.g., using Mathematica, that the $a_n$ Fourier coefficients are given by:
+\begin{equation*}
+\begin{split}
+	a_0&=\frac{1}{2}\int_{-1}^{+1}(1-x^2)\,\mathrm{d}x = \frac{2}{3}\ ;\\
+	a_n&=\int_{-1}^{+1}(1-x^2)\,\cos\left(\frac{n\pi x}{L}\right)\,\mathrm{d}x=-\frac{4(-1)^n}{n^2\pi^2}\ ;\\
+\end{split}
+\end{equation*}
+so that:
+\[
+	1-x^2 = \frac{2}{3}-\frac{4}{\pi^2}\lim_{N\rightarrow\infty}\,\sum_{n=1}^{N}\frac{(-1)^n}{n^2}\cos\left(n\pi x\right)\ .
+\]
+The resulting functions for different values of $N$, i.e., partial sums, are shown in Fig.~\ref{\chabbr:fig:parabola}; as $N$ increases, the agreement improves rapidly, except at points where the derivative does not exist in which case an infinite number of terms is needed.
+
+Often, the Fourier series is written in terms of a complex exponential instead of trigonometric functions:
+\begin{equation}
+	f(x) = \sum_{n=-\infty}^{+\infty}A_n\,\mathrm{e}^{2\pi\mathrm{i}\frac{nx}{2L}}\ ,\label{\chabbr:eq:complexFS}
+\end{equation}
+with 
+\begin{equation}
+	A_n=\frac{1}{2L}\int_{-L}^{+L}f(x)\,\mathrm{e}^{-2\pi\mathrm{i}\frac{nx}{2L}}\mathrm{d}x\ .\label{\chabbr:eq:complexFScoef}
+\end{equation}
+The relation between the $A_n$ and $a_n, b_n$ coefficients is given by:
+\[
+	A_n = \left\{\begin{array}{lcr}
+	\frac{1}{2}(a_n+\mathrm{i}b_n)&\qquad&n<0;\\
+	&&\\
+	a_0&\qquad&n=0;\\
+	&&\\
+	\frac{1}{2}(a_n-\mathrm{i}b_n)&\qquad&n>0;
+	\end{array}\right.	
+\]
+For the parabola described above we have:
+\[
+	A_0 = \frac{2}{3};\qquad A_n = -\frac{2(-1)^n}{n^2\pi^2}\text{ $(n\ne 0)$}\ .
+\]
+It is common practice to introduce the symbol $k_n$ for the quantity $n/2L$, so that the Fourier series becomes:
+\[
+	f(x) = \sum_{n=-\infty}^{+\infty}A_n\,\mathrm{e}^{2\pi\mathrm{i} k_n\,x}\ .
+\]
+In the context of crystallography, the quantity $k_n$ has dimensions of reciprocal length so we would interpret it as a quantity in \indexit{reciprocal space}, which is generally a \indexit{wave number} or \indexit{spatial frequency}.   In 3D, the wave number becomes a three-component vector, $\mathbf{k}$, and $x$ becomes a position vector, so that the exponential has argument $2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{r}$; the full 3D Fourier series for a function defined on a finite volume with dimensions $[2L_x,2L_y,2L_z]$ (and presumed to be periodic outside that volume), can then be written as:
+\begin{equation}
+	f(\mathbf{r}) =  \sum_{p=-\infty}^{+\infty}\sum_{q=-\infty}^{+\infty}\sum_{r=-\infty}^{+\infty} A_{pqr} \mathrm{e}^{2\pi\mathrm{i}\mathbf{k}_{pqr}\cdot\mathbf{r}}\ ,\label{\chabbr:eq:complexFS3D}
+\end{equation}
+where the coefficients are defined as:
+\begin{equation}
+	A_{pqr} = \frac{1}{8L_xL_yL_z}\int_{-L_x}^{+L_x}\int_{-L_y}^{+L_y}\int_{-L_z}^{+L_z}f(\mathbf{r})\,
+	\mathrm{e}^{-2\pi\mathrm{i}\mathbf{k}_{pqr}\cdot\mathbf{r}}\mathrm{d}x\mathrm{d}y\mathrm{d}z\ .\label{\chabbr:eq:complexFScoef3D}
+\end{equation}
+The components of the wave vector are then given by:
+\[
+	\mathbf{k}_{pqr}=\left(\frac{p}{2L_x},\frac{q}{2L_y},\frac{r}{2L_z}\right)\ ,
+\]
+and the dot product can be written in the standard way as:
+\[
+	\mathbf{k}_{pqr}\cdot\mathbf{r} = k_x\,x+k_y\,y+k_z\,z = \frac{p\,x}{2L_x}+\frac{q\, y}{2L_y}+\frac{r\,z}{2L_z}\ .
+\]
 
 \section{Fourier Transforms}\label{\chabbr:sec:FourierTransforms}
+
+\subsection{Continuous Fourier Transforms}\label{\chabbr:ssec:CFTs}
+
+In the 1D case of the previous section, when we take the limit of $L\rightarrow\infty$, the entire real axis becomes the domain for the function $f(x)$ with $x\in\mathbb{R}$.  In that case, the ratio $n/2L$ becomes a continuous variable usually represented by $k$; taking the limit\footnote{We are a little sloppy with the math here \ldots} for $L\rightarrow\infty$ in eq.~(\ref{\chabbr:eq:complexFS}) results in the following definition for the \indexit{continuous Fourier transform} (CFT):
+\begin{equation}
+	f(k) = \mathcal{F}[f(x)] \equiv \int_{-\infty}^{+\infty}f(x)\, \mathrm{e}^{-2\pi\mathrm{i}kx}\mathrm{d}x\ ,\label{\chabbr:eq:CFT}
+\end{equation}
+and the inverse continuous Fourier transform (ICFT) is defined by:
+\begin{equation}
+	f(x) = \mathcal{F}^{-1}[f(k)] \equiv \int_{-\infty}^{+\infty}f(k)\, \mathrm{e}^{2\pi\mathrm{i}kx}\mathrm{d}k\ .\label{\chabbr:eq:ICFT}
+\end{equation}
+For the majority of applications of the CFT, the function $f(x)$ has either a finite domain, or goes to zero smoothly for large values of $\vert x\vert$.  If the function diverges for $\vert x\vert\rightarrow\infty$, then it is usually still possible to define/compute the CFT, but this will then require the use of Special Functions or Distributions, of which the delta function of section~\ref{\chabbr:ssec:delta} is one example.  Note that it is also possible to omit the factor of $2\pi$ from the complex exponential; in that case there will be a constant pre-factor for the integrals. This is completely equivalent to the definitions above, and one must pay close attention to the consistent application of all definitions.
+
+\begin{figure}[h]
+\centering\leavevmode
+\includegraphics[width=4.in]{\graphicspath tophat.pdf}
+\caption{Schematic illustration of (a) a top-hat function and (b) its continuous Fourier transform.}
+\label{\chabbr:fig:tophat}
+\end{figure}
+
+As an example that is relevant to crystallography and diffraction, let us consider the top-hat function which is equal to $1$ in the interval $[-1/2,1/2]$ and zero outside this interval. The CFT then becomes:
+\[
+	f_{\text{top-hat}}(k) = \int_{-1/2}^{+1/2}\mathrm{e}^{-2\pi\mathrm{i}kx}\mathrm{d}x = \left.\frac{-1}{2\pi\mathrm{i}k}\mathrm{e}^{-2\pi\mathrm{i}kx}\right\vert_{x=-1/2}^{x=+1/2} = \frac{1}{\pi k}\frac{\left(\mathrm{e}^{\pi\mathrm{i}k}-\mathrm{e}^{-\pi\mathrm{i}k}\right)}{2\mathrm{i}}=\frac{\sin(\pi k)}{\pi k}\ .
+\]
+This function occurs frequently in diffraction theory and is known as the \indexit{$\text{sinc}$ function}:
+\[
+	\text{sinc}(x)=\frac{\sin x}{x} \rightarrow f_{\text{top-hat}}(k)=\text{sinc}(\pi k)\ .
+\]
+This function is shown in Fig.~\ref{\chabbr:fig:tophat}(b).  Note that the top-hat function is piecewise continuous but not differentiable at the points $x=\pm1/2$, whereas its CFT is infinitely differentiable; this is a common feature of CTFs of discontinuous functions.
+
+\begin{figure}[h]
+\centering\leavevmode
+\includegraphics[width=4.in]{\graphicspath Gibbs.pdf}
+\caption{Schematic illustration of a Fourier series reconstruction of the top-hat function, using partial sums with $N=2$, $N+20$, and $N=200$ terms; note the oscillatory overshoots at both sides of the discontinuities (Gibbs oscillations).}
+\label{\chabbr:fig:Gibbs}
+\end{figure}
+
+We can also consider the discrete Fourier series of this top-hat function by assuming that the function is embedded on the interval $[-1,1]$ (i.e., $L=1$) and is periodic over the complete real axis.  The resulting Fourier coefficients are then given by:
+\[
+	a_0 = \frac{1}{2}; \qquad a_n=2\frac{\sin\frac{n\pi}{2}}{n\pi} = \text{sinc}\left(\frac{n\pi}{2}\right).
+\]
+The Fourier expansion for different values of $N$ is shown in Fig.~\ref{\chabbr:fig:Gibbs}; note the oscillations at places where the original function is discontinuous.  Such oscillations are known as Gibbs oscillations, and they are always present whenever there is a discontinuity.
+
+\subsection{3-D Fourier Transforms}\label{\chabbr:ssec:2DCFT}
+
+In 3-D, there are three orthogonal Cartesian directions along which the Fourier transform integral must be applied.  Consider a 3-D continuous function $\rho(\mathbf{r})$; applying the 1-D CFT to each direction produces the following triple integral:
+\[
+	\mathcal{F}[\rho(\mathbf{r})] = \int_{-\infty}^{+\infty}\!\!\!\!\int_{-\infty}^{+\infty}\!\!\!\!\int_{-\infty}^{+\infty}\rho(x,y,z)\, \mathrm{e}^{-2\pi\mathrm{i}(k_xx+k_yy+k_zz)}\mathrm{d}x\mathrm{d}y\mathrm{d}z\ .
+\]
+Introducing the frequency vector $\mathbf{k}=(k_x,k_y,k_z)$ we have:
+\begin{equation}
+	\rho(\mathbf{k})=\mathcal{F}[\rho(\mathbf{r})] = \iiint_{-\infty}^{+\infty}\!\!\!\! \rho(\mathbf{r})\, \mathrm{e}^{-2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\mathrm{d}^3\mathbf{r}\ .\label{\chabbr:eq:3DCFT}
+\end{equation}
+And the inverse transform becomes:
+\begin{equation}
+	\rho(\mathbf{r})=\mathcal{F}^{-1}[\rho(\mathbf{k})] = \iiint_{-\infty}^{+\infty}\!\!\!\! \rho(\mathbf{k})\, \mathrm{e}^{2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\mathrm{d}^3\mathbf{k}\ .\label{\chabbr:eq:3DICFT}
+\end{equation}
+
+As an example of a 3-D Fourier transform we consider the 3-D top-hat function, i.e., a function that is equal to $1$ inside a rectangular prism with edge lengths $(2L_x,2L_y,2L_z)$ and zero outside.  Such computations are relevant for diffraction experiments, and the 3-D step function, $D(\mathbf{r})$, that delineates a finite volume is generally known as a \textit{shape function} or \textit{characteristic function}.  Its Fourier transform is known as the \textit{shape amplitude}, $D(\mathbf{k})$.  The computation is straightforward:
+\begin{align*}
+	D(\mathbf{k}) &= \iiint_{-\infty}^{+\infty}\!\!\!\! D(\mathbf{r})\, \mathrm{e}^{-2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\mathrm{d}^3\mathbf{r};\\
+	&= \int_{-L_x}^{+L_x}\!\!\!\!\int_{-L_y}^{+L_y}\!\!\!\!\int_{-L_z}^{+L_z} \mathrm{e}^{-2\pi\mathrm{i}k_xx} \mathrm{e}^{-2\pi\mathrm{i}k_yy}\mathrm{e}^{-2\pi\mathrm{i}k_zz}\mathrm{d}x\mathrm{d}y\mathrm{d}z;\\
+	&=\int_{-L_x}^{+L_x}\!\!\!\!\mathrm{e}^{-2\pi\mathrm{i}k_xx}\mathrm{d}x \int_{-L_y}^{+L_y}\!\!\!\! \mathrm{e}^{-2\pi\mathrm{i}k_yy}\mathrm{d}y\int_{-L_z}^{+L_z} \mathrm{e}^{-2\pi\mathrm{i}k_zz}\mathrm{d}z;\\
+	&= \frac{1}{\pi k_x}\frac{\left(\mathrm{e}^{2\pi\mathrm{i}k_xL_x}-\mathrm{e}^{-2\pi\mathrm{i}k_xL_x}\right)}{2\mathrm{i}}
+	\frac{1}{\pi k_y}\frac{\left(\mathrm{e}^{2\pi\mathrm{i}k_yL_y}-\mathrm{e}^{-2\pi\mathrm{i}k_yL_y}\right)}{2\mathrm{i}}
+	\frac{1}{\pi k_z}\frac{\left(\mathrm{e}^{2\pi\mathrm{i}k_zL_z}-\mathrm{e}^{-2\pi\mathrm{i}k_zL_z}\right)}{2\mathrm{i}};\\
+	&= \frac{\sin(2\pi k_xL_x)}{\pi k_x}  \frac{\sin(2\pi k_yL_y)}{\pi k_y}  \frac{\sin(2\pi k_zL_z)}{\pi k_z};\\
+	&= 8L_xL_yL_z\,\text{sinc}(2\pi k_xL_x)\text{sinc}(2\pi k_yL_y)\text{sinc}(2\pi k_zL_z).
+\end{align*}
+Note that the prefactor is equal to the volume $V$ of the rectangular prism, i.e., $D(\mathbf{0})=V$.  This function is visualized as an iso- surface in Fig.~\ref{\chabbr:fig:SHAMP}(a) for the rectangular prism, and in (b) for a regular octahedron.  What is remarkable about these Fourier transform pairs is that $D(\mathbf{r})$ is piecewise constant and not differentiable whereas $D(\mathbf{k})$ is well behaved, continuous and infinitely differentiable.  
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath SHAMP.pdf}
+\caption{3D shape amplitudes rendered as iso-surfaces for (a) a rectangular prism and (b) an octahedron. }
+\label{\chabbr:fig:SHAMP}
+\end{figure}
+
+As a more complex example we derive here the shape amplitude of a sphere of radius $R$.  This function is very important in the analysis of suspensions of spherical nano-particles using \indexit{Small Angle X-ray Scattering} or SAXS.  Before embarking on the derivation of the shape amplitude, let us first consider a modification of the definition of the continuous Fourier Transform; in the physics literature (and much of the SAXS work is reported in the physics community), it is common practice to incorporate the factor of $2\pi$ in the phase exponential into the definition of the frequency vector $\mathbf{k}$.  For the direct CFT, this means that we now have:
+\[
+D(\mathbf{k})=\mathcal{F}[D(\mathbf{r})] = \iiint_{-\infty}^{+\infty}\!\!\!\! D(\mathbf{r})\, \mathrm{e}^{-\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\mathrm{d}^3\mathbf{r}.
+\]
+For the inverse transform, we must also incorporate $2\pi$ into the differential element $\mathrm{d}^3\mathbf{k}$, so that we have:
+\[
+D(\mathbf{r})=\mathcal{F}^{-1}[D(\mathbf{k})] = \frac{1}{(2\pi)^3}\iiint_{-\infty}^{+\infty}\!\!\!\! D(\mathbf{k})\, \mathrm{e}^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\mathrm{d}^3\mathbf{k}.
+\]
+Either set of definitions can be used, as long as we systematically apply one or the other.  We will use these definitions to compute the shape amplitude, $D(\mathbf{k})$, of the sphere. This computation is simplified considerably if we work in spherical coordinates $\mathbf{r}=(r, \varphi, \theta)$, for which $\mathrm{d}^3\mathbf{r}=r^2\sin\theta\,\mathrm{d}\varphi\,\mathrm{d}\theta\,\mathrm{d}r$.  In spherical coordinates, the shape function is simply given by:
+\[
+	D(r,\varphi,\theta) = \left\{\begin{array}{lcl}1&\quad& r\le R;\\
+	0& & r>R\end{array}\right.,
+\]
+so that the shape amplitude is given by (representing the vector $\mathbf{k}$ by the spherical components $(k,\varphi',\theta')$):
+\[
+	D(k,\varphi',\theta') = \int_{0}^R\mathrm{d}r\,r^2\,\int_{0}^{2\pi}\mathrm{d}\varphi\,\int_{0}^{\pi}\mathrm{d}\theta\, \sin\theta\,  \mathrm{e}^{-\mathrm{i}\mathbf{k}\cdot\mathbf{r}}.
+\]
+There is a well-known expansion of the complex phase factor into spherical coordinates which involves the spherical harmonic functions $Y_{\ell m}(\theta,\varphi)$ and the spherical Bessel functions $j_\ell(x)$:
+\[
+	e^{-\mathrm{i}\mathbf{k}\cdot\mathbf{r}} = 4\pi\sum_{\ell=0}^{\infty}(\mathrm{-i})^{\ell} j_{\ell}(kr)\sum_{m=-\ell}^{+\ell} Y^{\ast}_{\ell m}(\theta',\varphi')Y_{\ell m}(\theta,\varphi).
+\]
+The definitions of these functions can be found in section~\ref{\chabbr:sec:SpecFunc}.  Consider the angular portion of the triple integral:
+\[
+	\int_{0}^{2\pi}\!\!\!\mathrm{d}\varphi\,\int_{0}^{\pi}\!\!\!\mathrm{d}\theta\, \sin\theta\, Y_{\ell m}(\theta,\varphi) =
+	2\sqrt{\pi}\int_{0}^{2\pi}\!\!\!\mathrm{d}\varphi\,\int_{0}^{\pi}\!\!\!\mathrm{d}\theta\, \sin\theta\, Y^{\ast}_{00}(\theta,\varphi)\,Y_{\ell m}(\theta,\varphi) = 2\sqrt{\pi}\delta_{\ell 0}\delta_{m 0},
+\]
+where we used the orthogonality properties of the spherical harmonic functions and the fact that $Y_{00}(\theta,\varphi)=1/(2\sqrt{\pi})$.  
+This means that the double sum over $\ell$ and $m$ reduces to a single term:
+\[
+	D(k,\varphi',\theta') = 4\pi\int_{0}^R\!\!\!\mathrm{d}r\,r^2  j_{0}(kr) = 4\pi R^3\frac{j_1(kR)}{kR}.
+\]
+In the limit of $k\rightarrow0$, the ratio $j_1(kR)/kR\rightarrow 1/3$, as is readily confirmed using Mathematica.  Therefore, the shape amplitude of the sphere can be written as:
+\[
+	D(\mathbf{k})=D(k)=3V\frac{j_1(kR)}{kR}=3V\left[\frac{\sin(kR)}{k^3R^3}-\frac{\cos(kR)}{k^2R^2}\right]\quad\text{with }D(\mathbf{0}) = V.
+\]
+This radial function is shown in Fig.~\ref{\chabbr:fig:sphere}.
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.6\textwidth]{\graphicspath sphere.pdf}
+\caption{3D shape amplitude $D(k)$ for a sphere of unit volume $V$.}
+\label{\chabbr:fig:sphere}
+\end{figure}
+
+
+\subsection{Discrete Fourier Transforms}\label{\chabbr:ssec:DFTs}
+Let us assume that we know the values of the function $f(x)$ only in a finite number $N$ of points $x_k$ $(k=0\ldots N-1)$, i.e., we know the values $f(x_k)\equiv f_k$.  In that case we cannot use the integral expressions for the Fourier series coefficients, and instead we use the following definitions for the \indexit{Discrete Fourier transform} (DFT):
+\begin{equation}
+	DFT[f_k] = F_n = \sum_{k=0}^{N-1} f_k\,\mathrm{e}^{-2\pi\mathrm{i}\frac{nk}{N}}\ ;
+\end{equation}
+the inverse DFT (DIFT) is then given by:
+\begin{equation}
+	DIFT[F_n] = f_k = \frac{1}{N}\sum_{n=0}^{N-1} F_n\,\mathrm{e}^{2\pi\mathrm{i}\frac{kn}{N}}\ .
+\end{equation}
+This discrete version of the Fourier transform probably represents the majority of applications that require frequency analysis (whether temporal or spatial). Any digital image can be interpreted as a set of numbers on a 2D grid of points (e.g., camera pixels), so it should come as no surprise that the DFT has numerous applications in image analysis.  Numerically, there is a special algorithm to compute these sums very quickly with a minimal number of evaluations of trigonometric functions, namely the \indexit{fast Fourier transform} or FFT \cite{cooley1965a}.   
+
+It is important to understand what the values of the spatial frequencies are that are associated with the DFT.  If we have $N$ equidistant points $x_k=k\delta$ with $k=0\ldots N-1$ and step size $\delta$, then the frequencies corresponding to the Fourier coefficients $F_n$ are given by:
+\[
+	k_n = \frac{n}{N\delta},\qquad n=-\frac{N-1}{2},\ldots,-1,0,1,\ldots\frac{N}{2};
+\]
+in other words, the frequencies wrap around due to the periodicity of the phase exponential.  Also note that $DIFT[DFT[f_k]]=f_k$, i.e., the discrete Fourier transforms are each others inverse.
+
+
 
 
 \section{Convolutions and Related Operations}\label{\chabbr:sec:Convolutions}
 
+The convolution product $C(\mathbf{r})$ (also known as \textit{folding} or \textit{faltung}) of two functions $f(\mathbf{r})$ and $g(\mathbf{r})$ is defined by:
+\begin{equation}
+	(f\ast g)(\mathbf{r})\equiv \iiint f(\mathbf{R})g(\mathbf{r}-\mathbf{R})\,\mathrm{d}\mathbf{R}.\label{eq:convoldef}
+\end{equation}
+The geometric interpretation of the convolution product is quite straightforward: the function $f$ is kept stationary, and the function $g$ is translated by the vector $\mathbf{r}$ to all possible locations relative to $f$.  For each location, the functions are multiplied together and the result is integrated over all of space. One common purpose for convolution is the operation of blurring an image; the intensity in a given pixel is replaced by that intensity multiplied by a blurring kernel and integrated over the kernel. In crystallography, the convolution is often used to copy a motif (e.g., a collection of atoms) onto a periodic lattice.
 
+One can show that the Dirac $\delta$-function is the identity operator of the convolution product:
+\begin{equation}
+	f(\mathbf{r})\ast \delta(\mathbf{r})= \iiint f(\mathbf{R})\delta(\mathbf{r}-\mathbf{R})\,\mathrm{d}\mathbf{R}=f(\mathbf{r}).\label{eq:sifting}
+\end{equation}
+This is known as the \textit{sifting} property of the $\delta$ function.  Another useful property is the complex representation of the delta function:
+\begin{equation}
+	\delta(\mathbf{k})=\mathcal{F}[1]=\iiint 
+	e^{-2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\,\mathrm{d}\mathbf{r}.
+	\label{eq:complex}
+\end{equation}
+Comparing this relation to the definition of the DFT, we find that the Fourier Transform of the constant $1$ is equal to $\delta(\mathbf{k})$.  The Fourier Transform of a constant $c$ is a $\delta$-function of weight $c$ ($\mathcal{F}[c]=c\mathcal{F}[1]=c\delta(\mathbf{k})$).
 
+The following two general theorems are useful:
+\begin{equation}
+	\mbox{The Multiplication Theorem:} 
+	\qquad\mathcal{F}[f(\mathbf{r})g(\mathbf{r})]=F(\mathbf{k})\ast G(\mathbf{k});
+	\label{eq:FTmulttheorem}
+\end{equation}
+\begin{equation}
+	\mbox{The Convolution Theorem:} 
+	\qquad\mathcal{F}[f(\mathbf{r})\ast g(\mathbf{r})]=F(\mathbf{k})G(\mathbf{k}).
+	\label{eq:FTconvtheorem}
+\end{equation}
+The proof for these theorems is quite straightforward. They are important for crystallographic computations involving infinite and finite lattices.  The Convolution Theorem in combination with the FFT algorithm makes it possible to rapidly compute convolutions.
 
+The cross-correlation between two functions $f$ and $g$ is similar to the convolution, but with a sign change in the translated function:
+\begin{equation}
+	(f\star g)(\mathbf{r})\equiv \iiint f(\mathbf{R})g(\mathbf{r}+\mathbf{R})\,\mathrm{d}\mathbf{R}.\label{eq:convoldef}
+\end{equation}
+The cross-correlation operation ``measures'' the similarity between the two functions $f$ and $g$ and is often used in image processing to align two images that are similar.  When $f=g$, the operation is known as auto-correlation: $(f\star f)(\mathbf{r})$. 
 
-
-
-
-
-
+As an example of a cross-correlation application, consider two shapes with shape functions $D_1(\mathbf{r})$ and $D_2(\mathbf{r})$; the cross-correlation $(D_1\star D_2)(\mathbf{r})$ is the overlap volume of the two shapes as a function of their relative position vector $\mathbf{r}$ between the centers-of-mass of the respective objects.  Let us consider two spheres of radius $R$ with centers along the positive $x$ axis, with one sphere in the origin and the other at a distance $d$ from the origin; the spheres may or may not overlap and the goal is to compute the overlap volume as a function of $d$.  The auto-correlation function, $\mathcal{C}(d)$, for these spheres can be computed by noting that the cross-correlation of $D_1(\mathbf{r})$ and $D_2(\mathbf{r})$ is equal to the convolution of $D_1(\mathbf{r})$ with $D_2(-\mathbf{r})$; using the Convolution Theorem, we have:
+\[
+	\mathcal{C}(\mathbf{r}) = \mathcal{F}^{-1}\left[D_1(\mathbf{k})D^{\ast}_2(\mathbf{k})\right] = \mathcal{F}^{-1}\left[ \vert D(\mathbf{k})\vert^2 \right]
+\]
+where the second equality follows because the two shape amplitudes are identical (two equal size spheres). Therefore we have:
+\[
+	\mathcal{C}(\mathbf{r}) = \frac{9V^2 }{(2\pi)^3}\int_0^{\infty}\!\!\!\mathrm{d}k\,k^2 \frac{j^2_1(kR)}{k^2R^2}  \int_0^{2\pi}\!\!\!\mathrm{d}\varphi'\int_0^{\pi}\!\!\!\mathrm{d}\theta\,\sin\theta\, \mathrm{e}^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}}
+\]
+Using the spherical harmonic expansion of the exponential (same analysis as for the sphere shape amplitude):
+\[
+	e^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}} = 4\pi\sum_{\ell=0}^{\infty}\mathrm{i}^{\ell} j_{\ell}(kr)\sum_{m=-\ell}^{+\ell} Y_{\ell m}(\theta',\varphi')Y^{\ast}_{\ell m}(\theta,\varphi).
+\]
+we find for the angular integration $\delta_{\ell\,\ell'}\delta_{m\, m}$ so that only one single term survives in the radial integration: 
+\[
+	\mathcal{C}(\mathbf{r}) =\frac{9V^2}{2\pi^2R^2} \int_0^{\infty}\!\!\!\mathrm{d}k\, j^2_1(kR) j_0(kd) = \frac{V}{16}\left(\frac{d}{R}-2\right)^2\left(\frac{d}{R}+4\right).
+\]
+The radial integral was computed using Mathematica, and the result is only valid when $0\le d\le 2R$, i.e., when the spheres overlap.
 
 
