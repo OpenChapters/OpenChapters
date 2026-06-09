@@ -22,7 +22,7 @@
   "depends_on": [],
   "related_to": [],
   "discipline": "mse",
-  "published": false,
+  "published": true,
   "author_urls": {
     "Marc De Graef": "https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html"
   }
