@@ -3,9 +3,13 @@
   "authors": [
     "Marc De Graef"
   ],
-  "description": "A brief review of Fourier series and transforms in the context of diffraction",
+  "description": "A brief review of Fourier series and transforms as well as special functions in the context of diffraction",
   "toc": [
-    "Introduction"
+    "Introduction",
+    "Special Functions and Orthogonality of Functions",
+    "Fourier Series",
+    "Fourier Transforms",
+    "Convolutions and Related Operations"
   ],
   "entry_file": "FourierIntro.tex",
   "cover_image": "cover.png",

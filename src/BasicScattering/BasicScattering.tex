@@ -82,7 +82,7 @@
 
 \section{Introduction}\label{\chabbr:sec:introduction}
 
-In this chapter, we describe how one or more atoms scatter an incident beam of x-rays, electrons, or neutrons.  We begin by introducing the concept of the \indexit{wave vector}, which relates the wavelength of the incident beam to the reciprocal space description of the crystal structure. This involves the \indexit{particle-wave duality} which is fundamental to the field of quantum mechanics. Then we describe how the three primary beam types are generated.  We build up a description of x-ray scattering by first looking at scattering of an x-ray photon by a single electron (the \indexit{Thomson equation}), and then by an atom, and finally by a random collection of atoms, representing a gas or a liquid.  The end product of this description will be the \indexit{Debye Scattering Equation} (DSE), which is of fundamental importance to all diffraction experiments performed on non-periodic samples. We end the chapter with a number of example applications of the DSE.  Scattering by periodic samples (i.e., crystal structures) can in principle be described by this equation, but there is a much more powerful tool in the form of the \indexit{Structure Factor}, and we devote an entire chapter to this concept.
+In this chapter, we describe how one or more atoms scatter an incident beam of x-rays, electrons, or neutrons.  We begin by introducing the concept of the \indexit{wave vector}, which relates the wavelength of the incident beam to the reciprocal space description of the crystal structure. This involves the \indexit{particle-wave duality} which is fundamental to the field of quantum mechanics. Then we describe how the three primary beam types are generated and detected.  We build up a description of x-ray scattering by first looking at scattering of an x-ray photon by a single electron (the \indexit{Thomson equation}), and then by an atom, and finally by a random collection of atoms, representing a gas or a liquid.  The end product of this description will be the \indexit{Debye Scattering Equation} (DSE), which is of fundamental importance to all diffraction experiments performed on non-periodic samples. We end the chapter with a number of example applications of the DSE.  Scattering by periodic samples (i.e., crystal structures) can in principle be described by this equation, but there is a much more powerful tool in the form of the \indexit{Structure Factor}, and we devote an entire chapter to this concept.
 
 \section{Particles and Waves}\label{\chabbr:sec:particlewaves}
 
@@ -238,10 +238,23 @@ To detect an x-ray photon, its energy needs to be converted into a measurable si
 
 The fields of astronomy and elementary particle physics are the leading producers of new x-ray detector technologies, including direct detectors (no conversion to other signals). This is a very active field of research and development.
 
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.6\textwidth]{\graphicspath Fermi.pdf}
+\caption{Schematic cross section of a solid state x-ray detector.}
+\label{\chabbr:fig:Fermi}
+\end{figure}
+
+
 \subsection{Electron beam generation and detection}\label{\chabbr:ssec:eprod}
 
+\subsubsection{Electron beam generation}
 
-
+An electron beam can be generated through one of two physical mechanisms: \indexit{thermal emission} or \indexit{field emission}.  In the former case, an electron gains sufficient thermal energy to escape from the material (usually a metallic filament), in the latter a strong electric field draws the electron out of the material through a quantum mechanical tunneling process.  An elementary understanding of the electronic structure of a metal is sufficient to explain both processes.  At absolute zero, all the available energy levels of the metal are occupied up to the \indexit{Fermi energy level} $E_F$.  The occupation of energy levels is thus a step function, as illustrated by the green lines in Fig.~\ref{\chabbr:fig:Fermi}.  When the temperature is increased, the electrons closest to the Fermi level will gain some energy and the energy distribution is given by the \indexit{Fermi-Dirac distribution}:
+\begin{equation}
+	f(E,T) = \frac{1}{1+\mathrm{e}^{\frac{E-(E_F+V0)}{k_BT}}}\ ,\label{\chabbr:eq:FermiDirac}
+\end{equation}
+where $T$ is the temperature in Kelvin, $k_B=8.61816\times 10^{-5}$ eV/K is the \indexit{Boltzmann constant}, $V_0$ is a constant used to adjust the zero of the energy scale and in Fig.~\ref{\chabbr:fig:Fermi} we set the Fermi energy as the zero of the energy scale, i.e., $V_0=E_F$.  Two commonly used filament materials are W and  LaB$_6$; the two blue circles on the horizontal axis indicate how much energy an electron needs to  gain above the Fermi energy to escape from the metal. For tungsten, this is $W=4.5$ eV, for lanthanum hexaboride, the \indexit{work function} is $W=2.7$ eV.  The blue and orange curves represent the Fermi-Dirac distributions for the typical operating temperatures for these two filament types, $T=1,800$ K for LaB$_6$ and $T=2,700$ K for W. At those temperatures, the value of the distribution at the blue circle locations is $2.761\times 10^{-8}$ for LaB$_6$ and $3.992\times 10^{-9}$ for W, very small values, but they are sufficient to generate current densities in the ranges $25-100$ A/cm$^2$ and $1-3$ A/cm$^2$, respectively.
 
 %%%%% Gemini 3 prompt %%%%%% 
 % Please create a 3D rendering of a thermionic/field emission gun as it is used in a transmission electron microscope. 
@@ -250,9 +263,72 @@ The fields of astronomy and elementary particle physics are the leading producer
 % Also insert a cutout into all the components so that the interior becomes visible.
 %%%%% End Gemini prompt %%%%%% 
 
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.6\textwidth]{\graphicspath thermionic-gun.pdf}
+\caption{Schematic cross-section of a thermionic electron gun.}
+\label{\chabbr:fig:thermionic}
+\end{figure}
+
+\noindent Fig.~\ref{\chabbr:fig:thermionic} illustrates the typical layout of a \indexit{thermionic electron gun}.  The filament has a sharp tip and is heated by an electrical current; the tip is also kept at a negative potential, $V$, with respect to the anode plate which is grounded. Therefore, there is a strong electric field that accelerates emitted electrons towards the anode.  The filament is surrounded by a conical cap known as the \indexit{Wehnelt cap} that is kept at a low negative potential with respect to the tip; this causes the emitted electrons to be focused into a crossover point on the optical axis of the electron gun.  The accelerated electrons then pass through a small hole in the anode plate and continue on into the main portion of the instrument, for instance a scanning or transmission electron microscope.
+
+In a field emission gun, on the other hand, there is an extra anode known as the \indexit{extractor electrode}, as indicated in the schematic of Fig.~\ref{\chabbr:fig:fieldemission}. This electrode applies a strong electric field to the filament tip, and the net effect of this field is the reduction of the work function of the filament material.  Typically, this would be a tungsten tip (with $W=4.5$ eV), coated with ZrO$_2$, which reduces $W$ to a value of  $2.8$ eV.  The electric field, which has a strength of a few V/nm, further reduces $W$ to the point where electrons can tunnel out of the material and be accelerated by the main anode.
+
+ \begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.6\textwidth]{\graphicspath fieldemission-gun.pdf}
+\caption{Schematic cross-section of a field emission electron gun.}
+\label{\chabbr:fig:fieldemission}
+\end{figure}
+
+The accelerating voltage used in electron guns varies depending on the application, but is typically in the range of a few thousand Volt to several million Volt.  The electron wavelength can be computed in the same way as in the case of x-rays in section~\ref{\chabbr:ssec:xrayprod} by equating the potential and kinetic energies:
+\[
+	\frac{p^2}{2m_0} = eV \rightarrow \frac{h^2}{2m_0\lambda^2}=eV\ ,
+\]
+where $m_0$ is the rest mass of the electron and we used the de Broglie relation between momentum and wavelength. The wavelength is then given by:
+\begin{equation}
+	\lambda = \frac{h}{\sqrt{2m_0eV}} = \frac{1,226.39}{\sqrt{V}}\qquad\text{(in pm when $V$ is given in Volt)}\ .\label{\chabbr:eq:ewavelength1}
+\end{equation}
+It should be noted that this expression is only accurate at low accelerating voltages, up to about $10$ kV. Above this voltage, relativistic effects become important and the change in the mass of the electron with increasing velocity must be taken into account.  The net result of such a computation is 
+\begin{equation}
+	\lambda = \frac{h}{\sqrt{2m_0eV\left(1+\frac{e}{2m_0c^2}V\right)}} = \frac{1,226.39}{\sqrt{V+0.97845\times 10^{-6}V^2}}\ .\label{\chabbr:eq:ewavelength2}
+\end{equation}
+The relativistic correction becomes very important for the voltages used in electron microscopy, for instance. For an accelerating potential of $200$ kV, the uncorrected wave length is $\lambda=2.7423$ pm, whereas the relativistically corrected value is $\lambda=0.2508$ pm, a difference of nearly $10\%$. Such electrons travel at about $70\%$ of the speed of light and have a mass that is $39\%$ larger than the rest mass. 
+
+\subsubsection{Electron detection}\label{\chabbr:ssec:edetection}
+
 
 
 \subsection{Neutron beam generation and detection}\label{\chabbr:ssec:nprod}
+
+\subsubsection{Neutron beam generation}
+
+The neutron is a neutral \indexit{elementary particle} with a mean lifetime of just under $15$ minutes (or a half-life of $610$ seconds); upon decay, \index{neutron decay} a free neutron will form a proton, an electron and an antineutrino. The neutron is completely stable, however, when it is part of an atomic nucleus where it interacts with the other nucleons via the \indexit{strong force}. A neutron also has a \indexit{magnetic moment}.  Neutrons interact only weakly with matter, so large samples can be used for scattering experiments; the moment interacts with magnetic moments in the sample so that magnetic space groups can be determined using neutron diffraction.
+
+Intense neutron sources typically originate from fission reactions like the following:
+\[
+	{}^{235}_{\,\,92}\mathrm{U}+{}^{1}_{0}\mathrm{n}\rightarrow {}^{144}_{\,\,56}\mathrm{Ba}+{}^{89}_{36}\mathrm{Kr}+3{}^{1}_{0}\mathrm{n}+177\text{ MeV} .
+\]
+neutrons leaving a reactor are generally classified according to their kinetic energy, $E_K$, and one distinguishes six different types:
+\begin{enumerate}
+	\item \indexit{cold neutrons}: $E_K\ll 0.025$ eV;
+	\item \indexit{thermal neutrons}: $E_K\approx 0.025$ eV (these neutrons are in thermal equilibrium with the atmosphere at $293$ K);
+	\item \indexit{slow neutrons}: $0.025 < E_K < 100$ eV;
+	\item \indexit{intermediate neutrons}: $100$ eV$<E_K<10$ keV;
+	\item \indexit{fast neutrons}: $10$ keV$<E_K<10$ MeV;
+	\item \indexit{ultra-fast neutrons}: $E_K>10$ MeV.	
+\end{enumerate}
+In this chapter, we will focus mostly on thermal neutrons; they are obtained by means of a \indexit{neutron moderator}, usually water, which slows down the fast neutrons after they are generated in a fission process. The net result of this moderation is that their kinetic energy becomes equal to their ambient thermal energy:
+\[
+	\frac{1}{2}m_nv^2 = \frac{3}{2}k_B T\ ,
+\]
+with $m_n=1.6749\times 10^{-27}$ kg the neutron rest mass. Since $\lambda = h/p = h/(m_nv)$, we have for the thermal neutron wavelength:
+\begin{equation}
+	\lambda = \frac{h}{\sqrt{3m_nk_BT}} = 0.146468\text{ nm for $T=293$ K}\ .\label{\chabbr:eq:nwavelength}
+\end{equation}
+This wavelength is similar in magnitude to the Cu-K$\alpha$ x-ray wavelength of $0.154187$ nm which explains why thermal neutrons are ideally suited for diffraction experiments to determine crystal structures, in particular for magnetic materials.
+
+
 
 
 
