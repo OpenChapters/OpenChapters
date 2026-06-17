@@ -19,7 +19,9 @@
   "keywords": [],
   "chapter_type": "topical",
   "chabbr": "SCATTR",
-  "depends_on": [],
+  "depends_on": [
+    "FOURIE"
+  ],
   "related_to": [],
   "discipline": "mse",
   "published": true,

@@ -41,10 +41,10 @@
 % ###################################################################
 % CHAPTER TITLE — Edit the title below
 % ###################################################################
-\chapter{Scattering of Waves}\label{\chabbr:ch:ParticleScattering}
+\chapter{Scattering of Waves}\label{\chabbr:ch:WaveScattering}
 
 % Register author information (repeat for each co-author)
-\writeauthor{\chabbr:ch:ParticleScattering}{Scattering of Waves}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+\writeauthor{\chabbr:ch:WaveScattering}{Scattering of Waves}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
 
 % ###################################################################
 % LEARNING OBJECTIVES
@@ -55,9 +55,11 @@
 % - Use the OCBurntOrange color for the reference
 \begin{learningobjectives}
 {\begin{itemize}
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:introduction}:}] Understand the basic concepts presented in this chapter
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:methods}:}] Learn the methods used for analysis
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:examples}:}] Apply the concepts to worked examples
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:particlewaves}:}] Describe x-ray, electron, and neutron generation and detection
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:interference}:}] Visualize the interference of waves
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:ThomsonEq}:}] Learn how to describe x-ray photon scattering
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:elecneutron}:}] Define electron scattering factors and neutron scattering length
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:scatatoms}:}] Derive the Debye Scattering Equation    
 \end{itemize}}
 \end{learningobjectives}
 
@@ -241,7 +243,7 @@ The fields of astronomy and elementary particle physics are the leading producer
 \begin{figure}[h!]
 \centering\leavevmode
 \includegraphics[width=0.6\textwidth]{\graphicspath Fermi.pdf}
-\caption{Schematic cross section of a solid state x-ray detector.}
+\caption{Fermi-Dirac distribution at $0$ K (green), $1,800$ K (blue) and $2,700$ K (orange); the blue dots represent the work function locations for LaB$_6$ and W filaments.}
 \label{\chabbr:fig:Fermi}
 \end{figure}
 
@@ -254,7 +256,7 @@ An electron beam can be generated through one of two physical mechanisms: \index
 \begin{equation}
 	f(E,T) = \frac{1}{1+\mathrm{e}^{\frac{E-(E_F+V0)}{k_BT}}}\ ,\label{\chabbr:eq:FermiDirac}
 \end{equation}
-where $T$ is the temperature in Kelvin, $k_B=8.61816\times 10^{-5}$ eV/K is the \indexit{Boltzmann constant}, $V_0$ is a constant used to adjust the zero of the energy scale and in Fig.~\ref{\chabbr:fig:Fermi} we set the Fermi energy as the zero of the energy scale, i.e., $V_0=E_F$.  Two commonly used filament materials are W and  LaB$_6$; the two blue circles on the horizontal axis indicate how much energy an electron needs to  gain above the Fermi energy to escape from the metal. For tungsten, this is $W=4.5$ eV, for lanthanum hexaboride, the \indexit{work function} is $W=2.7$ eV.  The blue and orange curves represent the Fermi-Dirac distributions for the typical operating temperatures for these two filament types, $T=1,800$ K for LaB$_6$ and $T=2,700$ K for W. At those temperatures, the value of the distribution at the blue circle locations is $2.761\times 10^{-8}$ for LaB$_6$ and $3.992\times 10^{-9}$ for W, very small values, but they are sufficient to generate current densities in the ranges $25-100$ A/cm$^2$ and $1-3$ A/cm$^2$, respectively.
+where $T$ is the temperature in Kelvin, $k_B=8.61816\times 10^{-5}$ eV/K is the \indexit{Boltzmann constant}, $V_0$ is a constant used to adjust the zero of the energy scale; in Fig.~\ref{\chabbr:fig:Fermi} we set the Fermi energy as the zero of the energy scale, i.e., $V_0=E_F$.  Two commonly used filament materials are W and  LaB$_6$; the two blue circles on the horizontal axis indicate how much energy an electron needs to  gain above the Fermi energy to escape from the metal. For tungsten, this is $W=4.5$ eV, for lanthanum hexaboride, the \indexit{work function} is $W=2.7$ eV.  The blue and orange curves represent the Fermi-Dirac distributions for the typical operating temperatures for these two filament types, $T=1,800$ K for LaB$_6$ and $T=2,700$ K for W. At those temperatures, the value of the distribution at the blue circle locations is $2.761\times 10^{-8}$ for LaB$_6$ and $3.992\times 10^{-9}$ for W, very small values, but they are sufficient to generate current densities in the ranges $25-100$ A/cm$^2$ and $1-3$ A/cm$^2$, respectively.
 
 %%%%% Gemini 3 prompt %%%%%% 
 % Please create a 3D rendering of a thermionic/field emission gun as it is used in a transmission electron microscope. 
@@ -266,7 +268,7 @@ where $T$ is the temperature in Kelvin, $k_B=8.61816\times 10^{-5}$ eV/K is the 
 \begin{figure}[h!]
 \centering\leavevmode
 \includegraphics[width=0.6\textwidth]{\graphicspath thermionic-gun.pdf}
-\caption{Schematic cross-section of a thermionic electron gun.}
+\caption{Schematic cross-section of a thermionic electron gun}
 \label{\chabbr:fig:thermionic}
 \end{figure}
 
@@ -296,7 +298,7 @@ It should be noted that this expression is only accurate at low accelerating vol
 The relativistic correction becomes very important for the voltages used in electron microscopy, for instance. For an accelerating potential of $200$ kV, the uncorrected wave length is $\lambda=2.7423$ pm, whereas the relativistically corrected value is $\lambda=0.2508$ pm, a difference of nearly $10\%$. Such electrons travel at about $70\%$ of the speed of light and have a mass that is $39\%$ larger than the rest mass. 
 
 \subsubsection{Electron detection}\label{\chabbr:ssec:edetection}
-
+The simplest type of electron detector is a phosphor screen that emits visible light through the process of \indexit{phosphorescence} when hit by a high energy electron; often, the screen is made from ZnS which emits light in the green portion of the visible spectrum, where human eyes are most sensitive.  Such screens are typically used in a \indexit{transmission electron microscope} (TEM), or a \indexit{low energy electron diffraction} (LEED) setup.  Historically, TEMs used photographic film to record electron diffraction patterns; the electrons directly exposed the photographic emulsion.  More modern detectors use a \indexit{scintillator} which produces a light pulse which is transferred via a fiber optic cable or a series of lenses to a \indexit{charge coupled device} (CCD) sensor or a \indexit{complementary metal oxide semiconductor} (CMOS) sensor. Such detectors produce digital images with a wide dynamic range, with the CMOS detector capable of faster data transfer rates and lower noise.  The most recent detectors do not convert the electron into a light pulse but rather directly determine the number of incident electrons; they are hence known as \indexit{direct electron detectors} (DED). They provide single electron sensitivity and a very large dynamic range.  In some cases they can discretize the signal by the energy of the incident electrons.
 
 
 \subsection{Neutron beam generation and detection}\label{\chabbr:ssec:nprod}
@@ -328,9 +330,12 @@ with $m_n=1.6749\times 10^{-27}$ kg the neutron rest mass. Since $\lambda = h/p 
 \end{equation}
 This wavelength is similar in magnitude to the Cu-K$\alpha$ x-ray wavelength of $0.154187$ nm which explains why thermal neutrons are ideally suited for diffraction experiments to determine crystal structures, in particular for magnetic materials.
 
+A neutron beam leaving a reactor has a continuous spectrum of energies, so to extract a particular wavelength one must block all neutrons that do not have the correct energy.  Neutrons have a \indexit{Maxwell-Boltzmann distribution} for their velocities.  Energy selection is then most easily done by using the fact that neutrons have relatively low velocities compared to x-ray photons; ultra-fast neutrons travel at around $5\%$ of the speed of light, whereas thermal neutrons have a velocity of around $1$ km/s.  Neutron monochromators\index{neutron monochromator} for the lower velocity spectrum are then relatively easy to build; one uses two or more rotating wheels with holes around the perimeter of each wheel, and the relative angular velocities of the wheels are set so that only neutrons in a specific velocity range can make it through all the wheels and thus reach the target.  Alternatively, one can use a \indexit{single crystal monochromator}; a crystal is positioned so that neutrons with the correct wavelength will be diffracted from a certain set of crystal planes.  This diffracted beam is then used as the incident beam for a scattering experiment. 
 
 
+\subsubsection{Neutron detection}\label{\chabbr:ssec:ndetection}
 
+Neutron detectors \index{neutron detector} are usually gas-filled ion chambers, known as \indexit{gas-filled proportional counters}. A cylindrical thin-walled aluminum tube is filled with a gas, commonly BF$_3$; the cylinder acts as the cathode and the anode is a thin wire along the center line of the cylinder. This wire is usually a gold-plated tungsten wire, and a voltage is maintained between the wire and the cylinder.  An incident neutron will transfer its energy to gas molecules and ionize them into pairs or multiple ions (about $30$ eV per ion pair) which are then attracted to the wire and tube wall. Simple counting electronics then detects the resulting current.  An alternative detection method involves converting the neutron into a light flash in a \indexit{scintillator}, and then subsequently amplifying the photon pulse by means of a photo-multiplier tube.  The photon pulse can also be detected by means of a solid-state device, usually Si-based; this leads to compact detectors, e.g., dosimeters.
 
 
 
@@ -403,9 +408,10 @@ Let us consider next the scattering of unpolarized x-rays by an individual atom 
 
 The result of the computations can be expressed for each element as a function $f(s)$ known as the \indexit{atomic scattering factor}; the parameter $s$ is defined as $s=\sin(\theta)/\lambda$.  The atomic scattering factors for all atoms and ions are available in tabulated form in \cite{prince2004a}, and are usually parameterized in terms of a small number of exponential functions:
 \begin{equation}
-	f(s) = Z - \frac{m_e\,e^2}{4\pi\,h^2\epsilon_0}\times s^2\times \sum_{i=1}^N a_i\,\mathrm{e}^{-b_i s^2}\ ,
+	f(s) = Z - 8\pi^2a_0\times s^2\times \sum_{i=1}^N a_i\,\mathrm{e}^{-b_i s^2}\ ,
 \end{equation}
-The numerical value of the prefactor of the second term is $41.78214$ nm$^2$  {\color{red}check these units !!! Check Kirkland's book} when $s$ is expressed in nm$^{-1}$.  The numbers $a_i$ and $b_i$ are tabulated with $i\in[1\ldots N]$ and $N=3$ or $4$, depending on the fitting protocol.  Table~\ref{\chabbr:tb:DTSB} lists the parameters $a_i$ and $b_i$ for a few important elements, the others can be found in \cite{doyle1968a,smith1962a}.
+where $a_0=\epsilon_0h^2/(\pi m_e e^2)=0.0529177$ nm is the \indexit{Bohr radius}. The numerical value of the prefactor of the second term is $4.178214$ nm when $s$ is expressed in nm$^{-1}$.  The numbers $a_i$ and $b_i$ are tabulated with $i\in[1\ldots N]$ and $N=3$ or $4$, depending on the fitting protocol.  Table~\ref{\chabbr:tb:DTSB} lists the parameters $a_i$ and $b_i$ for a few important elements, the others can be found in \cite{doyle1968a,smith1962a}.  In comparing this expression with the literature, care should be taken with respect to the definition of $s$; some authors define this parameter as $s=2\sin(\theta)/\lambda$, others as $s=4\pi\sin(\theta)/\lambda$, leading to differences in the prefactor of the second term in the equation.  There are many other parameterizations available in the literature (see \cite{kirkland1998a}).
+
 
 \begin{table}[h!]
 \centering\leavevmode
@@ -441,41 +447,150 @@ Zr & 40&4.105& 28.492 &3.144 & 5.277 &1.229 &0.601 &--- &---\\
 \caption{\label{\chabbr:tb:DTSB}Atomic scattering parameters for selected elements:
 Doyle \& Turner parameters have a $+$ in front of the atomic number,
 the others are Smith \& Burge parameters. This table assumes that
-$s$ is expressed in \AA$^{-1}$; if $s$ is expressed in nm$^{-1}$,
-then all entries must be multiplied by $0.01$.}
+$s$ is expressed in \AA$^{-1}$, so that the units of $a_i$ are \AA, and the units of $b_i$ are \AA$^2$.
+If $s$ is expressed in nm$^{-1}$, then all $a_i$ must be multiplied by $0.1$, and $b_i$ by $0.01$.}
 \end{table}
 
-% insert figure of the curves for all elements in the table ...
 
 
 
 \section{Scattering of Electrons and Neutrons}\label{\chabbr:sec:elecneutron}
 
-% figure for scattering probability + bra-ket notation
+\subsection{Scattering of electrons by a single atom}\label{\chabbr:ssec:singleelectron}
+An incident electron interacts with both the nucleus and the electron cloud of any given atom via the \indexit{Coulomb interaction}.  Quantum mechanical calculations allow us to determine the electron charge density, $\rho_e(\mathbf{r})$, of the electron cloud; since the nucleus is much smaller than the electron cloud radius, it is a very good approximation to represent the nucleus by a Dirac delta function of weight $Z$, the atomic number (see section~\ref{FOURIE:sec:SpecFunc} for details regarding this special function).  The overall charge density of the entire atom is thus given by:
+\begin{equation}
+	\rho(\mathbf{r}) = \vert e\vert [Z\,\delta(\mathbf{r}) - \rho_e(\mathbf{r}]\ .\label{\chabbr:eq:chargedensity}
+\end{equation}
+We can then employ \indexit{Poisson's equation} to determine the \indexit{atomic electrostatic potential}, $V^a(\mathbf{r})$:
+\begin{equation}
+	\Delta V^a(\mathbf{r}) = -\frac{\rho(\mathbf{r})}{\epsilon_0} = -\frac{\vert e\vert}{\epsilon_0} [Z\,\delta(\mathbf{r}) - \rho_e(\mathbf{r}]\ .\label{\chabbr:eq:electroV}
+\end{equation}
+Once we know the atomic potential, quantum mechanics provides a rule to compute the probability amplitude that an incident electron will be scattered elastically in a certain direction by this potential. We use the bra-ket notation since it provides a simple mathematical approach, similar to the \indexit{inner product} defined in section~\ref{FOURIE:ssec:orthofunc}; if the initial and final states of a quantum mechanical system are given by $i$ and $f$, respectively, then the probability of scattering from $i$ into $f$ by a potential $V$ is given by:
+\[
+	P = \langle f\,\vert\, V\,\vert\, i\rangle \equiv \int_\Omega f^{\ast}(\mathbf{q})\,V(\mathbf{q})\, i(\mathbf{q})\, \mathrm{d}\mathbf{q}\ .
+\]
+In this expression the integration is carried out over the space $\Omega$ (this could be coordinate space, momentum space, etc.) and $\mathbf{q}$ is a vector in that space.  In the language of section~\ref{FOURIE:ssec:orthofunc}, the probability amplitude $P$ is a weighted inner product $P=\langle f, i\rangle_{V}$.
+
+
+\begin{figure}[t]
+\centering\leavevmode
+\includegraphics[width=0.9\textwidth]{\graphicspath feplots.pdf}
+\caption{X-ray scattering factors for the atoms listed in Table~\protect\ref{\chabbr:tb:DTSB}.}
+\label{\chabbr:fig:feplots}
+\end{figure}
+
+
+\begin{floatingfigure}[r]{0.4\textwidth}
+\centering
+{\includegraphics[width=0.38\textwidth]{\graphicspath sdef.pdf}}
+{\caption{\label{\chabbr:fig:sdef}\small Single electron scattering by an atom; $\Delta\mathbf{k}$ and $\mathbf{s}$ are defined in this drawing.}}
+\end{floatingfigure}
+\noindent Applying this concept to electron scattering, we will assume that both the initial and final state can be represented by plane waves. We will represent the wave vector of the incident wave by $\mathbf{k}_0$, and that of the scattered wave by $\mathbf{k}$.  The probability amplitude for this scattering process is then given by:
+\begin{equation}
+\begin{split}
+	P &= \langle \mathrm{e}^{2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\,\vert\, V^a(\mathbf{r})\,\vert\,\mathrm{e}^{2\pi\mathrm{i}\mathbf{k}_0\cdot\mathbf{r}}\rangle\ ;\\
+	&= \iiint V^a(\mathbf{r})\,\mathrm{e}^{2\pi\mathrm{i}(\mathbf{k}_0-\mathbf{k})\cdot\mathbf{r}}\,\mathrm{d}\mathbf{r}\ .
+\end{split}
+\end{equation}
+During this elastic scattering process, the electron undergoes a momentum change (recall that $\mathbf{p}=h\,\mathbf{k}$), since the outgoing wave vector is given by $\mathbf{k}=\mathbf{k}_0+\Delta\mathbf{k}$ (see Fig.~\ref{\chabbr:fig:sdef}); rewriting the wave vectors in the exponential we obtain:
+\begin{equation}
+	P = \iiint \,V^a(\mathbf{r})\,\mathrm{e}^{-2\pi\mathrm{i}\,\Delta\mathbf{k}\cdot\mathbf{r}}\,\mathrm{d}\mathbf{r} =\mathcal{F}_{\Delta\mathbf{k}}\left[V^a(\mathbf{r})\right]\ ,\label{\chabbr:eq:PFT}
+\end{equation}
+in other words, the probability amplitude, $P$, is the Fourier transform of the atomic electrostatic potential $V^a(\mathbf{r})$.  It is common practice to replace $\Delta\mathbf{k}$ by $2\mathbf{s}$ (blue vector). Bisecting the scattering angle we find for the length of $\mathbf{s}$:
+\begin{equation}
+	\vert\mathbf{s}\vert=s=\frac{\sin\theta}{\lambda}=\frac{\vert\Delta\mathbf{k}\vert}{2}\ .
+\end{equation}
+
+We conclude that the independent parameter of $P$ is $s$; changing notation, we introduce the \indexit{electron scattering factor} $P(s)\rightarrow f^e(s)$.  Mathematically, the electron scattering factor is the Fourier transform of the atomic electrostatic potential. There is a close relationship between the x-ray atomic scattering factor $f^X(s)$ and $f^e(s)$; this relation is known as the \indexit{Mott-Bethe formula}: 
+\begin{equation}
+	f^e(s) = \frac{1}{8\pi^2a_0}\left(\frac{Z-f^X(s)}{s^2}\right)\ .\label{\chabbr:eq:MottBethe}
+\end{equation}
+Because of this relation, we can use the same exponential expansion with coefficients $a_i$ and $b_i$ (see Table~\ref{\chabbr:tb:DTSB}), and we obtain:
+\begin{equation}
+	f^e_Z(s) = \sum_{j=1}^N a_{Z,j}\mathrm{e}^{-b_{Z,j}s^2}\ .
+\end{equation}
+The first subscript identifies the atom type, the second subscript $j$ goes from $1$ to $3$ or $4$.  Note that the X-ray scattering factors are dimensionless whereas the electron scattering factors have units of length.
+
+
+\subsection{Scattering of neutrons by a single atom}\label{\chabbr:ssec:singleneutron}
+
+When we described scattering of x-ray photons by a single atom, we saw that the wavelength of the photons is of the same order of magnitude as the atomic diameter; therefore, there will be an interference pattern due to path length differences between scattering from the individual electrons, and thus the scattering amplitude has an angular dependence.  For thermal neutron scattering, the wavelength is similar to that of x-ray photons, but only the nucleus will scatter the neutrons; the size of the nucleus is of the order of femto-meters, significantly smaller than the neutron wavelength. Therefore, neutron scattering is effectively \indexit{point scattering} and, since no interference pattern is generated, there will be no angular dependence of the scattering amplitude.  The neutron also has a magnetic moment, which we will not treat in detail in this chapter; see the chapter on neutron diffraction for more details.
+
+The interaction between the neutron and the nucleons is mediated by the \indexit{strong nuclear force}; in addition, the magnetic moment of the neutron will interact with the nuclear spin.  Isotopes of an element have the same number of protons but different numbers of neutrons, so it stands to reason that the net result of neutron scattering will depend in a sensitive way on the particular isotope that is present.  Without going into the theoretical details, the outcome of a scattering computation is a \indexit{scattering cross section}, $\sigma$; this is a quantity with dimensions of area and intuitively represents the ``size'' of the nuclear target that an incoming neutron will ``see''.  One can extract a \indexit{neutron scattering length}, $b$, from the cross section by using the quantum mechanical expression for the effective area: $\sigma = 4\pi b^2$; hence $b$ has dimensions of length and is usually expressed in fm. 
+ 
+\begin{table}[h!]
+\centering\leavevmode
+{\footnotesize\begin{tabular}{llcllcllcll}
+\hline
+Atom & $b$ & & Atom & $b$ &  & Atom & $b$ && Atom & $b$ \\
+\hline\hline
+H & $-$3.7390&& He & 3.26(3)&& Li &$-$1.90 && Be &7.79 \\
+B &5.30$-$0.213$\mathrm{i}$ && C &6.6460 && N & 9.36&& O &5.803\\
+F & 5.654&& Ne &4.566 && Na& 3.63&&Mg & 5.375\\
+Al& 3.449&& Si &4.1491 && P &5.13 && S &2.847 \\
+Cl& 9.5770&& Ar &1.909 && K &3.67 &&Ca & 4.70\\
+\hline
+Sc& 12.29&&Ti & $-$3.438 && V &$-$0.3824 &&Cr &3.635\\
+Mn& $-$3.73&&Fe & 9.45&& Co& 2.49&& Ni &10.3 \\
+Cu& 7.718&&Zn & 5.680&& Ga& 7.288&& Ge& 8.185\\
+As & 6.58&&Se &7.970 &&Br &6.795 &&Kr &7.81 \\
+Rb&7.09 &&Sr &7.02 && Y &7.75 && Zr &7.16 \\
+\hline
+Nb&7.054 &&Mo &6.715 &&Tc &6.8 &&Ru &7.03 \\
+Rh&5.88 &&Pd &5.91 && Ag&5.922 && Cd&4.87$-$0.7$\mathrm{i}$\\
+In &4.065$-$0.0539$\mathrm{i}$ &&Sn & 6.225&&Sb &5.57 &&Te & 5.80\\
+I&5.28 &&Xe &4.92 &&Cs &5.42 &&Ba &5.07 \\
+La&8.24 &&Ce &4.84 &&Pr &4.58 &&Nd &7.69 \\
+\hline
+Pm&12.6 &&Sm &0.80$-$1.65$\mathrm{i}$ &&Eu &7.22$-$1.26$\mathrm{i}$ &&Gd &6.5$-$13.82$\mathrm{i}$ \\
+Tb& 7.38&&Dy &16.9$-$0.276$\mathrm{i}$ &&Ho &8.01 &&Er &7.79\\
+Tm&7.07 &&Yb &12.43 &&Lu &7.21 &&Hf &7.7 \\
+Ta&6.91 &&W &4.86 &&Re &9.2 &&Os & 10.7\\
+Ir&10.6 &&Pt &9.60 &&Au &7.63 &&Hg &12.692 \\
+\hline
+Tl&8.776 &&Pb &9.405 &&Bi &8.532 &&Po &--- \\
+At&--- &&Rn &--- &&Fr &--- &&Ra &10.0 \\
+Ac&--- &&Th &10.31 &&Pa &9.1 &&U &8.417 \\
+\hline
+\end{tabular}}
+\caption{\label{\chabbr:tb:neutronb}Thermal neutron scattering lengths (in femtometer, fm) for all naturally occurring elements, taken from a longer list, including all isotopes, at the web site of the \href{http://www.ncnr.nist.gov/resources/n-lengths/list.html}{NIST Center for Neutron Research}. The values in the table are averages over all isotopes, weighted by their natural isotope abundances. Dashes indicate that the scattering length has not been determined.}
+\end{table}
+
+When a neutron interacts with a nucleus, one of three processes can occur: (1) the neutron is scattered in a random direction; (2) the neutron is temporarily absorbed into the nucleus and then emitted (this is known as \textit{resonance}) leading to a negative value for $b$; (3) the neutron is permanently absorbed into the nucleus (or captured by the nucleus), in which case the value for $b$ is a complex number. Standard values for $b$ for all natural elements are shown in Table~\ref{\chabbr:tb:neutronb}; these are values averaged over all isotopes. An extensive list for all isotopes can be found on the \href{http://www.ncnr.nist.gov/resources/n-lengths/list.html}{NIST Center for Neutron Research} website.
+
+When we plot the $b$ values (or $\Re(b)$ for complex values) as a function of atomic number, Fig.~\ref{\chabbr:fig:neutronb}, we see that there is no systematic structure, just a slowly increasing trend; the solid line represents the curve $b=1.5 A^{\frac{1}{3}}$, with $A$ the atomic weight.  Note that H, Li, Ti, V, and Mn have negative scattering lengths and elements with a complex scattering length are indicated in red. Vanadium has the smallest scattering length (in absolute value) so this element is frequently used as an enclosure for liquid samples or powder samples, because it is almost transparent for thermal neutrons. 
+
 
 \section{X-ray and Neutron Scattering by a Collection of Atoms}\label{\chabbr:sec:scatatoms}
 
-The atomic scattering factors for x-rays described in section~\ref{\chabbr:sec:atomscat} were determined by taking into account destructive interference between waves scattered by different electrons in the electron cloud. If we want to determine the scattered intensity in a given direction by an assembly of atoms, we will need to take into account a similar interference between waves scattered by individual atoms, and this requires knowing the relative positions of all atoms.  As illustrated in Fig.~\ref{\chabbr:fig:interference}, the strongest interference occurs when the sources are close together; when they are spaced far apart, the overall intensity pattern consists of clearly identifiable spherical scattering sources.  Such an atomic arrangement is achieved in a dilute monatomic gas, where the individual atoms are relatively far apart from each other. For such a sample we expect the scattered intensity to be directly proportional to $f^2(s)$, with $s=\sin(\theta)/\lambda$ as before.  In fact, the earliest measurements of $f(s)$ were carried out in the 1920s on XXXXXX.
+The atomic scattering factors for x-rays described in section~\ref{\chabbr:sec:atomscat} were determined by taking into account destructive interference between waves scattered by different electrons in the electron cloud. If we want to determine the scattered intensity in a given direction by an assembly of atoms, we will need to take into account a similar interference between waves scattered by individual atoms, and this requires knowing the relative positions of all atoms.  As illustrated in Fig.~\ref{\chabbr:fig:interference}, the strongest interference occurs when the sources are close together; when they are spaced far apart, the overall intensity pattern consists of clearly identifiable spherical scattering sources.  Such an atomic arrangement is achieved in a dilute monatomic gas, where the individual atoms are relatively far apart from each other. For such a sample we expect the scattered intensity to be directly proportional to $f^2(s)$, with $s=\sin(\theta)/\lambda$ as before.  
 
-For diatomic and more complex molecules, the atoms are much closer together and therefore we must take into account their relative position as well as the orientation of the molecule in order to determine the interference pattern for a given incident x-ray beam.  When we defined the electron scattering factor in section~\ref{\chabbr:sec:elecneutron}, we found a convenient expression for the scattering probability when the incident beam is represented by $\mathbf{k}$ and the outgoing/scattered beam by $\mathbf{k}'$:
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=0.75\textwidth]{\graphicspath neutronb.pdf}
+\caption{Neutron scattering lengths (in fm) for the atoms listed in Table~\protect\ref{\chabbr:tb:neutronb}.}
+\label{\chabbr:fig:neutronb}
+\end{figure}
+
+For diatomic and more complex molecules, the atoms are much closer together and therefore we must take into account their relative position as well as the orientation of the molecule in order to determine the interference pattern for a given incident x-ray beam.  When we defined the electron scattering factor in section~\ref{\chabbr:sec:elecneutron}, we found a convenient expression for the scattering probability when the incident beam is represented by $\mathbf{k}_0$ and the outgoing/scattered beam by $\mathbf{k}$:
 \[
-	P_{\mathbf{k}\rightarrow\mathbf{k}'}(\mathbf{r}) = f(s)\,\mathrm{e}^{2\pi\mathrm{i}\,\Delta\mathbf{k}\cdot\mathbf{r}}\ ,
+	P_{\mathbf{k}_0\rightarrow\mathbf{k}}(\mathbf{r}) = f(s)\,\mathrm{e}^{2\pi\mathrm{i}\,\Delta\mathbf{k}\cdot\mathbf{r}}\ ,
 \]
-where $f(s)$ represents the atomic scattering factor for x-ray photons, electrons or neutrons, and $\Delta\mathbf{k}=\mathbf{k}'-\mathbf{k}$.  Note that this difference vector represents the moment transfer $\Delta\mathbf{p}$ during the scattering process, since $\mathbf{p}=h\,\mathbf{k}$.
+where $f(s)$ represents the atomic scattering factor for x-ray photons, electrons or neutrons, and $\Delta\mathbf{k}=\mathbf{k}-\mathbf{k}_0$.  Note that this difference vector represents the moment transfer $\Delta\mathbf{p}$ during the scattering process, since $\mathbf{p}=h\,\mathbf{k}$.
 
 If we have an assembly of $N$ atoms with possibly different atomic numbers at random positions, potentially distributed over many molecules, then the total probability of scattering by an angle $2\theta$ is given by the linear superposition:
 \[
-	P_{\mathbf{k}\rightarrow\mathbf{k}'}(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_N) = \sum_{j=1}^N  f_j\left(\frac{\sin\theta}{\lambda}\right)\,\mathrm{e}^{2\pi\mathrm{i}\,\Delta\mathbf{k}\cdot\mathbf{r}_j}\ .
+	P_{\mathbf{k}_0\rightarrow\mathbf{k}}(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_N) = \sum_{j=1}^N  f_j\left(\frac{\sin\theta}{\lambda}\right)\,\mathrm{e}^{2\pi\mathrm{i}\,\Delta\mathbf{k}\cdot\mathbf{r}_j}\ .
 \]
 The scattered intensity is then given by:
 \[
-	I_{\mathbf{k}\rightarrow\mathbf{k}'}(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_N) = \vert P_{\mathbf{k}\rightarrow\mathbf{k}'}(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_N)\vert^2\ ,
+	I_{\mathbf{k}_0\rightarrow\mathbf{k}}(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_N) = \vert P_{\mathbf{k}_0\rightarrow\mathbf{k}}(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_N)\vert^2\ ,
 \]
 and we will next set out to compute this intensity more explicitly.
 
 \subsection{Derivation of the Debye Scattering Equation}\label{\chabbr:ssec:DSEderivation}
 
-We will replace $\Delta\mathbf{k}$ by $2\mathbf{s}$ and use the summation subscripts $m$ and $n$ in this derivation.  The scattering probability then becomes:
+We will replace $\Delta\mathbf{k}$ by $2\mathbf{s}$ (see Fig.~\ref{\chabbr:fig:sdef}) and use the summation subscripts $m$ and $n$ in this derivation.  The scattering probability then becomes:
 \[
 	P(\mathbf{s}) = \sum_{m=1}^N  f_m(s)\,\mathrm{e}^{4\pi\mathrm{i}\,\mathbf{s}\cdot\mathbf{r}_m}\ ;
 \]
@@ -492,11 +607,11 @@ Note that the whole interference process is now described by a sum of unit compl
 
 In an amorphous material, the relative position vectors are randomly distributed so that we can average over all possible orientations of this vector.  This averaging process is carried out explicitly in section~\ref{\chabbr:sec:average} at the end of this chapter.  The result can be written as (using $k=4\pi s$ with $s=\vert\mathbf{s}\vert$):
 \begin{equation}
-		I(k) = Nf^2(s) + f^2(s)\mathop{\sum_m^N\sum_n^N}_{\substack{m\ne n}} \frac{\sin(k\,r_{mn})}{k\,r_{mn}}\ .\label{\chabbr:eq:DSE2}
+		I(k) = Nf^2(s) + f^2(s)\mathop{\sum_m^N\sum_n^N}_{\substack{m\ne n}} \text{sinc}(k\,r_{mn})\ .\label{\chabbr:eq:DSE2}
 \end{equation}
 It is standard practice to normalize this expression by the first term so that we have:
 \begin{equation}
-		\bar{I}(k)\equiv\frac{I(k)}{Nf^2(s)} = 1  + \frac{1}{N}\mathop{\sum_m^N\sum_n^N}_{\substack{m\ne n}} \frac{\sin(k\,r_{mn})}{k\,r_{mn}}\ .\label{\chabbr:eq:DSE3}
+		\bar{I}(k)\equiv\frac{I(k)}{Nf^2(s)} = 1  + \frac{1}{N}\mathop{\sum_m^N\sum_n^N}_{\substack{m\ne n}} \text{sinc}(k\,r_{mn})\ .\label{\chabbr:eq:DSE3}
 \end{equation}
 This the normalized form of the \indexit{Debye scattering equation}.  
 
@@ -529,13 +644,13 @@ As a first example, we consider a hypothetical molecule in which the $12$ vertic
 
 For a structure with a single atom type, the Debye Scattering Equation reads:
 \[
-	\bar{I}(k) = 1 + \frac{1}{N}\mathop{\sum_m^{12}\sum_n^{12}}_{\substack{m\ne n}} \frac{\sin(k\,r_{mn})}{k\,r_{mn}}
+	\bar{I}(k) = 1 + \frac{1}{N}\mathop{\sum_m^{12}\sum_n^{12}}_{\substack{m\ne n}} \text{sinc}(k\,r_{mn})\ .
 \]
-The factors $f(s)$ do not appear in the equation when there is only one atom type.  The distances $r_{ij}$ are the pairwise distances between all atom pairs, excluding the cases where $i=j$.  From the atom coordinates in the table, which are Cartesian coordinates, we derive that the distance between atoms $11$ and $12$ equals $r_{11-12}=2.102925$ so that we need to scale the coordinates by the factor $0.2875/2.102925=0.136714$ before performing the computation of the double sum.  The sums are easily implemented in any programming language.  Each atom has five nearest neighbors at a distance $0.2875$ for a total of $60$ pairs, five second-nearest neighbors at at a distance $0.465185$ for a total of $60$ pairs, and one third-nearest neighbor at $0.546857$ for a total of $12$ pairs.  The explicit expression for $\bar{I}(k)$ is then given by:
+The factors $f(s)$ do not appear in the equation when there is only one atom type.  The distances $r_{mn}$ are the pairwise distances between all atom pairs, excluding the cases where $m=n$.  From the atom coordinates in the table, which are Cartesian coordinates, we derive that the distance between atoms $11$ and $12$ equals $r_{11-12}=2.102925$ so that we need to scale the coordinates by the factor $0.2875/2.102925=0.136714$ before performing the computation of the double sum.  The sums are easily implemented in any programming language.  Each atom has five nearest neighbors at a distance $0.2875$ for a total of $60$ pairs, five second-nearest neighbors at a distance $0.465185$ for a total of $60$ pairs, and one third-nearest neighbor at $0.546857$ for a total of $12$ pairs.  The explicit expression for $\bar{I}(k)$ is then given by:
 \[
-	\bar{I}(k) = 1 + \frac{60}{12}\frac{\sin( k\, 0.287500)}{k\, 0.287500} + \frac{60}{12}\frac{\sin( k\, 0.465185)}{k\, 0.465185}+ \frac{12}{12}\frac{\sin( k\, 0.546857)}{k\, 0.546857}\ .
+	\bar{I}(k) = 1 + \frac{60}{12}\text{sinc}( k\, 0.287500) + \frac{60}{12}\text{sinc}( k\, 0.465185)+ \frac{12}{12}\text{sinc}( k\, 0.546857)\ .
 \]
-If we let $k$ cover the range $[0\ldots 100]$ nm$^{-1}$, then the result of the computation is the intensity plot shown in Fig.~\ref{\chabbr:fig:ico}.  If we were to add an identical atom at the center of the cluster, then we would add $24$ pairs at a distance $0.27343$, this time with $N=13$; the resulting $\bar{I}(k)$ curve is shown in red in Fig.~\ref{\chabbr:fig:ico}. Note that, since $\lim_{x\rightarrow 0}\sin(x)/x = 1$, the normalized curves reach the value $N$ for $k\rightarrow 0$; the prefactors of the $\sin$ terms always add up to $N-1$.
+If we let $k$ cover the range $[0\ldots 100]$ nm$^{-1}$, then the result of the computation is the intensity plot shown in Fig.~\ref{\chabbr:fig:ico}.  If we were to add an identical atom at the center of the cluster, then we would add $24$ pairs at a distance $0.27343$, this time with $N=13$; the resulting $\bar{I}(k)$ curve is shown in red in Fig.~\ref{\chabbr:fig:ico}. Note that, since $\lim_{x\rightarrow 0}\text{sinc}(x) = 1$, the normalized curves reach the value $N$ for $k\rightarrow 0$; the prefactors of the $\text{sinc}$ terms always add up to $N-1$.
 
 \begin{figure}[h]
 \centering\leavevmode
@@ -549,8 +664,8 @@ If we let $k$ cover the range $[0\ldots 100]$ nm$^{-1}$, then the result of the 
 As a second example, we consider two cubic cells, one a primitive cell (simple cubic or ``sc'') with $8$ atoms at the corner of a cube with edge length $a$, the other a body centered cubic cell (``bcc'') with $9$ atoms.  It is straightforward to determine the pairwise distances for both cells, and to count the number of pairs for each distance; we find:
 \begin{equation*}
 \begin{split}
-\bar{I}_{\text{sc}}(k) & = 1 + \frac{24}{8}\frac{\sin (ka)}{ka} + \frac{24}{8}\frac{\sin( k a \sqrt{2})}{ka\sqrt{2}}+\frac{8}{8}\frac{\sin(ka\sqrt{3})}{ka\sqrt{3}}\ ;\\
-\bar{I}_{\text{bcc}}(k) &=1+\frac{16}{9}\frac{\sin(ka\sqrt{3}/2)}{ka\sqrt{3}/2}+\frac{24}{9}\frac{\sin(ka)}{ka}+\frac{24}{9}\frac{\sin(ka\sqrt{2})}{ka\sqrt{2}}+\frac{8}{9}\frac{\sin(ka\sqrt{3})}{ka\sqrt{3}}\ .
+\bar{I}_{\text{sc}}(k) & = 1 + \frac{24}{8}\text{sinc}(ka) + \frac{24}{8}\text{sinc}( k a \sqrt{2})+\frac{8}{8}\text{sinc}(ka\sqrt{3})\ ;\\
+\bar{I}_{\text{bcc}}(k) &=1+\frac{16}{9}\text{sinc}(ka\sqrt{3}/2)+\frac{24}{9}\text{sinc}(ka)+\frac{24}{9}\text{sinc}(ka\sqrt{2})+\frac{8}{9}\text{sinc}(ka\sqrt{3})\ .
 \end{split}
 \end{equation*}
 The resulting curves are shown in Fig.~\ref{\chabbr:fig:cube}(a) and (b) as the black curves.  When the number of unit cells is increased to $3\times 3\times 3$ (orange curves) and $5\times 5\times 5$ (blue curves), several observations can be made: (1) the peaks have a higher intensity with increasing number of atoms $N$; (2) the peaks become narrower because there is more interference with an increased number of atoms; (3) the sc and bcc curves show peaks at different values of $k\,a$.  
@@ -584,6 +699,6 @@ where $j_\ell(x)$ is a spherical Bessel function of the first kind, and $Y_{lm}(
 \]
 so that the average over all possible orientations can be computed as:
 \[
-\langle\mathrm{e}^{\mathrm{i}\mathbf{q}\cdot\mathbf{r}}\rangle_{(\theta',\varphi')} = \frac{1}{4\pi}\int_0^{2\pi}\mathrm{d}\varphi'\,\int_0^{\pi}\sin\theta'\,\mathrm{d}\theta'\,\mathrm{e}^{\mathrm{i}\mathbf{q}\cdot\mathbf{r}}=2\sqrt{\pi}\,j_0(q r)Y_{00}(\theta,\varphi)=j_0(q r)=\frac{\sin(q\,r)}{q\,r}\ .
+\langle\mathrm{e}^{\mathrm{i}\mathbf{q}\cdot\mathbf{r}}\rangle_{(\theta',\varphi')} = \frac{1}{4\pi}\int_0^{2\pi}\mathrm{d}\varphi'\,\int_0^{\pi}\sin\theta'\,\mathrm{d}\theta'\,\mathrm{e}^{\mathrm{i}\mathbf{q}\cdot\mathbf{r}}=2\sqrt{\pi}\,j_0(q r)Y_{00}(\theta,\varphi)=j_0(q r)=\text{sinc}(q\,r)\ .
 \]
-
+Note the use of the \textsf{sinc}-function, which is defined as $\text{sinc}(x)=\sin(x)/x$, with a limit of $1$ when $x\rightarrow 0$.
