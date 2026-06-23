@@ -13,9 +13,11 @@
   "chapter_type": "topical",
   "chabbr": "DIFGEO",
   "depends_on": [
-    "NUMSYS"
-  ],
-  "related_to": [],
+    "FOURIE"
+   ],
+  "related_to": [
+    "BASCRY"
+   ],
   "discipline": "mse",
   "published": false,
   "author_urls": {

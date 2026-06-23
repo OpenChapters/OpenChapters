@@ -39,7 +39,7 @@
 \chapterimage{\noheaderimage}
 
 % ###################################################################
-% CHAPTER TITLE — Edit the title below
+% CHAPTER TITLE  Edit the title below
 % ###################################################################
 \chapter{The Geometry of Diffraction Processes}\label{\chabbr:ch:DiffractionGeometry}
 
@@ -67,8 +67,6 @@
 
 %Chapter structure
 % - Introduction
-% - Particle Waves
-% - Wave Interference
 % - Bragg's Law in Direct Space
 % - Bragg's Law in Reciprocal Space
 % -    Ewald sphere construction
@@ -80,23 +78,251 @@
 
 \section{Introduction}\label{\chabbr:sec:introduction}
 
-In this chapter we will describe the geometry of the diffraction process in a way that includes the most commonly used types of incident beams: x-rays, electrons, and neutrons.  We begin by introducing the concept of the \indexit{wave vector}, which relates the wave length of the incident beam to the reciprocal space description of the crystal structure. This involves the \indexit{particle-wave duality} which is fundamental to the field of quantum mechanics. Then we describe how the three primary beam types are generated.  We build up a description of x-ray scattering by first looking at scattering of an x-ray photon by a single electron, and then by an atom
+In this chapter, we will describe the geometry of the diffraction process in a way that ignores the nature of the radiation used for the diffraction experiment. We will see that diffraction has a purely geometric aspect as well as an intensity aspect, and the two can be treated separate from each other.  The primary goal of a diffraction experiment is to determine how atoms or molecules are arranged in 3D.  When we think about a crystal structure, then the primary unknowns are: the lattice parameters $\{a,b,c,\alpha,\beta,\gamma\}$, the symmetry (point group and space group), the atom types and positions in terms of fractional coordinates in the unit cell, and, in some cases, the orientation of the lattice with respect to an external reference frame.  Diffraction techniques allow us to determine all of these quantities.  
+
+While the diffraction geometry can be described with respect to the direct crystallographic basis, it turns out that it is much more convenient to work in the reciprocal basis.  This should not be a surprise since waves are described by a wave vector with dimensions of inverse length; the wave vector is normal to the wave front, in the same way that a reciprocal lattice vector is normal to a lattice plane. The interplanar spacing, $d_{hkl}$, for the $(hkl)$ planes is the reciprocal of the length of the vector $\mathbf{g}_{hkl}$, just as the wavelength is the reciprocal of the length of the wave vector.
+
+We will begin with the derivation of the Laue Equations, followed by the introduction of Bragg's Law in both direct and reciprocal spaces.  Then we describe the concept of the Ewald sphere, a geometric construction to determine the direction of a diffracted wave. In the final sections of this chapter we describe several important experimental diffraction geometries for x-rays, electrons and neutrons.
+
+\section{The Laue Equations}\label{\chabbr:sec:LaueEq}
+
+\begin{floatingfigure}[r]{0.4\textwidth}
+\centering
+{\includegraphics[width=0.38\textwidth]{\graphicspath Laue.pdf}}
+{\caption{\label{\chabbr:fig:1DLaue}\small Illustration of the Laue diffraction condition for a 1D string of atoms.}}
+\end{floatingfigure}
+\noindent We begin this section with a 1D example derivation of the geometrical condition that must be satisfied to have \indexit{constructive interference} from a line of identical atoms with lattice basis vector $\mathbf{a}$, as shown in Fig.~\ref{\chabbr:fig:1DLaue}. The incident wave travels in the direction given by the unit vector $\hat{\mathbf{s}}_0$ at an angle $\alpha_i$ with respect to the line of atoms.  Each atom will scatter a spherical wave with the same wavelength as the incident wave.  To have constructive interference in the direction $\hat{\mathbf{s}}$, the scattered waves from atoms $B$ and $C$ must be in-phase with each other; this, in turn, requires that the path length difference $AB-CD$ between two waves must be an integer multiple of the wavelength.  We have
+\[
+	AB-CD = a\cos\alpha_i-a\cos\alpha_o=\mathbf{a}\cdot\hat{\mathbf{s}}_0 - \mathbf{a}\cdot\hat{\mathbf{s}} = n_x\lambda\ ,
+\]
+where $n_x$ is an integer.  Bringing the wavelength to the other side of the equation and introducing wave vectors we obtain:
+\[
+	\mathbf{a}\cdot\left(\frac{\hat{\mathbf{s}}_0}{\lambda} - \frac{\hat{\mathbf{s}}}{\lambda}\right) = \mathbf{a}\cdot\left(\mathbf{k}_0-\mathbf{k}\right) = n_x\ .
+\]
+If we set $\Delta\mathbf{k}=\mathbf{k}-\mathbf{k}_0$, then we have $\mathbf{a}\cdot\Delta\mathbf{k}=n_x$ (we have absorbed the minus sign into the integer $n_x$), or, in words, the projection of the scattering vector $\Delta\mathbf{k}$ onto the basis vector $\mathbf{a}$ must be an integer. 
+
+In a 3D lattice, the same type of condition must be true for each of the basis vector directions, so we obtain a set of three equations known as the \indexit{Laue Equations}, first derived by \indexit{Max von Laue} in 1912:
+\begin{equation}
+\begin{split}
+	\mathbf{a}\cdot\Delta\mathbf{k}&=n_x\ ;\\
+	\mathbf{b}\cdot\Delta\mathbf{k}&=n_y\ ;\\
+	\mathbf{c}\cdot\Delta\mathbf{k}&=n_z\ .
+\end{split}\label{\chabbr:eq:LaueEq}
+\end{equation}
+Note that this is a very restrictive set of equations: the projection of the scattering vector onto \textit{each} of the basis vectors must be an integer.  If we take an integer linear combination of the basis vectors, i.e., a lattice translation vector $\mathbf{t}_{uvw}$, then we have:
+\[
+	\mathbf{t}_{uvw}\cdot\Delta\mathbf{k} = (u\mathbf{a}+v\mathbf{b}+w\mathbf{c})\cdot\Delta\mathbf{k}=u\,n_x+v\,n_y+w\,n_z = n\ ;
+\]
+the last equality simply states that the projection of the scattering vector onto \textit{any} lattice translation vector must be an integer.  From our knowledge of crystallography we can easily see that this relation can only be valid if the scattering vector is equal to a reciprocal lattice vector, i.e., $(n_x,n_y,n_z)=(h,k,l)$ and $\Delta\mathbf{k}=\mathbf{g}_{hkl}$ for the lattice planes $(hkl)$.  The Laue equations therefore lead to the important result \textit{that the scattering vector must be normal to a lattice plane in order to have constructive interference between waves scattered by the atoms in that plane.}  \\
+
+
+\section{Bragg's Law in Direct and Reciprocal Space}\label{\chabbr:sec:BraggsLaw}
+
+\subsection{Derivation of Bragg's Law}\label{\chabbr:ssec:BraggDeriv}
+From the Laue equations we can immediately obtain \indexit{Bragg's Law} in reciprocal space by writing the equation in terms of the incident and diffracted wave vectors:
+\begin{equation}
+	\Delta\mathbf{k}=\mathbf{g}_{hkl}\rightarrow \mathbf{k} = \mathbf{k}_0+\mathbf{g}_{hkl}\ .\label{\chabbr:eq:BraggR}
+\end{equation}
+Fig.~\ref{\chabbr:fig:Bragg}(a) shows the relevant vectors with the incident wave vector  $\mathbf{k}_0$ drawn horizontally.  Note that the scattering vector $\Delta\mathbf{k}$ is perpendicular to the bisector line of the angle between $\mathbf{k}_0$ and $\mathbf{k}$.  If we rotate the whole drawing clockwise by an angle $\theta$ we obtain the configuration shown in Fig.~\ref{\chabbr:fig:Bragg}(b).  The horizontal line now represents the lattice plane with Miller indices $(hkl)$, and the scattering vector $\Delta\mathbf{k}$, which according to the Laue equation is equal to $\mathbf{g}_{hkl}$, now is oriented vertically, as it should be.  This configuration is the starting point for the traditional derivation of Bragg's Law in direct space.
+
+\begin{figure}[t]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath Bragg.pdf}
+\caption{(a) configuration of wave vectors and scattering vector; (b) same as (a) but rotated clockwise by $\theta$; (c) illustration for the determination of the path length difference between waves scattered from successive lattice planes $(hkl)$.}
+\label{\chabbr:fig:Bragg}
+\end{figure}
+
+Consider the drawing in Fig.~\ref{\chabbr:fig:Bragg}(c); we consider the lattice planes to be semi-transparent for the incident x-ray beam with wave vector $\mathbf{k}_0$. If the angle between the plane and the incident beam is equal to $\theta$, then Fig.~\ref{\chabbr:fig:Bragg}(b) tells us that the diffracted beam should also have an angle $\theta$ with respect to the plane.  If the waves labeled $1$ and $2$ are in-phase, then we will have constructive interference if waves $1'$ and $2'$ are also in-phase. This occurs when the path length difference $\Delta$ between the waves is an integer multiple of the wavelength $\lambda$:
+\begin{equation}
+	\Delta = PO'+O'Q = OO'(\sin\theta+\sin\theta) = 2d_{hkl}\sin\theta = n\lambda\ .\label{\chabbr:eq:Bragg1}
+\end{equation}
+In optical diffraction experiments, for instance diffraction from an optical grating, the integer $n$ describes the order of the diffracted beam.  In crystallography, we typically bring $n$ to the left hand side of the equation; it is easy to see that the following relation is valid:
+\[
+	\frac{d_{hkl}}{n}=d_{nh\,nk\,nl}\ ,
+\]
+which means that diffraction from, say, the $(110)$ planes should be considered as being different from diffraction from the $(220)$, $(330)$, $\ldots$ planes.  In other words, we do not consider diffraction orders at all.  Bragg's Law in direct space is then given by:
+\begin{equation}
+	2d_{hkl}\sin\theta = \lambda\ .\label{\chabbr:eq:Bragg2}
+\end{equation}
+We can easily derive this relation directly from the Laue equation by projecting $\mathbf{k}-\mathbf{k}_0=\mathbf{g}_{hkl}$ onto the unit plane normal $\hat{\mathbf{n}}$:
+\[
+	\hat{\mathbf{n}}\cdot\mathbf{k}-\hat{\mathbf{n}}\cdot\mathbf{k}_0=\hat{\mathbf{n}}\cdot\mathbf{g}_{hkl}\rightarrow \frac{\sin\theta}{\lambda}+\frac{\sin\theta}{\lambda}=\frac{1}{d_{hkl}}\rightarrow 2d_{hkl}\sin\theta = \lambda\ .
+\]
+Note that Bragg's Law in direct space is a scalar relation; therefore, we can use this equation to determine the diffraction angle, when the interplanar spacing and wavelength are known, but the equation contains no information about the direction of the incident and diffracted beam.  All we know is that the angle between the two beams must be equal to $2\theta$. The reciprocal version of Bragg's Law, on the other hand, is a relation between vectors so that we do have information about the actual direction of the diffracted beam.  This is also the reason why the geometry of the diffraction process is almost always described in reciprocal space.
+
+\begin{floatingfigure}[r]{0.5\textwidth}
+\centering
+{\includegraphics[width=0.48\textwidth]{\graphicspath Kosselcones.pdf}}
+{\caption{\label{\chabbr:fig:Kosselcones}\small Illustration of the 3D nature of the diffraction condition; blue surfaces are Kossel cones.}}
+\end{floatingfigure}
+\noindent The drawing in Fig.~\ref{\chabbr:fig:Bragg}(c) represents the traditional way to illustrate Bragg's Law, but it is somewhat misleading because it leaves out part of the story.  Bragg's Law in reciprocal space states that the three vectors, $\mathbf{k}_0$, $\mathbf{k}$, and $\mathbf{g}_{hkl}$ are coplanar vectors; all three vectors lie in the plane of the drawing. What is missing in this drawing is the 3D nature of the diffraction process. The vectors have to be coplanar, but there are an infinite number of planes for which this condition is satisfied; all of the planes that contain the vector $\mathbf{g}_{hkl}$ are potential planes for which Bragg's Law can be satisfied.  This is illustrated in Fig.~\ref{\chabbr:fig:Kosselcones}. The figure shows two conical surfaces (blue), one on each side of the  $(hkl)$ plane (green); the cones have an opening angle at the apex of $\pi-2\theta$. The incident wave vector $\mathbf{k}_0$ can lie anywhere on the top or bottom surface of the cone, pointing towards the apex; $\mathbf{k}_0$ and $\mathbf{g}_{hkl}$ form a plane normal to the lattice plane $(hkl)$ (orange) and the diffracted wave vector must lie along the intersection of this plane and the cone surface on the side opposite of $\mathbf{k}_0$.  The diffraction condition, i.e., Bragg's Law in reciprocal space, is thus satisfied for all incident beam directions that lie on the cone and go through the apex.  The two cones are commonly known as \indexit{Kossel cones}.
+
+\subsection{Bragg's Law and momentum transfer}\label{\chabbr:ssec:Braggmomentum}
+The \indexit{de Broglie equation} states that the momentum of a particle is inversely proportional to the wavelength, with the proportionality constant equal to \indexit{Planck's constant}, $h$, which, in SI units, is defined as exactly $6.62607\times 10^{-34}$ Js.  In vector form, the relation is given by:
+\[
+	\mathbf{p} = h\,\mathbf{k}\ . 
+\]
+The Laue equation derived above states that diffraction from the $(hkl)$ planes requires that the scattering vector, $\Delta\mathbf{k}$, be equal to the reciprocal lattice vector $\mathbf{g}_{hkl}$. Combining the two equations we find that the \indexit{momentum transfer} is given by:
+\begin{equation}
+	\Delta\mathbf{p} = h\,\mathbf{g}_{hkl}\ .\label{\chabbr:eq:momentumtransfer}
+\end{equation}
+This equation states that the allowed momentum transfers for elastic scattering (i.e., scattering without energy transfer) are given by the reciprocal lattice vectors (apart from the scaling factor $h$).  This allows us to interpret the reciprocal lattice from a new point of view: \textit{the reciprocal lattice represents the set of all allowed elastic momentum transfer vectors.} Stated differently: \textit{momentum space and reciprocal space are the same, apart from the scale factor $h$}.
+
+It is important to note that this relation does not specify the type of particle or radiation used for the diffraction process. If we know the lattice parameters of the crystal structure, then we can compute the lengths of all the allowed momentum transfer vectors $\Delta\mathbf{p}_{hkl}$ (note that we replace $h$ by $2\pi\hbar$ to avoid confusion with the $h$ Miller index):
+\begin{equation}
+	\vert\Delta\mathbf{p}_{hkl}\vert = \frac{2\pi\hbar}{d_{hkl}}=\frac{2\pi\hbar}{a}\sqrt{h^2+k^2+l^2}\ ,\label{\chabbr:eq:momentumtransfer2}
+\end{equation}
+where the second equality is valid for cubic crystal structures.  As an example, consider the $(220)$ planes in Al with lattice parameter $a=0.4049$ nm.  Plugging the numbers in to the equation we find for the momentum transfer for elastic scattering from these planes:
+\[
+	\vert\Delta\mathbf{p}_{220}\vert = \frac{6.62607\times 10^{-34}}{0.4049\times 10^{-9}}\sqrt{8} = 4.62863\times 10^{-24}\text{ kg\,m/s}\ .
+\]
+If we consider two x-ray photon beams, one for Cu K$\alpha$ with $\lambda=0.15418$ nm, the other for Mo K$\alpha$ with $\lambda=0.07107$ nm, and an electron beam with energy $30$ keV or wavelength $\lambda=0.00708$ nm, then we can compare the diffraction condition for the $(220)$ planes of Al for all three cases. The momentum transfer is the same for all three incident beams because elastic momentum transfer is determined \textit{only} by the interplanar spacing $d_{220}$.  Fig.~\ref{\chabbr:fig:diffcomparison} shows the three sets of incoming and diffracted wave vectors at the correct relative scale. 
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath diffcomparison.pdf}
+\caption{To-scale comparison of the diffraction condition for the $(220)$ planes of Al for Cu K$\alpha$ and Mo K$\alpha$ radiation as well as $30$ keV electrons. }
+\label{\chabbr:fig:diffcomparison}
+\end{figure}
+
+Note that this drawing also shows a significant difference between the magnitudes of the Bragg angles; when we solve the Bragg equation for $\theta$, we have:
+\[
+	\theta = \text{arcsin}\left(\frac{\lambda}{2d_{hkl}}\right)\ ;
+\]
+for the cases specified above we have Bragg angles of $34.58^{\circ}$ for Cu K$\alpha$ radiation, $14.37^{\circ}$ for Mo K$\alpha$, and $1.42^{\circ}$ for $30$ keV electrons. For $200$ keV electrons, which is a typical value for a transmission electron microscope, the wavelength is $2.508$ pm, leading to a Bragg angle of $0.502^{\circ}$ for the Al $(220)$ planes. For such small angles it is common practice to express them in milli-radians (mrad) instead of degrees; we have $\theta=8.76$ mrad.
+
+\subsection{The Bragg equation using unit vectors only}\label{\chabbr:ssec:unitvectors}
+For some diffraction applications it turns out to be useful to have a form of Bragg's Law that only contains unit vectors. We start from Bragg's Law in reciprocal space:
+\[
+	\mathbf{k}=\mathbf{k}_0+\mathbf{g} \rightarrow \frac{\hat{\mathbf{s}}}{\lambda}=\frac{\hat{\mathbf{s}}_0}{\lambda}+\mathbf{g}\rightarrow \hat{\mathbf{s}}=\hat{\mathbf{s}}_0+\lambda\mathbf{g}\ .
+\]
+We can replace the wavelength by the left-hand side of the direct space Bragg equation, and use $d\mathbf{g}=\hat{\mathbf{g}}$: 
+\[
+	\mathbf{k}=\mathbf{k}_0+\mathbf{g} \rightarrow \hat{\mathbf{s}}=\hat{\mathbf{s}}_0+2d\sin\theta\,\mathbf{g}\rightarrow \hat{\mathbf{s}}=\hat{\mathbf{s}}_0+2\sin\theta\,\hat{\mathbf{g}}\ .
+\]
+From Fig.~\ref{\chabbr:fig:Bragg}(b) we find that $\hat{\mathbf{s}}_0\cdot\hat{\mathbf{g}}=\cos(\theta+\pi/2)$, and this is a negative number since the two vectors enclose an angle larger than $\pi/2$; therefore we have:
+\[
+	\theta= \text{arccos}\left(\hat{\mathbf{s}}_0\cdot\hat{\mathbf{g}}\right)-\frac{\pi}{2}\rightarrow \sin\theta = -\hat{\mathbf{s}}_0\cdot\hat{\mathbf{g}}\ ;
+\]
+the final unit vector form of Bragg's equation then reads:
+\begin{equation}
+	\mathbf{k}=\mathbf{k}_0+\mathbf{g} \rightarrow \hat{\mathbf{s}}=\hat{\mathbf{s}}_0-2(\hat{\mathbf{s}}_0\cdot\hat{\mathbf{g}})\,\hat{\mathbf{g}}\ .
+\end{equation}
+The fact that the wavelength is absent in this equation provides convincing evidence that the diffraction condition is a purely geometrical condition that only depends on the relative orientation of the vectors $ \hat{\mathbf{s}}_0$ and $\hat{\mathbf{g}}$.  Note that the unit vector expression is only valid when the diffraction condition is satisfied.\\
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath Ewald1.pdf}
+\caption{(a) 2D illustration of the Ewald circle; (b) same in 3D.}
+\label{\chabbr:fig:Ewald1}
+\end{figure}
+
+\section{The Ewald Sphere Construction}\label{\chabbr:sec:Ewald}
+When we consider Bragg's Law in reciprocal space, we see that the three vectors, $\mathbf{k}_0$, $\mathbf{k}$, and $\mathbf{g}_{hkl}$ can be drawn as a triangle, with the wave vectors starting in a common point that we will label $C$. As illustrated in Fig.~\ref{\chabbr:fig:Ewald1}(a), the origin of reciprocal space, which is the starting point of all vectors $\mathbf{g}_{hkl}$, is labeled $O$, and the point where $\mathbf{g}_{hkl}$ and $\mathbf{k}$ meet must be a reciprocal lattice point.  Since diffraction is an \indexit{elastic scattering process}, i.e., there is no energy exchange so the wavelength remains constant, the wave vectors have equal length; this means that the points $G$ and $O$ lie at the same distance from $C$. This, in turn, means that $G$ and $O$ lie on a circle with center at $C$ and radius $1/\lambda$; this circle is known as the \indexit{Ewald circle} in 2D, and the \indexit{Ewald sphere} in 3D (Fig.~\ref{\chabbr:fig:Ewald1}(b)). We find that \textit{the diffraction condition is satisfied for every reciprocal lattice point that lies on the Ewald sphere}.
+
+
+\subsection{The Ewald sphere equation}\label{\chabbr:ssec:Ewaldeq}
+In 3D, the equation of a sphere of radius $R$ and center at $\mathbf{r}_0$ is given, in vector form, by:
+\[
+	(\mathbf{r}-\mathbf{r}_0)\cdot(\mathbf{r}-\mathbf{r}_0)=R^2\ .
+\]
+Working in reciprocal space coordinates, we have (from Fig.~\ref{\chabbr:fig:Ewald}(a)) $\mathbf{r}_0=-\mathbf{k}_0$ and $R=1/\lambda$. Setting $\mathbf{q}$ as an arbitrary vector, then this vector will end on the sphere if:
+\[
+	(\mathbf{q}+\mathbf{k}_0)\cdot(\mathbf{q}+\mathbf{k}_0)=\frac{1}{\lambda^2}\ .
+\]
+Working out the dot products and noting that $\mathbf{k}_0\cdot\mathbf{k}_0=1/\lambda^2$ we find:
+\begin{equation}
+	\mathbf{q}\cdot(\mathbf{q}+2\mathbf{k}_0)=0\ .\label{\chabbr:eq:eqEwald}
+\end{equation}
+Fig.~\ref{\chabbr:fig:Ewald2}(a) illustrates this relation; if a reciprocal space vector $\mathbf{q}$ lies on the Ewald sphere, then that vector is orthogonal to $\mathbf{q}+2\mathbf{k}_0$. This is a general relation that could actually be used to define a circle (or a sphere) as the locus or points that satisfy equation~(\ref{\chabbr:eq:eqEwald}).  For points $\mathbf{q}$ that lie inside the Ewald sphere, the angle $\omega$ is larger than $\pi/2$, so that the dot product becomes negative; for points outside the sphere, the dot product is positive.
+
+If the diffraction condition is satisfied, then we have $\mathbf{q}=\mathbf{g}_{hkl}$ which leads to:
+\begin{equation}
+	\mathbf{g}_{hkl}\cdot(\mathbf{g}_{hkl}+2\mathbf{k}_0) = \mathbf{g}_{hkl}\cdot(\mathbf{k}+\mathbf{k}_0) = 0\ .\label{\chabbr:eq:eqEwald2}
+\end{equation}
+We have used Bragg's Law to go from the first expression to the second.  This relation is illustrated in Fig.~\ref{\chabbr:fig:Ewald2}(b); the vector $\mathbf{k}+\mathbf{k}_0$ lies on the perpendicular bisector plane of $\mathbf{g}_{hkl}$ in exact Bragg condition.
+
+\begin{figure}[t]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath Ewald2.pdf}
+\caption{(a) Illustration of the relation $\mathbf{q}\cdot(\mathbf{q}+2\mathbf{k}_0)=0$; (b) shows that the point $\mathbf{k}_0+\mathbf{k}$ lies on the perpendicular bisector plane of $\mathbf{g}_{hkl}$.}
+\label{\chabbr:fig:Ewald2}
+\end{figure}
+
+\subsection{The Ewald sphere for x-rays, neutrons, and electrons}\label{\chabbr:ssec:Ewaldxne}
+We have defined the Ewald sphere by positioning the incident wave vector $\mathbf{k}_0$ so that it ends in the origin of reciprocal space, $O$, and drawing a sphere of radius $1/\lambda$ with center $C$ at the start of $\mathbf{k}_0$. From the diffraction condition drawings in Fig.~\ref{\chabbr:fig:diffcomparison} we immediately note that the Ewald sphere for electrons will generally be much larger than that for x-ray photons and neutrons, which have wavelengths in a similar range.  In this section, we will consider more than one reciprocal lattice point and analyze how that affects diffraction processes.
+
+The fact that a reciprocal lattice point must fall on the Ewald sphere dictates what we must do to perform diffraction measurements; if we start with a randomly oriented sample (let's consider a single crystal for now), and a randomly oriented incident beam $\mathbf{k}_0$, then it is immediately clear that a reciprocal lattice point will only accidentally fall on the Ewald sphere and give rise to a diffracted beam. Furthermore, it is unlikely that the x-ray detector we employ will be ``looking'' in the right direction to detect this beam. This means that we must \textit{design} our diffractometer such that we maximize the probability of detecting a diffracted beam.  Fortunately, the Laue equation (or Bragg's Law in reciprocal space) tells us exactly what geometrical condition we need to satisfy; as a consequence, \textit{all} diffraction instruments are designed to implement the geometry of Bragg's Law.
+
+In general, only reciprocal lattice points that lie at most a distance $2/\lambda$ from the origin can give rise to a diffracted beam; since
+\[
+	\theta = \text{arcsin}\left(\frac{\lambda}{2d_{hkl}}\right)\ ,
+\]
+the argument of the arcsin function must be at the most equal to $1$, so we must have
+\[
+	\frac{1}{d_{hkl}} < \frac{2}{\lambda}\ ,
+\]
+which means that \textit{only lattice planes with an interplanar spacing larger than half the wavelength can give rise to a diffracted beam}.
+
+We have two ways to influence the probability that a reciprocal lattice point will fall on the Ewald sphere: (1) we can move the incident beam orientation relative to the stationary sample, or (2) we can rotate the sample with respect to a stationary beam.  Since the reciprocal lattice is rigidly attached to the crystal lattice, eventually every reciprocal lattice point within a distance $2/\lambda$ will pass through the Ewald sphere surface twice when either the sample or the incident beam are swept through all possible orientations..  Both approaches are used in commercial instruments, and we will highlight several geometries and techniques in section~\ref{\chabbr:sec:DiffractionGeometries}. For now we will only consider some general observations about diffraction geometry.
+
+Fig.~\ref{\chabbr:fig:Espheres} shows a schematic simple cubic reciprocal lattice for a crystal structure with lattice parameter $0.4$ nm; two Ewald spheres are superimposed on this drawing, one for Cu K$\alpha$ x-rays (blue sphere), the other for $30$ keV electrons (green sphere). For both spheres, the incident beam direction is parallel to the $[001]$ direction. The Cu K$\alpha$ Ewald sphere has a radius of $6.486$ nm$^{-1}$ whereas the electron Ewald sphere has a radius of $143.287$ nm$^{-1}$ or about $22$ times larger than the x-ray Ewald sphere. $30$ keV electrons are typically used in a scanning electron microscope, whereas the energy is significantly higher for a transmission electron microscope; $200$ or $300$ keV electrons are the norm, which leads to Ewald spheres with radius $398.72$ nm$^{-1}$ and $507.87$ nm$^{-1}$ respectively.  This makes it clear that the number of reciprocal lattice points that can potentially lie on the Ewald sphere is orders of magnitude larger for electron diffraction than for x-ray and neutron diffraction.
+
+\begin{figure}[t]
+\centering\leavevmode
+\includegraphics[width=0.75\textwidth]{\graphicspath Espheres.pdf}
+\caption{Illustration of the relative sizes of a Cu K$\alpha$ Ewald sphere (blue) and a $30$ keV electron Ewald sphere (green) with respect to a primitive cubic reciprocal lattice with lattice parameter $a=0.4$ nm.}
+\label{\chabbr:fig:Espheres}
+\end{figure}
+
+\section{Relaxation of the Diffraction Condition}\label{\chabbr:sec:relaxedBragg}
+When we take the Ewald sphere interpretation of the Bragg equation, $\mathbf{k}=\mathbf{k}_0+\mathbf{g}_{hkl}$, at face value, we observe that there is a bit of a problem.  The Ewald sphere construction involves taking a reciprocal lattice point, which is an infinitesimal point, and placing it on the sphere, which is an infinitesimal shell; the probability of this happening is essentially zero, so from a purely mathematical point of view, diffraction should be impossible.  There are two reasons why we need to relax the strict Bragg equation so that it applies to real diffraction processes:
+\begin{enumerate}
+\item \textit{wavelength distribution}: when we generate a monochromatic beam of incident particles or waves, there is always some spread of the particle energy or wavelength.  For instance, for Cu K$\alpha$ radiation, the photon energy profile has a full-width-at-half-maximum (FWHM) of about $2.3$ eV \cite{mendenhall2017a} or a wavelength spread of $0.044$ pm. This effectively means that the Ewald sphere actually has a finite thickness corresponding to the wavelength distribution; this is true for all forms of incident waves.  Thus, the Ewald sphere is not an infinitesimally thin shell.
+\item \textit{finite sample size}: when a crystal structure is described by a crystallographic space group, the implicit assumption is that the crystal is infinitely large because the space group is an infinite group (translation operations will produce unit cells at arbitrarily large distances from the origin). This leads to infinitesimal reciprocal lattice points, i.e., an infinite volume in direct space has the inverse volume in reciprocal space, which is zero volume.  In reality, space group symmetry is always broken by the sample surfaces (real samples are always of finite size), so that the reciprocal lattice points actually have a shape and a volume (see also section~\ref{FOURIE:ssec:3DCFT} in the Foundational Chapter on Fourier Series and Transforms).
+\end{enumerate}
+We conclude that, for diffraction to occur, there must be an overlap between the finite reciprocal lattice point and the thin but finite Ewald shell.  This can be described mathematically by modifying the Bragg equation:
+\begin{equation}
+	\mathbf{k}=\mathbf{k}_0+\mathbf{g}_{hkl}\rightarrow \mathbf{k}=\mathbf{k}_0+\mathbf{g}_{hkl}+\mathbf{s}\ ,\label{\chabbr:eq:relaxedBragg}
+\end{equation}
+where $\mathbf{s}$ is a (short) vector in reciprocal space, known as the \indexit{excitation error} or \indexit{deviation parameter}, that is a measure for how far removed the reciprocal lattice point is from the Ewald sphere; the precise definition of $\mathbf{s}$ depends on the experimental and sample geometry.
 
 
 
-\section{Particle and Waves}\label{\chabbr:sec:particlewaves}
 
-
-\section{Wave Interference}\label{\chabbr:sec:interference}
-
-
-\section{Bragg's Law in Direct Space}\label{\chabbr:sec:BraggDirect}
-
-
-\section{Bragg's Law in Reciprocal Space}\label{\chabbr:sec:BraggReciprocal}
 
 
 \section{Important Diffraction Geometries}\label{\chabbr:sec:DiffractionGeometries}
+
+\begin{table}[h!]
+\centering\leavevmode
+\begin{tabular}{cccccc}
+\hline
+ $h$   &    $d_{h00}$  &  $\vert\mathbf{g}_{h00}\vert$ &  $\sin\theta_h$  & $\theta_h$  & $2\theta_h$ \\
+\hline\hline
+       1 &      0.335000 &       2.98507 &      0.230269 &       13.3129 &       26.6258\\
+       2 &      0.167500 &       5.97015 &      0.460537 &       27.4218 &       54.8436\\
+       3 &      0.111667 &       8.95522 &      0.690806 &       43.6939 &       87.3879\\
+       4 &     0.083750 &       11.9403 &      0.921075 &       67.0837 &       134.167\\
+       5 &     0.067000 &       14.9254 &       1.15134 &           --- &           ---\\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:Po}Interplanar spacings and Bragg/scattering angles for the $(h00)$ planes in simple cubic Po.}
+\end{table}
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.75\textwidth]{\graphicspath Po.pdf}
+\caption{Illustrations of the diffraction conditions for the $(h00)$ planes of Po, using Cu K$\alpha$ radiation. The angles and $d$-spacings are listed in Table~\protect\ref{\chabbr:tb:Po}. Note that the reciprocal space portion of the diagrams has been scaled by a factor of $1/4$.}
+\label{\chabbr:fig:Po}
+\end{figure}
+
+\subsection{Introductory Comments}\label{\chabbr:sec:IntroComments}
+Let us consider the only elemental material that has a primitive cubic unit cell in ambient conditions: Polonium (Po)\footnote{We consider this rare element \textit{because} it has a cubic primitive structure, which allows us to avoid considerations of systematic absences that are discussed in a chapter on diffraction intensities.}. The lattice parameter of $\alpha$-Po is $a=0.335$ nm.   Working with Cu K$\alpha$ x-rays, we can readily compute the scattering angle $\theta_h$ for each of the $(h00)$ planes, for $h=1\ldots 4$. The interplanar spacings and Bragg angles are listed in Table~\ref{\chabbr:tb:Po}.  Fig.~\ref{\chabbr:fig:Po}(a-d) shows the corresponding diffraction geometries.  At the bottom, $2\times 2$ unit cells are drawn and the $(h00)$ planes are indicated by horizontal lines; the reciprocal lattice vectors $\mathbf{g}_{h00}$ are represented in red and the reciprocal lattice points as small green spheres.  Note that $\sin\theta_5$ is larger than $1$, so that there is no solution for $\theta_5$; in the context of Fig.~\ref{\chabbr:fig:Po} this means that the reciprocal lattice point $\mathbf{g}_{500}$ lies too far from the origin and there is no orientation of the incident beam $\mathbf{k}_0$ for which the Ewald sphere can intercept this reciprocal lattice point.  Therefore, for Cu K$\alpha$ radiation, the $(500)$ planes of Po cannot give rise to a diffracted beam. This is consistent with the earlier derivation that the interplanar spacing must be  larger than half the wavelength; for $h=5$ and Cu K$\alpha$ radiation, this condition is violated since $d_{500}=0.067<0.077=\lambda/2$ nm.  
+
+\subsection{Bragg-Brentano Diffractometers}\label{\chabbr:ssec:BraggBrentano}
+
+Continuing with Fig.~\ref{\chabbr:fig:Po}, if the sample orientation is kept stationary, then it is clear that both the x-ray source and the detector will need to be configured so that (1) they are positioned at the correct scattering angle, as illustrated in Fig.~\ref{\chabbr:fig:Po}(c) for the $(300)$ planes, and (2) both source and detector can be moved simultaneously by varying the angle $\theta$ to capture the diffracted beams from the other $(h00)$ planes.  Since both source and detector must maintain the same angle $\theta$ with respect to the sample plane, this is known as the $\theta$-$\theta$ \indexit{Bragg-Brentano geometry}.  
 
 
 
