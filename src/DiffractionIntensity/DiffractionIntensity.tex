@@ -1,0 +1,114 @@
+%
+% ###################################################################
+%  Copyright (c) 2026, REPLACE: Your Name
+%  Editors: A.D. Rollett & M. De Graef
+%  All rights reserved.
+%
+% Licensed under the Creative Commons CC BY-NC-SA 4.0 License,
+% hereafter referred to as the "License"; you may not use this
+% document except in compliance with the License. You may obtain
+% a copy of the License at
+%     https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+% Unless required by applicable law or agreed to in writing, all
+% material distributed under the License is distributed on an
+% "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+% either express or implied. See the License for the specific
+% language governing permissions and limitations under the License.
+% ###################################################################
+
+% ###################################################################
+% AUTHOR SETUP — Edit the lines below
+% ###################################################################
+
+% Uncomment the next line ONLY if this is a foundational chapter:
+%\corechapter{Yes}
+
+% Your name and affiliation (appears below the chapter title):
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University}
+
+% Chapter abbreviation: choose a UNIQUE 6-character uppercase code.
+% This is used as a prefix for all labels in this chapter.
+% Examples: LINALG, TENSOR, NUMSYS, PROJTS
+\renewcommand{\chabbr}{DIFINT}
+
+% Chapter header image (2480 x 1240 pixels, 300 dpi, RGB format).
+% Replace \noheaderimage with your header filename (e.g., MYCHAPheader.pdf).
+% The file should be placed in chapter/pdf/.
+% Note that \graphicspath is defined in the main.tex file.
+%\chapterimage{\graphicspath MYCHAPheader.pdf}
+\chapterimage{\noheaderimage}
+
+% ###################################################################
+% CHAPTER TITLE  Edit the title below
+% ###################################################################
+\chapter{Computation of Diffracted Intensities}\label{\chabbr:ch:DiffractionIntensity}
+
+% Register author information (repeat for each co-author)
+\writeauthor{\chabbr:ch:DiffractionIntensity}{Computation of Diffracted Intensities}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+
+% ###################################################################
+% LEARNING OBJECTIVES
+% ###################################################################
+% Each chapter begins with Learning Objectives.  Each objective should:
+% - Contain an active verb (Learn, Understand, Derive, Apply, etc.)
+% - Link to the relevant section using the \chabbr:sec:label format
+% - Use the OCBurntOrange color for the reference
+\begin{learningobjectives}
+{\begin{itemize}
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:introduction}:}] Understand the basic concepts presented in this chapter
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:methods}:}] Learn the methods used for analysis
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:examples}:}] Apply the concepts to worked examples
+\end{itemize}}
+\end{learningobjectives}
+
+% ###################################################################
+% CHAPTER CONTENT STARTS HERE
+% ###################################################################
+
+%Chapter structure
+% - Introduction
+% - Bragg's Law in Direct Space
+% - Bragg's Law in Reciprocal Space
+% -    Ewald sphere construction
+% -    Unit vector form of Bragg's Law
+% - Important Diffraction Geometries
+% 
+% 
+
+
+\section{Introduction}\label{\chabbr:sec:introduction}
+
+In this chapter, we will describe the geometry of the diffraction process in a way that includes the most commonly used types of incident beams: x-rays, electrons, and neutrons. The primary goal of a diffraction experiment is to determine how atoms or molecules are arranged in 3D.  When we think about a crystal structure, then the primary unknowns are: the lattice parameters $\{a,b,c,\alpha,\beta,\gamma\}$, the symmetry (point group and space group), the atom positions in terms of fractional coordinates in the unit cell, and, in some cases, the orientation of the lattice with respect to an external reference frame.  Diffraction techniques allow us to determine all of these quantities.  
+
+In chapter~\ref{SCATTR:ch:WaveScattering}, we introduced several important concepts that we will make extensive use of in the present chapter: 
+\begin{itemize}
+\item wavelength, $\lambda$, and wave vector, $\mathbf{k}$;
+\item atomic scattering factors, $f^X(s)$; electron scattering factors $f^e(s)$; neutron scattering lengths $b$;
+\item the probability of scattering from the incident beam direction $\mathbf{k}_0$ to a direction $\mathbf{k}$ at an angle $2\theta$ is of the form:
+\[
+	P_{\mathbf{k}_0\rightarrow\mathbf{k}}(\mathbf{r}) = f(s)\,\mathrm{e}^{2\pi\mathrm{i}\,\Delta\mathbf{k}\cdot\mathbf{r}}
+\]
+where $f(s)$ is any one of the scattering factors listed above and $\Delta\mathbf{l}=\mathbf{k}-\mathbf{k}_0$.  The complex exponential accounts for the atom position $\mathbf{r}$ with respect to the origin and is known as a \indexit{phase factor}.
+\end{itemize}
+The \indexit{Debye Scattering Equation} provides a way to compute the scattered intensity for an arbitrary arrangement of atoms. 
+
+
+\section{The Laue Equations}\label{\chabbr:sec:LaueEq}
+
+
+\section{Bragg's Law in Direct Space}\label{\chabbr:sec:BraggDirect}
+
+
+\section{Bragg's Law in Reciprocal Space}\label{\chabbr:sec:BraggReciprocal}
+
+
+\section{Important Diffraction Geometries}\label{\chabbr:sec:DiffractionGeometries}
+
+
+
+
+
+
+% ###################################################################
+% END OF CHAPTER
+% ###################################################################

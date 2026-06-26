@@ -287,12 +287,17 @@ We conclude that, for diffraction to occur, there must be an overlap between the
 \end{equation}
 where $\mathbf{s}$ is a (short) vector in reciprocal space, known as the \indexit{excitation error} or \indexit{deviation parameter}, that is a measure for how far removed the reciprocal lattice point is from the Ewald sphere; the precise definition of $\mathbf{s}$ depends on the experimental and sample geometry.
 
+A more detailed mathematical analysis of the effect of sample shape on the reciprocal lattice can be found in section~\ref{\chabbr:sec:sampleshape} at the end of this chapter.
+
 
 
 
 
 
 \section{Important Diffraction Geometries}\label{\chabbr:sec:DiffractionGeometries}
+
+\subsection{Introductory Comments}\label{\chabbr:sec:IntroComments}
+Let us consider the only elemental material that has a primitive cubic unit cell in ambient conditions: Polonium (Po)\footnote{We consider this rare element \textit{because} it has a cubic primitive structure, which allows us to avoid considerations of systematic absences that are discussed in a chapter on diffraction intensities.}. The lattice parameter of $\alpha$-Po is $a=0.335$ nm.   Working with Cu K$\alpha$ x-rays, we can readily compute the scattering angle $\theta_h$ for each of the $(h00)$ planes, for $h=1\ldots 4$. The interplanar spacings and Bragg angles are listed in Table~\ref{\chabbr:tb:Po}.  Fig.~\ref{\chabbr:fig:Po}(a-d) shows the corresponding diffraction geometries.  At the bottom, $2\times 2$ unit cells are drawn and the $(h00)$ planes are indicated by horizontal lines; the reciprocal lattice vectors $\mathbf{g}_{h00}$ are represented in red and the reciprocal lattice points as small green spheres.  Note that $\sin\theta_5$ is larger than $1$, so that there is no solution for $\theta_5$; in the context of Fig.~\ref{\chabbr:fig:Po} this means that the reciprocal lattice point $\mathbf{g}_{500}$ lies too far from the origin and there is no orientation of the incident beam $\mathbf{k}_0$ for which the Ewald sphere can intercept this reciprocal lattice point.  Therefore, for Cu K$\alpha$ radiation, the $(500)$ planes of Po cannot give rise to a diffracted beam. This is consistent with the earlier derivation that the interplanar spacing must be  larger than half the wavelength; for $h=5$ and Cu K$\alpha$ radiation, this condition is violated since $d_{500}=0.067<0.077=\lambda/2$ nm.  In the remainder of this section we will describe this and other important diffraction geometries in more detail.
 
 \begin{table}[h!]
 \centering\leavevmode
@@ -317,14 +322,248 @@ where $\mathbf{s}$ is a (short) vector in reciprocal space, known as the \indexi
 \label{\chabbr:fig:Po}
 \end{figure}
 
-\subsection{Introductory Comments}\label{\chabbr:sec:IntroComments}
-Let us consider the only elemental material that has a primitive cubic unit cell in ambient conditions: Polonium (Po)\footnote{We consider this rare element \textit{because} it has a cubic primitive structure, which allows us to avoid considerations of systematic absences that are discussed in a chapter on diffraction intensities.}. The lattice parameter of $\alpha$-Po is $a=0.335$ nm.   Working with Cu K$\alpha$ x-rays, we can readily compute the scattering angle $\theta_h$ for each of the $(h00)$ planes, for $h=1\ldots 4$. The interplanar spacings and Bragg angles are listed in Table~\ref{\chabbr:tb:Po}.  Fig.~\ref{\chabbr:fig:Po}(a-d) shows the corresponding diffraction geometries.  At the bottom, $2\times 2$ unit cells are drawn and the $(h00)$ planes are indicated by horizontal lines; the reciprocal lattice vectors $\mathbf{g}_{h00}$ are represented in red and the reciprocal lattice points as small green spheres.  Note that $\sin\theta_5$ is larger than $1$, so that there is no solution for $\theta_5$; in the context of Fig.~\ref{\chabbr:fig:Po} this means that the reciprocal lattice point $\mathbf{g}_{500}$ lies too far from the origin and there is no orientation of the incident beam $\mathbf{k}_0$ for which the Ewald sphere can intercept this reciprocal lattice point.  Therefore, for Cu K$\alpha$ radiation, the $(500)$ planes of Po cannot give rise to a diffracted beam. This is consistent with the earlier derivation that the interplanar spacing must be  larger than half the wavelength; for $h=5$ and Cu K$\alpha$ radiation, this condition is violated since $d_{500}=0.067<0.077=\lambda/2$ nm.  
 
 \subsection{Bragg-Brentano Diffractometers}\label{\chabbr:ssec:BraggBrentano}
 
-Continuing with Fig.~\ref{\chabbr:fig:Po}, if the sample orientation is kept stationary, then it is clear that both the x-ray source and the detector will need to be configured so that (1) they are positioned at the correct scattering angle, as illustrated in Fig.~\ref{\chabbr:fig:Po}(c) for the $(300)$ planes, and (2) both source and detector can be moved simultaneously by varying the angle $\theta$ to capture the diffracted beams from the other $(h00)$ planes.  Since both source and detector must maintain the same angle $\theta$ with respect to the sample plane, this is known as the $\theta$-$\theta$ \indexit{Bragg-Brentano geometry}.  
+Continuing with Fig.~\ref{\chabbr:fig:Po}, if the sample orientation is kept stationary, then it is clear that both the x-ray source and the detector will need to be configured so that (1) they are positioned at the correct scattering angle, as illustrated in Fig.~\ref{\chabbr:fig:Po}(c) for the $(300)$ planes, and (2) both source and detector can be moved simultaneously by varying the angle $\theta$ to capture the diffracted beams from the other $(h00)$ planes.  Since both source and detector must maintain the same angle $\theta$ with respect to the sample plane, this is known as the $\theta$-$\theta$ \indexit{Bragg-Brentano geometry}.  Fig.~\ref{\chabbr:fig:BraggBrentano} shows a schematic of a typical experimental setup.  
+
+\begin{figure}[b!]
+\centering\leavevmode
+\includegraphics[width=0.75\textwidth]{\graphicspath BraggBrentano.pdf}
+\caption{Schematic illustration of a $\theta$-$\theta$ Bragg-Brentano x-ray diffractometer (illustration generated with Nano Banana 2).}
+\label{\chabbr:fig:BraggBrentano}
+\end{figure}
+
+A variant of this diffractometer has the x-ray source fixed with a horizontal incident beam; the sample then rotates at a constant angular rate $\dot{\theta}$ and the detector moves at twice that rate, $2\dot{\theta}$, to maintain the diffraction condition. This geometry is known as the $\theta$-$2\theta$ geometry.  Both types of diffractometers produce a plot of the diffracted intensity, $I$, as a function of the scattering angle $2\theta$.  An example powder diffraction pattern for the cubic NaCl structure is shown in Fig.~\ref{\chabbr:fig:NaClpattern}; NaCl has a face-centered cubic (fcc) structure with Na (yellow) in the origin and Cl (green) at the $(1/2,0,0)$ position.  It is common to scale the intensities so that the most intense peak, in this case the $(200)$ peak, has an intensity value of $100$.  The lattice parameter of NaCl is $a=0.56407$ nm. The instrumental configuration for this scan was as follows: Rigaku $\theta$-$\theta$ diffractometer with a Cu x-ray tube operated at $35$ kV and a current of $25$ mA; angular range for $2\theta$: $20^{\circ}$-$125^{\circ}$; angular step size $0.05^{\circ}$ with $2$ s integration at each step; the sample was ground and passed through a 325 mesh sieve, leaving a maximum particle size of $45$ $\mu$m.  
+ 
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=0.75\textwidth]{\graphicspath NaClpattern.pdf}
+\caption{Powder diffraction pattern for the NaCl structure (shown in the inset).}
+\label{\chabbr:fig:NaClpattern}
+\end{figure}
+
+\begin{figure}[b!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath powder.pdf}
+\caption{(a) diffraction condition for $\mathbf{g}_{111}$ set of planes in an Al sample with randomly oriented grains (Cu K$\alpha$ radiation); (b) the $\mathbf{g}_{200}$ diffraction cone has been added to (a).}
+\label{\chabbr:fig:powder}
+\end{figure}
+
+\subsection{Debye-Scherrer Diffractometer}\label{\chabbr:ssec:DebyeScherrer}
+If we take a powder sample or a polycrystalline sample, and we assume that the orientations of the grains are fully random, then the probability of a particular reciprocal lattice vector, $\mathbf{g}_{hkl}$, pointing in any given direction is a constant; the locus of all the endpoints of the vector $\mathbf{g}_{hkl}$ is then a sphere with radius $\vert\mathbf{g}_{hkl}\vert=1/d_{hkl}$. If we consider diffraction from those planes, then the diffraction condition will be satisfied along the intersection of this sphere with the Ewald sphere. This is illustrated in Fig.~\ref{\chabbr:fig:powder}(a); the Ewald sphere is shown in blue for Cu K$\alpha$ radiation, and the sample is represented by a thin blue cylinder going through the origin. The incident wave vector $\mathbf{g}_0$ is shown in red. The intersection of the Ewald sphere with the $(111)$ sphere is a circle (shown in black) normal to the wave vector.  The location $\kappa$ along the red axis and the radius $\rho$ of this intersection circle are readily shown to be given by:
+\[
+	\kappa = \frac{2\sin^2\theta}{\lambda} \quad\text{ and }\quad \rho= \frac{1}{d_{hkl}}\left[1-\left(\frac{\lambda}{2d_{hkl}}\right)^2 \right]^{\frac{1}{2}}=\frac{\cos\theta}{d_{hkl}}\ ,
+\]
+where we used Bragg's Law in the final equation.  For the $(111)$ planes of Al, with lattice parameter $a=0.4049$ nm, the scattering angle is given by $2\theta_{111}=38.51^{\circ}$. For the $(200)$ planes, we have $2\theta=44.76^{\circ}$ and the second diffraction cone is shown in Fig.~\ref{\chabbr:fig:powder}(b).  We conclude that, for a polycrystalline sample with randomly oriented grains, the diffracted beams lie on the surfaces of concentric cones centered around the incident beam direction.  For scattering angles larger than $90^{\circ}$, the cones will be on the opposite  side of the point $C$.
+
+Now that we have an understanding of the diffraction geometry for a polycrystalline sample with random grain orientations, let us take a look at one of the earliest powder diffractometers, the \indexit{Debye-Scherrer camera}, developed around 1916. There are many variations on the Debye-Scherrer camera, among others the \indexit{Seeman-Bohlin camera} and the \indexit{Guinier camera}. Fig.~\ref{\chabbr:fig:DebyeScherrer} shows a schematic cross-section of such a camera. It consists of a flat cylindrical enclosure with an x-ray collimator on one side and a beam stop on the other.  The sample is typically a thin wire (shown in blue at the center of the camera) or a glass capillary filled with powder. The incident x-ray beam generates diffraction cones as illustrated in Fig.~\ref{\chabbr:fig:powder}, but the cones are truncated by the walls of the enclosure. Around the vertical wall, a photographic strip is mounted going all the way around, with circular cutouts for the collimator and the beam stop. The diffraction cones intersect the film along approximately circular arc segments as shown schematically in Fig.~\ref{\chabbr:fig:DebyeScherrer}(b).  To determine the scattering angle $2\theta$ for a particular diffraction cone, we note that the angular distance between the centers of the holes in the film ($A$ corresponds to the position of the collimator, $B$ to the beam stop) is equal to $180^{\circ}$; measuring the position of the arc where it intersects the center line of the film and dividing by $L$ then immediately results in the value of $2\theta$:
+\begin{equation}
+	2\theta = 180^{\circ} \frac{X}{L}\ .
+\end{equation}
+Note that the center line of the film is the only location where there are no projection distortions; Fig.~\ref{\chabbr:fig:DebyeScherrer}(b) is a simulated pattern covering a much larger vertical range than normally used in these cameras. The red rectangle represents the film aspect ratio that is typically placed inside the cylindrical camera. The simulation was carried out for fcc Al using Cu K$\alpha$ radiation. Note that the deviations from a circle shape become substantial outside of the red rectangle. 
+
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=0.75\textwidth]{\graphicspath DebyeScherrer.pdf}
+\caption{(a) Schematic cross-section drawing of a Debye-Scherrer diffraction camera. (b) simulated Debye-Scherrer pattern for Al and Cu K$\alpha$ radiation; the area inside the red rectangle represents a typical photographic film size with aspect ratio around $5:1$. }
+\label{\chabbr:fig:DebyeScherrer}
+\end{figure}
+
+The equations that describe the projected diffraction cones can be derived by considering the intersection of a cone and a cylinder, where the apex of the cone lies on the cylinder axis and the cone axis (along the $x$ direction) is perpendicular to the cylinder axis (oriented along $z$).  The equations describing the two shapes are:
+\begin{equation*}
+\begin{split}
+	x^2+y^2 &= R^2\qquad\text{(cylinder)}\ ;\\
+	y^2+z^2 &= x^2\tan^2(2\theta)\ .
+\end{split}
+\end{equation*}
 
 
+\subsection{Laue Diffraction Patterns}\label{\chabbr:ssec:LauePatterns}
+The diffraction geometries described thus far, Bragg-Brentano and Debye-Scherrer, are ideally suited for the study of polycrystalline or powder samples.  The diffracted intensity lies on concentric conical surfaces and is readily intercepted with a photographic film or a planar digital detector in modern setups. In this section, we consider a single crystal sample (or polycrystalline with a large grain size); for such a sample, there are discrete diffracted beams that fall on the same diffraction cones as shown in Fig.~\ref{\chabbr:fig:powder}, but in general, very few reciprocal lattice points will fall on the Ewald sphere.  
+
+
+
+
+
+\newpage
+
+\section{Example Diffraction Geometry Problems}
+In this section we present a few problems related to diffraction geometry, and we work out detailed solutions.
+
+\begin{example}
+\textsf{\small Aluminum has a room temperature linear thermal expansion coefficient of $\alpha=23$ $\mu$m/m/K.  If the linear
+	thermal expansion coefficient is defined as:
+	\[
+		\alpha = \frac{1}{L}\frac{\Delta L}{\Delta T},
+	\]
+	where $L$ is a sample length, then derive the change of the $(220)$ scattering angle $2\theta$ if the Al sample is heated from room temperature to $800$ K.	
+	You may assume that $\alpha$ does not change with temperature, and that Cu $K_{\alpha}$ radiation is used.}\\
+
+\noindent\textbf{Solution:} The $d$-spacing for the $(220)$ planes changes with temperature according to :
+\[
+	\Delta d_{220} = (\alpha\Delta T) d_{220}
+\]
+so that (taking room temperature to be $20^{\circ}$C):
+\[
+	d_{220}(800\thinspace K) = d_{220}(293\thinspace  K) \left(1+\alpha\Delta T\right)
+\]
+With $\Delta T = 507$ K, we have 
+\[
+	\alpha\Delta T = (23\times 10^{-6})\times 507 = 0.0117
+\]
+so that (using $a=0.405$ nm):
+\[
+	d_{220}(800\thinspace K) = \frac{a}{\sqrt{8}}\times 1.0117 = 0.14486\thinspace nm
+\]
+compared to the room temperature value of $d_{220}(293\thinspace K) =0.14319$ nm.
+The position of the room temperature diffracted beam for Cu K$\alpha$ radiation is 
+\[
+	2\theta_{293\thinspace K}= 2\text{arcsin}\frac{\lambda}{2d_{220}} = 2\text{arcsin}\frac{0.154183}{2\times 0.14319} =  65.148^{\circ};
+\]
+at $800$ K we have 
+\[
+	2\theta_{800\thinspace K}=  2\text{arcsin}\frac{0.154183}{2\times 0.14486} =  64.306^{\circ}.
+\]
+This shift of nearly a full degree is readily measurable. 
+\end{example}
+
+\begin{example}\label{\chabbr:exa:Laue}
+\textsf{\small Consider a primitive cubic structure with lattice parameter $a=0.3345$ nm.  The following questions refer to a Laue diffraction experiment.
+\begin{enumerate}
+\item Make a scale drawing of the $\mathbf{a}^{\ast} - \mathbf{b}^{\ast}$ plane using $1.0$ nm$^{-1} = 0.5$ cm. [no need to label the reciprocal lattice points]
+\item Superimpose on this drawing the Ewald spheres for radiation with a wave length range from $\lambda_1=0.1$ nm to $\lambda_2=0.2$ nm and an incident beam direction $[100]$.  Make sure that the reciprocal lattice points drawn in part (a) go all the way past the largest Ewald sphere.
+\item Bragg's law states that a diffracted beam will occur when the reciprocal lattice point falls on the Ewald sphere.  In this case, there is a range of wave lengths and therefore a continuous range of Ewald spheres.   Highlight all the reciprocal lattice points that will give rise to a diffracted beam; note that each reciprocal lattice point will have a different incident wave vector depending on where the point lies between the extremal Ewald spheres.
+\item Draw the approximate direction of the diffracted beam (if one exists) for the following reciprocal lattice points: $(200)$, $(\bar{5}20)$, $(\bar{6}\bar{2}0)$, and $(\bar{1}\bar{2}0)$.
+\end{enumerate}}
+
+\noindent\textbf{Solutions:} 
+\begin{enumerate}
+\item The reciprocal lattice is shown in Fig.~\ref{\chabbr:fig:example2}.
+\item The two Ewald spheres are drawn as the thick blue ($\lambda_1$) and red ($\lambda_2$) circles.  Note they have to go through the origin of the reciprocal lattice.
+\item Every reciprocal lattice point that lies on or in between the two circles will be in Bragg orientation \textit{for some wave length in the interval} $[\lambda_1,\lambda_2]$.  All reciprocal lattice points that satisfy this condition are highlighted in yellow in the figure.
+\item The $(200)$ point does not lie between the two Ewald circles, so there can not be a diffracted beam.  The other three points do lie in between the circles so they will all give rise to a diffracted beam.  To determine the direction of this beam we need to take the appropriate Ewald circle going through that reciprocal lattice point, and then draw the scattered wave vector $\mathbf{k}'$ with the center of that sphere as the origin for $\mathbf{k}$.  The point $(\bar{6}\bar{2}0)$ lies on the blue circle, so we take $\mathbf{k}'=\mathbf{k}_1 + \mathbf{g}_{\bar{6}\bar{2}0}$ (vectors in blue).  For  $(\bar{5}20)$ we draw the Ewald circle (green) that goes through this point, and then $\mathbf{k}$ starts at the center of that sphere, resulting in the green vectors.  Finally, for $(\bar{1}\bar{2}0)$ we have the purple Ewald circle and vectors.  Note that the scattered wave vectors were drawn with slightly thicker lines and they end on their respective Ewald circles.
+\end{enumerate}
+\end{example}
+
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath example2.pdf}
+\caption{Schematic for the solution of example~\protect\ref{\chabbr:exa:Laue}.}
+\label{\chabbr:fig:example2}
+\end{figure}
+
+\begin{example}\label{\chabbr:exa:ortho}
+\textsf{\small Consider a primitive orthorhombic crystal structure with lattice parameters $\{0.4, 0.6, 0.5, 90^{\circ},90^{\circ},90^{\circ}\}$	 (in nm).  
+		\begin{enumerate}
+			\item Make a scale drawing of the reciprocal space plane that is perpendicular to the $[010]$ direction; use a scale factor of $1.0$ cm per nm$^{-1}$, and draw the reciprocal lattice points of the type $[h0\ell]$ for $h$ and $\ell$ from $-3$ to $+3$.
+			\item For Cu $K\alpha$ radiation, determine graphically what the possible directions are for the incident wave vector $\mathbf{k}_0$ (in the plane of the drawing) for which the $(201)$ planes are in Bragg orientations.  Draw these wave vectors and corresponding Ewald spheres.  
+		\end{enumerate}}
+
+\noindent\textbf{Solutions:} 		
+\begin{enumerate}
+\item The drawing in Fig.~\ref{\chabbr:fig:example3} shows the reciprocal lattice points of the type $[h0\ell]$, with the reciprocal lattice parameters $a^{\ast}=2.5$ nm$^{-1}$ and $c^{\ast}=2.0$ nm$^{-1}$.
+\item The red vector is the $\mathbf{g}_{201}$ reciprocal lattice vector, and it is perpendicular to the $(201)$ plane drawn in green.  The dashed red line is the perpendicular bisector of $\mathbf{g}_{201}$  and we know that in order for the Bragg condition to be satisfied for this plane, the center of the Ewald sphere must lie on this line.  Since the wave length is $\lambda=0.15406$ nm, the radius of the Ewald sphere must be $6.49$ nm$^{-1}$. The dashed circle centered on the origin has this radius and it intersects the red dashed line in two points.  Those points are the centers of the two possible Ewald spheres for which the $(201)$ plane is in Bragg orientation.
+\end{enumerate}
+\end{example}
+
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath example3.pdf}
+\caption{Schematic for the solution of example~\protect\ref{\chabbr:exa:ortho}.}
+\label{\chabbr:fig:example3}
+\end{figure}
+
+\begin{example}\label{\chabbr:exa:Laue2}
+\textsf{\small A transmission Laue pattern is made of a cubic crystal having a lattice parameter of $0.3$ nm.  The x-ray
+beam is horizontal.  The $[0\bar{1}0]$ axis of the crystal points along the beam towards the x-ray source,
+and the $[001]$ axis points vertically upward.  The planar detector is $6$ cm from the center of the sample and normal to the $[010]$ axis.  It will be useful to make a simple 2D sketch of this geometry, and to also draw the $(0\bar{2}4)$ plane.
+\begin{enumerate}
+\item What is the wavelength $\lambda$ (in nm) of the radiation diffracted from the $(0\bar{2}4)$ planes ?
+\item Where (i.e., how high above the horizontal plane, in cm) will the $0\bar{2}4$ reflection strike the detector?
+\end{enumerate}}
+
+\noindent\textbf{Solutions:} 		
+\begin{enumerate}
+\item The interplanar spacing $d_{0\bar{2}4}$ is given by $d_{0\bar{2}4}=\frac{a}{\sqrt{20}}$.
+From Bragg's law we know that~:
+\[
+	2d\sin\theta=\frac{2a}{\sqrt{20}}\sin\theta=\lambda
+\]
+The angle $\theta$ is $90^{\circ}$ minus the angle between the $(0\bar{2}4)$ plane normal 
+and the $[0\bar{1}0]$ direction, see Fig.~\ref{\chabbr:fig:example4}.  We find~:
+\[
+	\cos(\frac{\pi}{2}-\theta)=\sin\theta=\frac{[0\bar{2}4].[0\bar{1}0]}{\sqrt{20}}=\frac{2}{\sqrt{20}}
+\]
+and hence 
+\[
+	\lambda=\frac{2a\times 2}{20}=\frac{a}{5}=0.0600\mbox{ nm}
+\]
+This also means that $\cos\theta=4/\sqrt{20}$ and thus $\theta=26.56^{\circ}$.
+\item The $0\bar{2}4$ reflection will hit the film above the horizontal line at a vertical distance $L=6\times\tan(2\theta)$, or:
+\[
+	L=6\times\frac{2\sin\theta\cos\theta}{2\cos^2\theta-1}= 6\times\frac{2\frac{2}{\sqrt{20}}\frac{4}{\sqrt{20}}}{2\frac{16}{20}-1}=\frac{96}{12}=8.00\mbox{ cm}
+\]
+\end{enumerate}
+\end{example}
+
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath example4.pdf}
+\caption{Schematic for the solution of example~\protect\ref{\chabbr:exa:Laue2}.}
+\label{\chabbr:fig:example4}
+\end{figure}
+
+
+
+\newpage
+
+\section{Mathematical Analysis of the Effect of Sample Shape}\label{\chabbr:sec:sampleshape}
+In this section we provide a more in-depth analysis of the sample shape and how it affects the shape of the reciprocal lattice points; the necessary mathematical concepts can be found in the Foundational Chapter of Fourier Series and Transforms.  
+
+We begin with the direct space lattice, which is one of the Bravais lattices.  Each lattice node can be reached by a translation vector $\mathbf{t}_{uvw}=u\mathbf{a}+v\mathbf{b}+w\mathbf{c}$ with the integer coefficients $[uvw]$ constituting the direction symbol.  From a mathematical point of view we can regard each lattice node to be an infinitesimal point so we can represent it by a Dirac delta function; the complete 3D lattice, $\mathcal{T}(\mathbf{r})$, is then the collection of nodes represented by the following sum of delta functions:
+\begin{equation}
+	\mathcal{T}(\mathbf{r}) = \sum_{u,v,w=-\infty}^{+\infty} \delta(\mathbf{r}-\mathbf{t}_{uvw})\ .\label{\chabbr:eq:directlattice}
+\end{equation}
+To generate a crystal structure we must copy the contents of the unit cell at each lattice node. If we represent the charge density in a single cell by $\rho_{\text{cell}}(\mathbf{r})$, then we can employ the convolution operation to copy the cell to each lattice point:
+\begin{equation}
+	\rho(\mathbf{r})=\rho_{\text{cell}}(\mathbf{r})\otimes\mathcal{T}(\mathbf{r})=\sum_{u,v,w=-\infty}^{+\infty} \rho_{\text{cell}}(\mathbf{r})\otimes\delta(\mathbf{r}-\mathbf{t}_{uvw})\ .\label{\chabbr:eq:latticewithcell}
+\end{equation}
+The charge density of the infinite crystal has the same translational periodicity as the underlying lattice, $\mathcal{T}$, so that it also has the same symmetry in the form of the space group. 
+
+The first question we need to answer is the following: what is the Fourier transform of the direct lattice?  To answer this question we need to first know what the Fourier transform of the Dirac delta function looks like.  One can show that the following Fourier transform pair holds:
+\begin{equation}
+	\delta(\mathbf{k})=\mathcal{F}[1]=\iiint\,\mathrm{e}^{-2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\,\mathrm{d}\mathbf{r}\quad\text{ and }\quad \delta(\mathbf{r})=\mathcal{F}^{-1}[1]=\iiint\,\mathrm{e}^{2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\,\mathrm{d}\mathbf{k}\ .\label{\chabbr:eq:deltaFT}
+\end{equation}
+The integrals are taken over all of the respective spaces. If we consider the first relation, then for constant $\mathbf{k}$ the vector $\mathbf{r}$ will take on all possible values, and the resulting trigonometric functions will average to zero for each $\mathbf{r}$; the only exception is $\mathbf{r}=\mathbf{0}$ for which the exponential is equal to unity, which integrates to an infinite value in that single point, i.e., we have a delta function $\delta(\mathbf{k})$.  
+
+Next we can consider the Fourier transform of the lattice:
+\[
+	\mathcal{F}[\mathcal{T}(\mathbf{r})]=\sum_{u,v,w=-\infty}^{+\infty} \mathcal{F}[\delta(\mathbf{r}-\mathbf{t}_{uvw})]=\sum_{u,v,w=-\infty}^{+\infty} \iiint \delta(\mathbf{r}-\mathbf{t}_{uvw})\, \mathrm{e}^{-2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\,\mathrm{d}\mathbf{r}\ .
+\]
+When the delta function is inside an integral, it has the property that it selects the rest of the integrand at the position of the delta peak; as a results we find:
+\[
+	\mathcal{F}[\mathcal{T}(\mathbf{r})]=\sum_{u,v,w=-\infty}^{+\infty} \mathrm{e}^{-2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{t}_{uvw}}\ .
+\]	
+Once again, the trigonometric functions will cancel each other out except when the exponential is equal to $1$, which occurs whenever $\mathbf{k}\cdot\mathbf{t}_{uvw}$ is an integer; at those locations the infinite sum diverges.  We know from crystallography that $\mathbf{k}\cdot\mathbf{t}_{uvw}$ is an integer only when $\mathbf{k}=\mathbf{g}_{hkl}$, i.e. we have a delta function at each reciprocal lattice point.  Therefore we have:
+\begin{equation}
+	\mathcal{F}[\mathcal{T}(\mathbf{r})]=\sum_{hkl=-\infty}^{+\infty}\delta(\mathbf{q}-\mathbf{g}_{hkl})=\mathcal{T}^{\ast}(\mathbf{q})\ ,\label{\chabbr:eq:recipdelta}
+\end{equation}
+where $\mathcal{T}^{\ast}$ is the reciprocal lattice.  We have thus shown that the Fourier transform of the direct lattice is the reciprocal lattice.  
+
+Since real samples always have a finite shape, we need to truncate the direct lattice from equation~(\ref{\chabbr:eq:directlattice}), so that there are no lattice nodes outside of the sample. We can achieve this by means of the \indexit{shape function}, $D(\mathbf{r})$, which is equal to $1$ inside the sample and $0$ outside.  The finite lattice is then represented by the product:
+\begin{equation}
+	\mathcal{T}_{\text{finite}}(\mathbf{r})=D(\mathbf{r})\,\mathcal{T}(\mathbf{r})\ .\label{\chabbr:eq:finitelattice}
+\end{equation}
+We use the \indexit{Multiplication Theorem}, equation~(\ref{FOURIE:eq:FTmulttheorem}) to obtain:
+\[
+	\mathcal{F}[\mathcal{T}_{\text{finite}}(\mathbf{r})]=\mathcal{F}[D(\mathbf{r})\,\mathcal{T}(\mathbf{r})]=\mathcal{F}[D(\mathbf{r})]\otimes\mathcal{F}[\mathcal{T}(\mathbf{r})]\ .
+\]
+Introducing the \indexit{shape amplitude}, $D(\mathbf{q})$, as the Fourier transform of the shape function, we obtain the final result:
+\begin{equation}
+	\mathcal{F}[\mathcal{T}_{\text{finite}}(\mathbf{r})]=D(\mathbf{q})\otimes\mathcal{T}^{\ast}(\mathbf{q})\ .\label{\chabbr:eq:finiteFT}
+\end{equation}
+In words, the Fourier transform of a finite crystal lattice is obtained by copying the shape amplitude at each reciprocal lattice point; these points are hence no longer infinitesimal points but, instead, acquire a shape that is the Fourier transform of the sample shape.
 
 
 

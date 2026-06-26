@@ -1,0 +1,24 @@
+{
+  "title": "Computation of Diffracted Intensities",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "Structure factors and extinction rules",
+  "toc": [
+    "Introduction"
+  ],
+  "entry_file": "DiffractionIntensity.tex",
+  "cover_image": "cover.png",
+  "keywords": [],
+  "chapter_type": "topical",
+  "chabbr": "DIFINT",
+  "depends_on": [],
+  "related_to": [
+    "SCATTR"
+   ],
+  "discipline": "mse",
+  "published": false,
+  "author_urls": {
+    "Marc De Graef": "https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html"
+  }
+}
