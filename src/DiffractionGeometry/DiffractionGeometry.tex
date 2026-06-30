@@ -36,7 +36,7 @@
 % The file should be placed in chapter/pdf/.
 % Note that \graphicspath is defined in the main.tex file.
 %\chapterimage{\graphicspath MYCHAPheader.pdf}
-\chapterimage{\noheaderimage}
+\chapterimage{\graphicspath DIFGEOheader.pdf}
 
 % ###################################################################
 % CHAPTER TITLE  Edit the title below
@@ -55,9 +55,11 @@
 % - Use the OCBurntOrange color for the reference
 \begin{learningobjectives}
 {\begin{itemize}
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:introduction}:}] Understand the basic concepts presented in this chapter
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:methods}:}] Learn the methods used for analysis
-    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:examples}:}] Apply the concepts to worked examples
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:LaueEq}:}] Derive the Laue Equations
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:BraggsLaw}:}] Introduce Bragg's Law
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:Ewald}:}] Learn about the Ewald Sphere construction
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:relaxedBragg}:}] Determine the effect of sample shape
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:DiffractionGeometries}:}] Cover commonly used diffraction geometries
 \end{itemize}}
 \end{learningobjectives}
 
@@ -206,7 +208,7 @@ From Fig.~\ref{\chabbr:fig:Bragg}(b) we find that $\hat{\mathbf{s}}_0\cdot\hat{\
 \]
 the final unit vector form of Bragg's equation then reads:
 \begin{equation}
-	\mathbf{k}=\mathbf{k}_0+\mathbf{g} \rightarrow \hat{\mathbf{s}}=\hat{\mathbf{s}}_0-2(\hat{\mathbf{s}}_0\cdot\hat{\mathbf{g}})\,\hat{\mathbf{g}}\ .
+	\mathbf{k}=\mathbf{k}_0+\mathbf{g} \rightarrow \hat{\mathbf{s}}=\hat{\mathbf{s}}_0-2(\hat{\mathbf{s}}_0\cdot\hat{\mathbf{g}})\,\hat{\mathbf{g}}\ .\label{\chabbr:eq:Braggunitvectors}
 \end{equation}
 The fact that the wavelength is absent in this equation provides convincing evidence that the diffraction condition is a purely geometrical condition that only depends on the relative orientation of the vectors $ \hat{\mathbf{s}}_0$ and $\hat{\mathbf{g}}$.  Note that the unit vector expression is only valid when the diffraction condition is satisfied.\\
 
@@ -297,7 +299,7 @@ A more detailed mathematical analysis of the effect of sample shape on the recip
 \section{Important Diffraction Geometries}\label{\chabbr:sec:DiffractionGeometries}
 
 \subsection{Introductory Comments}\label{\chabbr:sec:IntroComments}
-Let us consider the only elemental material that has a primitive cubic unit cell in ambient conditions: Polonium (Po)\footnote{We consider this rare element \textit{because} it has a cubic primitive structure, which allows us to avoid considerations of systematic absences that are discussed in a chapter on diffraction intensities.}. The lattice parameter of $\alpha$-Po is $a=0.335$ nm.   Working with Cu K$\alpha$ x-rays, we can readily compute the scattering angle $\theta_h$ for each of the $(h00)$ planes, for $h=1\ldots 4$. The interplanar spacings and Bragg angles are listed in Table~\ref{\chabbr:tb:Po}.  Fig.~\ref{\chabbr:fig:Po}(a-d) shows the corresponding diffraction geometries.  At the bottom, $2\times 2$ unit cells are drawn and the $(h00)$ planes are indicated by horizontal lines; the reciprocal lattice vectors $\mathbf{g}_{h00}$ are represented in red and the reciprocal lattice points as small green spheres.  Note that $\sin\theta_5$ is larger than $1$, so that there is no solution for $\theta_5$; in the context of Fig.~\ref{\chabbr:fig:Po} this means that the reciprocal lattice point $\mathbf{g}_{500}$ lies too far from the origin and there is no orientation of the incident beam $\mathbf{k}_0$ for which the Ewald sphere can intercept this reciprocal lattice point.  Therefore, for Cu K$\alpha$ radiation, the $(500)$ planes of Po cannot give rise to a diffracted beam. This is consistent with the earlier derivation that the interplanar spacing must be  larger than half the wavelength; for $h=5$ and Cu K$\alpha$ radiation, this condition is violated since $d_{500}=0.067<0.077=\lambda/2$ nm.  In the remainder of this section we will describe this and other important diffraction geometries in more detail.
+Let us consider the only elemental material that has a primitive cubic unit cell in ambient conditions: Polonium (Po)\footnote{We consider this rare element \textit{because} it has a cubic primitive structure, which allows us to avoid considerations of systematic absences that are discussed in a chapter on diffraction intensities.}. The lattice parameter of $\alpha$-Po is $a=0.335$ nm.   Working with Cu K$\alpha$ x-rays, we can readily compute the scattering angle $\theta_h$ for each of the $(h00)$ planes, for $h=1\ldots 4$. The interplanar spacings and Bragg angles are listed in Table~\ref{\chabbr:tb:Po}.  Fig.~\ref{\chabbr:fig:Po}(a-d) shows the corresponding diffraction geometries.  At the bottom, $2\times 2$ unit cells are drawn and the $(h00)$ planes are indicated by horizontal lines; the reciprocal lattice vectors $\mathbf{g}_{h00}$ are represented in red and the reciprocal lattice points as small green spheres.  Note that $\sin\theta_5$ is larger than $1$, so that there is no solution for $\theta_5$; in the context of Fig.~\ref{\chabbr:fig:Po} this means that the reciprocal lattice point $\mathbf{g}_{500}$ lies too far from the origin and there is no orientation of the incident beam $\mathbf{k}_0$ for which the Ewald sphere can intercept this reciprocal lattice point.  Therefore, for Cu K$\alpha$ radiation, the $(500)$ planes of Po cannot give rise to a diffracted beam. This is consistent with the earlier derivation that the interplanar spacing must be  larger than half the wavelength; for $h=5$ and Cu K$\alpha$ radiation, this condition is violated since $d_{500}=0.067<0.077=\lambda/2$ nm.  In the remainder of this section we will describe this and other important diffraction geometries in more detail; we will focus on geometries typically used for x-ray and neutron diffraction.
 
 \begin{table}[h!]
 \centering\leavevmode
@@ -370,23 +372,73 @@ Note that the center line of the film is the only location where there are no pr
 \label{\chabbr:fig:DebyeScherrer}
 \end{figure}
 
-The equations that describe the projected diffraction cones can be derived by considering the intersection of a cone and a cylinder, where the apex of the cone lies on the cylinder axis and the cone axis (along the $x$ direction) is perpendicular to the cylinder axis (oriented along $z$).  The equations describing the two shapes are:
-\begin{equation*}
-\begin{split}
-	x^2+y^2 &= R^2\qquad\text{(cylinder)}\ ;\\
-	y^2+z^2 &= x^2\tan^2(2\theta)\ .
-\end{split}
-\end{equation*}
+%The equations that describe the projected diffraction cones can be derived by considering the intersection of a cone and a cylinder, where the apex of the cone lies on the cylinder axis and the cone axis (along the $x$ direction) is perpendicular to the cylinder axis (oriented along $z$).  The equations describing the two shapes are:
+%\begin{equation*}
+%\begin{split}
+%	x^2+y^2 &= R^2\qquad\text{(cylinder of radius $R$)}\ ;\\
+%	y^2+z^2 &= x^2\tan^2(2\theta)\qquad\text{(cone with semi opening angle $2\theta$)}\ .
+%\end{split}
+%\end{equation*}
 
 
 \subsection{Laue Diffraction Patterns}\label{\chabbr:ssec:LauePatterns}
-The diffraction geometries described thus far, Bragg-Brentano and Debye-Scherrer, are ideally suited for the study of polycrystalline or powder samples.  The diffracted intensity lies on concentric conical surfaces and is readily intercepted with a photographic film or a planar digital detector in modern setups. In this section, we consider a single crystal sample (or polycrystalline with a large grain size); for such a sample, there are discrete diffracted beams that fall on the same diffraction cones as shown in Fig.~\ref{\chabbr:fig:powder}, but in general, very few reciprocal lattice points will fall on the Ewald sphere.  
+The diffraction geometries described thus far, Bragg-Brentano and Debye-Scherrer, are ideally suited for the study of polycrystalline or powder samples.  The diffracted intensity lies on concentric conical surfaces and is readily intercepted with a photographic film or a planar digital detector in modern setups. In this section, we consider a single crystal sample (or polycrystalline with a large grain size); for such a sample, there are discrete diffracted beams that fall on the same diffraction cones as shown in Fig.~\ref{\chabbr:fig:powder}, but in general, very few reciprocal lattice points will fall on the Ewald sphere.  In a \indexit{Laue diffractometer}, the probability of detecting a diffracted beam is increased by removing the filter that eliminates the K$\beta$ peak and allowing a range of wavelengths to simultaneously scatter from the sample.  The voltage of the x-ray tube sets the smallest wavelength, $\lambda_{\text{min}}$, or the largest wave number, $k_{0,\text{max}}$.  We have seen in section~\ref{\chabbr:ssec:Ewaldxne} that a diffracted beam can only occur for planes with an interplanar spacing larger than half the wavelength. The scalar version of Bragg's Law also tells us that there is a largest wavelength beyond which no diffraction will occur. If we consider the reciprocal lattice and the Ewald sphere construction, then it is easy to see that not a single reciprocal lattice point can fall on the Ewald sphere when the diameter of the sphere is smaller than the length of the shortest reciprocal lattice vector, or:
+\[
+	\frac{2}{\lambda} < \vert\mathbf{g}_{hkl}\vert\quad\text{for all $(hkl)$}\ .
+\]
+if we represent by $d_{\text{max}}$ the largest interplanar spacing for a given crystal structure, then there is a maximum wavelength, $\lambda_{\text{max}}=2d_{\text{max}}$ above which there are no diffracted beams.  Therefore, for an unfiltered x-ray tube, there is a continuous range of wavelengths $[\lambda_{\text{min}},\lambda_{\text{max}}]$, for which diffracted beams will occur. This, in turn, means that there are two bounding Ewald spheres, as illustrated in Fig.~\ref{\chabbr:fig:LaueEwald}(a); all the reciprocal lattice points that lie in between the two spheres can simultaneously give rise to a diffracted beam.  
+
+\begin{figure}[t]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath LaueEwald.pdf}
+\caption{(a) 3D rendering of the two Ewald spheres and reciprocal lattice points that lie between the spheres; (b) construction of the diffracted wave vector $\mathbf{k}_{hkl}$ for an arbitrary point $\mathbf{g}_{hkl}$ in between the Ewald spheres.}
+\label{\chabbr:fig:LaueEwald}
+\end{figure}
+
+To determine the direction of a diffracted beam for an arbitrary reciprocal lattice point in between the two spheres we need to draw the reciprocal lattice vector, $\mathbf{g}_{hkl}$, as shown in Fig.~\ref{\chabbr:fig:LaueEwald}(b); we learned in Fig.~\ref{\chabbr:fig:Ewald2}(b) that the center of the Ewald sphere must lie on the perpendicular bisector of $\mathbf{g}_{hkl}$, which is drawn as a dashed black line.  Where this line intersects $\mathbf{k}_{\text{max}}$ (orange circle) we find the center, $C_{hkl}$, of the Ewald sphere that goes through the point $\mathbf{g}_{hkl}$; connecting $C_{hkl}$ with the reciprocal lattice point then results in the direction of the diffracted wave vector $\mathbf{k}_{hkl}$.  Note that every reciprocal lattice point lies on its own Ewald sphere (dashed green circle) corresponding to a wavelength in the interval $[\lambda_{\text{min}},\lambda_{\text{max}}]$. 
+
+Experimentally, two different geometries are used to intercept the diffracted beams: in \indexit{transmission Laue diffraction} one places a planar detector perpendicular to the incident beam direction at some calibrated distance from the sample (typically several cm for a laboratory setup, but potentially much longer for experiments at a synchrotron source). This configuration requires a thin sample (a foil shape) so that absorption is minimized.  Alternatively, for a bulk sample we can use the \indexit{reflection Laue diffraction} geometry in which the planar detector is placed, again perpendicular to the incident beam, but now on the opposite side of the sample so that reflections with large scattering angles $2\theta$ are intercepted. 
+
+Laue diffraction represents an ideal opportunity to use the unit vector form of Bragg's Law in equation~(\ref{\chabbr:eq:Braggunitvectors}):
+\[
+	\hat{\mathbf{s}} = \hat{\mathbf{s}}_0-2(\hat{\mathbf{s}}_0\cdot\hat{\mathbf{g}})\hat{\mathbf{g}}\ .
+\]
+Since every reciprocal lattice point between the two Ewald spheres has its own wavelength, it makes sense to use a form of the diffraction condition that does not contain the wavelength.  We take the incident beam to travel along the positive $x$ direction; the detector is planar in the $y$--$z$ plane, with the $z$ axis vertical. The incident beam unit vector is then given by $\hat{\mathbf{s}}_0=(1,0,0)$, and we have for the direction cosines of $\hat{\mathbf{g}}$ the components $(g_x,g_y,g_z)$.  Substitution into the above equation leads to:
+\[
+	\hat{\mathbf{s}} = (1,0,0)-2g_x(g_x,g_y,g_z) = (1-2g_x^2,-2g_xg_y,-2g_xg_z)\ .
+\]
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath LaueDiffraction.pdf}
+\caption{3D rendering of the Ewald spheres for transmission and reflection Laue diffraction.}
+\label{\chabbr:fig:LaueDiffraction}
+\end{figure}
+
+It is readily verified that this is a unit vector since since $g_x^2+g_y^2+g_z^2=1$. The detector screen is at a distance $L$ from the origin and normal to the $x$-axis, so that the $y$ and $z$ axes lie in the plane of the detector. Since $\hat{\mathbf{s}}$ lies in the direction of the diffracted beam, we can determine where on the detector this beam will hit by scaling the unit vector so that its $x$ component becomes equal to $L$; this is accomplished by multiplying the components by $L/(1-2g_x^2)$:
+\[
+	(y,z) = \pm\frac{2Lg_x}{2g_x^2-1}(g_y,g_z)\ ,
+\]
+where the $+$ sign is used for the transmission Laue case and the $-$ sign for reflection Laue.
+
+Fig.~\ref{\chabbr:fig:LaueDiffraction} shows both a transmission and a reflection Laue pattern for Al, for a maximum x-ray tube voltage of $30$ kV, i.e., $\lambda_{\text{min}}= 0.04135$ nm, and $\lambda_{\text{max}}=0.08$ nm.  The limiting Ewald spheres are shown at the center, with the incident beam (orange vector) along the positive $x$-axis. Only reciprocal lattice points that give rise to a beam that actually intersects either one of the detectors are indicated inside the Ewald volume.  A few observations can be made:
+\begin{itemize}
+	\item the transmission diffraction pattern contains fewer diffraction spots than the reflection pattern; this is caused by the fact that there is less space between the two Ewald spheres near the origin $O$ than on the opposite side of the larger sphere;
+	\item reflections in the transmission pattern tend to line up along ellipses, whereas the reflection pattern shows hyperbolae;
+	\item if either detector is moved further away from $O$, then the pattern will be magnified because the distance $L$ occurs linearly in the expression for the coordinates;
+	\item it is impossible to determine the wavelength that gave rise to a particular diffraction spot; hence, Laue patterns cannot be used to determine lattice parameters.
+\end{itemize}
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath LaueBeryl.pdf}
+\caption{Simulated Laue transmission pattern of a $[00.1]$-oriented Beryl crystal (left); on the right, the crystal was rotated $10^{\circ}$ around the vertical axis.}
+\label{\chabbr:fig:LaueBeryl}
+\end{figure}
+
+One of the primary uses of a Laue diffraction pattern is the determination of the orientation of a single crystal. When the incident beam is parallel to a symmetry axis of the crystal, then the Laue pattern will also show that symmetry. An example is shown in Fig.~\ref{\chabbr:fig:LaueBeryl} for the hexagonal structure of the mineral Beryl (Be$_3$Al$_2$(SiO$_3$)$_6$); the pattern on the left has the $[00.1]$ axis at the center of the pattern and clearly shows six-fold symmetry and mirror planes, whereas the pattern on the right is rotated $10^{\circ}$  around the vertical axis.  
 
 
-
-
-
-\newpage
 
 \section{Example Diffraction Geometry Problems}
 In this section we present a few problems related to diffraction geometry, and we work out detailed solutions.

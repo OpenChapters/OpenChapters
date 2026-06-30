@@ -5,7 +5,14 @@
   ],
   "description": "Bragg's Law in direct and reciprocal space",
   "toc": [
-    "Introduction"
+    "Introduction",
+    "The Laue Equations",
+    "Bragg's Law in Direct and Reciprocal Space",
+    "The Ewald Sphere Construction",
+    "Relaxation of the Diffraction Condition",
+    "Important Diffraction Geometries",
+    "Example Diffraction Geometry Problems",
+    "Mathematical Analysis of the Effect of Sample Shape"
   ],
   "entry_file": "DiffractionGeometry.tex",
   "cover_image": "cover.png",
