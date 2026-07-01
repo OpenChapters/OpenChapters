@@ -5,7 +5,9 @@
   ],
   "description": "Structure factors and extinction rules",
   "toc": [
-    "Introduction"
+    "Introduction",
+    "Bragg's Law Revisited",
+    "The Structure Factor"
   ],
   "entry_file": "DiffractionIntensity.tex",
   "cover_image": "cover.png",
@@ -14,7 +16,8 @@
   "chabbr": "DIFINT",
   "depends_on": [],
   "related_to": [
-    "SCATTR"
+    "SCATTR",
+    "DIFGEO"
    ],
   "discipline": "mse",
   "published": false,

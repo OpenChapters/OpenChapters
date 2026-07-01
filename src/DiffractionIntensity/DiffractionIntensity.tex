@@ -67,42 +67,204 @@
 
 %Chapter structure
 % - Introduction
-% - Bragg's Law in Direct Space
-% - Bragg's Law in Reciprocal Space
-% -    Ewald sphere construction
-% -    Unit vector form of Bragg's Law
-% - Important Diffraction Geometries
-% 
-% 
+
 
 
 \section{Introduction}\label{\chabbr:sec:introduction}
+In this chapter, we will take a closer look at the computation of the intensity of diffracted beams; we will restrict ourselves to x-ray and neutron diffraction, since the intensity computations for electrons are significantly more complex due to the stronger interactions with matter.  We begin by exploring how the content of the unit cell affects the scattering process, in particular how adding an atom at a particular location in the cell may turn a constructive interference process into a destructive one. Then we generalize this observation and introduce the concept of the \indexit{structure factor} and the resulting scattered intensity.  The influence of crystal symmetry on diffracted intensities will be described in detail. We conclude this chapter with a description of intensity calculations for a few real crystal structures.  
 
-In this chapter, we will describe the geometry of the diffraction process in a way that includes the most commonly used types of incident beams: x-rays, electrons, and neutrons. The primary goal of a diffraction experiment is to determine how atoms or molecules are arranged in 3D.  When we think about a crystal structure, then the primary unknowns are: the lattice parameters $\{a,b,c,\alpha,\beta,\gamma\}$, the symmetry (point group and space group), the atom positions in terms of fractional coordinates in the unit cell, and, in some cases, the orientation of the lattice with respect to an external reference frame.  Diffraction techniques allow us to determine all of these quantities.  
+\section{Bragg's Law Revisited}\label{\chabbr:sec:BraggRevisited}
+Fig.~\ref{\chabbr:fig:BraggCell}(a) shows the standard illustration for the derivation of \indexit{Bragg's Law} in direct space; when incident waves $1$ and $2$ are scattered by the planes $(010)$ such that the outgoing waves $1'$ and $2'$ are in-phase, then constructive interference occurs and there will be a diffracted beam in the direction $\mathbf{k}$.  Since this structure only has atoms on the corners of the rectangular unit cell, we can think of this as diffraction from a primitive single atom crystal structure.  In Fig.~\ref{\chabbr:fig:BraggCell}(b) we add an extra atomic plane halfway between the $(010)$ planes, i.e., we add a $(020)$ plane.  If we maintain the diffraction condition for the $(010)$ planes, then there will be a path length difference $P-O'-Q$ between waves $1$ and $3$; this path difference is exactly half of that in Fig.~\ref{\chabbr:fig:BraggCell}(a), so that wave $3'$ is exactly out-of-phase with wave $1'$ and $2'$, in other words, \textit{there will be destructive interference for diffraction from the original $(010)$ planes.}  Thus, the $(010)$ diffracted beam will be absent, \textit{despite the fact that the diffraction condition for the $(010)$ planes is satisfied.} if we were to change the direction of the incident beam so that Bragg's Law for the $(020)$ were satisfied, then there would be a diffracted beam because all three wave $1'$, $2'$, and $3'$ would then be in-phase; the diffracted beam would travel in the direction $\mathbf{k}=\mathbf{k}_0+\mathbf{g}_{020}$.  
 
-In chapter~\ref{SCATTR:ch:WaveScattering}, we introduced several important concepts that we will make extensive use of in the present chapter: 
-\begin{itemize}
-\item wavelength, $\lambda$, and wave vector, $\mathbf{k}$;
-\item atomic scattering factors, $f^X(s)$; electron scattering factors $f^e(s)$; neutron scattering lengths $b$;
-\item the probability of scattering from the incident beam direction $\mathbf{k}_0$ to a direction $\mathbf{k}$ at an angle $2\theta$ is of the form:
+\begin{figure}[t]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath BraggCell.pdf}
+\caption{(a) traditional illustration used for the derivation of Bragg's Law; (b) the addition of a plane halfway between the original planes gives rise to destructive interference.}
+\label{\chabbr:fig:BraggCell}
+\end{figure}
+
+We conclude from the above discussion that Bragg's Law for a given set of planes must be satisfied to \textit{potentially} have a diffracted beam, but satisfying the diffraction condition is not sufficient to \textit{guarantee} that there will actually be a diffracted beam.  The only difference between the unit cells of Figs.~\ref{\chabbr:fig:BraggCell}(a) and (b) is the presence of an extra atom at position $\mathbf{r}=\mathbf{b}/2$.  The phase difference between waves $1'$ and $3'$ is equal to $\pi$, and the relevant reciprocal lattice vector is $\mathbf{g}_{010} = \mathbf{b}^{\ast}$. We can compute the phase difference by projecting the atom position vector $\mathbf{r}$ onto the plane normal:
 \[
-	P_{\mathbf{k}_0\rightarrow\mathbf{k}}(\mathbf{r}) = f(s)\,\mathrm{e}^{2\pi\mathrm{i}\,\Delta\mathbf{k}\cdot\mathbf{r}}
+	\mathbf{g}_{010}\cdot\mathbf{r} = 1\mathbf{b}^{\ast}\cdot\frac{1}{2}\mathbf{b} = \frac{1}{2}\rightarrow 2\pi\mathbf{g}_{010}\cdot\mathbf{r} = \pi\ ;
 \]
-where $f(s)$ is any one of the scattering factors listed above and $\Delta\mathbf{l}=\mathbf{k}-\mathbf{k}_0$.  The complex exponential accounts for the atom position $\mathbf{r}$ with respect to the origin and is known as a \indexit{phase factor}.
-\end{itemize}
-The \indexit{Debye Scattering Equation} provides a way to compute the scattered intensity for an arbitrary arrangement of atoms. 
+in this derivation we have used the fact that $\mathbf{a}_i^{\ast}\cdot\mathbf{a}_j=\delta_{ij}$.  
+
+Let us consider a general atom position $\mathbf{r}_j$ (with $j\in[1\ldots N]$ and $N$ the total number of atoms in the unit cell) and a general reciprocal lattice vector $\mathbf{g}_{hkl}$; the phase difference for the $(hkl)$ planes for scattering of a wave by an atom in the origin and by the atom at $\mathbf{r}_j$ is given by:
+\[
+	\varphi = 2\pi\mathbf{g}_{hkl}\cdot\mathbf{r}_j = 2\pi(hx_j+ky_j+lz_j)\ .
+\]
+In what follows we will always represent the effect of a phase shift by means of a complex exponential known as the \indexit{phase factor}, as in $\mathrm{e}^{\mathrm{i}\varphi}$. In the next section we will combine the probability of scattering in a given direction (i.e., the \indexit{atomic scattering factor} $f(s)$ for x-rays or the scattering length, $b$, for neutrons) with the phase factor to describe scattering by a single unit cell.
+
+\newpage
+
+\section{The Structure Factor}\label{\chabbr:sec:structurefactor}
+
+\subsection{Definition of the structure factor}\label{\chabbr:ssec:SFdef}
+In this section, we consider scattering by a single unit cell.  Let an arbitrary crystal structure have $N$ atoms in the unit cell at fractional coordinates $\mathbf{r}_j$.  We know that the probability that an atom scatters x-ray photons of wavelength $\lambda$ by a scattering angle $2\theta$ is given by the atomic scattering factor $f_j(s)$, where $s=\sin(\theta)/\lambda$.  For an isolated atom, all angles $\theta$ are possible, but for an atom in a periodic lattice the angle must satisfy Bragg's Law, $2d_{hkl}\sin\theta_{hkl}=\lambda$.  To have constructive interference, we must have the correct geometric relation between the scattering plane $(hkl)$ and the relative positions of the atoms with respect to this plane; this is described by the phase factor $\mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}$.  Combining the two factors and summing over all atoms in the unit cell leads to the \indexit{Structure Factor}, $F_{hkl}$:
+\begin{equation}
+	F_{hkl} = \sum_{j=1}^{N} f_j\left(\frac{\sin\theta_{hkl}}{\lambda}\right)\,\mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}
+	= \sum_{j=1}^{N} f_j\left(\frac{\sin\theta_{hkl}}{\lambda}\right)\,\mathrm{e}^{2\pi\mathrm{i}(hx_j+ky_j+lz_j)}\ .\label{\chabbr:eq:StructureFactor}
+\end{equation}
+Each term in the sum is the contribution of an atom $j$ at location $\mathbf{r}_j$ to the scattering from the planes $(hkl)$.  For neutron scattering, the structure factor is similar but uses the neutron scattering lengths, $b_j$, which are independent of the scattering angle:
+\begin{equation}
+	F^n_{hkl} = \sum_{j=1}^{N} b_j\,\mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}\ .\label{\chabbr:eq:StructureFactorNeutron}
+\end{equation}
+The structure factor is a sum of $N$ complex numbers, and, in general, is itself a complex number.  When we perform experimental measurements, we measure real numbers, not complex numbers, so we need to take the modulus-squared of the structure factor to obtain the intensity of a diffracted beam:
+\begin{equation}
+	I_{hkl} = \vert F_{hkl}\vert^2 = F_{hkl}\,F^{\ast}_{hkl}\ .\label{\chabbr:eq:Intensity}
+\end{equation}
+
+\begin{messagebox}{Notes about complex numbers}{OCblue}{icnote}{OCwhite}
+Since we will be working with complex numbers, it will be useful to recall a few properties of the polar notation, in particular \indexit{Euler's formula}:
+\[
+	\mathrm{e}^{\pm\mathrm{i}\omega} = \cos\omega\pm\mathrm{i}\sin\omega\ ;
+\]
+by combining the positive and negative exponentials we obtain the following relations:
+\[
+	\cos\omega = \frac{1}{2}\left(\mathrm{e}^{\mathrm{i}\omega}+\mathrm{e}^{-\mathrm{i}\omega}\right)\quad\text{ and }\quad
+	\sin\omega = \frac{1}{2\mathrm{i}}\left(\mathrm{e}^{\mathrm{i}\omega}-\mathrm{e}^{-\mathrm{i}\omega}\right)\ .
+\]
+Some special values for $\omega$ result in:
+\[
+	\mathrm{e}^{\mathrm{i}0} = 1;\quad \mathrm{e}^{\mathrm{i}\frac{\pi}{2}} = \mathrm{i};\quad \mathrm{e}^{\mathrm{i}\pi} = -1\ .
+\]
+\end{messagebox}
 
 
-\section{The Laue Equations}\label{\chabbr:sec:LaueEq}
+\subsection{Structure factors and lattice centering}\label{\chabbr:ssec:SFcentering}
+
+\subsubsection{Primitive lattices}
+In a primitive Bravais lattice, there are no centering vectors, i.e., no equivalent sites at face centers or the body center. This means that for a given atom at position $\mathbf{r}$, there are no equivalent sites due to the absence of lattice centering operations.  If we consider any primitive Bravais lattice and we place an atom inside the unit cell, then we may as well place the atom in the origin, $\mathbf{r}=\mathbf{0}$; for a single atom, the structure factor sum has only one term:
+\[
+	F_{hkl} = f\left(\frac{\sin\theta_{hkl}}{\lambda}\right)\,\mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{0}} = f(s)\ .
+\]
+Therefore, the scattered intensity is simply $I_{hkl}=f^2(s)$, where $s$ is the appropriate value for the selected $(hkl)$ plane.
+
+If we consider a two-atom primitive structure, with one atom in the origin and an identical atom at position $\mathbf{r}$ (where $\mathbf{r}$ is \textit{not} one of the lattice centering vectors), then the structure factor becomes:
+\[
+	F_{hkl} = f(s) \left( 1+ \mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}} \right) = f(s) \left( 1+ \mathrm{e}^{\mathrm{i}\varphi_{hkl}} \right)\ .
+\]
+The diffracted intensity is then obtained by taking the modulus-squared:
+\begin{equation*}
+\begin{split}
+	I_{hkl} &= F_{hkl}\,F^{\ast}_{hkl}\ ;\\
+	&= f^2(s) \left( 1+ \mathrm{e}^{\mathrm{i}\varphi_{hkl}} \right)\left( 1+ \mathrm{e}^{-\mathrm{i}\varphi_{hkl}} \right)\ ;\\
+	&= f^2(s) \left( 1 +\mathrm{e}^{\mathrm{i}\varphi_{hkl}}+\mathrm{e}^{-\mathrm{i}\varphi_{hkl}}+1\right)\ ;\\
+	&= 2f^2(s) \left(1 + \cos\varphi_{hkl}\right)\ .  
+\end{split}
+\end{equation*}
+Since the cosine function varies between $-1$ and $+1$, the factor between parentheses varies between $0$ and $2$, depending on the exact value of $\varphi_{hkl}$.  If the second atom is located at an arbitrary position $\mathbf{r}$, then it is highly unlikely (but not impossible) for there to be an $(hkl)$ triplet for which the product $2\pi\mathbf{g}_{hkl}\cdot\mathbf{r}$ would be exactly equal to $\pi$, and thus $I_{hkl}=0$.  There is no systematic pattern of $(hkl)$ values for which $I_{hkl}$ would vanish, so we say that in a primitive lattice there are no \indexit{systematic absences} or \indexit{systematic extinctions}; essentially, all diffracted beams have a non-zero intensity $I_{hkl}$ (although for some beams, that intensity may be very low).
+
+\subsubsection{Body-centered lattices}
+In a body-centered lattice, for every atom at position $\mathbf{r}$, there is an equivalent atom at position $\mathbf{r}+(\frac{1}{2},\frac{1}{2},\frac{1}{2})$. The structure factor can now be written as a sum over half the atoms:
+\[
+	F_{hkl} = \sum_{j=1}^{N/2} f_j(s) \mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}\left(1+ \mathrm{e}^{\pi\mathrm{i}(h+k+l)}\right)\ ;
+\]
+using exponent rules, the last term can be rewritten as:
+\[
+	\mathrm{e}^{\pi\mathrm{i}(h+k+l)} = \left(\mathrm{e}^{\pi\mathrm{i}}\right)^{h+k+l} = (-1)^{h+k+l}\ .
+\]
+Therefore, we have for any body-centered structure:
+\begin{equation}
+	F_{hkl} = \left(1+(-1)^{h+k+l}\right) \sum_{j=1}^{N/2} f_j(s) \mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}\ .\label{\chabbr:eq:SFbodycentered}
+\end{equation}
+The prefactor is either equal to $2$ when $h+k+l$ is even, or $0$ when $h+k+l$ is odd; there is thus a systematic pattern of $(hkl)$ triplets for which the diffracted intensity will always vanish, even if the geometric Bragg condition is satisfied.  For a body-centered structure, there are \indexit{systematic absences} or \indexit{systematic extinctions} whenever $h+k+l$ is odd.  
+
+\noindent For the intensity, we find:
+\begin{equation}
+	I_{hkl} = \left(1+(-1)^{h+k+l}\right)^2 \left\vert\sum_{j=1}^{N/2} f_j(s) \mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}\right\vert^2\ .\label{\chabbr:eq:Ibodycentered}
+\end{equation}
+If there is only one atom in the basis, then the intensity simplifies to 
+\[
+	I_{hkl} = f^2(s) \left(1+(-1)^{h+k+l}\right)^2 = \left\{\begin{array}{lcl} 4f^2(s) &\, & h+k+l=2n\\ 0 & & h+k+l=2n+1\end{array}\right.\ .
+\]
 
 
-\section{Bragg's Law in Direct Space}\label{\chabbr:sec:BraggDirect}
+\subsubsection{Single face-centered lattices}
+There are three possibilities for single face centering vector: 
+\[
+	\mathbf{A} = \left(0,\frac{1}{2},\frac{1}{2}\right);\qquad\mathbf{B} = \left(\frac{1}{2},0,\frac{1}{2}\right);\qquad\mathbf{C} = \left(\frac{1}{2},\frac{1}{2},0\right)\ .
+\]
+If we select $A$ centering as an example, we have the following structure factor:
+\[
+	F_{hkl} = \sum_{j=1}^{N/2} f_j(s) \mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}\left(1+ \mathrm{e}^{\pi\mathrm{i}(k+l)}\right)\ ,
+\]
+which we can write as:
+\begin{equation}
+	F_{hkl} = \left(1+(-1)^{k+l}\right) \sum_{j=1}^{N/2} f_j(s) \mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}\ .\label{\chabbr:eq:SFAcentered}
+\end{equation}
+Hence, for an $A$-centered structure, all reflections with $k+l$ odd are absent; similarly, for $B$-centering $h+l=2n+1$ are absent, and for $C$-centering $h+k=2n+1$ are absent.
+
+\subsubsection{Face-centered lattices}
+Finally, for face-centered lattices, every atom $\mathbf{r}$ has three equivalent positions at $\mathbf{r}+\mathbf{A}$, $\mathbf{r}+\mathbf{B}$, and $\mathbf{r}+\mathbf{C}$.  The structure factor can then be written as:
+\begin{equation}
+	F_{hkl} = \left(1+(-1)^{h+k}+(-1)^{h+l}+(-1)^{k+l}\right) \sum_{j=1}^{N/4} f_j(s) \mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}\ .\label{\chabbr:eq:SFFcentered}
+\end{equation}
+We find that the prefactor is either equal to $4$ when $h$, $k$, and $l$ have the same parity (i.e., all even or all odd), and $0$ when they have mixed parity. For instance, in a face-centered structure, the $(120)$ planes have a zero structure factor, whereas the $(111)$ planes do give rise to a diffracted beam. For the intensity of a structure with a single atom in the basis, we find:
+\[
+	I_{hkl} = f^2(s) \left(1+(-1)^{h+k}+(-1)^{h+l}+(-1)^{k+l}\right)^2 = \left\{\begin{array}{lcl} 16f^2(s) &\, & h,k,l \text{ same parity}\\ 0 & & h,k,l\text{ different parity}\end{array}\right.\ .
+\]
+
+\subsubsection{Cubic Bravais lattices}
+Since cubic materials form an important class of engineering materials, it is of interest to compare the three cubic Bravais lattices in terms of systematic absences. Table~\ref{\chabbr:tb:cubicintensities} shows the intensities for the \textit{cP}, \textit{cI}, and \textit{cF} Bravais lattices with a single atom basis as a function of increasing $\Sigma=h^2+k^2+l^2$.  Note that not all values of $\Sigma$ are possible; this is known as \indexit{Legendre's three-square theorem} which states that numbers of the form $4^a(8b+7)$ with $a,b$ natural numbers can not be written as the sum of three squares.  In the case of $\Sigma$, this happens for the values $7$, $15$, $23$, etc.  Fig.~\ref{\chabbr:fig:cubiclines} shows the positions of allowed diffraction peaks for the three cubic lattices and a lattice parameter of $a=0.4$ nm.  For \textit{cP}, all reflections are allowed. For \textit{cI}, the diffraction peaks show a regular array of nearly equidistant peaks, whereas the \textit{cF} lattice shows a pattern of two peaks, then a single peak, then again two peaks, single peak, and so on.  We conclude that, in the cubic case, the pattern of the spacings between the peaks immediately provides information on the type of lattice centering present in the sample. 
+
+\begin{table}[t]
+\centering\leavevmode
+\begin{tabular}{|r|c|r|r|r||r|c|r|r|r|}
+\hline
+$(hkl)$ & $\Sigma$ & \textit{cP} & \textit{cI} & \textit{cF}&$(hkl)$ & $\Sigma$ & \textit{cP} & \textit{cI} & \textit{cF}\\
+\hline\hline
+$(100)$ & $ 1$ & $f^2$ & $0$ &$0$&$(310)$ & $10$ & $f^2$ & $4f^2$ &$0$ \\
+$(110)$ & $ 2$ & $f^2$ & $4f^2$ &$0$ &$(311)$ & $11$ & $f^2$ & $0$ &$16f^2$\\
+$(111)$ & $ 3$ & $f^2$ & $0$ &$16f^2$&$(222)$ & $12$ & $f^2$ & $4f^2$ &$16f^2$\\
+$(200)$ & $ 4$ & $f^2$ & $4f^2$ &$16f^2$&$(320)$ & $13$ & $f^2$ & $0$ &$0$ \\
+$(210)$ & $ 5$ & $f^2$ & $0$ &$0$&$(321)$ & $14$ & $f^2$ & $4f^2$ &$0$ \\
+$(211)$ & $ 6$ & $f^2$ & $4f^2$ &$0$&$(400)$ & $16$ & $f^2$ & $4f^2$ &$16f^2$\\
+$(220)$ & $ 8$ & $f^2$ & $4f^2$ &$16f^2$&$(322)$ & $17$ & $f^2$ & $0$ &$0$ \\
+$(221)$ & $ 9$ & $f^2$ & $0$ &$0$ &$(410)$ & $17$ & $f^2$ & $0$ &$0$ \\
+$(300)$ & $ 9$ & $f^2$ & $0$ &$0$& $(330)$ & $18$ & $f^2$ & $4f^2$ &$0$ \\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:cubicintensities}Comparison of the extinctions in the three cubic Bravais lattices with a single atom in the basis; $\Sigma=h^2+k^2+l^2$.}
+\end{table}
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath cubiclines.pdf}
+\caption{Peak positions $2\theta$ for the allowed reflections for the three cubic Bravais lattices and a lattice parameter of $a=0.4$ nm.}
+\label{\chabbr:fig:cubiclines}
+\end{figure}
 
 
-\section{Bragg's Law in Reciprocal Space}\label{\chabbr:sec:BraggReciprocal}
+\subsection{Structure factors and inversion symmetry}\label{\chabbr:ssec:SFinversion}
+
+For centrosymmetric crystal structures, for every atom at position $\mathbf{r}$, there is an equivalent atom at position $-\mathbf{r}$.  Therefore, we can split the structure factor as follows:
+\[
+	F_{hkl} = \sum_{j=1}^{N/2} f_j(s) \left(\mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}+\mathrm{e}^{-2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}\right)
+\]
+Using the relation between complex exponentials and the cosine function we can rewrite this structure factor as:
+\begin{equation}
+	F_{hkl} = 2 \sum_{j=1}^{N/2} f_j(s) \cos\left(2\pi\mathbf{g}_{hkl}\cdot\mathbf{r}_j\right)\ .\label{\chabbr:eq:SFinversion}
+\end{equation}
+We conclude that, in the presence of inversion symmetry, the structure factor is always a real quantity, so there is no need to take the modulus-squared to obtain the intensity, a simple square is sufficient.
+
+In the absence of inversion symmetry we observe that the following relation is always valid:
+\[
+	F_{hkl} = F^{\ast}_{\bar{h}\bar{k}\bar{l}}\ ;
+\]
+in other words, there are two minus signs that cancel each other out, one due to the complex conjugate, the other due to replacing $(hkl)$ by $(\bar{h}\bar{k}\bar{l})$ which is equivalent to replacing $\mathbf{g}_{hkl}$ by $-\mathbf{g}_{hkl}$.  When we consider the corresponding intensities we find:
+\begin{equation}
+	I_{hkl} = I_{\bar{h}\bar{k}\bar{l}}\ .\label{\chabbr:eq:Friedel}
+\end{equation}
+This is known as \indexit{Friedel's Law}: \textit{a diffraction pattern will always display inversion symmetry, even when the crystal structure does  not.}  This, in turn, means that the point group symmetry of a diffraction pattern must be one of the $11$ centrosymmetric or Laue point groups.
 
 
-\section{Important Diffraction Geometries}\label{\chabbr:sec:DiffractionGeometries}
+\subsection{Structure factors, screw axes and glide planes}\label{\chabbr:ssec:SFscrewglide}
+
+
+
+
+
 
 
 
