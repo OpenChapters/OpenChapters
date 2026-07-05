@@ -283,14 +283,29 @@ When we take the Ewald sphere interpretation of the Bragg equation, $\mathbf{k}=
 \item \textit{wavelength distribution}: when we generate a monochromatic beam of incident particles or waves, there is always some spread of the particle energy or wavelength.  For instance, for Cu K$\alpha$ radiation, the photon energy profile has a full-width-at-half-maximum (FWHM) of about $2.3$ eV \cite{mendenhall2017a} or a wavelength spread of $0.044$ pm. This effectively means that the Ewald sphere actually has a finite thickness corresponding to the wavelength distribution; this is true for all forms of incident waves.  Thus, the Ewald sphere is not an infinitesimally thin shell.
 \item \textit{finite sample size}: when a crystal structure is described by a crystallographic space group, the implicit assumption is that the crystal is infinitely large because the space group is an infinite group (translation operations will produce unit cells at arbitrarily large distances from the origin). This leads to infinitesimal reciprocal lattice points, i.e., an infinite volume in direct space has the inverse volume in reciprocal space, which is zero volume.  In reality, space group symmetry is always broken by the sample surfaces (real samples are always of finite size), so that the reciprocal lattice points actually have a shape and a volume (see also section~\ref{FOURIE:ssec:3DCFT} in the Foundational Chapter on Fourier Series and Transforms).
 \end{enumerate}
-We conclude that, for diffraction to occur, there must be an overlap between the finite reciprocal lattice point and the thin but finite Ewald shell.  This can be described mathematically by modifying the Bragg equation:
+We conclude that, for diffraction to occur, there must be an overlap between the finite reciprocal lattice point and the thin but finite thickness Ewald shell.  This can be described mathematically by modifying the Bragg equation:
 \begin{equation}
 	\mathbf{k}=\mathbf{k}_0+\mathbf{g}_{hkl}\rightarrow \mathbf{k}=\mathbf{k}_0+\mathbf{g}_{hkl}+\mathbf{s}\ ,\label{\chabbr:eq:relaxedBragg}
 \end{equation}
 where $\mathbf{s}$ is a (short) vector in reciprocal space, known as the \indexit{excitation error} or \indexit{deviation parameter}, that is a measure for how far removed the reciprocal lattice point is from the Ewald sphere; the precise definition of $\mathbf{s}$ depends on the experimental and sample geometry.
 
-A more detailed mathematical analysis of the effect of sample shape on the reciprocal lattice can be found in section~\ref{\chabbr:sec:sampleshape} at the end of this chapter.
+A more detailed mathematical analysis of the effect of sample shape on the reciprocal lattice can be found in section~\ref{\chabbr:sec:sampleshape} at the end of this chapter.  By way of example, let us consider a spherical grain with radius $R$.  A derivation in section~\ref{FOURIE:ssec:3DCFT} shows that the \indexit{shape amplitude} of a sphere is given by the following expression which only depends on the radial distance $k$:
+\[
+	D(k) = 3V\frac{j_1(k\,R)}{k\,R}\ ,
+\]
+where $j_1(x)$ is a spherical Bessel function of order $1$ and $V$ is the volume of the sphere.  The shape of the reciprocal lattice point for a diffracting volume of spherical shape is then given by the square of this function (in general the modulus-squared) which is:
+\[
+	I(k) = 9V^2 \left(\frac{j_1(k\,R)}{k\,R}\right)^2\ .
+\]
 
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath EwaldFiniteSample.pdf}
+\caption{(a) Illustration of a reciprocal lattice (small red sphere) satisfying the Bragg condition $\mathbf{k}=\mathbf{k}_0+\mathbf{g}_{hkl}$; the grain has a spherical shape, leading to the shape intensity radial profile shown in (c).  (b) shows that the shape intensity still intersects the Ewald sphere, even when the reciprocal lattice point is slightly outside the sphere.}
+\label{\chabbr:fig:EwaldFiniteSample}
+\end{figure}
+
+This function is shown in Fig.~\ref{\chabbr:fig:EwaldFiniteSample}(c) for a unit radius sphere and has spherical symmetry since it only depends of the radial distance  $k$. If the Bragg condition is satisfied, then we know that $\mathbf{g}_{hkl}$ lies on the Ewald sphere for some $(hkl)$, which is shown in Fig.~\ref{\chabbr:fig:EwaldFiniteSample}(a); the fuzzy reddish halo surrounding the small red sphere represents the shape intensity, i.e., the reciprocal lattice point is spread out over a spherical volume and the shape intensity decreases radially away from that point.  If the reciprocal lattice point does not quite lie on the sphere, as shown in Fig.~\ref{\chabbr:fig:EwaldFiniteSample}(b), then the halo can still intersect the Ewald sphere, and there may be some diffracted intensity. As the point moves through the Ewald sphere, the diffracted intensity will smoothly increase with a profile given by the expression above, reach a maximum when the point is precisely on the Ewald sphere, and then decrease again.  The precise 3D shape of the intensity halo depends on the shape of the diffracting volume.
 
 
 
@@ -345,7 +360,16 @@ A variant of this diffractometer has the x-ray source fixed with a horizontal in
 \label{\chabbr:fig:NaClpattern}
 \end{figure}
 
-\begin{figure}[b!]
+Fig.~\ref{\chabbr:fig:BBsketches} shows a comparison between the $\theta$--$\theta$ geometry (top row) and the $\theta$-$2\theta$ geometry (bottom row) using a 2D lattice as an example. The incident beam direction is given by the line segment $C$--$O$; the reciprocal lattice points of the type $(0k)$, indicated in yellow, are the only points that can fall on the Ewald sphere when the source angle $\theta$ is increased. The center of the Ewald sphere, $C$, describes an arc of a circle around $O$.  The red line is parallel to the outgoing wave vector and indicates where the detector is located with respect to the sample.  For the $\theta$--$2\theta$ geometry, the incident beam, and thus the point $C$ and the Ewald sphere, are stationary and the sample is tilted at half the angular speed of the detector; the diffraction angles are obviously the same as for the $\theta$--$\theta$ geometry, but the detector position is different. 
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath BBsketches.pdf}
+\caption{Illustration of the difference between the $\theta$--$\theta$ (top row) and $\theta$--$2\theta$ (bottom row) Bragg-Brentano configurations using a 2D square reciprocal lattice.}
+\label{\chabbr:fig:BBsketches}
+\end{figure}
+
+\begin{figure}[t!]
 \centering\leavevmode
 \includegraphics[width=0.8\textwidth]{\graphicspath powder.pdf}
 \caption{(a) diffraction condition for $\mathbf{g}_{111}$ set of planes in an Al sample with randomly oriented grains (Cu K$\alpha$ radiation); (b) the $\mathbf{g}_{200}$ diffraction cone has been added to (a).}
@@ -359,18 +383,19 @@ If we take a powder sample or a polycrystalline sample, and we assume that the o
 \]
 where we used Bragg's Law in the final equation.  For the $(111)$ planes of Al, with lattice parameter $a=0.4049$ nm, the scattering angle is given by $2\theta_{111}=38.51^{\circ}$. For the $(200)$ planes, we have $2\theta=44.76^{\circ}$ and the second diffraction cone is shown in Fig.~\ref{\chabbr:fig:powder}(b).  We conclude that, for a polycrystalline sample with randomly oriented grains, the diffracted beams lie on the surfaces of concentric cones centered around the incident beam direction.  For scattering angles larger than $90^{\circ}$, the cones will be on the opposite  side of the point $C$.
 
-Now that we have an understanding of the diffraction geometry for a polycrystalline sample with random grain orientations, let us take a look at one of the earliest powder diffractometers, the \indexit{Debye-Scherrer camera}, developed around 1916. There are many variations on the Debye-Scherrer camera, among others the \indexit{Seeman-Bohlin camera} and the \indexit{Guinier camera}. Fig.~\ref{\chabbr:fig:DebyeScherrer} shows a schematic cross-section of such a camera. It consists of a flat cylindrical enclosure with an x-ray collimator on one side and a beam stop on the other.  The sample is typically a thin wire (shown in blue at the center of the camera) or a glass capillary filled with powder. The incident x-ray beam generates diffraction cones as illustrated in Fig.~\ref{\chabbr:fig:powder}, but the cones are truncated by the walls of the enclosure. Around the vertical wall, a photographic strip is mounted going all the way around, with circular cutouts for the collimator and the beam stop. The diffraction cones intersect the film along approximately circular arc segments as shown schematically in Fig.~\ref{\chabbr:fig:DebyeScherrer}(b).  To determine the scattering angle $2\theta$ for a particular diffraction cone, we note that the angular distance between the centers of the holes in the film ($A$ corresponds to the position of the collimator, $B$ to the beam stop) is equal to $180^{\circ}$; measuring the position of the arc where it intersects the center line of the film and dividing by $L$ then immediately results in the value of $2\theta$:
-\begin{equation}
-	2\theta = 180^{\circ} \frac{X}{L}\ .
-\end{equation}
-Note that the center line of the film is the only location where there are no projection distortions; Fig.~\ref{\chabbr:fig:DebyeScherrer}(b) is a simulated pattern covering a much larger vertical range than normally used in these cameras. The red rectangle represents the film aspect ratio that is typically placed inside the cylindrical camera. The simulation was carried out for fcc Al using Cu K$\alpha$ radiation. Note that the deviations from a circle shape become substantial outside of the red rectangle. 
-
 \begin{figure}[t!]
 \centering\leavevmode
 \includegraphics[width=0.75\textwidth]{\graphicspath DebyeScherrer.pdf}
 \caption{(a) Schematic cross-section drawing of a Debye-Scherrer diffraction camera. (b) simulated Debye-Scherrer pattern for Al and Cu K$\alpha$ radiation; the area inside the red rectangle represents a typical photographic film size with aspect ratio around $5:1$. }
 \label{\chabbr:fig:DebyeScherrer}
 \end{figure}
+
+Now that we have an understanding of the diffraction geometry for a polycrystalline sample with random grain orientations, let us take a look at one of the earliest powder diffractometers, the \indexit{Debye-Scherrer camera}, developed around 1916. There are many variations on the Debye-Scherrer camera, among others the \indexit{Seeman-Bohlin camera} and the \indexit{Guinier camera}. Fig.~\ref{\chabbr:fig:DebyeScherrer} shows a schematic cross-section of such a camera. It consists of a flat cylindrical enclosure with an x-ray collimator on one side and a beam stop on the other.  The sample is typically a thin wire (shown in blue at the center of the camera) or a glass capillary filled with powder. The incident x-ray beam generates diffraction cones as illustrated in Fig.~\ref{\chabbr:fig:powder}, but the cones are truncated by the walls of the enclosure. Around the vertical wall, a photographic strip is mounted going all the way around, with circular cutouts for the collimator and the beam stop. The diffraction cones intersect the film along approximately circular arc segments as shown schematically in Fig.~\ref{\chabbr:fig:DebyeScherrer}(b).  To determine the scattering angle $2\theta$ for a particular diffraction cone, we note that the angular distance between the centers of the holes in the film ($A$ corresponds to the position of the collimator, $B$ to the beam stop) is equal to $180^{\circ}$; measuring the position of the arc where it intersects the center line of the film and dividing by $L$ then immediately results in the value of $2\theta$:
+\begin{equation}
+	2\theta = 180^{\circ} \frac{X}{L}\ .
+\end{equation}
+Note that the center line of the film is the only location where there are no projection distortions; Fig.~\ref{\chabbr:fig:DebyeScherrer}(b) is a simulated pattern covering a much larger vertical range than normally used in these cameras. The red rectangle represents the film aspect ratio that is typically placed inside the cylindrical camera. The simulation was carried out for fcc Al using Cu K$\alpha$ radiation. Note that the deviations from a circle shape become substantial outside of the red rectangle. 
+
 
 %The equations that describe the projected diffraction cones can be derived by considering the intersection of a cone and a cylinder, where the apex of the cone lies on the cylinder axis and the cone axis (along the $x$ direction) is perpendicular to the cylinder axis (oriented along $z$).  The equations describing the two shapes are:
 %\begin{equation*}
@@ -419,7 +444,10 @@ It is readily verified that this is a unit vector since since $g_x^2+g_y^2+g_z^2
 \[
 	(y,z) = \pm\frac{2Lg_x}{2g_x^2-1}(g_y,g_z)\ ,
 \]
-where the $+$ sign is used for the transmission Laue case and the $-$ sign for reflection Laue.
+where the $+$ sign is used for the transmission Laue case and the $-$ sign for reflection Laue. From the spot position $(y,z)$ and knowledge of the sample-screen distance $L$ one can invert this relation to obtain the direction cosines of the plane normal; setting $p=\sqrt{L^2+y^2+z^2}$ we have:
+\[
+	(g_x,g_y,g_z)=\left(-\sqrt{\frac{1}{2}-\frac{L}{2p}}, \frac{y}{\sqrt{2p(p-L)}}, \frac{z}{\sqrt{2p(p-L)}}\right)\ .
+\]
 
 Fig.~\ref{\chabbr:fig:LaueDiffraction} shows both a transmission and a reflection Laue pattern for Al, for a maximum x-ray tube voltage of $30$ kV, i.e., $\lambda_{\text{min}}= 0.04135$ nm, and $\lambda_{\text{max}}=0.08$ nm.  The limiting Ewald spheres are shown at the center, with the incident beam (orange vector) along the positive $x$-axis. Only reciprocal lattice points that give rise to a beam that actually intersects either one of the detectors are indicated inside the Ewald volume.  A few observations can be made:
 \begin{itemize}
@@ -500,7 +528,7 @@ This shift of nearly a full degree is readily measurable.
 
 \begin{figure}[t!]
 \centering\leavevmode
-\includegraphics[width=0.8\textwidth]{\graphicspath example2.pdf}
+\includegraphics[width=0.6\textwidth]{\graphicspath example2.pdf}
 \caption{Schematic for the solution of example~\protect\ref{\chabbr:exa:Laue}.}
 \label{\chabbr:fig:example2}
 \end{figure}
@@ -521,7 +549,7 @@ This shift of nearly a full degree is readily measurable.
 
 \begin{figure}[t!]
 \centering\leavevmode
-\includegraphics[width=0.8\textwidth]{\graphicspath example3.pdf}
+\includegraphics[width=0.6\textwidth]{\graphicspath example3.pdf}
 \caption{Schematic for the solution of example~\protect\ref{\chabbr:exa:ortho}.}
 \label{\chabbr:fig:example3}
 \end{figure}
@@ -559,16 +587,13 @@ This also means that $\cos\theta=4/\sqrt{20}$ and thus $\theta=26.56^{\circ}$.
 \end{enumerate}
 \end{example}
 
-\begin{figure}[t!]
+\begin{figure}[h!]
 \centering\leavevmode
-\includegraphics[width=0.8\textwidth]{\graphicspath example4.pdf}
+\includegraphics[width=0.6\textwidth]{\graphicspath example4.pdf}
 \caption{Schematic for the solution of example~\protect\ref{\chabbr:exa:Laue2}.}
 \label{\chabbr:fig:example4}
 \end{figure}
 
-
-
-\newpage
 
 \section{Mathematical Analysis of the Effect of Sample Shape}\label{\chabbr:sec:sampleshape}
 In this section we provide a more in-depth analysis of the sample shape and how it affects the shape of the reciprocal lattice points; the necessary mathematical concepts can be found in the Foundational Chapter of Fourier Series and Transforms.  

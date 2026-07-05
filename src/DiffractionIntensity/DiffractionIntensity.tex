@@ -71,10 +71,10 @@
 
 
 \section{Introduction}\label{\chabbr:sec:introduction}
-In this chapter, we will take a closer look at the computation of the intensity of diffracted beams; we will restrict ourselves to x-ray and neutron diffraction, since the intensity computations for electrons are significantly more complex due to the stronger interactions with matter.  We begin by exploring how the content of the unit cell affects the scattering process, in particular how adding an atom at a particular location in the cell may turn a constructive interference process into a destructive one. Then we generalize this observation and introduce the concept of the \indexit{structure factor} and the resulting scattered intensity.  The influence of crystal symmetry on diffracted intensities will be described in detail. We conclude this chapter with a description of intensity calculations for a few real crystal structures.  
+In this chapter, we will take a closer look at the computation of the intensity of diffracted beams; we will restrict ourselves to x-ray and neutron diffraction, since the intensity computations for electrons are significantly more complex due to their stronger interactions with matter.  We begin by exploring how the content of the unit cell affects the scattering process, in particular how adding an atom at a particular location in the cell may turn a constructive interference process into a destructive one. Then we generalize this observation and introduce the concept of the \indexit{structure factor} and the resulting scattered intensity.  The influence of crystal symmetry on diffracted intensities will be described in detail. We conclude this chapter with a description of intensity calculations for a few real crystal structures.  
 
 \section{Bragg's Law Revisited}\label{\chabbr:sec:BraggRevisited}
-Fig.~\ref{\chabbr:fig:BraggCell}(a) shows the standard illustration for the derivation of \indexit{Bragg's Law} in direct space; when incident waves $1$ and $2$ are scattered by the planes $(010)$ such that the outgoing waves $1'$ and $2'$ are in-phase, then constructive interference occurs and there will be a diffracted beam in the direction $\mathbf{k}$.  Since this structure only has atoms on the corners of the rectangular unit cell, we can think of this as diffraction from a primitive single atom crystal structure.  In Fig.~\ref{\chabbr:fig:BraggCell}(b) we add an extra atomic plane halfway between the $(010)$ planes, i.e., we add a $(020)$ plane.  If we maintain the diffraction condition for the $(010)$ planes, then there will be a path length difference $P-O'-Q$ between waves $1$ and $3$; this path difference is exactly half of that in Fig.~\ref{\chabbr:fig:BraggCell}(a), so that wave $3'$ is exactly out-of-phase with wave $1'$ and $2'$, in other words, \textit{there will be destructive interference for diffraction from the original $(010)$ planes.}  Thus, the $(010)$ diffracted beam will be absent, \textit{despite the fact that the diffraction condition for the $(010)$ planes is satisfied.} if we were to change the direction of the incident beam so that Bragg's Law for the $(020)$ were satisfied, then there would be a diffracted beam because all three wave $1'$, $2'$, and $3'$ would then be in-phase; the diffracted beam would travel in the direction $\mathbf{k}=\mathbf{k}_0+\mathbf{g}_{020}$.  
+Fig.~\ref{\chabbr:fig:BraggCell}(a) shows the standard illustration for the derivation of \indexit{Bragg's Law} in direct space; when incident waves $1$ and $2$ are scattered by the planes $(010)$ such that the outgoing waves $1'$ and $2'$ are in-phase, then constructive interference occurs and there will be a diffracted beam in the direction $\mathbf{k}$.  Since this structure only has atoms on the corners of the rectangular unit cell, we can think of this as diffraction from a primitive single atom crystal structure.  In Fig.~\ref{\chabbr:fig:BraggCell}(b) we add an extra atomic plane halfway between the $(010)$ planes, i.e., we add a $(020)$ plane.  If we maintain the diffraction condition for the $(010)$ planes, then there will be a path length difference $P-O'-Q$ between waves $1$ and $3$; this path difference is exactly half of that in Fig.~\ref{\chabbr:fig:BraggCell}(a), so that wave $3'$ is exactly out-of-phase with waves $1'$ and $2'$, in other words, \textit{there will be destructive interference for diffraction from the original $(010)$ planes.}  Thus, the $(010)$ diffracted beam will be absent, \textit{despite the fact that the diffraction condition for the $(010)$ planes is satisfied.} If we were to change the direction of the incident beam so that Bragg's Law for the $(020)$ planes were satisfied, then there would be a diffracted beam because all three waves $1'$, $2'$, and $3'$ would then be in-phase; the diffracted beam would travel in the direction $\mathbf{k}=\mathbf{k}_0+\mathbf{g}_{020}$.  
 
 \begin{figure}[t]
 \centering\leavevmode
@@ -181,11 +181,11 @@ If there is only one atom in the basis, then the intensity simplifies to
 
 
 \subsubsection{Single face-centered lattices}
-There are three possibilities for single face centering vector: 
+There are three possibilities for the face centering vector: 
 \[
 	\mathbf{A} = \left(0,\frac{1}{2},\frac{1}{2}\right);\qquad\mathbf{B} = \left(\frac{1}{2},0,\frac{1}{2}\right);\qquad\mathbf{C} = \left(\frac{1}{2},\frac{1}{2},0\right)\ .
 \]
-If we select $A$ centering as an example, we have the following structure factor:
+If we select $A$-centering as an example, we have the following structure factor:
 \[
 	F_{hkl} = \sum_{j=1}^{N/2} f_j(s) \mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}\left(1+ \mathrm{e}^{\pi\mathrm{i}(k+l)}\right)\ ,
 \]
@@ -260,10 +260,250 @@ This is known as \indexit{Friedel's Law}: \textit{a diffraction pattern will alw
 
 
 \subsection{Structure factors, screw axes and glide planes}\label{\chabbr:ssec:SFscrewglide}
+A \indexit{screw axis} is a symmetry element that combines an $n$-fold rotation with a translation parallel to the rotation axis by a translation vector, $\bm{\tau}$, that is a fraction of the lattice vector $\mathbf{t}$ parallel to that axis.  There are $11$ crystallographic screw axes represented by symbols of the type $n_m$ with $m\in[1\ldots n-1]$; they are $2_1$, $3_1$, $3_2$, $4_1$, $4_2$, $4_3$, $6_1$, $6_2$, $6_3$, $6_4$, and $6_5$. The magnitude of the translation vector is given by $\vert\bm{\tau}\vert=(m/n)\vert\mathbf{t}\vert$. Here we will use the screw axis $4_3$ parallel to the tetragonal $[001]$ direction as an example, but the computation is similar for all other axes.
+
+The $4\times 4$ transformation matrix for this screw axis is given by:
+\[
+	\mathcal{W}_{4_3} = \begin{pmatrix}0&1&0&0\\ -1&0&0&0\\ 0&0&1&3/4\\0&0&0&1\end{pmatrix}\ ;
+\]
+operating on the homogeneous coordinates $(x,y,z,1)$ and reducing points to the unit cell we obtain three equivalent points (omitting the fourth component):
+\[
+	\begin{pmatrix}y,-x,z+\frac{3}{4}\end{pmatrix};\quad	\begin{pmatrix}-x,-y,z+\frac{1}{2}\end{pmatrix};\quad	\begin{pmatrix}-y,x,z+\frac{1}{4}\end{pmatrix}\ .
+\]
+For every point $\mathbf{r}_j$ there are thus three equivalent points which we can explicitly write out in the structure factor:
+\begin{equation*}
+\begin{split}
+	F_{hkl} &= \sum_{j=1}^{N/4}f_j\left[\mathrm{e}^{2\pi\mathrm{i}(hx_j+ky_j+lz_j)} + \mathrm{e}^{2\pi\mathrm{i}(-hy_j+kx_j+l(z_j+\frac{3}{4}))}\right.\\
+	             &\qquad\qquad+ \left. \mathrm{e}^{2\pi\mathrm{i}(-hx_j-ky_j+l(z_j+\frac{1}{2}))}+ \mathrm{e}^{2\pi\mathrm{i}(hy_j-kx_j+l(z_j+\frac{1}{4}))}\right]\ .
+\end{split}
+\end{equation*}
+Since the screw axis is parallel to the $[001]$ axis, let us consider reciprocal lattice points of the type $(00l)$, so that the structure factor simplifies to:
+\[
+		F_{00l} = \sum_{j=1}^{N/4}f_j\left[\mathrm{e}^{2\pi\mathrm{i} lz_j } + \mathrm{e}^{2\pi\mathrm{i}l(z_j+\frac{3}{4})}
+		+  \mathrm{e}^{2\pi\mathrm{i}l(z_j+\frac{1}{2})}+ \mathrm{e}^{2\pi\mathrm{i}l(z_j+\frac{1}{4})}\right]\ .
+\]
+Note that the four terms have a common $lz_j$ so that we can bring the rest to the front and change the order of the terms a little:
+\[
+	F_{00l} = \left[1 +  \mathrm{e}^{2\pi\mathrm{i}\frac{l}{4}}+  \mathrm{e}^{2\pi\mathrm{i}\frac{2l}{4}}+  \mathrm{e}^{2\pi\mathrm{i}\frac{3l}{4}} \right]  \sum_{j=1}^{N/4}f_j \mathrm{e}^{2\pi\mathrm{i} lz_j }\ .
+\]
+Note that the prefactor is a simple finite geometric series:
+\[
+	F_{00l} = \sum_{s=0}^{3}\mathrm{e}^{\pi\mathrm{i} \frac{sl}{2}}  \sum_{j=1}^{N/4}f_j \mathrm{e}^{2\pi\mathrm{i} lz_j } = \frac{1-\mathrm{e}^{2\pi\mathrm{i}l}}{1-
+\mathrm{e}^{\pi \mathrm{i}\frac{l}{2}}} \sum_{j=1}^{N/4}f_j \mathrm{e}^{2\pi\mathrm{i} lz_j }\ .
+\]
+The numerator of the prefactor is zero for all integer values of $l$; the denominator, on the other hand is zero whenever $l=4n$, i.e., $l$ is a multiple of $4$.  Careful application of L'H{\^o}pital's rule then results in a prefactor value of $4$ when $l=4n$ and $0$ in all other cases.  The presence of the $4_3$ screw axis therefore causes three out of every four reflections along the $[001]$ axis to be extinct.  Table~\ref{\chabbr:tb:SFscrews} lists the systematic absence conditions for all crystallographic screw axes when parallel to the $[001]$ direction; similar conditions apply for different axis directions.
+
+\begin{table}[h!]
+\centering\leavevmode
+\begin{tabular}{|c|c|c|}
+\hline
+Screw axis & $\vert\bm{\tau}\vert$ & absent when \\
+\hline\hline
+$2_1$ & $c/2$ & $l=2n+1$ \\
+$3_1,3_2$& $\pm c/3$ & $l\neq 3n$ \\
+$4_1,4_3$& $\pm c/4$ & $l\neq 4n$ \\
+$4_2$ & $c/2$ & $l=2n+1$ \\
+$6_1,6_5$& $\pm c/6$ & $l\neq 6n$ \\
+$6_2,6_4$& $\pm c/3$ & $l\neq 3n$ \\
+$6_3$ & $c/2$ & $l=2n+1$ \\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:SFscrews}Systematic absences for reflections of the type $(00l)$ for crystallographic screw axes parallel to the $[001]$ direction.}
+\end{table}
+
+For glide planes, a similar process can be followed to determine systematic absences.  Consider as an example a diagonal $n$ glide parallel to a $(100)$ glide plane, with glide vector $\bm{\tau}=(0,1/2,1/2)$.  The $4\times 4$ transformation matrix for this glide operation is given by:
+\[
+	\mathcal{W}_{n\parallel (100)} = \begin{pmatrix}-1&0&0&0\\ 0&1&0&1/2\\ 0&0&1&1/2\\0&0&0&1\end{pmatrix}\ ;
+\]
+operating on the homogeneous coordinates $(x,y,z,1)$ produces the equivalent point $(-x,y+1/2,z+1/2,1)$.  Therefore, the structure factor splits into two terms:
+\begin{equation*}
+	F_{hkl} = \sum_{j=1}^{N/2}f_j\left[\mathrm{e}^{2\pi\mathrm{i}(hx_j+ky_j+lz_j)} + \mathrm{e}^{2\pi\mathrm{i}(-hx_j+k(y_j+\frac{1}{2})+l(z_j+\frac{1}{2}))}\right]\ .
+\end{equation*}
+Focusing on reflections of the type $(0kl)$, this expression simplifies to:
+\begin{equation*}
+	F_{0kl} = \sum_{j=1}^{N/2}f_j\left[\mathrm{e}^{2\pi\mathrm{i}(ky_j+lz_j)} + \mathrm{e}^{2\pi\mathrm{i}(k(y_j+\frac{1}{2})+l(z_j+\frac{1}{2}))}\right]=
+	\left[1+(-1)^{k+l}\right] \sum_{j=1}^{N/2}f_j \mathrm{e}^{2\pi\mathrm{i}(ky_j+lz_j)}\ .
+\end{equation*}
+This structure factor vanishes whenever $k+l$ is odd; so, for a diagonal glide with $\bm{\tau}=(0,1/2,1/2)$ and $(100)$ mirror plane, all reflections of the type $(0kl)$ with $k+l=2n+1$ are systematic absences.  Table~\ref{\chabbr:tb:SFglides} lists the systematic absences for all possible glide vectors parallel to the $(100)$ mirror plane.
+
+\begin{table}[h!]
+\centering\leavevmode
+\begin{tabular}{|c|c|c|}
+\hline
+glide type& $\vert\bm{\tau}\vert$ & absent when \\
+\hline\hline
+$b$ & $\frac{b}{2}$ & $l=2n+1$ \\[3pt]
+$c$ & $\frac{c}{2}$ & $l=2n+1$ \\[3pt]
+$n$ & $\frac{b+c}{2}$ & $k+l=2n+1$ \\[3pt]
+$d$ & $\frac{b\pm c}{4}$ & $k+l=4n+2$ with $k=2n$ and $l=2n$ \\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:SFglides}Systematic absences for various glides vectors parallel to the $(100)$ plane.}
+\end{table}
+
+\subsection{Structure factors and kinematical diffraction}\label{\chabbr:ssec:SFkinematical}
+The structure factor concept is central to the interpretation and simulation of diffraction patterns for both x-ray and neutron scattering.  When using the structure factor to compute diffracted intensities, there is an implicit assumption, namely that the incident particle can be scattered only once.  In other words, an incident particle either continues on in the same direction after leaving the sample, or the particle/wave is diffracted  and travels in the direction $\mathbf{k}_0+\mathbf{g}_{hkl}$ after leaving the sample. As a consequence, all the diffracted beams are independent of each other; the intensity of one beam is not affected by the intensity of any other diffracted beam.  The intensity is given by the modulus-squared of the structure factor (ignoring for now a number of correction factors that we will introduce in section~\ref{\chabbr:sec:Icomputations}).  This approach is known as the \indexit{kinematical diffraction theory}; it is valid for conventional x-ray and neutron diffraction.
+
+Both x-ray photons and neutrons interact only weakly with matter, so that the kinematical theory represents a good approximation of the diffraction process.  For electrons, on the other hand, the interaction strength is significantly larger because the beam electron interacts with all the charges in the sample, both other electrons and protons.  As a consequence, the probability that a beam electron undergoes a second scattering event before leaving the sample is substantial. This means that the diffracted beams are not independent of each other, and electrons can be scattered multiple times by different lattice planes before leaving the sample.  The theory that underlies the intensity calculations for electron diffraction is known as the \indexit{dynamical diffraction theory}; it is based on (relativistic) quantum mechanics and thus significantly more complicated that the kinematical approach.
+
+It should be noted, however, that dynamical scattering processes are possible for x-rays when the beam intensity becomes very high, as is the case for x-rays generated by a synchrotron.  Under normal laboratory conditions, even when using a rotating anode x-ray source, it is unlikely that the beam intensity will be sufficiently high for multiple scattering events to become likely. For synchrotron diffraction, a more accurate dynamical photon scattering theory must be used to properly predict the multiple photon scattering events.  One important consequence of dynamical diffraction theory is that for certain space groups (namely those whose space group symbol contains a screw axis and/or a glide plane), reflections for which the structure factor vanishes can still have non-zero intensity in actual diffraction patterns; this phenomenon is known as \indexit{double diffraction}.
+
+
+\section{Example Structure Factor Computations}\label{\chabbr:sec:SFexamples}
+In this section, we discuss several worked out examples of structure factor computations for specific crystal structures; we provide sufficient detail so that the interested reader can re-derive and validate all expressions. 
+
+\subsection{The CsCl and NaCl structures}\label{\chabbr:ssec:SFCsNaCl}
+The structure of CsCl is primitive cubic, with Cs in the origin and Cl at the cell center; hence, the structure factor has two terms:
+\[
+	F_{hkl} = f_{\text{Cs}}(s) + f_{\text{Cl}}(s)(-1)^{h+k+l}\ ;
+\]
+the intensity is then given by:
+\begin{equation}
+\begin{split}
+	I_{hkl} &= (f_{\text{Cs}}(s) + f_{\text{Cl}}(s))^2\quad h+k+l=2n\ ;\\
+	I_{hkl} &= (f_{\text{Cs}}(s) - f_{\text{Cl}}(s))^2\quad h+k+l=2n+1\ .\\	
+\end{split}
+\end{equation}
+It is common practice to call reflections for which the intensity is proportional to the square of the sum of the scattering factors the \indexit{fundamental reflections}.  The second set of reflections are known as the \indexit{superlattice} reflections, because they contain information about the ordering of the Cs and Cl atoms on the underlying lattice, which is a body-centered cubic lattice; the CsCl structure itself is primitive cubic, \textit{cP}, not body-centered cubic.
+
+Sodium chloride, NaCl, provides a similar example with fundamental and superlattice reflections. The structure consists of two interpenetrating face-centered cubic lattices, one containing Na cations, the other the Cl anions.  Since the structure is face-centered cubic, we can immediately write down the fcc prefactor and then simply sum over the atoms in the basis:
+\[
+	F_{hkl} = \left(1+(-1)^{h+k}+(-1)^{h+l}+(-1)^{k+l}\right) \left(f_{\text{Na}}(s) + f_{\text{Cl}}(s)(-1)^{h+k+l}\right)\ .
+\]
+For the intensity we find that there are three different cases:
+\begin{equation}
+\begin{split}
+	I_{hkl} &= 16(f_{\text{Na}}(s) + f_{\text{Cl}}(s))^2\quad (h,k,l)\text{ all even}\ ;\\
+	I_{hkl} &= 16(f_{\text{Na}}(s) - f_{\text{Cl}}(s))^2\quad (h,k,l)\text{ all odd}\ ;\\
+	I_{hkl} &= 0 \qquad\qquad\qquad\qquad\quad\,\, (h,k,l)\text{ mixed parity}\ .
+\end{split}
+\end{equation}
+If we compare this with the single element fcc case, we see that the allowed reflections are split into two classes, fundamental reflections when $(h,k,l)$ are all even, and superlattice reflections when $(h,k,l)$ are all odd.  The intensity is zero for mixed parity, as it is for the single element case; this is a reflection of the fact that the Bravais lattice for NaCl is \textit{cF}.
+
+\subsubsection{The diamond structure}\label{\chabbr:ssec:SFdiamond}
+Similar to the NaCl structure, diamond also has two interpenetrating fcc lattices, but the translation vector between the two is $(\frac{1}{4},\frac{1}{4},\frac{1}{4})$ instead of $(\frac{1}{2},\frac{1}{2},\frac{1}{2})$. This leads to the following structure factor:
+\[
+	F_{hkl}=f_{\text{C}}\left(1+\mathrm{e}^{\frac{\pi}{2}\mathrm{i}(h+k+l)}\right)\left(1+(-1)^{h+k}+(-1)^{h+l}+(-1)^{k+l}\right)\ .
+\]
+Bringing $\mathrm{e}^{\frac{\pi}{4}\mathrm{i}(h+k+l)}$ up front we obtain:
+\[
+	\mathrm{e}^{\frac{\pi}{4}\mathrm{i}(h+k+l)}\left(\mathrm{e}^{-\frac{\pi}{4}\mathrm{i}(h+k+l)}+\mathrm{e}^{\frac{\pi}{4}\mathrm{i}(h+k+l)}\right) = 2\mathrm{e}^{\frac{\pi}{4}\mathrm{i}(h+k+l)} \cos\frac{\pi}{4}(h+k+l)\ ,
+\]
+so that the intensity can be written as:
+\begin{equation}
+	I_{hkl}=4f^2_{\text{C}}\cos^2\frac{\pi}{4}(h+k+l)\,\left(1+(-1)^{h+k}+(-1)^{h+l}+(-1)^{k+l}\right)^2\ .\label{\chabbr:eq:Idiamond}
+\end{equation}
+Once again all reflections with mixed parity indices are absent since the lattice is \textit{cF}. For the allowed reflections, the $\cos^2$ factor vanishes when $h+k+l=4n+2$ with $n$ an integer.  This is the same extinction condition as the one listed for the diamond glide plane in Table~\ref{\chabbr:tb:SFglides}.
+
+\subsubsection{Disordered vs.\ ordered structures}\label{\chabbr:ssec:SFordering}
+Let us consider a binary equiatomic compound with elements $A$ and $B$. The underlying structure has the \textit{cF} Bravais lattice.  There are two limiting cases for the site occupation in this structure:
+\begin{itemize}
+	\item $A$ and $B$ are randomly distributed over all available sites.  Since, on average, each lattice site contains the same amount of $A$ and $B$ atoms, the structure factor can be expressed as follows:
+	\begin{equation*}
+	\begin{split}
+	F_{hkl}&=\left(\frac{1}{2}f_A+\frac{1}{2}f_B\right)\left(1+(-1)^{h+k}+(-1)^{h+l}+(-1)^{k+l}\right)\ ;\\
+	&=\langle f\rangle \left(1+(-1)^{h+k}+(-1)^{h+l}+(-1)^{k+l}\right)\ .
+	\end{split}
+	\end{equation*}
+	This structure has the same extinctions as the regular fcc structure, but with an averaged atomic scattering factor $\langle f\rangle$.
+	\item The atoms are fully ordered, with $A$ on the $(0,0,0)$ and $(1/2,1/2,0)$ sites, and $B$ on the $(1/2,0,1/2)$ and $(0,1/2,1/2)$ sites; the Bravais lattice for this structure is primitive tetragonal, \textit{tP}.  For the structure factor we find:
+	\begin{equation*}
+	\begin{split}
+	F_{hkl}&= f_A (1+\mathrm{e}^{\pi\mathrm{i}(h+k)})+f_B(\mathrm{e}^{\pi\mathrm{i}(h+l)}+\mathrm{e}^{\pi\mathrm{i}(k+l)})\ ;\\
+	&=f_A(1+(-1)^{h+k})+f_B((-1)^{h+l}+(-1)^{k+l})\ .
+	\end{split}
+	\end{equation*}
+	Once again there are several cases to consider: if $(h,k,l)$ have the same parity, we have $F_{hkl} = 2f_A+2f_B\rightarrow I_{hkl}=4(f_A+f_B)^2$, i.e. fundamental reflections like $(111)$ and $(220)$.  If $h$ and $k$ are even, but $l$ is odd, then $F_{hkl} = 2f_A-2f_B\rightarrow I_{hkl}=4(f_A-f_B)^2$ and we have superlattice reflections, e.g., $(221)$.  In all other cases, i.e., $h$ and $k$ different parity and $l$ even, we have a systematic extinction, e.g., $(212)$.\\ 
+\end{itemize}
+
+As a slightly more general example, consider a \textit{cI} or body-centered cubic Bravais lattice with equal amounts of $A$ and $B$ atoms. We represent the $(0,0,0)$ site by the symbol $\alpha$ and $(1/2,1/2,1/2)$ by $\beta$, and the fraction of $A$ atoms on the $\alpha$ site by $q$.  For a fully disordered structure, half of the $A$ atoms are on $\alpha$ sites so that $q=0.5$; for the perfectly ordered structure \textit{all} $A$ atoms are on $\alpha$ sites so that $q=1$.  There is an intermediate possibility of a partially ordered structure, in which case the atomic scattering factor for the $\alpha$ site has two contributions: a fraction $q$ of $A$ atoms and $(1-q)$ of $B$ atoms:
+\[
+	f_{\alpha}(s) = q f_A(s) + (1-q) f_B(s)\ .
+\]
+For the $\beta$ site we have the reverse formula:
+\[
+	f_{\beta}(s) = (1-q) f_A(s) + q f_B(s)\ .
+\]
+Substituting these into the expression for the structure factor we find
+\[
+	F_{hkl}=f_\alpha+f_\beta e^{\pi i(h+k+l)}=(qf_{A}+(1-q)f_{B})+((1-q)f_{A}+qf_{B})\times(-1)^{h+k+l}\ .
+\]
+For reflections of the type $h+k+l$ odd, which are absent for the single element \textit{cI} structure, we find
+\[
+	F_{hkl}=f_{A}(q-1+q)-f_{B}(q-1+q)=(2q-1)\times(f_{A}-f_{B})\ ,
+\]
+and thus 
+\[
+	\vert F_{hkl}\vert^2 = (2q-1)^2\left(f_{A}-f_{B}\right)^2\ .
+\]
+Once again we find that there are superlattice reflections, but the partial ordering changes their intensity according to the value of $q$; in the disordered state with $q=1/2$, $2q-1=0$ so the superlattice reflections vanish, whereas for the ordered state we have $2q-1=1$.
+
+\subsubsection{Example of a ternary compound}\label{\chabbr:ssec:SFternary}
+As a final example we consider the structure factor for BaTiO$_{3}$, which adopts the perovskite structure;  Ba occupies the $(0,0,0)$ position, Ti is located at $(1/2, 1/2,1/2)$ and the O ions form an octahedral coordination around the Ti ion, with the atoms located in the three face center positions.  The structure has the cubic space group \spgr{221}.
+
+Using the atom coordinates, it is straightforward to write down the structure factor:
+\begin{equation*}
+\begin{split}
+	F_{hkl} &=  f_{\text{Ba}} +  f_{\text{Ti}} e^{\pi \mathrm{i}(h+k+l)} +  f_{\text{O}} \Big[e^{\pi \mathrm{i}(h+k)} + e^{\pi \mathrm{i}(h+l)} + e^{\pi \mathrm{i}(k+l)} \Big]\ ; \\
+                     &= f_{\text{Ba}} +  f_{\text{Ti}} (-1)^{h+k+l} +  f_{\text{O}} \Big[(-1)^{(h+k)} + (-1)^{(h+l)} + (-1)^{(k+l)} \Big]\ .
+\end{split}
+\end{equation*}
+Since the Bravais lattice is primitive, there are no systematic absences.  There are four different types of reflections; for the fundamental reflections, the intensity is of the form:
+\[
+	I = \left[f_{\text{Ba}}+f_{\text{Ti}}+ 3f_{\text{O}} \right]^2\ ;
+\]
+examples are $(200)$, and $(220)$. Then there are three types of superlattice reflections, each with example Miller indices:
+\begin{equation*}
+\begin{split}
+	I_{100} &= \left[f_{\text{Ba}}-f_{\text{Ti}}- f_{\text{O}} \right]^2\qquad \text{one index odd}\ ;\\
+	I_{110} &= \left[f_{\text{Ba}}+f_{\text{Ti}}- f_{\text{O}} \right]^2\qquad\text{two indices odd}\ ;\\
+	I_{111} &= \left[f_{\text{Ba}}-f_{\text{Ti}}+3 f_{\text{O}} \right]^2\qquad\!\!\!\text{all three indices odd}\ .
+\end{split}
+\end{equation*}
 
 
 
+\section{X-ray Intensity Computations}\label{\chabbr:sec:Icomputations}
 
+In this section, we describe how one can compute the intensities for a powder diffraction pattern of an arbitrary crystal structure.  The most important contribution to the overall intensity comes from the structure factor (modulus-squared), but there are several additional correction factors that must be taken into account.  We will describe them one by one, and then introduce the complete intensity expression.
+
+\subsection{Multiplicity of lattice planes}\label{\chabbr:ssec:multiplicity}
+We distinguish between general lattice planes, with Miller indices $(hkl)$ where $h$, $k$, and $l$ are different from each other and non-zero, and special planes, where some or all indices are equal to each other or up to two indices are zero.  If the order of the point group of the crystal structure is equal to $N$, then the symmetry operators will generate $N-1$ equivalent lattice planes for any general plane $(hkl)$; this total number $N$ is known as the \indexit{multiplicity} of the plane and is generally denoted by $p_{hkl}$. For a special lattice plane, the symmetry operators will generate fewer equivalent planes so the multiplicity will be smaller.  As an example, in a cubic structure with symmetry \pg{32}, there are $48$ equivalent $(123)$ planes but only $6$ equivalent $(100)$ planes. 
+
+This can be done for all the Laue groups, since they describe diffraction symmetry according to Friedel's Law, and the results are shown in Table~\ref{\chabbr:tb:multiplicities} in the form $hkl:p_{hkl}$.
+
+
+\begin{table}[h!]
+\centering\leavevmode
+{\small
+\begin{tabular}{|l|ccccccc|}
+\hline
+Laue Group & \multicolumn{7}{c|}{Multiplicities $hkl:p_{hkl}$}\\
+\hline\hline
+\pg{2} &$hkl:2$ &&&&&&\\
+\hline
+\pg{5} &$hkl:4$ &$h0l:2$&$0k0:2$&&&&\\
+\hline
+\pg{8} &$hkl:8 $ &$0kl:4$ &$h0l:4$ &$hk0:4$ &$h00:2$ &$0k0:2$&$00l:2$\\
+\hline
+\pg{11} &$hkl:8$ &$hk0:4$ &$00l:2$&&&&\\
+\pg{15} &$hkl:16$ &$hhl:8$ &$0kl: 8$&$hk0:8$ &$hh0:4$ &$0k0:4$&$00l:2$\\
+\hline
+\pg{17} &$hk.l:6$&$00.l:2$&&&&&\\
+\pg{20} &$hk.l:12$&$h0.l:6$&$hh.0:6$&$00.l:2$&&&\\
+\hline
+\pg{23} &$hk.l:12$&$hk.0:6$&$00.l:2$&&&&\\
+\pg{27} &$hk.l:24$&$hh.l:12$&$0k.l:12$&$hk.0:12$&$hh.0:6$&$0k.0:6$ &$00.l:2$\\
+\hline
+\pg{29} &$hkl:24$ &$hhl:24$ &$0kl:12$&$hhh:8$ &$00l:6$ &&\\
+\pg{32} &$hkl:48$ &$hhl:24$ &$0kl:24$&$0kk:12$ &$hhh:8$ &$00l:6$& \\
+\hline
+\end{tabular}}
+\caption{\label{\chabbr:tb:multiplicities}Multiplicities of general and special lattice planes in all crystal systems.}
+\end{table}
+
+
+\subsection{Angular corrections}\label{\chabbr:ssec:corrections}
 
 
 
