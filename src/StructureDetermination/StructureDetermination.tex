@@ -1,0 +1,305 @@
+% 
+% ###################################################################
+%  Copyright (c) 2025, AUTHORNAME 
+%  Editors: A.D. Rollett & M. De Graef
+%  All rights reserved.
+%
+% Licensed under the Creative Commons CC BY-NC-SA 4.0 License, 
+% hereafter referred to as the "License"; you may not use this 
+% document except in compliance with the License. You may obtain 
+% a copy of the License at 
+%     https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode 
+% Unless required by applicable law or agreed to in writing, all 
+% material distributed under the License is distributed on an 
+% "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+% either express or implied. See the License for the specific 
+% language governing permissions and limitations under the License.
+% ###################################################################
+
+% ###################################################################
+% ###################################################################
+% ###################################################################
+% The following lines are to be uncommented or edited as needed 
+
+%     uncomment this line only if this chapter is a core/foundational chapter;
+%     for a core chapter a "Foundational" label will appear on the top left above the chapter title.
+%\corechapter{Yes}
+
+%     this will appear in a secondary header below the chapter title.
+\OCchapterauthor{Marc De Graef, Carnegie Mellon University}
+
+% All figures are stored in the src/ChapterTitle/eps folder and must be of the *.pdf, *.pdf, or *.png type. 
+
+% this is the 6-character (all uppercase) chapter descriptor used in labels and refs...
+\renewcommand{\chabbr}{STRDET}
+
+%     replace \noheaderimage by the chapter header image file name (without .pdf extension).
+%     pdf files are also acceptable.
+%     Chapter header images must be 2480 x 1240 pixels with 300dpi, RGB format.
+\chapterimage{\noheaderimage}
+
+% start the chapter and define the chapter label (outside of the \chapter command!)
+\chapter{Crystal Structure Determination Concepts}\label{\chabbr:ch:StructureDetermination} % should be the same as the filename (without extension)
+
+% add the author information so that it will appear in the Author List at the start of the document
+% repeat this line for each author; the first entry must match the chapter label above.
+\writeauthor{\chabbr:ch:StructureDetermination}{Crystal Structure Determination Concepts}{De Graef}{Marc}{Materials Science and Engineering}{Carnegie Mellon University}{mdg@andrew.cmu.edu}{https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html}
+
+% Each chapter begins with Learning Objectives; the list of objectives should have links to sections/subsections using their OC labels.
+% Each Learning Objective should be an active statement (i.e., contain a verb).  The \\ command can be used to force an item into the 
+% second column if LaTeX breaks the line at an awkward location.  The label color (OCBurntOrange) should not be changed.
+% Within the itemize environment, hyphenation is temporarily turned off.
+\begin{learningobjectives}
+% This itemized list should be formatted as follows and must be enclosed by { } 
+{\begin{itemize}
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:complex}:}] Learn a formal description of complex numbers
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:quaternions}:}] Define the quaternion number system\\
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:algebras}:}] Learn about Normed Division Algebras
+    \item[{\color{OCBurntOrange}\ref{\chabbr:sec:othernumbers}:}] Discover other number systems, such as dual numbers and split numbers
+\end{itemize}}
+\end{learningobjectives}
+% ###################################################################
+% ###################################################################
+% ###################################################################
+
+% single crystal diffractometer; what is measured? What is the starting point?
+% Refinement for a known crystal structure
+% Elements of Rietveld Refinement
+% example for CuNi structure (redo the NaCl calculation from SOM)
+% Determination of lattice parameters and Bravais cell
+% Patterson function
+% charge flipping algorithm
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% This where the actual chapter content starts   %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\section{The Patterson Function}\label{\chabbr:sec:Patterson}
+In section~\ref{SCATTR:sec:elecneutron}, we determined that the electron scattering factors, $f^e(s)$, and atomic scattering factors, $f^X(s)$, are related to each other by the Mott-Bethe relation:
+\begin{equation}
+	f^e(s) = \frac{1}{8\pi^2a_0}\left(\frac{Z-f^X(s)}{s^2}\right)\ .\label{\chabbr:eq:MottBethe}
+\end{equation}
+The electron scattering factors were shown to be given by the Fourier transform of the atomic electrostatic potential, $V^a(\mathbf{r})$, which contains contributions from both the electron and proton charge densities in the solid. As a result, the atomic scattering factor, $f^X(s)$, is the Fourier transform of the atomic electrostatic potential of the electrons only, since the contribution of the nucleus to X-ray photon scattering is negligible.  
+
+In chapter~\ref{DIFINT:ch:DiffractionIntensity}, we introduced the \indexit{kinematical structure factor}, $F_{hkl}$, as a sum over individual atoms of the atomic scattering factor multiplied by a phase factor that represents the atom position relative to the $(hkl)$ atomic planes:
+\begin{equation}
+	F_{hkl} = \sum_{j=1}^{N} f_j(s)\,\mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}\ .\label{\chabbr:eq:StructureFactor}
+\end{equation}
+Focusing on X-ray scattering only, if we know all of the structure factors, and represent them in polar notation as $F_{hkl}=\vert F_{hkl}\vert\mathrm{e}^{2\pi\mathrm{i}\phi_{hkl}}$, then we can write the electron charge density, $\rho(\mathbf{r})$, as the inverse (discrete) Fourier transform of the structure factors:
+\begin{equation}
+	\rho(\mathbf{r})=\frac{1}{V}\sum_{hkl}\vert F_{hkl}\vert\mathrm{e}^{-2\pi\mathrm{i}(kx+ky+lz-\phi_{hkl})}\ .\label{\chabbr:eq:invDFT}
+\end{equation}
+Once we know the Miller indices for each diffraction peak, the quantities $\vert F_{hkl}\vert$ can be determined from the experimental integrated intensities, since:
+\[
+	I_{hkl}=\vert F_{hkl}\vert^2\times A\times L_p\times p_{hkl}\rightarrow \vert F_{hkl}\vert = \sqrt{\frac{I_{hkl}}{AL_pp_{hkl}}}\ .
+\]
+Knowing the factors $\vert F_{hkl}\vert$ is not sufficient to determine the complete charge density since we do not know the phases $\phi_{hkl}$. This represents the core of the structure determination problem: the phases cannot be extracted from the experimental measurements, and we call this the \indexit{phase problem}.  
+
+In 1934, A.L. Patterson came up with the idea to use the corrected intensities $\vert F_{hkl}\vert^2$ instead of the moduli $\vert F_{hkl}\vert$ in the inverse Fourier transform of equation~(\ref{\chabbr:eq:invDFT}); combining this with the fact that diffraction patterns are centrosymmetric (Friedel's Law), we define a new function, $P(u,v,w)$, by the real-valued 3D discrete Fourier transform:
+\begin{equation}
+	P(u,v,w)=\frac{1}{V}\sum_{hkl}\vert F_{hkl}\vert^2 \cos(2\pi(hu+kv+lw))\ .\label{\chabbr:eq:Patterson}
+\end{equation}
+This is known as the \indexit{Patterson function} and $(u,v,w)$ are \indexit{Patterson coordinates}.  
+
+\subsection{Properties of Patterson functions}\label{\chabbr:ssec:examplePatterson}
+Combining equations~(\ref{\chabbr:eq:invDFT}) and (\ref{\chabbr:eq:Patterson}), we find a relation between the charge density and the Patterson function:
+\begin{equation}
+	P(\mathbf{u})=\rho(\mathbf{r})\otimes \rho(-\mathbf{r})\ ,\label{\chabbr:eq:Patrho}
+\end{equation}
+where $\mathbf{u}=(u,v,w)$. In words, the Patterson function is the \indexit{autocorrelation} of the charge density.  Care should be taken when using the Patterson coordinates $(u,v,w)$; they are fractional coordinates inside the regular crystallographic unit cell, i.e., $\mathbf{u}=u\mathbf{a}+v\mathbf{b}+w\mathbf{c}$, and should not be confused with the integer indices $[uvw]$ that represent directions in the crystal lattice.  
+
+We know that the charge density $\rho(\mathbf{r})$ has the space group symmetry of the crystal lattice.  From a symmetry point of view, the effect of the autocorrelation operation is to add inversion symmetry to the existing space group symmetry.  This reduces the $230$ crystallographic space groups to a set of only $24$ unique centrosymmetric space groups, listed in Table~\ref{\chabbr:tb:centroSG}; this reduction is similar to that of the $32$ point groups, which reduce to the $11$ Laue groups when inversion symmetry is added.  The net effect of adding inversion symmetry is that all translational components of symmetry operations vanish; this means that we can \textit{go from a space group to a \indexit{Patterson group} by replacing all glide planes by regular mirrors, all screw axes by regular rotation axes, and adding the inversion operator.}  
+
+% insert table here   CHECK THIS LIST !!!
+
+\begin{table}[h!]
+\centering\leavevmode
+{\small\begin{tabular}{|rc|rc|rc|rc|}
+\hline
+$\#$ & Space Group & $\#$ & Space Group & $\#$ & Space Group & $\#$ & Space Group \\
+\hline\hline
+2 & \spgr{2}     & 71 & \spgr{71}     & 148 & \spgr{148} & 200 & \spgr{200} \\
+10 & \spgr{10} & 83 & \spgr{83}     & 156 & \spgr{156} & 202 & \spgr{202} \\
+12 & \spgr{12} & 87 & \spgr{87}     & 162 & \spgr{162} & 204 & \spgr{204} \\
+47 & \spgr{47} & 123 & \spgr{123} & 166 & \spgr{166} & 221 & \spgr{221} \\
+65 & \spgr{65} & 139 & \spgr{139} & 175 & \spgr{175} & 225 & \spgr{225} \\
+69 & \spgr{69} & 147 & \spgr{147} & 191 & \spgr{191} & 229 & \spgr{229} \\
+\hline
+\end{tabular}}
+\caption{\label{\chabbr:tb:centroSG}List of the centrosymmetric Patterson space groups.}
+\end{table}
+
+Let us consider what the Patterson function looks like, based on a simple 1D model charge density.  We begin with  just one atom positioned in the origin.  We represent the normal probability density function of weight $Z$ by:
+\[
+	f(x;\mu,\sigma,Z) \equiv \frac{Z}{\sigma\sqrt{2\pi}}\mathrm{e}^{-\frac{(x-\mu)^2}{2\sigma^2}}\ .
+\]
+A typical charge density might then look like the profile in Fig.~\ref{\chabbr:fig:Pat1D}(a) with $Z_1=13$, $\mu_1=0$ and $\sigma_1=1/3$:
+\[
+	f(x;0,\sigma_1,Z_1) = \frac{Z_1}{\sigma_1\sqrt{2\pi}}\mathrm{e}^{-\frac{x^2}{2\sigma_1^2}}\ .
+\]
+The integral of $f(x;0,\sigma_1,Z_1)$ over the real axis equals the weight of the function, i.e., $13$.  The autocorrelation function, $P(u)$, shown in Fig.~\ref{\chabbr:fig:Pat1D}(b), has a single peak of intensity proportional to $Z_1^2$ and is given explicitly by:
+\[
+	P(u) = f(x;0,\sigma_1,Z_1)\otimes f(-x;0,\sigma_1,Z_1)= \frac{Z_1^2}{2\sigma_1\sqrt{\pi}}\mathrm{e}^{-\frac{u^2}{4\sigma_1^2}}=f(u;0,\sigma_1\sqrt{2},Z_1^2)\ ;
+\]  
+This is also a normal distribution function centered on the origin, but with standard deviation $\sigma_1\sqrt{2}$ and weight $Z_1^2$.  If we make an array of such functions with lattice parameter $a$, then the autocorrelation function of the array consists of peaks with shape $P(u)$ and the same spacing $a$.
+
+When we add an atom with a different atomic number, $Z_2=4$, to the unit cell at $\mu_2=4$ with $\sigma_2=1/3$ (Fig.~\ref{\chabbr:fig:Pat1D}(c)), then the corresponding Patterson function (Fig.~\ref{\chabbr:fig:Pat1D}(d)) will show an additional maximum due to the presence of inversion symmetry (which is not present in the unit cell itself). The result is that there are now $3$ peaks in the Patterson unit cell. This is readily shown using an explicit computation; if we consider the input function to be given by:
+\[
+	g(x) = f(x;0,1/3,13) + f(x;4,1/3,4)\ ,
+\]
+then the autocorrelation can be shown to be:
+\begin{equation*}
+\begin{split}
+	P(u) &= g(x)\otimes g(-x)\ ;\\
+	&= f(u;0,\sigma_1\sqrt{2},Z_1^2)+f(u;0,\sigma_2\sqrt{2},Z_2^2)+\\
+	&\quad \,\, f(u;\mu_2,\sqrt{\sigma_1^2+\sigma_2^2},Z_1Z_2)+f(u;-\mu_2,\sqrt{\sigma_1^2+\sigma_2^2},Z_1Z_2)\ .
+\end{split}
+\end{equation*}
+The Patterson function therefore has three peaks: the sum of two peaks located at the origin, and two additional peaks with identical shape on either side of the main peak at $u=\pm \mu_2$. This pair of peaks guarantees that the function is centrosymmetric. The central peak has an integrated intensity of $Z_1^2+Z_2^2$ whereas each of the side peaks has intensity $Z_1 Z_2$.  This indicates that the Patterson function in general will be dominated by peaks corresponding to the highest atomic number atoms in the unit cell.  It is not too difficult to show that, if the unit cell contains $N$ atoms, then the Patterson function will have $N^2-N+1$ peaks (note that accidental overlap of peaks could reduce this number a little); this remains true for a full 3D Patterson function.
+
+% insert figure here
+
+One of the important things to note about Fig.~\ref{\chabbr:fig:Pat1D} is that the Patterson function maintains the interatomic distances from the original unit cell. Each pair of peaks indicates an interatomic vector present in the structure.  This is more clearly shown using the 2D example in Fig.~\ref{\chabbr:fig:Pat2D}.   
+
+
+% then paragraph with 2D example based on slide 38, lecture 17.
+
+
+
+
+
+\subsection{Harker lines and planes}\label{\chabbr:ssec:Harker}
+Crystal symmetry has a systematic effect on the relative locations of peaks in the Patterson function; this was first noticed by D.\ Harker in 1935 \{citation\}.  Consider the monoclinic space group \spgr{6}, which has a single mirror plane normal to the $\mathbf{b}$ axis. This means that for every atom at position $(x,y,z)$, there is an equivalent atom at position $(x,-y,z)$. Since the Patterson function has peaks corresponding to relative positions of atoms in the unit cell, this means that there will be a peak at:
+\[
+	(u,v,w) = (x,y,z)-(x,-y,z)=(0,2y,0)\ .
+\]
+In other words, for every equivalent atom pair in the unit cell, the Patterson cell will have a peak somewhere along the line $v=2y$. Such a line is known as a \indexit{Harker line}; it indicates the presence of a mirror plane normal to the line.  
+
+As a second example, consider the space group \spgr{4} with a single two-fold screw axis along the monoclinic $\mathbf{b}$ axis.  This generates an equivalent point at position $(-x,1/2+y,-z)$, so that the Patterson function will display a peak at:
+\[
+	(u,v,w) = (x,y,z)-(-x,1/2+y,-z)=(2x,1/2,2z)\ .
+\]
+This represents a plane in the Patterson cell; for this space group, each pair of equivalent atoms will generate a peak in this plane, which is known as a \indexit{Harker plane}.  The presence of a Harker plane indicates the presence of a screw axis in the direction normal to the plane.  By systematically analyzing the Patterson cell and identifying Harker planes and lines, one can often determine unambiguously where the heavier atoms are located in the unit cell.  Next, we will consider an explicit example based on a \href{https://www.xtal.iqfr.csic.es/Cristalografia/parte_07_3-en.html}{Crystalografia} web page.
+
+\subsection{Example application of the Patterson function}\label{\chabbr:ssec:Patexample}
+Consider a complex organic structure with chemical formula $[\text{Zn(CN)}_2.2\text{C}_{14}\text{H}_{12}\text{N}_2.3\text{H}_2\text{O}]$; the chemical name of this structure is \indexit{Zinc-dicyanide-dimethyl-phenantroline}. Note that this structure has only one heavy atom species (Zn) and many lower atomic number atoms.  Our task is to use the Patterson function analysis to determine the locations of these heavy atoms; the structure of the organic units is well known, and has been determined by x-ray diffraction as well as other characterization techniques \cite{monge1978a}. 
+
+This structure crystallizes in the monoclinic space group \spgr{14} and has $4$ formula units per unit cell.  The general positions for this space group are:
+\[
+	(x,y,z), (-x,y+1/2,1/2-z), (-x,-y,-z), (x,-y+1/2,z+1/2)\ .
+\]
+Since there are four formula units, and the multiplicity of the general site is also $4$, this means that we only have to determine the location of a single Zn atom.  Computation of the Patterson function from the diffracted intensities of a single crystal diffraction experiment results in the locations and relative intensities of the five most intense Patterson peaks shown in Table~\ref{\chabbr:tb:ZnPat}. 
+
+\begin{table}[h!]
+\centering\leavevmode
+\begin{tabular}{|crrr|c|}
+\hline
+$\#$ & $u$ & $v$ & $w$ & $\bar{P}(u,v,w)$\\
+\hline\hline
+1&0.00&0.00&0.00&999\\
+2&0.50&0.50&0.45&342\\
+3&0.00&0.05&0.50&337\\
+4&0.51&0.45&0.95&137\\
+5&0.26&0.92&0.14&129\\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:ZnPat}Locations and values of the normalized Patterson function for the five most intense peaks; the values are normalized so that the most intense peak has intensity $999$.}
+\end{table}
+
+The first step in the analysis of the most intense peaks is the determination of the locations of potential Harker lines and planes; to do so, we determine the relative position vectors by subtracting the three equivalent positions from the original position:
+\begin{equation*}
+{\small
+\begin{split}
+	(1)\,\, &(x,y,z)-(-x,1/2+y,1/2-z)=\langle2x,-1/2,-1/2+2z\rangle = \langle2x,1/2,1/2+2z\rangle\rightarrow\text{ Harker plane}\ ;\\
+	(2)\,\, &(x,y,z)-(-x,-y,-z)=\langle 2x,2y,2z\rangle\ ;\\
+	(3)\,\, &(x,y,z)-(x,1/2-y,1/2+z)=\langle 0,1/2+2y,1/2\rangle\rightarrow\text{ Harker line}\ .
+\end{split}}
+\end{equation*}
+We begin by looking for a relative position of the form $(1)$ in Table~\ref{\chabbr:tb:ZnPat}; line $2$ is of the correct form with $v=0.50$, so that we have:
+\[
+	\langle 2x,1/2,1/2+2z\rangle=\langle0.50,0.50,0.45\rangle \rightarrow x=0.25,\, z=0.47 \rightarrow \text{Zn@}(0.25,y,0.47)\ .
+\]
+This illustrates the importance of the Harker positions; from a single Harker plane we can already determine two of the three fractional coordinates of the Zn atom; only the $y$ coordinate remains to be determined.  Next we look for an entry of the form $(3)$ in Table~\ref{\chabbr:tb:ZnPat} and we find that line $3$ is of the correct form; therefore we have:
+\[
+	\langle 0,1/2+2y,1/2\rangle=\langle0.0,0.05,0.50\rangle \rightarrow y=0.27 \rightarrow \text{Zn@}(0.25,0.27,0.47)\ ,
+\]
+All that remains is to substitute the three coordinates into form $(2)$ to verify that this peak exists:
+\[
+	\langle 2x,2y,2z\rangle=\langle0.5,0.54,0.94\rangle \rightarrow \text{ not present in the table }\ldots\ .
+\]
+The only piece of information we have not yet used is the symmetry of the Patterson cell, which is given by the Patterson group derived from the space group by introducing  inversion symmetry. From Table~\ref{\chabbr:tb:centroSG} we see that the Patterson group is given by xxx, which leads to the following equivalent positions:
+\[
+  (x,y,z), (-x,y,-z), (-x,-y,-z), (x,-y,z)\ ;
+\]
+these can also be derived from the regular equivalent positions of space group \spgr{14} by eliminating all translations.  When we substitute the fractional coordinates $(0.25,0.27,0.47)$ into this list we find:
+\[
+	(0.5,0.54,0.94), (0.5,0.54,0.06), (0.5,0.46,0.06),(0.5,0.46,0.94)\ .
+\]
+The last entry of this list is very close to position $4$ of Table~\ref{\chabbr:tb:ZnPat} so that we can conclude that the Zn atom is indeed located at position $(0.25,0.27,0.47)$ with equivalent positions in space group \spgr{14}:
+\[
+	(0.25,0.27,0.47), (0.75,0.77,0.03), (0.75,0.73,0.53), (0.25,0.23,0.97)\ .
+\]
+The next step in the structure determination is figuring out where the lighter atoms are located.  This is a significantly more complicated problem because, compared to the Zn atoms, the total amount of scattering from the other atoms is significantly less so that the peaks in the Patterson function are of significantly lower intensity.  Recall that the main peak intensity corresponds to the sum of the squares of all atomic numbers so that the central peak has intensity proportional to $2,568$; peaks corresponding to Zn--Zn have intensity proportional to $Z^2 = 900$ (see the entries in Table~\ref{\chabbr:tb:ZnPat}), whereas C--N peaks have $Z_{\text{C}}Z_{\text{N}}=42$, and Zn--C peaks $Z_{\text{Zn}}Z_{\text{C}}=180$.  This makes the Patterson approach less well suited for the determination of lighter element positions.
+
+There are many so-called \indexit{direct methods} that allow for a complete structure determination and we will describe some of them in the next section.  Often, one can obtain some information about likely atomic configurations from considering other similar, and solved, structures. In this particular example, the structure of the $\text{C}_{14}\text{H}_{12}\text{N}_2$ group is well known (there are a few known possible configurations) so that this can be used as \textit{a-priori} information for the larger structure determination problem.  Complex structures are often solved by identifying sub-complexes that have been solved in simpler structures; one known structure can form the starting point for the structure determination of another related or more complex crystal structure.  
+
+The coordinates determined above for the Zn atoms are not the final coordinates. Typically, a refinement program would be used to obtain a more precise fit between the theoretical structure and the experimental data, often by using refinements similar to the Rietveld refinement procedure described in some detail in section~\ref{\chabbr:sec:refinement}.  It is not unusual to report final fractional atom coordinates as well as lattice parameters with four or five significant digits.
+
+
+
+\section{Modern Structure Determination Algorithms}\label{\chabbr:secc:modernalgorithms}
+
+
+\subsection{The charge flipping algorithm}\label{\chabbr:ssec:chargeflip}
+When we determine the moduli of the structure factors, $\vert F_{hkl}\vert$, for a range of reciprocal lattice points we effectively obtain numbers in reciprocal or Fourier space. On the other hand, the charge density, $\rho(\mathbf{r})$, is a quantity in direct space, and, furthermore, the charge density is positive everywhere.  This leads to an algorithm for the reconstruction of the charge density based on the structure factor moduli, i.e., the measurements, and a physical positivity constraint.  The algorithm iterates by going back and forth between direct and reciprocal space by means of Fourier transforms, and is known as the \indexit{charge flipping algorithm}.
+
+To perform an iteration, we must have an initial guess for the charge density. We start from the definition in equation~(\ref{\chabbr:eq:invDFT}):
+\[
+	\rho(\mathbf{r})=\frac{1}{V}\sum_{hkl}\vert F_{hkl}\vert\mathrm{e}^{-2\pi\mathrm{i}(kx+ky+lz-\phi_{hkl})}\ .
+\]
+The phases $\phi_{hkl}$ are unknown, but we can obtain a first guess for $\rho(\mathbf{r})$ by setting all the phases equal to zero:
+\begin{equation}
+	\rho^{(1)}(\mathbf{r})=\frac{1}{V}\sum_{hkl\in\mathcal{B}}\vert F_{hkl}\vert\mathrm{e}^{-2\pi\mathrm{i}(kx+ky+lz)}\ .
+\end{equation}
+In this expression, we have limited the range of the reflections that contribute to the sum to some volume $\mathcal{B}$ in reciprocal space; this volume corresponds to the range of $(hkl)$ for which we have experimental values for $\vert F_{hkl}\vert$. Since we do not know the total charge, $F_{000}$, we initialize it to zero.  The algorithm is carried out on a 3D array of voxels that tile the unit cell.
+
+Because of the finite range $\mathcal{B}$ and the fact that we start with all phases equal to zero (or a set of random numbers in the interval $[0\ldots 2\pi[$, subject to the constraint that $\phi_{\bar{h}\bar{k}\bar{l}}=-\phi_{hkl}$ (Friedel's Law)), it is unlikely that $\rho^{(1)}(\mathbf{r})$ will be positive everywhere in the unit cell.  We define the adjustable parameter $\delta>0$ to be a small positive number, and we flip the sign of the charge density for all voxels that have  $\rho^{(1)}(\mathbf{r})<\delta$; the resulting corrected charge density is represented by $g^{(1)}(\mathbf{r})$. Note that some voxels of $g^{(1)}(\mathbf{r})$ will still have a negative value; this is intentional and helps the convergence of the algorithm. Then we apply a Fourier transform to obtain $G^{(1)}(\mathbf{q})$; the Fourier coefficients can be written as $\vert G^{(1)}_{hkl}\vert \mathrm{e}^{\mathrm{i}\phi^{(1)}_{hkl}}$. Since we know the experimental structure factor moduli we perform the replacement $\vert G^{(1)}_{hkl}\vert\rightarrow \vert F_{hkl}\vert$, but we keep the phases $\phi^{(1)}_{hkl}$. An inverse Fourier transform applied to the quantities $\vert F_{hkl}\vert \mathrm{e}^{\mathrm{i}\phi^{(1)}_{hkl}}$ results in the second guess for the charge density, $\rho^{(2)}(\mathbf{r})$, and then we iterate the algorithm until convergence is reached. A general cycle of the iteration is represented in Fig.~\ref{\chabbr:fig:chargeflip}.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[xscale=5.2, yscale=4.3]
+  % Define the nodes (coordinates)
+  \node (A) at (0,1) {$\rho^{(k)}(\mathbf{r})$};
+  \node (B) at (1,1) {$g^{(k)}(\mathbf{r})$};
+  \node (C) at (0,0) {$F^{(k)}(\mathbf{q})$};
+  \node (D) at (1,0) {$G^{(k)}(\mathbf{q})$};
+
+  % Draw the arrows and attach labels afterward
+  \draw[-{Stealth[scale=1.5]}, thick] (A) -- (B) node[midway, above] {charge flip where $\rho<\delta$};
+  \draw[-{Stealth[scale=1.5]}, thick] (B) -- (D) node[midway, rotate=90, below] {FFT};
+  \draw[-{Stealth[scale=1.5]}, thick] (D) -- (C) node[midway, below] {$G^{(k)}_{hkl}\rightarrow \vert F_{hkl}\vert \mathrm{e}^{\mathrm{i}\phi^{(1)}_{hkl}}$};
+  \draw[-{Stealth[scale=1.5]}, thick] (C) -- (A) node[midway, rotate=90, above] {FFT$^{-1}; k\rightarrow k+1$};
+\end{tikzpicture}
+\caption{\label{\chabbr:fig:chargeflip}Flow diagram of the iterative charge flipping algorithm.}
+\end{figure}
+
+Every iteration needs a stopping criterion; in each cycle, we evaluate the following residual quantity:
+\begin{equation}
+	R^{(k)} = \frac{\sum_{\mathcal{B}}\vert\,\vert G^{(k)}_{hkl}\vert - \vert F_{hkl}\vert\,\vert}{\sum_{\mathcal{B}}\vert F_{hkl}\vert}\ .
+\end{equation}
+The evaluation is performed in the lower right corner of the flow diagram, before the substitution of the $\vert F_{hkl}\vert$ parameters is carried out.  If the set of voxels in the unit cell has more voxels than there are experimental $\vert F_{hkl}\vert$ values, then one can stabilize the algorithm by explicitly setting all $\vert G^{(k)}_{hkl}\vert$ equal to zero in each cycle for those $(hkl)$ that fall outside of $\mathcal{B}$.  The value of $\vert G_{000}\vert$ is updated in each cycle and represents the total charge density.  The iteration is halted when $R^{(k)}$ becomes smaller than some preset value.  Note that this algorithm only has one adjustable parameter $\delta$; changing this parameter affects how many iterations will be needed to achieve convergence.
+
+% insert 2D example
+
+
+\subsection{Structure determination on demand}\label{\chabbr:ssec:ondemand}
+
+

@@ -1,0 +1,20 @@
+{
+  "title": "Crystal Structure Determination Concepts",
+  "authors": [
+    "Marc De Graef"
+  ],
+  "description": "",
+  "toc": [],
+  "entry_file": "StructureDetermination.tex",
+  "cover_image": "cover.png",
+  "keywords": [],
+  "chapter_type": "topical",
+  "chabbr": "STRDET",
+  "depends_on": [],
+  "related_to": [],
+  "discipline": "mse",
+  "published": false,
+  "author_urls": {
+    "Marc De Graef": "https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html"
+  }
+}

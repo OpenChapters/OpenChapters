@@ -338,8 +338,38 @@ $n$ & $\frac{b+c}{2}$ & $k+l=2n+1$ \\[3pt]
 $d$ & $\frac{b\pm c}{4}$ & $k+l=4n+2$ with $k=2n$ and $l=2n$ \\
 \hline
 \end{tabular}
-\caption{\label{\chabbr:tb:SFglides}Systematic absences for various glides vectors parallel to the $(100)$ plane.}
+\caption{\label{\chabbr:tb:SFglides}Systematic absences for various glide vectors parallel to the $(100)$ plane.}
 \end{table}
+
+
+\subsection{Structure factors and thermal vibrations}\label{\chabbr:ssec:SFvibrations}
+We describe a crystal structure by stating its lattice parameters, space group, and the atom positions in the asymmetric unit. The fractional coordinates of an atom can be determined precisely by extracting the information from diffraction patterns.  In reality, however, an atom is never at rest but it vibrates around the equilibrium position, which is reported by means of the fractional coordinates.  As the temperature of the sample increases, the vibration amplitude increases which causes the atoms to move further apart from each other; we know this as \indexit{thermal expansion}.  Averaged over time (i.e., many vibration cycles), the atom occupies a larger volume at elevated temperature, but it still has the same number of charges; hence, the charge density is decreased with increasing temperature. Since the atomic scattering factor and the electron scattering factor are determined by the charge density, the net result is that the scattering factors will decrease with increasing temperature.
+
+This decrease can be modeled by an exponential damping factor known as the \indexit{Debye-Waller damping factor}. Its argument is the \indexit{Debye-Waller factor} which is proportional to the mean-square displacement of the atom due to thermal vibrations. In the simplest model, the displacements are isotropic and the mean-square displacement can be computed directly from the phonon density-of-states,  $g(\omega)$, which in turn can be derived from phonon dispersion relations.  By way of example, for a single element crystal structure we have:
+\[
+	\langle u^2\rangle = \frac{\hbar}{2m}\int_0^{\omega_m}\coth\left(\frac{\hbar\omega}{2k_BT}\right)\frac{g(\omega)}{\omega}\mathrm{d}\omega\ ,
+\]
+where $\omega_m$ is the maximum vibration frequency.  The \indexit{isotropic Debye-Waller factor} is then defined as $B=8\pi^2\langle u^2\rangle$.  The exponential damping factor is given by:
+\begin{equation}
+	\mathrm{e}^{-M} = \mathrm{e}^{-B\,s^2}=\mathrm{e}^{-8\pi^2\langle u^2\rangle s^2}\ .\label{\chabbr:eq:DWF}
+\end{equation}
+If there are different atomic species in the unit cell, then the Debye-Waller damping factor should be included in the structure factor as follows:
+\[
+	F_{hkl} = \sum_{j=1}^{N} f_j(s)\,\mathrm{e}^{-B_j\,s^2}\,\mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}\ .
+\]
+In high symmetry crystal structures, in particular the cubic and hexagonal close packed structures, each atom has a fairly high site symmetry, so that the vibration amplitude is isotropic; in many lower symmetry structures, on the other hand, the atomic site symmetry is also low, so that the vibration amplitudes in different directions are different, i.e., they are anisotropic. In that case, $B$ is actually a symmetric second rank tensor, $B_{ij}$:
+\[
+	B_{ij} = 8\pi^2\begin{pmatrix} \langle u_x^2\rangle & \langle u_x\,u_y\rangle &  \langle u_x\,u_z\rangle\\
+	 \langle u_x\,u_y\rangle &  \langle u_y^2\rangle &  \langle u_y\,u_z\rangle\\
+	 \langle u_x\,u_z\rangle &  \langle u_y\,u_z\rangle &  \langle u_z^2\rangle\\
+	\end{pmatrix}\ .
+\]
+Since the tensor is symmetric, it can be represented graphically by a \indexit{thermal vibration ellipsoid} (see section~\ref{TENSOR:sec:tensorgraph} for details).  The argument $B\,s^2$ in the exponential must then be replaced by the tensor contraction $s_i\,B_{ij}\,s_j$, where $s_i$ are the components of the scattering vector $\mathbf{s}$.  It is often a good approximation to work with an effective isotropic factor, which can be derived from the tensor as the average of the diagonal entries:
+\[
+	B \approx \frac{1}{3}\text{Tr}(B_{ij})\ .
+\]
+
+
 
 \subsection{Structure factors and kinematical diffraction}\label{\chabbr:ssec:SFkinematical}
 The structure factor concept is central to the interpretation and simulation of diffraction patterns for both x-ray and neutron scattering.  When using the structure factor to compute diffracted intensities, there is an implicit assumption, namely that the incident particle can be scattered only once.  In other words, an incident particle either continues on in the same direction after leaving the sample, or the particle/wave is diffracted  and travels in the direction $\mathbf{k}_0+\mathbf{g}_{hkl}$ after leaving the sample. As a consequence, all the diffracted beams are independent of each other; the intensity of one beam is not affected by the intensity of any other diffracted beam.  The intensity is given by the modulus-squared of the structure factor (ignoring for now a number of correction factors that we will introduce in section~\ref{\chabbr:sec:Icomputations}).  This approach is known as the \indexit{kinematical diffraction theory}; it is valid for conventional x-ray and neutron diffraction.
@@ -465,13 +495,22 @@ examples are $(200)$, and $(220)$. Then there are three types of superlattice re
 
 \section{X-ray Intensity Computations}\label{\chabbr:sec:Icomputations}
 
-In this section, we describe how one can compute the intensities for a powder diffraction pattern of an arbitrary crystal structure.  The most important contribution to the overall intensity comes from the structure factor (modulus-squared), but there are several additional correction factors that must be taken into account.  We will describe them one by one, and then introduce the complete intensity expression.
+In this section, we describe how one can compute the intensities for a powder diffraction pattern of an arbitrary crystal structure.  The most important contribution to the overall intensity comes from the structure factor (modulus-squared), but there are several additional correction factors that must be taken into account.  We will describe them one by one, and then introduce the complete intensity expression.  The general expression for the diffracted intensity for x-ray powder diffraction from an elemental solid is as follows:
+\begin{equation}
+	I_{hkl} = \vert F_{hkl}\vert^2\, p_{hkl}\, L_p(\theta)\, A(\theta)\ ;\label{\chabbr:eq:Ihkl}
+\end{equation}
+in addition to the structure factor, we have the following quantities:
+\begin{itemize}
+	\item $p_{hkl}$: the multiplicity of the lattice plane $(hkl)$;
+	\item $L_p(\theta)$: the Lorentz polarization factor, which contains multiple correction factors;
+	\item $A(\theta)$: the absorption factor, which depends on the sample shape and size;
+\end{itemize}
+In this list we have assumed that the Debye-Waller damping factor has been included in the structure factor.  In the following subsections we describe each of these factors in more detail.
 
 \subsection{Multiplicity of lattice planes}\label{\chabbr:ssec:multiplicity}
 We distinguish between general lattice planes, with Miller indices $(hkl)$ where $h$, $k$, and $l$ are different from each other and non-zero, and special planes, where some or all indices are equal to each other or up to two indices are zero.  If the order of the point group of the crystal structure is equal to $N$, then the symmetry operators will generate $N-1$ equivalent lattice planes for any general plane $(hkl)$; this total number $N$ is known as the \indexit{multiplicity} of the plane and is generally denoted by $p_{hkl}$. For a special lattice plane, the symmetry operators will generate fewer equivalent planes so the multiplicity will be smaller.  As an example, in a cubic structure with symmetry \pg{32}, there are $48$ equivalent $(123)$ planes but only $6$ equivalent $(100)$ planes. 
 
-This can be done for all the Laue groups, since they describe diffraction symmetry according to Friedel's Law, and the results are shown in Table~\ref{\chabbr:tb:multiplicities} in the form $hkl:p_{hkl}$.
-
+This can be done for all the Laue groups, since they describe diffraction symmetry according to Friedel's Law, and the results are shown in Table~\ref{\chabbr:tb:multiplicities} in the form $hkl:p_{hkl}$.  The inclusion of the multiplicity factor in intensity computations is important because it properly weights individual families of planes; in the example above, this means that the $(123)$ have a weight that is $8$ times as large as the $(100)$ planes.
 
 \begin{table}[h!]
 \centering\leavevmode
@@ -503,8 +542,250 @@ Laue Group & \multicolumn{7}{c|}{Multiplicities $hkl:p_{hkl}$}\\
 \end{table}
 
 
-\subsection{Angular corrections}\label{\chabbr:ssec:corrections}
+\subsection{Absorption correction}\label{\chabbr:ssec:absorption}
+Powder diffractometry in the Bragg-Brentano geometry is essentially a reflection technique since the diffracted beams emerge on the same side of the sample as the incident beam.  In this geometry, for small Bragg angles $\theta$, the beam covers a large area of the sample, but the penetration into the sample remains shallow; for large Bragg angles on the other hand, the projection of the beam on the sample occupies a smaller area, but the penetration is deeper and those two effects compensate each other so that the amount of absorption is constant, independent of the Bragg angle.  For transmission diffraction techniques, and complex sample shapes, absorption does become important, and one must integrate the \indexit{Beer's Absorption Law} along the beam trajectory to obtain the correct amount of absorption.  For the Bragg-Brentano techniques, the absorption factor is given by $A=1/(2\mu)$, where $\mu$ is the mass absorption coefficient for the sample.
 
+\subsection{Angular corrections}\label{\chabbr:ssec:corrections}
+In addition to the multiplicity and the absorption factors, there are several angular corrections that need to applied in order to properly account for the geometry of the diffraction experiment.  The corrections below are specific for the Bragg-Brentano geometry.  Note that only trigonometric factors are involved; any constants or other parameters that do not depend on the Bragg angle are unimportant since they are cancelled out by normalizing all intensities by the maximum intensity.
+
+\begin{itemize}
+	\item \textit{Polarization factor}:  When we introduced the Thomson equation for photon scattering from a single electron in section~\ref{SCATTR:sec:ThomsonEq}, we concluded that, for an unpolarized x-ray photon, the scattered intensity has an angular dependence given by:
+\begin{equation}
+	C_1(\theta) = \left(1+\cos^2(2\theta)\right)\ .
+\end{equation}
+This expression effectively averages over horizontally and vertically polarized photon states.  Since x-ray photon beams in standard diffraction instruments are generally unpolarized, this is the first angular correction factor that we will need to take into account.
+
+	\item \textit{Finite detector size}: we can think of the x-ray detector as a narrow slit with a certain width. Fig.~\ref{\chabbr:fig:detectorsize}(a) shows two diffraction or Kossel cones along with the Ewald sphere. The detector moves along the arc of a circle at some distance $L$ (see Fig.~\ref{\chabbr:fig:detectorsize}(b)) from the center $C$ of the Ewald sphere.  The radius of the base of each cone measured at the detector positions is given by $R_i=L\sin(2\theta_i)$; if the detector has an angular width along the base of the cone of $\alpha$, with $\alpha$ a few degrees, then the fraction of the total intensity measured by the detector for a given scattering angle $2\theta_i$ is given by:
+	\[
+		I_i \propto \frac{L\alpha}{2\pi L\sin(2\theta_i)}\rightarrow C_2(\theta)=\frac{1}{\sin(2\theta_i)}\ ,
+	\]
+apart from unimportant constants.  The dependence of the measured intensity on the diffraction angle $\theta$ is thus proportional to $C_2(\theta)$, due to the finite detector size. 
+
+	\item \textit{Number of grains}: for the next correction factor we assume that the grains in the polycrystalline sample have totally random orientations.  For a given set of planes, $(hkl)$, the plane normals, $\mathbf{g}_{hkl}$, will be uniformly distributed on a sphere centered on the point $\mathbf{O}$ (see Fig.~\ref{\chabbr:fig:detectorsize}(a)). The planes that can actually give rise to a diffracted beam are those that have their normal fall on the intersection circle between this sphere and the Ewald sphere. Since the detector has a finite angular aperture along the $\theta$ arc, a range of scattering angles will make it into the detector, which means that the intersection circle actually becomes an intersection band with width $\Delta\theta$, and the angular range that enters the detector is $[2\theta-\Delta\theta/2,2\theta+\Delta\theta/2]$ (see the blue lines for detector position $D_2$ in Fig.~\ref{\chabbr:fig:detectorsize}(b)). The plane normals that give rise to diffracted intensity in this range intersect the sphere of radius $\vert\mathbf{g}_{hkl}\vert\equiv G$ in a band of width $G\,\Delta\theta$.  For a sample with $N$ randomly oriented grains, a fraction $\Delta N$ will have normals that fall within this narrow band; the band has a circumference of $2\pi G\sin(\frac{\pi}{2}-\theta)$, so that the ratio of the area of the band to the total area of the (orange) sphere is given by:
+\[
+	\frac{\Delta N}{N} = \frac{G\Delta\theta\times 2\pi G \sin(\frac{\pi}{2}-\theta)}{2\pi G^2} = \frac{\Delta\theta\,\cos\theta}{2}\rightarrow C_3(\theta) = \cos\theta\ .
+\]
+In other words, the number of favorably oriented grains for diffraction at an angle $2\theta$ is proportional to $\cos\theta$.
+	
+	
+\begin{figure}[t!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath detectorsize.pdf}
+\caption{(a) 3D rendering of Kossel cones for two different sets of planes; the detector is a narrow slit and moves on the arc shown on the right; (b) 2D cross section of (a) with all quantities labeled.}
+\label{\chabbr:fig:detectorsize}
+\end{figure}
+
+\item \textit{Finite grain size and diffraction peak shapes}\label{\chabbr:ssec:peakshapes}
+In section~\ref{DIFGEO:sec:relaxedBragg} we learned that the shape and size of a diffracting grain determines the shape and size of the reciprocal lattice points for that grain.  We used a spherical grain to illustrate the principle; the shape of the reciprocal lattice point in that case is described by the radially symmetric function:
+\[
+	I(k) = 9V^2 \left(\frac{j_1(k\,R)}{k\,R}\right)^2\ ,
+\]
+with $R$ the radius and $V$ the volume of the sphere, and $j_1(x)$ a spherical Bessel function of order $1$; $k$ represents the radial distance from the reciprocal lattice point.  Fig.~\ref{DIFGEO:fig:EwaldFiniteSample} illustrates that the finite extent of the reciprocal lattice point means that there will be some diffraction even when the point does not lie on the Ewald sphere. If the Ewald sphere (or the crystal) is rotated at a continuous rate, then the reciprocal lattice volume will gradually pass through the Ewald ``shell'' and the diffracted intensity will gradually increase to a maximum and then decrease again.  Passing through the ES means that we are changing the beam incidence angle $\theta$, so that in the measured diffraction pattern we will detect diffracted intensity between two limiting $2\theta$ values, from $2\theta_1$ to $2\theta_2$.  The function $I(k)$ represents the intensity profile of the diffraction peak for a spherical sample.  In real experiments, the shape of individual grains is typically unknown, so one uses profile functions with a shape similar to $I(k)$, but with adjustable parameters that can be fitted to the actual peak profile. Two functions are commonly used:
+\begin{itemize}
+	\item \indexit{Gaussian peak profile}: 
+	\begin{equation}
+		I^G(\alpha) = I_0\, \text{exp}\left[ -4\ln 2\left(\frac{\alpha-2\theta}{w}\right)^2\right]\ ,\label{\chabbr:eq:Gaussianpeak}
+	\end{equation}
+	where $w$ is the full-width-at-half-maximum (FWHM), and $2\theta$ is the position of the peak in the powder pattern; $\alpha$ represents the scattering angle.
+	\item \indexit{Lorentzian peak profile}: 
+	\begin{equation}
+		I^L(\alpha) = \frac{I_0}{1+4\left(\frac{\alpha-2\theta}{w}\right)^2}\ .\label{\chabbr:eq:Lorentzianpeak}
+	\end{equation}
+\end{itemize}
+The Lorentzian profile drops off much more slowly away from the peak than the Gaussian profile. Fig.~\ref{\chabbr:fig:peakcomparison}(a) compares these two profiles for the stated parameters (Gaussian profile in blue, Lorentzian in orange). A third curve is superimposed in green; this is the profile for a sphere using the equation:
+\[
+		I^S(\alpha) = 9\left(\frac{j_1(\frac{\alpha-2\theta}{w})}{\frac{\alpha-2\theta}{w}}\right)^2\ ,
+\]
+with the parameter $w$ set to $0.3$ to closely overlap with the Gaussian profile.  The profile functions can therefore be considered to be good approximations for the actual peak profile which depends in a sensitive way on the unknown grain shapes and sizes.  When we take the integrated peak intensity over the interval $[2\theta-\Delta\theta/2,2\theta+\Delta\theta/2]$, then it can be shown that this intensity depends on the correction factor:
+\[
+	C_4(\theta) = \frac{1}{\sin(2\theta)}\ .
+\]
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.6\textwidth]{\graphicspath peakcomparison.pdf}
+\caption{Comparison of a Gaussian (blue), Lorentzian (orange), and sphere shape intensity (green) profile for the following parameters: $2\theta=40^{\circ}$, $w=1^{\circ}$ ($0.3^{\circ}$ for the shape intensity), and $I_0=1$.}
+\label{\chabbr:fig:peakcomparison}
+\end{figure}
+
+\end{itemize}
+
+Collecting the four correction factors, we find 
+\begin{equation}
+	L_p(\theta) = \prod_{i=1}^4 C_i = \frac{1+\cos^2(2\theta)}{\sin^2\theta\cos\theta}\ .\label{\chabbr:eq:LPF}
+\end{equation}
+The quantity $L_P(\theta)$ is known as the \indexit{Lorentz polarization factor}; the function is shown in Fig.~\ref{\chabbr:fig:peakcomparison}(b).
+
+
+
+
+\subsection{Putting it all together}\label{\chabbr:ssec:totalintensity}
+In this section, we combine all concepts introduced in this chapter to compute the diffracted intensities for several basic crystal structures using equation~(\ref{\chabbr:eq:Ihkl}).  The following ingredients represent the bare minimum needed for a complete intensity calculation:
+\begin{itemize}
+	\item the lattice parameters of the unit cell: $\{a,b,c,\alpha,\beta,\gamma\}$;
+	\item the fractional atom coordinates and atomic scattering factors for all atoms;
+	\item the x-ray or neutron wavelength;
+	\item the temperature or Debye-Waller factors for all atoms;
+\end{itemize}
+Many additional factors can be incorporated into the intensity computation: strain in the lattice, a model for the peak shape, preferential grain orientations (known as \indexit{texture}), site occupations, a model for the background, a grain size distribution, and so on.  In this section, we will limit ourselves to the items listed above.
+
+\subsubsection{Body-centered cubic tungsten}
+Let us begin with a simple structure, room temperature bcc-W and Cu K$\alpha$ x-ray photons; we already know the structure factor and intensity:
+\[
+	F_{hkl} = \left(1+(-1)^{h+k+l}\right) f_\text{W}(s)\,\mathrm{e}^{-B_\text{W}\,s^2}\quad\text{ and }\quad I_{hkl} = \left(1+(-1)^{h+k+l}\right)^2 f^2_\text{W}(s)\mathrm{e}^{-2B_\text{W}\,s^2}\ .
+\]
+We also know the parameterization of the atomic scattering factor for W (equation~\ref{SCATTR:eq:fs}):
+\[
+	f_W(s) = Z - 8\pi^2a_0\times s^2\times \sum_{i=1}^3 a_i\,\mathrm{e}^{-b_i\, s^2}\ ,
+\]
+and the parameters $(a_i,b_i)$ can be extracted from Table~\ref{SCATTR:tb:DTSB} with all quantities adjusted for using $s$ in nm$^{-1}$.
+
+\begin{center}
+\begin{tabular}{|l|c|cccccc|}
+\hline
+Name&Z &$a_1$&$b_1$&$a_2$&$b_2$&$a_3$&$b_3$\\
+\hline\hline
+W & 74&0.5709& 0.28782 &0.4677 & 0.05084 &0.2019 &0.00572\\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent The Debye-Waller factors for most of the elements are listed as a function of temperature in \cite{peng1996a}; for W at room temperature ($T =270$ K) we find $B_W=0.00147$ nm$^2$. Next, we need to determine which diffracted beams can occur.  We know that the Ewald sphere diameter limits which planes can diffract:
+\[
+	\frac{2}{\lambda} > \frac{1}{d_{hkl}}\ .
+\]
+We also know the explicit expression for the interplanar spacing in a cubic system:
+\[
+	d_{hkl} = \frac{a}{\sqrt{h^2+k^2+l^2}}\ .
+\]
+Substituting in the first equation, rearranging terms, and squaring we find:
+\[
+	h^2+k^2+l^2 < \left(\frac{2a}{\lambda}\right)^2\ .
+\]
+The lattice parameter of bcc-W at room temperature is $a=0.3165$ nm, so that the right hand side of this inequality becomes $16.85$; the sum of the squares of the Miller indices must therefore be at the most equal to $16$. Combined with the extinction rule for body-centering, this allows us to determine the Miller indices of all possible diffraction peaks for Cu K$\alpha$ radiation: $(110)$, $(200)$, $(211)$, $(220)$, $(310)$, $(222)$, $(321)$, and $(400)$.
+
+Knowing the allowed $(hkl)$ triplets, we can compute the interplanar spacings $d_{hkl}$ and thus all of the following quantities:
+\begin{equation*}
+\begin{split}
+	\theta_{hkl}&=\text{arcsin}\left(\frac{\lambda}{2d_{hkl}}\right)\ ;\\
+	s_{hkl}&=\frac{1}{2d_{hkl}}\ ;\\ 
+	f_{hkl}(s)&=f_\text{W}(s_{hkl})\mathrm{e}^{-B_{\text{W}}s_{hkl}^2}\ ;
+\end{split}
+\end{equation*}
+These are all the ingredients needed to compute the structure factor and the intensity.  This type of computation is readily carried out using a basic spreadsheet program; the result of such a computation is shown in Table~\ref{\chabbr:tb:CalcW1}.
+
+
+\begin{table}[h!]
+\centering\leavevmode
+{\small\begin{tabular}{|crrrrrrr|}
+\hline
+$hkl$& $d_{hkl}$ & $s_{hkl}$ & $f_\text{W}(s_{hkl})$ & DWF & $f(s)$DWF & $F_{hkl}$ & $I_{hkl}$\\
+\hline\hline
+110 & 0.2238 & 2.2341 & 59.5096 & 0.9927 & 59.0745 & 118.149 & 13959.1943 \\
+200 & 0.1583 & 3.1596 & 52.9569 & 0.9854 & 52.1854 & 104.3709 & 10893.2842 \\
+211 & 0.1292 & 3.8697 & 48.2579 & 0.9782 & 47.2072 & 94.4145 & 8914.0977 \\
+220 & 0.1119 & 4.4683 & 44.6843 & 0.9711 & 43.3919 & 86.7838 & 7531.4238 \\
+310 & 0.1001 & 4.9957 & 41.9900 & 0.9640 & 40.4774 & 80.9548 & 6553.6802 \\
+222 & 0.0914 & 5.4725 & 39.9337 & 0.9569 & 38.2138 & 76.4276 & 5841.1821 \\
+321 & 0.0846 & 5.9110 & 38.3048 & 0.9499 & 36.3870 & 72.7741 & 5296.0664 \\
+400 & 0.0791 & 6.3191 & 36.9450 & 0.9430 & 34.8388 & 69.6776 & 4854.9727 \\
+\hline
+\end{tabular}}
+\caption{\label{\chabbr:tb:CalcW1}Spreadsheet results for several parameters for bcc-W.}
+\end{table}
+
+The correction factors can also be computed readily; the multiplicities can be extracted from Table~\ref{\chabbr:tb:multiplicities}. The Lorentz polarization factor only requires knowledge of the Bragg angle $\theta$. For the Bragg-Brentano configuration, absorption is constant, so we can omit it from consideration. Table~\ref{\chabbr:tb:CalcW2} lists the Bragg and scattering angles, the Lorentz polarization factor and the multiplicity.   The intensity from Table~\ref{\chabbr:tb:CalcW1} is then multiplied by the correction factors to obtain $I_{hkl}^{\text{corr}}$; dividing all intensities by the maximum intensity and multiplying by $100$ then results in the normalized intensities $\bar{I}_{hkl}$.
+
+\begin{table}[h!]
+\centering\leavevmode
+{\small\begin{tabular}{|crrrrrr|}
+\hline
+$hkl$ & $\theta_{hkl}\,(^{\circ})$ & $2\theta_{hkl} \,(^{\circ})$ & $L_p(\theta_{hkl})$ & $p_{hkl}$ & $I_{hkl}^{\text{corr}}$ & $\bar{I}_{hkl}$ \\
+\hline\hline
+110 & 20.1489 & 40.2977 & 14.1995 & 12 & 2378560.25 & 100 \\
+200 & 29.1528 & 58.3056 & 6.1571 & 6 & 402427.8438 & 16.92 \\
+211 & 36.6284 & 73.2568 & 3.7911 & 24 & 811067.25 & 34.10 \\
+220 & 43.5447 & 87.0895 & 2.9143 & 12 & 263389.1562 & 11.07 \\
+310 & 50.3752 & 100.7503 & 2.7349 & 24 & 430175.5312 & 18.09 \\
+222 & 57.5385 & 115.0770 & 3.0872 & 8 & 144261.6562 & 6.07 \\
+321 & 65.6935 & 131.3870 & 4.2036 & 48 & 1068595.875 & 44.93 \\
+400 & 76.9774 & 153.9548 & 8.4491 & 6 & 246120.5 & 10.35 \\
+\hline
+\end{tabular}}
+\caption{\label{\chabbr:tb:CalcW2}Application of correction factors to the diffracted intensities for bcc-W.}
+\end{table}
+
+
+\subsubsection{Face-centered cubic magnesium oxide}
+This structure consists of two interpenetrating face-centered cubic lattices, one containing Mg, the other O. The lattice parameter is $a=0.4213$ nm, and the Debye-Waller factors for elemental Na and Cl are given by \cite{lawrence1973a}: $B_{\text{Mg}}=0.0030$ nm$^2$ and  $B_{\text{O}}=0.0034$ nm$^2$. The intensity of a diffracted peak is given by (placing Mg in the origin):
+\[
+	I_{hkl} = \left(1+(-1)^{h+k}+(-1)^{h+l}+(-1)^{k+l}\right)^2 \left( f_{\text{Mg}}(s)\mathrm{e}^{-B_{\text{Mg}}s^2} + (-1)^{h+k+l}f_{\text{O}}(s)\mathrm{e}^{-B_{\text{O}}^2}   \right)^2\ ,
+\]
+where $s_{hkl}$ is abbreviated to $s$.  If we use Cu K$\alpha$ radiation, then the condition for a reciprocal lattice point to fall inside the Ewald sphere is:
+\[
+	h^2+k^2+l^2 < \left(\frac{2a}{\lambda}\right)^2 = 29.87\ ,
+\]
+so we need to apply the fcc extinction condition as well as the rule $h^2+k^2+l^2\le 29$ to determine the list of allowed reflections: $(111)$, $(200)$, $(220)$, $(311)$, $(222)$, $(400)$, $(331)$, $(420)$, $(422)$, $(511)$, and $(333)$.   The scattering factors require the following parameters $(a_i,b_i)$:
+\begin{center}
+\begin{tabular}{|l|c|cccccccc|}
+\hline
+Name&Z &$a_1$&$b_1$&$a_2$&$b_2$&$a_3$&$b_3$&$a_4$&$b_4$\\
+\hline\hline
+Mg &12&0.2268& 0.73670 &0.1803 &0.20175 &0.0839 &0.03013 &0.0289&0.00405\\
+O &08&0.0455& 0.23780 &0.0917 & 0.07622 &0.0472 &0.02144 &0.0138 &0.00296\\
+\hline
+%add lines for ions
+\hline
+\end{tabular}
+\end{center}
+
+Proceeding as in the previous example, but noting that there are two different atoms in the asymmetric unit, we can compute the modulus-squared of the structure factor, $I_{hkl}$, from the factors in Table~\ref{\chabbr:tb:CalcMgO1}.  Note that some structure factor values are negative because they correspond to the difference between atomic scattering factors.   THIS MUST BE REVISED !!!
+
+\begin{table}[h!]
+\centering\leavevmode
+{\small\begin{tabular}{|crrrrrr|}
+\hline
+$hkl$& $d_{hkl}$ & $s_{hkl}$ & $f_\text{Na}(s_{hkl})$DWF & $f_\text{O}(s_{hkl})$DWF & $F_{hkl}$ & $I_{hkl}$\\
+\hline\hline
+111 & 0.2432 & 2.0556 & 9.1964 & 10.2284 & -4.1283 & 17.0427 \\
+200 & 0.2106 & 2.3736 & 8.9265 & 5.3298 & 57.0251 & 3251.8674 \\
+220 & 0.1490 & 3.3568 & 8.3569 & 4.2788 & 50.5426 & 2554.5562 \\
+311 & 0.1270 & 3.9362 & 8.1314 & 12.0883 & -15.8274 & 250.5071 \\
+222 & 0.1216 & 4.1112 & 8.0688 & 3.8365 & 47.6213 & 2267.7859 \\
+400 & 0.1053 & 4.7472 & 7.8665 & 3.6887 & 46.2208 & 2136.3625 \\
+331 & 0.0967 & 5.1732 & 7.7741 & 12.3158 & -18.1668 & 330.0341 \\
+420 & 0.0942 & 5.3075 & 7.7560 & 3.6957 & 45.8067 & 2098.2542 \\
+422 & 0.0860 & 5.8141 & 7.7470 & 3.7836 & 46.1224 & 2127.2734 \\
+511 & 0.0811 & 6.1668 & 7.8014 & 12.1223 & -17.2835 & 298.7183 \\
+333 & 0.0811 & 6.1668 & 7.8014 & 12.1223 & -17.2835 & 298.7183 \\
+\hline
+\end{tabular}}
+\caption{\label{\chabbr:tb:CalcMgO1}Spreadsheet results for several parameters for MgO.}
+\end{table}
+
+Table~\ref{\chabbr:tb:CalcMgo2} applies the correction factors (Lorentz polarization factor and multiplicity) to the intensities of Table~\ref{\chabbr:tb:CalcMgo1}; the result is that the $(200)$ planes produce the strongest diffraction peak, followed by $(220)$, $(420)$, and $(422)$. Note that several peaks have a much lower intensity (e.g., $(111)$, $(311)$, $(331)$, $\ldots$); these are superlattice peaks caused by the ordering of Mg and O on the interpenetrating fcc lattices.  The last column in Table~\ref{\chabbr:tb:CalcMgo2} shows the result of a similar calculation, but using the ionic scattering parameters instead of the neutral atom parameters; this produces a better agreement with the experimental ranking. SEE MgO PAPER  !!! 
+
+\begin{table}[h!]
+\centering\leavevmode
+{\small\begin{tabular}{|crrrrrr|}
+\hline
+$hkl$ & $\theta_{hkl}\,(^{\circ})$ & $2\theta_{hkl} \,(^{\circ})$ & $L_p(\theta_{hkl})$ & $p_{hkl}$ & $I_{hkl}^{\text{corr}}$ & $\bar{I}_{hkl}$ \\
+\hline\hline
+111 & 18.4775 & 36.9551 & 19.9390 & 8 &  2718.5115 & 0.93 \\
+200 & 21.4668 & 42.9337 & 14.9719 & 6 & 292120.6875 & 100 \\
+220 & 31.1680 & 62.336 & 7.5576 & 12 & 231675.0625 & 79.31 \\
+311 & 37.3643 & 74.7285 & 5.5742 & 24 & 33512.7812 & 11.47 \\
+222 & 39.3359 & 78.6718 & 5.1429 & 8 & 93304.8516 & 31.94 \\
+400 & 47.0480 & 94.0960 & 4.0114 & 6 & 51419.3047 & 17.60 \\
+331 & 52.9012 & 105.8025 & 3.5542 & 24 & 28152.1523 & 9.64 \\
+420 & 54.9167 & 109.8334 & 3.4565 & 24 & 174061.4219 & 59.59 \\
+422 & 63.6916 & 127.3832 & 3.3594 & 24 & 171512,0000 & 58.71 \\
+511 & 71.9522 & 143.9044 & 3.9132 & 24 & 28054.6094 & 9.60 \\
+333 & 71.9522 & 143.9044 & 3.9132 & 8 & 9351.5361 & 3.20 \\
+\hline
+\end{tabular}}
+\caption{\label{\chabbr:tb:CalcMgO2}Application of correction factors to the diffracted intensities for MgO.}
+\end{table}
 
 
 

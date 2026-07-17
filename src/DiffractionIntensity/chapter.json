@@ -14,7 +14,9 @@
   "keywords": [],
   "chapter_type": "topical",
   "chabbr": "DIFINT",
-  "depends_on": [],
+  "depends_on": [
+    "TENSOR"
+  ],
   "related_to": [
     "SCATTR",
     "DIFGEO"
