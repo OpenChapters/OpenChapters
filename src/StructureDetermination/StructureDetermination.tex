@@ -118,7 +118,7 @@ where $\mathbf{u}=(u,v,w)$. In words, the Patterson function is the \indexit{aut
 
 We know that the charge density $\rho(\mathbf{r})$ has the space group symmetry of the crystal lattice.  From a symmetry point of view, the effect of the autocorrelation operation is to add inversion symmetry to the existing space group symmetry.  This reduces the $230$ crystallographic space groups to a set of only $24$ unique centrosymmetric space groups, listed in Table~\ref{\chabbr:tb:centroSG}; this reduction is similar to that of the $32$ point groups, which reduce to the $11$ Laue groups when inversion symmetry is added.  The net effect of adding inversion symmetry is that all translational components of symmetry operations vanish; this means that we can \textit{go from a space group to a \indexit{Patterson group} by replacing all glide planes by regular mirrors, all screw axes by regular rotation axes, and adding the inversion operator.}  
 
-% insert table here   CHECK THIS LIST !!!
+% verified against ITC vol. A, page 16
 
 \begin{table}[h!]
 \centering\leavevmode
@@ -127,8 +127,8 @@ We know that the charge density $\rho(\mathbf{r})$ has the space group symmetry 
 $\#$ & Space Group & $\#$ & Space Group & $\#$ & Space Group & $\#$ & Space Group \\
 \hline\hline
 2 & \spgr{2}     & 71 & \spgr{71}     & 148 & \spgr{148} & 200 & \spgr{200} \\
-10 & \spgr{10} & 83 & \spgr{83}     & 156 & \spgr{156} & 202 & \spgr{202} \\
-12 & \spgr{12} & 87 & \spgr{87}     & 162 & \spgr{162} & 204 & \spgr{204} \\
+10 & \spgr{10} & 83 & \spgr{83}     & 156 & \spgr{162} & 202 & \spgr{202} \\
+12 & \spgr{12} & 87 & \spgr{87}     & 162 & \spgr{164} & 204 & \spgr{204} \\
 47 & \spgr{47} & 123 & \spgr{123} & 166 & \spgr{166} & 221 & \spgr{221} \\
 65 & \spgr{65} & 139 & \spgr{139} & 175 & \spgr{175} & 225 & \spgr{225} \\
 69 & \spgr{69} & 147 & \spgr{147} & 191 & \spgr{191} & 229 & \spgr{229} \\
@@ -151,11 +151,21 @@ The integral of $f(x;0,\sigma_1,Z_1)$ over the real axis equals the weight of th
 \]  
 This is also a normal distribution function centered on the origin, but with standard deviation $\sigma_1\sqrt{2}$ and weight $Z_1^2$.  If we make an array of such functions with lattice parameter $a$, then the autocorrelation function of the array consists of peaks with shape $P(u)$ and the same spacing $a$.
 
-When we add an atom with a different atomic number, $Z_2=4$, to the unit cell at $\mu_2=4$ with $\sigma_2=1/3$ (Fig.~\ref{\chabbr:fig:Pat1D}(c)), then the corresponding Patterson function (Fig.~\ref{\chabbr:fig:Pat1D}(d)) will show an additional maximum due to the presence of inversion symmetry (which is not present in the unit cell itself). The result is that there are now $3$ peaks in the Patterson unit cell. This is readily shown using an explicit computation; if we consider the input function to be given by:
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath Pat1D.pdf}
+\caption{(a) Plot of a normal distribution mean $\mu=0$, standard deviation $\sigma=1/3$, and weight $Z=13$; (b) autocorrelation $P(u)$ of the profile in (a).  In (c), a second normal distribution is added, which leads to an extra peak at $u=-4$ in (d).}
+\label{\chabbr:fig:Pat1D}
+\end{figure}
+
+
+
+
+When we add an atom with a different atomic number, $Z_2=4$, to the unit cell at $\mu_2=4$ with $\sigma_2=1/4$ (Fig.~\ref{\chabbr:fig:Pat1D}(c)), then the corresponding Patterson function (Fig.~\ref{\chabbr:fig:Pat1D}(d)) will show an additional maximum due to the presence of inversion symmetry (which is not present in the unit cell itself). The result is that there are now $3$ peaks in the Patterson unit cell. This is readily shown using an explicit computation; if we consider the input function to be given by:
 \[
-	g(x) = f(x;0,1/3,13) + f(x;4,1/3,4)\ ,
+	g(x) = f(x;0,1/3,13) + f(x;4,1/4,4)\ ,
 \]
-then the autocorrelation can be shown to be:
+then the autocorrelation is readily shown to be:
 \begin{equation*}
 \begin{split}
 	P(u) &= g(x)\otimes g(-x)\ ;\\
@@ -165,19 +175,23 @@ then the autocorrelation can be shown to be:
 \end{equation*}
 The Patterson function therefore has three peaks: the sum of two peaks located at the origin, and two additional peaks with identical shape on either side of the main peak at $u=\pm \mu_2$. This pair of peaks guarantees that the function is centrosymmetric. The central peak has an integrated intensity of $Z_1^2+Z_2^2$ whereas each of the side peaks has intensity $Z_1 Z_2$.  This indicates that the Patterson function in general will be dominated by peaks corresponding to the highest atomic number atoms in the unit cell.  It is not too difficult to show that, if the unit cell contains $N$ atoms, then the Patterson function will have $N^2-N+1$ peaks (note that accidental overlap of peaks could reduce this number a little); this remains true for a full 3D Patterson function.
 
-% insert figure here
-
-One of the important things to note about Fig.~\ref{\chabbr:fig:Pat1D} is that the Patterson function maintains the interatomic distances from the original unit cell. Each pair of peaks indicates an interatomic vector present in the structure.  This is more clearly shown using the 2D example in Fig.~\ref{\chabbr:fig:Pat2D}.   
+One of the important things to note about Fig.~\ref{\chabbr:fig:Pat1D} is that the Patterson function maintains the interatomic distances from the original unit cell. Each pair of peaks indicates an interatomic vector present in the structure; in particular, the smaller peaks in Fig.~\ref{\chabbr:fig:Pat1D}(d) are each at a distance of $4$ units from the central peak, which is the same as the distance between the original peaks in Fig.~\ref{\chabbr:fig:Pat1D}(c).  This is more clearly illustrated using the 2D example in Fig.~\ref{\chabbr:fig:Pat2D}.   
 
 
 % then paragraph with 2D example based on slide 38, lecture 17.
 
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath Pat2D.pdf}
+\caption{(a) $2\times 2$ unit cells with three Gaussian peaks in each cell; (b) autocorrelation of (a). Colored vectors indicate a few interatomic vectors.}
+\label{\chabbr:fig:Pat2D}
+\end{figure}
 
-
+Fig.~\ref{\chabbr:fig:Pat2D}(a) shows $2\times 2$ unit cells with three randomly placed Gaussian in each cell. In (b), the autocorrelation of (a) is shown; the colored vectors indicate interatomic vectors in (a) that correspond to maxima in the Patterson function in (b). Every interatomic vector in (a) has an equivalent position in (b); note the intensity differences of the peaks in the Patterson function.
 
 
 \subsection{Harker lines and planes}\label{\chabbr:ssec:Harker}
-Crystal symmetry has a systematic effect on the relative locations of peaks in the Patterson function; this was first noticed by D.\ Harker in 1935 \{citation\}.  Consider the monoclinic space group \spgr{6}, which has a single mirror plane normal to the $\mathbf{b}$ axis. This means that for every atom at position $(x,y,z)$, there is an equivalent atom at position $(x,-y,z)$. Since the Patterson function has peaks corresponding to relative positions of atoms in the unit cell, this means that there will be a peak at:
+Crystal symmetry has a systematic effect on the relative locations of peaks in the Patterson function; this was first noticed by D.\ Harker in 1936 \cite{harker1936a}.  Consider the monoclinic space group \spgr{6}, which has a single mirror plane normal to the $\mathbf{b}$ axis. This means that for every atom at position $(x,y,z)$, there is an equivalent atom at position $(x,-y,z)$. Since the Patterson function has peaks corresponding to relative positions of atoms in the unit cell, this means that there will be a peak at:
 \[
 	(u,v,w) = (x,y,z)-(x,-y,z)=(0,2y,0)\ .
 \]
@@ -233,7 +247,7 @@ This illustrates the importance of the Harker positions; from a single Harker pl
 \]
 All that remains is to substitute the three coordinates into form $(2)$ to verify that this peak exists:
 \[
-	\langle 2x,2y,2z\rangle=\langle0.5,0.54,0.94\rangle \rightarrow \text{ not present in the table }\ldots\ .
+	\langle 2x,2y,2z\rangle=\langle0.5,0.54,0.94\rangle \rightarrow \text{ not present in the table }\ldots
 \]
 The only piece of information we have not yet used is the symmetry of the Patterson cell, which is given by the Patterson group derived from the space group by introducing  inversion symmetry. From Table~\ref{\chabbr:tb:centroSG} we see that the Patterson group is given by xxx, which leads to the following equivalent positions:
 \[
@@ -261,6 +275,7 @@ The coordinates determined above for the Zn atoms are not the final coordinates.
 \subsection{The charge flipping algorithm}\label{\chabbr:ssec:chargeflip}
 When we determine the moduli of the structure factors, $\vert F_{hkl}\vert$, for a range of reciprocal lattice points we effectively obtain numbers in reciprocal or Fourier space. On the other hand, the charge density, $\rho(\mathbf{r})$, is a quantity in direct space, and, furthermore, the charge density is positive everywhere.  This leads to an algorithm for the reconstruction of the charge density based on the structure factor moduli, i.e., the measurements, and a physical positivity constraint.  The algorithm iterates by going back and forth between direct and reciprocal space by means of Fourier transforms, and is known as the \indexit{charge flipping algorithm}.
 
+\subsubsection{Algorithm description}
 To perform an iteration, we must have an initial guess for the charge density. We start from the definition in equation~(\ref{\chabbr:eq:invDFT}):
 \[
 	\rho(\mathbf{r})=\frac{1}{V}\sum_{hkl}\vert F_{hkl}\vert\mathrm{e}^{-2\pi\mathrm{i}(kx+ky+lz-\phi_{hkl})}\ .
@@ -298,6 +313,14 @@ Every iteration needs a stopping criterion; in each cycle, we evaluate the follo
 The evaluation is performed in the lower right corner of the flow diagram, before the substitution of the $\vert F_{hkl}\vert$ parameters is carried out.  If the set of voxels in the unit cell has more voxels than there are experimental $\vert F_{hkl}\vert$ values, then one can stabilize the algorithm by explicitly setting all $\vert G^{(k)}_{hkl}\vert$ equal to zero in each cycle for those $(hkl)$ that fall outside of $\mathcal{B}$.  The value of $\vert G_{000}\vert$ is updated in each cycle and represents the total charge density.  The iteration is halted when $R^{(k)}$ becomes smaller than some preset value.  Note that this algorithm only has one adjustable parameter $\delta$; changing this parameter affects how many iterations will be needed to achieve convergence.
 
 % insert 2D example
+\subsubsection{2D example}
+In this section, we provide a basic numerical example of the algorithm output for a hypothetical 2D crystal structure with three different atomic species in the square unit cell with lattice parameter $a=0.64$ nm: Cu at $(0,0)$ and $(1/2,1/2)$; Al at $(1/2,0)$ and $(0,1/2)$; and Ti at $(0.15,0.20)$, $(0.35,0.80)$, $(0.85,0.70)$, and $(0.65,0.30)$.  This is a primitive structure, so there are no systematic absences. We set $\mathcal{B}$ to contain all reciprocal lattice points with $\sqrt{h^2+k^2}\le 16$, resulting in $797$ contributing reflections.  The structure factor moduli $\vert F_{hkl}\vert$ as well as the phase factors $\phi_{hkl}$ were computed using the standard atomic scattering factors.  An initial guess of the charge density is then given by:
+\[
+	\rho^{(1)}(\mathbf{r})=\frac{1}{A}\sum_{hk\in\mathcal{B}}\vert F_{hk}\vert\mathrm{e}^{-2\pi\mathrm{i}(hx+ky)}\ .
+\]
+Fig.~\ref{\chabbr:fig:flipex1} shows the schematic crystal structure in (a), the correct charge density on a $66\times 66$ pixel grid in (b), and the initial guess of the charge density, $\rho^{(1)}(\mathbf{r})$, with all phases set to zero in (c). Note that both (b) and (c) show $2\times 2$ unit cells.  The parameter $\delta$ is set to $10\%$ of the maximum of the $\vert G_{hk}\vert$ values, referring to the flow diagram in Fig.~\ref{\chabbr:fig:chargeflip}. The residual $R^{(k)}$ is computed at each step and the iteration is halted when $R^{(k)} < xxx$.  Fig.~\ref{\chabbr:fig:flipex2}(a) shows the residual $R^{(k)}$ as a function of iteration number $k$; convergence is obtained after XXX steps, and the resulting charge density is shown in Fig.~\ref{\chabbr:fig:flipex2}(b).  The phases $\phi_{hkl}$ are determined modulo a constant additive factor, which means that the origin of the reconstructed charge density does not necessarily coincide with that of the original structure.  
+
+% perform two runs, one with initial phases set to 0, the other with randomized phases
 
 
 \subsection{Structure determination on demand}\label{\chabbr:ssec:ondemand}
