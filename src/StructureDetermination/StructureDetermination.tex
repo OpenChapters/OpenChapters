@@ -78,8 +78,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Structure Determination based on a Powder Pattern}\label{\chabbr:sec:SDpowder}
 
 
+
+
+
+
+\section{Single Crystal Diffractometers}\label{\chabbr:sec:SCDiff}
+
+
+\section{Elements of Rietveld Refinement}\label{\chabbr:sec:Rietveld}
 
 
 \section{The Patterson Function}\label{\chabbr:sec:Patterson}
@@ -249,7 +258,7 @@ All that remains is to substitute the three coordinates into form $(2)$ to verif
 \[
 	\langle 2x,2y,2z\rangle=\langle0.5,0.54,0.94\rangle \rightarrow \text{ not present in the table }\ldots
 \]
-The only piece of information we have not yet used is the symmetry of the Patterson cell, which is given by the Patterson group derived from the space group by introducing  inversion symmetry. From Table~\ref{\chabbr:tb:centroSG} we see that the Patterson group is given by xxx, which leads to the following equivalent positions:
+The only piece of information we have not yet used is the symmetry of the Patterson cell, which is given by the Patterson group derived from the space group by introducing  inversion symmetry. From Table~\ref{\chabbr:tb:centroSG} we see that the Patterson group is given by \spgr{10} , which leads to the following equivalent positions:
 \[
   (x,y,z), (-x,y,-z), (-x,-y,-z), (x,-y,z)\ ;
 \]
@@ -312,15 +321,29 @@ Every iteration needs a stopping criterion; in each cycle, we evaluate the follo
 \end{equation}
 The evaluation is performed in the lower right corner of the flow diagram, before the substitution of the $\vert F_{hkl}\vert$ parameters is carried out.  If the set of voxels in the unit cell has more voxels than there are experimental $\vert F_{hkl}\vert$ values, then one can stabilize the algorithm by explicitly setting all $\vert G^{(k)}_{hkl}\vert$ equal to zero in each cycle for those $(hkl)$ that fall outside of $\mathcal{B}$.  The value of $\vert G_{000}\vert$ is updated in each cycle and represents the total charge density.  The iteration is halted when $R^{(k)}$ becomes smaller than some preset value.  Note that this algorithm only has one adjustable parameter $\delta$; changing this parameter affects how many iterations will be needed to achieve convergence.
 
-% insert 2D example
-\subsubsection{2D example}
-In this section, we provide a basic numerical example of the algorithm output for a hypothetical 2D crystal structure with three different atomic species in the square unit cell with lattice parameter $a=0.64$ nm: Cu at $(0,0)$ and $(1/2,1/2)$; Al at $(1/2,0)$ and $(0,1/2)$; and Ti at $(0.15,0.20)$, $(0.35,0.80)$, $(0.85,0.70)$, and $(0.65,0.30)$.  This is a primitive structure, so there are no systematic absences. We set $\mathcal{B}$ to contain all reciprocal lattice points with $\sqrt{h^2+k^2}\le 16$, resulting in $797$ contributing reflections.  The structure factor moduli $\vert F_{hkl}\vert$ as well as the phase factors $\phi_{hkl}$ were computed using the standard atomic scattering factors.  An initial guess of the charge density is then given by:
-\[
-	\rho^{(1)}(\mathbf{r})=\frac{1}{A}\sum_{hk\in\mathcal{B}}\vert F_{hk}\vert\mathrm{e}^{-2\pi\mathrm{i}(hx+ky)}\ .
-\]
-Fig.~\ref{\chabbr:fig:flipex1} shows the schematic crystal structure in (a), the correct charge density on a $66\times 66$ pixel grid in (b), and the initial guess of the charge density, $\rho^{(1)}(\mathbf{r})$, with all phases set to zero in (c). Note that both (b) and (c) show $2\times 2$ unit cells.  The parameter $\delta$ is set to $10\%$ of the maximum of the $\vert G_{hk}\vert$ values, referring to the flow diagram in Fig.~\ref{\chabbr:fig:chargeflip}. The residual $R^{(k)}$ is computed at each step and the iteration is halted when $R^{(k)} < xxx$.  Fig.~\ref{\chabbr:fig:flipex2}(a) shows the residual $R^{(k)}$ as a function of iteration number $k$; convergence is obtained after XXX steps, and the resulting charge density is shown in Fig.~\ref{\chabbr:fig:flipex2}(b).  The phases $\phi_{hkl}$ are determined modulo a constant additive factor, which means that the origin of the reconstructed charge density does not necessarily coincide with that of the original structure.  
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath flipex1.pdf}
+\caption{(a) hypothetical 2D square unit cell;  (b) theoretical charge density of (a); initial charge  density for the charge-flipping algorithm.}
+\label{\chabbr:fig:flipex1}
+\end{figure}
 
-% perform two runs, one with initial phases set to 0, the other with randomized phases
+
+\subsubsection{2D example}
+In this section, we provide a basic numerical example of the algorithm output for a hypothetical 2D crystal structure with three different atomic species in the square unit cell with lattice parameter $a=0.64$ nm: Cu at $(0,0)$ and $(1/2,1/2)$; Al at $(1/2,0)$ and $(0,1/2)$; and Ti at $(0.15,0.20)$, $(0.35,0.80)$, $(0.85,0.70)$, and $(0.65,0.30)$.  This is a primitive structure, so there are no systematic absences. We set $\mathcal{B}$ to contain all reciprocal lattice points with $\sqrt{h^2+k^2}\le 32$, resulting in $3,145$ contributing reflections.  The structure factor moduli $\vert F_{hk}\vert$ as well as the phase factors $\phi_{hk}$ were computed using the standard atomic scattering factors and the elemental Debye-Waller factors.  An initial guess of the charge density is then given by:
+\[
+	\rho^{(1)}(\mathbf{r})=\frac{1}{A}\sum_{hk\in\mathcal{B}}\vert F_{hk}\vert\mathrm{e}^{-2\pi\mathrm{i}(hx+ky+\phi_{hk}^r)}\ .
+\]
+Fig.~\ref{\chabbr:fig:flipex1} shows the schematic crystal structure in (a), the correct charge density on a $66\times 66$ pixel grid in (b), and the initial guess of the charge density, $\rho^{(1)}(\mathbf{r})$, with all phases $\phi_{hk}^r$ set to random numbers in the interval $[0,2\pi]$ in (c). Note that both (b) and (c) show $2\times 2$ unit cells.  The parameter $\delta$ is updated in each iteration step to equal $3\%$ of the standard deviation of the reconstructed charge density. The residual $R^{(k)}$ is computed at each step and the iteration is halted when $R^{(k)}$ no longer decreases, averaged over several iteration steps.  Fig.~\ref{\chabbr:fig:flipex2}(a) shows the residual $R^{(k)}$ as a function of iteration number $k$; convergence is obtained after $56$ steps, and the resulting charge density is shown in Fig.~\ref{\chabbr:fig:flipex2}(b). The number of iteration steps is different each run due to the choice of a seed for the random number generator used to create the initial phases. The final phases $\phi_{hk}$ are determined modulo a constant additive factor, which means that the origin of the reconstructed charge density does not necessarily coincide with that of the original structure; furthermore, the algorithm often produces the mirror image of the charge density. Both of these artifacts can be easily corrected.  The charge flipping algorithm can be applied to 3D diffraction data as well as higher dimensional data, e.g., for incommensurate structures and quasi-crystals.  
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath flipex2.pdf}
+\caption{(a) plot of the residual $R^{(k)}$ as a function of the iteration number $k$; (b) final charge  density with the original unit cell overlaid. Note that the cell is shifted from the original location.}
+\label{\chabbr:fig:flipex2}
+\end{figure}
+
+
 
 
 \subsection{Structure determination on demand}\label{\chabbr:ssec:ondemand}

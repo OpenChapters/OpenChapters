@@ -694,7 +694,7 @@ $hkl$& $d_{hkl}$ & $s_{hkl}$ & $f_\text{W}(s_{hkl})$ & DWF & $f(s)$DWF & $F_{hkl
 \caption{\label{\chabbr:tb:CalcW1}Spreadsheet results for several parameters for bcc-W.}
 \end{table}
 
-The correction factors can also be computed readily; the multiplicities can be extracted from Table~\ref{\chabbr:tb:multiplicities}. The Lorentz polarization factor only requires knowledge of the Bragg angle $\theta$. For the Bragg-Brentano configuration, absorption is constant, so we can omit it from consideration. Table~\ref{\chabbr:tb:CalcW2} lists the Bragg and scattering angles, the Lorentz polarization factor and the multiplicity.   The intensity from Table~\ref{\chabbr:tb:CalcW1} is then multiplied by the correction factors to obtain $I_{hkl}^{\text{corr}}$; dividing all intensities by the maximum intensity and multiplying by $100$ then results in the normalized intensities $\bar{I}_{hkl}$.
+The correction factors can also be computed readily; the multiplicities can be extracted from Table~\ref{\chabbr:tb:multiplicities}. The Lorentz polarization factor only requires knowledge of the Bragg angle $\theta$. For the Bragg-Brentano configuration, absorption is constant, so we can omit it from consideration. Table~\ref{\chabbr:tb:CalcW2} lists the Bragg and scattering angles, the Lorentz polarization factor and the multiplicity.   The intensity from Table~\ref{\chabbr:tb:CalcW1} is then multiplied by the correction factors to obtain $I_{hkl}^{\text{corr}}$; dividing all intensities by the maximum intensity and multiplying by $100$ then results in the normalized intensities $\bar{I}_{hkl}$.  The simulated W diffraction pattern pattern is shown in Fig.~\ref{\chabbr:fig:XRDpatterns}(a); each peak is represented as a Gaussian with integrated intensity $\bar{I}_{hkl}$ and standard deviation of $0.4^{\circ}$.  
 
 \begin{table}[h!]
 \centering\leavevmode
@@ -716,16 +716,24 @@ $hkl$ & $\theta_{hkl}\,(^{\circ})$ & $2\theta_{hkl} \,(^{\circ})$ & $L_p(\theta_
 \end{table}
 
 
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.8\textwidth]{\graphicspath XRDpatterns.pdf}
+\caption{Simulated XRD patterns for Cu K$\alpha$ radiation for (a) bcc-W and (b) fcc MgO.}
+\label{\chabbr:fig:XRDpatterns}
+\end{figure}
+
+
 \subsubsection{Face-centered cubic magnesium oxide}
 This structure consists of two interpenetrating face-centered cubic lattices, one containing Mg, the other O. The lattice parameter is $a=0.4213$ nm, and the Debye-Waller factors for elemental Na and Cl are given by \cite{lawrence1973a}: $B_{\text{Mg}}=0.0030$ nm$^2$ and  $B_{\text{O}}=0.0034$ nm$^2$. The intensity of a diffracted peak is given by (placing Mg in the origin):
 \[
-	I_{hkl} = \left(1+(-1)^{h+k}+(-1)^{h+l}+(-1)^{k+l}\right)^2 \left( f_{\text{Mg}}(s)\mathrm{e}^{-B_{\text{Mg}}s^2} + (-1)^{h+k+l}f_{\text{O}}(s)\mathrm{e}^{-B_{\text{O}}^2}   \right)^2\ ,
+	I_{hkl} = \left(1+(-1)^{h+k}+(-1)^{h+l}+(-1)^{k+l}\right)^2 \left( f_{\text{Mg}}(s)\mathrm{e}^{-B_{\text{Mg}}s^2} + (-1)^{h+k+l}f_{\text{O}}(s)\mathrm{e}^{-B_{\text{O}}^2s^2}   \right)^2\ ,
 \]
 where $s_{hkl}$ is abbreviated to $s$.  If we use Cu K$\alpha$ radiation, then the condition for a reciprocal lattice point to fall inside the Ewald sphere is:
 \[
 	h^2+k^2+l^2 < \left(\frac{2a}{\lambda}\right)^2 = 29.87\ ,
 \]
-so we need to apply the fcc extinction condition as well as the rule $h^2+k^2+l^2\le 29$ to determine the list of allowed reflections: $(111)$, $(200)$, $(220)$, $(311)$, $(222)$, $(400)$, $(331)$, $(420)$, $(422)$, $(511)$, and $(333)$.   The scattering factors require the following parameters $(a_i,b_i)$:
+so we need to apply the fcc extinction condition as well as the rule $h^2+k^2+l^2\le 29$ to determine the following list of allowed reflections: $(111)$, $(200)$, $(220)$, $(311)$, $(222)$, $(400)$, $(331)$, $(420)$, $(422)$, $(511)$, and $(333)$.   The scattering factors require the following parameters $(a_i,b_i)$:
 \begin{center}
 \begin{tabular}{|l|c|cccccccc|}
 \hline
@@ -734,36 +742,34 @@ Name&Z &$a_1$&$b_1$&$a_2$&$b_2$&$a_3$&$b_3$&$a_4$&$b_4$\\
 Mg &12&0.2268& 0.73670 &0.1803 &0.20175 &0.0839 &0.03013 &0.0289&0.00405\\
 O &08&0.0455& 0.23780 &0.0917 & 0.07622 &0.0472 &0.02144 &0.0138 &0.00296\\
 \hline
-%add lines for ions
-\hline
 \end{tabular}
 \end{center}
 
-Proceeding as in the previous example, but noting that there are two different atoms in the asymmetric unit, we can compute the modulus-squared of the structure factor, $I_{hkl}$, from the factors in Table~\ref{\chabbr:tb:CalcMgO1}.  Note that some structure factor values are negative because they correspond to the difference between atomic scattering factors.   THIS MUST BE REVISED !!!
+Proceeding as in the previous example, but noting that there are two different atoms in the asymmetric unit, we can compute the modulus-squared of the structure factor, $I_{hkl}$, from the factors in Table~\ref{\chabbr:tb:CalcMgO1}.
 
 \begin{table}[h!]
 \centering\leavevmode
-{\small\begin{tabular}{|crrrrrr|}
+{\small\begin{tabular}{|crrccrr|}
 \hline
 $hkl$& $d_{hkl}$ & $s_{hkl}$ & $f_\text{Na}(s_{hkl})$DWF & $f_\text{O}(s_{hkl})$DWF & $F_{hkl}$ & $I_{hkl}$\\
 \hline\hline
-111 & 0.2432 & 2.0556 & 9.1964 & 10.2284 & -4.1283 & 17.0427 \\
-200 & 0.2106 & 2.3736 & 8.9265 & 5.3298 & 57.0251 & 3251.8674 \\
-220 & 0.1490 & 3.3568 & 8.3569 & 4.2788 & 50.5426 & 2554.5562 \\
-311 & 0.1270 & 3.9362 & 8.1314 & 12.0883 & -15.8274 & 250.5071 \\
-222 & 0.1216 & 4.1112 & 8.0688 & 3.8365 & 47.6213 & 2267.7859 \\
-400 & 0.1053 & 4.7472 & 7.8665 & 3.6887 & 46.2208 & 2136.3625 \\
-331 & 0.0967 & 5.1732 & 7.7741 & 12.3158 & -18.1668 & 330.0341 \\
-420 & 0.0942 & 5.3075 & 7.7560 & 3.6957 & 45.8067 & 2098.2542 \\
-422 & 0.0860 & 5.8141 & 7.7470 & 3.7836 & 46.1224 & 2127.2734 \\
-511 & 0.0811 & 6.1668 & 7.8014 & 12.1223 & -17.2835 & 298.7183 \\
-333 & 0.0811 & 6.1668 & 7.8014 & 12.1223 & -17.2835 & 298.7183 \\
+111 & 0.2432 & 2.0556 & 8.5499 & 5.4521 & 12.3915 & 153.5488 \\
+200 & 0.2106 & 2.3736 & 8.0845 & 4.9153 & 51.9991 & 2703.9033 \\
+220 & 0.1490 & 3.3568 & 6.7774 & 3.5132 & 41.1626 & 1694.3557 \\
+311 & 0.1270 & 3.9362 & 6.0377 & 2.9015 & 12.5450 & 157.3760 \\
+222 & 0.1216 & 4.1112 & 5.8105 & 2.7471 & 34.2302 & 1171.7098 \\
+400 & 0.1053 & 4.7472 & 4.9814 & 2.2908 & 29.0888 & 846.1566 \\
+331 & 0.0967 & 5.1732 & 4.4487 & 2.0623 & 9.5459 & 91.1237 \\
+420 & 0.0942 & 5.3075 & 4.2888 & 2.0003 & 25.1566 & 632.8567 \\
+422 & 0.0860 & 5.8141 & 3.7346 & 1.8007 & 22.1412 & 490.2321 \\
+511 & 0.0811 & 6.1668 & 3.4003 & 1.6857 & 6.8583 & 47.0363 \\
+333 & 0.0811 & 6.1668 & 3.4003 & 1.6857 & 6.8583 & 47.0363 \\
 \hline
 \end{tabular}}
 \caption{\label{\chabbr:tb:CalcMgO1}Spreadsheet results for several parameters for MgO.}
 \end{table}
 
-Table~\ref{\chabbr:tb:CalcMgo2} applies the correction factors (Lorentz polarization factor and multiplicity) to the intensities of Table~\ref{\chabbr:tb:CalcMgo1}; the result is that the $(200)$ planes produce the strongest diffraction peak, followed by $(220)$, $(420)$, and $(422)$. Note that several peaks have a much lower intensity (e.g., $(111)$, $(311)$, $(331)$, $\ldots$); these are superlattice peaks caused by the ordering of Mg and O on the interpenetrating fcc lattices.  The last column in Table~\ref{\chabbr:tb:CalcMgo2} shows the result of a similar calculation, but using the ionic scattering parameters instead of the neutral atom parameters; this produces a better agreement with the experimental ranking. SEE MgO PAPER  !!! 
+Table~\ref{\chabbr:tb:CalcMgO2} applies the correction factors (Lorentz polarization factor and multiplicity) to the intensities of Table~\ref{\chabbr:tb:CalcMgO1}; the result is that the $(200)$ planes produce the strongest diffraction peak, followed by $(220)$, $(420)$, and $(422)$. Note that several peaks have a much lower intensity (e.g., $(111)$, $(311)$, $(331)$, $\ldots$); these are superlattice peaks caused by the ordering of Mg and O on the interpenetrating fcc lattices.  The simulated XRD pattern for MgO is shown in Fig.~\ref{\chabbr:fig:XRDpatterns}(b).
 
 \begin{table}[h!]
 \centering\leavevmode
@@ -771,23 +777,246 @@ Table~\ref{\chabbr:tb:CalcMgo2} applies the correction factors (Lorentz polariza
 \hline
 $hkl$ & $\theta_{hkl}\,(^{\circ})$ & $2\theta_{hkl} \,(^{\circ})$ & $L_p(\theta_{hkl})$ & $p_{hkl}$ & $I_{hkl}^{\text{corr}}$ & $\bar{I}_{hkl}$ \\
 \hline\hline
-111 & 18.4775 & 36.9551 & 19.9390 & 8 &  2718.5115 & 0.93 \\
-200 & 21.4668 & 42.9337 & 14.9719 & 6 & 292120.6875 & 100 \\
-220 & 31.1680 & 62.336 & 7.5576 & 12 & 231675.0625 & 79.31 \\
-311 & 37.3643 & 74.7285 & 5.5742 & 24 & 33512.7812 & 11.47 \\
-222 & 39.3359 & 78.6718 & 5.1429 & 8 & 93304.8516 & 31.94 \\
-400 & 47.0480 & 94.0960 & 4.0114 & 6 & 51419.3047 & 17.60 \\
-331 & 52.9012 & 105.8025 & 3.5542 & 24 & 28152.1523 & 9.64 \\
-420 & 54.9167 & 109.8334 & 3.4565 & 24 & 174061.4219 & 59.59 \\
-422 & 63.6916 & 127.3832 & 3.3594 & 24 & 171512,0000 & 58.71 \\
-511 & 71.9522 & 143.9044 & 3.9132 & 24 & 28054.6094 & 9.60 \\
-333 & 71.9522 & 143.9044 & 3.9132 & 8 & 9351.5361 & 3.20 \\
+111 & 18.4775 & 36.9551 & 17.1996 & 8 & 21127.7812 & 10.57 \\
+200 & 21.4668 & 42.9337 & 12.3240 & 6 & 199936.9062 & 100.00 \\
+220 & 31.1680 & 62.3360 & 5.3037 & 12 & 107835.4609 & 53.93 \\
+311 & 37.3643 & 74.7285 & 3.6532 & 24 & 13798.1211 & 6.90 \\
+222 & 39.3359 & 78.6718 & 3.3421 & 8 & 31327.7305 & 15.67 \\
+400 & 47.0480 & 94.0960 & 2.7535 & 6 & 13979.3271 & 6.99 \\
+331 & 52.9012 & 105.8025 & 2.7993 & 24 & 6121.9463 & 3.06 \\
+420 & 54.9167 & 109.8334 & 2.8972 & 24 & 44004.9023 & 22.01 \\
+422 & 63.6916 & 127.3832 & 3.8429 & 24 & 45213.6680 & 22.61 \\
+511 & 71.9522 & 143.9044 & 5.9017 & 24 & 6662.3037 & 3.33 \\
+333 & 71.9522 & 143.9044 & 5.9017 & 8 & 2220.7681 & 1.11 \\
 \hline
 \end{tabular}}
 \caption{\label{\chabbr:tb:CalcMgO2}Application of correction factors to the diffracted intensities for MgO.}
 \end{table}
 
 
+%\subsubsection{Hexagonal Ni$_3$Sn}
+%As a final example, we compute the XRD pattern intensities for the hexagonal Ni$_3$Sn intermetallic compound.  This structure has space group symmetry \spgr{194} with Ni in the $2c(1/3,2/3,1/4)$ positions and Sn in $6h(x,2x,1/4)$ with $x=5/6$. The full set of atom coordinates is then given by:
+%\begin{equation*}
+%\begin{split}
+%	Ni: & (1/3,2/3,1/4), (2/3,1/3,3/4)\ ;\\
+%	Sn: & (x,2x,1/4), (-2x,-x,1/4), (x,-x,1/4), (-x,-2x,3/4),(2x,x,3/4),(-x,x,3/4)\ .
+%\end{split}
+%\end{equation*}
+%For the structure factor we obtain, after some symbolic manipulation:
+%{\small\begin{equation}
+%\begin{split}
+%	F_{hkl} &= 2 f_{\text{Ni}}(s)\cos \left(\frac{\pi }{6}  (4 h-4 k+3 l)\right) + \\
+%	& 2f_{\text{Sn}}(s)\left(\cos \left(\frac{ \pi}{6}  (20 h+10 k-3 l)\right)+\cos \left(\frac{\pi }{6}  (10h-10 k+3 l)\right)+\cos \left(\frac{ \pi }{6} (10 h+20 k+3 l)\right)\right)\ .
+%\end{split}
+%\end{equation}}
+%The lattice parameters are $a=0.5725$ nm and $c=0.4234$ nm, so that the interplanar spacing is given by:
+%\[
+%	d_{hkl} = \left(\frac{4}{3a^2})h^2+k^2+hk)+\frac{l^2}{c^2}\right)^{-\frac{1}{2}}\ .
+%\]
+%
+
+
+\section{Neutron Intensity Computations}\label{\chabbr:sec:ncomputations}
+The kinematical intensity computation for neutron powder diffraction is very nearly identical to that for x-ray powder diffraction; the only difference is the absence of the polarization correction due to the Thomson equation, so that the Lorentz polarization factor is simplified to:
+\begin{equation}
+	L^{(n)}_p(\theta) =  \frac{1}{\sin^2\theta\cos\theta}\ .\label{\chabbr:eq:neutronLPF}
+\end{equation}
+The resulting intensity expression is identical:
+\begin{equation}
+	I_{hkl} = \vert F_{hkl}\vert^2\, p_{hkl}\, L^{(n)}_p(\theta)\, A(\theta)\ ;\label{\chabbr:eq:neutronIhkl}
+\end{equation}
+the structure factor should be computed using the angle-independent neutron scattering lengths, $b_j$, instead of the atomic scattering factors, $f_j(s)$, as shown in equation~(\ref{\chabbr:eq:StructureFactorNeutron}). In the following sections we cover one example of the use of neutron scattering to determine light element positions as well as an introduction to the kinematical scattering of neutrons by magnetic materials.
+
+\subsection{Kinematical diffraction of unpolarized neutrons}\label{\chabbr:sec:nunpolarized}
+While atomic scattering factors increase with atomic number, the neutron scattering lengths display no systematic dependence on atomic number; in fact, the scattering lengths for isotopes of a particular element can have opposite signs, as is the case for hydrogen, $b_{\text{H}}=-3.74$ fm, and deuterium $b_{\text{D}}=6.67$ fm.  If we wish to determine the locations of hydrogen atoms in a compound like TiH$_2$, then an order of magnitude approximation for the total hydrogen signal for x-ray diffraction compared to that of titanium would be $\eta=(2Z_{\text{H}}/Z_{\text{Ti}})^2=(2/22)^2 = 0.008$. This indicates that the contribution of hydrogen to the total diffracted intensity is very small, and difficult to detect. With a neutron scattering length of $b_{\text{Ti}}=-3.438$ fm for titanium.  Replacing the hydrogen atoms by deuterium, on the other hand, creates a large contrast between Ti and D, so that it becomes straightforward to determine the location of D/H.  
+
+The computation  of a kinematical neutron diffraction pattern follows the same sequence of steps as for x-ray powder pattern. At room temperature, TiH$_2$ is tetragonal with space group \spgr{139} and lattice parameters $a=0.320$ nm and $c=0.428$ nm; this structure is a distorted form of the cubic higher temperature phase.  The atom positions are $2a(0,0,0)$ for Ti, and $4d(0,1/2,1/4)$ for H.  The full set of atom positions is then:
+\begin{equation*}
+\begin{split}
+	Ti: & (0,0,0), (1/2,1/2,1/2)\ ;\\
+	H: & (0,1/2,1/4), (1/2,0,1/4), (1/2,0,3/4), (0,1/2,3/4)\ .
+\end{split}
+\end{equation*}
+This leads, via the structure factor, to the following intensity expression (exercise):
+{\small\begin{equation*}
+\begin{split}
+	I_{hkl} = &\left(1+(-1)^{h+k+l}\right)^2 \left( b_{\text{Ti}}^2 \mathrm{e}^{-2B_{\text{Ti}}s^2_{hkl}} + b_{\text{H}}^2 \mathrm{e}^{-2B_{\text{H}}s^2_{hkl}}\left((-1)^h+(-1)^k\right)^2+\right.\\
+	&\left. 2 b_{\text{H}}b_{\text{Ti}} \mathrm{e}^{-(B_{\text{Ti}}+B_{\text{H}}) s^2_{hkl}}\left((-1)^h+(-1)^k\right) \cos \left(\frac{\pi l}{2}\right)\right)\ .
+\end{split}
+\end{equation*}}
+Since the structure is body-centered, we must have $h+k+l$ even; among those reflections, there are three distinct cases (omitting the Debye-Waller factors for now):
+\begin{equation*}
+\begin{split}
+	(1)\,\,I_{hkl} &= 4 b_{\text{Ti}}^2\text{ when $h$ and $k$ have opposite parity and $l$ is odd}\ ;\\
+	(2)\,\,I_{hkl} &= 4(b_{\text{Ti}}+2b_{\text{H}})^2\text{ when $h$ and $k$ have the same parity and $l=4n$}\ ;\\
+	(3)\,\,I_{hkl} &= 4(b_{\text{Ti}}-2b_{\text{H}})^2\text{ when $h$ and $k$ have the same parity and $l=4n+2$}\ .
+\end{split}
+\end{equation*}
+All other cases have zero intensity.  When the proper Debye-Waller factors are included, then the intensities do become dependent on the scattering angle.  Titanium has $B_{\text{Ti}}=0.005$ nm$^2$, a typical value for metal atoms, where hydrogen, being the lightest atom, has a much larger value of $B_{\text{H}}=0.018$ nm$^2$.
+
+When we combine the intensities $I_{hkl}$ with the correction factors we obtain the list of reflections shown in Table~\ref{\chabbr:tb:CalcTiH2}; reflections with $2\theta$ in the range $[30^{\circ}\ldots 100^{\circ}]$ are listed.  Fig.~\ref{\chabbr:fig:nTiH2} shows the corresponding powder diffraction pattern.
+
+\begin{table}[h!]
+\centering\leavevmode
+{\small\begin{tabular}{|crrrrrrr|}
+\hline
+$hkl$ & $\theta_{hkl}\,(^{\circ})$ & $2\theta_{hkl} \,(^{\circ})$ & $I_{hkl}$ & $L_p(\theta_{hkl})$ & $p_{hkl}$ & $I_{hkl}^{\text{corr}}$ & $\bar{I}_{hkl}$ \\
+\hline\hline
+011 & 17.5062 & 35.0124 & 4.55E-05 & 11.5881 & 8 & 4.22E-03 & 39.21 \\
+110 & 19.9200 & 39.8401 & 4.50E-05 & 9.1628 & 4  & 1.65E-03 & 15.34 \\
+002 & 21.1156 & 42.2311 & 4.10E-04 & 8.2600 & 2  & 6.77E-03 & 62.96 \\
+020 & 28.8053 & 57.6105 & 3.60E-05 & 4.9155 & 4  & 7.08E-04 & 6.58 \\
+112 & 29.7255 & 59.4510 & 4.26E-05 & 4.6836 & 8  & 1.60E-03 & 14.85 \\
+121 & 34.6125 & 69.2250 & 1.79E-04 & 3.7658 & 16& 1.08E-02 & 100.00 \\
+013 & 36.2740 & 72.5480 & 4.08E-05 & 3.5435 & 8 & 1.16E-03 & 10.75 \\
+022 & 36.9859 & 73.9718 & 3.15E-04 & 3.4588 & 8 & 8.71E-03 & 80.99 \\
+220 & 42.9544 & 85.9089 & 1.84E-05 & 2.9426 & 4 & 2.17E-04 & 2.01 \\
+004 & 46.0958 & 92.1916 & 1.55E-05 & 2.7779 & 2 & 8.59E-05 & 0.80 \\
+031 & 48.1470 & 96.2940 & 3.74E-05 & 2.7014 & 8 & 8.09E-04 & 7.52 \\
+130 & 49.6273 & 99.2546 & 3.70E-05 & 2.6598 & 8 & 7.88E-04 & 7.32 \\
+123 & 49.7318 & 99.4636 & 1.30E-04 & 2.6573 & 16 & 5.51E-03 & 51.24 \\
+\hline
+\end{tabular}}
+\caption{\label{\chabbr:tb:CalcTiH2}Application of correction factors to the diffracted intensities for TiH$_2$.}
+\end{table}
+
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=0.6\textwidth]{\graphicspath nTiH2.pdf}
+\caption{Simulated diffraction pattern for thermal neutrons with wavelength $\lambda=0.154187$ nm for TiH$_2$.}
+\label{\chabbr:fig:nTiH2}
+\end{figure}
+
+
+\subsection{Kinematical neutron diffraction for magnetic materials}\label{\chabbr:sec:nmagnetic}
+
+
+\subsubsection{Types of magnetic order}
+
+
+
+\subsubsection{The magnetic scattering length}
+A neutron, being electrically neutral, does not interact with the electron cloud of the atom \textit{unless there are unpaired electrons}.  The magnetic moment of a single isolated neutron is $\mu=-1.04\times 10^{-3}$ Bohr magnetons\index{Bohr magneton}, with the Bohr magneton defined as:
+\begin{equation}
+	\mu_B=\frac{e\hbar}{2m_e}=9.274\times 10^{−24}\text{ A m}^2\ .\label{\chabbr:eq:Bohrmagneton}
+\end{equation}
+The electrons in an atom move around the nucleus and give rise to an \indexit{orbital magnetic moment}, $\mathbf{L}$. In addition, each electron has an intrinsic spin; summing over the unpaired electrons produces the net \indexit{spin magnetic moment}, $\mathbf{S}$. The atomic magnetic dipole moment vector is then given by:
+\begin{equation}
+	\bm{\mu} = g\frac{e}{2m}(\mathbf{L}+\mathbf{S})\ ;
+\end{equation}
+in this expression, $g$ is the \indexit{gyromagnetic factor} of the electron.  Its value can be computed using quantum electrodynamics (QED), and it can also be measured very accurately; the values are:
+\begin{equation}
+\begin{split}
+	QED:\, &g=2.002\,319\,304\,365(15)\ ;\\
+	Exp:\, &g=2.002\,319\,304\,362\,56(35)\ .
+\end{split}
+\end{equation}
+The quantity $\mathbf{L}+\mathbf{S}$ is often represented by the total \indexit{angular momentum vector} $\bm{\Pi}$.  For the purposes of this section, we will ignore the orbital angular momentum.  A single electron, considering spin only, has a magnetic moment equal to the Bohr magneton, $\mu=\pm \mu_B$; for multiple electrons, the total spin is given by $S=\sum\mu_i$, where the sum goes over all unpaired electrons, since the spins from paired electrons cancel each other out.  The magnetic moment, $\bm{\mu}_n$, of an incident neutron interacts with the magnetic field, $\mathbf{B}$, generated by the unpaired atomic electrons; the potential energy of the neutron's moment in this magnetic field is given by $V_m=\bm{\mu}_n\cdot\mathbf{B}$. 
+
+The magnetic field due to unpaired electrons can be determined by means of complex quantum mechanical calculations; in practice, one uses tabulated data, similar to the x-ray scattering factors. In addition to the normal scattering length, $b$, one defines the \indexit{magnetic scattering length}, $b_M$, as the product of two quantities, $b_M=q\,p$, where $q$ is the length of the \indexit{magnetic scattering vector} defined below, and $p$ is defined as:
+\begin{equation}
+	p=\left(\frac{e^2\mu_n}{m_e c^2}\right)\,S\,f_S(s)\ ;
+\end{equation}
+in this expression, $S$ is the total spin angular momentum, and $f_S$ is the \indexit{magnetic form factor} which describes the spatial distribution of the magnetic moments of the electrons that contribute to $S$.  Values for $f_S(s)$ for atoms and ions with unpaired electrons are tabulated in the International Tables for Crystallography, Volume C, and take on the following series expansion form:
+\begin{equation}
+	f_S(s)=\langle j_0(s)\rangle+(1-\frac{2}{g_L})\langle j_2(s)\rangle + \ldots\ ,
+\end{equation}
+where $g_L$ is the \indexit{Land\'e factor} which is proportional to the gyromagnetic factor, and 
+\begin{equation*}
+\begin{split}
+	\langle j_0(s)\rangle&=A\mathrm{e}^{-as^2}+B\mathrm{e}^{-bs^2}+C\mathrm{e}^{-cs^2}+D\ ;\\
+	\langle j_2(s)\rangle&=A's^2\mathrm{e}^{-a's^2}+B's^2\mathrm{e}^{-b's^2}+C's^2\mathrm{e}^{-c's^2}+D's^2\ .
+\end{split}
+\end{equation*}
+The parameter $s$ takes on its usual form of $\sin(\theta)/\lambda$ and the constants $a\ldots D$ and $a'\ldots D'$ are tabulated. The magnetic scattering length will be different for different ionization states of, for instance, the first-row transition series elements; as an example, Fig.~\ref{\chabbr:fig:magscat}(a) and (b) show the individual functions $\langle j_0(s)\rangle$ and $\langle j_2(s)\rangle$ for neutral Ti and its ionization states Ti$^+$, Ti$^{2+}$, and Ti$^{3+}$; the magnetic form factor $f_S(s)$ is shown in panel (c), using a Land\'e factor of $g_L=1$ .  Note that the more common ionization state, Ti$^{4+}$, has a zero magnetic form factor because there are no unpaired electrons (orbital configuration [Ar]$3d^0$).
+
+\begin{table}[h]
+\centering\leavevmode
+\begin{tabular}{|l|ccccccc|}
+\hline
+Ion & $A$ & $a$ & $B$ & $b$ & $C$ & $c$ & $D$ \\
+\hline\hline
+\multicolumn{8}{|c|}{Coefficients for $\langle j_0(s)\rangle$}\\
+\hline
+Ti             &0.4657&33.590&0.5490&9.879&-0.0291&0.323&0.0123\\
+Ti$^{1+}$ & 0.5093&36.703&0.5032&10.371&-0.0263&0.311&0.0116\\
+Ti$^{2+}$ & 0.5091&24.976&0.5162&8.757&-0.0281&0.916&0.0015\\
+Ti$^{4+}$ & 0.3571&22.841&0.6688&8.931&-0.0354&0.483&0.0099\\
+\hline\hline
+\multicolumn{8}{|c|}{Coefficients for $\langle j_2(s)\rangle$}\\
+\hline
+Ti             & 4.3583&36.056&3.8230&11.133&0.6855&3.469&0.0020\\
+Ti$^{1+}$ & 6.1567&27.275&2.6833&8.983&0.4070&3.052&0.0011\\
+Ti$^{2+}$ & 4.3107&18.348&2.0960&6.797&0.2984&2.548&0.0007\\
+Ti$^{3+}$ & 3.3717&14.444&1.8258&5.713&0.2470&2.265&0.0005\\
+\hline
+\end{tabular}
+\caption{\label{\chabbr:tb:Ticoefficients}Expansion coefficients for the ionization states of Ti. [Source: International Tables for Crystallography, Volume C]}
+\end{table}
+
+The factors $p_j$ for different atoms in the unit cell can be combined into the \indexit{magnetic structure factor}:
+\begin{equation}
+	F^M_{hkl} = \sum_{j=1}^N p_j\,\mathrm{e}^{2\pi\mathrm{i}\mathbf{g}_{hkl}\cdot\mathbf{r}_j}\ ,\label{\chabbr:eq:magSF}
+\end{equation}
+where the sum only goes over those atoms that have a non-zero value of $p$. When used for intensity computations, this structure factor is multiplied by $q$, the length of the magnetic scattering vector defined next.
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath magscat.pdf}
+\caption{Functions $\langle j_0(s)\rangle$ (a) and $\langle j_2(s)\rangle$ (b) for the ionization states of Ti; (c) corresponding magnetic form factors $f_S(s)$ .}
+\label{\chabbr:fig:magscat}
+\end{figure}
+
+
+\subsubsection{The magnetic scattering vector}
+In addition to the dependence on $s$ via the magnetic form factor, $f_S(s)$, the magnetic scattering also depends on the orientation of the magnetic moment of the atom with respect to the scattering plane.  This dependence is expressed by the \indexit{magnetic interaction vector} $\mathbf{q}$, and is illustrated in Fig~\ref{\chabbr:fig:magscatvector}(a).  The vector $\mathbf{q}$ lies in the scattering plane and is defined in terms of the unit vectors $\hat{\mathbf{g}}$ and $\hat{\bm{\mu}}$ as:
+\begin{equation}
+	\mathbf{q} = \hat{\mathbf{g}}(\hat{\mathbf{g}}\cdot\hat{\bm{\mu}})-\hat{\bm{\mu}}\ .\label{\chabbr:eq:magintvec}
+\end{equation}
+The length of $\mathbf{q}$ is readily seen to be equal to $\vert\mathbf{q}\vert=q=\sin\alpha$; $q$ vanishes when the magnetic moment is parallel to the plane normal, and is largest when the moment lies in the plane.  The incident beam and diffracted beam are in the correct Bragg orientation with respect to the plane $(hkl)$, with a Bragg angle $\theta_{hkl}$.  The unit vector $\hat{\bm{\lambda}}$ indicates the polarization direction of the neutron beam (if it is polarized).
+
+\begin{figure}[h!]
+\centering\leavevmode
+\includegraphics[width=\textwidth]{\graphicspath magscatvector.pdf}
+\caption{(a) Definition of the magnetic interaction vector $\mathbf{q}$; (b) effect of the application of an external magnetic field on the incoherently scattered intensity for a paramagnetic material.}
+\label{\chabbr:fig:magscatvector}
+\end{figure}
+
+\noindent To compute the diffracted intensity, we consider two different cases:
+\begin{itemize}
+	\item the magnetic moments on neighboring atoms are randomly oriented: in that case, the scattering from all atoms will be incoherently added, meaning that the intensity is given by:
+	\begin{equation}
+		I^{\text{inc}}_{hkl} = \vert F^n_{hkl}\vert^2+q^2\vert F^M_{hkl}\vert^2\ ,
+	\end{equation}
+	where $F^n_{hkl}$ is the regular neutron structure factor.
+	\item the magnetic moments are ordered in a systematic way: the scattering from individual atoms must be added coherently, leading to:
+	\begin{equation}
+		I^{\text{coh}}_{hkl} = \vert F^n_{hkl}+q\, F^M_{hkl}\vert^2\ .
+	\end{equation}
+\end{itemize}
+As an example, we consider an elemental primitive crystal structure with a single atom in the unit cell in the paramagnetic state.  The atom has a neutron scattering length $b$ and a randomly oriented magnetic moment $\bm{\mu}$.  The crystallographic and magnetic structure factors are given by:
+\[
+	F_{hkl} = b;\qquad F^M_{hkl}= p\ .
+\]
+For a random arrangement of magnetic moments, the neutron scattering will be incoherent, so we need to determine the value of $q^2$ to obtain the total intensity.  Since $q=\sin\alpha$, we average 
+\[
+	\langle q^2\rangle = \langle \sin^2\alpha\rangle = \frac{2}{3}\ .
+\]
+Therefore, the incoherently scattered intensity is given by:
+\[
+	I^{\text{inc}}_{hkl} = \vert F^n_{hkl}\vert^2+q^2\vert F^M_{hkl}\vert^2 = b^2+\frac{2}{3}p^2\ .
+\]
+If the sample is a single crystal, and we know the spatial orientation of the plane normal $\hat{\mathbf{g}}$, then we can apply an external magnetic field, $\mathbf{H}$, either parallel to the plane normal or orthogonal to the plane normal. If the field is sufficiently strong so that the atomic magnetic moments align themselves parallel to the field, then we have $q=0$ when $\mathbf{H}\parallel \hat{\mathbf{g}}$ and $q=1$ when $\mathbf{H}\perp\hat{\mathbf{g}}$.  This then allows for the determination of both $b$ and $p$, illustrated in Fig.~\ref{\chabbr:fig:magscatvector}(b), by gradually increasing the field so that all moments become aligned, in which case a further increase of the field does no longer changes the scattered intensity.  
+
+For a material with an ordered array of magnetic moments, i.e., ferromagnetic, anti-ferromagnetic, ferrimagnetic, or one of the more complex 3D magnetization states, one typically employs a combination of a polarized neutron beam with an applied magnetic field, either along the polarization direction or in the opposite direction. The coherent scattering equation for an elemental primitive crystal structure then becomes:
+\begin{equation}
+	I^{\text{coh}}_{hkl} = \vert b + p\,\mathbf{q}\cdot\hat{\bm{\lambda}}\vert^2\ .
+\end{equation}
+For opposite neutron polarization states (or, equivalently, a single polarization state and a magnetic field applied in two opposite directions), the two coherent intensity values become $\vert b+p\vert^2$ and $\vert b-p\vert^2$. Performing such measurements for multiple scattering planes allows for a complete determination of the  orientation of magnetic moments in the  unit cell and thus the magnetic point and space groups.
+
+
+% \subsubsection{Magnetic neutron scattering}
 
 
 
