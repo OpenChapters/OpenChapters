@@ -3,11 +3,14 @@
   "authors": [
     "Marc De Graef"
   ],
-  "description": "Structure factors and extinction rules",
+  "description": "Structure factors and extinction rules; diffracted intensity computations for x-rays and neutrons",
   "toc": [
     "Introduction",
     "Bragg's Law Revisited",
-    "The Structure Factor"
+    "The Structure Factor",
+    "Example Structure Factor Computations",
+    "X-ray Intensity Computations",
+    "Neutron Intensity Computations"
   ],
   "entry_file": "DiffractionIntensity.tex",
   "cover_image": "cover.png",
@@ -22,7 +25,7 @@
     "DIFGEO"
    ],
   "discipline": "mse",
-  "published": false,
+  "published": true,
   "author_urls": {
     "Marc De Graef": "https://www.mse.engineering.cmu.edu/directory/bios/degraef-marc.html"
   }

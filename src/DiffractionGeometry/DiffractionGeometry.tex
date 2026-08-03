@@ -280,7 +280,7 @@ Fig.~\ref{\chabbr:fig:Espheres} shows a schematic simple cubic reciprocal lattic
 \section{Relaxation of the Diffraction Condition}\label{\chabbr:sec:relaxedBragg}
 When we take the Ewald sphere interpretation of the Bragg equation, $\mathbf{k}=\mathbf{k}_0+\mathbf{g}_{hkl}$, at face value, we observe that there is a bit of a problem.  The Ewald sphere construction involves taking a reciprocal lattice point, which is an infinitesimal point, and placing it on the sphere, which is an infinitesimal shell; the probability of this happening is essentially zero, so from a purely mathematical point of view, diffraction should be impossible.  There are two reasons why we need to relax the strict Bragg equation so that it applies to real diffraction processes:
 \begin{enumerate}
-\item \textit{wavelength distribution}: when we generate a monochromatic beam of incident particles or waves, there is always some spread of the particle energy or wavelength.  For instance, for Cu K$\alpha$ radiation, the photon energy profile has a full-width-at-half-maximum (FWHM) of about $2.3$ eV \cite{mendenhall2017a} or a wavelength spread of $0.044$ pm. This effectively means that the Ewald sphere actually has a finite thickness corresponding to the wavelength distribution; this is true for all forms of incident waves.  Thus, the Ewald sphere is not an infinitesimally thin shell.
+\item \textit{wavelength distribution}: when we generate a monochromatic beam of incident particles or waves, there is always some spread of the particle energy or wavelength.  For instance, for Cu K$\alpha$ radiation, the photon energy profile has a full-width-at-half-maximum (FWHM) of about $2.3$ eV \cite{mendenhall2017a} or a wavelength spread of $0.044$ pm. This effectively means that the Ewald sphere actually has a finite thickness corresponding to the wavelength distribution; this is true for all types of incident radiation.  Thus, the Ewald sphere is not an infinitesimally thin shell.
 \item \textit{finite sample size}: when a crystal structure is described by a crystallographic space group, the implicit assumption is that the crystal is infinitely large because the space group is an infinite group (translation operations will produce unit cells at arbitrarily large distances from the origin). This leads to infinitesimal reciprocal lattice points, i.e., an infinite volume in direct space has the inverse volume in reciprocal space, which is zero volume.  In reality, space group symmetry is always broken by the sample surfaces (real samples are always of finite size), so that the reciprocal lattice points actually have a shape and a volume (see also section~\ref{FOURIE:ssec:3DCFT} in the Foundational Chapter on Fourier Series and Transforms).
 \end{enumerate}
 We conclude that, for diffraction to occur, there must be an overlap between the finite reciprocal lattice point and the thin but finite thickness Ewald shell.  This can be described mathematically by modifying the Bragg equation:
@@ -596,7 +596,7 @@ This also means that $\cos\theta=4/\sqrt{20}$ and thus $\theta=26.56^{\circ}$.
 
 
 \section{Mathematical Analysis of the Effect of Sample Shape}\label{\chabbr:sec:sampleshape}
-In this section we provide a more in-depth analysis of the sample shape and how it affects the shape of the reciprocal lattice points; the necessary mathematical concepts can be found in the Foundational Chapter of Fourier Series and Transforms.  
+In this section we provide a more in-depth analysis of the sample shape and how it affects the shape of the reciprocal lattice points; the necessary mathematical concepts can be found in the Foundational Chapter on Fourier Series and Transforms.  
 
 We begin with the direct space lattice, which is one of the Bravais lattices.  Each lattice node can be reached by a translation vector $\mathbf{t}_{uvw}=u\mathbf{a}+v\mathbf{b}+w\mathbf{c}$ with the integer coefficients $[uvw]$ constituting the direction symbol.  From a mathematical point of view we can regard each lattice node to be an infinitesimal point so we can represent it by a Dirac delta function; the complete 3D lattice, $\mathcal{T}(\mathbf{r})$, is then the collection of nodes represented by the following sum of delta functions:
 \begin{equation}
@@ -618,7 +618,7 @@ Next we can consider the Fourier transform of the lattice:
 \[
 	\mathcal{F}[\mathcal{T}(\mathbf{r})]=\sum_{u,v,w=-\infty}^{+\infty} \mathcal{F}[\delta(\mathbf{r}-\mathbf{t}_{uvw})]=\sum_{u,v,w=-\infty}^{+\infty} \iiint \delta(\mathbf{r}-\mathbf{t}_{uvw})\, \mathrm{e}^{-2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{r}}\,\mathrm{d}\mathbf{r}\ .
 \]
-When the delta function is inside an integral, it has the property that it selects the rest of the integrand at the position of the delta peak; as a results we find:
+When the delta function is inside an integral, it has the property that it selects the rest of the integrand at the position of the delta peak; as a result we find:
 \[
 	\mathcal{F}[\mathcal{T}(\mathbf{r})]=\sum_{u,v,w=-\infty}^{+\infty} \mathrm{e}^{-2\pi\mathrm{i}\mathbf{k}\cdot\mathbf{t}_{uvw}}\ .
 \]	
