@@ -14,7 +14,13 @@
   ],
   "entry_file": "DiffractionIntensity.tex",
   "cover_image": "cover.png",
-  "keywords": [],
+  "keywords": [
+    "Diffraction",
+    "Structure Factor",
+    "Kinematical Theory",
+    "X-ray Scattering",
+    "Neutron Scattering"
+  ],
   "chapter_type": "topical",
   "chabbr": "DIFINT",
   "depends_on": [
