@@ -36,7 +36,7 @@
 % The file should be placed in chapter/pdf/.
 % Note that \graphicspath is defined in the main.tex file.
 %\chapterimage{\graphicspath MYCHAPheader.pdf}
-\chapterimage{\noheaderimage}
+\chapterimage{\graphicspath DIFINTheader.pdf}
 
 % ###################################################################
 % CHAPTER TITLE  Edit the title below
@@ -94,7 +94,6 @@ Let us consider a general atom position $\mathbf{r}_j$ (with $j\in[1\ldots N]$ a
 \]
 In what follows we will always represent the effect of a phase shift by means of a complex exponential known as the \indexit{phase factor}, as in $\mathrm{e}^{\mathrm{i}\varphi}$. In the next section we will combine the probability of scattering in a given direction (i.e., the \indexit{atomic scattering factor} $f(s)$ for x-rays or the scattering length, $b$, for neutrons) with the phase factor to describe scattering by a single unit cell.
 
-\newpage
 
 \section{The Structure Factor}\label{\chabbr:sec:structurefactor}
 
@@ -829,31 +828,6 @@ the structure factor should be computed using the angle-independent neutron scat
 \subsection{Kinematical diffraction of unpolarized neutrons}\label{\chabbr:sec:nunpolarized}
 While atomic scattering factors increase with atomic number, the neutron scattering lengths display no systematic dependence on atomic number; in fact, the scattering lengths for isotopes of a particular element can have opposite signs, as is the case for hydrogen, $b_{\text{H}}=-3.74$ fm, and deuterium $b_{\text{D}}=6.67$ fm.  If we wish to determine the locations of hydrogen atoms in a compound like TiH$_2$, then an order of magnitude approximation for the total hydrogen signal for x-ray diffraction compared to that of titanium would be $\eta=(2Z_{\text{H}}/Z_{\text{Ti}})^2=(2/22)^2 = 0.008$. This indicates that the contribution of hydrogen to the total diffracted intensity is very small, and difficult to detect. With a neutron scattering length of $b_{\text{Ti}}=-3.438$ fm for titanium.  Replacing the hydrogen atoms by deuterium, on the other hand, creates a large contrast between Ti and D, so that it becomes straightforward to determine the location of D/H.  
 
-The computation  of a kinematical neutron diffraction pattern follows the same sequence of steps as for x-ray powder pattern. At room temperature, TiH$_2$ is tetragonal with space group \spgr{139} and lattice parameters $a=0.320$ nm and $c=0.428$ nm; this structure is a distorted form of the cubic higher temperature phase.  The atom positions are $2a(0,0,0)$ for Ti, and $4d(0,1/2,1/4)$ for H.  The full set of atom positions is then:
-\begin{equation*}
-\begin{split}
-	Ti: & (0,0,0), (1/2,1/2,1/2)\ ;\\
-	H: & (0,1/2,1/4), (1/2,0,1/4), (1/2,0,3/4), (0,1/2,3/4)\ .
-\end{split}
-\end{equation*}
-This leads, via the structure factor, to the following intensity expression (exercise):
-{\small\begin{equation*}
-\begin{split}
-	I_{hkl} = &\left(1+(-1)^{h+k+l}\right)^2 \left( b_{\text{Ti}}^2 \mathrm{e}^{-2B_{\text{Ti}}s^2_{hkl}} + b_{\text{H}}^2 \mathrm{e}^{-2B_{\text{H}}s^2_{hkl}}\left((-1)^h+(-1)^k\right)^2+\right.\\
-	&\left. 2 b_{\text{H}}b_{\text{Ti}} \mathrm{e}^{-(B_{\text{Ti}}+B_{\text{H}}) s^2_{hkl}}\left((-1)^h+(-1)^k\right) \cos \left(\frac{\pi l}{2}\right)\right)\ .
-\end{split}
-\end{equation*}}
-Since the structure is body-centered, we must have $h+k+l$ even; among those reflections, there are three distinct cases (omitting the Debye-Waller factors for now):
-\begin{equation*}
-\begin{split}
-	(1)\,\,I_{hkl} &= 4 b_{\text{Ti}}^2\text{ when $h$ and $k$ have opposite parity and $l$ is odd}\ ;\\
-	(2)\,\,I_{hkl} &= 4(b_{\text{Ti}}+2b_{\text{H}})^2\text{ when $h$ and $k$ have the same parity and $l=4n$}\ ;\\
-	(3)\,\,I_{hkl} &= 4(b_{\text{Ti}}-2b_{\text{H}})^2\text{ when $h$ and $k$ have the same parity and $l=4n+2$}\ .
-\end{split}
-\end{equation*}
-All other cases have zero intensity.  When the proper Debye-Waller factors are included, then the intensities do become dependent on the scattering angle.  Titanium has $B_{\text{Ti}}=0.005$ nm$^2$, a typical value for metal atoms, where hydrogen, being the lightest atom, has a much larger value of $B_{\text{H}}=0.018$ nm$^2$.
-
-When we combine the intensities $I_{hkl}$ with the correction factors we obtain the list of reflections shown in Table~\ref{\chabbr:tb:CalcTiH2}; reflections with $2\theta$ in the range $[30^{\circ}\ldots 100^{\circ}]$ are listed.  Fig.~\ref{\chabbr:fig:nTiH2} shows the corresponding powder diffraction pattern.
 
 \begin{table}[h!]
 \centering\leavevmode
@@ -887,6 +861,33 @@ $hkl$ & $\theta_{hkl}\,(^{\circ})$ & $2\theta_{hkl} \,(^{\circ})$ & $I_{hkl}$ & 
 \label{\chabbr:fig:nTiH2}
 \end{figure}
 
+
+
+The computation  of a kinematical neutron diffraction pattern follows the same sequence of steps as for x-ray powder pattern. At room temperature, TiH$_2$ is tetragonal with space group \spgr{139} and lattice parameters $a=0.320$ nm and $c=0.428$ nm; this structure is a distorted form of the cubic higher temperature phase.  The atom positions are $2a(0,0,0)$ for Ti, and $4d(0,1/2,1/4)$ for H.  The full set of atom positions is then:
+\begin{equation*}
+\begin{split}
+	Ti: & (0,0,0), (1/2,1/2,1/2)\ ;\\
+	H: & (0,1/2,1/4), (1/2,0,1/4), (1/2,0,3/4), (0,1/2,3/4)\ .
+\end{split}
+\end{equation*}
+This leads, via the structure factor, to the following intensity expression (exercise):
+{\small\begin{equation*}
+\begin{split}
+	I_{hkl} = &\left(1+(-1)^{h+k+l}\right)^2 \left( b_{\text{Ti}}^2 \mathrm{e}^{-2B_{\text{Ti}}s^2_{hkl}} + b_{\text{H}}^2 \mathrm{e}^{-2B_{\text{H}}s^2_{hkl}}\left((-1)^h+(-1)^k\right)^2+\right.\\
+	&\left. 2 b_{\text{H}}b_{\text{Ti}} \mathrm{e}^{-(B_{\text{Ti}}+B_{\text{H}}) s^2_{hkl}}\left((-1)^h+(-1)^k\right) \cos \left(\frac{\pi l}{2}\right)\right)\ .
+\end{split}
+\end{equation*}}
+Since the structure is body-centered, we must have $h+k+l$ even; among those reflections, there are three distinct cases (omitting the Debye-Waller factors for now):
+\begin{equation*}
+\begin{split}
+	(1)\,\,I_{hkl} &= 4 b_{\text{Ti}}^2\text{ when $h$ and $k$ have opposite parity and $l$ is odd}\ ;\\
+	(2)\,\,I_{hkl} &= 4(b_{\text{Ti}}+2b_{\text{H}})^2\text{ when $h$ and $k$ have the same parity and $l=4n$}\ ;\\
+	(3)\,\,I_{hkl} &= 4(b_{\text{Ti}}-2b_{\text{H}})^2\text{ when $h$ and $k$ have the same parity and $l=4n+2$}\ .
+\end{split}
+\end{equation*}
+All other cases have zero intensity.  When the proper Debye-Waller factors are included, then the intensities do become dependent on the scattering angle.  Titanium has $B_{\text{Ti}}=0.005$ nm$^2$, a typical value for metal atoms, where hydrogen, being the lightest atom, has a much larger value of $B_{\text{H}}=0.018$ nm$^2$.
+
+When we combine the intensities $I_{hkl}$ with the correction factors we obtain the list of reflections shown in Table~\ref{\chabbr:tb:CalcTiH2}; reflections with $2\theta$ in the range $[30^{\circ}\ldots 100^{\circ}]$ are listed.  Fig.~\ref{\chabbr:fig:nTiH2} shows the corresponding powder diffraction pattern.
 
 \subsection{Kinematical neutron diffraction for magnetic materials}\label{\chabbr:sec:nmagnetic}
 
