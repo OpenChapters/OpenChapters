@@ -278,6 +278,8 @@ Fig.~\ref{\chabbr:fig:Espheres} shows a schematic simple cubic reciprocal lattic
 \end{figure}
 
 \section{Relaxation of the Diffraction Condition}\label{\chabbr:sec:relaxedBragg}
+
+\subsection{Energy spread and finite sample size}\label{\chabbr:ssec:spreadsize}
 When we take the Ewald sphere interpretation of the Bragg equation, $\mathbf{k}=\mathbf{k}_0+\mathbf{g}_{hkl}$, at face value, we observe that there is a bit of a problem.  The Ewald sphere construction involves taking a reciprocal lattice point, which is an infinitesimal point, and placing it on the sphere, which is an infinitesimal shell; the probability of this happening is essentially zero, so from a purely mathematical point of view, diffraction should be impossible.  There are two reasons why we need to relax the strict Bragg equation so that it applies to real diffraction processes:
 \begin{enumerate}
 \item \textit{wavelength distribution}: when we generate a monochromatic beam of incident particles or waves, there is always some spread of the particle energy or wavelength.  For instance, for Cu K$\alpha$ radiation, the photon energy profile has a full-width-at-half-maximum (FWHM) of about $2.3$ eV \cite{mendenhall2017a} or a wavelength spread of $0.044$ pm. This effectively means that the Ewald sphere actually has a finite thickness corresponding to the wavelength distribution; this is true for all types of incident radiation.  Thus, the Ewald sphere is not an infinitesimally thin shell.
@@ -307,8 +309,31 @@ where $j_1(x)$ is a spherical Bessel function of order $1$ and $V$ is the volume
 
 This function is shown in Fig.~\ref{\chabbr:fig:EwaldFiniteSample}(c) for a unit radius sphere and has spherical symmetry since it only depends of the radial distance  $k$. If the Bragg condition is satisfied, then we know that $\mathbf{g}_{hkl}$ lies on the Ewald sphere for some $(hkl)$, which is shown in Fig.~\ref{\chabbr:fig:EwaldFiniteSample}(a); the fuzzy reddish halo surrounding the small red sphere represents the shape intensity, i.e., the reciprocal lattice point is spread out over a spherical volume and the shape intensity decreases radially away from that point.  If the reciprocal lattice point does not quite lie on the sphere, as shown in Fig.~\ref{\chabbr:fig:EwaldFiniteSample}(b), then the halo can still intersect the Ewald sphere, and there may be some diffracted intensity. As the point moves through the Ewald sphere, the diffracted intensity will smoothly increase with a profile given by the expression above, reach a maximum when the point is precisely on the Ewald sphere, and then decrease again.  The precise 3D shape of the intensity halo depends on the shape of the diffracting volume.
 
-
-
+\subsection{The Scherrer Broadening Equation}\label{\chabbr:ssec:Scherrerbroadening}
+The finite size of a grain or powder particle contributes to a finite width of the corresponding diffraction peaks.  If we consider a diffracted beam with diffraction angle $2\theta_B$, then the intensity will begin to rise above the background at a slightly smaller angle, $2\theta_1$, go through a maximum value at $2\theta_B$, and drop to the background level at $2\theta_2$.  If we represent the full-width-at-half-maximum (FWHM) value of the peak by $w$, then a good estimate for this value would be $w=(2\theta_2-2\theta_1)/2$.  In terms of constructive and destructive interference, the fully constructive interference at $2\theta_B$ gradually becomes destructive interference when the diffraction angle approaches either $2\theta_1$ or $2\theta_2$.  In terms of Bragg's Law, the path length difference between beams scattered from consecutive planes becomes either larger or smaller than the optimum value. If we have a sample of thickness $t$, and the relevant interplanar distance if $d$, then we can write $t=m\,d$ for some integer $m$ and Bragg's law becomes $m\,\lambda=2t\sin\theta_B$.  Interference will become completely destructive when either one of the following relations is satisfied:
+\begin{equation*}
+\begin{split}
+	(m+1)\lambda &= 2t\sin\theta_1\ ;\\
+	(m-1)\lambda &= 2t\sin\theta_2\ .
+\end{split}
+\end{equation*}
+The prefactors of $\lambda$ in these equations stem from the fact that $\sin\theta_1 > \sin\theta_B$, hence $m$ increases to $m+1$ (i.e., the next larger integer), and $\sin\theta_2 < \sin\theta_B$, hence $m\rightarrow m-1$ (i.e., the first smaller integer).  Subtracting the second equation from the first we eliminate $m$ and we obtain
+\[
+	\lambda = t(\sin\theta_1-\sin\theta_2) = 2t \cos\left(\frac{\theta_1+\theta_2}{2}\right)\sin\left(\frac{\theta_1-\theta_2}{2}\right)\ .
+\]
+We have $(\theta_1+\theta_2)\approx2\theta_B$, and for the sine function the argument is small so that the sine can be replaced by its argument. This leads to:
+\[
+	\lambda = 2t\,\cos\theta_B\,\frac{w}{2}\ ,
+\]
+and solving for $t$ we obtain the \indexit{Scherrer Broadening Equation}:
+\begin{equation}
+	t = \frac{\mu\,\lambda}{w\cos\theta_B}\ ,\label{\chabbr:eq:SBE}
+\end{equation}
+where $\mu$ is a geometrical factor of order unity that depends on the grain shape; for spherical particles, $\mu\approx 0.9$.  By measuring the FWHM $w$ of a peak, we can therefore determine the particle size $t$.  Note that this only works for relatively small particle sizes less than a few $100$ nm.  Experimental factors will also cause peak broadening; the combined effects of the Soller slit-width, the sample size, and imperfect focusing of the x-ray beam will all contribute to the \indexit{instrument broadening} described by a parameter $w_{\text{ib}}$.  The real value for $w$ is then given by:
+\[
+	w_{\text{real}}^2 = w_{\text{measured}}^2-w_{\text{ib}}^2\ .
+\]
+The value of $w_{\text{ib}}$ can be calibrated by using a poly-crystalline sample with a known structure and relatively large grain sizes. In addition to particle size broadening, the peak width can also be affected by strain in the crystal lattice; since strain changes the $d$-spacings, this will affect peak positions, and for a non-uniform strain peak  broadening will occur.\index{strain broadening}
 
 
 \section{Important Diffraction Geometries}\label{\chabbr:sec:DiffractionGeometries}
